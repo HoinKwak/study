@@ -6,9 +6,10 @@ from __future__ import annotations
 
 from enum import Enum
 from functools import lru_cache
+from typing import Annotated
 
 from pydantic import Field, field_validator
-from pydantic_settings import BaseSettings, SettingsConfigDict
+from pydantic_settings import BaseSettings, NoDecode, SettingsConfigDict
 
 
 class TradeMode(str, Enum):
@@ -37,7 +38,10 @@ class Settings(BaseSettings):
     trade_mode: TradeMode = TradeMode.DRY_RUN
 
     # --- 매매 대상 ---
-    symbols: list[str] = Field(default_factory=lambda: ["BTC/USDT", "ETH/USDT", "SOL/USDT"])
+    # NoDecode: pydantic-settings 의 자동 JSON 파싱을 끄고 아래 validator 로 쉼표 분리.
+    symbols: Annotated[list[str], NoDecode] = Field(
+        default_factory=lambda: ["BTC/USDT", "ETH/USDT", "SOL/USDT"]
+    )
     timeframe: str = "15m"
     loop_interval_sec: int = 60
 

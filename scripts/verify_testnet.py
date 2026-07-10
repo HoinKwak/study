@@ -47,6 +47,7 @@ def main() -> None:
         sys.exit(1)
 
     client = BinanceClient(s)
+    canonical = client.resolve_symbol(args.symbol)
 
     print("\n===== 1. 연결 & 계좌 =====")
     balance = client.fetch_balance_usdt()
@@ -84,7 +85,7 @@ def main() -> None:
     print(f"  진입 체결가 : {entry:,.2f} (orderId={order.get('id')})")
 
     time.sleep(1.0)
-    pos = [p for p in client.fetch_positions() if p.get("symbol") == args.symbol]
+    pos = [p for p in client.fetch_positions(args.symbol) if p.get("symbol") == canonical]
     print(f"  포지션 확인 : {pos[0].get('contracts') if pos else '없음'}")
 
     # 손절 예약 (진입가 -2%)
@@ -104,7 +105,7 @@ def main() -> None:
     time.sleep(1.0)
     client.cancel_all_orders(args.symbol)
 
-    remaining = [p for p in client.fetch_positions() if p.get("symbol") == args.symbol]
+    remaining = [p for p in client.fetch_positions(args.symbol) if p.get("symbol") == canonical]
     print(f"  청산 후 잔여 포지션 : {len(remaining)}")
     print("\n주문 라이프사이클 검증 완료. ✅")
 
