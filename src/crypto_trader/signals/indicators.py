@@ -67,7 +67,11 @@ def supertrend(df: pd.DataFrame, period: int = 10, multiplier: float = 3.0
 
     ATR 기반 추세 추종 지표. 방향이 -1→+1 로 바뀌면 매수 신호, 그 반대는 매도 신호.
     """
-    atr_ = atr(df, period)
+    # 주의: min_periods 있는 ATR 은 워밍업 구간이 NaN 이라 밴드 래칭이 NaN 에
+    # 오염되어 방향 전환이 발생하지 않는 버그가 있었음 → 여기서는 첫 봉부터
+    # 값이 정의되는 EWM ATR 을 사용한다.
+    tr = true_range(df)
+    atr_ = tr.ewm(alpha=1 / period, adjust=False).mean()
     hl2 = (df["high"] + df["low"]) / 2.0
     upper = hl2 + multiplier * atr_
     lower = hl2 - multiplier * atr_

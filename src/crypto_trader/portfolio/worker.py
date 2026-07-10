@@ -49,7 +49,7 @@ class SleeveWorker:
         self.journal = journal
         self.notifier = notifier
         self.realize_cb = realize_cb or (lambda pnl: None)
-        self.risk = RiskManager(settings)
+        self.risk = RiskManager(settings, max_leverage=sleeve.leverage)
 
         if sleeve.strategy_kind == "scalp":
             self.strategy = ScalpStrategy(settings)
@@ -220,8 +220,13 @@ class SleeveWorker:
             return
         if decision.action in (Action.OPEN_LONG, Action.OPEN_SHORT):
             price = float(df["close"].iloc[-1])
-            atr_value = float(ind.atr(df).iloc[-1])
-            plan = self.risk.build_plan(symbol, decision.direction, price, atr_value, equity)
+            if getattr(decision, "stop_price", 0.0):
+                plan = self.risk.build_plan_with_stop(symbol, decision.direction, price,
+                                                      decision.stop_price,
+                                                      decision.take_profit, equity)
+            else:
+                atr_value = float(ind.atr(df).iloc[-1])
+                plan = self.risk.build_plan(symbol, decision.direction, price, atr_value, equity)
             self._open_common(plan, symbol, decision.direction, price, decision.regime.value)
 
     def _act_scalp(self, symbol, df, decision, equity, current_dir) -> None:

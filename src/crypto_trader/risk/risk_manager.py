@@ -38,11 +38,14 @@ class TradePlan:
 class RiskManager:
     def __init__(self, settings: Settings,
                  atr_stop_mult: float | None = None,
-                 reward_risk_ratio: float | None = None):
+                 reward_risk_ratio: float | None = None,
+                 max_leverage: int | None = None):
         self.s = settings
         self.atr_stop_mult = atr_stop_mult if atr_stop_mult is not None else settings.atr_stop_mult
         self.reward_risk_ratio = (reward_risk_ratio if reward_risk_ratio is not None
                                   else settings.reward_risk_ratio)
+        # 슬리브별 레버리지 상한 오버라이드 (없으면 전역 설정)
+        self.max_leverage = max_leverage if max_leverage is not None else settings.max_leverage
         self._day_start_equity: float | None = None
         self._realized_pnl_today: float = 0.0
 
@@ -97,7 +100,7 @@ class RiskManager:
         notional = entry_price * quantity
 
         # 레버리지 상한: 명목가치가 (증거금 × max_leverage) 넘지 않게 클램프
-        max_notional = equity * self.s.max_leverage
+        max_notional = equity * self.max_leverage
         if notional > max_notional:
             scale = max_notional / notional
             quantity *= scale
@@ -105,7 +108,7 @@ class RiskManager:
             risk_amount *= scale
             log.info("레버리지 상한으로 수량 축소 %s (scale=%.3f)", symbol, scale)
 
-        leverage = min(self.s.max_leverage, max(1, round(notional / equity))) if equity else 1
+        leverage = min(self.max_leverage, max(1, round(notional / equity))) if equity else 1
 
         return TradePlan(
             symbol=symbol,
@@ -135,14 +138,14 @@ class RiskManager:
             return None
 
         notional = entry_price * quantity
-        max_notional = equity * self.s.max_leverage
+        max_notional = equity * self.max_leverage
         if notional > max_notional:
             scale = max_notional / notional
             quantity *= scale
             notional *= scale
             risk_amount *= scale
 
-        leverage = min(self.s.max_leverage, max(1, round(notional / equity))) if equity else 1
+        leverage = min(self.max_leverage, max(1, round(notional / equity))) if equity else 1
         return TradePlan(
             symbol=symbol, direction=direction, entry_price=entry_price,
             stop_price=stop_price, take_profit=take_profit, quantity=quantity,

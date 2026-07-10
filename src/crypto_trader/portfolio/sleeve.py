@@ -15,10 +15,11 @@ class Sleeve:
     allocation: float         # 계좌 배분 비율 (0~1)
     signal_tf: str            # 시그널 타임프레임
     confirm_tf: str           # 확인(상위) 타임프레임
-    strategy_kind: str        # 'regime' | 'scalp'
+    strategy_kind: str        # 'regime' | 'scalp' | 'mid' | 'swing'
     eval_interval_sec: int    # 평가 주기(초)
     symbols: list[str] = field(default_factory=list)
     twap_slices: int = 1      # TWAP 분할 수 (진입 시)
+    leverage: int = 3         # 슬리브 레버리지 상한 (isolated)
 
     def allocated_equity(self, total_equity: float) -> float:
         return total_equity * self.allocation
@@ -33,20 +34,20 @@ def default_sleeves(settings: Settings) -> list[Sleeve]:
             signal_tf="4h", confirm_tf="1d",
             strategy_kind="swing",            # RSI 20/80 역추세 → 슈퍼트렌드 피라미딩
             eval_interval_sec=4 * 3600,
-            symbols=symbols, twap_slices=3,
+            symbols=symbols, twap_slices=3, leverage=10,
         ),
         Sleeve(
             name="mid", allocation=0.25,
             signal_tf="15m", confirm_tf="1h",
-            strategy_kind="mid",              # 상위TF 추세 + 하위TF 눌림목
+            strategy_kind="mid",              # 1h 추세 + 15m 볼린저 눌림목 평균회귀
             eval_interval_sec=15 * 60,
-            symbols=symbols, twap_slices=1,
+            symbols=symbols, twap_slices=1, leverage=5,
         ),
         Sleeve(
             name="scalp", allocation=0.25,
             signal_tf="1m", confirm_tf="5m",
             strategy_kind="scalp",
             eval_interval_sec=60,
-            symbols=symbols, twap_slices=3,
+            symbols=symbols, twap_slices=3, leverage=30,
         ),
     ]

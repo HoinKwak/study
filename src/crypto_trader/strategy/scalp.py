@@ -30,6 +30,8 @@ class ScalpDecision:
     entry_ref: float = 0.0       # 참조 진입가(신호봉 종가)
     stop_price: float = 0.0
     take_profit: float = 0.0
+    signal_high: float = 0.0     # 신호봉 고가 (모멘텀 청산 기준)
+    signal_low: float = 0.0      # 신호봉 저가
     use_twap: bool = False
     reason: str = ""
     detail: dict | None = None
@@ -46,6 +48,7 @@ class ScalpStrategy:
                  bb_period: int = 20, bb_std: float = 2.0,
                  vol_lookback: int = 20, vol_spike_mult: float = 3.0,
                  strong_body_frac: float = 0.6, min_body_atr: float = 1.0,
+                 min_tp_frac: float = 0.0008,
                  reward_risk_ratio: float | None = None):
         self.s = settings
         self.bb_period = bb_period
@@ -54,6 +57,7 @@ class ScalpStrategy:
         self.vol_spike_mult = vol_spike_mult
         self.strong_body_frac = strong_body_frac  # 몸통이 전체 레인지의 이 비율 이상이면 '강봉'
         self.min_body_atr = min_body_atr          # 몸통이 ATR 의 이 배수 이상이어야 유의미
+        self.min_tp_frac = min_tp_frac            # 최소 익절 거리 (가격 대비, 0.0008=0.08%)
         self.rr = reward_risk_ratio if reward_risk_ratio is not None else settings.reward_risk_ratio
 
     def decide(self, symbol: str, df: pd.DataFrame,
@@ -121,16 +125,17 @@ class ScalpStrategy:
     def _entry(self, direction: Direction, o: float, h: float, l: float, c: float,
                detail: dict) -> ScalpDecision:
         entry = c  # 참조 진입가(실제는 TWAP 평균)
+        min_tp_dist = entry * self.min_tp_frac    # 최소 익절 거리(수수료를 이겨야 함)
         if direction is Direction.LONG:
             stop = o                          # 신호봉 시가
             risk = max(entry - stop, 1e-9)
-            tp = max(h, entry + self.rr * risk)   # 최소 신호봉 고가, R 고려
+            tp = max(h, entry + self.rr * risk, entry + min_tp_dist)
             action = Action.OPEN_LONG
         else:
             stop = o
             risk = max(stop - entry, 1e-9)
-            tp = min(l, entry - self.rr * risk)   # 최소 신호봉 저가
+            tp = min(l, entry - self.rr * risk, entry - min_tp_dist)
             action = Action.OPEN_SHORT
         return ScalpDecision(action, direction, entry_ref=entry, stop_price=stop,
-                             take_profit=tp, use_twap=True,
+                             take_profit=tp, signal_high=h, signal_low=l, use_twap=True,
                              reason="볼린저 이탈 강봉+거래량 급증", detail=detail)

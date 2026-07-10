@@ -41,6 +41,9 @@ class Decision:
     regime: Regime
     reason: str = ""
     components: list[SignalResult] = field(default_factory=list)
+    # 전략이 SL/TP 를 직접 제시하는 경우(0 이면 리스크 매니저 ATR 기본값 사용)
+    stop_price: float = 0.0
+    take_profit: float = 0.0
 
     def summary(self) -> str:
         comp = ", ".join(f"{c.name}={c.score:+.2f}" for c in self.components)

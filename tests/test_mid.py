@@ -27,21 +27,31 @@ def test_mid_holds_without_confirm():
     assert d.action is Action.HOLD
 
 
-def test_mid_returns_valid_decision():
+def test_mid_long_on_pullback_in_uptrend():
     s = MidStrategy(_settings())
-    # 상위TF 상승 추세 (1h)
+    # 1h 상승 추세
     confirm = _df(list(np.linspace(100, 140, 60)), freq="1h")
-    # 15m: 상승 후 잠깐 눌렸다 반등 (MACD 교차 유도)
-    prices = list(np.linspace(100, 130, 40)) + [128, 126, 127, 129, 131, 133]
+    # 15m: 상승하다가 급락해 밴드 하단 부근 + RSI 낮음
+    prices = list(np.linspace(100, 120, 35)) + list(np.linspace(120, 111, 12))
     d = s.decide("BTC/USDT", _df(prices), confirm, None)
     assert d.action in (Action.OPEN_LONG, Action.HOLD)
-    assert -1.0 <= d.score <= 1.0
+    if d.action is Action.OPEN_LONG:
+        assert d.direction is Direction.LONG
+        assert d.stop_price < 111        # SL 은 진입가 아래
+        assert d.take_profit > 111       # TP(중심선)는 눌린 가격 위
+
+
+def test_mid_no_long_against_downtrend():
+    s = MidStrategy(_settings())
+    confirm = _df(list(np.linspace(140, 100, 60)), freq="1h")  # 1h 하락 추세
+    prices = list(np.linspace(120, 111, 47))
+    d = s.decide("BTC/USDT", _df(prices), confirm, None)
+    assert d.action is not Action.OPEN_LONG  # 하락추세에서 롱 금지
 
 
 def test_mid_exit_on_trend_flip():
     s = MidStrategy(_settings())
-    # 상위TF 하락 추세인데 롱 보유 중 → 청산 유도
-    confirm = _df(list(np.linspace(140, 100, 60)), freq="1h")
+    confirm = _df(list(np.linspace(140, 100, 60)), freq="1h")  # 하락 반전
     prices = list(np.linspace(130, 120, 46))
     d = s.decide("BTC/USDT", _df(prices), confirm, Direction.LONG)
-    assert d.action in (Action.CLOSE, Action.HOLD)
+    assert d.action is Action.CLOSE

@@ -38,7 +38,10 @@ class SleeveBacktester:
                  confirm_tf: str | None = None,
                  starting_equity: float = 10_000.0, warmup: int = 60,
                  taker_fee: float = 0.0005, slippage: float = 0.0002,
-                 cooldown_bars: int | None = None):
+                 cooldown_bars: int | None = None,
+                 maker_entry: bool = False, maker_fee: float = 0.0002,
+                 leverage: int | None = None,
+                 scalp_exit_mode: str = "momentum"):
         self.s = settings
         self.kind = sleeve_kind
         self.confirm_tf = confirm_tf
@@ -46,9 +49,16 @@ class SleeveBacktester:
         self.warmup = warmup
         self.taker_fee = taker_fee
         self.slippage = slippage
+        # maker_entry: TWAP 지정가(post-only) 진입 가정 — 진입만 메이커 수수료,
+        # 진입 슬리피지 0 (호가에 걸어 체결). 청산(SL/시장가)은 테이커 유지.
+        # 주의: 실제로는 미체결 위험이 있어 낙관적 가정임.
+        self.maker_entry = maker_entry
+        self.maker_fee = maker_fee
         self.cooldown_bars = (cooldown_bars if cooldown_bars is not None
                               else self.DEFAULT_COOLDOWN.get(sleeve_kind, 0))
-        self.risk = RiskManager(settings)
+        # scalp 청산 모드: 'momentum'(신고가 갱신 → 다음봉 종가) | 'tp'(고정 TP)
+        self.scalp_exit_mode = scalp_exit_mode
+        self.risk = RiskManager(settings, max_leverage=leverage)
 
         if sleeve_kind == "scalp":
             self.strategy = ScalpStrategy(settings)
@@ -82,12 +92,15 @@ class SleeveBacktester:
         return confirm.iloc[lo:n]
 
     def _fill(self, price: float, direction: Direction, closing: bool = False) -> float:
-        """슬리피지 반영 체결가."""
+        """슬리피지 반영 체결가. 메이커 진입 가정 시 진입 슬리피지 0."""
+        if not closing and self.maker_entry:
+            return price
         adverse = 1 if (direction is Direction.LONG) != closing else -1
         return price * (1 + adverse * self.slippage)
 
-    def _fee(self, notional: float) -> float:
-        return abs(notional) * self.taker_fee
+    def _fee(self, notional: float, closing: bool = False) -> float:
+        rate = self.maker_fee if (not closing and self.maker_entry) else self.taker_fee
+        return abs(notional) * rate
 
     @staticmethod
     def _pnl(direction: Direction, entry: float, exit_price: float, qty: float) -> float:
@@ -120,6 +133,8 @@ class SleeveBacktester:
         confirm, counts = self._confirm_slices(df)
         atr_series = ind.atr(df)
         last_exit_idx = -10**9
+        # scalp 모멘텀 청산 상태: 신호봉 고/저 기준, 갱신되면 다음봉 종가 청산
+        self._scalp_ref: dict | None = None
 
         for i in range(self.warmup, len(df)):
             bar = df.iloc[i]
@@ -127,7 +142,7 @@ class SleeveBacktester:
             window = df.iloc[max(0, i - SIGNAL_WINDOW + 1): i + 1]
             confirm_win = self._confirm_window(confirm, counts, i)
 
-            # 1) SL/TP 인트라바 체크
+            # 1) SL/TP 인트라바 체크 (손절 우선 — 보수적)
             if trade is not None:
                 exit_px, reason = self._sl_tp_hit(trade.direction, high, low,
                                                   trade.stop_price, trade.take_profit)
@@ -137,6 +152,33 @@ class SleeveBacktester:
                     trade = None
                     alloc_frac, stage = 0.0, 1
                     last_exit_idx = i
+                    self._scalp_ref = None
+
+            # 1b) scalp 모멘텀 청산: 신호봉 고가/저가 갱신 → '다음 봉 종가' 청산
+            #     (최소 익절 미달이면 재무장 대기, SL 은 계속 유효)
+            if (trade is not None and self.kind == "scalp"
+                    and self.scalp_exit_mode == "momentum" and self._scalp_ref is not None):
+                ref = self._scalp_ref
+                armed_at = ref.get("armed_at")
+                min_tp = getattr(self.strategy, "min_tp_frac", 0.0008)
+                if armed_at is not None and i > armed_at:
+                    profit_frac = ((price - trade.entry_price) / trade.entry_price
+                                   if trade.direction is Direction.LONG
+                                   else (trade.entry_price - price) / trade.entry_price)
+                    if profit_frac >= min_tp:
+                        fill = self._fill(price, trade.direction, closing=True)
+                        equity += self._close(trade, i, fill, "momentum_tp", df)
+                        trade = None
+                        last_exit_idx = i
+                        self._scalp_ref = None
+                    else:
+                        ref["armed_at"] = None  # 익절 최소치 미달 → 재무장 대기
+                if trade is not None and self._scalp_ref is not None \
+                        and self._scalp_ref.get("armed_at") is None:
+                    if trade.direction is Direction.LONG and high > ref["high"]:
+                        ref["armed_at"] = i
+                    elif trade.direction is Direction.SHORT and low < ref["low"]:
+                        ref["armed_at"] = i
 
             # 쿨다운: 청산 직후 재진입 금지 (과매매 억제)
             in_cooldown = trade is None and (i - last_exit_idx) <= self.cooldown_bars
@@ -192,7 +234,7 @@ class SleeveBacktester:
         return t
 
     def _close(self, trade: Trade, idx: int, fill: float, reason: str, df) -> float:
-        fee = self._fee(fill * trade.quantity)
+        fee = self._fee(fill * trade.quantity, closing=True)
         trade.fees += fee
         pnl = self._pnl(trade.direction, trade.entry_price, fill, trade.quantity) - trade.fees
         trade.exit_idx = idx
@@ -211,15 +253,25 @@ class SleeveBacktester:
             equity += self._close(trade, i, fill, d.reason or "signal_exit", df)
             return None, equity
         if trade is None and d.action in (Action.OPEN_LONG, Action.OPEN_SHORT):
-            if use_plan:  # mid: ATR 사이징
-                atr_v = float(atr_series.iloc[i])
-                plan = self.risk.build_plan(result.symbol, d.direction, price, atr_v, equity)
+            if use_plan:  # mid/regime: 전략 제시 SL/TP 있으면 사용, 없으면 ATR 기본
+                if getattr(d, "stop_price", 0.0):
+                    plan = self.risk.build_plan_with_stop(result.symbol, d.direction, price,
+                                                          d.stop_price, d.take_profit, equity)
+                else:
+                    atr_v = float(atr_series.iloc[i])
+                    plan = self.risk.build_plan(result.symbol, d.direction, price, atr_v, equity)
             else:         # scalp: 전략 제시 SL/TP 사이징
                 plan = self.risk.build_plan_with_stop(result.symbol, d.direction, price,
                                                       d.stop_price, d.take_profit, equity)
             if plan is not None:
                 trade = self._open_trade(result, d.direction, i, price, plan.quantity,
                                          plan.stop_price, plan.take_profit, df)
+                # scalp 모멘텀 모드: 고정 TP 비활성(신고가→다음봉 종가로 청산)
+                if self.kind == "scalp" and self.scalp_exit_mode == "momentum":
+                    self._scalp_ref = {"high": d.signal_high, "low": d.signal_low,
+                                       "armed_at": None}
+                    trade.take_profit = (float("inf") if d.direction is Direction.LONG
+                                         else 0.0)
         return trade, equity
 
     def _apply_swing(self, result, trade, d, i, price, equity, alloc_frac, stage, df):
