@@ -123,20 +123,24 @@ class SleeveWorker:
         )
 
     def _check_sl_tp(self, symbol: str, price: float) -> None:
-        """dry_run: 슬리브 보유분의 SL/TP 도달 점검."""
+        """dry_run: 슬리브 보유분의 SL/TP 도달 점검.
+
+        단타(momentum 청산 모드)는 고정 TP 를 쓰지 않으므로 SL 만 점검한다.
+        """
         rec = self._sleeve_trade(symbol)
         if not rec:
             return
+        use_tp = not (self.sleeve.strategy_kind == "scalp" and rec.signal_high)
         direction = Direction(rec.direction)
         if direction is Direction.LONG:
             if price <= rec.stop_price:
                 self._close_trade(rec, rec.stop_price, "stop_loss")
-            elif price >= rec.take_profit:
+            elif use_tp and price >= rec.take_profit:
                 self._close_trade(rec, rec.take_profit, "take_profit")
         else:
             if price >= rec.stop_price:
                 self._close_trade(rec, rec.stop_price, "stop_loss")
-            elif price <= rec.take_profit:
+            elif use_tp and price <= rec.take_profit:
                 self._close_trade(rec, rec.take_profit, "take_profit")
 
     # ------------------------------------------------------------- 평가
@@ -182,7 +186,8 @@ class SleeveWorker:
     # ------------------------------------------------------------- 실행
 
     def _open_common(self, plan, symbol: str, direction: Direction, price: float,
-                     reason: str) -> None:
+                     reason: str, signal_high: float = 0.0, signal_low: float = 0.0,
+                     place_tp: bool = True, maker_entry: bool = False) -> None:
         ok, why = self.risk.can_open(len([t for t in self.journal.open_trades()
                                           if t.sleeve == self.sleeve.name]))
         if not ok:
@@ -194,7 +199,8 @@ class SleeveWorker:
         if self.s.trade_mode is TradeMode.DRY_RUN:
             fill_price, qty, oid = price, plan.quantity, None
         else:
-            fill = self.executor.open_position(plan, twap_slices=self.sleeve.twap_slices)
+            fill = self.executor.open_position(plan, twap_slices=self.sleeve.twap_slices,
+                                               place_tp=place_tp, maker_entry=maker_entry)
             if fill is None:
                 self.notifier.error(f"[{self.sleeve.name}] {symbol}: 주문 실패")
                 return
@@ -204,6 +210,7 @@ class SleeveWorker:
             symbol=symbol, direction=direction.value, entry_price=fill_price, quantity=qty,
             opened_at=_now_iso(), mode=self.s.trade_mode.value, stop_price=plan.stop_price,
             take_profit=plan.take_profit, order_id=oid, sleeve=self.sleeve.name,
+            signal_high=signal_high, signal_low=signal_low,
         ))
         self.notifier.trade(
             f"[{self.sleeve.name}] {symbol} {direction.value.upper()} 진입 ({reason})\n"
@@ -229,17 +236,84 @@ class SleeveWorker:
                 plan = self.risk.build_plan(symbol, decision.direction, price, atr_value, equity)
             self._open_common(plan, symbol, decision.direction, price, decision.regime.value)
 
+    # ------------------------------------------------- 단타 (모멘텀 청산)
+
+    def _scalp_momentum_exit(self, symbol: str, df) -> bool:
+        """신호봉 고가/저가 갱신 → 다음 평가(봉) 종가 청산. 청산했으면 True.
+
+        백테스터의 momentum exit 와 동일 로직 (라이브 패리티):
+          - armed 상태에서 이번 평가 도달 → 최소익절 이상이면 종가 청산
+          - 미달이면 재무장 대기 (SL 은 계속 유효)
+          - 미무장 상태에서 신고가/신저가 갱신 → armed
+        """
+        rec = self._sleeve_trade(symbol)
+        if rec is None or not rec.signal_high:
+            return False
+        price = float(df["close"].iloc[-1])
+        bar_high = float(df["high"].iloc[-1])
+        bar_low = float(df["low"].iloc[-1])
+        direction = Direction(rec.direction)
+        min_tp = getattr(self.strategy, "min_tp_frac", 0.0008)
+
+        if rec.momentum_armed:
+            profit_frac = ((price - rec.entry_price) / rec.entry_price
+                           if direction is Direction.LONG
+                           else (rec.entry_price - price) / rec.entry_price)
+            if profit_frac >= min_tp:
+                self._close_trade(rec, price, "momentum_tp")
+                return True
+            rec.momentum_armed = False
+            self.journal.save()
+
+        if not rec.momentum_armed:
+            if direction is Direction.LONG and bar_high > rec.signal_high:
+                rec.momentum_armed = True
+                self.journal.save()
+            elif direction is Direction.SHORT and bar_low < rec.signal_low:
+                rec.momentum_armed = True
+                self.journal.save()
+        return False
+
+    def _scalp_in_cooldown(self, symbol: str, cooldown_sec: int = 15 * 60) -> bool:
+        """직전 청산 후 일정 시간 재진입 금지 (백테스터 쿨다운과 패리티)."""
+        from datetime import datetime
+        latest = None
+        for t in self.journal.closed_trades():
+            if t.sleeve == self.sleeve.name and t.symbol == symbol and t.closed_at:
+                latest = t.closed_at
+        if not latest:
+            return False
+        try:
+            closed = datetime.fromisoformat(latest)
+            now = datetime.fromisoformat(_now_iso())
+            return (now - closed).total_seconds() < cooldown_sec
+        except ValueError:
+            return False
+
     def _act_scalp(self, symbol, df, decision, equity, current_dir) -> None:
+        # 0) 보유 중이면 모멘텀 청산 우선 점검
+        if current_dir is not None and self._scalp_momentum_exit(symbol, df):
+            return
+
         if decision.action is Action.CLOSE and current_dir is not None:
             rec = self._sleeve_trade(symbol)
             if rec:
                 self._close_trade(rec, float(df["close"].iloc[-1]), decision.reason or "scalp_exit")
             return
+
         if decision.action in (Action.OPEN_LONG, Action.OPEN_SHORT):
+            if self._scalp_in_cooldown(symbol):
+                log.info("[%s] %s 쿨다운 중 — 진입 스킵", self.sleeve.name, symbol)
+                return
             price = float(df["close"].iloc[-1])
             plan = self.risk.build_plan_with_stop(symbol, decision.direction, price,
                                                   decision.stop_price, decision.take_profit, equity)
-            self._open_common(plan, symbol, decision.direction, price, "scalp")
+            # 모멘텀 청산 모드: 고정 TP 주문은 내지 않음 (SL 만 예약).
+            # 진입은 메이커 TWAP(post-only) — 수수료 절감 (백테스트 결론).
+            self._open_common(plan, symbol, decision.direction, price, "scalp",
+                              signal_high=decision.signal_high,
+                              signal_low=decision.signal_low, place_tp=False,
+                              maker_entry=True)
 
     # ------------------------------------------------------- 중장기(피라미딩)
 

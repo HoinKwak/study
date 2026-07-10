@@ -73,7 +73,84 @@ class Executor:
             filled += float(slice_qty)
         return sum(prices) / len(prices) if prices else plan.entry_price
 
-    def open_position(self, plan: TradePlan, twap_slices: int = 1) -> Fill | None:
+    def _maker_twap_entry(self, plan: TradePlan, side: str, pos_side: str,
+                          twap_slices: int, slice_wait_sec: float = 20.0
+                          ) -> tuple[float, float]:
+        """메이커(post-only) TWAP 진입. (평균체결가, 체결수량) 반환.
+
+        슬라이스마다 최우선 호가에 GTX 지정가를 걸고 slice_wait_sec 대기:
+          - 체결되면 다음 슬라이스로
+          - 미체결이면 취소 후 다음 슬라이스에서 재호가
+        마지막 슬라이스까지 미체결 잔량은 시장가 폴백(진입 기회 놓침 방지).
+        수수료: 체결된 지정가 = 메이커, 폴백 = 테이커.
+        """
+        import time as _time
+
+        n = max(1, twap_slices)
+        min_notional = self.binance.min_notional(plan.symbol)
+        # 슬라이스가 최소 명목가치 미만이면 분할 수를 줄인다
+        while n > 1 and (plan.quantity / n) * plan.entry_price < min_notional:
+            n -= 1
+        slice_qty = self.binance.amount_to_precision(plan.symbol, plan.quantity / n)
+        fills: list[tuple[float, float]] = []  # (price, qty)
+        remaining = plan.quantity
+
+        for i in range(n):
+            if float(slice_qty) <= 0 or remaining <= 0:
+                break
+            qty = self.binance.amount_to_precision(plan.symbol, min(slice_qty, remaining))
+            if float(qty) <= 0 or float(qty) * plan.entry_price < min_notional:
+                break  # 최소 명목가치 미만 슬라이스는 잔량 폴백으로 넘김
+            bid, ask = self.binance.best_bid_ask(plan.symbol)
+            limit_price = bid if side == "buy" else ask   # 호가에 걸어 메이커 보장
+            try:
+                order = self.binance.create_post_only_order(
+                    plan.symbol, side, qty, limit_price, position_side=pos_side)
+            except Exception as e:  # noqa: BLE001
+                log.warning("포스트온리 거부(%s) — 이번 슬라이스 시장가 폴백", e)
+                mkt = self.binance.create_market_order(plan.symbol, side, qty,
+                                                       position_side=pos_side)
+                px = float(mkt.get("average") or mkt.get("price") or limit_price)
+                fills.append((px, float(qty)))
+                remaining -= float(qty)
+                continue
+
+            _time.sleep(slice_wait_sec)
+            oid = str(order.get("id"))
+            status = self.binance.fetch_order(oid, plan.symbol)
+            filled_qty = float(status.get("filled") or 0.0)
+            if float(qty) - filled_qty > 0:
+                self.binance.cancel_order(oid, plan.symbol)
+                # 레이스 대비: 취소 직전 체결됐을 수 있으므로 최종 상태 재확인
+                try:
+                    status = self.binance.fetch_order(oid, plan.symbol)
+                    filled_qty = float(status.get("filled") or 0.0)
+                except Exception:  # noqa: BLE001
+                    pass
+            if filled_qty > 0:
+                px = float(status.get("average") or limit_price)
+                fills.append((px, filled_qty))
+                remaining -= filled_qty
+            # 미체결분은 remaining 에 남겨 다음 슬라이스/폴백에서 재시도
+
+        # 잔량 시장가 폴백 (최소 명목가치 이상일 때만 — 미만이면 거래소가 거부)
+        if remaining > 0:
+            qty = self.binance.amount_to_precision(plan.symbol, remaining)
+            if float(qty) > 0 and float(qty) * plan.entry_price >= min_notional:
+                mkt = self.binance.create_market_order(plan.symbol, side, qty,
+                                                       position_side=pos_side)
+                px = float(mkt.get("average") or mkt.get("price") or plan.entry_price)
+                fills.append((px, float(qty)))
+                log.info("메이커 TWAP 잔량 시장가 폴백: %s %s", plan.symbol, qty)
+            elif float(qty) > 0:
+                log.info("메이커 TWAP 잔량 %s 은 최소 명목가치 미만 — 무시", qty)
+
+        total_qty = sum(q for _, q in fills)
+        avg = (sum(p * q for p, q in fills) / total_qty) if total_qty > 0 else plan.entry_price
+        return avg, total_qty
+
+    def open_position(self, plan: TradePlan, twap_slices: int = 1,
+                      maker_entry: bool = False, place_tp: bool = True) -> Fill | None:
         side = "buy" if plan.direction is Direction.LONG else "sell"
 
         if self.s.trade_mode is TradeMode.DRY_RUN:
@@ -90,19 +167,29 @@ class Executor:
         try:
             self.binance.set_margin_mode(plan.symbol)
             self.binance.set_leverage(plan.symbol, plan.leverage)
-            qty = self.binance.amount_to_precision(plan.symbol, plan.quantity)
-            entry = self._market_entry(plan, side, pos_side, twap_slices)
-            log.info("[%s] 진입 체결 → %s %s @ %.4f", mode.upper(), plan.symbol, pos_side, entry)
+            if maker_entry:
+                entry, filled_qty = self._maker_twap_entry(plan, side, pos_side, twap_slices)
+                qty = self.binance.amount_to_precision(plan.symbol, filled_qty)
+            else:
+                qty = self.binance.amount_to_precision(plan.symbol, plan.quantity)
+                entry = self._market_entry(plan, side, pos_side, twap_slices)
+            if float(qty) <= 0:
+                log.warning("체결 수량 0 — 진입 실패 %s", plan.symbol)
+                return None
+            log.info("[%s] 진입 체결 → %s %s @ %.4f qty=%s", mode.upper(),
+                     plan.symbol, pos_side, entry, qty)
 
-            # 손절/익절 예약 — 포지션 반대 방향으로 청산되도록 positionSide 지정
+            # 손절(+선택적 익절) 예약 — 포지션 반대 방향으로 청산되도록 positionSide 지정
             close_side = "sell" if plan.direction is Direction.LONG else "buy"
             try:
                 self.binance.create_stop_order(plan.symbol, close_side, qty,
                                                plan.stop_price, position_side=pos_side)
-                self.binance.create_take_profit_order(plan.symbol, close_side, qty,
-                                                      plan.take_profit, position_side=pos_side)
-                log.info("[%s] SL=%.4f TP=%.4f 예약", mode.upper(),
-                         plan.stop_price, plan.take_profit)
+                if place_tp:
+                    self.binance.create_take_profit_order(plan.symbol, close_side, qty,
+                                                          plan.take_profit,
+                                                          position_side=pos_side)
+                log.info("[%s] SL=%.4f%s 예약", mode.upper(), plan.stop_price,
+                         f" TP={plan.take_profit:.4f}" if place_tp else " (TP 미사용)")
             except Exception as e:  # noqa: BLE001
                 log.warning("SL/TP 주문 실패 %s: %s", plan.symbol, e)
 

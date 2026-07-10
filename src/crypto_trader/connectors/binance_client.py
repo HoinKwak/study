@@ -189,6 +189,30 @@ class BinanceClient:
         return self.exchange.create_order(
             self.resolve_symbol(symbol), "market", side, amount, None, p)
 
+    def create_post_only_order(self, symbol: str, side: str, amount: float, price: float,
+                               position_side: str | None = None) -> dict[str, Any]:
+        """포스트온리(GTX) 지정가 주문 — 메이커 체결 보장(테이커가 되면 거부됨)."""
+        p = self._order_params(position_side, reduce_only=False,
+                               extra={"timeInForce": "GTX"})
+        return self.exchange.create_order(
+            self.resolve_symbol(symbol), "limit", side, amount, price, p)
+
+    def fetch_order(self, order_id: str, symbol: str) -> dict[str, Any]:
+        return self.exchange.fetch_order(order_id, self.resolve_symbol(symbol))
+
+    def cancel_order(self, order_id: str, symbol: str) -> None:
+        try:
+            self.exchange.cancel_order(order_id, self.resolve_symbol(symbol))
+        except Exception as e:  # noqa: BLE001
+            log.warning("주문 취소 실패 %s: %s", order_id, e)
+
+    def best_bid_ask(self, symbol: str) -> tuple[float, float]:
+        """(최우선 매수호가, 최우선 매도호가)."""
+        ob = self.exchange.fetch_order_book(self.resolve_symbol(symbol), limit=5)
+        bid = float(ob["bids"][0][0]) if ob.get("bids") else 0.0
+        ask = float(ob["asks"][0][0]) if ob.get("asks") else 0.0
+        return bid, ask
+
     def create_stop_order(self, symbol: str, side: str, amount: float, stop_price: float,
                           position_side: str | None = None) -> dict[str, Any]:
         """스톱마켓(손절) 주문. 포지션 청산용이므로 reduce_only/positionSide 로 관리."""

@@ -27,6 +27,10 @@ class TradeRecord:
     stage: int = 1            # 피라미딩 단계 (1: 초기/역추세, 2: 추세확인 추가)
     num_adds: int = 0         # 추가 진입 횟수
     alloc_frac: float = 0.0   # 슬리브 예산 대비 누적 사용 비율 (0~1)
+    # --- 단타 모멘텀 청산 상태 ---
+    signal_high: float = 0.0  # 신호봉 고가 (신고가 갱신 기준)
+    signal_low: float = 0.0   # 신호봉 저가
+    momentum_armed: bool = False  # 신고가/신저가 갱신됨 → 다음 평가 시 종가 청산
     # 청산 시 채워짐
     exit_price: float | None = None
     closed_at: str | None = None
@@ -150,6 +154,10 @@ class TradeJournal:
             self._save()
             return rec
         return None
+
+    def save(self) -> None:
+        """레코드 필드를 직접 수정한 뒤 영속화할 때 사용."""
+        self._save()
 
     def open_trades(self) -> list[TradeRecord]:
         return [t for t in self.trades if t.is_open]
