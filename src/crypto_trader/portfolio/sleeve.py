@@ -20,6 +20,9 @@ class Sleeve:
     symbols: list[str] = field(default_factory=list)
     twap_slices: int = 1      # TWAP 분할 수 (진입 시)
     leverage: int = 3         # 슬리브 레버리지 상한 (isolated)
+    # 동적 유니버스: 24h 거래대금 기준 고유동성 페어를 자동 선별해 symbols 대체
+    dynamic_universe: bool = False
+    min_universe_volume: float = 100e6   # 거래대금 하한 (USD)
 
     def allocated_equity(self, total_equity: float) -> float:
         return total_equity * self.allocation
@@ -28,8 +31,9 @@ class Sleeve:
 def default_sleeves(settings: Settings) -> list[Sleeve]:
     """설계 문서 기준 기본 3-슬리브 구성 (50/25/25)."""
     symbols = settings.symbols
-    # 단타는 SOL 제외: 스퀴즈 필터 적용 후에도 PF 0.2~0.3 (60일 백테스트,
-    # docs/BACKTEST_RESULTS.md) — 엣지 없는 심볼은 매매하지 않는다.
+    # 단타는 동적 유니버스: 24h 거래대금 $100M 이상 전 페어 (회전율 확보).
+    # 스퀴즈 필터가 진입을 강하게 거르므로 유니버스를 넓혀 신호 빈도를 복구한다.
+    # (settings.symbols 는 유니버스 조회 실패 시 폴백으로만 사용)
     scalp_symbols = [s for s in symbols if s.split("/")[0] != "SOL"]
     return [
         Sleeve(
@@ -54,5 +58,6 @@ def default_sleeves(settings: Settings) -> list[Sleeve]:
             strategy_kind="scalp",
             eval_interval_sec=5 * 60,
             symbols=scalp_symbols, twap_slices=3, leverage=30,
+            dynamic_universe=True, min_universe_volume=100e6,
         ),
     ]
