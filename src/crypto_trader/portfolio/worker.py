@@ -245,13 +245,21 @@ class SleeveWorker:
 
     # ------------------------------------------------------------- 실행
 
+    def _notify_block(self, symbol: str, why: str) -> None:
+        """진입 차단 알림. 포지션 수 초과 같은 일상 차단은 로그만(폰 알림 스팸 방지),
+        일일 손실한도 등 중요 차단만 폰으로 경고."""
+        if "손실 한도" in why:
+            self.notifier.warn(f"[{self.sleeve.name}] {symbol}: 진입 차단 — {why}")
+        else:
+            log.info("[%s] %s 진입 차단 — %s", self.sleeve.name, symbol, why)
+
     def _open_common(self, plan, symbol: str, direction: Direction, price: float,
                      reason: str, signal_high: float = 0.0, signal_low: float = 0.0,
                      place_tp: bool = True, maker_entry: bool = False) -> None:
         ok, why = self.risk.can_open(len([t for t in self.journal.open_trades()
                                           if t.sleeve == self.sleeve.name]))
         if not ok:
-            self.notifier.warn(f"[{self.sleeve.name}] {symbol}: 진입 차단 — {why}")
+            self._notify_block(symbol, why)
             return
         if plan is None:
             return
@@ -421,7 +429,7 @@ class SleeveWorker:
         ok, why = self.risk.can_open(len([t for t in self.journal.open_trades()
                                           if t.sleeve == self.sleeve.name]))
         if not ok:
-            self.notifier.warn(f"[swing] {symbol}: 진입 차단 — {why}")
+            self._notify_block(symbol, why)
             return
         qty = self.risk_amount_to_qty(symbol, self._swing_qty(decision.target_frac, equity, price))
         if qty <= 0:

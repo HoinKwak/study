@@ -58,7 +58,9 @@ def default_sleeves(settings: Settings) -> list[Sleeve]:
             signal_tf="5m", confirm_tf="15m",
             strategy_kind="scalp",
             eval_interval_sec=5 * 60,
-            symbols=scalp_symbols, twap_slices=3, leverage=30,
+            # 돌파 모멘텀 진입은 단일 즉시 시장가가 최적(시간분산=추격매수=악화).
+            # 소액이라 시장충격도 무시 가능 → TWAP 분산 불필요.
+            symbols=scalp_symbols, twap_slices=1, leverage=30, maker_entry=False,
             dynamic_universe=True, min_universe_volume=50e6,
         ),
     ]
