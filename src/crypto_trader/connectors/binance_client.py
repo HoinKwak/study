@@ -104,10 +104,47 @@ class BinanceClient:
         params = {"stopPrice": stop_price, "reduceOnly": reduce_only}
         return self.exchange.create_order(symbol, "STOP_MARKET", side, amount, None, params)
 
+    def create_take_profit_order(self, symbol: str, side: str, amount: float,
+                                 tp_price: float, reduce_only: bool = True) -> dict[str, Any]:
+        """익절(트리거) 주문."""
+        params = {"stopPrice": tp_price, "reduceOnly": reduce_only}
+        return self.exchange.create_order(symbol, "TAKE_PROFIT_MARKET", side, amount, None, params)
+
+    def fetch_open_orders(self, symbol: str | None = None) -> list[dict[str, Any]]:
+        return self.exchange.fetch_open_orders(symbol)
+
+    def cancel_all_orders(self, symbol: str) -> None:
+        try:
+            self.exchange.cancel_all_orders(symbol)
+        except Exception as e:  # noqa: BLE001
+            log.warning("주문 취소 실패 %s: %s", symbol, e)
+
+    def close_position(self, symbol: str) -> dict[str, Any] | None:
+        """보유 포지션을 시장가 reduceOnly 로 청산."""
+        positions = self.fetch_positions()
+        pos = next((p for p in positions if p.get("symbol") == symbol), None)
+        if pos is None:
+            log.info("청산할 포지션 없음: %s", symbol)
+            return None
+        contracts = abs(float(pos.get("contracts") or 0))
+        if contracts == 0:
+            return None
+        # 롱이면 sell, 숏이면 buy 로 반대 청산
+        side = "sell" if (pos.get("side") == "long") else "buy"
+        qty = self.amount_to_precision(symbol, contracts)
+        log.info("포지션 청산 %s %s qty=%s", symbol, side, qty)
+        return self.create_market_order(symbol, side, qty, {"reduceOnly": True})
+
     def market_meta(self, symbol: str) -> dict[str, Any]:
         """수량 정밀도/최소 주문량 등 마켓 메타."""
         self.exchange.load_markets()
         return self.exchange.market(symbol)
+
+    def min_notional(self, symbol: str) -> float:
+        """최소 명목가치(USDT). 없으면 5.0 기본."""
+        m = self.market_meta(symbol)
+        cost_min = (m.get("limits", {}).get("cost", {}) or {}).get("min")
+        return float(cost_min) if cost_min else 5.0
 
     def amount_to_precision(self, symbol: str, amount: float) -> float:
         return float(self.exchange.amount_to_precision(symbol, amount))
