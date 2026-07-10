@@ -125,7 +125,10 @@ class RiskManager:
         quantity, notional, risk_amount = self._cap_notional(
             quantity, notional, risk_amount, account_equity)
 
-        leverage = min(self.max_leverage, max(1, round(notional / equity))) if equity else 1
+        # 거래소 레버리지 설정 = 슬리브 설정 레버리지 그대로.
+        # (명목가치는 quantity 로 이미 결정됨. 레버리지는 증거금 효율·청산가만 좌우.
+        #  포지션 크기 = risk_amount/SL거리 로 별도 통제, SL 이 청산가보다 훨씬 가까움.)
+        leverage = self.max_leverage
 
         return TradePlan(
             symbol=symbol,
@@ -167,7 +170,10 @@ class RiskManager:
         quantity, notional, risk_amount = self._cap_notional(
             quantity, notional, risk_amount, account_equity)
 
-        leverage = min(self.max_leverage, max(1, round(notional / equity))) if equity else 1
+        # 거래소 레버리지 설정 = 슬리브 설정 레버리지 그대로.
+        # (명목가치는 quantity 로 이미 결정됨. 레버리지는 증거금 효율·청산가만 좌우.
+        #  포지션 크기 = risk_amount/SL거리 로 별도 통제, SL 이 청산가보다 훨씬 가까움.)
+        leverage = self.max_leverage
         return TradePlan(
             symbol=symbol, direction=direction, entry_price=entry_price,
             stop_price=stop_price, take_profit=take_profit, quantity=quantity,
