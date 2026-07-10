@@ -118,3 +118,33 @@ class RiskManager:
             risk_amount=risk_amount,
             notional=notional,
         )
+
+    def build_plan_with_stop(self, symbol: str, direction: Direction, entry_price: float,
+                             stop_price: float, take_profit: float,
+                             equity: float) -> TradePlan | None:
+        """전략이 SL/TP 를 직접 제시한 경우(예: 단타), 손절 거리로 수량 산정."""
+        if direction is Direction.FLAT or entry_price <= 0 or equity <= 0:
+            return None
+        stop_distance = abs(entry_price - stop_price)
+        if stop_distance <= 0:
+            return None
+
+        risk_amount = equity * (self.s.risk_per_trade_pct / 100.0)
+        quantity = risk_amount / stop_distance
+        if quantity <= 0:
+            return None
+
+        notional = entry_price * quantity
+        max_notional = equity * self.s.max_leverage
+        if notional > max_notional:
+            scale = max_notional / notional
+            quantity *= scale
+            notional *= scale
+            risk_amount *= scale
+
+        leverage = min(self.s.max_leverage, max(1, round(notional / equity))) if equity else 1
+        return TradePlan(
+            symbol=symbol, direction=direction, entry_price=entry_price,
+            stop_price=stop_price, take_profit=take_profit, quantity=quantity,
+            leverage=leverage, risk_amount=risk_amount, notional=notional,
+        )

@@ -23,6 +23,7 @@ class TradeRecord:
     stop_price: float = 0.0
     take_profit: float = 0.0
     order_id: str | None = None
+    sleeve: str = "default"   # 소속 슬리브 (swing / mid / scalp)
     # 청산 시 채워짐
     exit_price: float | None = None
     closed_at: str | None = None
@@ -101,16 +102,26 @@ class TradeJournal:
         self._save()
 
     def record_close(self, symbol: str, exit_price: float, closed_at: str,
-                     pnl: float, reason: str) -> TradeRecord | None:
-        """해당 심볼의 열린 마지막 거래를 청산 처리."""
+                     pnl: float, reason: str, sleeve: str | None = None,
+                     direction: str | None = None) -> TradeRecord | None:
+        """해당 심볼의 열린 거래를 청산 처리.
+
+        헤지 모드/멀티 슬리브에서는 한 심볼에 여러 열린 거래가 있을 수 있으므로,
+        sleeve/direction 이 주어지면 그에 맞는 거래를 골라 청산한다.
+        """
         for rec in reversed(self.trades):
-            if rec.symbol == symbol and rec.is_open:
-                rec.exit_price = exit_price
-                rec.closed_at = closed_at
-                rec.pnl = pnl
-                rec.exit_reason = reason
-                self._save()
-                return rec
+            if not (rec.symbol == symbol and rec.is_open):
+                continue
+            if sleeve is not None and rec.sleeve != sleeve:
+                continue
+            if direction is not None and rec.direction != direction:
+                continue
+            rec.exit_price = exit_price
+            rec.closed_at = closed_at
+            rec.pnl = pnl
+            rec.exit_reason = reason
+            self._save()
+            return rec
         return None
 
     def open_trades(self) -> list[TradeRecord]:

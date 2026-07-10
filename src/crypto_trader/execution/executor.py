@@ -66,20 +66,26 @@ class Executor:
 
         # paper(테스트넷) / live 공통 실주문 경로
         mode = self.s.trade_mode.value
+        pos_side = plan.direction.value  # 'long' | 'short'
         try:
+            self.binance.set_margin_mode(plan.symbol)
             self.binance.set_leverage(plan.symbol, plan.leverage)
             qty = self.binance.amount_to_precision(plan.symbol, plan.quantity)
-            order = self.binance.create_market_order(plan.symbol, side, qty)
+            order = self.binance.create_market_order(plan.symbol, side, qty, position_side=pos_side)
             entry = float(order.get("average") or order.get("price") or plan.entry_price)
-            log.info("[%s] 진입 체결 → %s @ %.4f", mode.upper(), plan.symbol, entry)
+            log.info("[%s] 진입 체결 → %s %s @ %.4f", mode.upper(), plan.symbol, pos_side, entry)
 
-            # 손절(스톱마켓) 예약 — 반대 방향 reduceOnly
-            stop_side = "sell" if plan.direction is Direction.LONG else "buy"
+            # 손절/익절 예약 — 포지션 반대 방향으로 청산되도록 positionSide 지정
+            close_side = "sell" if plan.direction is Direction.LONG else "buy"
             try:
-                self.binance.create_stop_order(plan.symbol, stop_side, qty, plan.stop_price)
-                log.info("[%s] 손절 예약 → %s SL=%.4f", mode.upper(), plan.symbol, plan.stop_price)
+                self.binance.create_stop_order(plan.symbol, close_side, qty,
+                                               plan.stop_price, position_side=pos_side)
+                self.binance.create_take_profit_order(plan.symbol, close_side, qty,
+                                                      plan.take_profit, position_side=pos_side)
+                log.info("[%s] SL=%.4f TP=%.4f 예약", mode.upper(),
+                         plan.stop_price, plan.take_profit)
             except Exception as e:  # noqa: BLE001
-                log.warning("손절 주문 실패 %s: %s", plan.symbol, e)
+                log.warning("SL/TP 주문 실패 %s: %s", plan.symbol, e)
 
             return Fill(plan.symbol, side, float(qty), entry, mode, str(order.get("id")))
         except Exception as e:  # noqa: BLE001

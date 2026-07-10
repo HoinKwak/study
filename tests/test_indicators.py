@@ -47,3 +47,37 @@ def test_adx_bounds():
     adx, plus_di, minus_di = ind.adx(df)
     assert adx.between(0, 100).all()
     assert (plus_di >= 0).all() and (minus_di >= 0).all()
+
+
+def test_bollinger_bands_order():
+    df = _synthetic_df()
+    mid, upper, lower = ind.bollinger_bands(df["close"], 20, 2.0)
+    valid = mid.dropna().index
+    assert (upper.loc[valid] >= mid.loc[valid]).all()
+    assert (mid.loc[valid] >= lower.loc[valid]).all()
+
+
+def test_supertrend_direction_values():
+    df = _synthetic_df()
+    st, direction = ind.supertrend(df, 10, 3.0)
+    assert set(direction.unique()).issubset({-1, 1})
+    assert len(st) == len(df)
+
+
+def test_supertrend_uptrend_is_positive():
+    close = np.linspace(100, 200, 120)
+    df = pd.DataFrame({"open": close, "high": close * 1.001,
+                       "low": close * 0.999, "close": close,
+                       "volume": np.full(120, 100.0)})
+    _st, direction = ind.supertrend(df, 10, 3.0)
+    assert direction.iloc[-1] == 1  # 상승추세 → +1
+
+
+def test_cvd_proxy_rises_on_buying():
+    n = 50
+    close = np.linspace(100, 110, n)  # 상승 = 매수 우위
+    df = pd.DataFrame({"open": np.concatenate([[100], close[:-1]]),
+                       "high": close * 1.001, "low": close * 0.999,
+                       "close": close, "volume": np.full(n, 100.0)})
+    cvd = ind.cvd_proxy(df)
+    assert cvd.iloc[-1] > cvd.iloc[0]  # 누적 델타 상승

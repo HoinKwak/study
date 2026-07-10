@@ -55,6 +55,38 @@ class BinanceClient:
             log.warning("바이낸스 실전(LIVE) 모드로 연결 — 실제 자금 주의")
         return ex
 
+    @property
+    def hedge(self) -> bool:
+        return self.settings.binance_hedge_mode
+
+    def ensure_position_mode(self) -> None:
+        """헤지 모드(dualSidePosition) 설정. 이미 해당 모드면 조용히 통과."""
+        try:
+            self.exchange.set_position_mode(self.hedge)
+            log.info("포지션 모드 설정: %s", "헤지(dual-side)" if self.hedge else "단방향(one-way)")
+        except Exception as e:  # noqa: BLE001
+            # -4059: 변경할 필요 없음(이미 해당 모드) → 정상
+            if "-4059" in str(e) or "No need to change" in str(e):
+                return
+            log.warning("포지션 모드 설정 실패: %s", e)
+
+    def set_margin_mode(self, symbol: str) -> None:
+        """심볼 마진 모드(isolated/cross) 설정."""
+        try:
+            self.exchange.set_margin_mode(self.settings.margin_mode, self.resolve_symbol(symbol))
+        except Exception as e:  # noqa: BLE001
+            if "-4046" in str(e) or "No need to change" in str(e):
+                return
+            log.warning("마진 모드 설정 실패 %s: %s", symbol, e)
+
+    @staticmethod
+    def _pos_side(direction_or_side: str) -> str:
+        """'long'/'short'/'buy'/'sell' → 'LONG'/'SHORT' (헤지 positionSide)."""
+        v = direction_or_side.lower()
+        if v in ("long", "buy"):
+            return "LONG"
+        return "SHORT"
+
     # ------------------------------------------------------------------ 시세
 
     def resolve_symbol(self, symbol: str) -> str:
@@ -116,6 +148,18 @@ class BinanceClient:
         positions = self.exchange.fetch_positions(symbols)
         return [p for p in positions if float(p.get("contracts") or 0) != 0]
 
+    def fetch_position_side(self, symbol: str, direction: str) -> dict[str, Any] | None:
+        """헤지 모드에서 특정 방향(long/short) 포지션만 반환."""
+        want = self._pos_side(direction)
+        canonical = self.resolve_symbol(symbol)
+        for p in self.fetch_positions(symbol):
+            if p.get("symbol") != canonical:
+                continue
+            info_side = (p.get("info", {}) or {}).get("positionSide", "").upper()
+            if not self.hedge or info_side == want or (p.get("side") == direction.lower()):
+                return p
+        return None
+
     # ------------------------------------------------------------------ 주문
 
     def set_leverage(self, symbol: str, leverage: int) -> None:
@@ -124,25 +168,40 @@ class BinanceClient:
         except Exception as e:  # noqa: BLE001
             log.warning("레버리지 설정 실패 %s x%d: %s", symbol, leverage, e)
 
+    def _order_params(self, position_side: str | None, reduce_only: bool,
+                      extra: dict[str, Any] | None = None) -> dict[str, Any]:
+        """헤지 모드면 positionSide 부여(reduceOnly 미사용), 단방향이면 reduceOnly 사용."""
+        params: dict[str, Any] = dict(extra or {})
+        if self.hedge:
+            if position_side:
+                params["positionSide"] = self._pos_side(position_side)
+            # 헤지 모드에서는 reduceOnly 를 보내면 거부됨 → positionSide 로 방향 관리
+        elif reduce_only:
+            params["reduceOnly"] = True
+        return params
+
     def create_market_order(self, symbol: str, side: str, amount: float,
-                            params: dict[str, Any] | None = None) -> dict[str, Any]:
-        """시장가 주문. side = 'buy' | 'sell'."""
+                            params: dict[str, Any] | None = None,
+                            position_side: str | None = None,
+                            reduce_only: bool = False) -> dict[str, Any]:
+        """시장가 주문. side = 'buy' | 'sell'. position_side = 'long'|'short'(헤지)."""
+        p = self._order_params(position_side, reduce_only, params)
         return self.exchange.create_order(
-            self.resolve_symbol(symbol), "market", side, amount, None, params or {})
+            self.resolve_symbol(symbol), "market", side, amount, None, p)
 
-    def create_stop_order(self, symbol: str, side: str, amount: float,
-                          stop_price: float, reduce_only: bool = True) -> dict[str, Any]:
-        """스톱마켓(손절/트리거) 주문."""
-        params = {"stopPrice": stop_price, "reduceOnly": reduce_only}
+    def create_stop_order(self, symbol: str, side: str, amount: float, stop_price: float,
+                          position_side: str | None = None) -> dict[str, Any]:
+        """스톱마켓(손절) 주문. 포지션 청산용이므로 reduce_only/positionSide 로 관리."""
+        p = self._order_params(position_side, reduce_only=True, extra={"stopPrice": stop_price})
         return self.exchange.create_order(
-            self.resolve_symbol(symbol), "STOP_MARKET", side, amount, None, params)
+            self.resolve_symbol(symbol), "STOP_MARKET", side, amount, None, p)
 
-    def create_take_profit_order(self, symbol: str, side: str, amount: float,
-                                 tp_price: float, reduce_only: bool = True) -> dict[str, Any]:
+    def create_take_profit_order(self, symbol: str, side: str, amount: float, tp_price: float,
+                                 position_side: str | None = None) -> dict[str, Any]:
         """익절(트리거) 주문."""
-        params = {"stopPrice": tp_price, "reduceOnly": reduce_only}
+        p = self._order_params(position_side, reduce_only=True, extra={"stopPrice": tp_price})
         return self.exchange.create_order(
-            self.resolve_symbol(symbol), "TAKE_PROFIT_MARKET", side, amount, None, params)
+            self.resolve_symbol(symbol), "TAKE_PROFIT_MARKET", side, amount, None, p)
 
     def fetch_open_orders(self, symbol: str | None = None,
                           include_conditional: bool = True) -> list[dict[str, Any]]:
@@ -182,21 +241,41 @@ class BinanceClient:
         except Exception as e:  # noqa: BLE001
             log.warning("조건부 주문 조회 실패 %s: %s", symbol, e)
 
-    def close_position(self, symbol: str) -> dict[str, Any] | None:
-        """보유 포지션을 시장가 reduceOnly 로 청산."""
+    def close_quantity(self, symbol: str, direction: str, quantity: float) -> dict[str, Any] | None:
+        """헤지 모드에서 특정 방향 포지션을 '지정 수량만큼만' 시장가 청산.
+
+        여러 슬리브가 같은 심볼/방향을 합산 보유하므로, 각 슬리브는 자기 수량만
+        reduceOnly 로 닫는다. 전체 포지션을 닫지 않는다.
+        """
+        qty = self.amount_to_precision(symbol, quantity)
+        if float(qty) <= 0:
+            return None
+        order_side = "sell" if direction.lower() == "long" else "buy"
+        log.info("부분 청산 %s %s qty=%s (%s)", symbol, order_side, qty, direction)
+        return self.create_market_order(symbol, order_side, qty,
+                                        position_side=direction.lower(), reduce_only=True)
+
+    def close_position(self, symbol: str, direction: str | None = None) -> dict[str, Any] | None:
+        """보유 포지션 청산. direction 지정 시 헤지 모드에서 해당 방향만 청산."""
         canonical = self.resolve_symbol(symbol)
-        pos = next((p for p in self.fetch_positions(symbol) if p.get("symbol") == canonical), None)
+        if direction is not None and self.hedge:
+            pos = self.fetch_position_side(symbol, direction)
+        else:
+            pos = next((p for p in self.fetch_positions(symbol)
+                        if p.get("symbol") == canonical), None)
         if pos is None:
-            log.info("청산할 포지션 없음: %s", symbol)
+            log.info("청산할 포지션 없음: %s %s", symbol, direction or "")
             return None
         contracts = abs(float(pos.get("contracts") or 0))
         if contracts == 0:
             return None
+        pos_dir = pos.get("side") or (direction or "long")
         # 롱이면 sell, 숏이면 buy 로 반대 청산
-        side = "sell" if (pos.get("side") == "long") else "buy"
+        order_side = "sell" if pos_dir == "long" else "buy"
         qty = self.amount_to_precision(symbol, contracts)
-        log.info("포지션 청산 %s %s qty=%s", symbol, side, qty)
-        return self.create_market_order(symbol, side, qty, {"reduceOnly": True})
+        log.info("포지션 청산 %s %s qty=%s (side=%s)", symbol, order_side, qty, pos_dir)
+        return self.create_market_order(symbol, order_side, qty,
+                                        position_side=pos_dir, reduce_only=True)
 
     def market_meta(self, symbol: str) -> dict[str, Any]:
         """수량 정밀도/최소 주문량 등 마켓 메타."""

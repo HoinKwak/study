@@ -1,0 +1,125 @@
+"""단타(scalp) 전략 — 볼린저밴드 이탈 + 거래량 급증 + OI 증감.
+
+1분봉 종가 확정 시:
+  진입: 거래량 급증 + 볼린저밴드 이탈하는 강한 양봉/음봉 (OI 동반 증가 시 강화)
+        양봉 → LONG, 음봉 → SHORT
+  SL  : 신호 봉의 시가(open)
+  TP  : max/min( 손익비 기반 목표,  신호 봉의 고가/저가 )
+  청산: 확인 TF(5m) 레짐이 RANGE(횡보) 로 전환되면 종료
+        (SL/TP 도달은 리스크/거래소가 별도 관리)
+
+체결은 워커가 use_twap=True 를 보고 다음 N분간 TWAP 분할 진입한다.
+"""
+from __future__ import annotations
+
+from dataclasses import dataclass
+
+import pandas as pd
+
+from ..config import Settings
+from ..signals import indicators as ind
+from ..signals.base import Direction
+from .regime import Regime
+from .strategy import Action
+
+
+@dataclass
+class ScalpDecision:
+    action: Action
+    direction: Direction
+    entry_ref: float = 0.0       # 참조 진입가(신호봉 종가)
+    stop_price: float = 0.0
+    take_profit: float = 0.0
+    use_twap: bool = False
+    reason: str = ""
+    detail: dict | None = None
+
+    def summary(self) -> str:
+        if self.action in (Action.OPEN_LONG, Action.OPEN_SHORT):
+            return (f"{self.action.value} entry~{self.entry_ref:.4f} "
+                    f"SL {self.stop_price:.4f} TP {self.take_profit:.4f} ({self.reason})")
+        return f"{self.action.value} ({self.reason})"
+
+
+class ScalpStrategy:
+    def __init__(self, settings: Settings,
+                 bb_period: int = 20, bb_std: float = 2.0,
+                 vol_lookback: int = 20, vol_spike_mult: float = 2.0,
+                 strong_body_frac: float = 0.6,
+                 reward_risk_ratio: float | None = None):
+        self.s = settings
+        self.bb_period = bb_period
+        self.bb_std = bb_std
+        self.vol_lookback = vol_lookback
+        self.vol_spike_mult = vol_spike_mult
+        self.strong_body_frac = strong_body_frac  # 몸통이 전체 레인지의 이 비율 이상이면 '강봉'
+        self.rr = reward_risk_ratio if reward_risk_ratio is not None else settings.reward_risk_ratio
+
+    def decide(self, symbol: str, df: pd.DataFrame,
+               oi_delta: float | None = None,
+               current_direction: Direction | None = None,
+               confirm_regime: Regime | None = None) -> ScalpDecision:
+        if len(df) < self.bb_period + 2:
+            return ScalpDecision(Action.HOLD, Direction.FLAT, reason="데이터 부족")
+
+        # --- 보유 중: 횡보장 전환 시 청산 ---
+        if current_direction is not None:
+            if confirm_regime is Regime.RANGE:
+                return ScalpDecision(Action.CLOSE, Direction.FLAT, reason="횡보장 전환 청산")
+            return ScalpDecision(Action.HOLD, Direction.FLAT, reason="추세 유지")
+
+        # --- 진입 판단: 마지막 확정봉 ---
+        _mid, upper, lower = ind.bollinger_bands(df["close"], self.bb_period, self.bb_std)
+        bar = df.iloc[-1]
+        o, h, l, c = float(bar["open"]), float(bar["high"]), float(bar["low"]), float(bar["close"])
+        up_band = float(upper.iloc[-1])
+        low_band = float(lower.iloc[-1])
+        rng = h - l
+        if rng <= 0:
+            return ScalpDecision(Action.HOLD, Direction.FLAT, reason="레인지 0")
+
+        # 거래량 급증
+        vol = df["volume"]
+        avg_vol = float(vol.iloc[-(self.vol_lookback + 1):-1].mean())
+        vol_spike = avg_vol > 0 and float(bar["volume"]) >= self.vol_spike_mult * avg_vol
+
+        # 강봉(몸통 비율)
+        body_frac = abs(c - o) / rng
+        strong = body_frac >= self.strong_body_frac
+
+        # 볼린저 이탈 + 방향
+        bull_breakout = c > up_band and c > o
+        bear_breakout = c < low_band and c < o
+
+        # OI 동반 증가 확인(있으면). None 이면 통과, 있으면 증가 요구.
+        oi_ok = (oi_delta is None) or (oi_delta > 0)
+
+        detail = {
+            "vol_spike": vol_spike, "body_frac": round(body_frac, 3),
+            "up_band": round(up_band, 4), "low_band": round(low_band, 4),
+            "oi_delta": oi_delta,
+        }
+
+        if vol_spike and strong and oi_ok and bull_breakout:
+            return self._entry(Direction.LONG, o, h, l, c, detail)
+        if vol_spike and strong and oi_ok and bear_breakout:
+            return self._entry(Direction.SHORT, o, h, l, c, detail)
+
+        return ScalpDecision(Action.HOLD, Direction.FLAT, reason="진입 조건 미충족", detail=detail)
+
+    def _entry(self, direction: Direction, o: float, h: float, l: float, c: float,
+               detail: dict) -> ScalpDecision:
+        entry = c  # 참조 진입가(실제는 TWAP 평균)
+        if direction is Direction.LONG:
+            stop = o                          # 신호봉 시가
+            risk = max(entry - stop, 1e-9)
+            tp = max(h, entry + self.rr * risk)   # 최소 신호봉 고가, R 고려
+            action = Action.OPEN_LONG
+        else:
+            stop = o
+            risk = max(stop - entry, 1e-9)
+            tp = min(l, entry - self.rr * risk)   # 최소 신호봉 저가
+            action = Action.OPEN_SHORT
+        return ScalpDecision(action, direction, entry_ref=entry, stop_price=stop,
+                             take_profit=tp, use_twap=True,
+                             reason="볼린저 이탈 강봉+거래량 급증", detail=detail)

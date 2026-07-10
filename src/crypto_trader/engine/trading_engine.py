@@ -194,7 +194,7 @@ class TradingEngine:
             if self.binance is None:
                 return
             rec = next((t for t in self.journal.open_trades() if t.symbol == symbol), None)
-            self.binance.close_position(symbol)
+            self.binance.close_position(symbol, direction.value)
             self.binance.cancel_all_orders(symbol)
             entry = rec.entry_price if rec else price
             qty = rec.quantity if rec else 0.0
@@ -261,6 +261,8 @@ class TradingEngine:
 
     def run_once(self) -> None:
         if not self._started:
+            if self.binance is not None and self.s.trade_mode is not TradeMode.DRY_RUN:
+                self.binance.ensure_position_mode()
             equity = self._current_equity()
             self.risk.start_day(equity)
             self.notifier.info(

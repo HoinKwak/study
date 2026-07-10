@@ -30,6 +30,8 @@ class Settings(BaseSettings):
     binance_api_key: str = ""
     binance_api_secret: str = ""
     binance_testnet: bool = True
+    binance_hedge_mode: bool = True    # dualSidePosition: 한 심볼 롱/숏 동시 보유
+    margin_mode: str = "isolated"      # isolated / cross
 
     # --- 코인글래스 ---
     coinglass_api_key: str = ""
