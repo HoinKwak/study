@@ -51,8 +51,11 @@ class Settings(BaseSettings):
     max_open_positions: int = 3
     daily_max_loss_pct: float = 5.0
 
-    # --- 시그널 ---
+    # --- 시그널 / 전략 ---
     entry_score_threshold: float = 0.5
+    exit_flip_threshold: float = 0.4   # 반대 시그널 강도 이 값 이상이면 조기 청산
+    atr_stop_mult: float = 1.5         # 손절 거리 = ATR × 이 값
+    reward_risk_ratio: float = 1.5     # 익절 = 손절거리 × 이 값 (R배수)
 
     # --- 알림 (텔레그램, 선택) ---
     telegram_bot_token: str = ""

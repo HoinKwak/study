@@ -11,12 +11,20 @@ from . import indicators as ind
 from . import patterns as pat
 from .base import SignalResult, clamp
 
-# 서브 지표 가중치 (합 1.0)
+# 기본 서브 지표 가중치 (합 1.0)
 SUB_WEIGHTS = {
     "rsi": 0.25,
     "macd": 0.30,
     "adx": 0.25,
     "pattern": 0.20,
+}
+
+# 레짐별 서브 가중치 — 추세장은 추세추종(MACD/ADX), 횡보장은 평균회귀(RSI) 우위.
+REGIME_WEIGHTS = {
+    "range": {"rsi": 0.45, "macd": 0.15, "adx": 0.10, "pattern": 0.30},
+    "trend_up": {"rsi": 0.10, "macd": 0.40, "adx": 0.35, "pattern": 0.15},
+    "trend_down": {"rsi": 0.10, "macd": 0.40, "adx": 0.35, "pattern": 0.15},
+    "neutral": SUB_WEIGHTS,
 }
 
 
@@ -25,10 +33,15 @@ class TechnicalSignals:
         self.rsi_period = rsi_period
         self.adx_period = adx_period
 
-    def compute(self, df: pd.DataFrame) -> SignalResult:
-        """df: columns = [timestamp, open, high, low, close, volume]."""
+    def compute(self, df: pd.DataFrame, regime: str | None = None) -> SignalResult:
+        """df: columns = [timestamp, open, high, low, close, volume].
+
+        regime 지정 시 레짐별 서브 가중치를 적용(추세장/횡보장 특성 반영).
+        """
         if len(df) < 30:
             return SignalResult("technical", 0.0, {"reason": "insufficient_data"})
+
+        weights = REGIME_WEIGHTS.get(regime or "", SUB_WEIGHTS)
 
         rsi_score, rsi_val = self._rsi_score(df["close"])
         macd_score, macd_hist = self._macd_score(df["close"])
@@ -36,16 +49,17 @@ class TechnicalSignals:
         pattern_score = pat.aggregate_patterns(df)
 
         total = (
-            SUB_WEIGHTS["rsi"] * rsi_score
-            + SUB_WEIGHTS["macd"] * macd_score
-            + SUB_WEIGHTS["adx"] * adx_score
-            + SUB_WEIGHTS["pattern"] * pattern_score
+            weights["rsi"] * rsi_score
+            + weights["macd"] * macd_score
+            + weights["adx"] * adx_score
+            + weights["pattern"] * pattern_score
         )
 
         return SignalResult(
             "technical",
             clamp(total),
             {
+                "regime": regime or "default",
                 "rsi": round(rsi_val, 2),
                 "rsi_score": round(rsi_score, 3),
                 "macd_hist": round(macd_hist, 5),

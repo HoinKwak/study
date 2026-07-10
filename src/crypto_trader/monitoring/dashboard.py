@@ -2,13 +2,27 @@
 from __future__ import annotations
 
 import html
-from typing import Any
-
-from .journal import TradeJournal
+from datetime import datetime, timezone
 
 
-def render_text(journal: TradeJournal, equity: float | None = None) -> str:
+def _now_iso() -> str:
+    return datetime.now(timezone.utc).isoformat(timespec="seconds")
+
+
+def _short_time(iso: str | None) -> str:
+    """ISO8601 → 'MM-DD HH:MM' (표시용)."""
+    if not iso:
+        return "-"
+    try:
+        dt = datetime.fromisoformat(iso)
+        return dt.strftime("%m-%d %H:%M")
+    except (ValueError, TypeError):
+        return iso
+
+
+def render_text(journal, equity: float | None = None) -> str:
     st = journal.stats()
+    now = _now_iso()
     lines = [
         "",
         "════════════ crypto-trader 상태 ════════════",
@@ -22,6 +36,7 @@ def render_text(journal: TradeJournal, equity: float | None = None) -> str:
         f" 손익비(PF)       : {st['profit_factor']:.2f}",
         f" 평균 수익/손실   : {st['avg_win']:+.2f} / {-st['avg_loss']:+.2f}",
         f" 최고/최악        : {st['best']:+.2f} / {st['worst']:+.2f}",
+        f" 평균 유지시간    : {st['avg_holding_human']}",
         f" 열린 포지션      : {st['open_trades']}",
         "─────────────────────────────────────────────",
     ]
@@ -30,14 +45,16 @@ def render_text(journal: TradeJournal, equity: float | None = None) -> str:
         lines.append(" [열린 포지션]")
         for t in opens:
             lines.append(f"   {t.symbol} {t.direction.upper()} @ {t.entry_price:.4f} "
-                         f"SL {t.stop_price:.4f} TP {t.take_profit:.4f} ({t.mode})")
+                         f"SL {t.stop_price:.4f} TP {t.take_profit:.4f} "
+                         f"| 오픈 {_short_time(t.opened_at)} 유지 {t.holding_human(now)} ({t.mode})")
     recent = journal.closed_trades()[-5:]
     if recent:
         lines.append(" [최근 청산 5건]")
         for t in recent:
             lines.append(f"   {t.symbol} {t.direction.upper()} "
                          f"{t.entry_price:.4f}→{t.exit_price:.4f} "
-                         f"{t.pnl:+.2f} ({t.exit_reason})")
+                         f"{t.pnl:+.2f} ({t.exit_reason}) "
+                         f"| {_short_time(t.opened_at)}→{_short_time(t.closed_at)} 유지 {t.holding_human()}")
     lines.append("═════════════════════════════════════════════")
     return "\n".join(lines)
 

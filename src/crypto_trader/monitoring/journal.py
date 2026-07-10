@@ -6,7 +6,8 @@
 from __future__ import annotations
 
 import json
-from dataclasses import asdict, dataclass, field
+from dataclasses import asdict, dataclass
+from datetime import datetime
 from pathlib import Path
 from typing import Any
 
@@ -31,6 +32,42 @@ class TradeRecord:
     @property
     def is_open(self) -> bool:
         return self.exit_price is None
+
+    @property
+    def holding_seconds(self) -> float | None:
+        """오픈~종료 유지 시간(초). 열린 거래는 None."""
+        if not self.closed_at:
+            return None
+        try:
+            o = datetime.fromisoformat(self.opened_at)
+            c = datetime.fromisoformat(self.closed_at)
+            return (c - o).total_seconds()
+        except (ValueError, TypeError):
+            return None
+
+    def holding_human(self, until: str | None = None) -> str:
+        """유지 시간을 사람이 읽기 좋은 문자열로. 열린 거래는 until(현재시각) 기준."""
+        end = self.closed_at or until
+        if not end:
+            return "-"
+        try:
+            o = datetime.fromisoformat(self.opened_at)
+            c = datetime.fromisoformat(end)
+            return _fmt_duration((c - o).total_seconds())
+        except (ValueError, TypeError):
+            return "-"
+
+
+def _fmt_duration(seconds: float) -> str:
+    seconds = int(max(0, seconds))
+    d, rem = divmod(seconds, 86400)
+    h, rem = divmod(rem, 3600)
+    m, _ = divmod(rem, 60)
+    if d:
+        return f"{d}d {h}h {m}m"
+    if h:
+        return f"{h}h {m}m"
+    return f"{m}m"
 
 
 class TradeJournal:
@@ -92,6 +129,8 @@ class TradeJournal:
         gross_win = sum(wins)
         gross_loss = -sum(losses)
         total_pnl = sum(pnls)
+        holds = [t.holding_seconds for t in closed if t.holding_seconds is not None]
+        avg_hold = sum(holds) / len(holds) if holds else 0.0
         return {
             "total_trades": len(closed),
             "open_trades": len(self.open_trades()),
@@ -104,4 +143,6 @@ class TradeJournal:
             "profit_factor": (gross_win / gross_loss) if gross_loss > 0 else float("inf"),
             "best": max(pnls) if pnls else 0.0,
             "worst": min(pnls) if pnls else 0.0,
+            "avg_holding_sec": avg_hold,
+            "avg_holding_human": _fmt_duration(avg_hold) if avg_hold else "-",
         }

@@ -16,9 +16,9 @@ import pandas as pd
 
 from ..config import Settings
 from ..risk import RiskManager
-from ..signals import SignalAggregator, TechnicalSignals
 from ..signals import indicators as ind
 from ..signals.base import Direction
+from ..strategy import Action, Strategy
 
 
 @dataclass
@@ -34,6 +34,9 @@ class Trade:
     quantity: float = 0.0
     pnl: float = 0.0
     reason: str = ""
+    opened_at: str = ""
+    closed_at: str = ""
+    holding_bars: int = 0
 
 
 @dataclass
@@ -70,6 +73,13 @@ class BacktestResult:
         return gross_win / gross_loss if gross_loss > 0 else float("inf")
 
     @property
+    def avg_holding_bars(self) -> float:
+        closed = [t for t in self.trades if t.exit_idx is not None]
+        if not closed:
+            return 0.0
+        return sum(t.holding_bars for t in closed) / len(closed)
+
+    @property
     def max_drawdown_pct(self) -> float:
         peak = self.starting_equity
         max_dd = 0.0
@@ -89,6 +99,7 @@ class BacktestResult:
             f"매매 횟수         : {self.num_trades}\n"
             f"승률              : {self.win_rate:.1f}%\n"
             f"손익비(PF)        : {self.profit_factor:.2f}\n"
+            f"평균 보유 봉수    : {self.avg_holding_bars:.1f}\n"
             f"최대 낙폭(MDD)    : {self.max_drawdown_pct:.2f}%\n"
             f"========================================"
         )
@@ -102,9 +113,16 @@ class Backtester:
         self.s = settings
         self.starting_equity = starting_equity
         self.warmup = warmup
-        self.tech = TechnicalSignals()
-        self.aggregator = SignalAggregator(entry_threshold=settings.entry_score_threshold)
+        # 라이브 엔진과 동일한 Strategy(레짐 인지 + 시그널 반전 청산)를 공유
+        self.strategy = Strategy(settings)
         self.risk = RiskManager(settings)
+
+    @staticmethod
+    def _ts(df: pd.DataFrame, i: int) -> str:
+        try:
+            return df.index[i].isoformat()
+        except Exception:  # noqa: BLE001
+            return ""
 
     def run(self, symbol: str, df: pd.DataFrame) -> BacktestResult:
         result = BacktestResult(symbol, starting_equity=self.starting_equity)
@@ -120,50 +138,55 @@ class Backtester:
             high = float(bar["high"])
             low = float(bar["low"])
 
-            # 1) 오픈 포지션 청산 체크 (해당 봉의 고저로 SL/TP 터치 판정)
+            # 1) 오픈 포지션 SL/TP 청산 체크 (해당 봉의 고저로 터치 판정)
             if open_trade is not None:
                 exit_price, reason = self._check_exit(open_trade, high, low)
                 if exit_price is not None:
-                    pnl = self._pnl(open_trade, exit_price)
-                    open_trade.exit_idx = i
-                    open_trade.exit_price = exit_price
-                    open_trade.pnl = pnl
-                    open_trade.reason = reason
-                    equity += pnl
+                    equity += self._close(open_trade, i, exit_price, reason, df)
                     open_trade = None
 
-            # 2) 신규 진입 (포지션 없을 때만)
-            if open_trade is None:
-                sig = self.tech.compute(window)
-                agg = self.aggregator.aggregate(symbol, [sig])
-                if agg.direction is not Direction.FLAT:
-                    atr_value = float(atr_series.iloc[i])
-                    plan = self.risk.build_plan(symbol, agg.direction, price, atr_value, equity)
-                    if plan is not None:
-                        open_trade = Trade(
-                            symbol=symbol,
-                            direction=plan.direction,
-                            entry_idx=i,
-                            entry_price=plan.entry_price,
-                            stop_price=plan.stop_price,
-                            take_profit=plan.take_profit,
-                            quantity=plan.quantity,
-                        )
-                        result.trades.append(open_trade)
+            # 2) 전략 결정 (진입 또는 시그널 반전 청산)
+            current_dir = open_trade.direction if open_trade else None
+            decision = self.strategy.decide(symbol, window, None, current_dir)
+
+            if open_trade is not None and decision.action is Action.CLOSE:
+                # 시그널 반전 → 종가 청산
+                equity += self._close(open_trade, i, price, "signal_flip", df)
+                open_trade = None
+
+            if open_trade is None and decision.action in (Action.OPEN_LONG, Action.OPEN_SHORT):
+                atr_value = float(atr_series.iloc[i])
+                plan = self.risk.build_plan(symbol, decision.direction, price, atr_value, equity)
+                if plan is not None:
+                    open_trade = Trade(
+                        symbol=symbol, direction=plan.direction, entry_idx=i,
+                        entry_price=plan.entry_price, stop_price=plan.stop_price,
+                        take_profit=plan.take_profit, quantity=plan.quantity,
+                        opened_at=self._ts(df, i),
+                    )
+                    result.trades.append(open_trade)
 
             result.equity_curve.append(equity)
 
         # 마지막 미청산 포지션은 종가로 정리
         if open_trade is not None and open_trade.exit_idx is None:
-            last_price = float(df["close"].iloc[-1])
-            open_trade.exit_idx = len(df) - 1
-            open_trade.exit_price = last_price
-            open_trade.pnl = self._pnl(open_trade, last_price)
-            open_trade.reason = "end_of_data"
+            last = len(df) - 1
+            pnl = self._close(open_trade, last, float(df["close"].iloc[-1]), "end_of_data", df)
             if result.equity_curve:
-                result.equity_curve[-1] += open_trade.pnl
+                result.equity_curve[-1] += pnl
 
         return result
+
+    def _close(self, trade: Trade, idx: int, exit_price: float, reason: str,
+               df: pd.DataFrame) -> float:
+        pnl = self._pnl(trade, exit_price)
+        trade.exit_idx = idx
+        trade.exit_price = exit_price
+        trade.pnl = pnl
+        trade.reason = reason
+        trade.closed_at = self._ts(df, idx)
+        trade.holding_bars = idx - trade.entry_idx
+        return pnl
 
     # ------------------------------------------------------------- 헬퍼
 

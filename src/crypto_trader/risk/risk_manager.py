@@ -37,11 +37,12 @@ class TradePlan:
 
 class RiskManager:
     def __init__(self, settings: Settings,
-                 atr_stop_mult: float = 1.5,
-                 reward_risk_ratio: float = 1.5):
+                 atr_stop_mult: float | None = None,
+                 reward_risk_ratio: float | None = None):
         self.s = settings
-        self.atr_stop_mult = atr_stop_mult
-        self.reward_risk_ratio = reward_risk_ratio
+        self.atr_stop_mult = atr_stop_mult if atr_stop_mult is not None else settings.atr_stop_mult
+        self.reward_risk_ratio = (reward_risk_ratio if reward_risk_ratio is not None
+                                  else settings.reward_risk_ratio)
         self._day_start_equity: float | None = None
         self._realized_pnl_today: float = 0.0
 
