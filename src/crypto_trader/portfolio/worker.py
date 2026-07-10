@@ -50,6 +50,7 @@ class SleeveWorker:
         self.notifier = notifier
         self.realize_cb = realize_cb or (lambda pnl: None)
         self.risk = RiskManager(settings, max_leverage=sleeve.leverage)
+        self._account_equity: float | None = None
 
         if sleeve.strategy_kind == "scalp":
             self.strategy = ScalpStrategy(settings)
@@ -147,6 +148,7 @@ class SleeveWorker:
 
     def evaluate(self, total_equity: float) -> None:
         allocated = self.sleeve.allocated_equity(total_equity)
+        self._account_equity = total_equity   # 포지션당 명목 상한 계산 기준(계좌 총자본)
         for symbol in self.sleeve.symbols:
             try:
                 self._evaluate_symbol(symbol, allocated)
@@ -230,10 +232,12 @@ class SleeveWorker:
             if getattr(decision, "stop_price", 0.0):
                 plan = self.risk.build_plan_with_stop(symbol, decision.direction, price,
                                                       decision.stop_price,
-                                                      decision.take_profit, equity)
+                                                      decision.take_profit, equity,
+                                                      account_equity=self._account_equity)
             else:
                 atr_value = float(ind.atr(df).iloc[-1])
-                plan = self.risk.build_plan(symbol, decision.direction, price, atr_value, equity)
+                plan = self.risk.build_plan(symbol, decision.direction, price, atr_value, equity,
+                                            account_equity=self._account_equity)
             self._open_common(plan, symbol, decision.direction, price, decision.regime.value)
 
     # ------------------------------------------------- 단타 (모멘텀 청산)
@@ -310,7 +314,8 @@ class SleeveWorker:
                 return
             price = float(df["close"].iloc[-1])
             plan = self.risk.build_plan_with_stop(symbol, decision.direction, price,
-                                                  decision.stop_price, decision.take_profit, equity)
+                                                  decision.stop_price, decision.take_profit,
+                                                  equity, account_equity=self._account_equity)
             # 모멘텀 청산 모드: 고정 TP 주문은 내지 않음 (SL 만 예약).
             # 진입은 메이커 TWAP(post-only) — 수수료 절감 (백테스트 결론).
             self._open_common(plan, symbol, decision.direction, price, "scalp",

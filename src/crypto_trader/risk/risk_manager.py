@@ -46,8 +46,20 @@ class RiskManager:
                                   else settings.reward_risk_ratio)
         # 슬리브별 레버리지 상한 오버라이드 (없으면 전역 설정)
         self.max_leverage = max_leverage if max_leverage is not None else settings.max_leverage
+        # 포지션당 명목가치 상한 (계좌 총자본 대비 %)
+        self.max_position_notional_pct = settings.max_position_notional_pct
         self._day_start_equity: float | None = None
         self._realized_pnl_today: float = 0.0
+
+    def _cap_notional(self, quantity: float, notional: float, risk_amount: float,
+                      account_equity: float | None) -> tuple[float, float, float]:
+        """포지션당 명목가치를 계좌 총자본의 max_position_notional_pct% 로 제한."""
+        if account_equity and self.max_position_notional_pct < 100.0:
+            cap = account_equity * (self.max_position_notional_pct / 100.0)
+            if notional > cap > 0:
+                scale = cap / notional
+                return quantity * scale, notional * scale, risk_amount * scale
+        return quantity, notional, risk_amount
 
     # ----------------------------------------------------- 일일 손실 한도
 
@@ -76,7 +88,8 @@ class RiskManager:
     # ------------------------------------------------------- 포지션 사이징
 
     def build_plan(self, symbol: str, direction: Direction, entry_price: float,
-                   atr_value: float, equity: float) -> TradePlan | None:
+                   atr_value: float, equity: float,
+                   account_equity: float | None = None) -> TradePlan | None:
         """ATR 기반 손절 거리로 리스크 대비 수량 산정."""
         if direction is Direction.FLAT or entry_price <= 0 or atr_value <= 0 or equity <= 0:
             return None
@@ -108,6 +121,10 @@ class RiskManager:
             risk_amount *= scale
             log.info("레버리지 상한으로 수량 축소 %s (scale=%.3f)", symbol, scale)
 
+        # 포지션당 계좌 대비 명목 상한
+        quantity, notional, risk_amount = self._cap_notional(
+            quantity, notional, risk_amount, account_equity)
+
         leverage = min(self.max_leverage, max(1, round(notional / equity))) if equity else 1
 
         return TradePlan(
@@ -124,7 +141,8 @@ class RiskManager:
 
     def build_plan_with_stop(self, symbol: str, direction: Direction, entry_price: float,
                              stop_price: float, take_profit: float,
-                             equity: float) -> TradePlan | None:
+                             equity: float,
+                             account_equity: float | None = None) -> TradePlan | None:
         """전략이 SL/TP 를 직접 제시한 경우(예: 단타), 손절 거리로 수량 산정."""
         if direction is Direction.FLAT or entry_price <= 0 or equity <= 0:
             return None
@@ -144,6 +162,10 @@ class RiskManager:
             quantity *= scale
             notional *= scale
             risk_amount *= scale
+
+        # 포지션당 계좌 대비 명목 상한
+        quantity, notional, risk_amount = self._cap_notional(
+            quantity, notional, risk_amount, account_equity)
 
         leverage = min(self.max_leverage, max(1, round(notional / equity))) if equity else 1
         return TradePlan(

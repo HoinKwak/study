@@ -51,6 +51,7 @@ class Settings(BaseSettings):
     max_leverage: int = 3
     risk_per_trade_pct: float = 1.0
     max_open_positions: int = 3
+    max_position_notional_pct: float = 100.0  # 포지션당 명목가치 상한(계좌 대비 %)
     daily_max_loss_pct: float = 5.0
 
     # --- 시그널 / 전략 ---

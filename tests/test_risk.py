@@ -41,6 +41,41 @@ def test_short_plan():
     assert plan.take_profit < plan.entry_price
 
 
+def test_position_notional_cap():
+    # 포지션당 명목가치를 계좌 10% 로 제한
+    rm = RiskManager(_settings(max_leverage=30, max_position_notional_pct=10.0),
+                     max_leverage=30)
+    account = 10_000.0
+    # ATR 이 매우 작아 수량이 커지는 상황 → 명목 상한(1000)에 걸려야 함
+    plan = rm.build_plan("BTC/USDT", Direction.LONG, entry_price=50_000, atr_value=1,
+                         equity=account, account_equity=account)
+    assert plan is not None
+    assert plan.notional <= account * 0.10 + 1e-6   # 계좌의 10% 이하
+
+
+def test_position_notional_cap_with_stop():
+    rm = RiskManager(_settings(max_leverage=30, max_position_notional_pct=10.0),
+                     max_leverage=30)
+    account = 10_000.0
+    plan = rm.build_plan_with_stop("BTC/USDT", Direction.LONG, entry_price=50_000,
+                                   stop_price=49_990, take_profit=50_050,
+                                   equity=account, account_equity=account)
+    assert plan is not None
+    assert plan.notional <= account * 0.10 + 1e-6
+
+
+def test_no_cap_when_pct_100():
+    rm = RiskManager(_settings(max_leverage=30, max_position_notional_pct=100.0),
+                     max_leverage=30)
+    account = 10_000.0
+    plan = rm.build_plan_with_stop("BTC/USDT", Direction.LONG, entry_price=50_000,
+                                   stop_price=49_990, take_profit=50_050,
+                                   equity=account, account_equity=account)
+    assert plan is not None
+    # 100% 면 상한 미적용 → 레버리지 상한(30x)까지 허용
+    assert plan.notional > account * 0.10
+
+
 def test_daily_loss_limit_blocks():
     rm = RiskManager(_settings(daily_max_loss_pct=5.0))
     rm.start_day(10_000)
