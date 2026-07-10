@@ -27,3 +27,6 @@ paper_state.json
 .DS_Store
 .idea/
 .vscode/
+
+# Claude 에이전트 worktree (커밋 금지)
+.claude/worktrees/
