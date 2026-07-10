@@ -56,7 +56,10 @@ class SleeveBacktester:
         self.maker_fee = maker_fee
         self.cooldown_bars = (cooldown_bars if cooldown_bars is not None
                               else self.DEFAULT_COOLDOWN.get(sleeve_kind, 0))
-        # scalp 청산 모드: 'momentum'(신고가 갱신 → 다음봉 종가) | 'tp'(고정 TP)
+        # scalp 청산 모드:
+        #   'momentum'       — 신고가 갱신 → 다음봉 종가 전량 청산
+        #   'momentum_split' — 다음봉 종가 50% + 그다음봉 종가 50% 분할 청산
+        #   'tp'             — 고정 TP
         self.scalp_exit_mode = scalp_exit_mode
         self.risk = RiskManager(settings, max_leverage=leverage)
 
@@ -148,33 +151,66 @@ class SleeveBacktester:
                                                   trade.stop_price, trade.take_profit)
                 if exit_px is not None:
                     fill = self._fill(exit_px, trade.direction, closing=True)
-                    equity += self._close(trade, i, fill, reason, df)
+                    pnl = self._close(trade, i, fill, reason, df)
+                    # 분할 익절 후 잔량이 SL 로 끝난 경우: 앞선 부분 익절 손익 합산
+                    if self._scalp_ref and self._scalp_ref.get("partial_pnl"):
+                        trade.pnl += self._scalp_ref["partial_pnl"]
+                    equity += pnl
                     trade = None
                     alloc_frac, stage = 0.0, 1
                     last_exit_idx = i
                     self._scalp_ref = None
 
-            # 1b) scalp 모멘텀 청산: 신호봉 고가/저가 갱신 → '다음 봉 종가' 청산
+            # 1b) scalp 모멘텀 청산: 신호봉 고가/저가 갱신 후
+            #     momentum       → 다음봉 종가 전량 청산
+            #     momentum_split → 다음봉 종가 50%, 그다음봉 종가 나머지 50%
             #     (최소 익절 미달이면 재무장 대기, SL 은 계속 유효)
             if (trade is not None and self.kind == "scalp"
-                    and self.scalp_exit_mode == "momentum" and self._scalp_ref is not None):
+                    and self.scalp_exit_mode in ("momentum", "momentum_split")
+                    and self._scalp_ref is not None):
                 ref = self._scalp_ref
-                armed_at = ref.get("armed_at")
                 min_tp = getattr(self.strategy, "min_tp_frac", 0.0008)
-                if armed_at is not None and i > armed_at:
+
+                # 분할 2단계: 나머지 50% 를 그다음봉 종가에 무조건 청산
+                if trade is not None and ref.get("final_at") is not None \
+                        and i >= ref["final_at"]:
+                    fill = self._fill(price, trade.direction, closing=True)
+                    pnl = self._close(trade, i, fill, "momentum_split", df)
+                    trade.pnl += ref.get("partial_pnl", 0.0)
+                    equity += pnl
+                    trade = None
+                    last_exit_idx = i
+                    self._scalp_ref = None
+
+                armed_at = ref.get("armed_at") if trade is not None else None
+                if trade is not None and armed_at is not None and i > armed_at \
+                        and ref.get("final_at") is None:
                     profit_frac = ((price - trade.entry_price) / trade.entry_price
                                    if trade.direction is Direction.LONG
                                    else (trade.entry_price - price) / trade.entry_price)
                     if profit_frac >= min_tp:
-                        fill = self._fill(price, trade.direction, closing=True)
-                        equity += self._close(trade, i, fill, "momentum_tp", df)
-                        trade = None
-                        last_exit_idx = i
-                        self._scalp_ref = None
+                        if self.scalp_exit_mode == "momentum_split":
+                            # 1단계: 절반 익절, 나머지는 다음봉 종가 예약
+                            half = trade.quantity / 2.0
+                            fill = self._fill(price, trade.direction, closing=True)
+                            fee1 = self._fee(fill * half, closing=True)
+                            pnl1 = self._pnl(trade.direction, trade.entry_price,
+                                             fill, half) - fee1
+                            equity += pnl1
+                            trade.quantity -= half
+                            ref["partial_pnl"] = ref.get("partial_pnl", 0.0) + pnl1
+                            ref["final_at"] = i + 1
+                        else:
+                            fill = self._fill(price, trade.direction, closing=True)
+                            equity += self._close(trade, i, fill, "momentum_tp", df)
+                            trade = None
+                            last_exit_idx = i
+                            self._scalp_ref = None
                     else:
                         ref["armed_at"] = None  # 익절 최소치 미달 → 재무장 대기
                 if trade is not None and self._scalp_ref is not None \
-                        and self._scalp_ref.get("armed_at") is None:
+                        and self._scalp_ref.get("armed_at") is None \
+                        and self._scalp_ref.get("final_at") is None:
                     if trade.direction is Direction.LONG and high > ref["high"]:
                         ref["armed_at"] = i
                     elif trade.direction is Direction.SHORT and low < ref["low"]:
