@@ -9,7 +9,9 @@
 """
 from __future__ import annotations
 
+import json
 from datetime import datetime, timezone
+from pathlib import Path
 from typing import Callable
 
 import pandas as pd
@@ -55,6 +57,8 @@ class SleeveWorker:
         self.start_equity_provider = start_equity_provider  # 시작 자본(누적 수익률 기준)
         self.risk = RiskManager(settings, max_leverage=sleeve.leverage)
         self._account_equity: float | None = None
+        self._quarantine_path = Path(settings.state_dir) / "quarantine.json"
+        self._quarantined: dict[str, str] = self._load_quarantine()
 
         if sleeve.strategy_kind == "scalp":
             self.strategy = ScalpStrategy(settings)
@@ -154,6 +158,27 @@ class SleeveWorker:
             title="📕 청산",
         )
 
+    # ------------------------------------------------------- 심볼 격리
+
+    def _load_quarantine(self) -> dict[str, str]:
+        try:
+            if self._quarantine_path.exists():
+                return json.loads(self._quarantine_path.read_text(encoding="utf-8"))
+        except Exception:  # noqa: BLE001
+            pass
+        return {}
+
+    def _quarantine(self, symbol: str, reason: str) -> None:
+        """주문 불가 심볼을 영구 제외(상태파일 영속화). 이후 평가에서 스킵."""
+        self._quarantined[symbol] = reason
+        try:
+            self._quarantine_path.parent.mkdir(parents=True, exist_ok=True)
+            self._quarantine_path.write_text(
+                json.dumps(self._quarantined, ensure_ascii=False, indent=2), encoding="utf-8")
+        except Exception:  # noqa: BLE001
+            pass
+        log.warning("[%s] %s 격리(유니버스 제외): %s", self.sleeve.name, symbol, reason)
+
     def _check_sl_tp(self, symbol: str, price: float) -> None:
         """dry_run: 슬리브 보유분의 SL/TP 도달 점검.
 
@@ -181,6 +206,8 @@ class SleeveWorker:
         allocated = self.sleeve.allocated_equity(total_equity)
         self._account_equity = total_equity   # 포지션당 명목 상한 계산 기준(계좌 총자본)
         for symbol in self.sleeve.symbols:
+            if symbol in self._quarantined:
+                continue  # 주문 불가로 격리된 심볼 스킵
             try:
                 self._evaluate_symbol(symbol, allocated)
             except Exception as e:  # noqa: BLE001
@@ -235,7 +262,14 @@ class SleeveWorker:
             fill = self.executor.open_position(plan, twap_slices=self.sleeve.twap_slices,
                                                place_tp=place_tp, maker_entry=maker_entry)
             if fill is None:
-                self.notifier.error(f"[{self.sleeve.name}] {symbol}: 주문 실패")
+                reason_txt = self.executor.last_error or "알 수 없는 오류"
+                # 심볼 자체가 문제면 격리(반복 실패·알림 스팸 방지)
+                if self.executor.last_error_fatal:
+                    self._quarantine(symbol, reason_txt)
+                    self.notifier.warn(
+                        f"[{self.sleeve.name}] {symbol}: 유니버스 제외 — {reason_txt}")
+                else:
+                    self.notifier.error(f"[{self.sleeve.name}] {symbol}: 주문 실패 — {reason_txt}")
                 return
             fill_price, qty, oid = fill.price, fill.quantity, fill.order_id
 

@@ -16,6 +16,30 @@ from ..utils import get_logger
 
 log = get_logger("executor")
 
+# 바이낸스 오류코드 → 사람이 읽을 원인. fatal=심볼 자체 문제(재시도 무의미→격리)
+_ERROR_MAP = {
+    "-4411": ("TradFi-Perps 약관 미서명 (주식·상품 토큰, 크립토 아님)", True),
+    "-4028": ("레버리지 미지원 (이 심볼은 30x 불가)", True),
+    "-1121": ("존재하지 않는 심볼", True),
+    "-4108": ("심볼 거래 불가/정지", True),
+    "-4131": ("호가 없음(유동성 부족)", True),
+    "-2019": ("증거금 부족", False),
+    "-4164": ("최소 명목가치 미달", False),
+    "-1013": ("주문 필터 위반(수량/가격 정밀도)", False),
+}
+
+
+def _friendly_error(msg: str) -> str:
+    for code, (desc, _fatal) in _ERROR_MAP.items():
+        if code in msg:
+            return f"{desc} [{code}]"
+    # 코드 없으면 원문 축약
+    return msg[:120]
+
+
+def _is_fatal_symbol_error(msg: str) -> bool:
+    return any(code in msg and fatal for code, (_d, fatal) in _ERROR_MAP.items())
+
 
 @dataclass
 class Fill:
@@ -52,6 +76,8 @@ class Executor:
         self.s = settings
         self.binance = binance
         self.paper = paper_broker or PaperBroker()
+        self.last_error: str = ""
+        self.last_error_fatal: bool = False
 
     def _market_entry(self, plan: TradePlan, side: str, pos_side: str,
                       twap_slices: int) -> float:
@@ -152,6 +178,8 @@ class Executor:
     def open_position(self, plan: TradePlan, twap_slices: int = 1,
                       maker_entry: bool = False, place_tp: bool = True) -> Fill | None:
         side = "buy" if plan.direction is Direction.LONG else "sell"
+        self.last_error = ""        # 실패 원인(알림/격리 판단용)
+        self.last_error_fatal = False  # 심볼 자체가 문제(재시도 무의미) 여부
 
         if self.s.trade_mode is TradeMode.DRY_RUN:
             log.info("[DRY_RUN] 진입 → %s", plan.describe())
@@ -195,5 +223,7 @@ class Executor:
 
             return Fill(plan.symbol, side, float(qty), entry, mode, None)
         except Exception as e:  # noqa: BLE001
+            self.last_error = _friendly_error(str(e))
+            self.last_error_fatal = _is_fatal_symbol_error(str(e))
             log.error("주문 실패 %s: %s", plan.symbol, e)
             return None

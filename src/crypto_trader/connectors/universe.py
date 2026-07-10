@@ -25,6 +25,22 @@ STABLE_BASES = {
     "XUSD", "USDE", "PAXG", "USD1", "RLUSD", "PYUSD", "GUSD", "USDD",
 }
 
+# 비(非)크립토 상품 제외 — 바이낸스 TradFi-Perps(주식·상품·지수·거시지표 토큰).
+# 별도 약관 서명이 필요하고 레버리지 한도가 달라 크립토 단타 대상이 아니다.
+# (모호한 심볼은 주문 실패 시 자동 격리로 처리 — 여기엔 명확한 것만 등록)
+NON_CRYPTO_BASES = {
+    # 귀금속·원자재
+    "XAU", "XAG", "XPT", "XPD", "CL", "BZ", "NG", "HG", "WTI", "GOLD", "SILVER",
+    # 미국 주식·ETF
+    "TSLA", "NVDA", "AAPL", "MSFT", "AMZN", "GOOGL", "GOOG", "META", "MSTR",
+    "COIN", "HOOD", "CRCL", "SPCX", "MU", "PLTR", "AMD", "NFLX", "SOXL", "TQQQ",
+    "SPY", "QQQ", "SNDK", "DRAM", "GME", "AMC", "NVDX", "CRCX",
+    # 한국·아시아 주식
+    "SAMSUNG", "SKHYNIX", "KORU", "EWY",
+    # 거시지표·지수
+    "NFP", "CPI", "SPX", "NDX", "VIX", "DXY",
+}
+
 
 def _filter_rows(rows: list[dict], min_quote_volume: float) -> list[tuple[str, float]]:
     """24h 티커 rows → [('BTC/USDT', 거래대금), ...] 거래대금 내림차순."""
@@ -34,7 +50,7 @@ def _filter_rows(rows: list[dict], min_quote_volume: float) -> list[tuple[str, f
         if not sym.endswith("USDT"):
             continue
         base = sym[:-4]
-        if not base or base in STABLE_BASES:
+        if not base or base in STABLE_BASES or base in NON_CRYPTO_BASES:
             continue
         # 현물 레버리지 토큰(UP/DOWN/BULL/BEAR) 방어
         if base.endswith(("UP", "DOWN", "BULL", "BEAR")) and base not in ("SUI",):
