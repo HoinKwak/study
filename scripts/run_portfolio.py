@@ -21,14 +21,27 @@ from crypto_trader.utils import get_logger  # noqa: E402
 def main() -> None:
     parser = argparse.ArgumentParser(description="crypto-trader 포트폴리오")
     parser.add_argument("--once", action="store_true", help="전체 슬리브 1회 평가 후 종료")
+    parser.add_argument("--sleeves", default=None,
+                        help="가동할 슬리브 이름 (쉼표구분, 예: scalp 또는 swing,scalp). 생략 시 전부")
     args = parser.parse_args()
 
     settings = get_settings()
     log = get_logger("main", settings.log_level)
-    log.info("포트폴리오 시작: mode=%s hedge=%s symbols=%s",
-             settings.trade_mode.value, settings.binance_hedge_mode, settings.symbols)
 
-    engine = PortfolioEngine(settings)
+    from crypto_trader.portfolio import default_sleeves
+    sleeves = default_sleeves(settings)
+    if args.sleeves:
+        wanted = {s.strip() for s in args.sleeves.split(",") if s.strip()}
+        sleeves = [sl for sl in sleeves if sl.name in wanted]
+        if not sleeves:
+            log.error("해당 이름의 슬리브 없음: %s", args.sleeves)
+            sys.exit(1)
+
+    log.info("포트폴리오 시작: mode=%s hedge=%s sleeves=%s",
+             settings.trade_mode.value, settings.binance_hedge_mode,
+             [f"{sl.name}({','.join(sl.symbols)})" for sl in sleeves])
+
+    engine = PortfolioEngine(settings, sleeves=sleeves)
     if args.once:
         engine.run_once(force_all=True)
     else:

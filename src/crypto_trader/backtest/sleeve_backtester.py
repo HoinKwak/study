@@ -60,6 +60,8 @@ class SleeveBacktester:
         # scalp 청산 모드:
         #   'momentum'       — 신고가 갱신 → 다음봉 종가 전량 청산
         #   'momentum_split' — 다음봉 종가 50% + 그다음봉 종가 50% 분할 청산
+        #   'bandwalk'       — 밴드 워킹: 종가가 볼린저 중심선(SMA20)을 깰 때까지 보유
+        #   'momentum_bandwalk' — 모멘텀 시점 50% 익절 + 나머지 50% 밴드워킹 러너
         #   'tp'             — 고정 TP
         self.scalp_exit_mode = scalp_exit_mode
         self.risk = RiskManager(settings, max_leverage=leverage)
@@ -163,13 +165,47 @@ class SleeveBacktester:
                     last_exit_idx = i
                     self._scalp_ref = None
 
+            # 1b-0) scalp 밴드워킹 청산: 종가가 SMA20(중심선)을 이탈하면 청산.
+            #       최소익절 가드 적용 — 이탈해도 min_tp 미만 이익이면 SL/추가하락 대기 없이
+            #       그냥 청산(추세 종료로 간주). 손실 중 이탈도 청산(SL 보완).
+            if (trade is not None and self.kind == "scalp"
+                    and self.scalp_exit_mode == "bandwalk"):
+                sma20 = float(window["close"].iloc[-20:].mean())
+                broke = (price < sma20 if trade.direction is Direction.LONG
+                         else price > sma20)
+                if broke:
+                    fill = self._fill(price, trade.direction, closing=True)
+                    equity += self._close(trade, i, fill, "bandwalk_exit", df)
+                    trade = None
+                    last_exit_idx = i
+                    self._scalp_ref = None
+
+            # 1b-0b) 하이브리드: 절반 모멘텀 익절 후 잔량은 밴드워킹 러너
+            if (trade is not None and self.kind == "scalp"
+                    and self.scalp_exit_mode == "momentum_bandwalk"
+                    and self._scalp_ref is not None
+                    and self._scalp_ref.get("runner")):
+                sma20 = float(window["close"].iloc[-20:].mean())
+                broke = (price < sma20 if trade.direction is Direction.LONG
+                         else price > sma20)
+                if broke:
+                    fill = self._fill(price, trade.direction, closing=True)
+                    pnl = self._close(trade, i, fill, "runner_bandwalk", df)
+                    trade.pnl += self._scalp_ref.get("partial_pnl", 0.0)
+                    equity += pnl
+                    trade = None
+                    last_exit_idx = i
+                    self._scalp_ref = None
+
             # 1b) scalp 모멘텀 청산: 신호봉 고가/저가 갱신 후
             #     momentum       → 다음봉 종가 전량 청산
             #     momentum_split → 다음봉 종가 50%, 그다음봉 종가 나머지 50%
             #     (최소 익절 미달이면 재무장 대기, SL 은 계속 유효)
             if (trade is not None and self.kind == "scalp"
-                    and self.scalp_exit_mode in ("momentum", "momentum_split")
-                    and self._scalp_ref is not None):
+                    and self.scalp_exit_mode in ("momentum", "momentum_split",
+                                                 "momentum_bandwalk")
+                    and self._scalp_ref is not None
+                    and not self._scalp_ref.get("runner")):
                 ref = self._scalp_ref
                 min_tp = getattr(self.strategy, "min_tp_frac", 0.0008)
 
@@ -191,8 +227,9 @@ class SleeveBacktester:
                                    if trade.direction is Direction.LONG
                                    else (trade.entry_price - price) / trade.entry_price)
                     if profit_frac >= min_tp:
-                        if self.scalp_exit_mode == "momentum_split":
-                            # 1단계: 절반 익절, 나머지는 다음봉 종가 예약
+                        if self.scalp_exit_mode in ("momentum_split", "momentum_bandwalk"):
+                            # 1단계: 절반 익절. split 은 다음봉 종가 예약,
+                            # bandwalk 하이브리드는 잔량을 러너로 전환.
                             half = trade.quantity / 2.0
                             fill = self._fill(price, trade.direction, closing=True)
                             fee1 = self._fee(fill * half, closing=True)
@@ -201,7 +238,10 @@ class SleeveBacktester:
                             equity += pnl1
                             trade.quantity -= half
                             ref["partial_pnl"] = ref.get("partial_pnl", 0.0) + pnl1
-                            ref["final_at"] = i + 1
+                            if self.scalp_exit_mode == "momentum_split":
+                                ref["final_at"] = i + 1
+                            else:
+                                ref["runner"] = True
                         else:
                             fill = self._fill(price, trade.direction, closing=True)
                             equity += self._close(trade, i, fill, "momentum_tp", df)
