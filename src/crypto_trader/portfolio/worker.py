@@ -205,6 +205,7 @@ class SleeveWorker:
     def evaluate(self, total_equity: float) -> None:
         allocated = self.sleeve.allocated_equity(total_equity)
         self._account_equity = total_equity   # 포지션당 명목 상한 계산 기준(계좌 총자본)
+        self._reconcile_exchange_exits()      # 거래소 SL/TP 로 닫힌 포지션 저널 반영
         for symbol in self.sleeve.symbols:
             if symbol in self._quarantined:
                 continue  # 주문 불가로 격리된 심볼 스킵
@@ -212,6 +213,49 @@ class SleeveWorker:
                 self._evaluate_symbol(symbol, allocated)
             except Exception as e:  # noqa: BLE001
                 log.exception("[%s] %s 평가 오류: %s", self.sleeve.name, symbol, e)
+
+    def _reconcile_exchange_exits(self) -> None:
+        """거래소 SL(또는 TP)로 닫힌 포지션을 저널에 반영.
+
+        프로세스 재시작·이벤트 누락으로 저널이 '열림'인데 거래소엔 포지션이 없는
+        경우를 감지해 청산 처리한다. 스캘프는 거래소에 SL 만 걸리므로 청산가는
+        SL 가격으로 근사(실제 체결가와 미세 차이 가능)."""
+        if self.s.trade_mode is TradeMode.DRY_RUN or self.binance is None:
+            return
+        opens = [t for t in self.journal.open_trades() if t.sleeve == self.sleeve.name]
+        if not opens:
+            return
+        try:
+            live = self.binance.fetch_positions()
+        except Exception as e:  # noqa: BLE001
+            log.warning("[%s] 포지션 리컨실 조회 실패: %s", self.sleeve.name, e)
+            return
+        live_keys = {(p.get("symbol"), p.get("side")) for p in live
+                     if float(p.get("contracts") or 0) != 0}
+        for rec in opens:
+            canonical = self.binance.resolve_symbol(rec.symbol)
+            if (canonical, rec.direction) in live_keys:
+                continue  # 아직 보유 중
+            # 거래소에서 사라짐 → SL 청산됨. SL 가격으로 근사 청산 기록.
+            exit_price = rec.stop_price or rec.entry_price
+            self.binance.cancel_all_orders(rec.symbol)  # 잔여 조건부 주문 정리
+            self._finalize_reconciled_close(rec, exit_price, "exchange_sl")
+
+    def _finalize_reconciled_close(self, rec: TradeRecord, exit_price: float,
+                                   reason: str) -> None:
+        direction = Direction(rec.direction)
+        pnl = self._pnl(direction, rec.entry_price, exit_price, rec.quantity)
+        self.risk.register_realized_pnl(pnl)
+        self.realize_cb(pnl)
+        self.journal.record_close(rec.symbol, exit_price, _now_iso(), pnl, reason,
+                                  sleeve=self.sleeve.name, direction=rec.direction)
+        ret_pct = self._trade_return_pct(rec, pnl)
+        self.notifier.trade(
+            f"[{self.sleeve.name}] {rec.symbol} {rec.direction.upper()} 청산 (SL·리컨실)\n"
+            f"진입 {rec.entry_price:.4f} → {exit_price:.4f} | 보유 {rec.holding_human(_now_iso())}\n"
+            f"손익 {pnl:+.2f} USDT ({ret_pct:+.2f}%){self._portfolio_line()}",
+            title="📕 청산(SL)",
+        )
 
     def _evaluate_symbol(self, symbol: str, allocated_equity: float) -> None:
         df = self._fetch_df(symbol, self.sleeve.signal_tf)
