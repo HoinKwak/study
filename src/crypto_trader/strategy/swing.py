@@ -57,8 +57,9 @@ class SwingStrategy:
                  stage1_init: float = 0.30, stage1_max: float = 0.60,
                  stage2_max: float = 1.00,
                  st_period: int = 10, st_mult: float = 3.0,
-                 sl_swing_lookback: int = 20, sl_buffer_atr: float = 0.5,
-                 fib_ratio: float = 0.618, swing_lookback: int = 60):
+                 sl_swing_lookback: int = 20, sl_buffer_atr: float = 1.5,
+                 fib_ratio: float = 0.618, swing_lookback: int = 60,
+                 require_rsi_turn: bool = True):
         self.s = settings
         self.rsi_os = rsi_os
         self.rsi_ob = rsi_ob
@@ -71,6 +72,7 @@ class SwingStrategy:
         self.sl_buffer_atr = sl_buffer_atr
         self.fib_ratio = fib_ratio
         self.swing_lookback = swing_lookback
+        self.require_rsi_turn = require_rsi_turn
 
     def decide(self, symbol: str, df: pd.DataFrame,
                confirm_df: pd.DataFrame | None = None,
@@ -79,7 +81,9 @@ class SwingStrategy:
             return SwingDecision(Action.HOLD, Direction.FLAT, reason="데이터 부족")
 
         price = float(df["close"].iloc[-1])
-        rsi_val = float(ind.rsi(df["close"]).iloc[-1])
+        rsi_series = ind.rsi(df["close"])
+        rsi_val = float(rsi_series.iloc[-1])
+        rsi_prev = float(rsi_series.iloc[-2]) if len(rsi_series) > 1 else rsi_val
         atr_val = float(ind.atr(df).iloc[-1])
         st_line, st_dir = ind.supertrend(confirm_df if confirm_df is not None else df,
                                          self.st_period, self.st_mult)
@@ -87,18 +91,24 @@ class SwingStrategy:
         st_value = float(st_line.iloc[-1])
 
         # ---------------- 신규 진입 (역추세) ----------------
+        # require_rsi_turn: RSI 가 극단에서 '돌아서는' 것을 확인하고 진입
+        # (떨어지는 칼날/천장 돌파 추격 방지)
         if position is None:
-            if rsi_val <= self.rsi_os:
+            long_trigger = (rsi_val <= self.rsi_os and
+                            (not self.require_rsi_turn or rsi_val > rsi_prev))
+            short_trigger = (rsi_val >= self.rsi_ob and
+                             (not self.require_rsi_turn or rsi_val < rsi_prev))
+            if long_trigger:
                 stop = self._swing_stop(df, Direction.LONG, atr_val)
                 tp = self._fib_cvd_tp(df, Direction.LONG, price)
                 return SwingDecision(Action.OPEN_LONG, Direction.LONG, self.stage1_init, 1,
-                                     stop, tp, f"RSI {rsi_val:.0f} 과매도 역추세 롱")
-            if rsi_val >= self.rsi_ob:
+                                     stop, tp, f"RSI {rsi_val:.0f} 과매도 반등 롱")
+            if short_trigger:
                 stop = self._swing_stop(df, Direction.SHORT, atr_val)
                 tp = self._fib_cvd_tp(df, Direction.SHORT, price)
                 return SwingDecision(Action.OPEN_SHORT, Direction.SHORT, self.stage1_init, 1,
-                                     stop, tp, f"RSI {rsi_val:.0f} 과매수 역추세 숏")
-            return SwingDecision(Action.HOLD, Direction.FLAT, reason="RSI 극단 아님")
+                                     stop, tp, f"RSI {rsi_val:.0f} 과매수 반락 숏")
+            return SwingDecision(Action.HOLD, Direction.FLAT, reason="RSI 극단/전환 아님")
 
         # ---------------- 보유 중 ----------------
         d = position.direction

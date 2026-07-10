@@ -37,6 +37,8 @@ class Trade:
     opened_at: str = ""
     closed_at: str = ""
     holding_bars: int = 0
+    fees: float = 0.0
+    num_adds: int = 0
 
 
 @dataclass
@@ -73,6 +75,10 @@ class BacktestResult:
         return gross_win / gross_loss if gross_loss > 0 else float("inf")
 
     @property
+    def total_fees(self) -> float:
+        return sum(t.fees for t in self.trades)
+
+    @property
     def avg_holding_bars(self) -> float:
         closed = [t for t in self.trades if t.exit_idx is not None]
         if not closed:
@@ -100,6 +106,7 @@ class BacktestResult:
             f"승률              : {self.win_rate:.1f}%\n"
             f"손익비(PF)        : {self.profit_factor:.2f}\n"
             f"평균 보유 봉수    : {self.avg_holding_bars:.1f}\n"
+            f"총 수수료         : {self.total_fees:,.2f} USDT\n"
             f"최대 낙폭(MDD)    : {self.max_drawdown_pct:.2f}%\n"
             f"========================================"
         )

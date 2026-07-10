@@ -22,12 +22,15 @@ from .strategy import Action, Decision
 class MidStrategy:
     def __init__(self, settings: Settings,
                  st_period: int = 10, st_mult: float = 3.0,
-                 rsi_long_cap: float = 70.0, rsi_short_floor: float = 30.0):
+                 rsi_long_cap: float = 70.0, rsi_short_floor: float = 30.0,
+                 min_hist_frac: float = 0.0003):
         self.s = settings
         self.st_period = st_period
         self.st_mult = st_mult
         self.rsi_long_cap = rsi_long_cap
         self.rsi_short_floor = rsi_short_floor
+        # MACD 히스토그램이 가격 대비 이 비율보다 커야 유효 교차로 인정(휩쏘 필터)
+        self.min_hist_frac = min_hist_frac
 
     def decide(self, symbol: str, df: pd.DataFrame,
                confirm_df: pd.DataFrame | None = None,
@@ -43,8 +46,11 @@ class MidStrategy:
         # 하위 TF 모멘텀(MACD 히스토그램 0선 교차)
         _m, _sig, hist = ind.macd(df["close"])
         h_now, h_prev = float(hist.iloc[-1]), float(hist.iloc[-2])
-        cross_up = h_prev <= 0 < h_now
-        cross_down = h_prev >= 0 > h_now
+        price = float(df["close"].iloc[-1])
+        # 교차가 유의미한 크기여야 인정 (미세 진동 휩쏘 제거)
+        significant = abs(h_now) >= self.min_hist_frac * price
+        cross_up = h_prev <= 0 < h_now and significant
+        cross_down = h_prev >= 0 > h_now and significant
 
         rsi_val = float(ind.rsi(df["close"]).iloc[-1])
         score = clamp((1.0 if trend_up else -1.0) * min(1.0, abs(h_now) * 50))

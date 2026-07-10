@@ -44,8 +44,8 @@ class ScalpDecision:
 class ScalpStrategy:
     def __init__(self, settings: Settings,
                  bb_period: int = 20, bb_std: float = 2.0,
-                 vol_lookback: int = 20, vol_spike_mult: float = 2.0,
-                 strong_body_frac: float = 0.6,
+                 vol_lookback: int = 20, vol_spike_mult: float = 3.0,
+                 strong_body_frac: float = 0.6, min_body_atr: float = 1.0,
                  reward_risk_ratio: float | None = None):
         self.s = settings
         self.bb_period = bb_period
@@ -53,6 +53,7 @@ class ScalpStrategy:
         self.vol_lookback = vol_lookback
         self.vol_spike_mult = vol_spike_mult
         self.strong_body_frac = strong_body_frac  # 몸통이 전체 레인지의 이 비율 이상이면 '강봉'
+        self.min_body_atr = min_body_atr          # 몸통이 ATR 의 이 배수 이상이어야 유의미
         self.rr = reward_risk_ratio if reward_risk_ratio is not None else settings.reward_risk_ratio
 
     def decide(self, symbol: str, df: pd.DataFrame,
@@ -83,9 +84,12 @@ class ScalpStrategy:
         avg_vol = float(vol.iloc[-(self.vol_lookback + 1):-1].mean())
         vol_spike = avg_vol > 0 and float(bar["volume"]) >= self.vol_spike_mult * avg_vol
 
-        # 강봉(몸통 비율)
-        body_frac = abs(c - o) / rng
-        strong = body_frac >= self.strong_body_frac
+        # 강봉: 몸통 비율 + 절대 크기(ATR 대비) 둘 다 요구
+        body = abs(c - o)
+        body_frac = body / rng
+        atr_val = float(ind.atr(df).iloc[-1]) if len(df) >= 15 else 0.0
+        strong = (body_frac >= self.strong_body_frac
+                  and (atr_val <= 0 or body >= self.min_body_atr * atr_val))
 
         # 볼린저 이탈 + 방향
         bull_breakout = c > up_band and c > o
@@ -94,15 +98,22 @@ class ScalpStrategy:
         # OI 동반 증가 확인(있으면). None 이면 통과, 있으면 증가 요구.
         oi_ok = (oi_delta is None) or (oi_delta > 0)
 
+        # 확인 TF(5m) 추세 필터: 횡보장(RANGE)에선 진입 금지,
+        # 추세장에선 돌파 방향이 추세와 일치할 때만 진입.
+        # (1m 돌파는 무추세 구간에서 대부분 되돌림 → 백테스트로 확인됨)
+        long_regime_ok = confirm_regime is None or confirm_regime is Regime.TREND_UP
+        short_regime_ok = confirm_regime is None or confirm_regime is Regime.TREND_DOWN
+
         detail = {
             "vol_spike": vol_spike, "body_frac": round(body_frac, 3),
             "up_band": round(up_band, 4), "low_band": round(low_band, 4),
             "oi_delta": oi_delta,
+            "confirm_regime": confirm_regime.value if confirm_regime else None,
         }
 
-        if vol_spike and strong and oi_ok and bull_breakout:
+        if vol_spike and strong and oi_ok and bull_breakout and long_regime_ok:
             return self._entry(Direction.LONG, o, h, l, c, detail)
-        if vol_spike and strong and oi_ok and bear_breakout:
+        if vol_spike and strong and oi_ok and bear_breakout and short_regime_ok:
             return self._entry(Direction.SHORT, o, h, l, c, detail)
 
         return ScalpDecision(Action.HOLD, Direction.FLAT, reason="진입 조건 미충족", detail=detail)
