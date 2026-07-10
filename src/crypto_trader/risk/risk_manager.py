@@ -142,6 +142,28 @@ class RiskManager:
             notional=notional,
         )
 
+    def build_plan_by_margin(self, symbol: str, direction: Direction, entry_price: float,
+                             stop_price: float, take_profit: float,
+                             margin: float, leverage: int | None = None) -> TradePlan | None:
+        """증거금 기준 사이징 — 명목가치 = 증거금 × 레버리지.
+
+        각 포지션에 고정된 증거금을 배정하고 싶을 때 사용(예: 단타 margin $500).
+        리스크(SL 손실)는 SL 거리에 따라 결정된다.
+        """
+        if direction is Direction.FLAT or entry_price <= 0 or margin <= 0:
+            return None
+        lev = leverage or self.max_leverage
+        notional = margin * lev
+        quantity = notional / entry_price
+        if quantity <= 0:
+            return None
+        risk_amount = quantity * abs(entry_price - stop_price)
+        return TradePlan(
+            symbol=symbol, direction=direction, entry_price=entry_price,
+            stop_price=stop_price, take_profit=take_profit, quantity=quantity,
+            leverage=lev, risk_amount=risk_amount, notional=notional,
+        )
+
     def build_plan_with_stop(self, symbol: str, direction: Direction, entry_price: float,
                              stop_price: float, take_profit: float,
                              equity: float,

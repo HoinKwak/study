@@ -370,6 +370,15 @@ class SleeveWorker:
         except ValueError:
             return False
 
+    def _size_plan(self, symbol, direction, price, stop, tp, equity):
+        """포지션 사이징 — 증거금 기준(position_margin_pct>0) 또는 리스크 기준."""
+        if self.s.position_margin_pct > 0 and self._account_equity:
+            margin = self._account_equity * (self.s.position_margin_pct / 100.0)
+            return self.risk.build_plan_by_margin(symbol, direction, price, stop, tp,
+                                                  margin, leverage=self.sleeve.leverage)
+        return self.risk.build_plan_with_stop(symbol, direction, price, stop, tp,
+                                              equity, account_equity=self._account_equity)
+
     def _act_scalp(self, symbol, df, decision, equity, current_dir) -> None:
         # 0) 보유 중이면 모멘텀 청산 우선 점검
         if current_dir is not None and self._scalp_momentum_exit(symbol, df):
@@ -386,9 +395,8 @@ class SleeveWorker:
                 log.info("[%s] %s 쿨다운 중 — 진입 스킵", self.sleeve.name, symbol)
                 return
             price = float(df["close"].iloc[-1])
-            plan = self.risk.build_plan_with_stop(symbol, decision.direction, price,
-                                                  decision.stop_price, decision.take_profit,
-                                                  equity, account_equity=self._account_equity)
+            plan = self._size_plan(symbol, decision.direction, price,
+                                   decision.stop_price, decision.take_profit, equity)
             # 모멘텀 청산 모드: 고정 TP 주문은 내지 않음 (SL 만 예약).
             # 진입방식은 슬리브 설정(scalp 은 테이커=시장가 — 돌파매매는 메이커가
             # 잘 안 붙고 테스트넷은 호가창이 얇아 어차피 시장가 폴백됨).
