@@ -68,8 +68,13 @@ python -m scripts.run_paper [--once]
 # 상태/성과 확인 + HTML 대시보드 생성 (state/dashboard.html)
 python -m scripts.status [--html]
 
-# 백테스트
-python -m scripts.run_backtest --symbol BTC/USDT --timeframe 1h --days 180
+# 슬리브 전략 백테스트 (수수료/슬리피지 반영)
+python -m scripts.run_backtest --sleeve swing --symbol BTC/USDT --days 365
+python -m scripts.run_backtest --sleeve mid   --symbol BTC/USDT --days 90
+python -m scripts.run_backtest --sleeve scalp --symbol BTC/USDT --days 14
+
+# 파라미터 그리드 스윕
+python -m scripts.sweep_params --sleeve swing --symbol BTC/USDT
 ```
 
 ## 모니터링 / 알림
