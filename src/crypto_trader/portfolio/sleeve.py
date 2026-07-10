@@ -45,9 +45,11 @@ def default_sleeves(settings: Settings) -> list[Sleeve]:
         ),
         Sleeve(
             name="scalp", allocation=0.25,
-            signal_tf="1m", confirm_tf="5m",
+            # 1m → 5m 상향: 백테스트 결과 1m 모멘텀은 수수료를 못 이김
+            # (5m + vol 4배가 최선: 승률 68%). TWAP 3슬라이스 = 15분 창.
+            signal_tf="5m", confirm_tf="15m",
             strategy_kind="scalp",
-            eval_interval_sec=60,
+            eval_interval_sec=5 * 60,
             symbols=symbols, twap_slices=3, leverage=30,
         ),
     ]

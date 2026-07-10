@@ -19,7 +19,7 @@ def test_sleeve_timeframes():
     sleeves = {s.name: s for s in default_sleeves(_settings())}
     assert sleeves["swing"].signal_tf == "4h" and sleeves["swing"].confirm_tf == "1d"
     assert sleeves["mid"].signal_tf == "15m" and sleeves["mid"].confirm_tf == "1h"
-    assert sleeves["scalp"].signal_tf == "1m" and sleeves["scalp"].confirm_tf == "5m"
+    assert sleeves["scalp"].signal_tf == "5m" and sleeves["scalp"].confirm_tf == "15m"
     assert sleeves["scalp"].strategy_kind == "scalp"
     assert sleeves["swing"].strategy_kind == "swing"
     assert sleeves["mid"].strategy_kind == "mid"

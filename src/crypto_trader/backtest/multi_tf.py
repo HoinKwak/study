@@ -9,8 +9,8 @@ import pandas as pd
 
 # pandas resample 규칙 매핑
 TF_RULE = {
-    "1m": "1min", "5m": "5min", "15m": "15min", "30m": "30min",
-    "1h": "1h", "4h": "4h", "1d": "1D",
+    "1m": "1min", "3m": "3min", "5m": "5min", "15m": "15min", "30m": "30min",
+    "1h": "1h", "4h": "4h", "1d": "1D", "1w": "1W",
 }
 
 

@@ -46,7 +46,7 @@ class ScalpDecision:
 class ScalpStrategy:
     def __init__(self, settings: Settings,
                  bb_period: int = 20, bb_std: float = 2.0,
-                 vol_lookback: int = 20, vol_spike_mult: float = 3.0,
+                 vol_lookback: int = 20, vol_spike_mult: float = 4.0,
                  strong_body_frac: float = 0.6, min_body_atr: float = 1.0,
                  min_tp_frac: float = 0.0008,
                  reward_risk_ratio: float | None = None):

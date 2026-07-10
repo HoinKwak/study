@@ -274,9 +274,12 @@ class SleeveWorker:
                 self.journal.save()
         return False
 
-    def _scalp_in_cooldown(self, symbol: str, cooldown_sec: int = 15 * 60) -> bool:
-        """직전 청산 후 일정 시간 재진입 금지 (백테스터 쿨다운과 패리티)."""
+    _TF_SEC = {"1m": 60, "3m": 180, "5m": 300, "15m": 900, "1h": 3600, "4h": 14400}
+
+    def _scalp_in_cooldown(self, symbol: str, cooldown_bars: int = 15) -> bool:
+        """직전 청산 후 N봉 재진입 금지 (백테스터 쿨다운과 패리티, 시그널 TF 기준)."""
         from datetime import datetime
+        cooldown_sec = cooldown_bars * self._TF_SEC.get(self.sleeve.signal_tf, 60)
         latest = None
         for t in self.journal.closed_trades():
             if t.sleeve == self.sleeve.name and t.symbol == symbol and t.closed_at:
