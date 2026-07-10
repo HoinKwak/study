@@ -6,7 +6,9 @@
 """
 from __future__ import annotations
 
+import json
 import time
+from pathlib import Path
 
 from ..config import Settings, TradeMode
 from ..connectors import (BinanceClient, BinanceDerivativesData,
@@ -37,9 +39,12 @@ class PortfolioEngine:
         self.notifier = Notifier(settings)
 
         self._paper_equity = paper_start_equity
+        self._starting_equity: float | None = None   # 시작 시점 총자본(누적 수익률 기준)
         self.workers = [
             SleeveWorker(sl, settings, self.binance, self.deriv_data, self.executor,
-                         self.journal, self.notifier, realize_cb=self._realize)
+                         self.journal, self.notifier, realize_cb=self._realize,
+                         equity_provider=self._total_equity,
+                         start_equity_provider=lambda: self._starting_equity or 0.0)
             for sl in self.sleeves
         ]
         self._last_eval: dict[str, float] = {sl.name: 0.0 for sl in self.sleeves}
@@ -93,6 +98,24 @@ class PortfolioEngine:
     def _realize(self, pnl: float) -> None:
         self._paper_equity += pnl
 
+    def _load_or_init_baseline(self, current_equity: float) -> float:
+        """누적 수익률 기준 자본을 상태파일에서 로드(재시작 시 유지). 없으면 현재값으로 초기화."""
+        path = Path(self.s.state_dir) / "portfolio.json"
+        try:
+            if path.exists():
+                base = float(json.loads(path.read_text()).get("starting_equity", 0.0))
+                if base > 0:
+                    return base
+        except Exception:  # noqa: BLE001
+            pass
+        try:
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(json.dumps({"starting_equity": current_equity,
+                                        "mode": self.s.trade_mode.value}, indent=2))
+        except Exception:  # noqa: BLE001
+            pass
+        return current_equity
+
     def _total_equity(self) -> float:
         if self.binance is not None and self.s.trade_mode is not TradeMode.DRY_RUN:
             try:
@@ -106,6 +129,7 @@ class PortfolioEngine:
             self.binance.ensure_position_mode()
         self._refresh_universe()
         equity = self._total_equity()
+        self._starting_equity = self._load_or_init_baseline(equity)   # 누적 수익률 기준점
         alloc = ", ".join(f"{sl.name} {sl.allocation:.0%}({sl.signal_tf}, {len(sl.symbols)}페어)"
                           for sl in self.sleeves)
         self.notifier.info(

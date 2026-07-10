@@ -40,7 +40,9 @@ class SleeveWorker:
     def __init__(self, sleeve: Sleeve, settings: Settings,
                  binance: BinanceClient | None, deriv_data: BinanceDerivativesData,
                  executor: Executor, journal: TradeJournal, notifier: Notifier,
-                 realize_cb: Callable[[float], None] | None = None):
+                 realize_cb: Callable[[float], None] | None = None,
+                 equity_provider: Callable[[], float] | None = None,
+                 start_equity_provider: Callable[[], float] | None = None):
         self.sleeve = sleeve
         self.s = settings
         self.binance = binance
@@ -49,6 +51,8 @@ class SleeveWorker:
         self.journal = journal
         self.notifier = notifier
         self.realize_cb = realize_cb or (lambda pnl: None)
+        self.equity_provider = equity_provider          # 현재 포트폴리오 총자본
+        self.start_equity_provider = start_equity_provider  # 시작 자본(누적 수익률 기준)
         self.risk = RiskManager(settings, max_leverage=sleeve.leverage)
         self._account_equity: float | None = None
 
@@ -106,6 +110,31 @@ class SleeveWorker:
     def _pnl(direction: Direction, entry: float, exit_price: float, qty: float) -> float:
         return (exit_price - entry) * qty if direction is Direction.LONG else (entry - exit_price) * qty
 
+    @staticmethod
+    def _trade_return_pct(rec: TradeRecord, pnl: float) -> float:
+        """이번 거래 손익률(명목가치 대비, 즉 가격 변동률)."""
+        notional = rec.entry_price * rec.quantity
+        return pnl / notional * 100.0 if notional > 0 else 0.0
+
+    def _portfolio_line(self) -> str:
+        """청산 알림에 붙일 포트폴리오 잔고·누적 수익률 줄."""
+        if self.equity_provider is None:
+            return ""
+        try:
+            cur = self.equity_provider()
+        except Exception:  # noqa: BLE001
+            return ""
+        start = None
+        if self.start_equity_provider is not None:
+            try:
+                start = self.start_equity_provider()
+            except Exception:  # noqa: BLE001
+                start = None
+        line = f"\n💰 포트폴리오 {cur:,.2f} USDT"
+        if start and start > 0:
+            line += f" (누적 {(cur / start - 1) * 100:+.2f}%)"
+        return line
+
     def _close_trade(self, rec: TradeRecord, exit_price: float, reason: str) -> None:
         direction = Direction(rec.direction)
         pnl = self._pnl(direction, rec.entry_price, exit_price, rec.quantity)
@@ -116,10 +145,12 @@ class SleeveWorker:
         self.realize_cb(pnl)
         self.journal.record_close(rec.symbol, exit_price, _now_iso(), pnl, reason,
                                   sleeve=self.sleeve.name, direction=rec.direction)
+        ret_pct = self._trade_return_pct(rec, pnl)
         self.notifier.trade(
             f"[{self.sleeve.name}] {rec.symbol} {rec.direction.upper()} 청산 ({reason})\n"
-            f"진입 {rec.entry_price:.4f} → {exit_price:.4f} | 손익 {pnl:+.2f} USDT "
-            f"| 보유 {rec.holding_human(_now_iso())}",
+            f"진입 {rec.entry_price:.4f} → {exit_price:.4f} | 보유 {rec.holding_human(_now_iso())}\n"
+            f"손익 {pnl:+.2f} USDT ({ret_pct:+.2f}%)"
+            f"{self._portfolio_line()}",
             title="📕 청산",
         )
 
