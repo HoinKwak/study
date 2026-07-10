@@ -20,6 +20,7 @@ class Sleeve:
     symbols: list[str] = field(default_factory=list)
     twap_slices: int = 1      # TWAP 분할 수 (진입 시)
     leverage: int = 3         # 슬리브 레버리지 상한 (isolated)
+    maker_entry: bool = False  # True=post-only 지정가(메이커), False=시장가(테이커)
     # 동적 유니버스: 24h 거래대금 기준 고유동성 페어를 자동 선별해 symbols 대체
     dynamic_universe: bool = False
     min_universe_volume: float = 100e6   # 거래대금 하한 (USD)

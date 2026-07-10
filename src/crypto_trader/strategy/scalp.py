@@ -48,7 +48,7 @@ class ScalpStrategy:
                  bb_period: int = 20, bb_std: float = 2.0,
                  vol_lookback: int = 20, vol_spike_mult: float = 4.0,
                  strong_body_frac: float = 0.6, min_body_atr: float = 1.0,
-                 min_tp_frac: float = 0.0008,
+                 min_tp_frac: float = 0.0012,
                  reward_risk_ratio: float | None = None,
                  squeeze_pctile: float | None = 30.0,
                  squeeze_lookback: int = 50):
@@ -59,7 +59,8 @@ class ScalpStrategy:
         self.vol_spike_mult = vol_spike_mult
         self.strong_body_frac = strong_body_frac  # 몸통이 전체 레인지의 이 비율 이상이면 '강봉'
         self.min_body_atr = min_body_atr          # 몸통이 ATR 의 이 배수 이상이어야 유의미
-        self.min_tp_frac = min_tp_frac            # 최소 익절 거리 (가격 대비, 0.0008=0.08%)
+        self.min_tp_frac = min_tp_frac            # 최소 익절 거리 (가격 대비). 테이커 진입 시
+                                                  # 왕복 수수료 0.1% 를 넘겨야 하므로 0.12% 기본
         self.rr = reward_risk_ratio if reward_risk_ratio is not None else settings.reward_risk_ratio
         # 볼린저 스퀴즈 전제: 신호봉 직전 밴드폭이 최근 N봉 분포의 하위 pctile% 이하일
         # 때만 진입 허용. 밴드 확장 후의 늦은 돌파(대부분 되돌림)를 차단 — 68회

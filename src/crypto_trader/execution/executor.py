@@ -19,7 +19,7 @@ log = get_logger("executor")
 # 바이낸스 오류코드 → 사람이 읽을 원인. fatal=심볼 자체 문제(재시도 무의미→격리)
 _ERROR_MAP = {
     "-4411": ("TradFi-Perps 약관 미서명 (주식·상품 토큰, 크립토 아님)", True),
-    "-4028": ("레버리지 미지원 (이 심볼은 30x 불가)", True),
+    "-4028": ("레버리지 값 무효", False),   # set_leverage 가 자동 하향 처리 → 격리 아님
     "-1121": ("존재하지 않는 심볼", True),
     "-4108": ("심볼 거래 불가/정지", True),
     "-4131": ("호가 없음(유동성 부족)", True),
@@ -194,7 +194,8 @@ class Executor:
         pos_side = plan.direction.value  # 'long' | 'short'
         try:
             self.binance.set_margin_mode(plan.symbol)
-            self.binance.set_leverage(plan.symbol, plan.leverage)
+            actual_lev = self.binance.set_leverage(plan.symbol, plan.leverage)
+            plan.leverage = actual_lev   # 실제 설정된 레버리지 반영(하향됐을 수 있음)
             if maker_entry:
                 entry, filled_qty = self._maker_twap_entry(plan, side, pos_side, twap_slices)
                 qty = self.binance.amount_to_precision(plan.symbol, filled_qty)

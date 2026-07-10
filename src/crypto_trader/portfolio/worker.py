@@ -382,11 +382,12 @@ class SleeveWorker:
                                                   decision.stop_price, decision.take_profit,
                                                   equity, account_equity=self._account_equity)
             # 모멘텀 청산 모드: 고정 TP 주문은 내지 않음 (SL 만 예약).
-            # 진입은 메이커 TWAP(post-only) — 수수료 절감 (백테스트 결론).
+            # 진입방식은 슬리브 설정(scalp 은 테이커=시장가 — 돌파매매는 메이커가
+            # 잘 안 붙고 테스트넷은 호가창이 얇아 어차피 시장가 폴백됨).
             self._open_common(plan, symbol, decision.direction, price, "scalp",
                               signal_high=decision.signal_high,
                               signal_low=decision.signal_low, place_tp=False,
-                              maker_entry=True)
+                              maker_entry=self.sleeve.maker_entry)
 
     # ------------------------------------------------------- 중장기(피라미딩)
 

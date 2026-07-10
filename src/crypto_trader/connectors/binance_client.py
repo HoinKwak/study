@@ -162,11 +162,32 @@ class BinanceClient:
 
     # ------------------------------------------------------------------ 주문
 
-    def set_leverage(self, symbol: str, leverage: int) -> None:
-        try:
-            self.exchange.set_leverage(leverage, self.resolve_symbol(symbol))
-        except Exception as e:  # noqa: BLE001
-            log.warning("레버리지 설정 실패 %s x%d: %s", symbol, leverage, e)
+    # 레버리지 하향 사다리 — 30x 미지원 심볼은 지원되는 최대값을 자동 탐색
+    _LEV_LADDER = [30, 25, 20, 15, 10, 8, 6, 5, 4, 3, 2, 1]
+
+    def set_leverage(self, symbol: str, leverage: int) -> int:
+        """원하는 레버리지 설정 시도. 미지원(-4028)이면 지원되는 최대값으로 하향.
+
+        반환값 = 실제로 설정된 레버리지. 알트코인의 낮은 레버리지 한도에 자동 적응.
+        (레버리지는 증거금 효율만 좌우 — 포지션 크기·손익은 수량으로 이미 결정됨)
+        """
+        canonical = self.resolve_symbol(symbol)
+        ladder = [leverage] + [x for x in self._LEV_LADDER if x < leverage]
+        for lev in ladder:
+            try:
+                self.exchange.set_leverage(lev, canonical)
+                if lev != leverage:
+                    log.info("레버리지 하향 적응 %s: %dx 미지원 → %dx 설정", symbol, leverage, lev)
+                return lev
+            except Exception as e:  # noqa: BLE001
+                # -4028: 레버리지 값 무효 → 다음(더 낮은) 값 시도
+                if "-4028" in str(e) or "not valid" in str(e).lower():
+                    continue
+                # 그 외 오류(이미 설정됨 등)는 요청값 유지로 간주
+                log.warning("레버리지 설정 경고 %s x%d: %s", symbol, lev, str(e)[:80])
+                return lev
+        log.warning("레버리지 설정 전부 실패 %s — 거래소 기본값 사용", symbol)
+        return 1
 
     def _order_params(self, position_side: str | None, reduce_only: bool,
                       extra: dict[str, Any] | None = None) -> dict[str, Any]:
