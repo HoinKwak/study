@@ -268,7 +268,8 @@ class SleeveWorker:
             fill_price, qty, oid = price, plan.quantity, None
         else:
             fill = self.executor.open_position(plan, twap_slices=self.sleeve.twap_slices,
-                                               place_tp=place_tp, maker_entry=maker_entry)
+                                               place_tp=place_tp, maker_entry=maker_entry,
+                                               slice_interval_sec=self.sleeve.slice_interval_sec)
             if fill is None:
                 reason_txt = self.executor.last_error or "알 수 없는 오류"
                 # 심볼 자체가 문제면 격리(반복 실패·알림 스팸 방지)

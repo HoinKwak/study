@@ -80,24 +80,36 @@ class Executor:
         self.last_error_fatal: bool = False
 
     def _market_entry(self, plan: TradePlan, side: str, pos_side: str,
-                      twap_slices: int) -> float:
-        """시장가 진입. twap_slices>1 이면 수량을 균등 분할해 순차 체결(단순 TWAP).
+                      twap_slices: int, slice_interval_sec: float = 0.0) -> float:
+        """시장가 진입. twap_slices>1 이면 수량을 균등 분할해 순차 체결.
 
-        주의: 진정한 시간 분산 TWAP 는 스케줄러가 필요. 여기선 슬라이스 분할로
-        단일 대량주문의 시장충격만 완화한다(테스트넷/초기 구현).
+        slice_interval_sec>0 이면 슬라이스 사이에 그만큼 대기해 시간 분산(TWAP).
+        최소 명목가치 미만이 되지 않도록 분할 수를 자동 축소한다.
+        진입 중에도 SL 은 첫 슬라이스 후 거래소 스톱주문으로 보호됨(엔진이 예약).
         """
+        import time as _time
+
         n = max(1, twap_slices)
+        min_notional = self.binance.min_notional(plan.symbol)
+        # 슬라이스가 최소 명목가치 미만이면 분할 수 축소
+        while n > 1 and (plan.quantity / n) * plan.entry_price < min_notional:
+            n -= 1
         slice_qty = self.binance.amount_to_precision(plan.symbol, plan.quantity / n)
-        prices, filled = [], 0.0
-        for _ in range(n):
+        prices, weights = [], []
+        for i in range(n):
             if float(slice_qty) <= 0:
                 break
             order = self.binance.create_market_order(plan.symbol, side, slice_qty,
                                                      position_side=pos_side)
             px = float(order.get("average") or order.get("price") or plan.entry_price)
             prices.append(px)
-            filled += float(slice_qty)
-        return sum(prices) / len(prices) if prices else plan.entry_price
+            weights.append(float(slice_qty))
+            if slice_interval_sec > 0 and i < n - 1:
+                _time.sleep(slice_interval_sec)
+        if not prices:
+            return plan.entry_price
+        tot = sum(weights)
+        return sum(p * w for p, w in zip(prices, weights)) / tot if tot else prices[-1]
 
     def _maker_twap_entry(self, plan: TradePlan, side: str, pos_side: str,
                           twap_slices: int, slice_wait_sec: float = 20.0
@@ -176,7 +188,8 @@ class Executor:
         return avg, total_qty
 
     def open_position(self, plan: TradePlan, twap_slices: int = 1,
-                      maker_entry: bool = False, place_tp: bool = True) -> Fill | None:
+                      maker_entry: bool = False, place_tp: bool = True,
+                      slice_interval_sec: float = 0.0) -> Fill | None:
         side = "buy" if plan.direction is Direction.LONG else "sell"
         self.last_error = ""        # 실패 원인(알림/격리 판단용)
         self.last_error_fatal = False  # 심볼 자체가 문제(재시도 무의미) 여부
@@ -196,28 +209,43 @@ class Executor:
             self.binance.set_margin_mode(plan.symbol)
             actual_lev = self.binance.set_leverage(plan.symbol, plan.leverage)
             plan.leverage = actual_lev   # 실제 설정된 레버리지 반영(하향됐을 수 있음)
+            close_side = "sell" if plan.direction is Direction.LONG else "buy"
+            planned_qty = self.binance.amount_to_precision(plan.symbol, plan.quantity)
+
+            # 분할 진입 전에 SL 을 먼저 예약 — 90초 분할 체결 중에도 급락 보호.
+            # (헤지 모드 조건부 스톱은 트리거 시 존재하는 포지션만큼만 청산하므로,
+            #  계획 수량으로 미리 걸어두면 부분 체결 상태에서도 안전)
+            slice_interval = slice_interval_sec if not maker_entry else 0.0
+            if slice_interval > 0:
+                try:
+                    self.binance.create_stop_order(plan.symbol, close_side, planned_qty,
+                                                   plan.stop_price, position_side=pos_side)
+                    log.info("[%s] 진입 전 SL 선예약 SL=%.4f", mode.upper(), plan.stop_price)
+                except Exception as e:  # noqa: BLE001
+                    log.warning("진입 전 SL 예약 실패 %s: %s", plan.symbol, e)
+
             if maker_entry:
                 entry, filled_qty = self._maker_twap_entry(plan, side, pos_side, twap_slices)
                 qty = self.binance.amount_to_precision(plan.symbol, filled_qty)
             else:
-                qty = self.binance.amount_to_precision(plan.symbol, plan.quantity)
-                entry = self._market_entry(plan, side, pos_side, twap_slices)
+                qty = planned_qty
+                entry = self._market_entry(plan, side, pos_side, twap_slices, slice_interval)
             if float(qty) <= 0:
                 log.warning("체결 수량 0 — 진입 실패 %s", plan.symbol)
                 return None
             log.info("[%s] 진입 체결 → %s %s @ %.4f qty=%s", mode.upper(),
                      plan.symbol, pos_side, entry, qty)
 
-            # 손절(+선택적 익절) 예약 — 포지션 반대 방향으로 청산되도록 positionSide 지정
-            close_side = "sell" if plan.direction is Direction.LONG else "buy"
+            # SL 을 선예약 안 했으면 지금 예약. TP 는 옵션.
             try:
-                self.binance.create_stop_order(plan.symbol, close_side, qty,
-                                               plan.stop_price, position_side=pos_side)
+                if slice_interval <= 0:
+                    self.binance.create_stop_order(plan.symbol, close_side, qty,
+                                                   plan.stop_price, position_side=pos_side)
                 if place_tp:
                     self.binance.create_take_profit_order(plan.symbol, close_side, qty,
                                                           plan.take_profit,
                                                           position_side=pos_side)
-                log.info("[%s] SL=%.4f%s 예약", mode.upper(), plan.stop_price,
+                log.info("[%s] SL=%.4f%s", mode.upper(), plan.stop_price,
                          f" TP={plan.take_profit:.4f}" if place_tp else " (TP 미사용)")
             except Exception as e:  # noqa: BLE001
                 log.warning("SL/TP 주문 실패 %s: %s", plan.symbol, e)

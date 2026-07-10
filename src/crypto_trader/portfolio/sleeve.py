@@ -19,6 +19,7 @@ class Sleeve:
     eval_interval_sec: int    # 평가 주기(초)
     symbols: list[str] = field(default_factory=list)
     twap_slices: int = 1      # TWAP 분할 수 (진입 시)
+    slice_interval_sec: int = 0  # 분할 슬라이스 간 대기(초). >0 이면 시간분산 진입
     leverage: int = 3         # 슬리브 레버리지 상한 (isolated)
     maker_entry: bool = False  # True=post-only 지정가(메이커), False=시장가(테이커)
     # 동적 유니버스: 24h 거래대금 기준 고유동성 페어를 자동 선별해 symbols 대체
@@ -58,9 +59,9 @@ def default_sleeves(settings: Settings) -> list[Sleeve]:
             signal_tf="5m", confirm_tf="15m",
             strategy_kind="scalp",
             eval_interval_sec=5 * 60,
-            # 돌파 모멘텀 진입은 단일 즉시 시장가가 최적(시간분산=추격매수=악화).
-            # 소액이라 시장충격도 무시 가능 → TWAP 분산 불필요.
-            symbols=scalp_symbols, twap_slices=1, leverage=30, maker_entry=False,
+            # 증거금 기준 사이징($15k 명목) → 충격 완화 위해 10분할 × 10초 시간분산.
+            symbols=scalp_symbols, twap_slices=10, slice_interval_sec=10,
+            leverage=30, maker_entry=False,
             dynamic_universe=True, min_universe_volume=50e6,
         ),
     ]
