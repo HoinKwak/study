@@ -54,8 +54,20 @@ class Settings(BaseSettings):
     # --- 시그널 ---
     entry_score_threshold: float = 0.5
 
+    # --- 알림 (텔레그램, 선택) ---
+    telegram_bot_token: str = ""
+    telegram_chat_id: str = ""
+    notify_min_level: str = "INFO"  # INFO / TRADE / WARN / ERROR
+
+    # --- 상태 저장 ---
+    state_dir: str = "state"
+
     # --- 로깅 ---
     log_level: str = "INFO"
+
+    @property
+    def has_telegram(self) -> bool:
+        return bool(self.telegram_bot_token and self.telegram_chat_id)
 
     @field_validator("symbols", mode="before")
     @classmethod

@@ -20,9 +20,11 @@
 - [x] 시그널 가중 합산 엔진
 - [x] 리스크 관리 (포지션 사이징, SL/TP, 레버리지 상한)
 - [x] 페이퍼 트레이딩 실행 엔진 + 메인 루프
-- [ ] 백테스팅 프레임워크 (Phase 2)
-- [ ] 실전 주문 실행 + 포지션 리컨실 (Phase 3)
-- [ ] 모니터링 / 알림 / 대시보드 (Phase 4)
+- [x] 테스트넷 실거래 검증 (연결·주문·포지션·손절·정리 라이프사이클)
+- [x] 모니터링: 거래 저널(영속화) + 성과 통계 + 텔레그램 알림 + HTML 대시보드
+- [x] 백테스팅 프레임워크 (과거 캔들 재생)
+- [ ] 전략 정교화 / 파라미터 튜닝 (진행 예정)
+- [ ] 실전 주문 강화: 부분체결·재시도·정밀 손익 리컨실
 
 자세한 설계는 [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) 참고.
 
@@ -43,6 +45,30 @@ cp .env.example .env
 # 3. 페이퍼 트레이딩 실행 (기본: 드라이런)
 python -m scripts.run_paper
 ```
+
+## 주요 명령어
+
+```bash
+# 테스트넷 연결/주문 검증 (--execute 시 실제 주문 라이프사이클)
+python -m scripts.verify_testnet --symbol BTC/USDT [--execute]
+
+# 트레이딩 루프 (--once 로 1회만)
+python -m scripts.run_paper [--once]
+
+# 상태/성과 확인 + HTML 대시보드 생성 (state/dashboard.html)
+python -m scripts.status [--html]
+
+# 백테스트
+python -m scripts.run_backtest --symbol BTC/USDT --timeframe 1h --days 180
+```
+
+## 모니터링 / 알림
+
+- **거래 저널**: 모든 진입/청산이 `state/trades.json` 에 기록되어 재시작해도 유지됩니다.
+- **성과 통계**: 승률·손익비·누적손익·최고/최악 거래를 자동 집계.
+- **텔레그램 알림**: `.env` 에 `TELEGRAM_BOT_TOKEN`/`TELEGRAM_CHAT_ID` 를 넣으면
+  진입/청산/차단/에러가 폰으로 즉시 푸시됩니다. (없으면 콘솔/로그만)
+- **HTML 대시보드**: `python -m scripts.status --html` 로 시각화 페이지 생성.
 
 ## ⚠️ 네트워크 요구사항 (지역 제한)
 
