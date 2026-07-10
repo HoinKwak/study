@@ -41,7 +41,8 @@ class SleeveBacktester:
                  cooldown_bars: int | None = None,
                  maker_entry: bool = False, maker_fee: float = 0.0002,
                  leverage: int | None = None,
-                 scalp_exit_mode: str = "momentum"):
+                 scalp_exit_mode: str = "momentum",
+                 strategy_kwargs: dict | None = None):
         self.s = settings
         self.kind = sleeve_kind
         self.confirm_tf = confirm_tf
@@ -63,12 +64,13 @@ class SleeveBacktester:
         self.scalp_exit_mode = scalp_exit_mode
         self.risk = RiskManager(settings, max_leverage=leverage)
 
+        kw = strategy_kwargs or {}
         if sleeve_kind == "scalp":
-            self.strategy = ScalpStrategy(settings)
+            self.strategy = ScalpStrategy(settings, **kw)
         elif sleeve_kind == "mid":
-            self.strategy = MidStrategy(settings)
+            self.strategy = MidStrategy(settings, **kw)
         elif sleeve_kind == "swing":
-            self.strategy = SwingStrategy(settings)
+            self.strategy = SwingStrategy(settings, **kw)
         else:
             raise ValueError(f"지원하지 않는 슬리브: {sleeve_kind}")
 

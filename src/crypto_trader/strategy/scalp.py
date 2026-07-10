@@ -49,7 +49,9 @@ class ScalpStrategy:
                  vol_lookback: int = 20, vol_spike_mult: float = 4.0,
                  strong_body_frac: float = 0.6, min_body_atr: float = 1.0,
                  min_tp_frac: float = 0.0008,
-                 reward_risk_ratio: float | None = None):
+                 reward_risk_ratio: float | None = None,
+                 squeeze_pctile: float | None = 30.0,
+                 squeeze_lookback: int = 50):
         self.s = settings
         self.bb_period = bb_period
         self.bb_std = bb_std
@@ -59,6 +61,11 @@ class ScalpStrategy:
         self.min_body_atr = min_body_atr          # 몸통이 ATR 의 이 배수 이상이어야 유의미
         self.min_tp_frac = min_tp_frac            # 최소 익절 거리 (가격 대비, 0.0008=0.08%)
         self.rr = reward_risk_ratio if reward_risk_ratio is not None else settings.reward_risk_ratio
+        # 볼린저 스퀴즈 전제: 신호봉 직전 밴드폭이 최근 N봉 분포의 하위 pctile% 이하일
+        # 때만 진입 허용. 밴드 확장 후의 늦은 돌파(대부분 되돌림)를 차단 — 68회
+        # 백테스트에서 유일하게 3심볼×2기간 일관 개선 (None=비활성).
+        self.squeeze_pctile = squeeze_pctile
+        self.squeeze_lookback = squeeze_lookback
 
     def decide(self, symbol: str, df: pd.DataFrame,
                oi_delta: float | None = None,
@@ -75,6 +82,19 @@ class ScalpStrategy:
 
         # --- 진입 판단: 마지막 확정봉 ---
         _mid, upper, lower = ind.bollinger_bands(df["close"], self.bb_period, self.bb_std)
+
+        # [스퀴즈 필터] 밴드폭(정규화)이 하위 분위 이하일 때만 돌파를 신뢰
+        if self.squeeze_pctile is not None:
+            bw = (upper - lower) / _mid.replace(0.0, float("nan"))
+            valid = bw.dropna()
+            if len(valid) < self.squeeze_lookback + 2:
+                return ScalpDecision(Action.HOLD, Direction.FLAT, reason="스퀴즈 데이터 부족")
+            bw_prev = float(bw.iloc[-2])  # 신호봉 '직전' 봉 기준
+            dist = bw.iloc[-(self.squeeze_lookback + 1):-1].dropna()
+            threshold = float(dist.quantile(self.squeeze_pctile / 100.0))
+            if not (bw_prev <= threshold):
+                return ScalpDecision(Action.HOLD, Direction.FLAT, reason="스퀴즈 아님")
+
         bar = df.iloc[-1]
         o, h, l, c = float(bar["open"]), float(bar["high"]), float(bar["low"]), float(bar["close"])
         up_band = float(upper.iloc[-1])

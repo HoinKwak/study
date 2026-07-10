@@ -33,5 +33,8 @@ def test_allocated_equity():
 
 def test_default_sleeves_use_configured_symbols():
     s = _settings()
-    for sleeve in default_sleeves(s):
-        assert sleeve.symbols == ["BTC/USDT", "ETH/USDT", "SOL/USDT"]
+    sleeves = {sl.name: sl for sl in default_sleeves(s)}
+    assert sleeves["swing"].symbols == ["BTC/USDT", "ETH/USDT", "SOL/USDT"]
+    assert sleeves["mid"].symbols == ["BTC/USDT", "ETH/USDT", "SOL/USDT"]
+    # 단타는 SOL 제외 (백테스트에서 엣지 없음 확인)
+    assert sleeves["scalp"].symbols == ["BTC/USDT", "ETH/USDT"]

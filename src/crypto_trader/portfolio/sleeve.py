@@ -28,6 +28,9 @@ class Sleeve:
 def default_sleeves(settings: Settings) -> list[Sleeve]:
     """설계 문서 기준 기본 3-슬리브 구성 (50/25/25)."""
     symbols = settings.symbols
+    # 단타는 SOL 제외: 스퀴즈 필터 적용 후에도 PF 0.2~0.3 (60일 백테스트,
+    # docs/BACKTEST_RESULTS.md) — 엣지 없는 심볼은 매매하지 않는다.
+    scalp_symbols = [s for s in symbols if s.split("/")[0] != "SOL"]
     return [
         Sleeve(
             name="swing", allocation=0.50,
@@ -50,6 +53,6 @@ def default_sleeves(settings: Settings) -> list[Sleeve]:
             signal_tf="5m", confirm_tf="15m",
             strategy_kind="scalp",
             eval_interval_sec=5 * 60,
-            symbols=symbols, twap_slices=3, leverage=30,
+            symbols=scalp_symbols, twap_slices=3, leverage=30,
         ),
     ]
