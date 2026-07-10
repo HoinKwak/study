@@ -24,9 +24,12 @@
 - [x] 모니터링: 거래 저널(영속화) + 성과 통계 + 텔레그램 알림 + HTML 대시보드
 - [x] 백테스팅 프레임워크 (과거 캔들 재생, 라이브와 동일 Strategy 공유)
 - [x] 전략 정교화: 레짐(추세/횡보) 인지 가중치 + 시그널 반전 청산 + 유지시간 기록
-- [ ] 멀티 타임프레임 포트폴리오 (중장기/중기/단타 슬리브, isolated) — 진행 예정
+- [x] 헤지 모드 + 부분 청산 (같은 심볼 롱/숏 동시, 슬리브별 자기 수량만 청산)
+- [x] 멀티 타임프레임 포트폴리오 (중장기 50% / 중기 25% / 단타 25%, isolated)
+- [x] 단타 전략 (볼린저 이탈 + 거래량 급증 + OI, TWAP 진입)
+- [ ] 고급 중장기 전략 (RSI 20/80 역추세 → 슈퍼트렌드 피라미딩, Fib+CVD TP) — 다음
+- [ ] 라이브 주문 단위 리컨실(합산 포지션에서 슬리브별 체결 판별) — 다음
 - [ ] 파라미터 튜닝 / 워크포워드 검증
-- [ ] 실전 주문 강화: 부분체결·재시도·정밀 손익 리컨실
 
 자세한 설계는 [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) 참고.
 
@@ -54,7 +57,10 @@ python -m scripts.run_paper
 # 테스트넷 연결/주문 검증 (--execute 시 실제 주문 라이프사이클)
 python -m scripts.verify_testnet --symbol BTC/USDT [--execute]
 
-# 트레이딩 루프 (--once 로 1회만)
+# 멀티 타임프레임 포트폴리오 (중장기/중기/단타 슬리브)
+python -m scripts.run_portfolio [--once]
+
+# 단일 전략 트레이딩 루프 (--once 로 1회만)
 python -m scripts.run_paper [--once]
 
 # 상태/성과 확인 + HTML 대시보드 생성 (state/dashboard.html)

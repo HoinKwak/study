@@ -53,7 +53,27 @@ class Executor:
         self.binance = binance
         self.paper = paper_broker or PaperBroker()
 
-    def open_position(self, plan: TradePlan) -> Fill | None:
+    def _market_entry(self, plan: TradePlan, side: str, pos_side: str,
+                      twap_slices: int) -> float:
+        """시장가 진입. twap_slices>1 이면 수량을 균등 분할해 순차 체결(단순 TWAP).
+
+        주의: 진정한 시간 분산 TWAP 는 스케줄러가 필요. 여기선 슬라이스 분할로
+        단일 대량주문의 시장충격만 완화한다(테스트넷/초기 구현).
+        """
+        n = max(1, twap_slices)
+        slice_qty = self.binance.amount_to_precision(plan.symbol, plan.quantity / n)
+        prices, filled = [], 0.0
+        for _ in range(n):
+            if float(slice_qty) <= 0:
+                break
+            order = self.binance.create_market_order(plan.symbol, side, slice_qty,
+                                                     position_side=pos_side)
+            px = float(order.get("average") or order.get("price") or plan.entry_price)
+            prices.append(px)
+            filled += float(slice_qty)
+        return sum(prices) / len(prices) if prices else plan.entry_price
+
+    def open_position(self, plan: TradePlan, twap_slices: int = 1) -> Fill | None:
         side = "buy" if plan.direction is Direction.LONG else "sell"
 
         if self.s.trade_mode is TradeMode.DRY_RUN:
@@ -71,8 +91,7 @@ class Executor:
             self.binance.set_margin_mode(plan.symbol)
             self.binance.set_leverage(plan.symbol, plan.leverage)
             qty = self.binance.amount_to_precision(plan.symbol, plan.quantity)
-            order = self.binance.create_market_order(plan.symbol, side, qty, position_side=pos_side)
-            entry = float(order.get("average") or order.get("price") or plan.entry_price)
+            entry = self._market_entry(plan, side, pos_side, twap_slices)
             log.info("[%s] 진입 체결 → %s %s @ %.4f", mode.upper(), plan.symbol, pos_side, entry)
 
             # 손절/익절 예약 — 포지션 반대 방향으로 청산되도록 positionSide 지정
@@ -87,7 +106,7 @@ class Executor:
             except Exception as e:  # noqa: BLE001
                 log.warning("SL/TP 주문 실패 %s: %s", plan.symbol, e)
 
-            return Fill(plan.symbol, side, float(qty), entry, mode, str(order.get("id")))
+            return Fill(plan.symbol, side, float(qty), entry, mode, None)
         except Exception as e:  # noqa: BLE001
             log.error("주문 실패 %s: %s", plan.symbol, e)
             return None
