@@ -58,6 +58,6 @@ def default_sleeves(settings: Settings) -> list[Sleeve]:
             strategy_kind="scalp",
             eval_interval_sec=5 * 60,
             symbols=scalp_symbols, twap_slices=3, leverage=30,
-            dynamic_universe=True, min_universe_volume=100e6,
+            dynamic_universe=True, min_universe_volume=50e6,
         ),
     ]
