@@ -19,12 +19,13 @@ from ..connectors import BinanceClient, BinanceDerivativesData
 from ..data import ohlcv_to_df
 from ..execution import Executor
 from ..monitoring import Notifier, TradeJournal, TradeRecord
-from ..risk import RiskManager
+from ..risk import RiskManager, TradePlan
 from ..signals import indicators as ind
 from ..signals.base import Direction
-from ..strategy import Action, Strategy
+from ..strategy import Action, MidStrategy, Strategy
 from ..strategy.regime import detect_regime
 from ..strategy.scalp import ScalpStrategy
+from ..strategy.swing import SwingDecision, SwingPosition, SwingStrategy
 from ..utils import get_logger
 from .sleeve import Sleeve
 
@@ -51,7 +52,11 @@ class SleeveWorker:
         self.risk = RiskManager(settings)
 
         if sleeve.strategy_kind == "scalp":
-            self.strategy: Strategy | ScalpStrategy = ScalpStrategy(settings)
+            self.strategy = ScalpStrategy(settings)
+        elif sleeve.strategy_kind == "mid":
+            self.strategy = MidStrategy(settings)
+        elif sleeve.strategy_kind == "swing":
+            self.strategy = SwingStrategy(settings)
         else:
             self.strategy = Strategy(settings)
 
@@ -164,6 +169,11 @@ class SleeveWorker:
                                             current_direction=current_dir,
                                             confirm_regime=confirm_regime)
             self._act_scalp(symbol, df, decision, allocated_equity, current_dir)
+        elif self.sleeve.strategy_kind == "mid":
+            decision = self.strategy.decide(symbol, df, confirm_df, current_dir)
+            self._act_regime(symbol, df, decision, allocated_equity, current_dir)
+        elif self.sleeve.strategy_kind == "swing":
+            self._act_swing(symbol, df, confirm_df, allocated_equity)
         else:
             snap = self.deriv_data.snapshot(symbol)
             decision = self.strategy.decide(symbol, df, snap, current_dir)
@@ -225,6 +235,114 @@ class SleeveWorker:
             plan = self.risk.build_plan_with_stop(symbol, decision.direction, price,
                                                   decision.stop_price, decision.take_profit, equity)
             self._open_common(plan, symbol, decision.direction, price, "scalp")
+
+    # ------------------------------------------------------- 중장기(피라미딩)
+
+    def _act_swing(self, symbol, df, confirm_df, equity) -> None:
+        price = float(df["close"].iloc[-1])
+        rec = self._sleeve_trade(symbol)
+
+        # dry_run 은 봉 종가로 SL/TP 점검
+        if self.s.trade_mode is TradeMode.DRY_RUN and rec is not None:
+            self._check_sl_tp(symbol, price)
+            rec = self._sleeve_trade(symbol)  # 청산됐을 수 있음
+
+        position = None
+        if rec is not None:
+            position = SwingPosition(Direction(rec.direction), rec.stage, rec.alloc_frac,
+                                     rec.entry_price, rec.stop_price)
+        decision: SwingDecision = self.strategy.decide(symbol, df, confirm_df, position)
+        log.info("[swing] %s %s", symbol, decision.summary())
+
+        if decision.action in (Action.OPEN_LONG, Action.OPEN_SHORT):
+            self._swing_open(symbol, decision, price, equity)
+        elif decision.action is Action.ADD and rec is not None:
+            self._swing_add(rec, symbol, decision, price, equity)
+
+    def _swing_qty(self, frac: float, equity: float, price: float) -> float:
+        """배분 비율(슬리브 예산 대비)로 수량 산정. 명목가치 = frac × 배정자본."""
+        notional = max(0.0, frac) * equity
+        return notional / price if price > 0 else 0.0
+
+    def _swing_open(self, symbol, decision, price, equity) -> None:
+        ok, why = self.risk.can_open(len([t for t in self.journal.open_trades()
+                                          if t.sleeve == self.sleeve.name]))
+        if not ok:
+            self.notifier.warn(f"[swing] {symbol}: 진입 차단 — {why}")
+            return
+        qty = self.risk_amount_to_qty(symbol, self._swing_qty(decision.target_frac, equity, price))
+        if qty <= 0:
+            return
+        plan = TradePlan(symbol=symbol, direction=decision.direction, entry_price=price,
+                         stop_price=decision.stop_price, take_profit=decision.take_profit,
+                         quantity=qty, leverage=1, risk_amount=qty * abs(price - decision.stop_price),
+                         notional=qty * price)
+        if self.s.trade_mode is TradeMode.DRY_RUN:
+            fill_price, fqty, oid = price, qty, None
+        else:
+            fill = self.executor.open_position(plan, twap_slices=self.sleeve.twap_slices)
+            if fill is None:
+                self.notifier.error(f"[swing] {symbol}: 주문 실패")
+                return
+            fill_price, fqty, oid = fill.price, fill.quantity, fill.order_id
+
+        self.journal.record_open(TradeRecord(
+            symbol=symbol, direction=decision.direction.value, entry_price=fill_price, quantity=fqty,
+            opened_at=_now_iso(), mode=self.s.trade_mode.value, stop_price=decision.stop_price,
+            take_profit=decision.take_profit, order_id=oid, sleeve=self.sleeve.name,
+            stage=1, alloc_frac=decision.target_frac,
+        ))
+        self.notifier.trade(
+            f"[swing] {symbol} {decision.direction.value.upper()} 진입 ({decision.reason})\n"
+            f"진입 {fill_price:.4f} | SL {decision.stop_price:.4f} | TP {decision.take_profit:.4f}\n"
+            f"비중 {decision.target_frac:.0%} | 수량 {fqty}",
+            title="📗 중장기 진입",
+        )
+
+    def _swing_add(self, rec, symbol, decision, price, equity) -> None:
+        add_frac = decision.target_frac - rec.alloc_frac
+        if add_frac <= 1e-9 and decision.stop_price == rec.stop_price:
+            return  # 증량도 SL 변경도 없음
+        add_qty = self.risk_amount_to_qty(symbol, self._swing_qty(add_frac, equity, price))
+
+        if self.s.trade_mode is not TradeMode.DRY_RUN and self.binance is not None and add_qty > 0:
+            side = "buy" if rec.direction == "long" else "sell"
+            self.binance.create_market_order(symbol, side, add_qty, position_side=rec.direction)
+            # 총수량 기준 SL/TP 재예약
+            self._rebracket(symbol, rec.direction, rec.quantity + add_qty,
+                            decision.stop_price, decision.take_profit)
+
+        self.journal.record_add(symbol, self.sleeve.name, rec.direction, price, add_qty,
+                                decision.stop_price, decision.stage, decision.target_frac,
+                                decision.take_profit)
+        self.notifier.trade(
+            f"[swing] {symbol} {rec.direction.upper()} 추가 ({decision.reason})\n"
+            f"+{add_qty} @ {price:.4f} | 누적비중 {decision.target_frac:.0%} "
+            f"| SL {decision.stop_price:.4f} stage{decision.stage}",
+            title="📗 중장기 피라미딩",
+        )
+
+    def _rebracket(self, symbol, direction, total_qty, stop, tp) -> None:
+        """추가 후 총수량 기준으로 SL/TP 재예약."""
+        if self.binance is None:
+            return
+        self.binance.cancel_all_orders(symbol)
+        close_side = "sell" if direction == "long" else "buy"
+        qty = self.binance.amount_to_precision(symbol, total_qty)
+        try:
+            self.binance.create_stop_order(symbol, close_side, qty, stop, position_side=direction)
+            self.binance.create_take_profit_order(symbol, close_side, qty, tp, position_side=direction)
+        except Exception as e:  # noqa: BLE001
+            log.warning("[swing] SL/TP 재예약 실패 %s: %s", symbol, e)
+
+    def risk_amount_to_qty(self, symbol: str, qty: float) -> float:
+        """거래소 정밀도로 수량 반올림(라이브). dry_run 은 그대로."""
+        if self.binance is not None:
+            try:
+                return self.binance.amount_to_precision(symbol, qty)
+            except Exception:  # noqa: BLE001
+                return qty
+        return qty
 
 
 def allocated_str(worker: SleeveWorker) -> str:

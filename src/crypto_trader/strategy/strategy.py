@@ -28,6 +28,7 @@ from .regime import Regime, detect_regime
 class Action(str, Enum):
     OPEN_LONG = "open_long"
     OPEN_SHORT = "open_short"
+    ADD = "add"            # 기존 포지션에 피라미딩 추가
     CLOSE = "close"
     HOLD = "hold"
 

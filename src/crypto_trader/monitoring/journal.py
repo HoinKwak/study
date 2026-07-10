@@ -24,6 +24,9 @@ class TradeRecord:
     take_profit: float = 0.0
     order_id: str | None = None
     sleeve: str = "default"   # 소속 슬리브 (swing / mid / scalp)
+    stage: int = 1            # 피라미딩 단계 (1: 초기/역추세, 2: 추세확인 추가)
+    num_adds: int = 0         # 추가 진입 횟수
+    alloc_frac: float = 0.0   # 슬리브 예산 대비 누적 사용 비율 (0~1)
     # 청산 시 채워짐
     exit_price: float | None = None
     closed_at: str | None = None
@@ -120,6 +123,30 @@ class TradeJournal:
             rec.closed_at = closed_at
             rec.pnl = pnl
             rec.exit_reason = reason
+            self._save()
+            return rec
+        return None
+
+    def record_add(self, symbol: str, sleeve: str, direction: str,
+                   add_price: float, add_qty: float, new_stop: float,
+                   new_stage: int, new_alloc_frac: float,
+                   new_take_profit: float | None = None) -> TradeRecord | None:
+        """기존 열린 거래에 피라미딩 추가. 평균단가/수량/SL/단계 갱신."""
+        for rec in reversed(self.trades):
+            if not (rec.symbol == symbol and rec.is_open
+                    and rec.sleeve == sleeve and rec.direction == direction):
+                continue
+            total_qty = rec.quantity + add_qty
+            if total_qty <= 0:
+                return None
+            rec.entry_price = (rec.entry_price * rec.quantity + add_price * add_qty) / total_qty
+            rec.quantity = total_qty
+            rec.stop_price = new_stop
+            rec.stage = new_stage
+            rec.num_adds += 1
+            rec.alloc_frac = new_alloc_frac
+            if new_take_profit is not None:
+                rec.take_profit = new_take_profit
             self._save()
             return rec
         return None

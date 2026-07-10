@@ -21,7 +21,8 @@ def test_sleeve_timeframes():
     assert sleeves["mid"].signal_tf == "15m" and sleeves["mid"].confirm_tf == "1h"
     assert sleeves["scalp"].signal_tf == "1m" and sleeves["scalp"].confirm_tf == "5m"
     assert sleeves["scalp"].strategy_kind == "scalp"
-    assert sleeves["swing"].strategy_kind == "regime"
+    assert sleeves["swing"].strategy_kind == "swing"
+    assert sleeves["mid"].strategy_kind == "mid"
 
 
 def test_allocated_equity():

@@ -31,14 +31,14 @@ def default_sleeves(settings: Settings) -> list[Sleeve]:
         Sleeve(
             name="swing", allocation=0.50,
             signal_tf="4h", confirm_tf="1d",
-            strategy_kind="regime",           # TODO: 고급 스윙(RSI/슈퍼트렌드) 로 교체 예정
+            strategy_kind="swing",            # RSI 20/80 역추세 → 슈퍼트렌드 피라미딩
             eval_interval_sec=4 * 3600,
             symbols=symbols, twap_slices=3,
         ),
         Sleeve(
             name="mid", allocation=0.25,
             signal_tf="15m", confirm_tf="1h",
-            strategy_kind="regime",
+            strategy_kind="mid",              # 상위TF 추세 + 하위TF 눌림목
             eval_interval_sec=15 * 60,
             symbols=symbols, twap_slices=1,
         ),
