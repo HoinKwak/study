@@ -1,10 +1,10 @@
-"""대시보드 부가 시장데이터 — 알트 상대강도(vs BTC) + BTC·나스닥·금 괴리.
+"""대시보드 부가 시장데이터 — 알트 상대강도, 시총 TOP10 BTC대비, 매크로 괴리.
 
-무거운 네트워크 조회이므로 state/market_extra.json 에 캐시(기본 30분 TTL)한다.
-- 알트 상대강도: 고유동성 USDT 페어의 1일/7일/30일 수익률에서 BTC 수익률을 뺀 값
-  (스테이블/비크립토는 유니버스에서 이미 제외). 각 구간 TOP N.
-- 괴리 차트: BTC/나스닥/금 일별 종가를 시작=0% 로 정규화한 시계열.
-  나스닥·금은 stooq(무료 CSV)에서. 조회 실패 시 해당 라인만 생략.
+무거운/외부 네트워크 조회이므로 state/market_extra.json 에 캐시(기본 30분 TTL)한다.
+각 구성요소는 독립적으로 계산돼 하나가 실패해도 나머지는 표시된다.
+- 알트 상대강도: 고유동성 USDT 페어의 1/7/30일 수익률 − BTC 수익률. 각 구간 TOP N.
+- 시총 TOP10: 코인게코 시총 상위 코인(스테이블·BTC 제외)의 1/7/30일 BTC대비 수익률.
+- 매크로 괴리: BTC/나스닥/금 일별 종가 정규화(시작=0%). 나스닥·금은 Yahoo(→stooq 폴백).
 """
 from __future__ import annotations
 
@@ -19,7 +19,20 @@ from ..utils import get_logger
 
 log = get_logger("market_extra")
 
+_UA = {"User-Agent": "Mozilla/5.0"}
 STOOQ = "https://stooq.com/q/d/l/"
+YAHOO = "https://query1.finance.yahoo.com/v8/finance/chart/"
+COINGECKO_MARKETS = "https://api.coingecko.com/api/v3/coins/markets"
+
+# 캐시 스키마 버전 — 데이터 구조/소스가 바뀌면 올려 옛 캐시를 무효화
+_CACHE_VERSION = 2
+
+# 시총 상위에 섞여있는 스테이블/랩드 제외용
+STABLE_LIKE = {
+    "usdt", "usdc", "dai", "fdusd", "tusd", "busd", "usde", "usds", "pyusd",
+    "usd1", "usdd", "gusd", "wbtc", "weth", "wbeth", "steth", "wsteth", "cbbtc",
+    "lbtc", "susds", "buidl", "bsc-usd",
+}
 
 
 def _now() -> float:
@@ -36,10 +49,7 @@ def _ret(closes: list[float], back: int) -> float | None:
 
 def alt_strength(min_volume: float, top_n: int = 10, max_symbols: int = 45,
                  data: BinanceDerivativesData | None = None) -> dict:
-    """1일/7일/30일 BTC 대비 상대강도 TOP N.
-
-    반환: {'1d': [{symbol, alt, btc, rel}], '7d': [...], '30d': [...]}
-    """
+    """1/7/30일 BTC 대비 상대강도 TOP N. {'1d':[{symbol,alt,btc,rel}], ...}."""
     data = data or BinanceDerivativesData()
     pairs = high_volume_usdt_symbols(min_volume)
     symbols = [s for s, _v in pairs][:max_symbols]
@@ -65,19 +75,72 @@ def alt_strength(min_volume: float, top_n: int = 10, max_symbols: int = 45,
                             "btc": round(b, 2), "rel": round(a - b, 2)})
     out = {}
     for w, key in ((1, "1d"), (7, "7d"), (30, "30d")):
-        ranked = sorted(rows[w], key=lambda r: -r["rel"])[:top_n]
-        out[key] = ranked
+        out[key] = sorted(rows[w], key=lambda r: -r["rel"])[:top_n]
+    return out
+
+
+# ---------------------------------------------------- 시총 TOP10 (BTC 대비)
+
+def mcap_top_relative(top_n: int = 10, timeout: int = 20) -> list[dict]:
+    """코인게코 시총 상위 코인(스테이블·BTC 제외)의 1/7/30일 BTC대비 수익률."""
+    r = requests.get(COINGECKO_MARKETS, params={
+        "vs_currency": "usd", "order": "market_cap_desc", "per_page": 30,
+        "page": 1, "price_change_percentage": "24h,7d,30d",
+    }, headers=_UA, timeout=timeout)
+    r.raise_for_status()
+    rows = r.json()
+    if not isinstance(rows, list):
+        return []
+    btc = next((x for x in rows if str(x.get("symbol", "")).lower() == "btc"), None)
+    if not btc:
+        return []
+    b1 = btc.get("price_change_percentage_24h_in_currency")
+    b7 = btc.get("price_change_percentage_7d_in_currency")
+    b30 = btc.get("price_change_percentage_30d_in_currency")
+
+    def rel(a, b):
+        return round(a - b, 1) if (a is not None and b is not None) else None
+
+    out: list[dict] = []
+    for x in rows:
+        sym = str(x.get("symbol", "")).lower()
+        if sym in STABLE_LIKE or sym == "btc":
+            continue
+        out.append({
+            "symbol": sym.upper(),
+            "r1": rel(x.get("price_change_percentage_24h_in_currency"), b1),
+            "r7": rel(x.get("price_change_percentage_7d_in_currency"), b7),
+            "r30": rel(x.get("price_change_percentage_30d_in_currency"), b30),
+        })
+        if len(out) >= top_n:
+            break
     return out
 
 
 # ----------------------------------------------------------- BTC·나스닥·금 괴리
 
+def _fetch_yahoo(symbol: str, days: int, timeout: int = 15
+                 ) -> list[tuple[float, float]] | None:
+    """Yahoo Finance 차트 API → 최근 days 일 (epoch초, 종가). 실패 시 None."""
+    try:
+        r = requests.get(f"{YAHOO}{symbol}", params={"range": "6mo", "interval": "1d"},
+                         headers=_UA, timeout=timeout)
+        r.raise_for_status()
+        res = (r.json().get("chart", {}).get("result") or [None])[0]
+        ts = res["timestamp"]
+        closes = res["indicators"]["quote"][0]["close"]
+    except (requests.RequestException, KeyError, TypeError, IndexError, ValueError) as e:
+        log.info("yahoo %s 조회 실패: %s", symbol, str(e)[:60])
+        return None
+    pts = [(float(t), float(c)) for t, c in zip(ts, closes) if c is not None]
+    return pts[-days:] if pts else None
+
+
 def _fetch_stooq(symbol: str, days: int, timeout: int = 15
                  ) -> list[tuple[float, float]] | None:
     """stooq 일별 CSV → 최근 days 일 (epoch초, 종가). 실패 시 None."""
     try:
-        r = requests.get(STOOQ, params={"s": symbol, "i": "d"},
-                         headers={"User-Agent": "Mozilla/5.0"}, timeout=timeout)
+        r = requests.get(STOOQ, params={"s": symbol, "i": "d"}, headers=_UA, timeout=timeout)
         r.raise_for_status()
         lines = r.text.strip().splitlines()
     except requests.RequestException as e:
@@ -92,15 +155,13 @@ def _fetch_stooq(symbol: str, days: int, timeout: int = 15
             continue
         try:
             dt = datetime.strptime(parts[0], "%Y-%m-%d").replace(tzinfo=timezone.utc)
-            close = float(parts[4])
+            pts.append((dt.timestamp(), float(parts[4])))
         except (ValueError, IndexError):
             continue
-        pts.append((dt.timestamp(), close))
     return pts[-days:] if pts else None
 
 
 def _normalize(pts: list[tuple[float, float]]) -> list[tuple[float, float]]:
-    """(epoch, 종가) → (epoch, 시작대비 %)."""
     if not pts or pts[0][1] <= 0:
         return []
     base = pts[0][1]
@@ -115,16 +176,21 @@ def macro_divergence(days: int = 90,
 
     btc = data.klines("BTC/USDT", "1d", limit=min(days + 1, 200))
     if btc and btc.get("close"):
-        pts = list(zip((t / 1000.0 for t in btc["open_time"]), btc["close"]))
-        norm = _normalize(pts)
+        norm = _normalize(list(zip((t / 1000.0 for t in btc["open_time"]), btc["close"])))
         if norm:
             series.append({"label": "BTC", "color": "#f7931a", "points": norm})
 
-    for sym, label, color in (("^ndq", "나스닥", "#38bdf8"), ("xauusd", "금", "#eab308")):
-        raw = _fetch_stooq(sym, days)
+    # Yahoo 우선(^IXIC 나스닥종합, GC=F 금선물) → 실패 시 stooq 폴백
+    for yh, sq, label, color in (
+        ("%5EIXIC", "^ndq", "나스닥", "#38bdf8"),
+        ("GC=F", "xauusd", "금", "#eab308"),
+    ):
+        raw = _fetch_yahoo(yh, days) or _fetch_stooq(sq, days)
         norm = _normalize(raw) if raw else []
         if norm:
             series.append({"label": label, "color": color, "points": norm})
+        else:
+            log.info("매크로 %s 데이터 없음(yahoo·stooq 모두 실패)", label)
     return series
 
 
@@ -132,27 +198,34 @@ def macro_divergence(days: int = 90,
 
 def load_cached(state_dir: str, min_volume: float, ttl_min: int = 30,
                 macro_days: int = 90) -> dict:
-    """계산 결과를 state/market_extra.json 에 캐시. 신선하면 재사용."""
+    """계산 결과를 state/market_extra.json 에 캐시. 각 요소 독립 계산(부분 실패 허용)."""
     path = Path(state_dir) / "market_extra.json"
     if path.exists():
         try:
             cached = json.loads(path.read_text(encoding="utf-8"))
-            if _now() - float(cached.get("ts", 0)) < ttl_min * 60:
+            if (cached.get("v") == _CACHE_VERSION
+                    and _now() - float(cached.get("ts", 0)) < ttl_min * 60):
                 return cached.get("data", {})
         except (json.JSONDecodeError, ValueError, OSError):
             pass
-    try:
-        data = {
-            "alt_strength": alt_strength(min_volume),
-            "macro": macro_divergence(macro_days),
-        }
-    except Exception as e:  # noqa: BLE001 — 부가데이터 실패가 대시보드를 막지 않게
-        log.warning("market_extra 계산 실패: %s", e)
-        return {}
+
+    data: dict = {}
+    for key, fn in (
+        ("alt_strength", lambda: alt_strength(min_volume)),
+        ("mcap_top", lambda: mcap_top_relative()),
+        ("macro", lambda: macro_divergence(macro_days)),
+    ):
+        try:
+            data[key] = fn()
+        except Exception as e:  # noqa: BLE001 — 부분 실패가 대시보드를 막지 않게
+            log.warning("market_extra[%s] 실패: %s", key, str(e)[:80])
+            data[key] = [] if key != "alt_strength" else {}
     try:
         path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(json.dumps({"ts": _now(), "data": data}, ensure_ascii=False),
-                        encoding="utf-8")
+        path.write_text(
+            json.dumps({"v": _CACHE_VERSION, "ts": _now(), "data": data},
+                       ensure_ascii=False),
+            encoding="utf-8")
     except OSError:
         pass
     return data

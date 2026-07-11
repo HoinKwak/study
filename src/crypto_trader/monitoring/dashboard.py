@@ -178,9 +178,30 @@ def _strength_table(title: str, rows: list) -> str:
             f"<td class='muted'>{r.get('alt', 0.0):+.1f}%</td></tr>"
         )
     inner = "".join(body) or "<tr><td colspan=4 class='muted'>데이터 없음</td></tr>"
-    return (f"<div class='card' style='flex:1;min-width:220px'>"
+    return (f"<div class='card' style='flex:1;min-width:200px'>"
             f"<div class='muted' style='margin-bottom:6px'>{title}</div>"
             f"<table><thead><tr><th>#</th><th>심볼</th><th>BTC대비</th><th>수익률</th>"
+            f"</tr></thead><tbody>{inner}</tbody></table></div>")
+
+
+def _mcap_table(rows: list) -> str:
+    """시총 TOP10 코인의 1/7/30일 BTC 대비 수익률 — 한 테이블."""
+    def cell(v) -> str:
+        if v is None:
+            return "<td class='muted'>-</td>"
+        c = "#16a34a" if v >= 0 else "#dc2626"
+        return f"<td style='color:{c}'>{v:+.1f}%</td>"
+
+    body = []
+    for i, r in enumerate(rows or []):
+        body.append(
+            f"<tr><td>{i + 1}</td><td><b>{html.escape(str(r.get('symbol', '')))}</b></td>"
+            f"{cell(r.get('r1'))}{cell(r.get('r7'))}{cell(r.get('r30'))}</tr>"
+        )
+    inner = "".join(body) or "<tr><td colspan=5 class='muted'>데이터 없음</td></tr>"
+    return (f"<div class='card' style='flex:1;min-width:300px'>"
+            f"<div class='muted' style='margin-bottom:6px'>시총 TOP10 · BTC 대비 수익률</div>"
+            f"<table><thead><tr><th>#</th><th>심볼</th><th>1일</th><th>7일</th><th>30일</th>"
             f"</tr></thead><tbody>{inner}</tbody></table></div>")
 
 
@@ -214,18 +235,24 @@ def render_html(journal: TradeJournal, equity: float | None = None,
   <div class="card">{charts.bar_chart(daily_bars, unit="")}</div>
 """
 
-    # --- 알트 상대강도 + 매크로 괴리 ---
+    # --- 알트 상대강도 + 시총 TOP10 + 매크로 괴리 ---
     me = market_extra or {}
     alt = me.get("alt_strength") or {}
+    mcap = me.get("mcap_top") or []
     macro = me.get("macro") or []
     strength_section = f"""
-  <h2>💪 알트 BTC 대비 강도 TOP 10 (스테이블 제외)</h2>
-  <div style="display:flex;gap:12px;flex-wrap:wrap">
-    {_strength_table("1일", alt.get("1d", []))}
-    {_strength_table("7일", alt.get("7d", []))}
-    {_strength_table("30일", alt.get("30d", []))}
+  <h2>💪 BTC 대비 강도 (스테이블 제외)</h2>
+  <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start">
+    <div style="flex:2;display:flex;gap:12px;flex-wrap:wrap;min-width:320px">
+      {_strength_table("상대강도 1일", alt.get("1d", []))}
+      {_strength_table("상대강도 7일", alt.get("7d", []))}
+      {_strength_table("상대강도 30일", alt.get("30d", []))}
+    </div>
+    <div style="flex:1;min-width:300px">
+      {_mcap_table(mcap)}
+    </div>
   </div>
-""" if alt else ""
+""" if (alt or mcap) else ""
     macro_section = f"""
   <h2>🌐 BTC vs 나스닥·금 괴리 (시작=0%)</h2>
   <div class="card">{charts.line_chart(macro, y_suffix="%")}</div>
