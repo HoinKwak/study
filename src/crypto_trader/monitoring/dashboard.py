@@ -635,38 +635,60 @@ _STAGE_COLOR = {"조기": "#22c55e", "확산": "#eab308", "뒷북": "#94a3b8"}
 
 
 def _kol_section(kol: dict) -> str:
-    tokens = (kol or {}).get("tokens") or []
-    if not tokens:
+    """KOL 하이프 토큰 + 주목 프로젝트/토큰(통합). 둘 다 kol/watch.json 에서 로드."""
+    kol = kol or {}
+    tokens = kol.get("tokens") or []
+    notable = kol.get("notable") or []
+    if not tokens and not notable:
         return ""
-    ts = kst_display((kol or {}).get("ts"), "%m-%d %H:%M")
-    body = []
-    for t in tokens[:15]:
-        stage = str(t.get("stage", ""))
-        sc = next((c for k, c in _STAGE_COLOR.items() if k in stage), "#e2e8f0")
-        ca = str(t.get("ca") or t.get("contract") or t.get("address") or "").strip()
-        if ca:
-            short = ca if len(ca) <= 13 else f"{ca[:6]}…{ca[-4:]}"
-            ca_html = (f"<a href='https://dexscreener.com/search?q={html.escape(ca)}' "
-                       f"target='_blank' rel='noopener' title='{html.escape(ca)}' "
-                       f"style='color:var(--accent);font-family:monospace;font-size:11px'>{html.escape(short)}</a>")
-        else:
-            ca_html = "<span class='muted'>-</span>"
-        body.append(
-            f"<tr><td><b>{html.escape(str(t.get('token', '')))}</b></td>"
-            f"<td class='muted'>{html.escape(str(t.get('chain', '')))}</td>"
-            f"<td>{ca_html}</td>"
-            f"<td style='color:{sc}'>{html.escape(stage)}</td>"
-            f"<td>{html.escape(str(t.get('kols', '')))}</td>"
-            f"<td>{html.escape(str(t.get('thesis', ''))[:70])}</td>"
-            f"<td class='muted'>{html.escape(str(t.get('risk', ''))[:40])}</td></tr>"
-        )
-    return f"""
+    ts = kst_display(kol.get("ts"), "%m-%d %H:%M")
+
+    hype_html = ""
+    if tokens:
+        body = []
+        for t in tokens[:15]:
+            stage = str(t.get("stage", ""))
+            sc = next((c for k, c in _STAGE_COLOR.items() if k in stage), "#e2e8f0")
+            ca = str(t.get("ca") or t.get("contract") or t.get("address") or "").strip()
+            if ca:
+                short = ca if len(ca) <= 13 else f"{ca[:6]}…{ca[-4:]}"
+                ca_html = (f"<a href='https://dexscreener.com/search?q={html.escape(ca)}' "
+                           f"target='_blank' rel='noopener' title='{html.escape(ca)}' "
+                           f"style='color:var(--accent);font-family:monospace;font-size:11px'>{html.escape(short)}</a>")
+            else:
+                ca_html = "<span class='muted'>-</span>"
+            body.append(
+                f"<tr><td><b>{html.escape(str(t.get('token', '')))}</b></td>"
+                f"<td class='muted'>{html.escape(str(t.get('chain', '')))}</td>"
+                f"<td>{ca_html}</td>"
+                f"<td style='color:{sc}'>{html.escape(stage)}</td>"
+                f"<td>{html.escape(str(t.get('kols', '')))}</td>"
+                f"<td>{html.escape(str(t.get('thesis', ''))[:70])}</td>"
+                f"<td class='muted'>{html.escape(str(t.get('risk', ''))[:40])}</td></tr>"
+            )
+        hype_html = f"""
   <h2>🐦 KOL 하이프 토큰 <span class="muted">({ts} KST)</span></h2>
   <div class="card" style="overflow-x:auto"><table>
   <thead><tr><th>토큰</th><th>체인</th><th>CA</th><th>단계</th><th>KOL</th><th>서사</th><th>리스크</th></tr></thead>
   <tbody>{"".join(body)}</tbody></table>
   <div class="muted" style="margin-top:8px">⚠️ 아이디어·조기경보용, 투자조언 아님. 자체 검증 필수.</div></div>
 """
+
+    notable_html = ""
+    if notable:
+        nrows = "".join(
+            f"<tr><td><b>{html.escape(str(n.get('token', '')))}</b></td>"
+            f"<td class='muted'>{html.escape(str(n.get('status', '')))}</td>"
+            f"<td>{html.escape(str(n.get('summary', ''))[:140])}</td></tr>"
+            for n in notable[:12]
+        )
+        notable_html = f"""
+  <h2>📌 주목 프로젝트/토큰 <span class="muted">({ts} KST)</span></h2>
+  <div class="card" style="overflow-x:auto"><table>
+  <thead><tr><th>토큰</th><th>상태</th><th>요약</th></tr></thead>
+  <tbody>{nrows}</tbody></table></div>
+"""
+    return hype_html + notable_html
 
 
 def _brief_section(brief: dict) -> str:
@@ -687,24 +709,13 @@ def _brief_section(brief: dict) -> str:
             f"<div class='muted' style='margin-top:6px'>레벨: {html.escape(str(a.get('levels', '')))}</div>"
             f"<div class='muted'>촉매: {html.escape(str(a.get('catalysts', ''))[:120])}</div></div>"
         )
-    notable = brief.get("notable", [])
-    nrows = "".join(
-        f"<tr><td><b>{html.escape(str(n.get('token', '')))}</b></td>"
-        f"<td class='muted'>{html.escape(str(n.get('status', '')))}</td>"
-        f"<td>{html.escape(str(n.get('summary', ''))[:120])}</td></tr>"
-        for n in notable[:12]
-    )
-    notable_html = (f"<h3 style='margin-top:14px'>주목 프로젝트/토큰</h3>"
-                    f"<div class='card' style='overflow-x:auto'><table><thead><tr>"
-                    f"<th>토큰</th><th>상태</th><th>요약</th></tr></thead>"
-                    f"<tbody>{nrows}</tbody></table></div>") if nrows else ""
+    # 주목 프로젝트/토큰은 KOL 워치(_kol_section)로 통합 이관 — 여기선 렌더하지 않음.
     market_html = (f"<div class='card'>{html.escape(str(market)[:400])}</div>"
                    if market else "")
     return f"""
   <h2>📰 시장 분석 요약 <span class="muted">({ts} KST)</span></h2>
   {market_html}
   <div style="display:flex;gap:12px;flex-wrap:wrap">{"".join(cards)}</div>
-  {notable_html}
 """
 
 
