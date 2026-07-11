@@ -1,65 +1,93 @@
-# KOL 워치 — 2026-07-11 (KST)
+# KOL 하이프 리스트 — 2026-07-11 15:13 (KST)
 
-> ⚠️ 아이디어 소싱용. 투자조언 아님(Not financial advice). KOL 콜은 홍보·포지션 편향이 매우 흔하고, 유료/봇 KOL 활동도 섞여 있음. 아래는 X 로그인월 한계로 **WebSearch 인덱싱·2차 보도·아그리게이터** 기반이며, 원 트윗 직접 확인이 안 된 항목은 "미확인"으로 표기. 반드시 자체 검증할 것.
+> ⚠️ 아이디어 소싱·조기경보용. **투자조언 아님(Not financial advice).** KOL 콜은 홍보·포지션 편향이 매우 크고, 유료/봇 KOL·카피트레이드 유인도 섞여 있음. 아래는 X 로그인월 한계로 **WebSearch 인덱싱·2차 보도·아그리게이터** 기반이며, 원 트윗 직접 확인이 안 된 항목은 **"미확인"** 으로 표기. 이미 급등한 건 **뒷북**, 저유동·인사이더 지배는 **러그/조작 위험** 으로 정직 표기. 반드시 자체 검증할 것.
 
-## 🔥 교차 주목 종목 (여러 KOL/출처 겹침)
+## 🎯 토큰 하이프 리스트 (조기성 우선 정렬)
 
-| 토큰 | 언급 KOL/출처 | 서사(요지) | 코로보(거래량/트렌딩) | 리스크 | 출처 |
-|---|---|---|---|---|---|
-| **CASHCAT** | Ansem(지갑 온체인 연결), Vlad Tenev(RH CEO), Lydia Silver | Robinhood Chain(아비트럼 기반) 첫 대표 밈코인. RH 창업 초기 마스코트 테마 | ✅ 실제 흐름 강함. RH체인 DEX 거래량 하루 ~$400M, 7/8 24h +1,700%, mcap $120~137M, 24h vol ~$194M(CoinGecko) | 🔴 **이미 급등 후 냉각**($0.14 ATH→$0.08). RH 공식 후원 아님. 봇/유료 KOL 활동 지적. Ansem 매수도 "지갑 추정"이지 본인 확인 아님 | [CoinDesk](https://www.coindesk.com/tech/2026/07/09/cashcat-trader-turns-usd800-into-over-usd1-million-on-robinhood-s-brand-new-blockchain), [Yahoo/Ansem지갑](https://finance.yahoo.com/markets/crypto/articles/did-ansem-buy-cash-cat-133040250.html), [Coingape](https://coingape.com/markets/top-robinhood-chain-meme-coins-to-watch-as-volumes-surge-1200/) |
-| **ANSEM (The Black Bull)** | Ansem(@blknoiz06) 본인이 크리에이터 수수료 에어드랍/유동성 투입으로 지원 | Ansem 이름을 딴 Solana Pump.fun 밈코인(6월 중순 런칭). 본인이 "trenches에 stimmy" 발언 후 급등 | ✅ 7일 ~20,000% 급등, 초기 mcap $350M+ 도달. 24h vol $89M대 | 🔴 순수 밈코인·펀더멘털 없음. 단일 인물 의존. 7/8 -30% 급락, 집중/조작 리스크. Ansem이 만든 건 아님 | [crypto.news](https://crypto.news/what-is-ansem-coin-solana-influencer-memecoin-explained/), [BraveNewCoin](https://bravenewcoin.com/insights/ansems-ansem-gamble-can-one-traders-stimmy-for-the-trenches-reignite-solanas-memecoin-machine), [KuCoin](https://www.kucoin.com/news/flash/data-crypto-kol-ansem-s-ansem-holdings-exceed-204m) |
-| **HYPE (Hyperliquid)** | 6월 서사 리캡(@thedefivillain), Arthur Hayes($150 타겟), 광범위 | Perp DEX 지배 서사의 대장. 자체 L1, perp 거래량 리더 | ✅ 신고가 ~$76 돌파, HYPE 펀드 6월 순유입 $161M. 1월 저점 대비 ~+250% | 🟠 **이미 크게 오름·ATH 부근 뒷북 위험**. Hayes $150은 공격적 타겟 | [cryptonarratives 6월리캡](https://cryptonarratives.substack.com/p/june-2026-recap-narratives-best-performers), [MEXC](https://www.mexc.co/en-IN/learn/article/hyperliquid-price-prediction-july-2026-can-hype-really-hit-arthur-hayes-150-target-/1) |
-| **LIT (Lighter)** | 6월 서사 리캡 | Robinhood가 perp DEX로 Lighter 채택 발표 → 리레이팅 | ✅ $2 저항 돌파 | 🟠 뉴스 이벤트성 급등. 발표 반영 후 되돌림 주의 | [cryptonarratives 6월리캡](https://cryptonarratives.substack.com/p/june-2026-recap-narratives-best-performers) |
-| **USELESS** | "Bonk guy"(Unipics)가 지속 시딩, 5·6월 리캡에서 반복 언급 | 아이러니 밈 → Schelling coin. Bonk guy가 상시 홍보 | 🟡 5월 $40M→$85M, 6월 $110M mcap 도달 후 등락 | 🔴 순수 밈·인플루언서 홍보 의존. Bonk guy가 멈추면 서사 붕괴 | [Bitget아카데미](https://web3.bitget.com/en/academy/what-is-useless-coin-useless-a-meme-token-turning-irony-into-real-defi-utility), [cryptonarratives 5월리캡](https://cryptonarratives.substack.com/p/may-2026-recap-narratives-best-performers) |
-| **Robinhood Chain 바스켓 (DIH, 4663, The Robinhood)** | Vlad Tenev 발언 이후 트레이더 몰림, Pump.fun가 RH체인 지원(7/8) | CASHCAT 낙수효과. RH체인 밈 메타 | 🟡 트렌딩·거래량은 붙음(DEX vol 24h +1,200%, $32M→$433M) | 🔴 **극단적 변동**: DIH 7/8 $0.010→7/9 $0.0003(~-97%). 대부분 초단기·저유동 | [Coingape](https://coingape.com/markets/top-robinhood-chain-meme-coins-to-watch-as-volumes-surge-1200/), [KuCoin](https://www.kucoin.com/news/flash/robinhood-chain-s-first-meme-token-cashcat-surges-1700-in-24-hours) |
+| 토큰 | 체인/DEX | 단계 | 언급 KOL/출처(수) | 서사(요지) | 온체인 코로보(거래량/트렌딩) | 신규? | 리스크 | 출처 |
+|---|---|---|---|---|---|---|---|---|
+| **viva** | Solana | 🟢조기 | DEXTools 위클리 등 소수 (2+) | AI 컬트 2세대. Token Extensions로 "문화 거버넌스"·의식 참여 보상. GOAT 계보의 신생 에이전트 토큰 | 🟡 초기·데이터 얕음. 에이전트 트리거 이벤트에 거래량 스파이크 | 신규 | 🔴 저유동·서사 의존·검증툴 필수. KOL 귀속 미확인 | [DEXTools](https://www.dextools.io/tutorials/solana-meme-coins-trending-weekly-report-2026) |
+| **JTO / JTX (Jito)** | Solana | 🟢확산 초입 | 6·7월 서사 리캡, CryptoDaily (2+) | JTX 트레이딩 터미널 7월 광범위 런칭 예정, 프로토콜 수익 80% JTO 바이백. 7/9 Privy(Stripe)와 FullSend 협업 | ✅ JTO +14.7% 급등 보도, Solana 인프라 카탈리스트 | 신규 | 🟠 카탈리스트 선반영 가능·"런칭 후 되돌림" | [CMC](https://coinmarketcap.com/top-stories/6a506185c6b0d36f477c5aff/), [CryptoDaily](https://cryptodaily.co.uk/2026/07/solana-jtx-launch-jito-catalyst) |
+| **TROLL** | Solana/Raydium | 🟡확산 | 온체인 흐름·CoinGecko 트렌딩 (2+) | 트롤링 밈. 커뮤니티 순유입·홀더 급증으로 컨솔 장세에서 개별 강세 | ✅ mcap ~$100M, 24h vol ~$5.7M, **신규 홀더 ~14k·순유입 $12M**. 단 6/11 스마트머니 유출($8.7k) 혼조 | 신규 | 🟠 밈·내재가치 없음, 스마트머니 혼조 | [CoinGecko](https://www.coingecko.com/en/categories/solana-meme-coins), [KuCoin](https://www.kucoin.com/blog/jp-troll-hits-100m-market-cap-on-solana-can-this-meme-coin-reach-10-billion-next) |
+| **BP (Backpack)** | Solana | 🟡확산 | Backpack 런칭 보도 (1+) | 거래소 네이티브 토큰. 총 10억 중 25% 유저 에어드랍(팀·VC 0%), $0.31 데뷔 | ✅ FDV $3.1B로 데뷔 후 24h -25.8%($0.28) | 신규 | 🟠 상장 직후 매도압·언락 스케줄 | [Yellow](https://yellow.com/research/backpack-exchange-token-airdrop-solana) |
+| **BRETT** | Base | 🟡확산 | MEXC·AMBCrypto 밈 리포트 (2+) | Base 마스코트. B20 토큰 표준·Coinbase x402 결제툴 기대감으로 재부각 | ✅ Base 밈 선두 일간 +19% | 지속 | 🟠 이벤트성 하이프·되돌림 잦음 | [AMBCrypto](https://ambcrypto.com/why-is-brett-up-today-base-hype-x402-buzz-more/) |
+| **PENGU (Pudgy Penguins)** | Solana | 🟡확산 | 밈 리포트 다수 (2+) | Canary Capital PENGU ETF 신청 + Target 트레이딩카드 리테일 확장 | ✅ 밈 섹터 트렌딩·브랜드 확장 카탈리스트 | 지속 | 🟠 ETF는 '신청' 단계, 밈 변동성 | [CoinGecko](https://www.coingecko.com/en/categories/solana-meme-coins), [Coingabbar](https://www.coingabbar.com/en/crypto-blogs-details/meme-coins-to-buy-now-july-2026-floki-pengu-m-spx-fartcoin) |
+| **USELESS** | Solana | 🟡확산/뒷북 | Bonk guy(Unipics) 상시 시딩 (1) | 아이러니 밈 → Schelling coin. 단일 인플루언서 홍보 의존 | 🟡 5월 $40M→6월 $110M mcap 후 등락 | 지속 | 🔴 단일 홍보주체 의존·멈추면 붕괴 | [Bitget](https://web3.bitget.com/en/academy/what-is-useless-coin-useless-a-meme-token-turning-irony-into-real-defi-utility) |
+| **HYPE (Hyperliquid)** | Hyperliquid L1 | 🔴뒷북 | Arthur Hayes($150), 서사 리캡 (3+) | Perp DEX 지배 대장. 자체 L1·수익 바이백. Bitwise 지수 편입, Spot ETF 6월말 $111M 순유입 | ✅ ~$71~76 ATH 부근, 주간 +6.7% | 지속 | 🔴 **ATH 부근 뒷북**. Hayes $150은 공격적, 6월 전량 청산→재구축 이력 | [MEXC](https://www.mexc.co/en-IN/learn/article/hyperliquid-price-prediction-july-2026-can-hype-really-hit-arthur-hayes-150-target-/1) |
+| **LIT (Lighter)** | 자체 perp DEX | 🔴뒷북 | 서사 리캡 (1) | Robinhood가 perp DEX로 Lighter 채택 → 리레이팅. $2 돌파 | 🟡 뉴스 이벤트성 급등 후 | 지속 | 🟠 발표 반영 후 되돌림 | [6월 리캡](https://cryptonarratives.substack.com/p/june-2026-recap-narratives-best-performers) |
+| **CASHCAT** | Robinhood Chain | 🔴뒷북 | Ansem(지갑추정), V.Tenev, L.Silver (3) | RH Chain 첫 대표 밈. Tenev "works great for memes too" 점화 | ✅ 7/8 24h +1,700%·DEX vol ~$194M 후 **냉각**($0.14 ATH→$0.08) | 지속(식음) | 🔴 급등 후 냉각·RH 공식후원 아님·봇/유료KOL 지적 | [CoinDesk](https://www.coindesk.com/tech/2026/07/09/cashcat-trader-turns-usd800-into-over-usd1-million-on-robinhood-s-brand-new-blockchain), [Coingape](https://coingape.com/markets/top-robinhood-chain-meme-coins-to-watch-as-volumes-surge-1200/) |
+| **ANSEM (The Black Bull)** | Solana/Pump.fun | 🔴뒷북 | Ansem 수수료 에어드랍 지원 (1) | Ansem 이름 밈(익명 개발자 생성, 본인이 유동성·수수료 투입) | ✅ 7일 ~20,000%, mcap $60M+ 도달 후 -30% | 지속(식음) | 🔴 순수 밈·단일 인물 의존·집중/조작 | [crypto.news](https://crypto.news/what-is-ansem-coin-solana-influencer-memecoin-explained/), [Phemex](https://phemex.com/academy/who-is-ansem-solana-trader-ansem-token-frenzy) |
+| **GOAT (Goatseus Maximus)** | Solana | 🔴뒷북 | AI 컬트 서사, DEXTools (2) | AI 에이전트(Truth Terminal) 원조 토큰. 트레저리·Transfer Hook 바이백 부활 | 🟡 옛 서사 부활(2024 런칭)·에이전트 액션에 변동 | 지속 | 🔴 오래된 서사·재점화 불확실 | [CoinGecko](https://www.coingecko.com/learn/what-is-goatseus-maximus-goat-memecoin-crypto) |
+| **SYN (Synapse)** | Hyperliquid | 🔴뒷북 | 6월 서사 리캡 (1) | 브릿지→Hyperliquid 옵션 프로토콜 피벗 | ✅ 저점 대비 25X 완료 | 지속 | 🔴 25X 이미 완료·late 위험 | [6월 리캡](https://cryptonarratives.substack.com/p/june-2026-recap-narratives-best-performers) |
+| **WLD (Worldcoin)** | Ethereum | 🔴뒷북 | 6월 서사 리캡 (1) | OpenAI IPO 투기 | 🟡 $0.35→$0.7+ 후 6월말 전량 되돌림 | 지속 | 🔴 되돌림 완료·이벤트 소멸 | [6월 리캡](https://cryptonarratives.substack.com/p/june-2026-recap-narratives-best-performers) |
+| **LAB (LAB Trade)** | Solana/멀티 | ⛔뒷북·러그경보 | ZachXBT 인사이더 조작 지목 (1) | AI 트레이딩 터미널 토큰. 6월 $25B FDV까지 | ⛔ **7/6~8 ~$17→$1.25, $5B+ 증발(-90%)** | 지속(붕괴) | ⛔ **ZachXBT: 유통량 95%+ 인사이더 지배·조작**. 8/14 대량 언락 | [CryptoSlate](https://cryptoslate.com/coins/lab/), [Solanafloor](https://solanafloor.com/news/solana-ecosystem-token-unlocks-what-to-watch-in-july-2026) |
 
-## KOL별 최근 주목
+## KOL별 최근 콜
 
-### Ansem (@blknoiz06) · 팔로워 ~75만~100만 · 신뢰도: 높음(과거 WIF·BONK 조기 콜), 단 밈 편향·본인 포지션 노출 많음
-- **ANSEM (The Black Bull)**: 본인 이름 밈코인에 크리에이터 수수료 에어드랍·유동성 투입 공언("give the trenches a stimmy", 6/28) → 급등. 이후 -30% · [KuCoin](https://www.kucoin.com/news/flash/ansem-updates-ansem-meme-coin-promotion-plan-continues-airdrops-adds-creator-fees-to-liquidity-pool)
-- **CASHCAT**: "Ansem-2" 지갑이 3시간 내 $233k(279만개) 매수, Solana 주소가 Ansem과 연결됨(온체인 추정). 본인 명시적 콜은 미확인 · 7/8 · [Yahoo](https://finance.yahoo.com/markets/crypto/articles/did-ansem-buy-cash-cat-133040250.html)
-- Robinhood Chain 밈 메타 전반 홍보 정황(주의: ANSEM가 RH체인 홍보 중 -30% 하락 보도) · [KuCoin](https://www.kucoin.com/news/flash/ansem-price-drops-30-amid-ansem-s-robinhood-chain-promotion)
+### Ansem (@blknoiz06) · 팔로워 ~75만+ · 신뢰도: 높음(WIF·BONK 조기 콜 이력), 단 밈·본인 포지션 편향
+- **SOL $150 콜**(7/7): "SOL이 레인지 상단 되찾고 향후 수개월 내 $150" · SOL $80 회복 축하로 지갑에 SOL 배포(7/2) · [99bitcoins](https://99bitcoins.com/news/presales/solana-price-prediction-ansem-150/), [X](https://x.com/blknoiz06/status/2072636194081361920)
+- **ANSEM**: 익명 개발자가 만든 본인 이름 밈에 크리에이터 수수료 에어드랍·유동성 투입 공언 → 급등 후 -30% · [crypto.news](https://crypto.news/what-is-ansem-coin-solana-influencer-memecoin-explained/)
+- **CASHCAT**: "Ansem-2" 지갑이 $233k 매수(온체인 추정, 본인 명시 콜은 미확인) · [Phemex](https://phemex.com/academy/who-is-ansem-solana-trader-ansem-token-frenzy)
 
-### Cashcat — (주의: "Cashcat"은 KOL 계정이 아니라 **토큰/밈**으로 부상한 케이스)
-- 사용자가 지목한 "Cashcat"은 개인 KOL이라기보다 **Robinhood Chain 첫 히트 밈코인 CASHCAT**를 가리키는 것으로 판단. 위 교차표 참조.
-- 홍보 주체: Vlad Tenev(RH CEO, "works great for memes too", 7/7 + 계정 팔로우), Lydia Silver("$CASHCAT still looks really strong") · [CryptoPotato](https://cryptopotato.com/from-tokenized-stocks-to-cashcat-why-robinhood-chain-is-dominating-crypto-conversations/)
+### Cobie (Jordan Fish, @cobie) · 신뢰도: 높음(고참·냉소 검증형, 펌핑 잘 안 함)
+- **특정 종목 콜 없음**. "밈코인은 평범한 사람이 짧은 기간에 zero→respectable 자산으로 갈 마지막 기회 중 하나" 발언(밈 매크로 낙관) · UpOnly TV 트레이더 스트림 진행 · [CoinCodex](https://coincodex.com/article/34580/crypto-influencers/), [thetokendispatch](https://www.thetokendispatch.com/p/cobie-the-long-trade)
+- ※ 참고: 사용자 지목 "Jordan Fish"는 곧 Cobie 본인.
 
-### Cobie · 신뢰도: 높음(고참·냉소적 검증형, 펌핑 잘 안 함)
-- **특정 종목 콜 없음**. 최근 팟캐스트에서 "토큰이 아직 크립토의 기술적 중요성을 반영 못 하지만" 새 투자 서사(과거 DeFi·NFT·밈처럼) 출현에 낙관, "온체인 자본량"이 계속 늘어난다는 매크로 관점 · 시점 미상(2026) · [KuCoin](https://www.kucoin.com/news/insight/BTC/69e84acd9b8ebc0007cd1945)
-- 참고: CryptoKaleo가 "Cobie said the bull market hasn't even started"를 인용한 트윗 존재(구 인용, 시점 오래됨 가능) · [X](https://x.com/CryptoKaleo/status/1820189277457617278)
+### Pentoshi (@Pentosh1) · 팔로워 ~80만+ · 신뢰도: 중상(매크로/스윙)
+- **매크로 강세**(7/6): "지금 시점 하방 리스크 매우 제한적" — 시장 안정 국면 진입 시사 · ETH는 "저주받은 자산"(9년 횡보) 부정적 · 개별 저캡 콜 미확인 · [Bitget](https://www.bitget.com/news/detail/12560604510093), [Bitcoin.com](https://news.bitcoin.com/ether-cursed-asset-lost-decade-pentoshi/)
 
-### Hsaka · 신뢰도: 높음(트레이더형) — ⚠️ 미확인
-- 인덱싱된 최근(6~7월 2026) 구체 콜 **확인 실패**. 원 트윗 로그인월. 별도 검증 필요.
+### CryptoKaleo (@CryptoKaleo, KALEO) · 신뢰도: 중(밈·알트 편향) — ⚠️ 개별콜 미확인
+- "Feels like we're finally actually going for it"(강세 심리) 외 최근 **구체 종목 콜 인덱싱 확인 실패** · [X](https://x.com/CryptoKaleo/status/2043825004056314353)
 
-### CryptoKaleo (KALEO) · 신뢰도: 중(밈·알트 편향) — ⚠️ 미확인
-- 최근 구체 종목 콜 인덱싱 확인 실패. 위 Cobie 인용 트윗 외 신규 근거 없음.
+### DaanCrypto (@DaanCrypto) · 신뢰도: 중(BTC TA 중심)
+- BTC 저항/지지 레벨 분석형(7/3 $60.7K 레인지 상단 회복 언급). **개별 알트/밈 콜 아님** · [Coinfomania](https://coinfomania.com/why-daancrypto-just-highlighted-key-bitcoin-resistance-levels-what-comes-next/)
 
-### GCR — ⚠️ 주의/제외
-- WebSearch에서 "GCR"은 대부분 'Global Currency Reset' 음모성 콘텐츠로 오염. 실제 트레이더 GCR 최근 콜 확인 불가. 이 시트에서 제외.
+### CrypNuevo (@CrypNuevo) · 신뢰도: 중(BTC 유동성/TA)
+- "시장은 불확실성을 싫어한다… 레인지 하단 재테스트 후 반전" — 단기 하방 우려. **개별 종목 콜 아님** · [TradingView](https://www.tradingview.com/news/cointelegraph:ed3256626094b:0-btc-vs-new-80k-liquidity-grab-five-things-to-know-in-bitcoin-this-week/)
 
-## 신규/부상 KOL·출처
-- **Vlad Tenev (Robinhood CEO)**: KOL은 아니나 RH Chain 밈 메타의 실질적 촉매. "it works great for memes too"(7/7)로 CASHCAT·RH체인 밈 랠리 점화. 주의: 이해상충(자사 체인 홍보).
-- **Unipics ("Bonk guy")**: USELESS 상시 시딩으로 Schelling meme화 주도. 주의: 노골적 단일종목 홍보.
-- **Arthur Hayes**: HYPE $150(8월) 타겟 공개, 포지션 정리→재구축 보도. 매크로/포지션 편향 감안.
-- **@thedefivillain (Viktor / cryptonarratives)**: 개별 KOL 콜은 아니나 월간 서사 리캡의 신뢰 소스로 활용.
+### TheFlowHorse (@TheFlowHorse) · 신뢰도: 중
+- "크립토→바이오테크로 관심 이동 가능성" 로테이션 코멘트. 크립토 개별 콜 아님 · [Coinfomania](https://coinfomania.com/theflowhorse-highlights-potential-biotech-momentum-how-traders-should-respond/)
 
-## 서사(내러티브) 레벨 주목 — 개별 KOL 미귀속(6월 리캡 기반)
-- **Perp DEX 지배**: HYPE, LIT 주도 · SYN(Hyperliquid 옵션 프로토콜 피벗, "25X") · JTO(Jito, JTX 런칭)
-- **프로토콜 피벗 리레이팅**: DYDX→Arcus(주식거래 플랫폼 리브랜딩, $0.12→$0.24)
-- **AI 리포지셔닝**: EIGEN(2주 2x)
-- **DEX 통합**: AERO(Aerodrome-Velodrome 합병 기대, 주간 +60%)
-- **OpenAI IPO 투기**: WLD($0.35→$0.7+)
-- **프라이버시**: ZEC(보안 취약점으로 -60% 후 회복)
-- **Solana 생태계 부활**: SOL($80+ 회복)
-출처: [cryptonarratives 6월 리캡](https://cryptonarratives.substack.com/p/june-2026-recap-narratives-best-performers)
+### Arthur Hayes (@CryptoHayes) · 신뢰도: 높음(매크로), 단 포지션 편향 큼
+- **HYPE $150(8월) 타겟** 재확인. 6월 전량 청산→재구축. "Hyperliquid 바이백이 크립토 최강 수익공유" · [MEXC](https://www.mexc.co/en-IN/learn/article/hyperliquid-price-prediction-july-2026-can-hype-really-hit-arthur-hayes-150-target-/1)
+
+### Bonk guy / Unipics · 신뢰도: 낮음(노골적 단일종목 홍보)
+- **USELESS** 상시 시딩으로 Schelling meme화 주도. 홍보 편향 명확 · [Bitget](https://web3.bitget.com/en/academy/what-is-useless-coin-useless-a-meme-token-turning-irony-into-real-defi-utility)
+
+### ZachXBT · 신뢰도: 높음(온체인 수사·경보형, 홍보 아님)
+- **LAB**을 "교과서적 인사이더 지배 조작"으로 지목(유통량 95%+ 인사이더). -90% 붕괴 경보 → **회피 신호** · [CryptoSlate](https://cryptoslate.com/coins/lab/)
+
+### Hsaka · ⚠️ 미확인
+- 최근(6~7월 2026) 구체 콜 인덱싱 **확인 실패**(로그인월). 별도 검증 필요.
+
+### inversebrah (@inversebrah) · 신뢰도: 중(메타 코멘터리·리트윗형)
+- CT 메타/밈 유행 미러링 중심. 명시적 종목 콜보다 분위기 증폭 역할. (BRAH 밈토큰 존재하나 별개) · [CoinMooner](https://coinmooner.com/coins/inversebrah-brah)
+
+### Gainzy · ⚠️ 주의/부정
+- Pump.fun 주요 스트리머. **본인 밈코인을 라이브 중 덤핑, 팔로워 손실 위 신규 지갑 수익** 지적 보도. 콜을 신호로 신뢰 금지 · [Lookonchain](https://www.lookonchain.com/articles/1147)
+
+## 새로 포착된/부상 중형 KOL·트렌치 콜러 (검증 상태 포함)
+- **Waleswoosh (@waleswoosh)**: 솔라나 '트렌치' 디젠 트레이더. 본인 이름 밈토큰(WALESWOOSH) 존재. 최근 구체 조기 콜은 **미확인**(로그인월). · [Phantom](https://phantom.com/tokens/solana/ECCirqknC7WVd3ebgNGSWuuRm1Jgu4Zag832nXdCtime)
+- **Cented / Kadenox / mitch**: 트렌치 조기 콜러로 자주 거론되나 이번 런에서 **구체 최근 콜·팔로워 교차검증 실패**. KOLScan/Axiom 등 지갑 트래커로만 추적 가능(2차 확인 필요). · [KOLScan](https://kolscan.io/leaderboard)
+- **Viktor (@thedefivillain / cryptonarratives)**: 개별 콜은 아니나 월간 서사 리캡의 신뢰 소스(SYN·JTO·MET·BP 등 조기 포착에 유용).
+- **Vlad Tenev (Robinhood CEO)**: KOL 아니나 RH Chain 밈 메타 실질 촉매(이해상충 주의).
+
+## 서사(내러티브) 레벨 주목 (조기 로테이션 후보)
+- **Solana 인프라 카탈리스트**: JTO/JTX(터미널 런칭), MET(Meteora), BP(Backpack) — 7월 이벤트 드리븐, 아직 확산 초입.
+- **AI 컬트 2세대**: viva(신생) · GOAT(원조 부활) — 온체인 에이전트/Token Extensions 테마.
+- **Base 생태계**: BRETT(B20·x402), Coinbase 결제 인프라 하이프.
+- **Perp DEX 지배**: HYPE·LIT·SYN(대부분 뒷북 구간).
+- **밈 ETF화**: PENGU(Canary 신청), FLOKI(유럽 ETP) — 리테일/제도권 브릿지.
+- **RH Chain 밈 메타**: CASHCAT·DIH 등(냉각·극단 변동, 대부분 뒷북/저유동).
+출처: [6월 리캡](https://cryptonarratives.substack.com/p/june-2026-recap-narratives-best-performers)
 
 ## 메모 (데이터 한계·리스크)
-- **X 로그인월**: Ansem을 제외한 대다수 KOL(Hsaka, CryptoKaleo, Cobie)의 **최근 개별 종목 콜은 인덱싱으로 확인 실패**. 원 트윗 검증 필요 — 위 "미확인" 항목은 근거 약함.
-- **"Cashcat"은 KOL이 아니라 토큰**일 가능성 높음(사용자 anchor 재해석). 그렇게 처리함.
-- **뒷북 위험(이미 급등)**: CASHCAT(냉각 중), ANSEM(-30%), HYPE(ATH 부근·+250%), Robinhood 바스켓(DIH -97% 사례). 밈 계열은 late-entry에 특히 취약.
-- **이해상충**: Ansem→ANSEM/CASHCAT, Tenev→RH체인, Bonk guy→USELESS는 명백한 포지션/홍보 편향. 콜을 신호로 오해 금지.
-- **코로보 상태**: CASHCAT·ANSEM·HYPE·RH체인은 거래량/트렌딩으로 흐름 확인됨(✅). USELESS·서사 종목은 부분 확인(🟡).
-- 재실행 시 이 시트 갱신. 데이터 기준일: 2026-07-11(KST).
+- **X 로그인월**: Ansem·Hayes·Pentoshi·Cobie 등 매크로/유명 계정 발언은 2차 보도로 확인되나, **트렌치 중형 콜러(Cented·Kadenox·mitch·Waleswoosh)의 구체 조기 콜은 인덱싱 확인 실패**. 지갑 트래커(KOLScan/Axiom/GMGN) 병행 필요.
+- **뒷북 다수**: HYPE(ATH), CASHCAT·ANSEM(냉각), SYN(25X 완료), WLD(되돌림 완료)는 late-entry 취약.
+- **러그/조작 경보**: **LAB** — ZachXBT가 인사이더 95%+ 지배 조작 지목, -90% 붕괴. **BP** 상장 직후 매도압. RH Chain 바스켓(DIH 하루 -97% 사례) 저유동·극단 변동.
+- **이해상충**: Ansem→ANSEM/CASHCAT, Bonk guy→USELESS, Tenev→RH체인, Gainzy(자기 덤핑)는 명백한 포지션/홍보 편향. 콜을 신호로 오해 금지.
+- **조기 후보의 한계**: viva·JTO·TROLL이 상대적으로 이른 편이나, viva는 저유동·데이터 얕음, JTO는 카탈리스트 선반영 가능, TROLL은 스마트머니 혼조. "이르다=안전"이 아님.
+- **코로보 상태**: JTO·TROLL·HYPE·BRETT·CASHCAT는 거래량/트렌딩 확인(✅). viva·GOAT는 부분(🟡). 데이터 기준일: 2026-07-11(KST).
 
 ---
-*Not financial advice. 본 문서는 공개 2차 자료 기반 아이디어 소싱용이며 매수 추천이 아님.*
+*Not financial advice. 본 문서는 공개 2차 자료 기반 아이디어 소싱용이며 매수 추천이 아님. 재실행 시 갱신.*

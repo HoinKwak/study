@@ -1,0 +1,17 @@
+{"ts": "2026-07-11T06:13:33Z", "tokens": [
+  {"token": "viva", "chain": "Solana", "stage": "조기", "kols": "DEXTools 위클리 등 소수(미확인 귀속)", "thesis": "AI 컬트 2세대. Token Extensions로 문화 거버넌스·의식 보상, GOAT 계보 신생 에이전트 토큰", "risk": "저유동·데이터 얕음·서사 의존, KOL 귀속 미확인"},
+  {"token": "JTO/JTX (Jito)", "chain": "Solana", "stage": "확산 초입", "kols": "서사 리캡·CryptoDaily", "thesis": "JTX 트레이딩 터미널 7월 광범위 런칭, 수익 80% JTO 바이백, Privy와 FullSend 협업", "risk": "카탈리스트 선반영·런칭 후 되돌림 가능"},
+  {"token": "TROLL", "chain": "Solana", "stage": "확산", "kols": "온체인 흐름·CoinGecko 트렌딩", "thesis": "트롤링 밈. ~$100M mcap에 신규 홀더 ~14k·순유입 $12M", "risk": "밈·내재가치 없음, 스마트머니 유출 혼조"},
+  {"token": "BP (Backpack)", "chain": "Solana", "stage": "확산", "kols": "Backpack 런칭 보도", "thesis": "거래소 네이티브 토큰, 25% 유저 에어드랍(팀/VC 0%), $3.1B FDV 데뷔", "risk": "상장 직후 -25.8%·언락 매도압"},
+  {"token": "BRETT", "chain": "Base", "stage": "확산", "kols": "MEXC·AMBCrypto 밈 리포트", "thesis": "Base 마스코트, B20 표준·Coinbase x402 결제 기대감으로 재부각(+19% 일간)", "risk": "이벤트성 하이프·되돌림 잦음"},
+  {"token": "PENGU (Pudgy Penguins)", "chain": "Solana", "stage": "확산", "kols": "밈 리포트 다수", "thesis": "Canary Capital PENGU ETF 신청 + Target 트레이딩카드 리테일 확장", "risk": "ETF는 신청 단계, 밈 변동성"},
+  {"token": "USELESS", "chain": "Solana", "stage": "확산/뒷북", "kols": "Bonk guy(Unipics)", "thesis": "아이러니 밈 → Schelling coin, 단일 인플루언서 상시 시딩", "risk": "단일 홍보주체 의존·멈추면 붕괴"},
+  {"token": "HYPE (Hyperliquid)", "chain": "Hyperliquid L1", "stage": "뒷북", "kols": "Arthur Hayes($150) 외", "thesis": "Perp DEX 지배 대장, 수익 바이백, Spot ETF 순유입", "risk": "ATH 부근 뒷북, Hayes $150 공격적·청산 이력"},
+  {"token": "LIT (Lighter)", "chain": "Lighter perp DEX", "stage": "뒷북", "kols": "서사 리캡", "thesis": "Robinhood가 perp DEX로 Lighter 채택 리레이팅, $2 돌파", "risk": "발표 반영 후 되돌림"},
+  {"token": "CASHCAT", "chain": "Robinhood Chain", "stage": "뒷북", "kols": "Ansem(지갑추정)·Tenev·L.Silver", "thesis": "RH Chain 첫 대표 밈, Tenev 발언 점화 후 +1,700%", "risk": "냉각($0.14→$0.08)·공식후원 아님·봇/유료KOL"},
+  {"token": "ANSEM (The Black Bull)", "chain": "Solana", "stage": "뒷북", "kols": "Ansem(수수료 에어드랍 지원)", "thesis": "Ansem 이름 밈(익명 개발자), 본인이 유동성·수수료 투입", "risk": "+20,000% 후 -30%·단일 인물 의존·조작"},
+  {"token": "GOAT (Goatseus Maximus)", "chain": "Solana", "stage": "뒷북", "kols": "AI 컬트 서사·DEXTools", "thesis": "Truth Terminal 원조 AI 에이전트 토큰, 트레저리 바이백 부활", "risk": "오래된 서사(2024)·재점화 불확실"},
+  {"token": "SYN (Synapse)", "chain": "Hyperliquid", "stage": "뒷북", "kols": "6월 서사 리캡", "thesis": "브릿지→Hyperliquid 옵션 프로토콜 피벗", "risk": "25X 이미 완료·late"},
+  {"token": "WLD (Worldcoin)", "chain": "Ethereum", "stage": "뒷북", "kols": "6월 서사 리캡", "thesis": "OpenAI IPO 투기", "risk": "$0.7+ 후 전량 되돌림·이벤트 소멸"},
+  {"token": "LAB (LAB Trade)", "chain": "Solana/멀티", "stage": "뒷북·러그경보", "kols": "ZachXBT(경보)", "thesis": "AI 트레이딩 터미널 토큰, 6월 $25B FDV까지", "risk": "ZachXBT 인사이더 95%+ 조작 지목·-90% 붕괴·8/14 대량 언락"}
+]}
