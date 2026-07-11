@@ -66,11 +66,41 @@ def main() -> None:
         interval, limit = _tf_params(tf)
         try:
             kl = BinanceDerivativesData().klines(f"{symbol}/USDT", interval, limit)
-            points = [[int(kl["open_time"][i]), kl["close"][i]]
+            points = [[int(kl["open_time"][i]), kl["open"][i], kl["high"][i],
+                       kl["low"][i], kl["close"][i]]
                       for i in range(len(kl["close"]))] if kl else []
         except Exception:  # noqa: BLE001
             points = []
         return json.dumps({"symbol": symbol, "tf": tf, "points": points}).encode("utf-8")
+
+    def _api_derivs(qs) -> bytes:
+        """선택 티커의 파생 지표 스냅샷 — 펀딩비/OI/롱숏/테이커/24h."""
+        from crypto_trader.connectors import BinanceDerivativesData
+        symbol = (qs.get("symbol", ["BTC"])[0] or "BTC").upper()
+        d = BinanceDerivativesData()
+        pair = f"{symbol}/USDT"
+        out = {"symbol": symbol}
+        try:
+            out.update(d.snapshot(pair, "1h"))
+        except Exception:  # noqa: BLE001
+            pass
+        try:
+            oi = d.open_interest_hist(pair, "1h", 2)
+            out["oi_base"] = oi[-1] if oi else None
+        except Exception:  # noqa: BLE001
+            out["oi_base"] = None
+        try:
+            tk = d.all_24h_tickers() or {}
+            row = tk.get(f"{symbol}USDT")
+            if row:
+                out["price"] = float(row.get("lastPrice"))
+                out["vol24"] = float(row.get("quoteVolume"))
+                out["chg24"] = float(row.get("priceChangePercent"))
+        except Exception:  # noqa: BLE001
+            pass
+        if out.get("oi_base") and out.get("price"):
+            out["oi_notional"] = out["oi_base"] * out["price"]
+        return json.dumps(out).encode("utf-8")
 
     def _api_symbols() -> bytes:
         try:
@@ -93,6 +123,9 @@ def main() -> None:
             path = parsed.path
             if path == "/api/klines":
                 self._send(_api_klines(parse_qs(parsed.query)), "application/json")
+                return
+            if path == "/api/derivs":
+                self._send(_api_derivs(parse_qs(parsed.query)), "application/json")
                 return
             if path == "/api/symbols":
                 self._send(_api_symbols(), "application/json")

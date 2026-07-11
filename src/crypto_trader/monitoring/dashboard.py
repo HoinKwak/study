@@ -307,42 +307,40 @@ def _ticker_strip(tickers) -> str:
         spark = charts.sparkline((t.get("closes") or [])[-48:], width=180, height=44, color=c)
         pct_txt = f"{pct:+.1f}%" if pct is not None else "-"
         minis.append(
-            f"<div class='card' style='margin:0;padding:10px'>"
+            f"<div class='card' style='margin:0;padding:10px;flex:0 0 158px'>"
             f"<div style='display:flex;justify-content:space-between;align-items:baseline'>"
             f"<b>{sym}</b><span style='color:{c};font-size:12px'>{pct_txt}</span></div>"
             f"<div class='muted' style='font-size:12px;margin-bottom:2px'>{_fmt_px(t.get('price'))}</div>"
             f"{spark}</div>")
-    return (f"<div style='display:grid;gap:10px;margin:12px 0;"
-            f"grid-template-columns:repeat(auto-fit,minmax(150px,1fr))'>{''.join(minis)}</div>")
+    return (f"<div style='display:flex;gap:10px;margin:12px 0;overflow-x:auto;padding-bottom:4px'>"
+            f"{''.join(minis)}</div>")
 
 
-def _price_charts(tickers) -> str:
-    """시장 탭: 2개 동적 가격 차트(티커·타임프레임 선택, serve_dashboard API)."""
+def _market_view(tickers) -> str:
+    """시장 탭: 캔들차트(좌) + 파생지표 패널(우) — 티커·타임프레임 연동."""
     top = _tickers_of(tickers)
     if not top:
         return ""
     tfs = [("1일", "1d"), ("7일", "7d"), ("30일", "30d"),
            ("6개월", "6m"), ("1년", "1y"), ("YTD", "ytd")]
-
-    def _panel(n: int, dsym: str) -> str:
-        tfbtns = "".join(
-            f'<button class="tfbtn" data-n="{n}" data-tf="{v}">{lbl}</button>' for lbl, v in tfs)
-        return (
-            f'<div class="card" style="flex:1;min-width:300px">'
-            f'<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">'
-            f'<button class="tkname" data-n="{n}"><span id="sym{n}">{html.escape(dsym)}</span> ▾</button>'
-            f'<span>{tfbtns}</span></div>'
-            f'<div id="search{n}" style="display:none;margin:8px 0">'
-            f'<input class="futsearch" data-n="{n}" placeholder="심볼 검색…">'
-            f'<div class="tklist" id="symlist{n}"></div></div>'
-            f'<div id="chart{n}" class="chartarea"><div class="muted">로딩…</div></div></div>')
-
+    tfbtns = "".join(f'<button class="tfbtn" data-tf="{v}">{lbl}</button>' for lbl, v in tfs)
     d1 = str(top[0].get("symbol", "BTC"))
-    d2 = str(top[1].get("symbol", "ETH")) if len(top) > 1 else "ETH"
-    cfg = ("<script>window.CHARTCFG=" + json.dumps(
-        {"syms": [str(t.get("symbol", "")) for t in top], "d1": d1, "d2": d2}) + ";</script>")
-    return (f'<div style="display:flex;flex-wrap:wrap;gap:14px">'
-            f'{_panel(1, d1)}{_panel(2, d2)}</div>{cfg}{_CHART_JS}')
+    chart = (
+        f'<div class="card" style="flex:2;min-width:340px">'
+        f'<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">'
+        f'<button class="tkname" id="mkt-name"><span id="mkt-sym">{html.escape(d1)}</span> ▾</button>'
+        f'<span>{tfbtns}</span></div>'
+        f'<div id="mkt-search" style="display:none;margin:8px 0">'
+        f'<input class="futsearch" id="mkt-input" placeholder="심볼 검색…">'
+        f'<div class="tklist" id="mkt-list"></div></div>'
+        f'<div id="mkt-chart" class="chartarea" style="min-height:340px"><div class="muted">로딩…</div></div></div>')
+    derivs = (
+        f'<div class="card" style="flex:1;min-width:250px">'
+        f'<div class="muted" style="margin-bottom:6px">파생 지표 · <b id="mkt-dsym">{html.escape(d1)}</b> <span>(1h)</span></div>'
+        f'<div id="mkt-derivs"><div class="muted">로딩…</div></div></div>')
+    cfg = ("<script>window.MKTCFG=" + json.dumps(
+        {"syms": [str(t.get("symbol", "")) for t in top], "d1": d1}) + ";</script>")
+    return (f'<div style="display:flex;flex-wrap:wrap;gap:14px">{chart}{derivs}</div>{cfg}{_CHART_JS}')
 
 
 def _strategy_metrics(journal, start_equity: float | None) -> dict:
@@ -380,52 +378,92 @@ def _strategy_metrics(journal, start_equity: float | None) -> dict:
 
 _CHART_JS = r"""<script>
 (function(){
- var cfg=window.CHARTCFG||{syms:[],d1:'BTC',d2:'ETH'};
+ var cfg=window.MKTCFG||{syms:[],d1:'BTC'};
  var SYMS=(cfg.syms||[]).slice();
- var SEL={1:{s:cfg.d1,tf:'7d'},2:{s:cfg.d2,tf:'7d'}};
- function card(n){return document.getElementById('chart'+n).closest('.card');}
- function hlTf(n){card(n).querySelectorAll('.tfbtn').forEach(function(b){
-   b.classList.toggle('tfbtn-active', b.getAttribute('data-tf')===SEL[n].tf);});}
- function loadChart(n){var el=document.getElementById('chart'+n);
-   fetch('/api/klines?symbol='+encodeURIComponent(SEL[n].s)+'&tf='+SEL[n].tf)
-   .then(function(r){return r.json();}).then(function(d){drawChart('chart'+n,d);})
-   .catch(function(){el.innerHTML='<div class="muted">차트는 serve_dashboard 서버 모드에서 표시됩니다.</div>';});
-   hlTf(n);}
- function renderSyms(n,q){q=(q||'').toUpperCase();var box=document.getElementById('symlist'+n);
-   box.innerHTML=SYMS.filter(function(x){return x.toUpperCase().indexOf(q)>=0;}).slice(0,150)
-   .map(function(x){return '<div class="tkopt" data-s="'+x+'" data-n="'+n+'">'+x+'</div>';}).join('');}
+ var SEL={s:cfg.d1,tf:'7d'};
+ var root=document.getElementById('mkt-chart');
+ if(!root)return;
+ var card=root.closest('.card');
+ function hlTf(){card.querySelectorAll('.tfbtn').forEach(function(b){
+   b.classList.toggle('tfbtn-active', b.getAttribute('data-tf')===SEL.tf);});}
  function fmtPx(v){if(v>=1000)return '$'+v.toLocaleString('en-US',{maximumFractionDigits:0});
    if(v>=1)return '$'+v.toFixed(2); if(v>=0.01)return '$'+v.toFixed(4); return '$'+v.toFixed(6);}
- function drawChart(id,d){var el=document.getElementById(id);var p=(d&&d.points)||[];
-   if(p.length<2){el.innerHTML='<div class="muted">데이터 없음</div>';return;}
-   var W=560,H=300,padL=62,padR=14,padT=14,padB=24;
-   var xs=p.map(function(a){return a[0];});var ys=p.map(function(a){return a[1];});
+ function usd(v){if(v==null)return '-'; if(v>=1e9)return '$'+(v/1e9).toFixed(2)+'B';
+   if(v>=1e6)return '$'+(v/1e6).toFixed(1)+'M'; if(v>=1e3)return '$'+(v/1e3).toFixed(0)+'K'; return '$'+v.toFixed(0);}
+ // ---- 캔들 차트 ----
+ function drawCandles(d){var p=(d&&d.points)||[];
+   if(p.length<2){root.innerHTML='<div class="muted">데이터 없음</div>';return;}
+   var W=680,H=340,padL=64,padR=12,padT=12,padB=26;
+   var xs=p.map(function(a){return a[0];});
+   var lows=p.map(function(a){return a[3];}),highs=p.map(function(a){return a[2];});
    var xmin=Math.min.apply(null,xs),xmax=Math.max.apply(null,xs);
-   var ymin=Math.min.apply(null,ys),ymax=Math.max.apply(null,ys);
+   var ymin=Math.min.apply(null,lows),ymax=Math.max.apply(null,highs);
    if(xmax===xmin)xmax+=1; if(ymax===ymin)ymax+=1; var yr=ymax-ymin;
    function sx(x){return padL+(x-xmin)/(xmax-xmin)*(W-padL-padR);}
    function sy(v){return H-padB-(v-ymin)/yr*(H-padB-padT);}
-   var col=ys[ys.length-1]>=ys[0]?'#16a34a':'#e23b4a';
+   var cw=Math.max(1.4,(W-padL-padR)/p.length*0.62);
    var o=['<svg viewBox="0 0 '+W+' '+H+'" width="100%">'];
    for(var i=0;i<5;i++){var yv=ymin+yr*i/4,y=sy(yv);
      o.push('<line x1="'+padL+'" y1="'+y+'" x2="'+(W-padR)+'" y2="'+y+'" stroke="rgba(255,255,255,0.06)"/>');
      o.push('<text x="6" y="'+(y+4)+'" fill="#8d969e" font-size="11">'+fmtPx(yv)+'</text>');}
-   o.push('<polyline points="'+p.map(function(a,i){return sx(xs[i]).toFixed(1)+','+sy(ys[i]).toFixed(1);}).join(' ')+'" fill="none" stroke="'+col+'" stroke-width="2"/>');
+   for(var j=0;j<p.length;j++){var op=p[j][1],hi=p[j][2],lo=p[j][3],cl=p[j][4];
+     var x=sx(xs[j]),up=cl>=op,col=up?'#16a34a':'#e23b4a';
+     o.push('<line x1="'+x.toFixed(1)+'" y1="'+sy(hi).toFixed(1)+'" x2="'+x.toFixed(1)+'" y2="'+sy(lo).toFixed(1)+'" stroke="'+col+'" stroke-width="1"/>');
+     var yo=sy(op),yc=sy(cl),top=Math.min(yo,yc),bh=Math.max(1,Math.abs(yc-yo));
+     o.push('<rect x="'+(x-cw/2).toFixed(1)+'" y="'+top.toFixed(1)+'" width="'+cw.toFixed(1)+'" height="'+bh.toFixed(1)+'" fill="'+col+'"/>');}
    for(var k=0;k<5;k++){var xv=xmin+(xmax-xmin)*k/4,dt=new Date(xv);
      var lab=('0'+(dt.getMonth()+1)).slice(-2)+'-'+('0'+dt.getDate()).slice(-2);
      var an=k===0?'start':(k===4?'end':'middle');
      o.push('<text x="'+sx(xv).toFixed(1)+'" y="'+(H-6)+'" fill="#8d969e" font-size="10" text-anchor="'+an+'">'+lab+'</text>');}
-   o.push('</svg>');el.innerHTML=o.join('');}
+   o.push('</svg>');root.innerHTML=o.join('');}
+ function loadChart(){
+   fetch('/api/klines?symbol='+encodeURIComponent(SEL.s)+'&tf='+SEL.tf)
+   .then(function(r){return r.json();}).then(function(d){drawCandles(d);})
+   .catch(function(){root.innerHTML='<div class="muted">차트는 serve_dashboard 서버 모드에서 표시됩니다.</div>';});
+   hlTf();}
+ // ---- 파생 지표 패널 ----
+ function tile(lab,val,col,sub){return '<div class="dtile"><span class="dlab">'+lab+'</span>'+
+   '<b style="color:'+(col||'#e6e8ea')+'">'+val+'</b>'+(sub?'<span class="dsub">'+sub+'</span>':'')+'</div>';}
+ function renderDerivs(d){var el=document.getElementById('mkt-derivs');
+   if(!d){el.innerHTML='<div class="muted">파생 데이터는 serve_dashboard 서버 모드에서 표시됩니다.</div>';return;}
+   var g='#16a34a',r='#e23b4a',n='#8d969e';
+   var fr=d.funding_rate,frp=(fr==null)?null:fr*100;
+   var gl=d.global_ls_ratio,tt=d.top_trader_ls_ratio,tk=d.taker_buy_sell_ratio;
+   var netLong=(gl==null)?null:gl/(1+gl)*100, ttNet=(tt==null)?null:tt/(1+tt)*100;
+   var o=[];
+   o.push(tile('펀딩비 (funding)', frp==null?'-':(frp>=0?'+':'')+frp.toFixed(4)+'%',
+     frp==null?n:(frp>=0?g:r), frp==null?'':(frp>=0?'롱 → 숏 지불':'숏 → 롱 지불')));
+   o.push(tile('OI 변화 (1h)', d.oi_change_pct==null?'-':(d.oi_change_pct>=0?'+':'')+d.oi_change_pct.toFixed(2)+'%',
+     d.oi_change_pct==null?n:(d.oi_change_pct>=0?g:r), d.oi_notional?('미결제약정 '+usd(d.oi_notional)):''));
+   o.push(tile('넷 롱 비중', netLong==null?'-':netLong.toFixed(1)+'%',
+     netLong==null?n:(netLong>=50?g:r), '롱/숏 계좌 '+(gl==null?'-':gl.toFixed(2))));
+   o.push(tile('상위 트레이더 넷롱', ttNet==null?'-':ttNet.toFixed(1)+'%',
+     ttNet==null?n:(ttNet>=50?g:r), 'L/S '+(tt==null?'-':tt.toFixed(2))));
+   o.push(tile('테이커 매수/매도 (CVD)', tk==null?'-':tk.toFixed(2),
+     tk==null?n:(tk>=1?g:r), tk==null?'':(tk>=1?'시장가 매수 우세':'시장가 매도 우세')));
+   o.push(tile('24h 거래량', usd(d.vol24),
+     d.chg24==null?n:(d.chg24>=0?g:r), d.chg24==null?'':('24h '+(d.chg24>=0?'+':'')+d.chg24.toFixed(2)+'%')));
+   el.innerHTML=o.join('');}
+ function loadDerivs(){document.getElementById('mkt-dsym').textContent=SEL.s;
+   document.getElementById('mkt-derivs').innerHTML='<div class="muted">로딩…</div>';
+   fetch('/api/derivs?symbol='+encodeURIComponent(SEL.s))
+   .then(function(r){return r.json();}).then(function(d){renderDerivs(d);})
+   .catch(function(){renderDerivs(null);});}
+ // ---- 심볼 검색 ----
+ function renderSyms(q){q=(q||'').toUpperCase();var box=document.getElementById('mkt-list');
+   box.innerHTML=SYMS.filter(function(x){return x.toUpperCase().indexOf(q)>=0;}).slice(0,150)
+   .map(function(x){return '<div class="tkopt" data-s="'+x+'">'+x+'</div>';}).join('');}
  document.addEventListener('click',function(e){var t=e.target;if(!t.closest)return;
-   var tf=t.closest('.tfbtn');if(tf){var n=+tf.getAttribute('data-n');SEL[n].tf=tf.getAttribute('data-tf');loadChart(n);return;}
-   var nm=t.closest('.tkname');if(nm){var n2=+nm.getAttribute('data-n');var s=document.getElementById('search'+n2);
-     s.style.display=s.style.display==='none'?'block':'none';if(s.style.display==='block')renderSyms(n2,'');return;}
-   var op=t.closest('.tkopt');if(op){var n3=+op.getAttribute('data-n');SEL[n3].s=op.getAttribute('data-s');
-     document.getElementById('sym'+n3).textContent=SEL[n3].s;document.getElementById('search'+n3).style.display='none';loadChart(n3);}});
+   var tf=t.closest('.tfbtn');if(tf){SEL.tf=tf.getAttribute('data-tf');loadChart();return;}
+   var nm=t.closest('#mkt-name');if(nm){var s=document.getElementById('mkt-search');
+     s.style.display=s.style.display==='none'?'block':'none';if(s.style.display==='block')renderSyms('');return;}
+   var op=t.closest('.tkopt');if(op){SEL.s=op.getAttribute('data-s');
+     document.getElementById('mkt-sym').textContent=SEL.s;
+     document.getElementById('mkt-search').style.display='none';loadChart();loadDerivs();}});
  document.addEventListener('input',function(e){var t=e.target;
-   if(t.classList&&t.classList.contains('futsearch')){var n=+t.getAttribute('data-n');if(n)renderSyms(n,t.value);}});
+   if(t.id==='mkt-input')renderSyms(t.value);});
  fetch('/api/symbols').then(function(r){return r.json();}).then(function(a){if(a&&a.length)SYMS=a;}).catch(function(){});
- loadChart(1);loadChart(2);
+ loadChart();loadDerivs();
 })();
 </script>"""
 
@@ -644,6 +682,11 @@ def render_html(journal: TradeJournal, equity: float | None = None,
   .tfbtn {{ background:transparent; color:var(--muted); border:1px solid var(--border); border-radius:9999px; padding:3px 9px; margin-left:4px; font-size:12px; cursor:pointer; }}
   .tfbtn-active {{ background:var(--brand); color:#fff; border-color:var(--brand); }}
   .chartarea {{ margin-top:8px; min-height:200px; }}
+  .dtile {{ display:flex; flex-direction:column; gap:2px; padding:11px 4px; border-bottom:1px solid var(--border); }}
+  .dtile:last-child {{ border-bottom:none; }}
+  .dtile b {{ font-size:17px; font-weight:700; }}
+  .dlab {{ color:var(--muted-2); font-size:12px; }}
+  .dsub {{ color:var(--muted-2); font-size:11px; }}
   .tabs {{ display:flex; gap:6px; margin:18px 0 4px; border-bottom:1px solid var(--border); }}
   .tab {{ background:transparent; color:var(--muted); border:none; border-bottom:2px solid transparent; padding:9px 16px; font-size:14px; font-weight:600; cursor:pointer; }}
   .tab-active {{ color:var(--text); border-bottom-color:var(--brand); }}
@@ -685,8 +728,8 @@ def render_html(journal: TradeJournal, equity: float | None = None,
   </div>
 
   <div class="tabpane" data-pane="market" style="display:none">
-    <h2>📈 가격 차트</h2>
-    {_price_charts(tickers or [])}
+    <h2>📈 차트 · 파생 지표</h2>
+    {_market_view(tickers or [])}
     {strength_section}
     {macro_section}
   </div>
