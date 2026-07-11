@@ -67,15 +67,20 @@ def line_chart(series: list[dict], width: int = 720, height: int = 260,
         d = " ".join(f"{sx(x):.1f},{sy(y):.1f}" for x, y in p)
         parts.append(f'<polyline points="{d}" fill="none" '
                      f'stroke="{s["color"]}" stroke-width="2"/>')
-    # 범례
+    # 범례 (CJK 글자폭 반영해 겹침 방지)
     lx = pad + 6
     for s in series:
-        parts.append(f'<rect x="{lx}" y="10" width="10" height="10" fill="{s["color"]}"/>')
-        parts.append(f'<text x="{lx + 14}" y="19" fill="{_TEXT}" font-size="12">'
+        parts.append(f'<rect x="{lx:.0f}" y="10" width="10" height="10" fill="{s["color"]}"/>')
+        parts.append(f'<text x="{lx + 15:.0f}" y="19" fill="{_TEXT}" font-size="12">'
                      f'{html.escape(s["label"])}</text>')
-        lx += 22 + len(s["label"]) * 8
+        lx += 15 + _label_width(s["label"]) + 22
     parts.append("</svg>")
     return "".join(parts)
+
+
+def _label_width(text: str) -> float:
+    """대략적 글자폭(px) — 한글/CJK 는 넓게 잡아 범례 겹침 방지."""
+    return sum(14.0 if ord(c) > 0x2E00 else 7.0 for c in text)
 
 
 def bar_chart(bars: list[tuple[str, float]], width: int = 720, height: int = 200,

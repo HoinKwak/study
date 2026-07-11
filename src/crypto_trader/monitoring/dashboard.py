@@ -166,10 +166,29 @@ def _event_rows(events: list) -> str:
     return "\n".join(out)
 
 
+def _strength_table(title: str, rows: list) -> str:
+    body = []
+    for i, r in enumerate(rows or []):
+        rel = r.get("rel", 0.0)
+        c = "#16a34a" if rel >= 0 else "#dc2626"
+        sym = str(r.get("symbol", "")).replace("/USDT", "")
+        body.append(
+            f"<tr><td>{i + 1}</td><td><b>{html.escape(sym)}</b></td>"
+            f"<td style='color:{c}'>{rel:+.2f}%</td>"
+            f"<td class='muted'>{r.get('alt', 0.0):+.1f}%</td></tr>"
+        )
+    inner = "".join(body) or "<tr><td colspan=4 class='muted'>데이터 없음</td></tr>"
+    return (f"<div class='card' style='flex:1;min-width:220px'>"
+            f"<div class='muted' style='margin-bottom:6px'>{title}</div>"
+            f"<table><thead><tr><th>#</th><th>심볼</th><th>BTC대비</th><th>수익률</th>"
+            f"</tr></thead><tbody>{inner}</tbody></table></div>")
+
+
 def render_html(journal: TradeJournal, equity: float | None = None,
                 events: list | None = None, refresh_sec: int = 0,
                 start_equity: float | None = None,
-                btc_series: list | None = None) -> str:
+                btc_series: list | None = None,
+                market_extra: dict | None = None) -> str:
     st = journal.stats()
     pnl_color = "#16a34a" if st["total_pnl"] >= 0 else "#dc2626"
     events = events or []
@@ -194,6 +213,23 @@ def render_html(journal: TradeJournal, equity: float | None = None,
   <h2>📊 일별 손익 (USDT)</h2>
   <div class="card">{charts.bar_chart(daily_bars, unit="")}</div>
 """
+
+    # --- 알트 상대강도 + 매크로 괴리 ---
+    me = market_extra or {}
+    alt = me.get("alt_strength") or {}
+    macro = me.get("macro") or []
+    strength_section = f"""
+  <h2>💪 알트 BTC 대비 강도 TOP 10 (스테이블 제외)</h2>
+  <div style="display:flex;gap:12px;flex-wrap:wrap">
+    {_strength_table("1일", alt.get("1d", []))}
+    {_strength_table("7일", alt.get("7d", []))}
+    {_strength_table("30일", alt.get("30d", []))}
+  </div>
+""" if alt else ""
+    macro_section = f"""
+  <h2>🌐 BTC vs 나스닥·금 괴리 (시작=0%)</h2>
+  <div class="card">{charts.line_chart(macro, y_suffix="%")}</div>
+""" if macro else ""
 
     event_section = f"""
   <details class="events">
@@ -262,6 +298,8 @@ def render_html(journal: TradeJournal, equity: float | None = None,
     <div class="stat"><span>열린 포지션</span><b>{st['open_trades']}</b></div>
   </div>
   {chart_section}
+  {strength_section}
+  {macro_section}
   <h2>열린 포지션</h2>
   <table><thead><tr><th>심볼</th><th>방향</th><th>진입가</th><th>손절</th><th>익절</th><th>모드</th></tr></thead>
   <tbody>{rows(journal.open_trades(), False) or "<tr><td colspan=6>없음</td></tr>"}</tbody></table>
