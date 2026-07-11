@@ -90,10 +90,14 @@ class MarketScanner:
             volumes = kl["volume"]
             price = closes[-1]
 
+            # 직전(닫힌) 캔들 거래량 배수 — 급등/급락 잡음 컷에 사용
+            vol_ratio = _closed_vol_ratio(volumes, s.scanner_vol_lookback)
+
             pm = detectors.price_move(closes, s.scanner_price_window, s.scanner_price_move_pct)
-            if pm:
+            if pm and vol_ratio >= s.scanner_move_min_vol_ratio:
                 pct, det = pm
-                add(EventType.PUMP if pct >= 0 else EventType.DUMP, pct, det)
+                add(EventType.PUMP if pct >= 0 else EventType.DUMP,
+                    pct, f"{det}·거래량 {vol_ratio:.1f}x")
 
             # 거래량 급증은 '닫힌' 캔들 기준 → 진행 중인 마지막 캔들 제외
             vs = detectors.volume_spike(volumes[:-1], s.scanner_vol_lookback, s.scanner_vol_mult)
@@ -172,6 +176,16 @@ class MarketScanner:
             except Exception as e:  # noqa: BLE001
                 log.error("스캔 사이클 오류: %s", e)
             time.sleep(interval)
+
+
+def _closed_vol_ratio(volumes: list[float], lookback: int) -> float:
+    """직전(닫힌) 캔들 거래량 / 그 이전 lookback 평균. 데이터 부족 시 0."""
+    if len(volumes) < lookback + 2:
+        return 0.0
+    closed = volumes[-2]                    # 마지막(-1)은 진행 중 → 그 앞이 닫힌 캔들
+    base = volumes[-2 - lookback:-2]
+    avg = sum(base) / len(base) if base else 0.0
+    return closed / avg if avg > 0 else 0.0
 
 
 def _fmt_price(p: float) -> str:
