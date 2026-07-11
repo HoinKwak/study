@@ -39,15 +39,16 @@ def main() -> None:
     if args.html:
         from crypto_trader.monitoring.dashboard import (  # noqa: E402
             btc_buyhold_series, journal_span_days, load_start_equity)
-        from crypto_trader.monitoring.market_extra import load_cached  # noqa: E402
+        from crypto_trader.monitoring.market_extra import load_cached, load_tickers  # noqa: E402
         events = EventStore.load(s.state_dir).recent(40)
         start_eq = load_start_equity(s.state_dir)
         btc = btc_buyhold_series(journal_span_days(journal))
         extra = load_cached(s.state_dir, s.scanner_min_volume)
+        tickers = load_tickers(s.state_dir)
         out = Path(s.state_dir) / "dashboard.html"
         out.write_text(render_html(journal, equity, events=events,
                                    start_equity=start_eq, btc_series=btc,
-                                   market_extra=extra),
+                                   market_extra=extra, tickers=tickers),
                        encoding="utf-8")
         print(f"\nHTML 대시보드 생성: {out}")
 

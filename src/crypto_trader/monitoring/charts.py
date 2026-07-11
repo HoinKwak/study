@@ -98,6 +98,25 @@ def line_chart(series: list[dict], width: int = 720, height: int = 260,
     return "".join(parts)
 
 
+def sparkline(closes: list[float], width: int = 130, height: int = 36,
+              color: str = "#6c72ff") -> str:
+    """축·라벨 없는 미니 추세선(가격 티커용)."""
+    ys = [c for c in (closes or []) if c is not None]
+    if len(ys) < 2:
+        return ""
+    ymin, ymax = min(ys), max(ys)
+    if ymax == ymin:
+        ymax = ymin + 1
+    n = len(ys)
+    pts = " ".join(
+        f"{i / (n - 1) * (width - 2) + 1:.1f},"
+        f"{height - 2 - (v - ymin) / (ymax - ymin) * (height - 4):.1f}"
+        for i, v in enumerate(ys))
+    return (f'<svg viewBox="0 0 {width} {height}" width="{width}" height="{height}" '
+            f'xmlns="http://www.w3.org/2000/svg"><polyline points="{pts}" fill="none" '
+            f'stroke="{color}" stroke-width="1.5"/></svg>')
+
+
 def _label_width(text: str) -> float:
     """대략적 글자폭(px) — 한글/CJK 는 넓게 잡아 범례 겹침 방지."""
     return sum(14.0 if ord(c) > 0x2E00 else 7.0 for c in text)

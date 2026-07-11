@@ -261,6 +261,71 @@ def _mcap_table(rows: list) -> str:
             f"</tr></thead><tbody>{inner}</tbody></table></div>")
 
 
+def _fmt_px(p) -> str:
+    if not p:
+        return "-"
+    if p >= 1000:
+        return f"${p:,.0f}"
+    if p >= 1:
+        return f"${p:,.2f}"
+    return f"${p:.4f}"
+
+
+def _top_section(tickers: list) -> str:
+    """상단: BTC/ETH/SOL/BNB 미니 티커(좌) + 심볼 선택 차트(우)."""
+    if not tickers:
+        return ""
+    minis = []
+    for t in tickers:
+        pct = t.get("pct")
+        c = "#16a34a" if (pct or 0) >= 0 else "#e23b4a"
+        spark = charts.sparkline((t.get("closes") or [])[-24:], color=c)
+        pct_txt = f"{pct:+.2f}%" if pct is not None else "-"
+        minis.append(
+            f"<div class='card' style='flex:1;min-width:150px;margin:0'>"
+            f"<div style='display:flex;justify-content:space-between;align-items:baseline'>"
+            f"<b>{html.escape(str(t.get('symbol', '')))}</b>"
+            f"<span style='color:{c};font-size:13px'>{pct_txt}</span></div>"
+            f"<div style='font-size:18px;margin:2px 0'>{_fmt_px(t.get('price'))}</div>"
+            f"{spark}</div>")
+
+    charts_html, buttons = [], []
+    for i, t in enumerate(tickers):
+        sym = str(t.get("symbol", ""))
+        closes = t.get("closes") or []
+        times = t.get("times") or []
+        if len(closes) >= 2 and closes[0]:
+            c0 = closes[0]
+            if len(times) == len(closes):
+                pts = [(times[k], (closes[k] / c0 - 1) * 100.0) for k in range(len(closes))]
+            else:
+                pts = [(k, (v / c0 - 1) * 100.0) for k, v in enumerate(closes)]
+            svg = charts.line_chart([{"label": f"{sym} 7일(%)", "color": "#6c72ff",
+                                      "points": pts}], width=560)
+        else:
+            svg = "<div class='muted'>데이터 없음</div>"
+        disp = "block" if i == 0 else "none"
+        charts_html.append(f"<div class='selchart' id='chart-{sym}' style='display:{disp}'>{svg}</div>")
+        active = " selbtn-active" if i == 0 else ""
+        buttons.append(f"<button class='selbtn{active}' onclick=\"selChart('{sym}')\">{sym}</button>")
+
+    js = ("<script>function selChart(s){"
+          "document.querySelectorAll('.selchart').forEach(function(e){e.style.display='none';});"
+          "var el=document.getElementById('chart-'+s); if(el) el.style.display='block';"
+          "document.querySelectorAll('.selbtn').forEach(function(b){b.classList.remove('selbtn-active');});"
+          "if(window.event) window.event.target.classList.add('selbtn-active');}</script>")
+
+    return f"""
+  <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:stretch;margin:14px 0">
+    <div style="flex:1;min-width:320px;display:flex;gap:12px;flex-wrap:wrap">{"".join(minis)}</div>
+    <div style="flex:1;min-width:340px" class="card">
+      <div style="margin-bottom:8px">{"".join(buttons)}</div>
+      {"".join(charts_html)}
+    </div>
+  </div>{js}
+"""
+
+
 _STAGE_COLOR = {"조기": "#22c55e", "확산": "#eab308", "뒷북": "#94a3b8"}
 
 
@@ -333,7 +398,8 @@ def render_html(journal: TradeJournal, equity: float | None = None,
                 events: list | None = None, refresh_sec: int = 0,
                 start_equity: float | None = None,
                 btc_series: list | None = None,
-                market_extra: dict | None = None) -> str:
+                market_extra: dict | None = None,
+                tickers: list | None = None) -> str:
     st = journal.stats()
     pnl_color = "#16a34a" if st["total_pnl"] >= 0 else "#e23b4a"
     events = events or []
@@ -453,10 +519,13 @@ def render_html(journal: TradeJournal, equity: float | None = None,
   .muted {{ color:var(--muted-2); font-size:12px; }}
   details.events {{ background:var(--surface); border-radius:var(--radius); padding:8px 14px; margin-top:28px; }}
   details.events summary {{ cursor:pointer; color:var(--muted); font-size:14px; padding:6px 0; }}
+  .selbtn {{ background:transparent; color:var(--muted); border:1px solid var(--border); border-radius:9999px; padding:5px 14px; margin-right:6px; font-size:13px; cursor:pointer; }}
+  .selbtn-active {{ background:var(--brand); color:#fff; border-color:var(--brand); }}
 </style></head>
 <body>
   <h1>🤖 crypto-trader 대시보드</h1>
   <div class="muted">생성 {now_kst}</div>
+  {_top_section(tickers or [])}
   <div class="grid">
     {equity_row}
     <div class="stat"><span>누적 수익률</span><b style="color:{ret_color}">{final_pct:+.2f}%</b><span class="muted">{btc_cmp}</span></div>

@@ -194,6 +194,58 @@ def macro_divergence(days: int = 90,
     return series
 
 
+# ----------------------------------------------------- 상단 가격 티커/선택차트
+
+def top_tickers(symbols: tuple = ("BTC", "ETH", "SOL", "BNB"),
+                data: BinanceDerivativesData | None = None) -> list[dict]:
+    """상단 티커 + 선택 차트용. 각 심볼 현재가·24h변동·최근 1h 시세(168개)."""
+    data = data or BinanceDerivativesData()
+    tickers = data.all_24h_tickers() or {}
+    out: list[dict] = []
+    for base in symbols:
+        pair = f"{base}USDT"
+        t = tickers.get(pair) or {}
+        try:
+            price = float(t.get("lastPrice")) or None
+        except (TypeError, ValueError):
+            price = None
+        try:
+            pct = float(t.get("priceChangePercent"))
+        except (TypeError, ValueError):
+            pct = None
+        kl = data.klines(f"{base}/USDT", "1h", limit=168)
+        closes = kl["close"] if kl else []
+        times = [x / 1000.0 for x in kl["open_time"]] if kl else []
+        out.append({"symbol": base, "price": price, "pct": pct,
+                    "closes": closes, "times": times})
+    return out
+
+
+def load_tickers(state_dir: str, ttl_sec: int = 60,
+                 symbols: tuple = ("BTC", "ETH", "SOL", "BNB")) -> list[dict]:
+    """상단 티커를 짧은 TTL(기본 60초)로 캐시 — 실시간에 가깝게."""
+    path = Path(state_dir) / "top_tickers.json"
+    if path.exists():
+        try:
+            c = json.loads(path.read_text(encoding="utf-8"))
+            if _now() - float(c.get("ts", 0)) < ttl_sec:
+                return c.get("data", [])
+        except (json.JSONDecodeError, ValueError, OSError):
+            pass
+    try:
+        data = top_tickers(symbols)
+    except Exception as e:  # noqa: BLE001
+        log.warning("top_tickers 실패: %s", e)
+        return []
+    try:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps({"ts": _now(), "data": data}, ensure_ascii=False),
+                        encoding="utf-8")
+    except OSError:
+        pass
+    return data
+
+
 # --------------------------------------------------------------- 캐시 래퍼
 
 def load_cached(state_dir: str, min_volume: float, ttl_min: int = 30,
