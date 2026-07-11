@@ -32,6 +32,9 @@
 - `python -m scripts.serve_dashboard` — 로컬 대시보드 웹서버(`http://localhost:8787`).
   파생 지표(`/api/derivs`)·캔들(`/api/klines`)·심볼(`/api/symbols`) API는 이 서버 모드에서만 실시간 동작.
 - `python -m scripts.recompute_pnl` — 청산 손익 수수료 소급 보정(idempotent).
+- `python -m scripts.yt_transcript <url|id> [--meta] [--out f]` — 유튜브 자막(트랜스크립트) 추출.
+  **유튜브 영상 분석·전략 발굴은 반드시 이 도구로 트랜스크립트를 먼저 확보한다**(서드파티
+  트랜스크립트 사이트는 CAPTCHA로 자주 막힘). yt-dlp 기반, `HTTPS_PROXY` 자동 사용.
 
 ---
 
