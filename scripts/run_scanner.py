@@ -17,7 +17,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
 from crypto_trader.config import get_settings  # noqa: E402
 from crypto_trader.monitoring import Notifier, TradeJournal  # noqa: E402
-from crypto_trader.monitoring.dashboard import render_html  # noqa: E402
+from crypto_trader.monitoring.dashboard import (  # noqa: E402
+    btc_buyhold_series, journal_span_days, load_start_equity, render_html)
 from crypto_trader.scanner import MarketScanner  # noqa: E402
 from crypto_trader.utils import get_logger  # noqa: E402
 
@@ -27,10 +28,13 @@ def _write_dashboard(settings, scanner: MarketScanner, refresh_sec: int) -> None
     try:
         journal = TradeJournal(settings.state_dir)
         events = scanner.store.recent(40)
+        start_eq = load_start_equity(settings.state_dir)
+        btc = btc_buyhold_series(journal_span_days(journal))
         out = Path(settings.state_dir) / "dashboard.html"
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_text(
-            render_html(journal, equity=None, events=events, refresh_sec=refresh_sec),
+            render_html(journal, equity=None, events=events, refresh_sec=refresh_sec,
+                        start_equity=start_eq, btc_series=btc),
             encoding="utf-8",
         )
     except Exception:  # noqa: BLE001 — 대시보드 실패가 스캔을 막지 않게

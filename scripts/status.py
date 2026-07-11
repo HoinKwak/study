@@ -37,9 +37,15 @@ def main() -> None:
     print(render_text(journal, equity))
 
     if args.html:
+        from crypto_trader.monitoring.dashboard import (  # noqa: E402
+            btc_buyhold_series, journal_span_days, load_start_equity)
         events = EventStore.load(s.state_dir).recent(40)
+        start_eq = load_start_equity(s.state_dir)
+        btc = btc_buyhold_series(journal_span_days(journal))
         out = Path(s.state_dir) / "dashboard.html"
-        out.write_text(render_html(journal, equity, events=events), encoding="utf-8")
+        out.write_text(render_html(journal, equity, events=events,
+                                   start_equity=start_eq, btc_series=btc),
+                       encoding="utf-8")
         print(f"\nHTML 대시보드 생성: {out}")
 
 
