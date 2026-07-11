@@ -37,6 +37,11 @@
 
 ---
 
+## 🖥️ 로컬 PC 상시 구동 (권장)
+
+24시간 안정적으로 돌리려면 로컬 PC에서 실행하세요 — **[docs/LOCAL_RUN.md](docs/LOCAL_RUN.md)**
+(클론 → venv → `.env` → `bash scripts/run_local.sh scalp` 자동 재시작).
+
 ## 빠른 시작
 
 ```bash
