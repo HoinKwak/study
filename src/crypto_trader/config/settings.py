@@ -77,15 +77,15 @@ class Settings(BaseSettings):
     scanner_max_symbols: int = 200         # 대상 심볼 상한(요청 수 제한)
     scanner_timeframe: str = "5m"          # 가격/거래량 판정 캔들
     scanner_price_window: int = 3          # 가격 변동 판정 캔들 수
-    scanner_price_move_pct: float = 5.0    # |변동%| 이 값 이상이면 급등/급락
-    scanner_move_min_vol_ratio: float = 1.8  # 급등/급락 시 직전봉 거래량/평균 최소배수(잡음 컷)
+    scanner_price_move_pct: float = 4.0    # |변동%| 이 값 이상이면 급등/급락(30m 판정 기준 완화)
+    scanner_move_min_vol_ratio: float = 1.5  # 급등/급락 시 직전봉 거래량/평균 최소배수(잡음 컷, 완화)
     scanner_vol_lookback: int = 20         # 거래량 평균 기준 캔들 수
-    scanner_vol_mult: float = 5.0          # 직전봉 거래량 / 평균 ≥ 이 값이면 급증
+    scanner_vol_mult: float = 3.0          # 직전봉 거래량 / 평균 ≥ 이 값이면 급증(완화)
     scanner_oi_period: str = "5m"          # OI 판정 주기
     scanner_oi_lookback: int = 3           # OI 변동 기준 구간 수
-    scanner_oi_move_pct: float = 8.0       # |OI변동%| 이 값 이상이면 급증/급감
-    scanner_funding_abs: float = 0.003     # |펀딩비| 이 값 이상이면 극단값 알림
-    scanner_cooldown_min: int = 60         # 같은 심볼·이벤트 재알림 억제(분)
+    scanner_oi_move_pct: float = 5.0       # |OI변동%| 이 값 이상이면 급증/급감(완화)
+    scanner_funding_abs: float = 0.0015    # |펀딩비| 이 값 이상이면 극단값 알림(완화)
+    scanner_cooldown_min: int = 30         # 같은 심볼·이벤트 재알림 억제(분, 완화)
 
     # --- 알림 (텔레그램, 선택) ---
     telegram_bot_token: str = ""
