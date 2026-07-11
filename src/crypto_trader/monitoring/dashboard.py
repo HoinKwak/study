@@ -1,7 +1,9 @@
 """상태/성과 대시보드 렌더링 — 텍스트(CLI) + HTML."""
 from __future__ import annotations
 
+import csv
 import html
+import io
 import json
 from datetime import datetime, timezone
 from pathlib import Path
@@ -26,7 +28,36 @@ def _load_json(rel: str) -> dict | list | None:
 
 
 def load_kol_watch() -> dict:
-    return _load_json("kol/watch.json") or {}
+    """KOL 토큰 데이터. watch.json 우선, 없으면 watch.csv 를 토큰별로 집계."""
+    j = _load_json("kol/watch.json")
+    if j and j.get("tokens"):
+        return j
+    try:
+        text = (_RESEARCH / "kol" / "watch.csv").read_text(encoding="utf-8")
+    except OSError:
+        return {}
+    agg: dict[str, dict] = {}
+    for r in csv.DictReader(io.StringIO(text)):
+        tok = (r.get("token") or r.get("토큰") or "").strip()
+        if not tok:
+            continue
+        d = agg.setdefault(tok, {
+            "token": tok,
+            "chain": (r.get("chain") or r.get("체인") or "").strip(),
+            "stage": (r.get("stage") or r.get("단계") or "").strip(),
+            "kols": set(),
+            "thesis": (r.get("thesis") or r.get("서사") or "").strip(),
+            "risk": (r.get("risk") or r.get("리스크") or "").strip(),
+        })
+        kol = (r.get("KOL") or r.get("kol") or r.get("KOL수") or "").split("(")[0].strip()
+        if kol:
+            d["kols"].add(kol)
+    tokens = []
+    for t in agg.values():
+        ks = list(t["kols"])
+        t["kols"] = (", ".join(ks[:2]) + (f" 외{len(ks) - 2}" if len(ks) > 2 else "")) if ks else ""
+        tokens.append(t)
+    return {"tokens": tokens[:15]}
 
 
 def load_market_brief() -> dict:
