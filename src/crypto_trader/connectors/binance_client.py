@@ -163,9 +163,27 @@ class BinanceClient:
     # ------------------------------------------------------------------ 계좌
 
     def fetch_balance_usdt(self) -> float:
-        """USDT 가용 잔고."""
+        """USDT 계정 순자산(마진밸런스, 미실현손익 포함).
+
+        'free'(가용잔고)만 쓰면 미체결 지정가 주문·포지션에 묶인 마진이 빠져
+        재시작·주문대기 중 현재 자본이 낮게 잡혔다가 주문이 풀리며 서서히
+        올라오는(정상화) 문제가 생긴다. 그래서 total(지갑잔고) 또는 마진밸런스를 쓴다.
+        """
         bal = self.exchange.fetch_balance()
-        usdt = bal.get("USDT", {})
+        usdt = bal.get("USDT", {}) or {}
+        info = bal.get("info", {}) or {}
+        # 1순위: 선물 계정 마진밸런스(uPnL 포함) — 미체결·마진과 무관하게 안정.
+        for key in ("totalMarginBalance", "totalWalletBalance"):
+            v = info.get(key)
+            if v not in (None, ""):
+                try:
+                    return float(v)
+                except (TypeError, ValueError):
+                    pass
+        # 2순위: ccxt 정규화 total(=free+used). 3순위: free.
+        total = usdt.get("total")
+        if total not in (None, ""):
+            return float(total or 0.0)
         return float(usdt.get("free", 0.0) or 0.0)
 
     def fetch_positions(self, symbol: str | None = None) -> list[dict[str, Any]]:
