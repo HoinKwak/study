@@ -769,64 +769,64 @@ def _chartists_section(data: dict) -> str:
 """
 
 
-def _fmt_musd(v: float) -> str:
-    """USD 백만달러 단위 값 → 사람이 읽는 문자열(+$1.2B / -$120M ...)."""
-    a = abs(v)
-    s = "+" if v >= 0 else "-"
-    if a >= 1000:
-        return f"{s}${a / 1000:.2f}B"
-    if a >= 1:
-        return f"{s}${a:.0f}M"
-    return f"{s}${a * 1000:.0f}K"
-
-
-def _etf_flow_svg(rows: list, width: int = 560, height: int = 220) -> str:
-    """ETF 일별 순유입 막대(녹/적) + 누적선(보라, 우측축) 인라인 SVG. rows:[{date,flow(백만$)}]."""
-    rows = [r for r in rows if r.get("date") and r.get("flow") is not None][-60:]
-    if len(rows) < 2:
-        return "<div class='muted'>데이터 부족</div>"
-    flows = [float(r["flow"]) for r in rows]
-    cum, s = [], 0.0
-    for f in flows:
-        s += f
-        cum.append(s)
-    n = len(rows)
-    padL, padR, padT, padB = 54, 54, 12, 24
-    W, H = width, height
-    plotW, plotH = W - padL - padR, H - padT - padB
-    fmax = max((abs(f) for f in flows), default=1.0) or 1.0
-    cmin, cmax = min(cum + [0.0]), max(cum + [0.0])
-    if cmax == cmin:
-        cmax += 1.0
-    bx = lambda i: padL + (i + 0.5) / n * plotW
-    zeroY = padT + plotH * 0.5
-    by = lambda v: padT + plotH * (1 - (v + fmax) / (2 * fmax))
-    cy = lambda v: padT + plotH * (1 - (v - cmin) / (cmax - cmin))
-    bw = max(1.0, plotW / n * 0.6)
-    o = [f'<svg viewBox="0 0 {W} {H}" width="100%" style="max-width:{W}px" xmlns="http://www.w3.org/2000/svg">']
-    o.append(f'<line x1="{padL}" y1="{zeroY:.1f}" x2="{W - padR}" y2="{zeroY:.1f}" stroke="rgba(255,255,255,0.18)"/>')
-    for i, f in enumerate(flows):
-        col = "#16a34a" if f >= 0 else "#e23b4a"
-        y1 = by(f)
-        top = min(zeroY, y1)
-        h = max(1.0, abs(y1 - zeroY))
-        o.append(f'<rect x="{bx(i) - bw / 2:.1f}" y="{top:.1f}" width="{bw:.1f}" height="{h:.1f}" fill="{col}" opacity="0.75"/>')
-    d = "".join((("M" if i == 0 else "L") + f"{bx(i):.1f},{cy(cum[i]):.1f}") for i in range(n))
-    o.append(f'<path d="{d}" fill="none" stroke="#6c72ff" stroke-width="1.8"/>')
-    o.append(f'<text x="6" y="{padT + 8}" fill="#8d969e" font-size="10">{_fmt_musd(fmax)}</text>')
-    o.append(f'<text x="6" y="{H - padB:.0f}" fill="#8d969e" font-size="10">{_fmt_musd(-fmax)}</text>')
-    o.append(f'<text x="{W - padR + 4}" y="{cy(cmax) + 8:.1f}" fill="#6c72ff" font-size="10">{_fmt_musd(cmax)}</text>')
-    o.append(f'<text x="{W - padR + 4}" y="{cy(cmin):.1f}" fill="#6c72ff" font-size="10">{_fmt_musd(cmin)}</text>')
-    for k, idx in enumerate([0, n // 2, n - 1]):
-        dt = html.escape(str(rows[idx]["date"])[5:])
-        an = "start" if k == 0 else ("end" if k == 2 else "middle")
-        o.append(f'<text x="{bx(idx):.1f}" y="{H - 7}" fill="#8d969e" font-size="10" text-anchor="{an}">{dt}</text>')
-    o.append("</svg>")
-    return "".join(o)
+_ETF_JS = r"""<script>
+(function(){
+ var D=(window.ETFDATA||{}).assets||{};
+ var TF='90'; try{var s=localStorage.getItem('ct_etf_tf');if(s)TF=s;}catch(_e){}
+ function musd(v){var a=Math.abs(v),s=v<0?'-':'+';
+   if(a>=1000)return s+'$'+(a/1000).toFixed(2)+'B';
+   if(a>=1)return s+'$'+a.toFixed(0)+'M'; return s+'$'+(a*1000).toFixed(0)+'K';}
+ function hl(){document.querySelectorAll('.etftf').forEach(function(b){
+   b.classList.toggle('tfbtn-active', b.getAttribute('data-etf')===TF);});}
+ function draw(sym){
+   var el=document.getElementById('etf-'+sym); if(!el)return;
+   var rows=D[sym]||[];
+   var sel=(TF==='all')?rows:rows.slice(-parseInt(TF,10));
+   if(sel.length<2){el.innerHTML='<div class="muted">구간 데이터 부족</div>';
+     var v0=document.getElementById('etfv-'+sym); if(v0)v0.textContent='—'; return;}
+   var flows=sel.map(function(r){return r[1];});
+   var cum=[],c=0; for(var i=0;i<flows.length;i++){c+=flows[i];cum.push(c);}
+   var net=c,last=flows[flows.length-1];
+   var vh=document.getElementById('etfv-'+sym);
+   if(vh){vh.classList.remove('muted');
+     vh.innerHTML='구간 순유입 <b style="color:'+(net>=0?'#16a34a':'#e23b4a')+'">'+musd(net)+'</b>'+
+       ' · 최근일 <b style="color:'+(last>=0?'#16a34a':'#e23b4a')+'">'+musd(last)+'</b>'+
+       ' <span class="muted">('+sel.length+'일)</span>';}
+   var W=Math.max(300,el.clientWidth||560),H=Math.max(140,el.clientHeight||200);
+   var padL=54,padR=54,padT=10,padB=22,plotW=W-padL-padR,plotH=H-padT-padB,n=sel.length;
+   var fmax=Math.max.apply(null,flows.map(function(x){return Math.abs(x);}).concat([1]));
+   var cmin=Math.min.apply(null,cum.concat([0])),cmax=Math.max.apply(null,cum.concat([0])); if(cmax===cmin)cmax+=1;
+   var bx=function(i){return padL+(i+0.5)/n*plotW;};
+   var zeroY=padT+plotH*0.5;
+   var by=function(v){return padT+plotH*(1-(v+fmax)/(2*fmax));};
+   var cy=function(v){return padT+plotH*(1-(v-cmin)/(cmax-cmin));};
+   var bw=Math.max(0.6,plotW/n*0.62);
+   var o=['<svg viewBox="0 0 '+W+' '+H+'" width="100%" height="100%" style="display:block" preserveAspectRatio="none">'];
+   o.push('<line x1="'+padL+'" y1="'+zeroY.toFixed(1)+'" x2="'+(W-padR)+'" y2="'+zeroY.toFixed(1)+'" stroke="rgba(255,255,255,0.18)"/>');
+   for(var j=0;j<n;j++){var f=flows[j],col=f>=0?'#16a34a':'#e23b4a',y1=by(f),top=Math.min(zeroY,y1),h=Math.max(0.6,Math.abs(y1-zeroY));
+     o.push('<rect x="'+(bx(j)-bw/2).toFixed(1)+'" y="'+top.toFixed(1)+'" width="'+bw.toFixed(1)+'" height="'+h.toFixed(1)+'" fill="'+col+'" opacity="0.72"/>');}
+   var d='';for(var k=0;k<n;k++){d+=(k?'L':'M')+bx(k).toFixed(1)+','+cy(cum[k]).toFixed(1);}
+   o.push('<path d="'+d+'" fill="none" stroke="#6c72ff" stroke-width="1.7"/>');
+   o.push('<text x="6" y="'+(padT+8)+'" fill="#8d969e" font-size="10">'+musd(fmax)+'</text>');
+   o.push('<text x="6" y="'+(H-padB)+'" fill="#8d969e" font-size="10">'+musd(-fmax)+'</text>');
+   o.push('<text x="'+(W-padR+4)+'" y="'+(cy(cmax)+8).toFixed(1)+'" fill="#6c72ff" font-size="10">'+musd(cmax)+'</text>');
+   o.push('<text x="'+(W-padR+4)+'" y="'+cy(cmin).toFixed(1)+'" fill="#6c72ff" font-size="10">'+musd(cmin)+'</text>');
+   var ix=[0,Math.floor(n/2),n-1];
+   for(var m=0;m<3;m++){var dt=(sel[ix[m]][0]||'').slice(2),an=m===0?'start':(m===2?'end':'middle');
+     o.push('<text x="'+bx(ix[m]).toFixed(1)+'" y="'+(H-6)+'" fill="#8d969e" font-size="9" text-anchor="'+an+'">'+dt+'</text>');}
+   o.push('</svg>');el.innerHTML=o.join('');}
+ function drawAll(){hl();Object.keys(D).forEach(draw);}
+ document.addEventListener('click',function(e){var t=e.target.closest&&e.target.closest('.etftf');if(!t)return;
+   TF=t.getAttribute('data-etf');try{localStorage.setItem('ct_etf_tf',TF);}catch(_e){}drawAll();});
+ if(window.ResizeObserver){Object.keys(D).forEach(function(sym){var el=document.getElementById('etf-'+sym);
+   if(el)new ResizeObserver(function(){draw(sym);}).observe(el);});}
+ drawAll();
+})();
+</script>"""
 
 
 def _etf_section(data: dict) -> str:
-    """리서치 탭: BTC·ETH 스팟 ETF 일별 순유입(막대) + 누적(선) 차트."""
+    """리서치 탭: BTC·ETH 스팟 ETF 일별 순유입(막대)+누적(선). 시계열 구간 선택(클라이언트)."""
     assets = (data or {}).get("assets") or {}
     order = [s for s in ("BTC", "ETH") if assets.get(s)]
     if not order:
@@ -836,27 +836,28 @@ def _etf_section(data: dict) -> str:
     source = str((data or {}).get("source", ""))
     src_html = (f"<a href='{html.escape(source)}' target='_blank' rel='noopener' style='color:var(--muted-2)'>"
                 f"{html.escape(source[:60])}</a>" if source.startswith("http")
-                else f"<span class='muted'>{html.escape(source[:60])}</span>")
+                else f"<span class='muted'>{html.escape(source[:70])}</span>")
+    tfs = [("1주", "7"), ("1달", "30"), ("3달", "90"), ("6달", "180"), ("1년", "365"), ("ALL", "all")]
+    tfbtns = "".join(f'<button class="etftf" data-etf="{v}">{lbl}</button>' for lbl, v in tfs)
     cards = []
     for sym in order:
-        rows = assets[sym] or []
-        flows = [float(r["flow"]) for r in rows if r.get("flow") is not None]
-        cum = sum(flows)
-        last = flows[-1] if flows else 0.0
-        cc = "#16a34a" if cum >= 0 else "#e23b4a"
-        lc = "#16a34a" if last >= 0 else "#e23b4a"
         cards.append(
             f"<div class='card' style='flex:1;min-width:340px'>"
             f"<div style='display:flex;justify-content:space-between;align-items:baseline;gap:8px'>"
             f"<b>{sym} 스팟 ETF</b>"
             f"<span class='muted' style='font-size:11px'>막대=일별 · <span style='color:#6c72ff'>선=누적</span></span></div>"
-            f"<div style='font-size:13px;margin:4px 0 6px'>누적 <b style='color:{cc}'>{_fmt_musd(cum)}</b> "
-            f"· 최근일 <b style='color:{lc}'>{_fmt_musd(last)}</b></div>"
-            f"{_etf_flow_svg(rows)}</div>")
+            f"<div id='etfv-{sym}' class='muted' style='font-size:13px;margin:4px 0 6px'>로딩…</div>"
+            f"<div id='etf-{sym}' class='minichart' style='height:200px'></div></div>")
+    js_data = {s: [[str(r["date"]), float(r["flow"])]
+                   for r in (assets[s] or []) if r.get("flow") is not None and r.get("date")]
+               for s in order}
+    cfg = "<script>window.ETFDATA=" + json.dumps({"assets": js_data}) + ";</script>"
     return f"""
-  <h2>🏦 BTC·ETH 스팟 ETF 순유입 <span class="muted">({ts} KST · 단위 {unit})</span></h2>
+  <h2>🏦 BTC·ETH 스팟 ETF 순유입 <span class="muted">({ts} KST · 단위 {unit})</span>
+    <span style="margin-left:8px;white-space:nowrap">{tfbtns}</span></h2>
   <div style="display:flex;gap:14px;flex-wrap:wrap">{"".join(cards)}</div>
-  <div class="muted" style="margin-top:8px">출처: {src_html} · 일 단위 발표(실시간 아님), 데이터 지연·정정 가능. 투자조언 아님.</div>
+  <div class="muted" style="margin-top:8px">출처: {src_html} · 누적선은 <b>선택 구간 내</b> 누적. 일 단위 발표(실시간 아님), 지연·정정 가능. 투자조언 아님.</div>
+  {cfg}{_ETF_JS}
 """
 
 
@@ -1024,7 +1025,7 @@ def render_html(journal: TradeJournal, equity: float | None = None,
   .tklist {{ max-height:240px; overflow-y:auto; margin-top:6px; display:grid; grid-template-columns:repeat(auto-fill,minmax(80px,1fr)); gap:4px; }}
   .tkopt {{ padding:6px 8px; border:1px solid var(--border); border-radius:9999px; font-size:12px; text-align:center; cursor:pointer; }}
   .tkopt:hover {{ background:var(--brand); color:#fff; }}
-  .tfbtn, .oitf, .cvdtf {{ background:transparent; color:var(--muted); border:1px solid var(--border); border-radius:9999px; padding:3px 9px; margin-left:4px; font-size:12px; cursor:pointer; }}
+  .tfbtn, .oitf, .cvdtf, .etftf {{ background:transparent; color:var(--muted); border:1px solid var(--border); border-radius:9999px; padding:3px 9px; margin-left:4px; font-size:12px; cursor:pointer; }}
   .tfbtn-active {{ background:var(--brand); color:#fff; border-color:var(--brand); }}
   /* 차트: 세로 리사이즈 가능(모서리 드래그), 하단 20%는 거래량 막대 */
   .mkt-chartcard {{ display:flex; flex-direction:column; padding:14px 16px; }}
