@@ -63,6 +63,22 @@ class Settings(BaseSettings):
     atr_stop_mult: float = 1.5         # 손절 거리 = ATR × 이 값
     reward_risk_ratio: float = 1.5     # 익절 = 손절거리 × 이 값 (R배수)
 
+    # --- 시장 스캐너 (급등/급락/거래량·OI 급증 알림) ---
+    scanner_enabled: bool = True
+    scanner_interval_sec: int = 180        # 스캔 주기(초)
+    scanner_min_volume: float = 50e6       # 대상 유니버스 최소 24h 거래대금
+    scanner_max_symbols: int = 80          # 대상 심볼 상한(요청 수 제한)
+    scanner_timeframe: str = "5m"          # 가격/거래량 판정 캔들
+    scanner_price_window: int = 3          # 가격 변동 판정 캔들 수
+    scanner_price_move_pct: float = 3.0    # |변동%| 이 값 이상이면 급등/급락
+    scanner_vol_lookback: int = 20         # 거래량 평균 기준 캔들 수
+    scanner_vol_mult: float = 3.0          # 직전봉 거래량 / 평균 ≥ 이 값이면 급증
+    scanner_oi_period: str = "5m"          # OI 판정 주기
+    scanner_oi_lookback: int = 3           # OI 변동 기준 구간 수
+    scanner_oi_move_pct: float = 5.0       # |OI변동%| 이 값 이상이면 급증/급감
+    scanner_funding_abs: float = 0.001     # |펀딩비| 이 값 이상이면 극단값 알림
+    scanner_cooldown_min: int = 30         # 같은 심볼·이벤트 재알림 억제(분)
+
     # --- 알림 (텔레그램, 선택) ---
     telegram_bot_token: str = ""
     telegram_chat_id: str = ""

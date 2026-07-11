@@ -79,12 +79,39 @@ scripts\run_local.bat scalp
 - 로그: `logs/paper_scalp.log`
 - 진입/청산 알림은 텔레그램으로 옵니다.
 
+## 4-b. 시장 스캐너 (급등/급락/거래량·OI 급증 알림)
+
+자동매매와 별개로, 바이낸스 선물 전 종목을 훑어 이벤트를 텔레그램으로 쏴줍니다.
+**단타 봇과 다른 터미널에서** 같이 돌리면 됩니다.
+
+**Mac / Linux**
+```bash
+bash scripts/run_scanner_local.sh
+```
+
+**Windows**
+```cmd
+scripts\run_scanner_local.bat
+```
+
+- 급등/급락·거래량 급증·OI 급증/급감·펀딩 극단 이벤트를 감지해 텔레그램 알림
+- 같은 심볼·이벤트는 30분 쿨다운(재알림 억제) — `.env` 의 `SCANNER_*` 로 조정
+- `state/dashboard.html` 을 매 사이클 갱신
+
+## 4-c. 대시보드 브라우저로 보기
+
+```bash
+python -m scripts.serve_dashboard      # http://localhost:8787 (자동 새로고침)
+```
+
+스캐너가 돌고 있으면 시장 이벤트가, 봇이 돌고 있으면 거래 상태가 실시간 반영됩니다.
+
 ## 5. 상태 확인 (다른 터미널에서)
 
 ```bash
 source .venv/bin/activate          # Windows: .venv\Scripts\activate
 python -m scripts.status           # 성과 요약
-python -m scripts.status --html    # state/dashboard.html 생성
+python -m scripts.status --html    # state/dashboard.html 생성 (시장 이벤트 포함)
 ```
 
 ---

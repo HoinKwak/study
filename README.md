@@ -30,6 +30,8 @@
 - [x] 중기 전략 (1h 슈퍼트렌드 추세 + 15m MACD 눌림목)
 - [x] 고급 중장기 전략 (RSI 20/80 역추세 → 슈퍼트렌드 피라미딩, Fib+CVD TP)
 - [x] 스테이지드 포지션 모델 (다단계 분할진입, 평균단가, 동적 SL)
+- [x] 시장 스캐너 (전 종목 급등/급락·거래량·OI 급증·펀딩 극단 → 텔레그램 알림)
+- [x] 통합 대시보드 (거래 상태 + 시장 이벤트, HTML/로컬 웹서버, 자동 새로고침)
 - [ ] 라이브 주문 단위 리컨실(합산 포지션에서 슬리브별 체결 판별) — 다음
 - [ ] 파라미터 튜닝 / 워크포워드 검증 (B)
 
@@ -82,13 +84,35 @@ python -m scripts.run_backtest --sleeve scalp --symbol BTC/USDT --days 14
 python -m scripts.sweep_params --sleeve swing --symbol BTC/USDT
 ```
 
+## 🛰️ 시장 스캐너 (급등/급락/거래량·OI 급증 알림)
+
+자동매매와 별개로, 바이낸스 선물 **전 종목**을 훑어 이벤트를 포착하고 텔레그램으로 알립니다.
+
+- **감지 이벤트**: 급등/급락(단기 가격 변동), 거래량 급증, OI 급증/급감, 펀딩비 극단
+- **중복 억제**: 같은 심볼·이벤트는 쿨다운(기본 30분) 안에서 재알림하지 않음
+- **자동매매 X**: 알림/기록만 (매매는 별도 `run_portfolio`)
+
+```bash
+# 상시 스캔 (텔레그램 알림 + state/dashboard.html 자동 갱신)
+python -m scripts.run_scanner
+python -m scripts.run_scanner --once   # 1회만
+
+# 로컬 상시 구동(자동 재시작)
+bash scripts/run_scanner_local.sh      # Windows: scripts\run_scanner_local.bat
+```
+
+임계값은 `.env` 의 `SCANNER_*` 로 조정합니다 (변동%, 거래량 배수, OI%, 펀딩, 쿨다운 등).
+
 ## 모니터링 / 알림
 
 - **거래 저널**: 모든 진입/청산이 `state/trades.json` 에 기록되어 재시작해도 유지됩니다.
 - **성과 통계**: 승률·손익비·누적손익·최고/최악 거래를 자동 집계.
 - **텔레그램 알림**: `.env` 에 `TELEGRAM_BOT_TOKEN`/`TELEGRAM_CHAT_ID` 를 넣으면
-  진입/청산/차단/에러가 폰으로 즉시 푸시됩니다. (없으면 콘솔/로그만)
-- **HTML 대시보드**: `python -m scripts.status --html` 로 시각화 페이지 생성.
+  진입/청산/차단/에러 + **시장 스캐너 이벤트**가 폰으로 즉시 푸시됩니다. (없으면 콘솔/로그만)
+- **HTML 대시보드**: 거래 상태 + 시장 이벤트를 한 페이지에.
+  - `python -m scripts.status --html` — `state/dashboard.html` 생성
+  - `python -m scripts.serve_dashboard` — 브라우저에서 실시간(http://localhost:8787)
+  - `run_scanner` 가 매 사이클 대시보드를 갱신하므로 열어두면 자동 새로고침됩니다.
 
 ## ⚠️ 네트워크 요구사항 (지역 제한)
 

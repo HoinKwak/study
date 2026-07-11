@@ -14,6 +14,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 from crypto_trader.config import get_settings  # noqa: E402
 from crypto_trader.monitoring import TradeJournal  # noqa: E402
 from crypto_trader.monitoring.dashboard import render_html, render_text  # noqa: E402
+from crypto_trader.scanner import EventStore  # noqa: E402
 
 
 def main() -> None:
@@ -36,8 +37,9 @@ def main() -> None:
     print(render_text(journal, equity))
 
     if args.html:
+        events = EventStore.load(s.state_dir).recent(40)
         out = Path(s.state_dir) / "dashboard.html"
-        out.write_text(render_html(journal, equity), encoding="utf-8")
+        out.write_text(render_html(journal, equity, events=events), encoding="utf-8")
         print(f"\nHTML 대시보드 생성: {out}")
 
 

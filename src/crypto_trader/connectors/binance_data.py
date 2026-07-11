@@ -102,6 +102,70 @@ class BinanceDerivativesData:
             return _to_float(data[-1].get("buySellRatio"))
         return None
 
+    # ------------------------------------------------------------ 캔들(공개)
+
+    def klines(self, symbol: str, interval: str = "5m", limit: int = 30
+               ) -> dict[str, list[float]] | None:
+        """공개 선물 캔들. {'open_time','open','high','low','close','volume'} 병렬 리스트.
+
+        인증 불필요(실전 fapi). 지역차단 시 None.
+        """
+        data = self._get(
+            "/fapi/v1/klines",
+            {"symbol": self._pair(symbol), "interval": interval, "limit": limit},
+        )
+        if not isinstance(data, list) or not data:
+            return None
+        out: dict[str, list[float]] = {
+            "open_time": [], "open": [], "high": [], "low": [], "close": [], "volume": [],
+        }
+        for row in data:
+            # [openTime, open, high, low, close, volume, closeTime, ...]
+            try:
+                out["open_time"].append(float(row[0]))
+                out["open"].append(float(row[1]))
+                out["high"].append(float(row[2]))
+                out["low"].append(float(row[3]))
+                out["close"].append(float(row[4]))
+                out["volume"].append(float(row[5]))
+            except (TypeError, ValueError, IndexError):
+                continue
+        return out if out["close"] else None
+
+    def open_interest_hist(self, symbol: str, period: str = "5m", limit: int = 6
+                           ) -> list[float] | None:
+        """최근 OI(sumOpenInterest) 시계열. 오래된→최신 순."""
+        data = self._get(
+            "/futures/data/openInterestHist",
+            {"symbol": self._pair(symbol), "period": period, "limit": limit},
+        )
+        if not isinstance(data, list) or not data:
+            return None
+        series = [v for v in (_to_float(r.get("sumOpenInterest")) for r in data) if v is not None]
+        return series or None
+
+    # ---------------------------------------------------- 전체 심볼 벌크(공개)
+
+    def all_24h_tickers(self) -> dict[str, dict[str, Any]] | None:
+        """모든 선물 심볼의 24h 티커를 한 번에. {'BTCUSDT': {...}, ...}."""
+        data = self._get("/fapi/v1/ticker/24hr", {})
+        if not isinstance(data, list):
+            return None
+        return {str(r.get("symbol", "")): r for r in data if r.get("symbol")}
+
+    def all_funding_rates(self) -> dict[str, float] | None:
+        """모든 심볼의 현재 펀딩비를 한 번에. {'BTCUSDT': 0.0001, ...}."""
+        data = self._get("/fapi/v1/premiumIndex", {})
+        if not isinstance(data, list):
+            return None
+        out: dict[str, float] = {}
+        for r in data:
+            sym = str(r.get("symbol", ""))
+            fr = _to_float(r.get("lastFundingRate"))
+            if sym and fr is not None:
+                out[sym] = fr
+        return out or None
+
     # --------------------------------------------------------- 통합 스냅샷
 
     def snapshot(self, symbol: str, period: str = "1h") -> dict[str, float | None]:
