@@ -80,11 +80,20 @@ def _epoch(iso: str | None) -> float | None:
 
 def load_start_equity(state_dir: str) -> float | None:
     """state/portfolio.json 의 누적수익률 기준자본."""
+    return _portfolio_field(state_dir, "starting_equity")
+
+
+def load_equity(state_dir: str) -> float | None:
+    """엔진이 기록한 현재 실잔고(있으면). 대시보드 누적수익률 계산 기준."""
+    return _portfolio_field(state_dir, "equity")
+
+
+def _portfolio_field(state_dir: str, key: str) -> float | None:
     path = Path(state_dir) / "portfolio.json"
     if not path.exists():
         return None
     try:
-        v = float(json.loads(path.read_text(encoding="utf-8")).get("starting_equity", 0.0))
+        v = float(json.loads(path.read_text(encoding="utf-8")).get(key, 0.0))
         return v or None
     except (json.JSONDecodeError, ValueError, TypeError, OSError):
         return None
@@ -465,7 +474,15 @@ def render_html(journal: TradeJournal, equity: float | None = None,
                 market_extra: dict | None = None,
                 tickers: list | None = None) -> str:
     st = journal.stats()
-    pnl_color = "#16a34a" if st["total_pnl"] >= 0 else "#e23b4a"
+    # 헤드라인 누적수익률·총실현손익: 실제 잔고(caller 가 넘긴 equity) 우선 —
+    # 수수료·펀딩 등 저널이 못 담는 비용까지 포함해 실잔고와 일치. 없으면 저널 합산.
+    if equity is not None and start_equity and start_equity > 0:
+        head_pnl = equity - start_equity
+        head_ret = (equity / start_equity - 1.0) * 100.0
+    else:
+        head_pnl = st["total_pnl"]
+        head_ret = None  # 아래 final_pct 로 대체
+    pnl_color = "#16a34a" if head_pnl >= 0 else "#e23b4a"
     events = events or []
     refresh_tag = (f'<meta http-equiv="refresh" content="{refresh_sec}">'
                    if refresh_sec > 0 else "")
@@ -478,7 +495,9 @@ def render_html(journal: TradeJournal, equity: float | None = None,
     if btc_series and len(btc_series) >= 2:
         line_series.append({"label": "BTC 매수후보유", "color": "#f7931a",
                             "points": [(x, y) for x, y in btc_series]})
-    ret_color = "#16a34a" if final_pct >= 0 else "#e23b4a"
+    if head_ret is None:      # 실잔고 없으면 저널 곡선 최종값 사용
+        head_ret = final_pct
+    ret_color = "#16a34a" if head_ret >= 0 else "#e23b4a"
     btc_final = btc_series[-1][1] if btc_series else None
     btc_cmp = (f" · BTC {btc_final:+.1f}%" if btc_final is not None else "")
 
@@ -600,8 +619,8 @@ def render_html(journal: TradeJournal, equity: float | None = None,
   {_top_section(tickers or [])}
   <div class="grid">
     {equity_row}
-    <div class="stat"><span>누적 수익률</span><b style="color:{ret_color}">{final_pct:+.2f}%</b><span class="muted">{btc_cmp}</span></div>
-    <div class="stat"><span>총 실현손익 (USDT)</span><b style="color:{pnl_color}">{st['total_pnl']:+,.2f}</b></div>
+    <div class="stat"><span>누적 수익률</span><b style="color:{ret_color}">{head_ret:+.2f}%</b><span class="muted">{btc_cmp}</span></div>
+    <div class="stat"><span>총 실현손익 (USDT)</span><b style="color:{pnl_color}">{head_pnl:+,.2f}</b></div>
     <div class="stat"><span>승률</span><b>{st['win_rate']:.1f}%</b></div>
     <div class="stat"><span>손익비 (PF)</span><b>{st['profit_factor']:.2f}</b></div>
     <div class="stat"><span>청산 거래</span><b>{st['total_trades']} <small style="font-size:12px;color:#94a3b8">(승 {st['wins']}/패 {st['losses']})</small></b></div>

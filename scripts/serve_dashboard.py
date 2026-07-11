@@ -22,7 +22,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 from crypto_trader.config import get_settings  # noqa: E402
 from crypto_trader.monitoring import TradeJournal  # noqa: E402
 from crypto_trader.monitoring.dashboard import (  # noqa: E402
-    btc_buyhold_series, journal_span_days, load_start_equity, render_html)
+    btc_buyhold_series, journal_span_days, load_equity, load_start_equity, render_html)
 from crypto_trader.monitoring.market_extra import load_cached, load_tickers  # noqa: E402
 from crypto_trader.scanner import EventStore  # noqa: E402
 
@@ -34,7 +34,7 @@ def _render(settings, refresh_sec: int) -> bytes:
     btc = btc_buyhold_series(journal_span_days(journal))
     extra = load_cached(settings.state_dir, settings.scanner_min_volume)
     tickers = load_tickers(settings.state_dir)
-    return render_html(journal, equity=None, events=events, refresh_sec=refresh_sec,
+    return render_html(journal, equity=load_equity(settings.state_dir), events=events, refresh_sec=refresh_sec,
                        start_equity=start_eq, btc_series=btc,
                        market_extra=extra, tickers=tickers).encode("utf-8")
 

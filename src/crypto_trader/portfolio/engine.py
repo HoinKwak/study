@@ -134,6 +134,21 @@ class PortfolioEngine:
                 pass
         return base
 
+    def _persist_equity(self, equity: float) -> None:
+        """현재 실잔고를 portfolio.json 에 기록(대시보드가 실제 누적수익률 계산에 사용)."""
+        path = Path(self.s.state_dir) / "portfolio.json"
+        try:
+            data = json.loads(path.read_text()) if path.exists() else {}
+        except Exception:  # noqa: BLE001
+            data = {}
+        data["equity"] = equity
+        data["equity_ts"] = time.time()
+        try:
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(json.dumps(data, indent=2))
+        except Exception:  # noqa: BLE001
+            pass
+
     def _total_equity(self) -> float:
         if self.binance is not None and self.s.trade_mode is not TradeMode.DRY_RUN:
             try:
@@ -164,6 +179,7 @@ class PortfolioEngine:
             self._refresh_universe()
         now = time.time()
         total_equity = self._total_equity()
+        self._persist_equity(total_equity)
         for worker in self.workers:
             name = worker.sleeve.name
             due = force_all or (now - self._last_eval[name]) >= worker.sleeve.eval_interval_sec

@@ -18,7 +18,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 from crypto_trader.config import get_settings  # noqa: E402
 from crypto_trader.monitoring import Notifier, TradeJournal  # noqa: E402
 from crypto_trader.monitoring.dashboard import (  # noqa: E402
-    btc_buyhold_series, journal_span_days, load_start_equity, render_html)
+    btc_buyhold_series, journal_span_days, load_equity, load_start_equity, render_html)
 from crypto_trader.scanner import MarketScanner  # noqa: E402
 from crypto_trader.utils import get_logger  # noqa: E402
 
@@ -36,7 +36,7 @@ def _write_dashboard(settings, scanner: MarketScanner, refresh_sec: int) -> None
         out = Path(settings.state_dir) / "dashboard.html"
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_text(
-            render_html(journal, equity=None, events=events, refresh_sec=refresh_sec,
+            render_html(journal, equity=load_equity(settings.state_dir), events=events, refresh_sec=refresh_sec,
                         start_equity=start_eq, btc_series=btc, market_extra=extra,
                         tickers=tickers),
             encoding="utf-8",
