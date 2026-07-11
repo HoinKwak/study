@@ -99,22 +99,40 @@ class PortfolioEngine:
         self._paper_equity += pnl
 
     def _load_or_init_baseline(self, current_equity: float) -> float:
-        """누적 수익률 기준 자본을 상태파일에서 로드(재시작 시 유지). 없으면 현재값으로 초기화."""
+        """누적 수익률 기준 자본(인셉션 자본)을 산출.
+
+        인셉션 자본 = 현재잔고 − 실현손익(저널 누적). 재시작·거래 진행과 무관하게
+        일정하므로, 저장값이 이 값과 크게 어긋나면(예: 잘못된 10,000 기본값) 자동 교정한다.
+        저장값이 ~2% 이내로 일치하면 안정성을 위해 유지(미실현손익 흔들림 흡수).
+        """
         path = Path(self.s.state_dir) / "portfolio.json"
         try:
-            if path.exists():
-                base = float(json.loads(path.read_text()).get("starting_equity", 0.0))
-                if base > 0:
-                    return base
+            realized = float(self.journal.stats().get("total_pnl", 0.0))
         except Exception:  # noqa: BLE001
-            pass
+            realized = 0.0
+        true_start = current_equity - realized  # 인셉션 자본
+
+        stored = None
         try:
-            path.parent.mkdir(parents=True, exist_ok=True)
-            path.write_text(json.dumps({"starting_equity": current_equity,
-                                        "mode": self.s.trade_mode.value}, indent=2))
+            if path.exists():
+                stored = float(json.loads(path.read_text()).get("starting_equity", 0.0))
         except Exception:  # noqa: BLE001
-            pass
-        return current_equity
+            stored = None
+
+        if stored and stored > 0 and true_start > 0 and abs(stored - true_start) <= 0.02 * true_start:
+            base = stored
+        else:
+            base = true_start if true_start > 0 else current_equity
+            if stored and abs((stored or 0) - base) > 0.02 * max(base, 1):
+                log.info("기준자본 교정: %.2f → %.2f (현재 %.2f − 실현 %.2f)",
+                         stored, base, current_equity, realized)
+            try:
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_text(json.dumps({"starting_equity": base,
+                                            "mode": self.s.trade_mode.value}, indent=2))
+            except Exception:  # noqa: BLE001
+                pass
+        return base
 
     def _total_equity(self) -> float:
         if self.binance is not None and self.s.trade_mode is not TradeMode.DRY_RUN:
