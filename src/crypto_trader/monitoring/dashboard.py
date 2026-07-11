@@ -289,20 +289,22 @@ def _pct_pts(closes: list, times: list) -> list:
     return [(k, (v / c0 - 1) * 100.0) for k, v in enumerate(closes)]
 
 
-def _top_section(tickers) -> str:
-    """상단: 좌 4×3 미니차트(시총 상위 12) + 우 큰차트(티커명 클릭→검색 변경)."""
-    top = tickers.get("top") if isinstance(tickers, dict) else (
+def _tickers_of(tickers) -> list:
+    return tickers.get("top") if isinstance(tickers, dict) else (
         tickers if isinstance(tickers, list) else [])
+
+
+def _ticker_strip(tickers) -> str:
+    """상시 상단: 시총 상위 12 미니 티커(현재가·24h·스파크라인) — 시장 맥박."""
+    top = _tickers_of(tickers)
     if not top:
         return ""
-
-    # 좌: 4×3 미니 차트 (상위 12)
     minis = []
     for t in top[:12]:
         pct = t.get("pct")
         c = "#16a34a" if (pct or 0) >= 0 else "#e23b4a"
         sym = html.escape(str(t.get("symbol", "")))
-        spark = charts.sparkline((t.get("closes") or [])[-48:], width=180, height=52, color=c)
+        spark = charts.sparkline((t.get("closes") or [])[-48:], width=180, height=44, color=c)
         pct_txt = f"{pct:+.1f}%" if pct is not None else "-"
         minis.append(
             f"<div class='card' style='margin:0;padding:10px'>"
@@ -310,10 +312,15 @@ def _top_section(tickers) -> str:
             f"<b>{sym}</b><span style='color:{c};font-size:12px'>{pct_txt}</span></div>"
             f"<div class='muted' style='font-size:12px;margin-bottom:2px'>{_fmt_px(t.get('price'))}</div>"
             f"{spark}</div>")
-    left = (f"<div style='flex:3;min-width:360px;display:grid;"
-            f"grid-template-columns:repeat(4,1fr);gap:10px'>{''.join(minis)}</div>")
+    return (f"<div style='display:grid;gap:10px;margin:12px 0;"
+            f"grid-template-columns:repeat(auto-fit,minmax(150px,1fr))'>{''.join(minis)}</div>")
 
-    # 우: 2개 동적 차트 (티커 + 타임프레임 선택, serve_dashboard API 사용)
+
+def _price_charts(tickers) -> str:
+    """시장 탭: 2개 동적 가격 차트(티커·타임프레임 선택, serve_dashboard API)."""
+    top = _tickers_of(tickers)
+    if not top:
+        return ""
     tfs = [("1일", "1d"), ("7일", "7d"), ("30일", "30d"),
            ("6개월", "6m"), ("1년", "1y"), ("YTD", "ytd")]
 
@@ -321,7 +328,7 @@ def _top_section(tickers) -> str:
         tfbtns = "".join(
             f'<button class="tfbtn" data-n="{n}" data-tf="{v}">{lbl}</button>' for lbl, v in tfs)
         return (
-            f'<div class="card">'
+            f'<div class="card" style="flex:1;min-width:300px">'
             f'<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">'
             f'<button class="tkname" data-n="{n}"><span id="sym{n}">{html.escape(dsym)}</span> ▾</button>'
             f'<span>{tfbtns}</span></div>'
@@ -330,21 +337,45 @@ def _top_section(tickers) -> str:
             f'<div class="tklist" id="symlist{n}"></div></div>'
             f'<div id="chart{n}" class="chartarea"><div class="muted">로딩…</div></div></div>')
 
-    d1 = str(top[0].get("symbol", "BTC")) if top else "BTC"
+    d1 = str(top[0].get("symbol", "BTC"))
     d2 = str(top[1].get("symbol", "ETH")) if len(top) > 1 else "ETH"
-    right = (f'<div style="flex:5;min-width:340px;display:flex;flex-wrap:wrap;gap:14px">'
-             f'<div style="flex:1;min-width:300px">{_panel(1, d1)}</div>'
-             f'<div style="flex:1;min-width:300px">{_panel(2, d2)}</div></div>')
-
     cfg = ("<script>window.CHARTCFG=" + json.dumps(
         {"syms": [str(t.get("symbol", "")) for t in top], "d1": d1, "d2": d2}) + ";</script>")
+    return (f'<div style="display:flex;flex-wrap:wrap;gap:14px">'
+            f'{_panel(1, d1)}{_panel(2, d2)}</div>{cfg}{_CHART_JS}')
 
-    return f"""
-  <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start;margin:14px 0">
-    {left}
-    {right}
-  </div>{cfg}{_CHART_JS}
-"""
+
+def _strategy_metrics(journal, start_equity: float | None) -> dict:
+    """전략 유효성 지표: 샤프·소르티노·MDD·기대값·손익비 (청산거래 기준)."""
+    import math
+    closed = [t for t in journal.closed_trades() if t.pnl is not None]
+    out = {"n": len(closed), "sharpe": 0.0, "sortino": 0.0, "mdd_pct": 0.0,
+           "expectancy_pct": 0.0, "payoff": 0.0}
+    if not closed:
+        return out
+    rets = [(t.pnl / (t.entry_price * t.quantity))
+            if (t.entry_price and t.quantity) else 0.0 for t in closed]
+    n = len(rets)
+    mean = sum(rets) / n
+    std = math.sqrt(sum((r - mean) ** 2 for r in rets) / n)
+    downs = [r for r in rets if r < 0]
+    dstd = math.sqrt(sum(r * r for r in downs) / n) if downs else 0.0
+    out["sharpe"] = mean / std if std > 0 else 0.0
+    out["sortino"] = mean / dstd if dstd > 0 else 0.0
+    out["expectancy_pct"] = mean * 100.0
+    wins = [t.pnl for t in closed if t.pnl > 0]
+    losses = [-t.pnl for t in closed if t.pnl < 0]
+    aw = sum(wins) / len(wins) if wins else 0.0
+    al = sum(losses) / len(losses) if losses else 0.0
+    out["payoff"] = aw / al if al > 0 else 0.0
+    base = start_equity if start_equity and start_equity > 0 else 10_000.0
+    cum = peak = mdd = 0.0
+    for t in closed:
+        cum += t.pnl
+        peak = max(peak, cum)
+        mdd = min(mdd, cum - peak)
+    out["mdd_pct"] = mdd / base * 100.0
+    return out
 
 
 _CHART_JS = r"""<script>
@@ -498,6 +529,7 @@ def render_html(journal: TradeJournal, equity: float | None = None,
     if head_ret is None:      # 실잔고 없으면 저널 곡선 최종값 사용
         head_ret = final_pct
     ret_color = "#16a34a" if head_ret >= 0 else "#e23b4a"
+    m = _strategy_metrics(journal, start_equity)
     btc_final = btc_series[-1][1] if btc_series else None
     btc_cmp = (f" · BTC {btc_final:+.1f}%" if btc_final is not None else "")
 
@@ -612,30 +644,63 @@ def render_html(journal: TradeJournal, equity: float | None = None,
   .tfbtn {{ background:transparent; color:var(--muted); border:1px solid var(--border); border-radius:9999px; padding:3px 9px; margin-left:4px; font-size:12px; cursor:pointer; }}
   .tfbtn-active {{ background:var(--brand); color:#fff; border-color:var(--brand); }}
   .chartarea {{ margin-top:8px; min-height:200px; }}
+  .tabs {{ display:flex; gap:6px; margin:18px 0 4px; border-bottom:1px solid var(--border); }}
+  .tab {{ background:transparent; color:var(--muted); border:none; border-bottom:2px solid transparent; padding:9px 16px; font-size:14px; font-weight:600; cursor:pointer; }}
+  .tab-active {{ color:var(--text); border-bottom-color:var(--brand); }}
 </style></head>
 <body>
   <h1>🤖 crypto-trader 대시보드</h1>
   <div class="muted">생성 {now_kst}</div>
-  {_top_section(tickers or [])}
-  <div class="grid">
-    {equity_row}
-    <div class="stat"><span>누적 수익률</span><b style="color:{ret_color}">{head_ret:+.2f}%</b><span class="muted">{btc_cmp}</span></div>
-    <div class="stat"><span>총 실현손익 (USDT)</span><b style="color:{pnl_color}">{head_pnl:+,.2f}</b></div>
-    <div class="stat"><span>승률</span><b>{st['win_rate']:.1f}%</b></div>
-    <div class="stat"><span>손익비 (PF)</span><b>{st['profit_factor']:.2f}</b></div>
-    <div class="stat"><span>청산 거래</span><b>{st['total_trades']} <small style="font-size:12px;color:#94a3b8">(승 {st['wins']}/패 {st['losses']})</small></b></div>
-    <div class="stat"><span>열린 포지션</span><b>{st['open_trades']}</b></div>
+  {_ticker_strip(tickers or [])}
+
+  <div class="tabs">
+    <button class="tab tab-active" data-tab="perf">📊 성과</button>
+    <button class="tab" data-tab="market">🌐 시장</button>
+    <button class="tab" data-tab="research">📰 리서치</button>
   </div>
-  {chart_section}
-  {strength_section}
-  {macro_section}
-  {brief_section}
-  {kol_section}
-  <h2>열린 포지션</h2>
-  <table><thead><tr><th>심볼</th><th>방향</th><th>진입가</th><th>손절</th><th>익절</th><th>모드</th></tr></thead>
-  <tbody>{rows(journal.open_trades(), False) or "<tr><td colspan=6>없음</td></tr>"}</tbody></table>
-  <h2>최근 청산 (최대 20건)</h2>
-  <table><thead><tr><th>심볼</th><th>방향</th><th>진입</th><th>청산</th><th>손익</th><th>사유</th></tr></thead>
-  <tbody>{rows(journal.closed_trades()[-20:][::-1], True) or "<tr><td colspan=6>없음</td></tr>"}</tbody></table>
-  {event_section}
+
+  <div class="tabpane" data-pane="perf">
+    <div class="grid">
+      {equity_row}
+      <div class="stat"><span>누적 수익률</span><b style="color:{ret_color}">{head_ret:+.2f}%</b><span class="muted">{btc_cmp}</span></div>
+      <div class="stat"><span>총 실현손익 (USDT)</span><b style="color:{pnl_color}">{head_pnl:+,.2f}</b></div>
+      <div class="stat"><span>승률</span><b>{st['win_rate']:.1f}%</b></div>
+      <div class="stat"><span>손익비 (PF)</span><b>{st['profit_factor']:.2f}</b></div>
+      <div class="stat"><span>샤프 (거래)</span><b>{m['sharpe']:.2f}</b></div>
+      <div class="stat"><span>소르티노</span><b>{m['sortino']:.2f}</b></div>
+      <div class="stat"><span>최대낙폭 (MDD)</span><b style="color:#e23b4a">{m['mdd_pct']:.1f}%</b></div>
+      <div class="stat"><span>기대값/거래</span><b>{m['expectancy_pct']:+.2f}%</b></div>
+      <div class="stat"><span>손익크기비</span><b>{m['payoff']:.2f}</b></div>
+      <div class="stat"><span>청산 거래</span><b>{st['total_trades']} <small style="font-size:12px;color:#94a3b8">(승 {st['wins']}/패 {st['losses']})</small></b></div>
+      <div class="stat"><span>열린 포지션</span><b>{st['open_trades']}</b></div>
+    </div>
+    <div class="muted" style="margin:4px 0 8px">지표는 청산 {m['n']}건 기준 — 거래가 쌓일수록 안정적입니다.</div>
+    {chart_section}
+    <h2>열린 포지션</h2>
+    <table><thead><tr><th>심볼</th><th>방향</th><th>진입가</th><th>손절</th><th>익절</th><th>모드</th></tr></thead>
+    <tbody>{rows(journal.open_trades(), False) or "<tr><td colspan=6>없음</td></tr>"}</tbody></table>
+    <h2>최근 청산 (최대 20건)</h2>
+    <table><thead><tr><th>심볼</th><th>방향</th><th>진입</th><th>청산</th><th>손익</th><th>사유</th></tr></thead>
+    <tbody>{rows(journal.closed_trades()[-20:][::-1], True) or "<tr><td colspan=6>없음</td></tr>"}</tbody></table>
+  </div>
+
+  <div class="tabpane" data-pane="market" style="display:none">
+    <h2>📈 가격 차트</h2>
+    {_price_charts(tickers or [])}
+    {strength_section}
+    {macro_section}
+  </div>
+
+  <div class="tabpane" data-pane="research" style="display:none">
+    {brief_section}
+    {kol_section}
+    {event_section}
+  </div>
+
+  <script>
+   document.addEventListener('click',function(e){{var t=e.target.closest&&e.target.closest('.tab');if(!t)return;
+     var tab=t.getAttribute('data-tab');
+     document.querySelectorAll('.tab').forEach(function(b){{b.classList.toggle('tab-active',b===t);}});
+     document.querySelectorAll('.tabpane').forEach(function(p){{p.style.display=p.getAttribute('data-pane')===tab?'block':'none';}});}});
+  </script>
 </body></html>"""
