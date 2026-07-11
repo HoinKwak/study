@@ -134,6 +134,12 @@ def _return_series(journal, start_equity: float) -> tuple[list[tuple[float, floa
         pts.append((ep, cum / base * 100.0))
         day = datetime.fromtimestamp(ep, KST).strftime("%m-%d")
         daily[day] = daily.get(day, 0.0) + float(t.pnl)
+    # 시작점(0%)을 첫 거래 진입 시각에 심어, 청산 1건만 있어도 선이 그려지게.
+    if pts:
+        starts = [_epoch(t.opened_at) for t in closed if getattr(t, "opened_at", None)]
+        starts = [s for s in starts if s is not None and s < pts[0][0]]
+        base_ep = min(starts) if starts else pts[0][0] - 3600.0
+        pts.insert(0, (base_ep, 0.0))
     bars = sorted(daily.items())
     final_pct = pts[-1][1] if pts else 0.0
     return pts, bars, final_pct
@@ -420,18 +426,26 @@ def render_html(journal: TradeJournal, equity: float | None = None,
 {refresh_tag}
 <title>crypto-trader 대시보드</title>
 <style>
-  body {{ font-family: -apple-system, system-ui, sans-serif; background:#0f172a; color:#e2e8f0; margin:0; padding:24px; }}
-  h1 {{ font-size:20px; }} h2 {{ font-size:15px; color:#94a3b8; margin-top:28px; }}
-  .grid {{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin:16px 0; }}
-  .stat {{ background:#1e293b; border-radius:10px; padding:14px; display:flex; flex-direction:column; gap:6px; }}
-  .stat span {{ font-size:12px; color:#94a3b8; }} .stat b {{ font-size:20px; }}
+  /* 디자인 토큰 — 기준: DESIGN.md (VoltAgent/awesome-design-md 규격) */
+  :root {{
+    --bg:#0f172a; --surface:#1e293b; --border:#334155;
+    --text:#e2e8f0; --muted:#94a3b8; --muted-2:#64748b;
+    --pos:#16a34a; --neg:#dc2626; --accent:#38bdf8; --btc:#f7931a; --gold:#eab308;
+    --radius:10px; --pad:14px; --gap:12px;
+  }}
+  body {{ font-family: -apple-system, system-ui, sans-serif; background:var(--bg); color:var(--text); margin:0; padding:24px; }}
+  h1 {{ font-size:20px; }} h2 {{ font-size:15px; color:var(--muted); margin-top:28px; }}
+  h3 {{ font-size:14px; color:var(--muted); }}
+  .grid {{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:var(--gap); margin:16px 0; }}
+  .stat {{ background:var(--surface); border-radius:var(--radius); padding:var(--pad); display:flex; flex-direction:column; gap:6px; }}
+  .stat span {{ font-size:12px; color:var(--muted); }} .stat b {{ font-size:20px; }}
   table {{ width:100%; border-collapse:collapse; font-size:13px; }}
-  th,td {{ text-align:left; padding:8px 10px; border-bottom:1px solid #334155; }}
-  th {{ color:#94a3b8; font-weight:600; }}
-  .card {{ background:#1e293b; border-radius:10px; padding:14px; margin:10px 0; overflow-x:auto; }}
-  .muted {{ color:#64748b; font-size:12px; }}
-  details.events {{ background:#1e293b; border-radius:10px; padding:8px 14px; margin-top:28px; }}
-  details.events summary {{ cursor:pointer; color:#94a3b8; font-size:14px; padding:6px 0; }}
+  th,td {{ text-align:left; padding:8px 10px; border-bottom:1px solid var(--border); }}
+  th {{ color:var(--muted); font-weight:600; }}
+  .card {{ background:var(--surface); border-radius:var(--radius); padding:var(--pad); margin:10px 0; overflow-x:auto; }}
+  .muted {{ color:var(--muted-2); font-size:12px; }}
+  details.events {{ background:var(--surface); border-radius:var(--radius); padding:8px 14px; margin-top:28px; }}
+  details.events summary {{ cursor:pointer; color:var(--muted); font-size:14px; padding:6px 0; }}
 </style></head>
 <body>
   <h1>🤖 crypto-trader 대시보드</h1>

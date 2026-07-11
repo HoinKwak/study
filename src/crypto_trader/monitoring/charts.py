@@ -120,6 +120,7 @@ def bar_chart(bars: list[tuple[str, float]], width: int = 720, height: int = 200
     parts.append(f'<line x1="{pad}" y1="{zero_y:.1f}" x2="{width - pad}" y2="{zero_y:.1f}" '
                  f'stroke="{_AXIS}" stroke-width="1"/>')
     half = (height - 2 * pad) / 2
+    show_val = n <= 15   # 막대 적을 때만 값 라벨(겹침 방지)
     for i, (label, v) in enumerate(bars):
         x = pad + i * bw + bw * 0.15
         h = abs(v) / vmax * half
@@ -127,6 +128,10 @@ def bar_chart(bars: list[tuple[str, float]], width: int = 720, height: int = 200
         color = _POS if v >= 0 else _NEG
         parts.append(f'<rect x="{x:.1f}" y="{y:.1f}" width="{bw * 0.7:.1f}" '
                      f'height="{max(h, 0.5):.1f}" fill="{color}"/>')
+        if show_val:
+            vy = (y - 4) if v >= 0 else (y + h + 12)
+            parts.append(f'<text x="{x + bw * 0.35:.1f}" y="{vy:.1f}" fill="{color}" '
+                         f'font-size="11" text-anchor="middle">{v:+.1f}</text>')
     # x 라벨 (양끝 + 중앙만 — 겹침 방지)
     idxs = {0, n - 1, n // 2}
     for i in idxs:

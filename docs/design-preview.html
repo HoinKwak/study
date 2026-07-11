@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>crypto-trader 디자인 미리보기</title>
+<style>
+  :root {
+    --bg:#0f172a; --surface:#1e293b; --border:#334155;
+    --text:#e2e8f0; --muted:#94a3b8; --muted-2:#64748b;
+    --pos:#16a34a; --neg:#dc2626; --accent:#38bdf8; --btc:#f7931a; --gold:#eab308;
+    --radius:10px; --pad:14px; --gap:12px;
+  }
+  body { font-family:-apple-system, system-ui, sans-serif; background:var(--bg); color:var(--text); margin:0; padding:24px; }
+  h1 { font-size:20px; } h2 { font-size:15px; color:var(--muted); margin-top:28px; }
+  .row { display:flex; gap:var(--gap); flex-wrap:wrap; }
+  .card { background:var(--surface); border-radius:var(--radius); padding:var(--pad); margin:10px 0; }
+  .muted { color:var(--muted-2); font-size:12px; }
+  .sw { width:120px; }
+  .sw .chip { height:44px; border-radius:8px; border:1px solid var(--border); }
+  .sw code { font-size:11px; color:var(--muted); }
+  table { width:100%; border-collapse:collapse; font-size:13px; }
+  th,td { text-align:left; padding:8px 10px; border-bottom:1px solid var(--border); }
+  th { color:var(--muted); font-weight:600; }
+  .stat { background:var(--surface); border-radius:var(--radius); padding:var(--pad); display:flex; flex-direction:column; gap:6px; min-width:150px; }
+  .stat span { font-size:12px; color:var(--muted); } .stat b { font-size:20px; }
+  .pos { color:var(--pos); } .neg { color:var(--neg); }
+  .btn { display:inline-block; background:var(--accent); color:var(--bg); border-radius:8px; padding:8px 14px; font-weight:600; border:none; }
+  .scale > div { margin:4px 0; }
+</style></head>
+<body>
+  <h1>🤖 crypto-trader 디자인 미리보기</h1>
+  <div class="muted">DESIGN.md 토큰의 시각 참조 — 색·타이포·컴포넌트</div>
+
+  <h2>색 팔레트</h2>
+  <div class="row">
+    <div class="sw"><div class="chip" style="background:var(--bg)"></div><code>--bg #0f172a</code></div>
+    <div class="sw"><div class="chip" style="background:var(--surface)"></div><code>--surface #1e293b</code></div>
+    <div class="sw"><div class="chip" style="background:var(--border)"></div><code>--border #334155</code></div>
+    <div class="sw"><div class="chip" style="background:var(--text)"></div><code>--text #e2e8f0</code></div>
+    <div class="sw"><div class="chip" style="background:var(--muted)"></div><code>--muted #94a3b8</code></div>
+    <div class="sw"><div class="chip" style="background:var(--pos)"></div><code>--pos #16a34a</code></div>
+    <div class="sw"><div class="chip" style="background:var(--neg)"></div><code>--neg #dc2626</code></div>
+    <div class="sw"><div class="chip" style="background:var(--accent)"></div><code>--accent #38bdf8</code></div>
+    <div class="sw"><div class="chip" style="background:var(--btc)"></div><code>--btc #f7931a</code></div>
+    <div class="sw"><div class="chip" style="background:var(--gold)"></div><code>--gold #eab308</code></div>
+  </div>
+
+  <h2>타이포그래피</h2>
+  <div class="card scale">
+    <div style="font-size:20px">H1 20px — 페이지 타이틀</div>
+    <div style="font-size:15px;color:var(--muted)">H2 15px muted — 섹션 헤더</div>
+    <div style="font-size:14px;color:var(--muted)">H3 14px — 서브섹션</div>
+    <div style="font-size:13px">본문 13px — 표·카드 텍스트</div>
+    <div style="font-size:12px;color:var(--muted-2)">캡션 12px — 시각·주석</div>
+    <div><b style="font-size:20px" class="pos">+12.34%</b> <span class="muted">KPI 값(pos)</span></div>
+  </div>
+
+  <h2>컴포넌트</h2>
+  <div class="row">
+    <div class="stat"><span>누적 수익률</span><b class="pos">+3.21%</b></div>
+    <div class="stat"><span>총 실현손익</span><b class="neg">-142.00</b></div>
+    <div class="stat"><span>승률</span><b>58.3%</b></div>
+  </div>
+  <div class="card">
+    <table><thead><tr><th>#</th><th>심볼</th><th>1일</th><th>7일</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td><b>SOL</b></td><td class="pos">+4.1%</td><td class="neg">-2.2%</td></tr>
+      <tr><td>2</td><td><b>ETH</b></td><td class="pos">+1.2%</td><td class="pos">+0.8%</td></tr>
+    </tbody></table>
+  </div>
+  <div class="card"><button class="btn">액션 버튼 (예시)</button>
+    <span class="muted" style="margin-left:10px">읽기전용 대시보드엔 미사용 — 추가 시 표준</span></div>
+
+  <p class="muted">기준 문서: <code>DESIGN.md</code> · 구현: <code>src/crypto_trader/monitoring/dashboard.py</code></p>
+</body></html>
