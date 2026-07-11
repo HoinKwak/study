@@ -1,0 +1,85 @@
+{
+  "handle": "@AltstreetBet",
+  "display_name": "Altstreet Bets",
+  "profile_url": "https://x.com/AltstreetBet",
+  "research_date": "2026-07-11",
+  "disclaimer": "정보 검증용 리서치. 투자조언 아님(NFA).",
+  "style": "엘리엇 파동(EW) + 기술적분석 차티스트. BTC/BTC.D/알트캡/개별 알트 다룸.",
+  "active_since": "2021-02 이전(확인)",
+  "followers": "약 26,000 (2021-02 기준); 현재 수치 미확인(로그인월)",
+  "paid_service": "본계정 유료상품 미확인; 유사명 @AltstreetBet_as는 동일인 여부 미확인",
+  "overall_grade": "중(medium)",
+  "grade_rationale": "인지도·꾸준함·업계 인용은 실재. 그러나 공개·검증 가능한 BTC/ETH 콜은 적중과 명백한 오답 혼재. 과거글 비공개로 정량 적중률 산출 불가하며 '고적중' 인식은 독립 증거 부족.",
+  "user_perception_valid": "부분적으로만 타당. 실제 정타 존재하나 확증편향·생존편향(삭제)·EW 재라벨링으로 과대평가 개연성 높음.",
+  "calls": [
+    {
+      "date": "2021-02",
+      "asset": "BTC.D/알트",
+      "call": "BTC 도미넌스 풀백 완료 → 알트 상승 전환",
+      "outcome": "2021-02~05 알트시즌 실제 도래",
+      "verdict": "적중",
+      "source": "BeInCrypto Top5 Feb17-24"
+    },
+    {
+      "date": "2021-02",
+      "asset": "AKRO",
+      "call": "AKRO 롱 콜",
+      "outcome": "급등, 팔로워 $15k 팁 일화",
+      "verdict": "적중(정성, 비 BTC/ETH)",
+      "source": "BeInCrypto Top5 Feb17-24"
+    },
+    {
+      "date": "2022-03",
+      "asset": "ALTCAP",
+      "call": "풀백 완료, 전고점 방향 반전 유력(상승)",
+      "outcome": "2022 대약세장, 알트 급락(정반대)",
+      "verdict": "오답",
+      "source": "BeInCrypto ALTCAP"
+    },
+    {
+      "date": "2023-06",
+      "asset": "BTC",
+      "call": "4월 하락=약세 추세전환 시작(베어리시 카운트)",
+      "outcome": "BTC 연중 신고가로 카운트 무효화, 상승 전환",
+      "verdict": "오답(자기 무효화 붕괴)",
+      "source": "BeInCrypto 'Failed...June' 2023-06"
+    },
+    {
+      "date": "2023-09",
+      "asset": "BTC",
+      "call": "9/11=A파 저점→B파 $28.4-29.2k→$23k C파 하락 완성",
+      "outcome": "단기 반등 부합하나 $23k 미도달, 10~12월 $44k 랠리로 C파 실패",
+      "verdict": "부분/오답",
+      "source": "BeInCrypto 'Profitable...September' 2023-09-29"
+    },
+    {
+      "date": "2023-11",
+      "asset": "RNDR",
+      "call": "5파 상승의 3파 → 신 ATH 방향",
+      "outcome": "2024-03 신 ATH $13.99",
+      "verdict": "적중(방향/타깃, 비 BTC/ETH)",
+      "source": "BeInCrypto RNDR"
+    },
+    {
+      "date": "2024-08",
+      "asset": "BTC",
+      "call": "올해 안 $93,465 도달해도 놀라지 마라",
+      "outcome": "2024-11 $93k대 진입, 12월 $100k+",
+      "verdict": "적중(추정, 단일 스니펫 원문 미확인)",
+      "source": "검색 스니펫(단일)"
+    }
+  ],
+  "btc_eth_focus_note": "ETH 단독의 검증 가능한 구체 콜은 이번 조사에서 확인 안 됨. 2025 사이클 고점($126k) 사전 콜도 AltstreetBet 것으로 검증 불가.",
+  "risks": [
+    "과거 게시글 대량 비공개/삭제 → 원문 검증 불가, 오답 삭제·생존편향 유도 가능성(주의 신호, 단정 불가)",
+    "EW 사후 카운트 재라벨링 위험",
+    "양방향 헤지형 서술 가능성(사안별 확정 불가)",
+    "부계/사칭 계정(@AltstreetBet_as) 식별 혼동 주의"
+  ],
+  "limitations": [
+    "x.com 로그인월(HTTP 402)로 실시간 프로필 미확인",
+    "web.archive.org/archive.ph 본문 fetch 차단(스냅샷 존재만 확인)",
+    "대표 콜 대부분 2차 매체(BeInCrypto) 인용 의존",
+    "매체 기사화된 콜만 표본 → 전체 콜 분포 대표성 없음"
+  ]
+}
