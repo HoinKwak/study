@@ -353,10 +353,16 @@ def render_html(journal: TradeJournal, equity: float | None = None,
     btc_cmp = (f" · BTC {btc_final:+.1f}%" if btc_final is not None else "")
 
     chart_section = f"""
-  <h2>📈 포트폴리오 추이 (수익률 vs BTC 매수후보유)</h2>
-  <div class="card">{charts.line_chart(line_series)}</div>
-  <h2>📊 일별 손익 (USDT)</h2>
-  <div class="card">{charts.bar_chart(daily_bars, unit="")}</div>
+  <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start">
+    <div style="flex:1;min-width:340px">
+      <h2>📈 포트폴리오 추이 (수익률 vs BTC 매수후보유)</h2>
+      <div class="card">{charts.line_chart(line_series, width=560)}</div>
+    </div>
+    <div style="flex:1;min-width:340px">
+      <h2>📊 일별 손익 (USDT)</h2>
+      <div class="card">{charts.bar_chart(daily_bars, width=560, unit="")}</div>
+    </div>
+  </div>
 """
 
     # --- 알트 상대강도 + 시총 TOP10 + 매크로 괴리 ---
