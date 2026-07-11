@@ -232,7 +232,9 @@ def top_tickers(symbols: list, data: BinanceDerivativesData | None = None,
             pct = None
         kl = data.klines(f"{base}/USDT", "1h", limit=kl_limit)
         closes = kl["close"] if kl else []
-        out.append({"symbol": base, "price": price, "pct": pct, "closes": closes})
+        times = [x / 1000.0 for x in kl["open_time"]] if kl else []
+        out.append({"symbol": base, "price": price, "pct": pct,
+                    "closes": closes, "times": times})
     return out
 
 
@@ -259,8 +261,16 @@ def binance_futures_list(data: BinanceDerivativesData | None = None,
     return out
 
 
-def load_tickers(state_dir: str, ttl_sec: int = 60) -> dict:
-    """상단 티커(시총 12) + 선물 상장 리스트를 짧은 TTL(60초)로 캐시."""
+_FALLBACK_SYMS = ["BTC", "ETH", "BNB", "XRP", "SOL", "DOGE", "ADA", "TRX",
+                  "LINK", "AVAX", "SUI", "DOT"]
+
+
+def load_tickers(state_dir: str, ttl_sec: int = 60, want: int = 24) -> dict:
+    """바이낸스 상장 + 시총 상위 코인의 시세(차트용)를 60초 캐시. {'top':[...]}.
+
+    좌측 4×3 미니차트(상위 12) + 우측 선택 큰차트(검색)용. RWA/미상장 잡토큰
+    (예: FIGR_HELOC), 언더스코어 심볼, 스테이블/비크립토는 제외.
+    """
     path = Path(state_dir) / "top_tickers.json"
     if path.exists():
         try:
@@ -273,11 +283,14 @@ def load_tickers(state_dir: str, ttl_sec: int = 60) -> dict:
         data = BinanceDerivativesData()
         tk = data.all_24h_tickers() or {}
         try:
-            syms = top_mcap_symbols(12)
+            mcaps = top_mcap_symbols(50)
         except Exception:  # noqa: BLE001
-            syms = ["BTC", "ETH", "SOL", "BNB"]
-        result = {"top": top_tickers(syms or ["BTC", "ETH", "SOL", "BNB"], data, tk),
-                  "futures": binance_futures_list(data, tk)}
+            mcaps = []
+        cands = [s for s in (mcaps or _FALLBACK_SYMS)
+                 if "_" not in s and s not in STABLE_BASES and s not in NON_CRYPTO_BASES
+                 and (not tk or f"{s}USDT" in tk)][:want + 8]
+        top = [t for t in top_tickers(cands, data, tk, kl_limit=168) if t.get("closes")][:want]
+        result = {"top": top}
     except Exception as e:  # noqa: BLE001
         log.warning("load_tickers 실패: %s", e)
         return {}
