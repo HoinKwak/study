@@ -395,6 +395,9 @@ _CHART_JS = r"""<script>
  if(!root)return;
  var card=root.closest('.card');
  var dcard=document.querySelector('.mkt-derivcard');
+ // 사용자가 조절한 차트 높이 복원(새로고침 후에도 유지)
+ try{var sh=parseInt(localStorage.getItem('ct_chart_h'),10);
+   if(sh>0)root.style.height=Math.min(720,Math.max(140,sh))+'px';}catch(_e){}
  function hlTf(){card.querySelectorAll('.tfbtn').forEach(function(b){
    b.classList.toggle('tfbtn-active', b.getAttribute('data-tf')===SEL.tf);});}
  function hlDtf(){if(!dcard)return;dcard.querySelectorAll('.dtfbtn').forEach(function(b){
@@ -435,8 +438,11 @@ _CHART_JS = r"""<script>
    .then(function(r){return r.json();}).then(function(d){drawCandles(d);})
    .catch(function(){LAST=null;root.innerHTML='<div class="muted">차트는 serve_dashboard 서버 모드에서 표시됩니다.</div>';});
    hlTf();}
- // 컨테이너 세로 리사이즈 시 마지막 데이터로 재렌더
- if(window.ResizeObserver){var ro=new ResizeObserver(function(){if(LAST)drawCandles(LAST);});ro.observe(root);}
+ // 컨테이너 세로 리사이즈 시 마지막 데이터로 재렌더 + 높이 저장(새로고침 후 복원)
+ if(window.ResizeObserver){var ro=new ResizeObserver(function(){
+   if(LAST)drawCandles(LAST);
+   try{localStorage.setItem('ct_chart_h', Math.round(root.clientHeight));}catch(_e){}});
+   ro.observe(root);}
  // ---- 파생 지표 패널 ----
  function tile(lab,val,col,sub){return '<div class="dtile"><span class="dlab">'+lab+'</span>'+
    '<b style="color:'+(col||'#e6e8ea')+'">'+val+'</b>'+(sub?'<span class="dsub">'+sub+'</span>':'')+'</div>';}
