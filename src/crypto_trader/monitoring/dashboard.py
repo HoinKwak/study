@@ -326,35 +326,51 @@ def _ticker_strip(tickers) -> str:
 
 
 def _market_view(tickers) -> str:
-    """시장 탭: 캔들차트(좌) + 파생지표 패널(우) — 티커·타임프레임 연동."""
+    """시장 탭: 캔들+거래량 차트(좌) + 파생 요약(우), 하단 OI·CVD 차트 카드."""
     top = _tickers_of(tickers)
     if not top:
         return ""
     tfs = [("1일", "1d"), ("7일", "7d"), ("30일", "30d"),
            ("6개월", "6m"), ("1년", "1y"), ("YTD", "ytd")]
     tfbtns = "".join(f'<button class="tfbtn" data-tf="{v}">{lbl}</button>' for lbl, v in tfs)
-    dtfs = [("5분", "5m"), ("1시간", "1h"), ("4시간", "4h"), ("1일", "1d")]
-    dtfbtns = "".join(f'<button class="dtfbtn" data-dtf="{v}">{lbl}</button>' for lbl, v in dtfs)
+    ptfs = [("5분", "5m"), ("1시간", "1h"), ("4시간", "4h"), ("1일", "1d")]
+    oitfs = "".join(f'<button class="oitf" data-oitf="{v}">{lbl}</button>' for lbl, v in ptfs)
+    cvdtfs = "".join(f'<button class="cvdtf" data-cvdtf="{v}">{lbl}</button>' for lbl, v in ptfs)
     d1 = str(top[0].get("symbol", "BTC"))
     chart = (
         f'<div class="card mkt-chartcard" style="flex:2;min-width:340px">'
         f'<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">'
+        f'<span style="display:flex;align-items:baseline;gap:10px">'
         f'<button class="tkname" id="mkt-name"><span id="mkt-sym">{html.escape(d1)}</span> ▾</button>'
+        f'<b id="mkt-price" style="font-size:16px">—</b></span>'
         f'<span>{tfbtns}</span></div>'
         f'<div id="mkt-search" style="display:none;margin:8px 0">'
         f'<input class="futsearch" id="mkt-input" placeholder="심볼 검색…">'
         f'<div class="tklist" id="mkt-list"></div></div>'
         f'<div id="mkt-chart" class="chartarea"><div class="muted">로딩…</div></div>'
-        f'<div class="muted" style="text-align:right;font-size:10px;margin-top:2px">↕ 아래 모서리를 끌어 높이 조절</div></div>')
+        f'<div class="muted" style="text-align:right;font-size:10px;margin-top:2px">↕ 아래 모서리를 끌어 높이 조절 · 하단 막대=거래량</div></div>')
     derivs = (
         f'<div class="card mkt-derivcard" style="flex:1;min-width:250px">'
-        f'<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;margin-bottom:6px">'
-        f'<span class="muted">파생 지표 · <b id="mkt-dsym">{html.escape(d1)}</b></span>'
-        f'<span>{dtfbtns}</span></div>'
+        f'<div class="muted" style="margin-bottom:8px">파생 지표 · <b id="mkt-dsym">{html.escape(d1)}</b> '
+        f'<span style="font-size:11px">(1h)</span></div>'
         f'<div id="mkt-derivs"><div class="muted">로딩…</div></div></div>')
+    oicard = (
+        f'<div class="card" style="flex:1;min-width:300px">'
+        f'<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px">'
+        f'<span class="muted">미결제약정 (OI) · <b id="oi-val">—</b></span>'
+        f'<span>{oitfs}</span></div>'
+        f'<div id="mkt-oi" class="minichart"><div class="muted">로딩…</div></div></div>')
+    cvdcard = (
+        f'<div class="card" style="flex:1;min-width:300px">'
+        f'<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px">'
+        f'<span class="muted">누적 CVD (테이커 매수−매도) · <b id="cvd-val">—</b></span>'
+        f'<span>{cvdtfs}</span></div>'
+        f'<div id="mkt-cvd" class="minichart"><div class="muted">로딩…</div></div></div>')
     cfg = ("<script>window.MKTCFG=" + json.dumps(
         {"syms": [str(t.get("symbol", "")) for t in top], "d1": d1}) + ";</script>")
-    return (f'<div style="display:flex;flex-wrap:wrap;gap:14px;align-items:stretch">{chart}{derivs}</div>{cfg}{_CHART_JS}')
+    return (f'<div style="display:flex;flex-wrap:wrap;gap:14px;align-items:stretch">{chart}{derivs}</div>'
+            f'<div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:14px">{oicard}{cvdcard}</div>'
+            f'{cfg}{_CHART_JS}')
 
 
 def _strategy_metrics(journal, start_equity: float | None) -> dict:
@@ -394,40 +410,48 @@ _CHART_JS = r"""<script>
 (function(){
  var cfg=window.MKTCFG||{syms:[],d1:'BTC'};
  var SYMS=(cfg.syms||[]).slice();
- var SEL={s:cfg.d1,tf:'7d',dtf:'1h'};
+ var SEL={s:cfg.d1,tf:'7d',oitf:'1h',cvdtf:'1h'};
  function save(k,v){try{localStorage.setItem(k,v);}catch(_e){}}
  // 선택한 심볼·타임프레임 복원(새로고침 후에도 유지)
  try{var _s=localStorage.getItem('ct_sym');if(_s)SEL.s=_s;
    var _t=localStorage.getItem('ct_tf');if(_t)SEL.tf=_t;
-   var _d=localStorage.getItem('ct_dtf');if(_d)SEL.dtf=_d;}catch(_e){}
- var LAST=null;               // 마지막 캔들 데이터(리사이즈 재렌더용)
+   var _o=localStorage.getItem('ct_oitf');if(_o)SEL.oitf=_o;
+   var _c=localStorage.getItem('ct_cvdtf');if(_c)SEL.cvdtf=_c;}catch(_e){}
+ var LAST=null, OILAST=null, CVDLAST=null;
  var root=document.getElementById('mkt-chart');
  if(!root)return;
  var card=root.closest('.card');
- var dcard=document.querySelector('.mkt-derivcard');
+ var oiEl=document.getElementById('mkt-oi'), cvdEl=document.getElementById('mkt-cvd');
  // 사용자가 조절한 차트 높이 복원(새로고침 후에도 유지)
  try{var sh=parseInt(localStorage.getItem('ct_chart_h'),10);
    if(sh>0)root.style.height=Math.min(720,Math.max(140,sh))+'px';}catch(_e){}
+ function setTxt(id,t){var e=document.getElementById(id);if(e)e.textContent=t;}
  function hlTf(){card.querySelectorAll('.tfbtn').forEach(function(b){
    b.classList.toggle('tfbtn-active', b.getAttribute('data-tf')===SEL.tf);});}
- function hlDtf(){if(!dcard)return;dcard.querySelectorAll('.dtfbtn').forEach(function(b){
-   b.classList.toggle('tfbtn-active', b.getAttribute('data-dtf')===SEL.dtf);});}
+ function hlBtns(sel,attr,val){document.querySelectorAll(sel).forEach(function(b){
+   b.classList.toggle('tfbtn-active', b.getAttribute(attr)===val);});}
  function fmtPx(v){if(v>=1000)return '$'+v.toLocaleString('en-US',{maximumFractionDigits:0});
    if(v>=1)return '$'+v.toFixed(2); if(v>=0.01)return '$'+v.toFixed(4); return '$'+v.toFixed(6);}
- function usd(v){if(v==null)return '-'; if(v>=1e9)return '$'+(v/1e9).toFixed(2)+'B';
-   if(v>=1e6)return '$'+(v/1e6).toFixed(1)+'M'; if(v>=1e3)return '$'+(v/1e3).toFixed(0)+'K'; return '$'+v.toFixed(0);}
- // ---- 캔들 차트 (컨테이너 실제 크기에 맞춰 렌더 → 세로 리사이즈 대응) ----
+ function usd(v){if(v==null)return '-'; var a=Math.abs(v); if(a>=1e9)return '$'+(v/1e9).toFixed(2)+'B';
+   if(a>=1e6)return '$'+(v/1e6).toFixed(1)+'M'; if(a>=1e3)return '$'+(v/1e3).toFixed(0)+'K'; return '$'+v.toFixed(0);}
+ function num(v){if(v==null)return '-'; var s=v<0?'-':'+',a=Math.abs(v);
+   if(a>=1e9)return s+(a/1e9).toFixed(2)+'B'; if(a>=1e6)return s+(a/1e6).toFixed(2)+'M';
+   if(a>=1e3)return s+(a/1e3).toFixed(1)+'K'; return s+a.toFixed(0);}
+ // ---- 캔들 + 하단 거래량 차트 (컨테이너 크기에 맞춰 렌더 → 세로 리사이즈 대응) ----
  function drawCandles(d){LAST=d;var p=(d&&d.points)||[];
    if(p.length<2){root.innerHTML='<div class="muted">데이터 없음</div>';return;}
    var W=Math.max(320,root.clientWidth||680),H=Math.max(160,root.clientHeight||320);
    var padL=64,padR=12,padT=12,padB=26;
+   var volH=Math.max(26,Math.round((H-padT-padB)*0.20)),volGap=6;
+   var priceBottom=H-padB-volH-volGap;
    var xs=p.map(function(a){return a[0];});
    var lows=p.map(function(a){return a[3];}),highs=p.map(function(a){return a[2];});
    var xmin=Math.min.apply(null,xs),xmax=Math.max.apply(null,xs);
    var ymin=Math.min.apply(null,lows),ymax=Math.max.apply(null,highs);
    if(xmax===xmin)xmax+=1; if(ymax===ymin)ymax+=1; var yr=ymax-ymin;
+   var vols=p.map(function(a){return a[5]||0;}),vmax=Math.max.apply(null,vols)||1;
    function sx(x){return padL+(x-xmin)/(xmax-xmin)*(W-padL-padR);}
-   function sy(v){return H-padB-(v-ymin)/yr*(H-padB-padT);}
+   function sy(v){return priceBottom-(v-ymin)/yr*(priceBottom-padT);}
    var cw=Math.max(1.4,(W-padL-padR)/p.length*0.62);
    var o=['<svg viewBox="0 0 '+W+' '+H+'" width="100%" height="100%" style="display:block" preserveAspectRatio="none">'];
    for(var i=0;i<5;i++){var yv=ymin+yr*i/4,y=sy(yv);
@@ -436,75 +460,123 @@ _CHART_JS = r"""<script>
    for(var j=0;j<p.length;j++){var op=p[j][1],hi=p[j][2],lo=p[j][3],cl=p[j][4];
      var x=sx(xs[j]),up=cl>=op,col=up?'#16a34a':'#e23b4a';
      o.push('<line x1="'+x.toFixed(1)+'" y1="'+sy(hi).toFixed(1)+'" x2="'+x.toFixed(1)+'" y2="'+sy(lo).toFixed(1)+'" stroke="'+col+'" stroke-width="1"/>');
-     var yo=sy(op),yc=sy(cl),top=Math.min(yo,yc),bh=Math.max(1,Math.abs(yc-yo));
-     o.push('<rect x="'+(x-cw/2).toFixed(1)+'" y="'+top.toFixed(1)+'" width="'+cw.toFixed(1)+'" height="'+bh.toFixed(1)+'" fill="'+col+'"/>');}
+     var yo=sy(op),yc=sy(cl),tp=Math.min(yo,yc),bh=Math.max(1,Math.abs(yc-yo));
+     o.push('<rect x="'+(x-cw/2).toFixed(1)+'" y="'+tp.toFixed(1)+'" width="'+cw.toFixed(1)+'" height="'+bh.toFixed(1)+'" fill="'+col+'"/>');
+     var vHt=(vols[j]/vmax)*volH,vy=(H-padB)-vHt;
+     o.push('<rect x="'+(x-cw/2).toFixed(1)+'" y="'+vy.toFixed(1)+'" width="'+cw.toFixed(1)+'" height="'+Math.max(0.5,vHt).toFixed(1)+'" fill="'+col+'" opacity="0.45"/>');}
+   o.push('<line x1="'+padL+'" y1="'+(priceBottom+volGap/2).toFixed(1)+'" x2="'+(W-padR)+'" y2="'+(priceBottom+volGap/2).toFixed(1)+'" stroke="rgba(255,255,255,0.08)"/>');
    for(var k=0;k<5;k++){var xv=xmin+(xmax-xmin)*k/4,dt=new Date(xv);
      var lab=('0'+(dt.getMonth()+1)).slice(-2)+'-'+('0'+dt.getDate()).slice(-2);
      var an=k===0?'start':(k===4?'end':'middle');
      o.push('<text x="'+sx(xv).toFixed(1)+'" y="'+(H-6)+'" fill="#8d969e" font-size="10" text-anchor="'+an+'">'+lab+'</text>');}
-   o.push('</svg>');root.innerHTML=o.join('');}
- function loadChart(){
+   o.push('</svg>');root.innerHTML=o.join('');
+   var pe=document.getElementById('mkt-price');if(pe && (pe.textContent==='—'||pe.textContent===''))pe.textContent=fmtPx(p[p.length-1][4]);}
+ function loadChart(){hlTf();
    fetch('/api/klines?symbol='+encodeURIComponent(SEL.s)+'&tf='+SEL.tf)
    .then(function(r){return r.json();}).then(function(d){drawCandles(d);})
-   .catch(function(){LAST=null;root.innerHTML='<div class="muted">차트는 serve_dashboard 서버 모드에서 표시됩니다.</div>';});
-   hlTf();}
- // 컨테이너 세로 리사이즈 시 마지막 데이터로 재렌더 + 높이 저장(새로고침 후 복원)
- if(window.ResizeObserver){var ro=new ResizeObserver(function(){
-   if(LAST)drawCandles(LAST);
-   try{localStorage.setItem('ct_chart_h', Math.round(root.clientHeight));}catch(_e){}});
-   ro.observe(root);}
- // ---- 파생 지표 패널 ----
- function tile(lab,val,col,sub){return '<div class="dtile"><span class="dlab">'+lab+'</span>'+
+   .catch(function(){LAST=null;root.innerHTML='<div class="muted">차트는 serve_dashboard 서버 모드에서 표시됩니다.</div>';});}
+ // ---- 범용 라인 차트(OI·CVD) ----
+ function drawLine(el,pts,opts){opts=opts||{};
+   if(!pts||pts.length<2){el.innerHTML='<div class="muted">데이터 없음</div>';return;}
+   var W=Math.max(260,el.clientWidth||360),H=Math.max(120,el.clientHeight||170);
+   var padL=58,padR=10,padT=10,padB=20;
+   var xs=pts.map(function(a){return a[0];}),ys=pts.map(function(a){return a[1];});
+   var xmin=Math.min.apply(null,xs),xmax=Math.max.apply(null,xs);
+   var ymin=Math.min.apply(null,ys),ymax=Math.max.apply(null,ys);
+   if(opts.zero){ymin=Math.min(ymin,0);ymax=Math.max(ymax,0);}
+   if(xmax===xmin)xmax+=1; if(ymax===ymin)ymax+=1; var yr=ymax-ymin;
+   function sx(x){return padL+(x-xmin)/(xmax-xmin)*(W-padL-padR);}
+   function sy(v){return H-padB-(v-ymin)/yr*(H-padB-padT);}
+   var fmt=opts.fmt||function(v){return v.toFixed(0);},col=opts.color||'#6c72ff';
+   var o=['<svg viewBox="0 0 '+W+' '+H+'" width="100%" height="100%" style="display:block" preserveAspectRatio="none">'];
+   for(var i=0;i<4;i++){var yv=ymin+yr*i/3,y=sy(yv);
+     o.push('<line x1="'+padL+'" y1="'+y+'" x2="'+(W-padR)+'" y2="'+y+'" stroke="rgba(255,255,255,0.06)"/>');
+     o.push('<text x="6" y="'+(y+4)+'" fill="#8d969e" font-size="10">'+fmt(yv)+'</text>');}
+   if(opts.zero&&ymin<0&&ymax>0){var zy=sy(0);
+     o.push('<line x1="'+padL+'" y1="'+zy.toFixed(1)+'" x2="'+(W-padR)+'" y2="'+zy.toFixed(1)+'" stroke="rgba(255,255,255,0.22)" stroke-dasharray="3 3"/>');}
+   var dpath='';for(var j=0;j<pts.length;j++){dpath+=(j?'L':'M')+sx(xs[j]).toFixed(1)+','+sy(ys[j]).toFixed(1);}
+   var baseV=opts.zero?Math.max(ymin,Math.min(ymax,0)):ymin,by=sy(baseV);
+   o.push('<path d="'+dpath+'L'+sx(xs[xs.length-1]).toFixed(1)+','+by.toFixed(1)+'L'+sx(xs[0]).toFixed(1)+','+by.toFixed(1)+'Z" fill="'+col+'" opacity="0.10"/>');
+   o.push('<path d="'+dpath+'" fill="none" stroke="'+col+'" stroke-width="1.6"/>');
+   for(var k=0;k<4;k++){var xv=xmin+(xmax-xmin)*k/3,dt=new Date(xv);
+     var lab=('0'+(dt.getMonth()+1)).slice(-2)+'-'+('0'+dt.getDate()).slice(-2)+' '+('0'+dt.getHours()).slice(-2)+'h';
+     var an=k===0?'start':(k===3?'end':'middle');
+     o.push('<text x="'+sx(xv).toFixed(1)+'" y="'+(H-5)+'" fill="#8d969e" font-size="9" text-anchor="'+an+'">'+lab+'</text>');}
+   o.push('</svg>');el.innerHTML=o.join('');}
+ // ---- 파생 요약(펀딩 행 + 포지셔닝 박스) ----
+ function cell(lab,val,col,sub){return '<div class="dfcell"><span class="dlab">'+lab+'</span>'+
    '<b style="color:'+(col||'#e6e8ea')+'">'+val+'</b>'+(sub?'<span class="dsub">'+sub+'</span>':'')+'</div>';}
+ function prow(lab,val,col,sub){return '<div class="prow"><span class="dlab">'+lab+'</span>'+
+   '<span><b style="color:'+(col||'#e6e8ea')+'">'+val+'</b>'+(sub?' <span class="dsub">'+sub+'</span>':'')+'</span></div>';}
  function renderDerivs(d){var el=document.getElementById('mkt-derivs');
    if(!d){el.innerHTML='<div class="muted">파생 데이터는 serve_dashboard 서버 모드에서 표시됩니다.</div>';return;}
-   var g='#16a34a',r='#e23b4a',n='#8d969e',per=d.period||SEL.dtf;
+   var g='#16a34a',r='#e23b4a',n='#8d969e';
+   if(d.price!=null){var pe=document.getElementById('mkt-price');if(pe)pe.textContent=fmtPx(d.price);}
    var fr=d.funding_rate,frp=(fr==null)?null:fr*100;
-   var apr=(frp==null)?null:frp*3*365;    // 8h 펀딩 × 하루3회 × 365 = 연환산
-   var gl=d.global_ls_ratio,tt=d.top_trader_ls_ratio,tk=d.taker_buy_sell_ratio;
+   var apr=(frp==null)?null:frp*3*365;
+   var gl=d.global_ls_ratio,tt=d.top_trader_ls_ratio;
    var netLong=(gl==null)?null:gl/(1+gl)*100, ttNet=(tt==null)?null:tt/(1+tt)*100;
-   var gap=(netLong==null||ttNet==null)?null:(ttNet-netLong);   // 상위−전체 넷롱(스마트머니 갭)
-   var o=[];
-   o.push(tile('펀딩비 (funding)', frp==null?'-':(frp>=0?'+':'')+frp.toFixed(4)+'%',
-     frp==null?n:(frp>=0?g:r), frp==null?'':(frp>=0?'롱 → 숏 지불':'숏 → 롱 지불')));
-   o.push(tile('연환산 펀딩 (APR)', apr==null?'-':(apr>=0?'+':'')+apr.toFixed(1)+'%',
-     apr==null?n:(apr>=0?g:r), '펀딩 8h × 3 × 365'));
-   o.push(tile('OI 변화 ('+per+')', d.oi_change_pct==null?'-':(d.oi_change_pct>=0?'+':'')+d.oi_change_pct.toFixed(2)+'%',
-     d.oi_change_pct==null?n:(d.oi_change_pct>=0?g:r), d.oi_notional?('미결제약정 '+usd(d.oi_notional)):''));
-   o.push(tile('넷 롱 비중', netLong==null?'-':netLong.toFixed(1)+'%',
-     netLong==null?n:(netLong>=50?g:r), '롱/숏 계좌 '+(gl==null?'-':gl.toFixed(2))));
-   o.push(tile('상위 트레이더 넷롱', ttNet==null?'-':ttNet.toFixed(1)+'%',
-     ttNet==null?n:(ttNet>=50?g:r), 'L/S '+(tt==null?'-':tt.toFixed(2))));
-   o.push(tile('스마트머니 갭', gap==null?'-':(gap>=0?'+':'')+gap.toFixed(1)+'p',
-     gap==null?n:(gap>=0?g:r), '상위−전체 넷롱 (양수=고래 낙관)'));
-   o.push(tile('테이커 매수/매도 (CVD)', tk==null?'-':tk.toFixed(2),
-     tk==null?n:(tk>=1?g:r), tk==null?'':(tk>=1?'시장가 매수 우세':'시장가 매도 우세')));
-   o.push(tile('24h 거래량', usd(d.vol24),
-     d.chg24==null?n:(d.chg24>=0?g:r), d.chg24==null?'':('24h '+(d.chg24>=0?'+':'')+d.chg24.toFixed(2)+'%')));
-   el.innerHTML=o.join('');}
- function loadDerivs(){document.getElementById('mkt-dsym').textContent=SEL.s;
+   var gap=(netLong==null||ttNet==null)?null:(ttNet-netLong);
+   var frow='<div class="dfrow">'+
+     cell('펀딩비', frp==null?'-':(frp>=0?'+':'')+frp.toFixed(4)+'%', frp==null?n:(frp>=0?g:r), frp==null?'':(frp>=0?'롱→숏':'숏→롱'))+
+     cell('연환산(APR)', apr==null?'-':(apr>=0?'+':'')+apr.toFixed(1)+'%', apr==null?n:(apr>=0?g:r), '×3×365')+
+     cell('24h 거래량', usd(d.vol24), d.chg24==null?n:(d.chg24>=0?g:r), d.chg24==null?'':((d.chg24>=0?'+':'')+d.chg24.toFixed(2)+'%'))+
+     '</div>';
+   var pbox='<div class="dbox"><div class="dboxh">포지셔닝 (1h)</div>'+
+     prow('넷 롱 비중', netLong==null?'-':netLong.toFixed(1)+'%', netLong==null?n:(netLong>=50?g:r), '롱/숏 '+(gl==null?'-':gl.toFixed(2)))+
+     prow('상위 트레이더 넷롱', ttNet==null?'-':ttNet.toFixed(1)+'%', ttNet==null?n:(ttNet>=50?g:r), 'L/S '+(tt==null?'-':tt.toFixed(2)))+
+     prow('스마트머니 갭', gap==null?'-':(gap>=0?'+':'')+gap.toFixed(1)+'p', gap==null?n:(gap>=0?g:r), '상위−전체')+
+     '</div>';
+   el.innerHTML=frow+pbox;}
+ function loadDerivs(){setTxt('mkt-dsym',SEL.s);
    document.getElementById('mkt-derivs').innerHTML='<div class="muted">로딩…</div>';
-   fetch('/api/derivs?symbol='+encodeURIComponent(SEL.s)+'&period='+encodeURIComponent(SEL.dtf))
+   fetch('/api/derivs?symbol='+encodeURIComponent(SEL.s))
    .then(function(r){return r.json();}).then(function(d){renderDerivs(d);})
-   .catch(function(){renderDerivs(null);});
-   hlDtf();}
+   .catch(function(){renderDerivs(null);});}
+ // ---- OI / CVD 차트 ----
+ function loadOI(){hlBtns('.oitf','data-oitf',SEL.oitf);if(!oiEl)return;
+   oiEl.innerHTML='<div class="muted">로딩…</div>';
+   fetch('/api/oi_hist?symbol='+encodeURIComponent(SEL.s)+'&period='+SEL.oitf)
+   .then(function(r){return r.json();}).then(function(d){var p=(d&&d.points)||[];OILAST=p;
+     if(p.length<2){oiEl.innerHTML='<div class="muted">데이터 없음</div>';setTxt('oi-val','-');return;}
+     var last=p[p.length-1][1],first=p[0][1],chg=first?((last-first)/first*100):0;
+     setTxt('oi-val',usd(last)+' ('+(chg>=0?'+':'')+chg.toFixed(1)+'%)');
+     drawLine(oiEl,p,{color:'#6c72ff',fmt:usd});})
+   .catch(function(){OILAST=null;oiEl.innerHTML='<div class="muted">OI는 serve_dashboard 서버 모드에서 표시됩니다.</div>';setTxt('oi-val','-');});}
+ function loadCVD(){hlBtns('.cvdtf','data-cvdtf',SEL.cvdtf);if(!cvdEl)return;
+   cvdEl.innerHTML='<div class="muted">로딩…</div>';
+   fetch('/api/cvd_hist?symbol='+encodeURIComponent(SEL.s)+'&period='+SEL.cvdtf)
+   .then(function(r){return r.json();}).then(function(d){var p=(d&&d.points)||[];CVDLAST=p;
+     if(p.length<2){cvdEl.innerHTML='<div class="muted">데이터 없음</div>';setTxt('cvd-val','-');return;}
+     var last=p[p.length-1][1],col=last>=0?'#16a34a':'#e23b4a';
+     setTxt('cvd-val',num(last));var ve=document.getElementById('cvd-val');if(ve)ve.style.color=col;
+     drawLine(cvdEl,p,{color:col,fmt:num,zero:true});})
+   .catch(function(){CVDLAST=null;cvdEl.innerHTML='<div class="muted">CVD는 serve_dashboard 서버 모드에서 표시됩니다.</div>';setTxt('cvd-val','-');});}
+ // 리사이즈 재렌더 + 차트 높이 저장(캔들), OI·CVD 폭 변화 재렌더
+ if(window.ResizeObserver){
+   new ResizeObserver(function(){if(LAST)drawCandles(LAST);
+     try{localStorage.setItem('ct_chart_h', Math.round(root.clientHeight));}catch(_e){}}).observe(root);
+   if(oiEl)new ResizeObserver(function(){if(OILAST&&OILAST.length>1)drawLine(oiEl,OILAST,{color:'#6c72ff',fmt:usd});}).observe(oiEl);
+   if(cvdEl)new ResizeObserver(function(){if(CVDLAST&&CVDLAST.length>1){var lv=CVDLAST[CVDLAST.length-1][1];
+     drawLine(cvdEl,CVDLAST,{color:lv>=0?'#16a34a':'#e23b4a',fmt:num,zero:true});}}).observe(cvdEl);}
  // ---- 심볼 검색 ----
  function renderSyms(q){q=(q||'').toUpperCase();var box=document.getElementById('mkt-list');
    box.innerHTML=SYMS.filter(function(x){return x.toUpperCase().indexOf(q)>=0;}).slice(0,150)
    .map(function(x){return '<div class="tkopt" data-s="'+x+'">'+x+'</div>';}).join('');}
  document.addEventListener('click',function(e){var t=e.target;if(!t.closest)return;
    var tf=t.closest('.tfbtn');if(tf){SEL.tf=tf.getAttribute('data-tf');save('ct_tf',SEL.tf);loadChart();return;}
-   var dtf=t.closest('.dtfbtn');if(dtf){SEL.dtf=dtf.getAttribute('data-dtf');save('ct_dtf',SEL.dtf);loadDerivs();return;}
+   var oi=t.closest('.oitf');if(oi){SEL.oitf=oi.getAttribute('data-oitf');save('ct_oitf',SEL.oitf);loadOI();return;}
+   var cv=t.closest('.cvdtf');if(cv){SEL.cvdtf=cv.getAttribute('data-cvdtf');save('ct_cvdtf',SEL.cvdtf);loadCVD();return;}
    var nm=t.closest('#mkt-name');if(nm){var s=document.getElementById('mkt-search');
      s.style.display=s.style.display==='none'?'block':'none';if(s.style.display==='block')renderSyms('');return;}
    var op=t.closest('.tkopt');if(op){SEL.s=op.getAttribute('data-s');save('ct_sym',SEL.s);
-     document.getElementById('mkt-sym').textContent=SEL.s;
-     document.getElementById('mkt-search').style.display='none';loadChart();loadDerivs();}});
+     setTxt('mkt-sym',SEL.s);setTxt('mkt-price','—');
+     document.getElementById('mkt-search').style.display='none';loadChart();loadDerivs();loadOI();loadCVD();}});
  document.addEventListener('input',function(e){var t=e.target;
    if(t.id==='mkt-input')renderSyms(t.value);});
  fetch('/api/symbols').then(function(r){return r.json();}).then(function(a){if(a&&a.length)SYMS=a;}).catch(function(){});
- var _symEl=document.getElementById('mkt-sym');if(_symEl)_symEl.textContent=SEL.s;   // 복원된 심볼 라벨 반영
- loadChart();loadDerivs();
+ setTxt('mkt-sym',SEL.s);   // 복원된 심볼 라벨 반영
+ loadChart();loadDerivs();loadOI();loadCVD();
 })();
 </script>"""
 
@@ -791,18 +863,23 @@ def render_html(journal: TradeJournal, equity: float | None = None,
   .tklist {{ max-height:240px; overflow-y:auto; margin-top:6px; display:grid; grid-template-columns:repeat(auto-fill,minmax(80px,1fr)); gap:4px; }}
   .tkopt {{ padding:6px 8px; border:1px solid var(--border); border-radius:9999px; font-size:12px; text-align:center; cursor:pointer; }}
   .tkopt:hover {{ background:var(--brand); color:#fff; }}
-  .tfbtn, .dtfbtn {{ background:transparent; color:var(--muted); border:1px solid var(--border); border-radius:9999px; padding:3px 9px; margin-left:4px; font-size:12px; cursor:pointer; }}
+  .tfbtn, .oitf, .cvdtf {{ background:transparent; color:var(--muted); border:1px solid var(--border); border-radius:9999px; padding:3px 9px; margin-left:4px; font-size:12px; cursor:pointer; }}
   .tfbtn-active {{ background:var(--brand); color:#fff; border-color:var(--brand); }}
-  /* 차트: 세로 리사이즈 가능(모서리 드래그) — 파생 패널은 flex-stretch 로 높이 추종 */
+  /* 차트: 세로 리사이즈 가능(모서리 드래그), 하단 20%는 거래량 막대 */
   .mkt-chartcard {{ display:flex; flex-direction:column; padding:14px 16px; }}
-  .chartarea {{ margin-top:8px; height:230px; min-height:140px; max-height:720px; resize:vertical; overflow:hidden; }}
-  /* 파생 패널은 차트 카드 높이를 따라감(flex-stretch). 타일이 넘치면 내부 스크롤,
-     차트를 키우면 타일이 flex-grow 로 늘어 채움 → 카드가 파생 때문에 커지지 않음. */
+  .chartarea {{ margin-top:8px; height:260px; min-height:150px; max-height:720px; resize:vertical; overflow:hidden; }}
   .mkt-derivcard {{ display:flex; flex-direction:column; padding:14px 16px; }}
-  #mkt-derivs {{ flex:1 1 0; min-height:0; overflow-y:auto; display:flex; flex-direction:column; }}
-  .dtile {{ flex:1 0 auto; min-height:44px; display:flex; flex-direction:column; gap:2px; justify-content:center; padding:7px 4px; border-bottom:1px solid var(--border); }}
-  .dtile:last-child {{ border-bottom:none; }}
-  .dtile b {{ font-size:16px; font-weight:700; }}
+  /* OI·CVD 미니 라인차트 */
+  .minichart {{ margin-top:8px; height:180px; min-height:130px; }}
+  /* 파생 요약: 펀딩 행(펀딩/APR/24h) + 포지셔닝 박스(넷롱/상위넷롱/스마트머니갭) */
+  .dfrow {{ display:flex; gap:10px; margin-bottom:12px; }}
+  .dfcell {{ flex:1; min-width:0; display:flex; flex-direction:column; gap:2px; }}
+  .dfcell b {{ font-size:15px; font-weight:700; }}
+  .dbox {{ border:1px solid var(--border); border-radius:12px; padding:8px 11px; }}
+  .dboxh {{ color:var(--muted-2); font-size:11px; margin-bottom:4px; }}
+  .prow {{ display:flex; justify-content:space-between; align-items:baseline; gap:8px; padding:6px 0; border-bottom:1px solid var(--border); }}
+  .prow:last-child {{ border-bottom:none; }}
+  .prow b {{ font-size:15px; font-weight:700; }}
   .dlab {{ color:var(--muted-2); font-size:12px; }}
   .dsub {{ color:var(--muted-2); font-size:11px; }}
   .tabs {{ display:flex; gap:6px; margin:18px 0 4px; border-bottom:1px solid var(--border); }}

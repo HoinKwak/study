@@ -67,7 +67,7 @@ def main() -> None:
         try:
             kl = BinanceDerivativesData().klines(f"{symbol}/USDT", interval, limit)
             points = [[int(kl["open_time"][i]), kl["open"][i], kl["high"][i],
-                       kl["low"][i], kl["close"][i]]
+                       kl["low"][i], kl["close"][i], kl["volume"][i]]
                       for i in range(len(kl["close"]))] if kl else []
         except Exception:  # noqa: BLE001
             points = []
@@ -106,6 +106,37 @@ def main() -> None:
         if out.get("oi_base") and out.get("price"):
             out["oi_notional"] = out["oi_base"] * out["price"]
         return json.dumps(out).encode("utf-8")
+
+    def _api_oi_hist(qs) -> bytes:
+        """OI 명목가치 시계열 — symbol·period(5m/1h/4h/1d). {points:[[ts,notional],...]}."""
+        from crypto_trader.connectors import BinanceDerivativesData
+        symbol = (qs.get("symbol", ["BTC"])[0] or "BTC").upper()
+        period = qs.get("period", ["1h"])[0]
+        if period not in _DERIV_PERIODS:
+            period = "1h"
+        try:
+            s = BinanceDerivativesData().open_interest_value_series(f"{symbol}/USDT", period, 48) or []
+        except Exception:  # noqa: BLE001
+            s = []
+        return json.dumps({"symbol": symbol, "period": period, "points": s}).encode("utf-8")
+
+    def _api_cvd_hist(qs) -> bytes:
+        """누적 CVD(테이커 매수−매도) 시계열 — symbol·period. {points:[[ts,cvd],...]}."""
+        from crypto_trader.connectors import BinanceDerivativesData
+        symbol = (qs.get("symbol", ["BTC"])[0] or "BTC").upper()
+        period = qs.get("period", ["1h"])[0]
+        if period not in _DERIV_PERIODS:
+            period = "1h"
+        try:
+            raw = BinanceDerivativesData().taker_volume_series(f"{symbol}/USDT", period, 48) or []
+        except Exception:  # noqa: BLE001
+            raw = []
+        pts = []
+        cum = 0.0
+        for row in raw:
+            cum += (row[1] - row[2])
+            pts.append([int(row[0]), cum])
+        return json.dumps({"symbol": symbol, "period": period, "points": pts}).encode("utf-8")
 
     def _api_prices(qs) -> bytes:
         """열린 포지션 현재가 — symbols=BTC,ETH → {BTC: price, ...} (24h 티커의 lastPrice)."""
@@ -148,6 +179,12 @@ def main() -> None:
                 return
             if path == "/api/derivs":
                 self._send(_api_derivs(parse_qs(parsed.query)), "application/json")
+                return
+            if path == "/api/oi_hist":
+                self._send(_api_oi_hist(parse_qs(parsed.query)), "application/json")
+                return
+            if path == "/api/cvd_hist":
+                self._send(_api_cvd_hist(parse_qs(parsed.query)), "application/json")
                 return
             if path == "/api/prices":
                 self._send(_api_prices(parse_qs(parsed.query)), "application/json")

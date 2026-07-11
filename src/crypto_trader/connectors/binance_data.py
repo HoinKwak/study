@@ -144,6 +144,41 @@ class BinanceDerivativesData:
         series = [v for v in (_to_float(r.get("sumOpenInterest")) for r in data) if v is not None]
         return series or None
 
+    def open_interest_value_series(self, symbol: str, period: str = "1h", limit: int = 48
+                                   ) -> list[list[float]] | None:
+        """OI 명목가치(sumOpenInterestValue) 시계열. [[ts_ms, notional_usdt], ...] 오래된→최신."""
+        data = self._get(
+            "/futures/data/openInterestHist",
+            {"symbol": self._pair(symbol), "period": period, "limit": limit},
+        )
+        if not isinstance(data, list) or not data:
+            return None
+        out: list[list[float]] = []
+        for r in data:
+            ts = _to_float(r.get("timestamp"))
+            val = _to_float(r.get("sumOpenInterestValue"))
+            if ts is not None and val is not None:
+                out.append([int(ts), val])
+        return out or None
+
+    def taker_volume_series(self, symbol: str, period: str = "1h", limit: int = 48
+                            ) -> list[list[float]] | None:
+        """테이커 매수/매도 거래량 시계열(CVD 계산용). [[ts_ms, buyVol, sellVol], ...] 오래된→최신."""
+        data = self._get(
+            "/futures/data/takerlongshortRatio",
+            {"symbol": self._pair(symbol), "period": period, "limit": limit},
+        )
+        if not isinstance(data, list) or not data:
+            return None
+        out: list[list[float]] = []
+        for r in data:
+            ts = _to_float(r.get("timestamp"))
+            bv = _to_float(r.get("buyVol"))
+            sv = _to_float(r.get("sellVol"))
+            if ts is not None and bv is not None and sv is not None:
+                out.append([int(ts), bv, sv])
+        return out or None
+
     # ---------------------------------------------------- 전체 심볼 벌크(공개)
 
     def all_24h_tickers(self) -> dict[str, dict[str, Any]] | None:
