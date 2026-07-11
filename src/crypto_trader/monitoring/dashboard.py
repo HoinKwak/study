@@ -271,57 +271,60 @@ def _fmt_px(p) -> str:
     return f"${p:.4f}"
 
 
-def _top_section(tickers: list) -> str:
-    """상단: BTC/ETH/SOL/BNB 미니 티커(좌) + 심볼 선택 차트(우)."""
-    if not tickers:
+def _top_section(tickers) -> str:
+    """상단: 시총 상위 12 미니 티커(좌) + 바이낸스 선물 상장 코인 검색 리스트(우)."""
+    if isinstance(tickers, dict):
+        top = tickers.get("top") or []
+        futures = tickers.get("futures") or []
+    elif isinstance(tickers, list):
+        top, futures = tickers, []
+    else:
         return ""
+    if not top and not futures:
+        return ""
+
     minis = []
-    for t in tickers:
+    for t in top:
         pct = t.get("pct")
         c = "#16a34a" if (pct or 0) >= 0 else "#e23b4a"
         spark = charts.sparkline((t.get("closes") or [])[-24:], color=c)
         pct_txt = f"{pct:+.2f}%" if pct is not None else "-"
         minis.append(
-            f"<div class='card' style='flex:1;min-width:150px;margin:0'>"
+            f"<div class='card' style='min-width:150px;margin:0'>"
             f"<div style='display:flex;justify-content:space-between;align-items:baseline'>"
             f"<b>{html.escape(str(t.get('symbol', '')))}</b>"
-            f"<span style='color:{c};font-size:13px'>{pct_txt}</span></div>"
-            f"<div style='font-size:18px;margin:2px 0'>{_fmt_px(t.get('price'))}</div>"
+            f"<span style='color:{c};font-size:12px'>{pct_txt}</span></div>"
+            f"<div style='font-size:16px;margin:2px 0'>{_fmt_px(t.get('price'))}</div>"
             f"{spark}</div>")
+    left = (f"<div style='flex:2;min-width:340px;display:grid;"
+            f"grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px'>"
+            f"{''.join(minis)}</div>")
 
-    charts_html, buttons = [], []
-    for i, t in enumerate(tickers):
-        sym = str(t.get("symbol", ""))
-        closes = t.get("closes") or []
-        times = t.get("times") or []
-        if len(closes) >= 2 and closes[0]:
-            c0 = closes[0]
-            if len(times) == len(closes):
-                pts = [(times[k], (closes[k] / c0 - 1) * 100.0) for k in range(len(closes))]
-            else:
-                pts = [(k, (v / c0 - 1) * 100.0) for k, v in enumerate(closes)]
-            svg = charts.line_chart([{"label": f"{sym} 7일(%)", "color": "#6c72ff",
-                                      "points": pts}], width=560)
-        else:
-            svg = "<div class='muted'>데이터 없음</div>"
-        disp = "block" if i == 0 else "none"
-        charts_html.append(f"<div class='selchart' id='chart-{sym}' style='display:{disp}'>{svg}</div>")
-        active = " selbtn-active" if i == 0 else ""
-        buttons.append(f"<button class='selbtn{active}' onclick=\"selChart('{sym}')\">{sym}</button>")
+    rows = []
+    for f in futures:
+        pct = f.get("pct")
+        c = "#16a34a" if (pct or 0) >= 0 else "#e23b4a"
+        sym = str(f.get("symbol", ""))
+        rows.append(
+            f"<div class='futrow' data-sym='{html.escape(sym)}'>"
+            f"<b>{html.escape(sym)}</b>"
+            f"<span class='muted'>{_fmt_px(f.get('price'))}</span>"
+            f"<span style='color:{c}'>{pct:+.2f}%</span></div>" if pct is not None else
+            f"<div class='futrow' data-sym='{html.escape(sym)}'><b>{html.escape(sym)}</b></div>")
+    right = (f"<div style='flex:1;min-width:280px' class='card'>"
+             f"<div style='display:flex;justify-content:space-between;align-items:center;margin-bottom:8px'>"
+             f"<b>바이낸스 선물 상장 <span class='muted'>({len(futures)})</span></b></div>"
+             f"<input class='futsearch' oninput=\"filterFut(this.value)\" placeholder='심볼 검색… 예: PEPE'>"
+             f"<div class='futlist'>{''.join(rows) or '<div class=muted>데이터 없음</div>'}</div></div>")
 
-    js = ("<script>function selChart(s){"
-          "document.querySelectorAll('.selchart').forEach(function(e){e.style.display='none';});"
-          "var el=document.getElementById('chart-'+s); if(el) el.style.display='block';"
-          "document.querySelectorAll('.selbtn').forEach(function(b){b.classList.remove('selbtn-active');});"
-          "if(window.event) window.event.target.classList.add('selbtn-active');}</script>")
+    js = ("<script>function filterFut(q){q=(q||'').toUpperCase();"
+          "document.querySelectorAll('.futrow').forEach(function(r){"
+          "r.style.display=r.getAttribute('data-sym').indexOf(q)>=0?'flex':'none';});}</script>")
 
     return f"""
-  <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:stretch;margin:14px 0">
-    <div style="flex:1;min-width:320px;display:flex;gap:12px;flex-wrap:wrap">{"".join(minis)}</div>
-    <div style="flex:1;min-width:340px" class="card">
-      <div style="margin-bottom:8px">{"".join(buttons)}</div>
-      {"".join(charts_html)}
-    </div>
+  <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start;margin:14px 0">
+    {left}
+    {right}
   </div>{js}
 """
 
@@ -519,8 +522,10 @@ def render_html(journal: TradeJournal, equity: float | None = None,
   .muted {{ color:var(--muted-2); font-size:12px; }}
   details.events {{ background:var(--surface); border-radius:var(--radius); padding:8px 14px; margin-top:28px; }}
   details.events summary {{ cursor:pointer; color:var(--muted); font-size:14px; padding:6px 0; }}
-  .selbtn {{ background:transparent; color:var(--muted); border:1px solid var(--border); border-radius:9999px; padding:5px 14px; margin-right:6px; font-size:13px; cursor:pointer; }}
-  .selbtn-active {{ background:var(--brand); color:#fff; border-color:var(--brand); }}
+  .futlist {{ max-height:320px; overflow-y:auto; }}
+  .futrow {{ display:flex; justify-content:space-between; align-items:center; gap:10px; padding:6px 4px; border-bottom:1px solid var(--border); font-size:13px; }}
+  .futsearch {{ width:100%; box-sizing:border-box; background:var(--surface-2); color:var(--text); border:1px solid var(--border); border-radius:12px; padding:9px 12px; font-size:13px; }}
+  .futsearch::placeholder {{ color:var(--muted-2); }}
 </style></head>
 <body>
   <h1>🤖 crypto-trader 대시보드</h1>

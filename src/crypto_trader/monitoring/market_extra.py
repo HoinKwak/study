@@ -15,6 +15,7 @@ from pathlib import Path
 import requests
 
 from ..connectors import BinanceDerivativesData, high_volume_usdt_symbols
+from ..connectors.universe import NON_CRYPTO_BASES, STABLE_BASES
 from ..utils import get_logger
 
 log = get_logger("market_extra")
@@ -196,15 +197,31 @@ def macro_divergence(days: int = 90,
 
 # ----------------------------------------------------- 상단 가격 티커/선택차트
 
-def top_tickers(symbols: tuple = ("BTC", "ETH", "SOL", "BNB"),
-                data: BinanceDerivativesData | None = None) -> list[dict]:
-    """상단 티커 + 선택 차트용. 각 심볼 현재가·24h변동·최근 1h 시세(168개)."""
+def top_mcap_symbols(n: int = 12, timeout: int = 20) -> list[str]:
+    """코인게코 시총 상위 n개 심볼(스테이블 제외, BTC/ETH 포함)."""
+    r = requests.get(COINGECKO_MARKETS, params={
+        "vs_currency": "usd", "order": "market_cap_desc", "per_page": 40, "page": 1,
+    }, headers=_UA, timeout=timeout)
+    r.raise_for_status()
+    out: list[str] = []
+    for x in r.json():
+        sym = str(x.get("symbol", "")).lower()
+        if sym in STABLE_LIKE or not sym:
+            continue
+        out.append(sym.upper())
+        if len(out) >= n:
+            break
+    return out
+
+
+def top_tickers(symbols: list, data: BinanceDerivativesData | None = None,
+                tickers24: dict | None = None, kl_limit: int = 48) -> list[dict]:
+    """각 심볼 현재가·24h변동·최근 시세(스파크라인용)."""
     data = data or BinanceDerivativesData()
-    tickers = data.all_24h_tickers() or {}
+    tk = tickers24 if tickers24 is not None else (data.all_24h_tickers() or {})
     out: list[dict] = []
     for base in symbols:
-        pair = f"{base}USDT"
-        t = tickers.get(pair) or {}
+        t = tk.get(f"{base}USDT") or {}
         try:
             price = float(t.get("lastPrice")) or None
         except (TypeError, ValueError):
@@ -213,37 +230,64 @@ def top_tickers(symbols: tuple = ("BTC", "ETH", "SOL", "BNB"),
             pct = float(t.get("priceChangePercent"))
         except (TypeError, ValueError):
             pct = None
-        kl = data.klines(f"{base}/USDT", "1h", limit=168)
+        kl = data.klines(f"{base}/USDT", "1h", limit=kl_limit)
         closes = kl["close"] if kl else []
-        times = [x / 1000.0 for x in kl["open_time"]] if kl else []
-        out.append({"symbol": base, "price": price, "pct": pct,
-                    "closes": closes, "times": times})
+        out.append({"symbol": base, "price": price, "pct": pct, "closes": closes})
     return out
 
 
-def load_tickers(state_dir: str, ttl_sec: int = 60,
-                 symbols: tuple = ("BTC", "ETH", "SOL", "BNB")) -> list[dict]:
-    """상단 티커를 짧은 TTL(기본 60초)로 캐시 — 실시간에 가깝게."""
+def binance_futures_list(data: BinanceDerivativesData | None = None,
+                         tickers24: dict | None = None) -> list[dict]:
+    """바이낸스 선물(USDT-M) 상장 코인 리스트 — 거래대금 내림차순. 스테이블/비크립토 제외."""
+    data = data or BinanceDerivativesData()
+    tk = tickers24 if tickers24 is not None else (data.all_24h_tickers() or {})
+    out: list[dict] = []
+    for pair, t in tk.items():
+        if not pair.endswith("USDT"):
+            continue
+        base = pair[:-4]
+        if not base or base in STABLE_BASES or base in NON_CRYPTO_BASES:
+            continue
+        try:
+            price = float(t.get("lastPrice")) or None
+            pct = float(t.get("priceChangePercent"))
+            qv = float(t.get("quoteVolume") or 0.0)
+        except (TypeError, ValueError):
+            continue
+        out.append({"symbol": base, "price": price, "pct": pct, "vol": qv})
+    out.sort(key=lambda x: -x["vol"])
+    return out
+
+
+def load_tickers(state_dir: str, ttl_sec: int = 60) -> dict:
+    """상단 티커(시총 12) + 선물 상장 리스트를 짧은 TTL(60초)로 캐시."""
     path = Path(state_dir) / "top_tickers.json"
     if path.exists():
         try:
             c = json.loads(path.read_text(encoding="utf-8"))
-            if _now() - float(c.get("ts", 0)) < ttl_sec:
-                return c.get("data", [])
+            if isinstance(c.get("data"), dict) and _now() - float(c.get("ts", 0)) < ttl_sec:
+                return c["data"]
         except (json.JSONDecodeError, ValueError, OSError):
             pass
     try:
-        data = top_tickers(symbols)
+        data = BinanceDerivativesData()
+        tk = data.all_24h_tickers() or {}
+        try:
+            syms = top_mcap_symbols(12)
+        except Exception:  # noqa: BLE001
+            syms = ["BTC", "ETH", "SOL", "BNB"]
+        result = {"top": top_tickers(syms or ["BTC", "ETH", "SOL", "BNB"], data, tk),
+                  "futures": binance_futures_list(data, tk)}
     except Exception as e:  # noqa: BLE001
-        log.warning("top_tickers 실패: %s", e)
-        return []
+        log.warning("load_tickers 실패: %s", e)
+        return {}
     try:
         path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(json.dumps({"ts": _now(), "data": data}, ensure_ascii=False),
+        path.write_text(json.dumps({"ts": _now(), "data": result}, ensure_ascii=False),
                         encoding="utf-8")
     except OSError:
         pass
-    return data
+    return result
 
 
 # --------------------------------------------------------------- 캐시 래퍼
