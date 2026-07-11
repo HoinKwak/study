@@ -17,12 +17,12 @@ def _date_label(epoch: float) -> str:
     except (ValueError, OSError, OverflowError):
         return ""
 
-# 다크 테마 팔레트
-_AXIS = "#334155"
-_TEXT = "#94a3b8"
-_GRID = "#1e293b"
+# Revolut 영감 다크 팔레트 (트루블랙 배경)
+_AXIS = "rgba(255,255,255,0.20)"
+_TEXT = "#8d969e"
+_GRID = "rgba(255,255,255,0.06)"
 _POS = "#16a34a"
-_NEG = "#dc2626"
+_NEG = "#e23b4a"
 
 
 def _empty(msg: str = "데이터 없음") -> str:

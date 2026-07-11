@@ -190,7 +190,7 @@ def render_text(journal, equity: float | None = None) -> str:
 
 
 _EVENT_COLOR = {
-    "PUMP": "#16a34a", "DUMP": "#dc2626", "VOL_SPIKE": "#f59e0b",
+    "PUMP": "#16a34a", "DUMP": "#e23b4a", "VOL_SPIKE": "#f59e0b",
     "OI_SURGE": "#22c55e", "OI_DROP": "#ef4444", "FUNDING": "#a855f7",
 }
 _EVENT_EMOJI = {
@@ -226,7 +226,7 @@ def _strength_table(title: str, rows: list) -> str:
     body = []
     for i, r in enumerate(rows or []):
         rel = r.get("rel", 0.0)
-        c = "#16a34a" if rel >= 0 else "#dc2626"
+        c = "#16a34a" if rel >= 0 else "#e23b4a"
         sym = str(r.get("symbol", "")).replace("/USDT", "")
         body.append(
             f"<tr><td>{i + 1}</td><td><b>{html.escape(sym)}</b></td>"
@@ -245,7 +245,7 @@ def _mcap_table(rows: list) -> str:
     def cell(v) -> str:
         if v is None:
             return "<td class='muted'>-</td>"
-        c = "#16a34a" if v >= 0 else "#dc2626"
+        c = "#16a34a" if v >= 0 else "#e23b4a"
         return f"<td style='color:{c}'>{v:+.1f}%</td>"
 
     body = []
@@ -299,7 +299,7 @@ def _brief_section(brief: dict) -> str:
     for a in brief.get("assets", [])[:6]:
         bias = str(a.get("bias", ""))
         bc = "#16a34a" if "롱" in bias or "상승" in bias or "bull" in bias.lower() else (
-            "#dc2626" if "숏" in bias or "하락" in bias or "bear" in bias.lower() else "#94a3b8")
+            "#e23b4a" if "숏" in bias or "하락" in bias or "bear" in bias.lower() else "#94a3b8")
         cards.append(
             f"<div class='card' style='flex:1;min-width:240px'>"
             f"<b>{html.escape(str(a.get('symbol', '')))}</b> "
@@ -335,7 +335,7 @@ def render_html(journal: TradeJournal, equity: float | None = None,
                 btc_series: list | None = None,
                 market_extra: dict | None = None) -> str:
     st = journal.stats()
-    pnl_color = "#16a34a" if st["total_pnl"] >= 0 else "#dc2626"
+    pnl_color = "#16a34a" if st["total_pnl"] >= 0 else "#e23b4a"
     events = events or []
     refresh_tag = (f'<meta http-equiv="refresh" content="{refresh_sec}">'
                    if refresh_sec > 0 else "")
@@ -343,12 +343,12 @@ def render_html(journal: TradeJournal, equity: float | None = None,
 
     # --- 포트폴리오 차트 데이터 ---
     ret_pts, daily_bars, final_pct = _return_series(journal, start_equity or 0.0)
-    port_color = "#38bdf8"
+    port_color = "#6c72ff"   # 코발트 바이올렛(브랜드 액센트)
     line_series = [{"label": "포트폴리오 수익률", "color": port_color, "points": ret_pts}]
     if btc_series and len(btc_series) >= 2:
         line_series.append({"label": "BTC 매수후보유", "color": "#f7931a",
                             "points": [(x, y) for x, y in btc_series]})
-    ret_color = "#16a34a" if final_pct >= 0 else "#dc2626"
+    ret_color = "#16a34a" if final_pct >= 0 else "#e23b4a"
     btc_final = btc_series[-1][1] if btc_series else None
     btc_cmp = (f" · BTC {btc_final:+.1f}%" if btc_final is not None else "")
 
@@ -398,7 +398,7 @@ def render_html(journal: TradeJournal, equity: float | None = None,
         for t in trades:
             if closed:
                 pnl = t.pnl or 0.0
-                c = "#16a34a" if pnl >= 0 else "#dc2626"
+                c = "#16a34a" if pnl >= 0 else "#e23b4a"
                 out.append(
                     f"<tr><td>{html.escape(t.symbol)}</td>"
                     f"<td>{t.direction.upper()}</td>"
@@ -424,16 +424,17 @@ def render_html(journal: TradeJournal, equity: float | None = None,
 <html lang="ko"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 {refresh_tag}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
 <title>crypto-trader 대시보드</title>
 <style>
-  /* 디자인 토큰 — 기준: DESIGN.md (VoltAgent/awesome-design-md 규격) */
+  /* 디자인 토큰 — Revolut 영감 (revolut/DESIGN.md): 트루블랙 캔버스 + 코발트 바이올렛 */
   :root {{
-    --bg:#0f172a; --surface:#1e293b; --border:#334155;
-    --text:#e2e8f0; --muted:#94a3b8; --muted-2:#64748b;
-    --pos:#16a34a; --neg:#dc2626; --accent:#38bdf8; --btc:#f7931a; --gold:#eab308;
-    --radius:10px; --pad:14px; --gap:12px;
+    --bg:#000000; --surface:#16181a; --surface-2:#0a0a0a; --border:rgba(255,255,255,0.12);
+    --text:#ffffff; --muted:rgba(255,255,255,0.72); --muted-2:#8d969e;
+    --pos:#16a34a; --neg:#e23b4a; --accent:#6c72ff; --brand:#494fdf; --btc:#f7931a; --gold:#eab308;
+    --radius:20px; --radius-sm:12px; --pad:20px; --gap:14px;
   }}
-  body {{ font-family: -apple-system, system-ui, sans-serif; background:var(--bg); color:var(--text); margin:0; padding:24px; }}
+  body {{ font-family: 'Pretendard', 'Inter', 'Malgun Gothic', 'Apple SD Gothic Neo', -apple-system, system-ui, sans-serif; background:var(--bg); color:var(--text); margin:0; padding:28px; letter-spacing:0.2px; -webkit-font-smoothing:antialiased; }}
   h1 {{ font-size:20px; }} h2 {{ font-size:15px; color:var(--muted); margin-top:28px; }}
   h3 {{ font-size:14px; color:var(--muted); }}
   .grid {{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:var(--gap); margin:16px 0; }}

@@ -1,34 +1,43 @@
 # DESIGN.md — crypto-trader 대시보드 디자인 시스템
 
 > AI 에이전트/기여자가 대시보드 UI를 **일관되게** 생성·수정하기 위한 단일 기준 문서.
-> ([VoltAgent/awesome-design-md](https://github.com/VoltAgent/awesome-design-md) — Google
-> Stitch DESIGN.md 9섹션 규격을 따름.) 실제 구현: `src/crypto_trader/monitoring/dashboard.py`
+> 규격: [VoltAgent/awesome-design-md](https://github.com/VoltAgent/awesome-design-md)
+> (Google Stitch 9섹션). **테마는 Revolut 영감**(`revolut/DESIGN.md` — `getdesign add
+> revolut`로 생성): 트루블랙 캔버스 + 코발트 바이올렛 액센트 + surface-elevated 카드 +
+> 라운드20/필 + Pretendard/Inter. 실제 구현: `src/crypto_trader/monitoring/dashboard.py`
 > (HTML/CSS) + `charts.py`(인라인 SVG). 미리보기: `docs/design-preview.html`.
 
 ---
 
 ## 1. Visual Theme & Atmosphere (테마·분위기)
 
-- **다크 트레이딩 터미널.** 차분하고 정보 밀도 높은 슬레이트 계열 다크 UI.
-- 감정을 배제한 **데이터 우선**: 색은 오직 의미(손익·방향·단계)를 전달할 때만 사용.
-- 장식 최소화 — 그림자·테두리는 절제, 카드로 정보 그룹핑, 여백으로 위계 표현.
-- 톤: 전문적·냉정·읽기 편함. 24시간 상시 모니터링에도 눈이 편한 저휘도 배경.
+- **트루블랙 핀테크 대시보드 (Revolut 영감).** `#000000` 캔버스 위에 살짝 밝은
+  `#16181a` 카드가 떠 있는 고대비·정보 밀도 높은 UI.
+- **코발트 바이올렛(`#494fdf`)** 을 브랜드 액센트로 절제해서 사용(포트폴리오 라인·강조).
+- 감정 배제 **데이터 우선**: 색은 의미(손익·방향·단계)에만. P&L 녹/적은 가독성 우선.
+- **그림자 없음** — 깊이는 캔버스(블랙)→표면(엘리베이티드) 휘도 차이로만. 카드는 라운드20.
+- 톤: 전문적·냉정·모던. 24시간 모니터링에도 눈이 편한 진블랙 배경.
 
 ## 2. Color Palette & Roles (색·역할)
 
 | 토큰 | HEX | 역할 |
 |---|---|---|
-| `--bg` | `#0f172a` | 페이지 배경(slate-900) |
-| `--surface` | `#1e293b` | 카드·패널 표면(slate-800) |
-| `--border` | `#334155` | 테두리·표 구분선(slate-700) |
-| `--text` | `#e2e8f0` | 기본 텍스트(slate-200) |
-| `--muted` | `#94a3b8` | 보조 텍스트·헤더 라벨(slate-400) |
-| `--muted-2` | `#64748b` | 캡션·비활성(slate-500) |
-| `--pos` | `#16a34a` | 이익·상승·롱(green-600) |
-| `--neg` | `#dc2626` | 손실·하락·숏(red-600) |
-| `--accent` | `#38bdf8` | 포트폴리오 라인·강조(sky-400) |
+| `--bg` | `#000000` | 페이지 캔버스(트루블랙) |
+| `--surface` | `#16181a` | 카드·패널(surface-elevated) |
+| `--surface-2` | `#0a0a0a` | 한 단계 깊은 표면(surface-deep) |
+| `--border` | `rgba(255,255,255,0.12)` | 헤어라인 구분선(다크) |
+| `--text` | `#ffffff` | 기본 텍스트(on-dark) |
+| `--muted` | `rgba(255,255,255,0.72)` | 보조 텍스트(on-dark-mute) |
+| `--muted-2` | `#8d969e` | 캡션·메타(stone) |
+| `--brand` | `#494fdf` | 코발트 바이올렛(브랜드 스탬프, 절제 사용) |
+| `--accent` | `#6c72ff` | 밝은 코발트(블랙 위 데이터 라인·강조) |
+| `--pos` | `#16a34a` | 이익·상승·롱(green) |
+| `--neg` | `#e23b4a` | 손실·하락·숏(Revolut danger) |
 | `--btc` | `#f7931a` | BTC 라인/브랜드 |
-| `--gold` | `#eab308` | 금(macro), 확산 단계(amber-500) |
+| `--gold` | `#eab308` | 금(macro), 확산 단계 |
+
+> Revolut 규칙: 코발트는 **스탬프처럼 절제**해서(뷰당 과다 사용 금지). 와이드 액센트
+> (teal/pink/green 등)는 일러스트 용도이지 버튼/대량 텍스트 배경으로 쓰지 않는다.
 
 **의미색(직접 지정, 변수 아님) — 코드에서 계산해 사용:**
 - 이벤트: PUMP `#16a34a` · DUMP `#dc2626` · VOL_SPIKE `#f59e0b` · OI_SURGE `#22c55e` ·
@@ -40,7 +49,9 @@
 
 ## 3. Typography Rules (타이포그래피)
 
-- **폰트**: `-apple-system, system-ui, sans-serif` (시스템 폰트 — 로딩 0, 크로스플랫폼).
+- **폰트**: `'Pretendard', 'Inter', 'Malgun Gothic', 'Apple SD Gothic Neo', system-ui, sans-serif`.
+  Pretendard(한글 가독성 우수)를 CDN으로 로드하고, 미설치/오프라인 시 Inter·맑은고딕으로 폴백.
+  (Revolut 원본의 Aeonik Pro는 유료 → Inter/Pretendard로 대체.) `-webkit-font-smoothing:antialiased`.
 - 위계:
   - `h1` 20px / 페이지 타이틀 (🤖 이모지 접두)
   - `h2` 15px · `--muted` / 섹션 헤더 (이모지 접두: 📈 📊 💪 🌐 📰 🐦 🛰️)
@@ -115,10 +126,10 @@
 - "새 시계열 차트는 charts.line_chart 재사용(범례 좌상단, x축 KST 날짜)."
 - 새 색이 필요하면 **먼저 DESIGN.md 팔레트/의미색에 정의**한 뒤 코드에서 그 토큰 사용.
 
-**빠른 참조(복붙용 토큰)**:
+**빠른 참조(복붙용 토큰)** — Revolut 영감:
 ```
-bg #0f172a · surface #1e293b · border #334155 · text #e2e8f0 · muted #94a3b8/#64748b
-pos #16a34a · neg #dc2626 · accent #38bdf8 · btc #f7931a · gold #eab308
-radius 10px · card padding 14px · gap 12–16 · h2 margin-top 28px · body padding 24px
-font: -apple-system, system-ui, sans-serif
+bg #000000 · surface #16181a · border rgba(255,255,255,.12) · text #fff · muted rgba(255,255,255,.72)/#8d969e
+brand #494fdf · accent #6c72ff · pos #16a34a · neg #e23b4a · btc #f7931a · gold #eab308
+radius 20px(카드)/12px(입력)/full(버튼·필) · card padding 20px · gap 14 · body padding 28px
+font: 'Pretendard','Inter','Malgun Gothic',system-ui · 그림자 없음(휘도로 깊이)
 ```
