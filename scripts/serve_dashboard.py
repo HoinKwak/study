@@ -73,19 +73,24 @@ def main() -> None:
             points = []
         return json.dumps({"symbol": symbol, "tf": tf, "points": points}).encode("utf-8")
 
+    _DERIV_PERIODS = {"5m", "15m", "30m", "1h", "2h", "4h", "6h", "12h", "1d"}
+
     def _api_derivs(qs) -> bytes:
-        """선택 티커의 파생 지표 스냅샷 — 펀딩비/OI/롱숏/테이커/24h."""
+        """선택 티커의 파생 지표 스냅샷 — 펀딩비/OI/롱숏/테이커/24h. period 로 기간 선택."""
         from crypto_trader.connectors import BinanceDerivativesData
         symbol = (qs.get("symbol", ["BTC"])[0] or "BTC").upper()
+        period = qs.get("period", ["1h"])[0]
+        if period not in _DERIV_PERIODS:
+            period = "1h"
         d = BinanceDerivativesData()
         pair = f"{symbol}/USDT"
-        out = {"symbol": symbol}
+        out = {"symbol": symbol, "period": period}
         try:
-            out.update(d.snapshot(pair, "1h"))
+            out.update(d.snapshot(pair, period))
         except Exception:  # noqa: BLE001
             pass
         try:
-            oi = d.open_interest_hist(pair, "1h", 2)
+            oi = d.open_interest_hist(pair, period, 2)
             out["oi_base"] = oi[-1] if oi else None
         except Exception:  # noqa: BLE001
             out["oi_base"] = None

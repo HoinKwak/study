@@ -295,25 +295,29 @@ def _tickers_of(tickers) -> list:
 
 
 def _ticker_strip(tickers) -> str:
-    """상시 상단: 시총 상위 12 미니 티커(현재가·24h·스파크라인) — 시장 맥박."""
+    """상시 상단: 시총 상위 10 미니 티커(현재가·24h·스파크라인) — 시장 맥박.
+
+    반응형 그리드로 전체 폭에 맞춰 정렬 — 가로 스크롤바 없이 넓은 화면에선 한 줄,
+    좁아지면 폭에 맞춰 깔끔히 줄바꿈된다.
+    """
     top = _tickers_of(tickers)
     if not top:
         return ""
     minis = []
-    for t in top[:12]:
+    for t in top[:10]:
         pct = t.get("pct")
         c = "#16a34a" if (pct or 0) >= 0 else "#e23b4a"
         sym = html.escape(str(t.get("symbol", "")))
-        spark = charts.sparkline((t.get("closes") or [])[-48:], width=180, height=44, color=c)
+        spark = charts.sparkline((t.get("closes") or [])[-48:], width=150, height=36, color=c)
         pct_txt = f"{pct:+.1f}%" if pct is not None else "-"
         minis.append(
-            f"<div class='card' style='margin:0;padding:10px;flex:0 0 158px'>"
+            f"<div class='card' style='margin:0;padding:9px 11px'>"
             f"<div style='display:flex;justify-content:space-between;align-items:baseline'>"
-            f"<b>{sym}</b><span style='color:{c};font-size:12px'>{pct_txt}</span></div>"
-            f"<div class='muted' style='font-size:12px;margin-bottom:2px'>{_fmt_px(t.get('price'))}</div>"
+            f"<b style='font-size:14px'>{sym}</b><span style='color:{c};font-size:11px'>{pct_txt}</span></div>"
+            f"<div class='muted' style='font-size:11px;margin-bottom:2px'>{_fmt_px(t.get('price'))}</div>"
             f"{spark}</div>")
-    return (f"<div style='display:flex;gap:10px;margin:12px 0;overflow-x:auto;padding-bottom:4px'>"
-            f"{''.join(minis)}</div>")
+    return (f"<div style='display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));"
+            f"gap:8px;margin:12px 0'>{''.join(minis)}</div>")
 
 
 def _market_view(tickers) -> str:
@@ -324,23 +328,28 @@ def _market_view(tickers) -> str:
     tfs = [("1일", "1d"), ("7일", "7d"), ("30일", "30d"),
            ("6개월", "6m"), ("1년", "1y"), ("YTD", "ytd")]
     tfbtns = "".join(f'<button class="tfbtn" data-tf="{v}">{lbl}</button>' for lbl, v in tfs)
+    dtfs = [("5분", "5m"), ("1시간", "1h"), ("4시간", "4h"), ("1일", "1d")]
+    dtfbtns = "".join(f'<button class="dtfbtn" data-dtf="{v}">{lbl}</button>' for lbl, v in dtfs)
     d1 = str(top[0].get("symbol", "BTC"))
     chart = (
-        f'<div class="card" style="flex:2;min-width:340px">'
+        f'<div class="card mkt-chartcard" style="flex:2;min-width:340px">'
         f'<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">'
         f'<button class="tkname" id="mkt-name"><span id="mkt-sym">{html.escape(d1)}</span> ▾</button>'
         f'<span>{tfbtns}</span></div>'
         f'<div id="mkt-search" style="display:none;margin:8px 0">'
         f'<input class="futsearch" id="mkt-input" placeholder="심볼 검색…">'
         f'<div class="tklist" id="mkt-list"></div></div>'
-        f'<div id="mkt-chart" class="chartarea" style="min-height:340px"><div class="muted">로딩…</div></div></div>')
+        f'<div id="mkt-chart" class="chartarea"><div class="muted">로딩…</div></div>'
+        f'<div class="muted" style="text-align:right;font-size:10px;margin-top:2px">↕ 아래 모서리를 끌어 높이 조절</div></div>')
     derivs = (
-        f'<div class="card" style="flex:1;min-width:250px">'
-        f'<div class="muted" style="margin-bottom:6px">파생 지표 · <b id="mkt-dsym">{html.escape(d1)}</b> <span>(1h)</span></div>'
+        f'<div class="card mkt-derivcard" style="flex:1;min-width:250px">'
+        f'<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;margin-bottom:6px">'
+        f'<span class="muted">파생 지표 · <b id="mkt-dsym">{html.escape(d1)}</b></span>'
+        f'<span>{dtfbtns}</span></div>'
         f'<div id="mkt-derivs"><div class="muted">로딩…</div></div></div>')
     cfg = ("<script>window.MKTCFG=" + json.dumps(
         {"syms": [str(t.get("symbol", "")) for t in top], "d1": d1}) + ";</script>")
-    return (f'<div style="display:flex;flex-wrap:wrap;gap:14px">{chart}{derivs}</div>{cfg}{_CHART_JS}')
+    return (f'<div style="display:flex;flex-wrap:wrap;gap:14px;align-items:stretch">{chart}{derivs}</div>{cfg}{_CHART_JS}')
 
 
 def _strategy_metrics(journal, start_equity: float | None) -> dict:
@@ -380,20 +389,25 @@ _CHART_JS = r"""<script>
 (function(){
  var cfg=window.MKTCFG||{syms:[],d1:'BTC'};
  var SYMS=(cfg.syms||[]).slice();
- var SEL={s:cfg.d1,tf:'7d'};
+ var SEL={s:cfg.d1,tf:'7d',dtf:'1h'};
+ var LAST=null;               // 마지막 캔들 데이터(리사이즈 재렌더용)
  var root=document.getElementById('mkt-chart');
  if(!root)return;
  var card=root.closest('.card');
+ var dcard=document.querySelector('.mkt-derivcard');
  function hlTf(){card.querySelectorAll('.tfbtn').forEach(function(b){
    b.classList.toggle('tfbtn-active', b.getAttribute('data-tf')===SEL.tf);});}
+ function hlDtf(){if(!dcard)return;dcard.querySelectorAll('.dtfbtn').forEach(function(b){
+   b.classList.toggle('tfbtn-active', b.getAttribute('data-dtf')===SEL.dtf);});}
  function fmtPx(v){if(v>=1000)return '$'+v.toLocaleString('en-US',{maximumFractionDigits:0});
    if(v>=1)return '$'+v.toFixed(2); if(v>=0.01)return '$'+v.toFixed(4); return '$'+v.toFixed(6);}
  function usd(v){if(v==null)return '-'; if(v>=1e9)return '$'+(v/1e9).toFixed(2)+'B';
    if(v>=1e6)return '$'+(v/1e6).toFixed(1)+'M'; if(v>=1e3)return '$'+(v/1e3).toFixed(0)+'K'; return '$'+v.toFixed(0);}
- // ---- 캔들 차트 ----
- function drawCandles(d){var p=(d&&d.points)||[];
+ // ---- 캔들 차트 (컨테이너 실제 크기에 맞춰 렌더 → 세로 리사이즈 대응) ----
+ function drawCandles(d){LAST=d;var p=(d&&d.points)||[];
    if(p.length<2){root.innerHTML='<div class="muted">데이터 없음</div>';return;}
-   var W=680,H=340,padL=64,padR=12,padT=12,padB=26;
+   var W=Math.max(320,root.clientWidth||680),H=Math.max(160,root.clientHeight||320);
+   var padL=64,padR=12,padT=12,padB=26;
    var xs=p.map(function(a){return a[0];});
    var lows=p.map(function(a){return a[3];}),highs=p.map(function(a){return a[2];});
    var xmin=Math.min.apply(null,xs),xmax=Math.max.apply(null,xs);
@@ -402,7 +416,7 @@ _CHART_JS = r"""<script>
    function sx(x){return padL+(x-xmin)/(xmax-xmin)*(W-padL-padR);}
    function sy(v){return H-padB-(v-ymin)/yr*(H-padB-padT);}
    var cw=Math.max(1.4,(W-padL-padR)/p.length*0.62);
-   var o=['<svg viewBox="0 0 '+W+' '+H+'" width="100%">'];
+   var o=['<svg viewBox="0 0 '+W+' '+H+'" width="100%" height="100%" style="display:block" preserveAspectRatio="none">'];
    for(var i=0;i<5;i++){var yv=ymin+yr*i/4,y=sy(yv);
      o.push('<line x1="'+padL+'" y1="'+y+'" x2="'+(W-padR)+'" y2="'+y+'" stroke="rgba(255,255,255,0.06)"/>');
      o.push('<text x="6" y="'+(y+4)+'" fill="#8d969e" font-size="11">'+fmtPx(yv)+'</text>');}
@@ -419,26 +433,34 @@ _CHART_JS = r"""<script>
  function loadChart(){
    fetch('/api/klines?symbol='+encodeURIComponent(SEL.s)+'&tf='+SEL.tf)
    .then(function(r){return r.json();}).then(function(d){drawCandles(d);})
-   .catch(function(){root.innerHTML='<div class="muted">차트는 serve_dashboard 서버 모드에서 표시됩니다.</div>';});
+   .catch(function(){LAST=null;root.innerHTML='<div class="muted">차트는 serve_dashboard 서버 모드에서 표시됩니다.</div>';});
    hlTf();}
+ // 컨테이너 세로 리사이즈 시 마지막 데이터로 재렌더
+ if(window.ResizeObserver){var ro=new ResizeObserver(function(){if(LAST)drawCandles(LAST);});ro.observe(root);}
  // ---- 파생 지표 패널 ----
  function tile(lab,val,col,sub){return '<div class="dtile"><span class="dlab">'+lab+'</span>'+
    '<b style="color:'+(col||'#e6e8ea')+'">'+val+'</b>'+(sub?'<span class="dsub">'+sub+'</span>':'')+'</div>';}
  function renderDerivs(d){var el=document.getElementById('mkt-derivs');
    if(!d){el.innerHTML='<div class="muted">파생 데이터는 serve_dashboard 서버 모드에서 표시됩니다.</div>';return;}
-   var g='#16a34a',r='#e23b4a',n='#8d969e';
+   var g='#16a34a',r='#e23b4a',n='#8d969e',per=d.period||SEL.dtf;
    var fr=d.funding_rate,frp=(fr==null)?null:fr*100;
+   var apr=(frp==null)?null:frp*3*365;    // 8h 펀딩 × 하루3회 × 365 = 연환산
    var gl=d.global_ls_ratio,tt=d.top_trader_ls_ratio,tk=d.taker_buy_sell_ratio;
    var netLong=(gl==null)?null:gl/(1+gl)*100, ttNet=(tt==null)?null:tt/(1+tt)*100;
+   var gap=(netLong==null||ttNet==null)?null:(ttNet-netLong);   // 상위−전체 넷롱(스마트머니 갭)
    var o=[];
    o.push(tile('펀딩비 (funding)', frp==null?'-':(frp>=0?'+':'')+frp.toFixed(4)+'%',
      frp==null?n:(frp>=0?g:r), frp==null?'':(frp>=0?'롱 → 숏 지불':'숏 → 롱 지불')));
-   o.push(tile('OI 변화 (1h)', d.oi_change_pct==null?'-':(d.oi_change_pct>=0?'+':'')+d.oi_change_pct.toFixed(2)+'%',
+   o.push(tile('연환산 펀딩 (APR)', apr==null?'-':(apr>=0?'+':'')+apr.toFixed(1)+'%',
+     apr==null?n:(apr>=0?g:r), '펀딩 8h × 3 × 365'));
+   o.push(tile('OI 변화 ('+per+')', d.oi_change_pct==null?'-':(d.oi_change_pct>=0?'+':'')+d.oi_change_pct.toFixed(2)+'%',
      d.oi_change_pct==null?n:(d.oi_change_pct>=0?g:r), d.oi_notional?('미결제약정 '+usd(d.oi_notional)):''));
    o.push(tile('넷 롱 비중', netLong==null?'-':netLong.toFixed(1)+'%',
      netLong==null?n:(netLong>=50?g:r), '롱/숏 계좌 '+(gl==null?'-':gl.toFixed(2))));
    o.push(tile('상위 트레이더 넷롱', ttNet==null?'-':ttNet.toFixed(1)+'%',
      ttNet==null?n:(ttNet>=50?g:r), 'L/S '+(tt==null?'-':tt.toFixed(2))));
+   o.push(tile('스마트머니 갭', gap==null?'-':(gap>=0?'+':'')+gap.toFixed(1)+'p',
+     gap==null?n:(gap>=0?g:r), '상위−전체 넷롱 (양수=고래 낙관)'));
    o.push(tile('테이커 매수/매도 (CVD)', tk==null?'-':tk.toFixed(2),
      tk==null?n:(tk>=1?g:r), tk==null?'':(tk>=1?'시장가 매수 우세':'시장가 매도 우세')));
    o.push(tile('24h 거래량', usd(d.vol24),
@@ -446,15 +468,17 @@ _CHART_JS = r"""<script>
    el.innerHTML=o.join('');}
  function loadDerivs(){document.getElementById('mkt-dsym').textContent=SEL.s;
    document.getElementById('mkt-derivs').innerHTML='<div class="muted">로딩…</div>';
-   fetch('/api/derivs?symbol='+encodeURIComponent(SEL.s))
+   fetch('/api/derivs?symbol='+encodeURIComponent(SEL.s)+'&period='+encodeURIComponent(SEL.dtf))
    .then(function(r){return r.json();}).then(function(d){renderDerivs(d);})
-   .catch(function(){renderDerivs(null);});}
+   .catch(function(){renderDerivs(null);});
+   hlDtf();}
  // ---- 심볼 검색 ----
  function renderSyms(q){q=(q||'').toUpperCase();var box=document.getElementById('mkt-list');
    box.innerHTML=SYMS.filter(function(x){return x.toUpperCase().indexOf(q)>=0;}).slice(0,150)
    .map(function(x){return '<div class="tkopt" data-s="'+x+'">'+x+'</div>';}).join('');}
  document.addEventListener('click',function(e){var t=e.target;if(!t.closest)return;
    var tf=t.closest('.tfbtn');if(tf){SEL.tf=tf.getAttribute('data-tf');loadChart();return;}
+   var dtf=t.closest('.dtfbtn');if(dtf){SEL.dtf=dtf.getAttribute('data-dtf');loadDerivs();return;}
    var nm=t.closest('#mkt-name');if(nm){var s=document.getElementById('mkt-search');
      s.style.display=s.style.display==='none'?'block':'none';if(s.style.display==='block')renderSyms('');return;}
    var op=t.closest('.tkopt');if(op){SEL.s=op.getAttribute('data-s');
@@ -679,10 +703,14 @@ def render_html(journal: TradeJournal, equity: float | None = None,
   .tklist {{ max-height:240px; overflow-y:auto; margin-top:6px; display:grid; grid-template-columns:repeat(auto-fill,minmax(80px,1fr)); gap:4px; }}
   .tkopt {{ padding:6px 8px; border:1px solid var(--border); border-radius:9999px; font-size:12px; text-align:center; cursor:pointer; }}
   .tkopt:hover {{ background:var(--brand); color:#fff; }}
-  .tfbtn {{ background:transparent; color:var(--muted); border:1px solid var(--border); border-radius:9999px; padding:3px 9px; margin-left:4px; font-size:12px; cursor:pointer; }}
+  .tfbtn, .dtfbtn {{ background:transparent; color:var(--muted); border:1px solid var(--border); border-radius:9999px; padding:3px 9px; margin-left:4px; font-size:12px; cursor:pointer; }}
   .tfbtn-active {{ background:var(--brand); color:#fff; border-color:var(--brand); }}
-  .chartarea {{ margin-top:8px; min-height:200px; }}
-  .dtile {{ display:flex; flex-direction:column; gap:2px; padding:11px 4px; border-bottom:1px solid var(--border); }}
+  /* 차트: 세로 리사이즈 가능(모서리 드래그) — 파생 패널은 flex-stretch 로 높이 추종 */
+  .mkt-chartcard {{ display:flex; flex-direction:column; }}
+  .chartarea {{ margin-top:8px; height:300px; min-height:180px; max-height:720px; resize:vertical; overflow:hidden; }}
+  .mkt-derivcard {{ display:flex; flex-direction:column; }}
+  #mkt-derivs {{ flex:1; display:flex; flex-direction:column; }}
+  .dtile {{ flex:1; display:flex; flex-direction:column; gap:2px; justify-content:center; padding:9px 4px; border-bottom:1px solid var(--border); }}
   .dtile:last-child {{ border-bottom:none; }}
   .dtile b {{ font-size:17px; font-weight:700; }}
   .dlab {{ color:var(--muted-2); font-size:12px; }}
@@ -741,9 +769,17 @@ def render_html(journal: TradeJournal, equity: float | None = None,
   </div>
 
   <script>
+   function _showTab(tab){{
+     var found=false;
+     document.querySelectorAll('.tab').forEach(function(b){{var on=b.getAttribute('data-tab')===tab;b.classList.toggle('tab-active',on);if(on)found=true;}});
+     if(!found)tab='perf';
+     document.querySelectorAll('.tab').forEach(function(b){{b.classList.toggle('tab-active',b.getAttribute('data-tab')===tab);}});
+     document.querySelectorAll('.tabpane').forEach(function(p){{p.style.display=p.getAttribute('data-pane')===tab?'block':'none';}});
+     return tab;}}
    document.addEventListener('click',function(e){{var t=e.target.closest&&e.target.closest('.tab');if(!t)return;
-     var tab=t.getAttribute('data-tab');
-     document.querySelectorAll('.tab').forEach(function(b){{b.classList.toggle('tab-active',b===t);}});
-     document.querySelectorAll('.tabpane').forEach(function(p){{p.style.display=p.getAttribute('data-pane')===tab?'block':'none';}});}});
+     var tab=_showTab(t.getAttribute('data-tab'));
+     try{{localStorage.setItem('ct_tab',tab);}}catch(_e){{}} }});
+   // 자동 새로고침 후에도 마지막으로 보던 탭 유지
+   (function(){{var saved;try{{saved=localStorage.getItem('ct_tab');}}catch(_e){{}}if(saved)_showTab(saved);}})();
   </script>
 </body></html>"""
