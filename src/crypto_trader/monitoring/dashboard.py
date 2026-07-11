@@ -69,6 +69,11 @@ def load_chartist_views() -> dict:
     return _load_json("kol/chartist_views.json") or {}
 
 
+def load_etf_flows() -> dict:
+    """BTC·ETH 스팟 ETF 일별 순유입. research/etf/flows.json."""
+    return _load_json("etf/flows.json") or {}
+
+
 def _epoch(iso: str | None) -> float | None:
     if not iso:
         return None
@@ -753,6 +758,97 @@ def _chartists_section(data: dict) -> str:
 """
 
 
+def _fmt_musd(v: float) -> str:
+    """USD 백만달러 단위 값 → 사람이 읽는 문자열(+$1.2B / -$120M ...)."""
+    a = abs(v)
+    s = "+" if v >= 0 else "-"
+    if a >= 1000:
+        return f"{s}${a / 1000:.2f}B"
+    if a >= 1:
+        return f"{s}${a:.0f}M"
+    return f"{s}${a * 1000:.0f}K"
+
+
+def _etf_flow_svg(rows: list, width: int = 560, height: int = 220) -> str:
+    """ETF 일별 순유입 막대(녹/적) + 누적선(보라, 우측축) 인라인 SVG. rows:[{date,flow(백만$)}]."""
+    rows = [r for r in rows if r.get("date") and r.get("flow") is not None][-60:]
+    if len(rows) < 2:
+        return "<div class='muted'>데이터 부족</div>"
+    flows = [float(r["flow"]) for r in rows]
+    cum, s = [], 0.0
+    for f in flows:
+        s += f
+        cum.append(s)
+    n = len(rows)
+    padL, padR, padT, padB = 54, 54, 12, 24
+    W, H = width, height
+    plotW, plotH = W - padL - padR, H - padT - padB
+    fmax = max((abs(f) for f in flows), default=1.0) or 1.0
+    cmin, cmax = min(cum + [0.0]), max(cum + [0.0])
+    if cmax == cmin:
+        cmax += 1.0
+    bx = lambda i: padL + (i + 0.5) / n * plotW
+    zeroY = padT + plotH * 0.5
+    by = lambda v: padT + plotH * (1 - (v + fmax) / (2 * fmax))
+    cy = lambda v: padT + plotH * (1 - (v - cmin) / (cmax - cmin))
+    bw = max(1.0, plotW / n * 0.6)
+    o = [f'<svg viewBox="0 0 {W} {H}" width="100%" style="max-width:{W}px" xmlns="http://www.w3.org/2000/svg">']
+    o.append(f'<line x1="{padL}" y1="{zeroY:.1f}" x2="{W - padR}" y2="{zeroY:.1f}" stroke="rgba(255,255,255,0.18)"/>')
+    for i, f in enumerate(flows):
+        col = "#16a34a" if f >= 0 else "#e23b4a"
+        y1 = by(f)
+        top = min(zeroY, y1)
+        h = max(1.0, abs(y1 - zeroY))
+        o.append(f'<rect x="{bx(i) - bw / 2:.1f}" y="{top:.1f}" width="{bw:.1f}" height="{h:.1f}" fill="{col}" opacity="0.75"/>')
+    d = "".join((("M" if i == 0 else "L") + f"{bx(i):.1f},{cy(cum[i]):.1f}") for i in range(n))
+    o.append(f'<path d="{d}" fill="none" stroke="#6c72ff" stroke-width="1.8"/>')
+    o.append(f'<text x="6" y="{padT + 8}" fill="#8d969e" font-size="10">{_fmt_musd(fmax)}</text>')
+    o.append(f'<text x="6" y="{H - padB:.0f}" fill="#8d969e" font-size="10">{_fmt_musd(-fmax)}</text>')
+    o.append(f'<text x="{W - padR + 4}" y="{cy(cmax) + 8:.1f}" fill="#6c72ff" font-size="10">{_fmt_musd(cmax)}</text>')
+    o.append(f'<text x="{W - padR + 4}" y="{cy(cmin):.1f}" fill="#6c72ff" font-size="10">{_fmt_musd(cmin)}</text>')
+    for k, idx in enumerate([0, n // 2, n - 1]):
+        dt = html.escape(str(rows[idx]["date"])[5:])
+        an = "start" if k == 0 else ("end" if k == 2 else "middle")
+        o.append(f'<text x="{bx(idx):.1f}" y="{H - 7}" fill="#8d969e" font-size="10" text-anchor="{an}">{dt}</text>')
+    o.append("</svg>")
+    return "".join(o)
+
+
+def _etf_section(data: dict) -> str:
+    """리서치 탭: BTC·ETH 스팟 ETF 일별 순유입(막대) + 누적(선) 차트."""
+    assets = (data or {}).get("assets") or {}
+    order = [s for s in ("BTC", "ETH") if assets.get(s)]
+    if not order:
+        return ""
+    ts = kst_display((data or {}).get("ts"), "%m-%d %H:%M")
+    unit = html.escape(str((data or {}).get("unit", "USD millions")))
+    source = str((data or {}).get("source", ""))
+    src_html = (f"<a href='{html.escape(source)}' target='_blank' rel='noopener' style='color:var(--muted-2)'>"
+                f"{html.escape(source[:60])}</a>" if source.startswith("http")
+                else f"<span class='muted'>{html.escape(source[:60])}</span>")
+    cards = []
+    for sym in order:
+        rows = assets[sym] or []
+        flows = [float(r["flow"]) for r in rows if r.get("flow") is not None]
+        cum = sum(flows)
+        last = flows[-1] if flows else 0.0
+        cc = "#16a34a" if cum >= 0 else "#e23b4a"
+        lc = "#16a34a" if last >= 0 else "#e23b4a"
+        cards.append(
+            f"<div class='card' style='flex:1;min-width:340px'>"
+            f"<div style='display:flex;justify-content:space-between;align-items:baseline;gap:8px'>"
+            f"<b>{sym} 스팟 ETF</b>"
+            f"<span class='muted' style='font-size:11px'>막대=일별 · <span style='color:#6c72ff'>선=누적</span></span></div>"
+            f"<div style='font-size:13px;margin:4px 0 6px'>누적 <b style='color:{cc}'>{_fmt_musd(cum)}</b> "
+            f"· 최근일 <b style='color:{lc}'>{_fmt_musd(last)}</b></div>"
+            f"{_etf_flow_svg(rows)}</div>")
+    return f"""
+  <h2>🏦 BTC·ETH 스팟 ETF 순유입 <span class="muted">({ts} KST · 단위 {unit})</span></h2>
+  <div style="display:flex;gap:14px;flex-wrap:wrap">{"".join(cards)}</div>
+  <div class="muted" style="margin-top:8px">출처: {src_html} · 일 단위 발표(실시간 아님), 데이터 지연·정정 가능. 투자조언 아님.</div>
+"""
+
+
 def render_html(journal: TradeJournal, equity: float | None = None,
                 events: list | None = None, refresh_sec: int = 0,
                 start_equity: float | None = None,
@@ -840,6 +936,7 @@ def render_html(journal: TradeJournal, equity: float | None = None,
     brief_section = _brief_section(load_market_brief())
     kol_section = _kol_section(load_kol_watch())
     chartists_section = _chartists_section(load_chartist_views())
+    etf_section = _etf_section(load_etf_flows())
 
     event_section = f"""
   <details class="events">
@@ -986,6 +1083,7 @@ def render_html(journal: TradeJournal, equity: float | None = None,
 
   <div class="tabpane" data-pane="research" style="display:none">
     {chartists_section}
+    {etf_section}
     {brief_section}
     {kol_section}
     {event_section}
