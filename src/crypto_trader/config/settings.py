@@ -63,6 +63,12 @@ class Settings(BaseSettings):
     atr_stop_mult: float = 1.5         # 손절 거리 = ATR × 이 값
     reward_risk_ratio: float = 1.5     # 익절 = 손절거리 × 이 값 (R배수)
 
+    # --- 단타 전략 튜닝 (진입 빈도 조절 — 낮출수록 자주 진입) ---
+    scalp_vol_spike_mult: float = 3.0     # 직전봉 거래량/평균 ≥ 이 배수 (기존 4.0 → 완화)
+    scalp_squeeze_pctile: float = 45.0    # 밴드폭 하위 N% 스퀴즈 (기존 30 → 완화, 100=사실상 해제)
+    scalp_min_body_atr: float = 0.7       # 캔들 몸통 ≥ ATR×이 값 (기존 1.0 → 완화)
+    scalp_require_regime: bool = False     # True=추세일치 필수, False=횡보 허용(역추세만 차단)
+
     # --- 시장 스캐너 (급등/급락/거래량·OI 급증 알림) ---
     scanner_enabled: bool = True
     scanner_interval_sec: int = 180        # 스캔 주기(초)

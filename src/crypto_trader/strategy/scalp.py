@@ -46,27 +46,36 @@ class ScalpDecision:
 class ScalpStrategy:
     def __init__(self, settings: Settings,
                  bb_period: int = 20, bb_std: float = 2.0,
-                 vol_lookback: int = 20, vol_spike_mult: float = 4.0,
-                 strong_body_frac: float = 0.6, min_body_atr: float = 1.0,
+                 vol_lookback: int = 20, vol_spike_mult: float | None = None,
+                 strong_body_frac: float = 0.6, min_body_atr: float | None = None,
                  min_tp_frac: float = 0.0012,
                  reward_risk_ratio: float | None = None,
-                 squeeze_pctile: float | None = 30.0,
-                 squeeze_lookback: int = 50):
+                 squeeze_pctile: float | None = -1.0,
+                 squeeze_lookback: int = 50,
+                 require_regime: bool | None = None):
         self.s = settings
         self.bb_period = bb_period
         self.bb_std = bb_std
         self.vol_lookback = vol_lookback
-        self.vol_spike_mult = vol_spike_mult
+        # 라이브 튜닝: 명시 인자 없으면 .env(settings)의 SCALP_* 값을 기본으로 사용
+        self.vol_spike_mult = (vol_spike_mult if vol_spike_mult is not None
+                               else getattr(settings, "scalp_vol_spike_mult", 3.0))
         self.strong_body_frac = strong_body_frac  # 몸통이 전체 레인지의 이 비율 이상이면 '강봉'
-        self.min_body_atr = min_body_atr          # 몸통이 ATR 의 이 배수 이상이어야 유의미
+        # 몸통이 ATR 의 이 배수 이상이어야 유의미
+        self.min_body_atr = (min_body_atr if min_body_atr is not None
+                             else getattr(settings, "scalp_min_body_atr", 0.7))
         self.min_tp_frac = min_tp_frac            # 최소 익절 거리 (가격 대비). 테이커 진입 시
                                                   # 왕복 수수료 0.1% 를 넘겨야 하므로 0.12% 기본
         self.rr = reward_risk_ratio if reward_risk_ratio is not None else settings.reward_risk_ratio
         # 볼린저 스퀴즈 전제: 신호봉 직전 밴드폭이 최근 N봉 분포의 하위 pctile% 이하일
-        # 때만 진입 허용. 밴드 확장 후의 늦은 돌파(대부분 되돌림)를 차단 — 68회
-        # 백테스트에서 유일하게 3심볼×2기간 일관 개선 (None=비활성).
-        self.squeeze_pctile = squeeze_pctile
+        # 때만 진입 허용. 밴드 확장 후의 늦은 돌파(대부분 되돌림)를 차단.
+        # (None=비활성, 100=사실상 비활성). 명시 없으면 .env 값 사용.
+        self.squeeze_pctile = (squeeze_pctile if squeeze_pctile != -1.0
+                               else getattr(settings, "scalp_squeeze_pctile", 45.0))
         self.squeeze_lookback = squeeze_lookback
+        # 확인 TF 추세 게이트(횡보장 진입 금지). 완화하려면 False.
+        self.require_regime = (require_regime if require_regime is not None
+                               else getattr(settings, "scalp_require_regime", True))
 
     def decide(self, symbol: str, df: pd.DataFrame,
                oi_delta: float | None = None,
@@ -123,11 +132,14 @@ class ScalpStrategy:
         # OI 동반 증가 확인(있으면). None 이면 통과, 있으면 증가 요구.
         oi_ok = (oi_delta is None) or (oi_delta > 0)
 
-        # 확인 TF(5m) 추세 필터: 횡보장(RANGE)에선 진입 금지,
-        # 추세장에선 돌파 방향이 추세와 일치할 때만 진입.
-        # (1m 돌파는 무추세 구간에서 대부분 되돌림 → 백테스트로 확인됨)
-        long_regime_ok = confirm_regime is None or confirm_regime is Regime.TREND_UP
-        short_regime_ok = confirm_regime is None or confirm_regime is Regime.TREND_DOWN
+        # 확인 TF 추세 필터. require_regime=True(엄격): 추세 일치할 때만 진입.
+        # False(완화): 횡보(RANGE)도 허용하되 명확한 역추세만 차단 → 진입 빈도↑.
+        if self.require_regime:
+            long_regime_ok = confirm_regime is None or confirm_regime is Regime.TREND_UP
+            short_regime_ok = confirm_regime is None or confirm_regime is Regime.TREND_DOWN
+        else:
+            long_regime_ok = confirm_regime is not Regime.TREND_DOWN
+            short_regime_ok = confirm_regime is not Regime.TREND_UP
 
         detail = {
             "vol_spike": vol_spike, "body_frac": round(body_frac, 3),
