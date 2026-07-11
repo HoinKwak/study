@@ -390,6 +390,11 @@ _CHART_JS = r"""<script>
  var cfg=window.MKTCFG||{syms:[],d1:'BTC'};
  var SYMS=(cfg.syms||[]).slice();
  var SEL={s:cfg.d1,tf:'7d',dtf:'1h'};
+ function save(k,v){try{localStorage.setItem(k,v);}catch(_e){}}
+ // 선택한 심볼·타임프레임 복원(새로고침 후에도 유지)
+ try{var _s=localStorage.getItem('ct_sym');if(_s)SEL.s=_s;
+   var _t=localStorage.getItem('ct_tf');if(_t)SEL.tf=_t;
+   var _d=localStorage.getItem('ct_dtf');if(_d)SEL.dtf=_d;}catch(_e){}
  var LAST=null;               // 마지막 캔들 데이터(리사이즈 재렌더용)
  var root=document.getElementById('mkt-chart');
  if(!root)return;
@@ -483,16 +488,17 @@ _CHART_JS = r"""<script>
    box.innerHTML=SYMS.filter(function(x){return x.toUpperCase().indexOf(q)>=0;}).slice(0,150)
    .map(function(x){return '<div class="tkopt" data-s="'+x+'">'+x+'</div>';}).join('');}
  document.addEventListener('click',function(e){var t=e.target;if(!t.closest)return;
-   var tf=t.closest('.tfbtn');if(tf){SEL.tf=tf.getAttribute('data-tf');loadChart();return;}
-   var dtf=t.closest('.dtfbtn');if(dtf){SEL.dtf=dtf.getAttribute('data-dtf');loadDerivs();return;}
+   var tf=t.closest('.tfbtn');if(tf){SEL.tf=tf.getAttribute('data-tf');save('ct_tf',SEL.tf);loadChart();return;}
+   var dtf=t.closest('.dtfbtn');if(dtf){SEL.dtf=dtf.getAttribute('data-dtf');save('ct_dtf',SEL.dtf);loadDerivs();return;}
    var nm=t.closest('#mkt-name');if(nm){var s=document.getElementById('mkt-search');
      s.style.display=s.style.display==='none'?'block':'none';if(s.style.display==='block')renderSyms('');return;}
-   var op=t.closest('.tkopt');if(op){SEL.s=op.getAttribute('data-s');
+   var op=t.closest('.tkopt');if(op){SEL.s=op.getAttribute('data-s');save('ct_sym',SEL.s);
      document.getElementById('mkt-sym').textContent=SEL.s;
      document.getElementById('mkt-search').style.display='none';loadChart();loadDerivs();}});
  document.addEventListener('input',function(e){var t=e.target;
    if(t.id==='mkt-input')renderSyms(t.value);});
  fetch('/api/symbols').then(function(r){return r.json();}).then(function(a){if(a&&a.length)SYMS=a;}).catch(function(){});
+ var _symEl=document.getElementById('mkt-sym');if(_symEl)_symEl.textContent=SEL.s;   // 복원된 심볼 라벨 반영
  loadChart();loadDerivs();
 })();
 </script>"""
