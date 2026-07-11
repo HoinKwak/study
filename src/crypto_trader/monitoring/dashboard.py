@@ -686,9 +686,9 @@ def render_html(journal: TradeJournal, equity: float | None = None,
   body {{ font-family: 'Pretendard', 'Inter', 'Malgun Gothic', 'Apple SD Gothic Neo', -apple-system, system-ui, sans-serif; background:var(--bg); color:var(--text); margin:0; padding:28px; letter-spacing:0.2px; -webkit-font-smoothing:antialiased; }}
   h1 {{ font-size:20px; }} h2 {{ font-size:15px; color:var(--muted); margin-top:28px; }}
   h3 {{ font-size:14px; color:var(--muted); }}
-  .grid {{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:var(--gap); margin:16px 0; }}
-  .stat {{ background:var(--surface); border-radius:var(--radius); padding:var(--pad); display:flex; flex-direction:column; gap:6px; }}
-  .stat span {{ font-size:12px; color:var(--muted); }} .stat b {{ font-size:20px; }}
+  .grid {{ display:grid; grid-template-columns:repeat(auto-fit,minmax(126px,1fr)); gap:10px; margin:16px 0; }}
+  .stat {{ background:var(--surface); border-radius:var(--radius-sm); padding:13px 14px; display:flex; flex-direction:column; gap:5px; }}
+  .stat span {{ font-size:11px; color:var(--muted); }} .stat b {{ font-size:18px; }}
   table {{ width:100%; border-collapse:collapse; font-size:13px; }}
   th,td {{ text-align:left; padding:8px 10px; border-bottom:1px solid var(--border); }}
   th {{ color:var(--muted); font-weight:600; }}
@@ -706,13 +706,15 @@ def render_html(journal: TradeJournal, equity: float | None = None,
   .tfbtn, .dtfbtn {{ background:transparent; color:var(--muted); border:1px solid var(--border); border-radius:9999px; padding:3px 9px; margin-left:4px; font-size:12px; cursor:pointer; }}
   .tfbtn-active {{ background:var(--brand); color:#fff; border-color:var(--brand); }}
   /* 차트: 세로 리사이즈 가능(모서리 드래그) — 파생 패널은 flex-stretch 로 높이 추종 */
-  .mkt-chartcard {{ display:flex; flex-direction:column; }}
-  .chartarea {{ margin-top:8px; height:300px; min-height:180px; max-height:720px; resize:vertical; overflow:hidden; }}
-  .mkt-derivcard {{ display:flex; flex-direction:column; }}
-  #mkt-derivs {{ flex:1; display:flex; flex-direction:column; }}
-  .dtile {{ flex:1; display:flex; flex-direction:column; gap:2px; justify-content:center; padding:9px 4px; border-bottom:1px solid var(--border); }}
+  .mkt-chartcard {{ display:flex; flex-direction:column; padding:14px 16px; }}
+  .chartarea {{ margin-top:8px; height:230px; min-height:140px; max-height:720px; resize:vertical; overflow:hidden; }}
+  /* 파생 패널은 차트 카드 높이를 따라감(flex-stretch). 타일이 넘치면 내부 스크롤,
+     차트를 키우면 타일이 flex-grow 로 늘어 채움 → 카드가 파생 때문에 커지지 않음. */
+  .mkt-derivcard {{ display:flex; flex-direction:column; padding:14px 16px; }}
+  #mkt-derivs {{ flex:1 1 0; min-height:0; overflow-y:auto; display:flex; flex-direction:column; }}
+  .dtile {{ flex:1 0 auto; min-height:44px; display:flex; flex-direction:column; gap:2px; justify-content:center; padding:7px 4px; border-bottom:1px solid var(--border); }}
   .dtile:last-child {{ border-bottom:none; }}
-  .dtile b {{ font-size:17px; font-weight:700; }}
+  .dtile b {{ font-size:16px; font-weight:700; }}
   .dlab {{ color:var(--muted-2); font-size:12px; }}
   .dsub {{ color:var(--muted-2); font-size:11px; }}
   .tabs {{ display:flex; gap:6px; margin:18px 0 4px; border-bottom:1px solid var(--border); }}
