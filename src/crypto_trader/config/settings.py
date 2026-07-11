@@ -49,6 +49,12 @@ class Settings(BaseSettings):
 
     # --- 리스크 ---
     max_leverage: int = 3
+    # 티커별 레버리지: 시총 상위(major_bases)는 major_leverage, 그 외 알트는 alt_leverage.
+    major_bases: Annotated[list[str], NoDecode] = Field(
+        default_factory=lambda: ["BTC", "ETH", "BNB", "SOL", "XRP", "DOGE", "ADA", "TRX", "AVAX", "LINK"]
+    )
+    major_leverage: int = 50
+    alt_leverage: int = 20
     risk_per_trade_pct: float = 1.0
     max_open_positions: int = 3
     max_position_notional_pct: float = 100.0  # 포지션당 명목가치 상한(계좌 대비 %)
@@ -102,13 +108,18 @@ class Settings(BaseSettings):
     def has_telegram(self) -> bool:
         return bool(self.telegram_bot_token and self.telegram_chat_id)
 
-    @field_validator("symbols", mode="before")
+    @field_validator("symbols", "major_bases", mode="before")
     @classmethod
     def _split_symbols(cls, v):
         """`BTC/USDT,ETH/USDT` 같은 쉼표 문자열도 리스트로 파싱."""
         if isinstance(v, str):
             return [s.strip() for s in v.split(",") if s.strip()]
         return v
+
+    def leverage_for(self, symbol: str) -> int:
+        """티커별 레버리지 — 시총 상위(major_bases)면 major_leverage, 아니면 alt_leverage."""
+        base = symbol.split("/")[0].upper()
+        return self.major_leverage if base in {b.upper() for b in self.major_bases} else self.alt_leverage
 
     @property
     def has_binance_keys(self) -> bool:

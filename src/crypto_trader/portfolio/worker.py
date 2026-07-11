@@ -351,15 +351,17 @@ class SleeveWorker:
             return
         if decision.action in (Action.OPEN_LONG, Action.OPEN_SHORT):
             price = float(df["close"].iloc[-1])
+            lev = self.s.leverage_for(symbol)
             if getattr(decision, "stop_price", 0.0):
                 plan = self.risk.build_plan_with_stop(symbol, decision.direction, price,
                                                       decision.stop_price,
                                                       decision.take_profit, equity,
-                                                      account_equity=self._account_equity)
+                                                      account_equity=self._account_equity,
+                                                      leverage=lev)
             else:
                 atr_value = float(ind.atr(df).iloc[-1])
                 plan = self.risk.build_plan(symbol, decision.direction, price, atr_value, equity,
-                                            account_equity=self._account_equity)
+                                            account_equity=self._account_equity, leverage=lev)
             self._open_common(plan, symbol, decision.direction, price, decision.regime.value)
 
     # ------------------------------------------------- 단타 (모멘텀 청산)
@@ -447,13 +449,18 @@ class SleeveWorker:
             return False
 
     def _size_plan(self, symbol, direction, price, stop, tp, equity):
-        """포지션 사이징 — 증거금 기준(position_margin_pct>0) 또는 리스크 기준."""
+        """포지션 사이징 — 증거금 기준(position_margin_pct>0) 또는 리스크 기준.
+
+        레버리지는 티커별(시총 상위=major_leverage / 알트=alt_leverage)로 적용.
+        """
+        lev = self.s.leverage_for(symbol)
         if self.s.position_margin_pct > 0 and self._account_equity:
             margin = self._account_equity * (self.s.position_margin_pct / 100.0)
             return self.risk.build_plan_by_margin(symbol, direction, price, stop, tp,
-                                                  margin, leverage=self.sleeve.leverage)
+                                                  margin, leverage=lev)
         return self.risk.build_plan_with_stop(symbol, direction, price, stop, tp,
-                                              equity, account_equity=self._account_equity)
+                                              equity, account_equity=self._account_equity,
+                                              leverage=lev)
 
     def _act_scalp(self, symbol, df, decision, equity, current_dir) -> None:
         # 0) 보유 중이면 모멘텀 청산 우선 점검
@@ -520,7 +527,8 @@ class SleeveWorker:
             return
         plan = TradePlan(symbol=symbol, direction=decision.direction, entry_price=price,
                          stop_price=decision.stop_price, take_profit=decision.take_profit,
-                         quantity=qty, leverage=1, risk_amount=qty * abs(price - decision.stop_price),
+                         quantity=qty, leverage=self.s.leverage_for(symbol),
+                         risk_amount=qty * abs(price - decision.stop_price),
                          notional=qty * price)
         if self.s.trade_mode is TradeMode.DRY_RUN:
             fill_price, fqty, oid = price, qty, None

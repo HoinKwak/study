@@ -89,10 +89,12 @@ class RiskManager:
 
     def build_plan(self, symbol: str, direction: Direction, entry_price: float,
                    atr_value: float, equity: float,
-                   account_equity: float | None = None) -> TradePlan | None:
+                   account_equity: float | None = None,
+                   leverage: int | None = None) -> TradePlan | None:
         """ATR 기반 손절 거리로 리스크 대비 수량 산정."""
         if direction is Direction.FLAT or entry_price <= 0 or atr_value <= 0 or equity <= 0:
             return None
+        lev = leverage if leverage is not None else self.max_leverage
 
         stop_distance = self.atr_stop_mult * atr_value
         if stop_distance <= 0:
@@ -112,8 +114,8 @@ class RiskManager:
 
         notional = entry_price * quantity
 
-        # 레버리지 상한: 명목가치가 (증거금 × max_leverage) 넘지 않게 클램프
-        max_notional = equity * self.max_leverage
+        # 레버리지 상한: 명목가치가 (증거금 × 레버리지) 넘지 않게 클램프
+        max_notional = equity * lev
         if notional > max_notional:
             scale = max_notional / notional
             quantity *= scale
@@ -128,7 +130,7 @@ class RiskManager:
         # 거래소 레버리지 설정 = 슬리브 설정 레버리지 그대로.
         # (명목가치는 quantity 로 이미 결정됨. 레버리지는 증거금 효율·청산가만 좌우.
         #  포지션 크기 = risk_amount/SL거리 로 별도 통제, SL 이 청산가보다 훨씬 가까움.)
-        leverage = self.max_leverage
+        leverage = lev
 
         return TradePlan(
             symbol=symbol,
@@ -167,10 +169,12 @@ class RiskManager:
     def build_plan_with_stop(self, symbol: str, direction: Direction, entry_price: float,
                              stop_price: float, take_profit: float,
                              equity: float,
-                             account_equity: float | None = None) -> TradePlan | None:
+                             account_equity: float | None = None,
+                             leverage: int | None = None) -> TradePlan | None:
         """전략이 SL/TP 를 직접 제시한 경우(예: 단타), 손절 거리로 수량 산정."""
         if direction is Direction.FLAT or entry_price <= 0 or equity <= 0:
             return None
+        lev = leverage if leverage is not None else self.max_leverage
         stop_distance = abs(entry_price - stop_price)
         if stop_distance <= 0:
             return None
@@ -181,7 +185,7 @@ class RiskManager:
             return None
 
         notional = entry_price * quantity
-        max_notional = equity * self.max_leverage
+        max_notional = equity * lev
         if notional > max_notional:
             scale = max_notional / notional
             quantity *= scale
@@ -195,7 +199,7 @@ class RiskManager:
         # 거래소 레버리지 설정 = 슬리브 설정 레버리지 그대로.
         # (명목가치는 quantity 로 이미 결정됨. 레버리지는 증거금 효율·청산가만 좌우.
         #  포지션 크기 = risk_amount/SL거리 로 별도 통제, SL 이 청산가보다 훨씬 가까움.)
-        leverage = self.max_leverage
+        leverage = lev
         return TradePlan(
             symbol=symbol, direction=direction, entry_price=entry_price,
             stop_price=stop_price, take_profit=take_profit, quantity=quantity,
