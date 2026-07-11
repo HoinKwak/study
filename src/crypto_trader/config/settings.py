@@ -66,8 +66,8 @@ class Settings(BaseSettings):
     # --- 시장 스캐너 (급등/급락/거래량·OI 급증 알림) ---
     scanner_enabled: bool = True
     scanner_interval_sec: int = 180        # 스캔 주기(초)
-    scanner_min_volume: float = 50e6       # 대상 유니버스 최소 24h 거래대금
-    scanner_max_symbols: int = 80          # 대상 심볼 상한(요청 수 제한)
+    scanner_min_volume: float = 10e6       # 대상 유니버스 최소 24h 거래대금
+    scanner_max_symbols: int = 200         # 대상 심볼 상한(요청 수 제한)
     scanner_timeframe: str = "5m"          # 가격/거래량 판정 캔들
     scanner_price_window: int = 3          # 가격 변동 판정 캔들 수
     scanner_price_move_pct: float = 3.0    # |변동%| 이 값 이상이면 급등/급락

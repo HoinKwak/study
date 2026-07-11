@@ -16,6 +16,32 @@ from ..utils import get_logger
 log = get_logger("binance")
 
 
+def _max_notional_from_tiers(tiers: list, leverage: float) -> float | None:
+    """레버리지 브라켓 목록에서 주어진 레버리지에 허용되는 최대 명목가치.
+
+    각 tier: maxLeverage 이하에서만 maxNotional 까지 허용. 요청 레버리지를
+    수용하는(최대레버리지 ≥ leverage) tier 들의 maxNotional 중 최댓값.
+    tiers 비어있거나 파싱 불가 시 None.
+    """
+    best: float | None = None
+    for t in tiers or []:
+        info = t.get("info", {}) if isinstance(t, dict) else {}
+        maxlev = t.get("maxLeverage") if isinstance(t, dict) else None
+        maxnot = t.get("maxNotional") if isinstance(t, dict) else None
+        if maxlev is None:
+            maxlev = info.get("maxLeverage")
+        if maxnot is None:
+            maxnot = info.get("maxNotionalValue") or info.get("maxNotional")
+        try:
+            maxlev_f = float(maxlev)
+            maxnot_f = float(maxnot)
+        except (TypeError, ValueError):
+            continue
+        if maxlev_f >= leverage:
+            best = maxnot_f if best is None else max(best, maxnot_f)
+    return best
+
+
 class BinanceClient:
     def __init__(self, settings: Settings):
         self.settings = settings
@@ -332,6 +358,26 @@ class BinanceClient:
         m = self.market_meta(symbol)
         cost_min = (m.get("limits", {}).get("cost", {}) or {}).get("min")
         return float(cost_min) if cost_min else 5.0
+
+    def max_position_notional(self, symbol: str, leverage: int) -> float | None:
+        """해당 레버리지에서 이 심볼이 허용하는 최대 포지션 명목가치(USDT).
+
+        바이낸스 레버리지 브라켓(tier)에서 산출. 소형 알트는 30배에서 한도가
+        작아(예: $5,000) 초과 주문이 -2027 로 거부됨 → 사전 캡 용도.
+        조회 실패 시 None(캡 미적용).
+        """
+        cache = self.__dict__.setdefault("_lev_tiers_cache", {})
+        canonical = self.resolve_symbol(symbol)
+        tiers = cache.get(canonical)
+        if tiers is None:
+            try:
+                fetched = self.exchange.fetch_leverage_tiers([canonical])
+                tiers = fetched.get(canonical) or []
+            except Exception as e:  # noqa: BLE001 — 캡은 최선노력, 실패해도 진입은 진행
+                log.warning("레버리지 브라켓 조회 실패 %s: %s", symbol, str(e)[:80])
+                tiers = []
+            cache[canonical] = tiers
+        return _max_notional_from_tiers(tiers, leverage)
 
     def amount_to_precision(self, symbol: str, amount: float) -> float:
         return float(self.exchange.amount_to_precision(self.resolve_symbol(symbol), amount))

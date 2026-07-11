@@ -16,10 +16,13 @@ def _configure_root(level: str = "INFO") -> None:
     log_dir = Path("logs")
     log_dir.mkdir(exist_ok=True)
 
+    from .timez import kst_struct
+
     fmt = logging.Formatter(
         "%(asctime)s | %(levelname)-7s | %(name)s | %(message)s",
         datefmt="%Y-%m-%d %H:%M:%S",
     )
+    fmt.converter = kst_struct   # 로그 시각을 KST(한국시간)로 표기
 
     root = logging.getLogger("crypto_trader")
     root.setLevel(getattr(logging, level.upper(), logging.INFO))

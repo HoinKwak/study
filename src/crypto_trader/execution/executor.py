@@ -24,6 +24,7 @@ _ERROR_MAP = {
     "-4108": ("심볼 거래 불가/정지", True),
     "-4131": ("호가 없음(유동성 부족)", True),
     "-2019": ("증거금 부족", False),
+    "-2027": ("레버리지 대비 최대 포지션 초과(브라켓 한도)", False),
     "-4164": ("최소 명목가치 미달", False),
     "-1013": ("주문 필터 위반(수량/가격 정밀도)", False),
 }
@@ -80,12 +81,17 @@ class Executor:
         self.last_error_fatal: bool = False
 
     def _market_entry(self, plan: TradePlan, side: str, pos_side: str,
-                      twap_slices: int, slice_interval_sec: float = 0.0) -> float:
+                      twap_slices: int, slice_interval_sec: float = 0.0
+                      ) -> tuple[float, float]:
         """시장가 진입. twap_slices>1 이면 수량을 균등 분할해 순차 체결.
 
-        slice_interval_sec>0 이면 슬라이스 사이에 그만큼 대기해 시간 분산(TWAP).
-        최소 명목가치 미만이 되지 않도록 분할 수를 자동 축소한다.
-        진입 중에도 SL 은 첫 슬라이스 후 거래소 스톱주문으로 보호됨(엔진이 예약).
+        (평균체결가, 실제체결수량) 반환. slice_interval_sec>0 이면 슬라이스 사이에
+        그만큼 대기해 시간 분산(TWAP). 최소 명목가치 미만이 되지 않도록 분할 수를
+        자동 축소한다. 진입 중에도 SL 은 첫 슬라이스 전 거래소 스톱주문으로 보호됨.
+
+        중간 슬라이스가 거부되면(예: -2027 한도 초과) 거기서 멈추고 **체결된 만큼만**
+        반환한다 — 실패로 처리해 이미 체결된 포지션을 유령으로 남기지 않기 위함.
+        첫 슬라이스부터 실패하면 예외를 그대로 올려 상위에서 실패로 처리한다.
         """
         import time as _time
 
@@ -99,17 +105,26 @@ class Executor:
         for i in range(n):
             if float(slice_qty) <= 0:
                 break
-            order = self.binance.create_market_order(plan.symbol, side, slice_qty,
-                                                     position_side=pos_side)
+            try:
+                order = self.binance.create_market_order(plan.symbol, side, slice_qty,
+                                                         position_side=pos_side)
+            except Exception as e:  # noqa: BLE001
+                if weights:
+                    # 일부 체결 후 거부 → 중단하고 체결분만 유지(유령 포지션 방지)
+                    log.warning("분할 진입 %d/%d 에서 중단(%s) — 체결분 %.6g 만 유지",
+                                i + 1, n, str(e)[:80], sum(weights))
+                    break
+                raise  # 첫 슬라이스부터 실패 → 상위 except 로
             px = float(order.get("average") or order.get("price") or plan.entry_price)
             prices.append(px)
             weights.append(float(slice_qty))
             if slice_interval_sec > 0 and i < n - 1:
                 _time.sleep(slice_interval_sec)
         if not prices:
-            return plan.entry_price
+            return plan.entry_price, 0.0
         tot = sum(weights)
-        return sum(p * w for p, w in zip(prices, weights)) / tot if tot else prices[-1]
+        avg = sum(p * w for p, w in zip(prices, weights)) / tot if tot else prices[-1]
+        return avg, tot
 
     def _maker_twap_entry(self, plan: TradePlan, side: str, pos_side: str,
                           twap_slices: int, slice_wait_sec: float = 20.0
@@ -209,6 +224,23 @@ class Executor:
             self.binance.set_margin_mode(plan.symbol)
             actual_lev = self.binance.set_leverage(plan.symbol, plan.leverage)
             plan.leverage = actual_lev   # 실제 설정된 레버리지 반영(하향됐을 수 있음)
+
+            # 레버리지 브라켓 한도로 명목가치 사전 캡 — 소형 알트의 -2027
+            # (Exceeded max allowable position at current leverage) 방지.
+            try:
+                cap = self.binance.max_position_notional(plan.symbol, actual_lev)
+            except Exception:  # noqa: BLE001
+                cap = None
+            if cap and plan.entry_price > 0 and plan.quantity * plan.entry_price > cap:
+                max_qty = cap / plan.entry_price * 0.99   # 라운딩 여유 1%
+                capped = float(self.binance.amount_to_precision(plan.symbol, max_qty))
+                if capped > 0:
+                    log.info("[%s] %s 레버리지 %dx 한도 $%.0f → 명목 축소(수량 %.6g→%.6g)",
+                             mode.upper(), plan.symbol, actual_lev, cap,
+                             plan.quantity, capped)
+                    plan.quantity = capped
+                    plan.notional = capped * plan.entry_price
+
             close_side = "sell" if plan.direction is Direction.LONG else "buy"
             planned_qty = self.binance.amount_to_precision(plan.symbol, plan.quantity)
 
@@ -228,8 +260,9 @@ class Executor:
                 entry, filled_qty = self._maker_twap_entry(plan, side, pos_side, twap_slices)
                 qty = self.binance.amount_to_precision(plan.symbol, filled_qty)
             else:
-                qty = planned_qty
-                entry = self._market_entry(plan, side, pos_side, twap_slices, slice_interval)
+                entry, filled_qty = self._market_entry(plan, side, pos_side,
+                                                        twap_slices, slice_interval)
+                qty = self.binance.amount_to_precision(plan.symbol, filled_qty)
             if float(qty) <= 0:
                 log.warning("체결 수량 0 — 진입 실패 %s", plan.symbol)
                 return None

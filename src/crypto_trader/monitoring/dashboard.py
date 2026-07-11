@@ -4,20 +4,16 @@ from __future__ import annotations
 import html
 from datetime import datetime, timezone
 
+from ..utils.timez import kst_display
+
 
 def _now_iso() -> str:
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
 
 
 def _short_time(iso: str | None) -> str:
-    """ISO8601 → 'MM-DD HH:MM' (표시용)."""
-    if not iso:
-        return "-"
-    try:
-        dt = datetime.fromisoformat(iso)
-        return dt.strftime("%m-%d %H:%M")
-    except (ValueError, TypeError):
-        return iso
+    """ISO8601 → 'MM-DD HH:MM' (KST 표시용)."""
+    return kst_display(iso, "%m-%d %H:%M")
 
 
 def render_text(journal, equity: float | None = None) -> str:
