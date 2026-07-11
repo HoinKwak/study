@@ -64,6 +64,11 @@ def load_market_brief() -> dict:
     return _load_json("market/brief.json") or {}
 
 
+def load_chartist_views() -> dict:
+    """상위 차티스트 5인의 현재 크립토 뷰. research/kol/chartist_views.json."""
+    return _load_json("kol/chartist_views.json") or {}
+
+
 def _epoch(iso: str | None) -> float | None:
     if not iso:
         return None
@@ -572,6 +577,56 @@ def _brief_section(brief: dict) -> str:
 """
 
 
+def _bias_color(bias: str) -> str:
+    b = str(bias or "")
+    if any(k in b for k in ("상승", "롱", "bull")) or "bull" in b.lower():
+        return "#16a34a"
+    if any(k in b for k in ("하락", "숏", "bear")) or "bear" in b.lower():
+        return "#e23b4a"
+    if "경계" in b or "주의" in b:
+        return "#eab308"
+    return "#94a3b8"
+
+
+def _chartists_section(data: dict) -> str:
+    """상위 차티스트 5인의 현재 크립토 뷰 카드."""
+    rows = (data or {}).get("chartists") or []
+    if not rows:
+        return ""
+    ts = kst_display((data or {}).get("ts"), "%m-%d %H:%M")
+    cards = []
+    for c in rows[:8]:
+        bias = str(c.get("bias", ""))
+        bc = _bias_color(bias)
+        conf = html.escape(str(c.get("confidence", "")))
+        name = html.escape(str(c.get("name", "")))
+        handle = html.escape(str(c.get("handle", "")))
+        style = html.escape(str(c.get("style", "")))
+        asof = html.escape(str(c.get("asof", "")))
+        src = str(c.get("source", ""))
+        src_txt = html.escape(src[:60])
+        src_html = (f"<a href='{html.escape(src)}' target='_blank' rel='noopener' "
+                    f"style='color:var(--muted-2)'>{src_txt}</a>"
+                    if src.startswith("http") else f"<span class='muted'>{src_txt}</span>")
+        cards.append(
+            f"<div class='card' style='flex:1;min-width:280px;max-width:420px;margin:0'>"
+            f"<div style='display:flex;justify-content:space-between;align-items:baseline;gap:8px'>"
+            f"<span><b>{name}</b> <span class='muted' style='font-size:12px'>{handle}</span></span>"
+            f"<span style='color:{bc};font-weight:700;font-size:13px'>{html.escape(bias)}</span></div>"
+            f"<div class='muted' style='font-size:11px;margin:2px 0 8px'>{style} · 신뢰도 {conf}</div>"
+            f"<div style='font-size:13px;margin-bottom:5px'><b style='color:var(--muted-2)'>BTC</b> {html.escape(str(c.get('btc', ''))[:220])}</div>"
+            f"<div style='font-size:13px;margin-bottom:5px'><b style='color:var(--muted-2)'>ETH</b> {html.escape(str(c.get('eth', ''))[:160])}</div>"
+            f"<div style='font-size:13px;margin-bottom:8px'><b style='color:var(--muted-2)'>시장</b> {html.escape(str(c.get('market', ''))[:220])}</div>"
+            f"<div class='muted' style='font-size:11px;display:flex;justify-content:space-between;gap:8px'>"
+            f"<span>기준 {asof}</span>{src_html}</div></div>"
+        )
+    return f"""
+  <h2>📐 상위 차티스트 현재 뷰 <span class="muted">({ts} KST 기준)</span></h2>
+  <div style="display:flex;gap:12px;flex-wrap:wrap">{"".join(cards)}</div>
+  <div class="muted" style="margin-top:8px">⚠️ 각 인물의 주장이며 사실·투자조언 아님. 뷰는 수시로 바뀌며 과거 적중이 미래를 보장하지 않습니다.</div>
+"""
+
+
 def render_html(journal: TradeJournal, equity: float | None = None,
                 events: list | None = None, refresh_sec: int = 0,
                 start_equity: float | None = None,
@@ -645,6 +700,7 @@ def render_html(journal: TradeJournal, equity: float | None = None,
 
     brief_section = _brief_section(load_market_brief())
     kol_section = _kol_section(load_kol_watch())
+    chartists_section = _chartists_section(load_chartist_views())
 
     event_section = f"""
   <details class="events">
@@ -777,6 +833,7 @@ def render_html(journal: TradeJournal, equity: float | None = None,
   </div>
 
   <div class="tabpane" data-pane="research" style="display:none">
+    {chartists_section}
     {brief_section}
     {kol_section}
     {event_section}
