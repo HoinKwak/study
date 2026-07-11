@@ -1,0 +1,103 @@
+{
+  "report": "crypto_chartist_kol_accuracy",
+  "purpose": "X(Twitter) 차티스트 KOL 중 2023~2026.07 검증 가능 적중률 상위 5명 스크리닝",
+  "research_date": "2026-07-11",
+  "not_investment_advice": true,
+  "key_caveats": [
+    "공인 정량 스코어보드 없음 → 정성 등급(상/중/하) 사용, 퍼센트 임의 생성 금지",
+    "체리피킹/생존편향/사후확증/검증가능성 편향을 명시적으로 보정",
+    "X 로그인월로 2차 소스 의존, 스크린샷 조작 가능성 상존",
+    "팔로워 수는 시점 변동 근사치"
+  ],
+  "market_baseline": {
+    "ath": {"date": "2025-10-06", "btc_usd_approx": 126100},
+    "flash_crash": {"date": "2025-10-10", "liquidations_usd_approx": 19000000000, "btc_from": 122000, "btc_to": 105000},
+    "state_2026_h1": "약세장, 고점 대비 약 -50%, 약 60k~75k대, 일부 50k 저점 예상"
+  },
+  "top5": [
+    {
+      "rank": 1,
+      "handle": "@PeterLBrandt",
+      "name": "Peter Brandt",
+      "followers_approx": 990000,
+      "style": "고전적 차트 분석(channels/wedges/flags, 주봉 Renko)",
+      "assets": ["BTC", "ETH", "XRP", "commodities"],
+      "confidence": "상",
+      "verified_calls": [
+        {"date": "2017-12", "call": "BTC 천장 하루 이내 + 80% 조정 예고", "result": "12개월간 실현"},
+        {"date": "2025", "call": "BTC $100k 위에서 2025 강세장 종료 지목", "result": "2025-10 천장 실현(적중)"},
+        {"date": "2024-02", "call": "채널 돌파 근거 2025 목표 $200k", "result": "방향 적중, 타깃가 미달(부분)"}
+      ],
+      "known_misses": ["2025-06 '75% 폭락' 유희성 콜 직후 신고가 경신(방향 오판)", "정밀 가격 타깃 약함"]
+    },
+    {
+      "rank": 2,
+      "handle": "@KillaXBT",
+      "name": "KillaXBT",
+      "followers_approx": 208000,
+      "style": "rotational market mathematics(스윙/모멘텀 소진) + 유동성 사이클",
+      "assets": ["BTC"],
+      "confidence": "상(트랙레코드 짧음)",
+      "verified_calls": [
+        {"date": "2025-05-13", "call": "$100k 상단 천장+붕괴 구조 로드맵 사전 게시", "result": "BTC $126,080(10/6) 후 10/10 크래시로 실현(다수 매체 사전확인)"},
+        {"date": "2025-2026", "call": "$123k 부근 숏 후 하락 매집 전환", "result": "방향 전환 타이밍 적중"}
+      ],
+      "known_misses": ["가명+짧은 공개기록 → 원히트 원더/생존편향 리스크", "독자 방법론 재현·검증 곤란"]
+    },
+    {
+      "rank": 3,
+      "handle": "@intocryptoverse",
+      "name": "Benjamin Cowen",
+      "followers_approx": 800000,
+      "style": "계량 TA(Risk Metric, 로그 회귀, 이동평균, BTC 도미넌스)",
+      "assets": ["BTC", "ETH", "dominance"],
+      "confidence": "상(계량형, 순수 패턴 차티스트 아님)",
+      "verified_calls": [
+        {"date": "2013~2025", "call": "리스크 메트릭이 4번 천장(포함 2025-10)+3번 저점을 극단밴드 내 포착", "result": "장기 사이클 적중"},
+        {"date": "2024", "call": "BTC 도미넌스 60% 도달", "result": "2024-10 60.2% 실현"}
+      ],
+      "known_misses": ["2021-11 에코톱 부분 미스", "단기 스윙 콜 약함", "정의상 '차티스트' 논쟁 여지"]
+    },
+    {
+      "rank": 4,
+      "handle": "@rektcapital",
+      "name": "Rekt Capital",
+      "followers_approx": 500000,
+      "style": "반감기 사이클 프레임워크, 파라볼릭 국면, Pi Cycle Top",
+      "assets": ["BTC"],
+      "confidence": "중상",
+      "verified_calls": [
+        {"date": "2024", "call": "반감기 후 파라볼릭이 과거 유사소요로 2025 말 천장 가능", "result": "2025-10 천장과 정합"},
+        {"date": "2022-2023", "call": "약세장 구간(축적/파라볼릭) 라벨링 반복", "result": "unbias 'Bull Expert' 1위 집계"}
+      ],
+      "known_misses": ["4년 주기 의존 → 주기 붕괴 시 체계적 오류 위험", "정밀 가격/단기 콜 약함"]
+    },
+    {
+      "rank": 5,
+      "handle": "@TechDev_52",
+      "name": "TechDev",
+      "followers_approx": 500000,
+      "style": "로그/사이클 차트 + 매크로 상관(글로벌 유동성, DXY, Vortex, 3.5년 유동성 사이클)",
+      "assets": ["BTC", "altcoins"],
+      "confidence": "중상",
+      "verified_calls": [
+        {"date": "2025-09-17", "call": "DXY 약세패턴 완성 → BTC 천장 임박 관점", "result": "19일 뒤 2025-10-06 천장, 이후 -50%대(역상관 실현)"},
+        {"date": "2024-2025", "call": "유동성 사이클이 강세장 촉매, Vortex 신호 후 천장까지 4/11/7개월", "result": "unbias 'Short-term' 2위 집계"}
+      ],
+      "known_misses": ["상관 붕괴 시 프레임 무너짐", "알트 목표가 미달 다수", "서사적 프레임 → 사후확증 주의"]
+    }
+  ],
+  "shortlist": [
+    {"handle": "@CryptoCred", "name": "Cred", "confidence": "중", "reason": "존경받는 순수 TA 교육자이나 하드 콜 부족→정량 채점 곤란"},
+    {"handle": "@CryptoMichNL", "name": "Michael van de Poppe", "confidence": "중", "reason": "활발하나 콜 성패 엇갈림, 대표 정타 상위권 대비 약함"},
+    {"handle": "@CryptoCapo_", "name": "il Capo of Crypto", "confidence": "중하", "reason": "2021~22 천장 적중했으나 2023 $12k 영구약세 오답→'반대지표' 회자"},
+    {"handle": "@caprioleio", "name": "Charles Edwards", "confidence": "상(온체인)", "reason": "unbias 2025 BTC 1위(77.8)지만 순수 차티스트 아님(온체인)"},
+    {"handle": "@BobLoukas", "name": "Bob Loukas", "confidence": "중", "reason": "베테랑 사이클 트레이더이나 검증 사전정타 표본 얇음"},
+    {"handle": "@100trillionUSD", "name": "PlanB", "confidence": "하", "reason": "S2F 모델 반복 실패 → 명시적 제외"}
+  ],
+  "sources": [
+    "coindesk.com", "cointelegraph.com", "finance.yahoo.com", "thestreet.com",
+    "dailyhodl.com", "99bitcoins.com", "bitcoinist.com", "blockchain.news",
+    "unbias.fyi", "forbes.com", "fxstreet.com"
+  ]
+}
