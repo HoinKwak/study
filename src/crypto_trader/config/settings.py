@@ -56,6 +56,7 @@ class Settings(BaseSettings):
     # (명목가치 = 증거금 × 레버리지). 0 이면 리스크 기준(risk_per_trade_pct) 사이징.
     position_margin_pct: float = 0.0
     daily_max_loss_pct: float = 5.0
+    taker_fee_pct: float = 0.05  # 편도 테이커 수수료(%). 실현손익에서 진입+청산분 차감
 
     # --- 시그널 / 전략 ---
     entry_score_threshold: float = 0.5

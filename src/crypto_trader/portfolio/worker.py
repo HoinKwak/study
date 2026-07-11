@@ -110,9 +110,13 @@ class SleeveWorker:
 
     # ------------------------------------------------------------- 청산
 
-    @staticmethod
-    def _pnl(direction: Direction, entry: float, exit_price: float, qty: float) -> float:
-        return (exit_price - entry) * qty if direction is Direction.LONG else (entry - exit_price) * qty
+    def _pnl(self, direction: Direction, entry: float, exit_price: float, qty: float) -> float:
+        """실현손익(수수료 차감). 진입+청산 명목가치에 테이커 수수료를 적용해
+        실제 거래소 잔고 변동과 일치시킨다."""
+        gross = ((exit_price - entry) * qty if direction is Direction.LONG
+                 else (entry - exit_price) * qty)
+        fee = (self.s.taker_fee_pct / 100.0) * (entry * qty + exit_price * qty)
+        return gross - fee
 
     @staticmethod
     def _trade_return_pct(rec: TradeRecord, pnl: float) -> float:
@@ -360,13 +364,46 @@ class SleeveWorker:
 
     # ------------------------------------------------- 단타 (모멘텀 청산)
 
-    def _scalp_momentum_exit(self, symbol: str, df) -> bool:
-        """신호봉 고가/저가 갱신 → 다음 평가(봉) 종가 청산. 청산했으면 True.
+    def _scalp_partial_close(self, rec: TradeRecord, price: float,
+                             frac: float, reason: str) -> None:
+        """단타 부분청산: 보유 수량의 frac 만큼 종가 청산. 나머지는 열린 채로 유지.
 
-        백테스터의 momentum exit 와 동일 로직 (라이브 패리티):
-          - armed 상태에서 이번 평가 도달 → 최소익절 이상이면 종가 청산
-          - 미달이면 재무장 대기 (SL 은 계속 유효)
-          - 미무장 상태에서 신고가/신저가 갱신 → armed
+        거래소에서 해당 수량만 닫고, 그만큼을 '청산된 하위 거래'로 저널에 기록한 뒤
+        열린 거래의 수량을 줄인다(누적손익 정확). 실패 시 상태 변경 없이 다음에 재시도.
+        """
+        from dataclasses import replace
+        qty_close = rec.quantity * frac
+        if qty_close <= 0:
+            return
+        direction = Direction(rec.direction)
+        if self.s.trade_mode is not TradeMode.DRY_RUN and self.binance is not None:
+            try:
+                self.binance.close_quantity(rec.symbol, rec.direction, qty_close)
+            except Exception as e:  # noqa: BLE001
+                log.warning("[%s] %s 부분청산 실패: %s", self.sleeve.name, rec.symbol, e)
+                return
+        pnl = self._pnl(direction, rec.entry_price, price, qty_close)
+        self.risk.register_realized_pnl(pnl)
+        self.realize_cb(pnl)
+        sub = replace(rec, quantity=qty_close, exit_price=price, closed_at=_now_iso(),
+                      pnl=pnl, exit_reason=reason)
+        self.journal.trades.append(sub)
+        rec.quantity -= qty_close
+        self.journal.save()
+        ret_pct = pnl / (rec.entry_price * qty_close) * 100.0 if rec.entry_price else 0.0
+        self.notifier.trade(
+            f"[{self.sleeve.name}] {rec.symbol} {rec.direction.upper()} 50% 청산 ({reason})\n"
+            f"진입 {rec.entry_price:.4f} → {price:.4f} | 손익 {pnl:+.2f} USDT ({ret_pct:+.2f}%)"
+            f"{self._portfolio_line()}",
+            title="📗 부분청산 50%",
+        )
+
+    def _scalp_momentum_exit(self, symbol: str, df) -> bool:
+        """2단계 청산: 신고가/신저가 갱신 봉에서 50%, 그 다음 봉에서 나머지 50%.
+
+        - 미청산 상태: 이번 봉 고가>신호봉 고가(롱)/저가<신호봉 저가(숏)면 50% 종가 청산.
+        - 1차 청산(half_closed) 상태: 다음 평가(봉) 종가에 나머지 50% 청산.
+        SL 은 두 단계 내내 거래소 스톱으로 계속 유효.
         """
         rec = self._sleeve_trade(symbol)
         if rec is None or not rec.signal_high:
@@ -375,25 +412,19 @@ class SleeveWorker:
         bar_high = float(df["high"].iloc[-1])
         bar_low = float(df["low"].iloc[-1])
         direction = Direction(rec.direction)
-        min_tp = getattr(self.strategy, "min_tp_frac", 0.0008)
 
-        if rec.momentum_armed:
-            profit_frac = ((price - rec.entry_price) / rec.entry_price
-                           if direction is Direction.LONG
-                           else (rec.entry_price - price) / rec.entry_price)
-            if profit_frac >= min_tp:
-                self._close_trade(rec, price, "momentum_tp")
-                return True
-            rec.momentum_armed = False
+        # 2단계: 이미 1차 50% 청산했으면 이번 봉 종가에 나머지 전량 청산
+        if rec.half_closed:
+            self._close_trade(rec, price, "momentum_tp2")
+            return True
+
+        # 1단계: 신고가/신저가 갱신 봉 → 50% 청산 후 다음 봉 대기
+        made_new = ((direction is Direction.LONG and bar_high > rec.signal_high)
+                    or (direction is Direction.SHORT and bar_low < rec.signal_low))
+        if made_new:
+            self._scalp_partial_close(rec, price, 0.5, "momentum_tp1")
+            rec.half_closed = True
             self.journal.save()
-
-        if not rec.momentum_armed:
-            if direction is Direction.LONG and bar_high > rec.signal_high:
-                rec.momentum_armed = True
-                self.journal.save()
-            elif direction is Direction.SHORT and bar_low < rec.signal_low:
-                rec.momentum_armed = True
-                self.journal.save()
         return False
 
     _TF_SEC = {"1m": 60, "3m": 180, "5m": 300, "15m": 900, "1h": 3600, "4h": 14400}

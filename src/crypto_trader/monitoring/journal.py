@@ -30,7 +30,8 @@ class TradeRecord:
     # --- 단타 모멘텀 청산 상태 ---
     signal_high: float = 0.0  # 신호봉 고가 (신고가 갱신 기준)
     signal_low: float = 0.0   # 신호봉 저가
-    momentum_armed: bool = False  # 신고가/신저가 갱신됨 → 다음 평가 시 종가 청산
+    momentum_armed: bool = False  # (레거시) 신고가/신저가 갱신 상태
+    half_closed: bool = False      # 단타 2단계 청산: 1차 50% 청산 완료 → 다음 봉에 나머지
     # 청산 시 채워짐
     exit_price: float | None = None
     closed_at: str | None = None
