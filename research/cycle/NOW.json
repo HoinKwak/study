@@ -1,0 +1,219 @@
+{
+  "anchor": "NOW(2026-07-11)",
+  "symbol": "BTC/USDT",
+  "end_time_utc": "2026-07-11T04:02:44.976000+00:00",
+  "candles": {
+    "1d": 1000,
+    "4h": 2000,
+    "1h": 2000,
+    "15m": 2000
+  },
+  "features": {
+    "1d": {
+      "price": 64122.72,
+      "ma50": 65207.52,
+      "ma200": 74031.4,
+      "price_vs_ma50_pct": -1.66,
+      "price_vs_ma200_pct": -13.38,
+      "ma50_above_ma200": false,
+      "ma50_slope_pct": -4.329,
+      "ma200_slope_pct": -3.56,
+      "cross_recent": null,
+      "hh_hl": {
+        "recent_highs": [
+          67292.15,
+          65622.83,
+          64700.0
+        ],
+        "recent_lows": [
+          62272.07,
+          57800.19,
+          59588.0
+        ],
+        "higher_highs": false,
+        "higher_lows": false
+      },
+      "bollinger_bandwidth": 0.1149,
+      "bandwidth_percentile": 35.9,
+      "atr_pct": 3.14,
+      "vol_surge_vs_ma50": 0.06,
+      "vol_recent10_vs_ma50": 0.79,
+      "rsi": 53.5,
+      "rsi_prev5": 53.2,
+      "rsi_rising": true,
+      "rsi_overbought": false,
+      "supertrend_dir": -1,
+      "supertrend_flip_recent": null,
+      "macd_hist": 603.227,
+      "macd_hist_turning_up": false,
+      "macd_cross_up_recent": false,
+      "adx": 25.5,
+      "cvd_now": -456862.3,
+      "cvd_slope30": -0.07,
+      "cvd_signal": "bearish_divergence",
+      "prior_range_high": 67292.15,
+      "breakout_above_prior_range": false
+    },
+    "4h": {
+      "price": 64122.72,
+      "ma50": 63032.93,
+      "ma200": 62675.68,
+      "price_vs_ma50_pct": 1.73,
+      "price_vs_ma200_pct": 2.31,
+      "ma50_above_ma200": true,
+      "ma50_slope_pct": 1.064,
+      "ma200_slope_pct": 0.229,
+      "cross_recent": "golden",
+      "hh_hl": {
+        "recent_highs": [
+          64700.0,
+          63761.99,
+          64692.83
+        ],
+        "recent_lows": [
+          61306.84,
+          61544.56,
+          62559.59
+        ],
+        "higher_highs": false,
+        "higher_lows": true
+      },
+      "bollinger_bandwidth": 0.0518,
+      "bandwidth_percentile": 51.3,
+      "atr_pct": 1.05,
+      "vol_surge_vs_ma50": 0.0,
+      "vol_recent10_vs_ma50": 0.9,
+      "rsi": 59.8,
+      "rsi_prev5": 64.5,
+      "rsi_rising": false,
+      "rsi_overbought": false,
+      "supertrend_dir": 1,
+      "supertrend_flip_recent": null,
+      "macd_hist": 88.255,
+      "macd_hist_turning_up": false,
+      "macd_cross_up_recent": false,
+      "adx": 22.6,
+      "cvd_now": -173763.0,
+      "cvd_slope30": -0.09,
+      "cvd_signal": "bearish_divergence",
+      "prior_range_high": 64700.0,
+      "breakout_above_prior_range": false
+    },
+    "1h": {
+      "price": 64122.71,
+      "ma50": 63572.23,
+      "ma200": 62955.4,
+      "price_vs_ma50_pct": 0.87,
+      "price_vs_ma200_pct": 1.85,
+      "ma50_above_ma200": true,
+      "ma50_slope_pct": 0.611,
+      "ma200_slope_pct": 0.476,
+      "cross_recent": null,
+      "hh_hl": {
+        "recent_highs": [
+          64392.0,
+          64692.83,
+          64310.0
+        ],
+        "recent_lows": [
+          62926.01,
+          63732.66,
+          63656.0
+        ],
+        "higher_highs": false,
+        "higher_lows": false
+      },
+      "bollinger_bandwidth": 0.0124,
+      "bandwidth_percentile": 17.2,
+      "atr_pct": 0.43,
+      "vol_surge_vs_ma50": 0.01,
+      "vol_recent10_vs_ma50": 0.74,
+      "rsi": 56.0,
+      "rsi_prev5": 58.2,
+      "rsi_rising": false,
+      "rsi_overbought": false,
+      "supertrend_dir": 1,
+      "supertrend_flip_recent": null,
+      "macd_hist": -31.592,
+      "macd_hist_turning_up": true,
+      "macd_cross_up_recent": false,
+      "adx": 18.4,
+      "cvd_now": -16821.9,
+      "cvd_slope30": -0.0,
+      "cvd_signal": "bearish_divergence",
+      "prior_range_high": 64692.83,
+      "breakout_above_prior_range": false
+    },
+    "15m": {
+      "price": 64122.72,
+      "ma50": 64027.12,
+      "ma200": 63520.43,
+      "price_vs_ma50_pct": 0.15,
+      "price_vs_ma200_pct": 0.95,
+      "ma50_above_ma200": true,
+      "ma50_slope_pct": -0.012,
+      "ma200_slope_pct": 0.301,
+      "cross_recent": null,
+      "hh_hl": {
+        "recent_highs": [
+          64169.39,
+          64310.0,
+          64195.04
+        ],
+        "recent_lows": [
+          63835.05,
+          64006.0,
+          63984.07
+        ],
+        "higher_highs": false,
+        "higher_lows": false
+      },
+      "bollinger_bandwidth": 0.0039,
+      "bandwidth_percentile": 2.3,
+      "atr_pct": 0.15,
+      "vol_surge_vs_ma50": 0.03,
+      "vol_recent10_vs_ma50": 0.31,
+      "rsi": 51.8,
+      "rsi_prev5": 55.3,
+      "rsi_rising": false,
+      "rsi_overbought": false,
+      "supertrend_dir": -1,
+      "supertrend_flip_recent": null,
+      "macd_hist": -0.654,
+      "macd_hist_turning_up": false,
+      "macd_cross_up_recent": true,
+      "adx": 9.5,
+      "cvd_now": -5673.2,
+      "cvd_slope30": -0.23,
+      "cvd_signal": "bearish_divergence",
+      "prior_range_high": 64310.0,
+      "breakout_above_prior_range": false
+    }
+  },
+  "drawdown_context": {
+    "ath_in_window": 126199.63,
+    "drawdown_from_ath_pct": -49.19,
+    "macro_low_250d": 58624.71,
+    "up_from_macro_low_pct": 9.38,
+    "note": "ATH \ub294 \uc218\uc9d1 \uc708\ub3c4\uc6b0(~700 \uc77c\ubd09) \ub0b4 \ucd5c\uace0\uac00 \uae30\uc900 (\uc9c4\uc9dc \uc0ac\uc0c1\ucd5c\uace0\uac00 \uc544\ub2d0 \uc218 \uc788\uc74c)"
+  },
+  "short_term_alignment": {
+    "15m_bull_score_of4": 2,
+    "1h_bull_score_of4": 3,
+    "15m_breakout": false,
+    "1h_breakout": false,
+    "both_supertrend_up": false
+  },
+  "post_anchor": {
+    "note": "future unknown (NOW anchor)"
+  },
+  "measured_derivatives": {
+    "oi_change_pct_1h": null,
+    "oi_change_pct_1d": null,
+    "funding_rate": null,
+    "taker_buy_sell_ratio_1h": null,
+    "global_long_short_ratio": null,
+    "top_trader_position_ratio": null,
+    "_status": "futures API unreachable (likely 451 geo-block) \u2014 OI unavailable"
+  }
+}
