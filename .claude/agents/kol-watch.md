@@ -59,4 +59,13 @@ model: sonnet
 ```
 
 `research/kol/watch.csv` (토큰,체인,단계,KOL수,서사,신규여부,시점,출처)도 저장.
+
+**대시보드용 `research/kol/watch.json` 도 반드시 저장**(대시보드가 이 파일을 읽어 표시):
+```json
+{"ts": "<ISO8601 UTC>", "tokens": [
+  {"token": "CASHCAT", "chain": "RH체인", "stage": "조기|확산|뒷북",
+   "kols": "Ansem 외 2", "thesis": "한줄 서사", "risk": "이미급등/저유동 등"}
+]}
+```
+tokens 는 조기성 우선 정렬, 최대 15개.
 반환 메시지: **조기 단계 토큰 상위 몇 개**(왜 이른지)와 신규 등장 항목, 데이터 신뢰도 한마디.
