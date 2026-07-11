@@ -141,8 +141,21 @@ class PortfolioEngine:
             data = json.loads(path.read_text()) if path.exists() else {}
         except Exception:  # noqa: BLE001
             data = {}
+        now = time.time()
         data["equity"] = equity
-        data["equity_ts"] = time.time()
+        data["equity_ts"] = now
+        # 실잔고 이력 — 일별손익·수익률곡선을 실잔고(수수료·펀딩 포함) 기준으로 그리기 위함.
+        # 15분 스로틀로 append, 최근 500점 유지.
+        hist = data.get("equity_history")
+        if not isinstance(hist, list):
+            hist = []
+        try:
+            last_ts = float(hist[-1][0]) if hist else 0.0
+        except (TypeError, ValueError, IndexError):
+            last_ts = 0.0
+        if not hist or (now - last_ts) >= 900:
+            hist.append([now, equity])
+            data["equity_history"] = hist[-500:]
         try:
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text(json.dumps(data, indent=2))

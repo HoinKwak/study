@@ -31,6 +31,7 @@ def _write_dashboard(settings, scanner: MarketScanner, refresh_sec: int) -> None
         start_eq = load_start_equity(settings.state_dir)
         btc = btc_buyhold_series(journal_span_days(journal))
         from crypto_trader.monitoring.market_extra import load_cached, load_tickers
+        from crypto_trader.monitoring.dashboard import load_equity_history
         extra = load_cached(settings.state_dir, settings.scanner_min_volume)
         tickers = load_tickers(settings.state_dir)
         out = Path(settings.state_dir) / "dashboard.html"
@@ -38,7 +39,7 @@ def _write_dashboard(settings, scanner: MarketScanner, refresh_sec: int) -> None
         out.write_text(
             render_html(journal, equity=load_equity(settings.state_dir), events=events, refresh_sec=refresh_sec,
                         start_equity=start_eq, btc_series=btc, market_extra=extra,
-                        tickers=tickers),
+                        tickers=tickers, equity_history=load_equity_history(settings.state_dir)),
             encoding="utf-8",
         )
     except Exception:  # noqa: BLE001 — 대시보드 실패가 스캔을 막지 않게

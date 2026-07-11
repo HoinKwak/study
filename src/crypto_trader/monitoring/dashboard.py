@@ -93,6 +93,24 @@ def load_equity(state_dir: str) -> float | None:
     return _portfolio_field(state_dir, "equity")
 
 
+def load_equity_history(state_dir: str) -> list[list[float]]:
+    """엔진이 기록한 (ts_sec, equity) 실잔고 이력. 없으면 빈 리스트."""
+    path = Path(state_dir) / "portfolio.json"
+    if not path.exists():
+        return []
+    try:
+        h = json.loads(path.read_text(encoding="utf-8")).get("equity_history")
+    except (json.JSONDecodeError, OSError):
+        return []
+    out: list[list[float]] = []
+    for row in (h or []):
+        try:
+            out.append([float(row[0]), float(row[1])])
+        except (TypeError, ValueError, IndexError):
+            continue
+    return out
+
+
 def _portfolio_field(state_dir: str, key: str) -> float | None:
     path = Path(state_dir) / "portfolio.json"
     if not path.exists():
@@ -157,6 +175,33 @@ def _return_series(journal, start_equity: float) -> tuple[list[tuple[float, floa
     bars = sorted(daily.items())
     final_pct = pts[-1][1] if pts else 0.0
     return pts, bars, final_pct
+
+
+def _return_series_equity(history: list, start_equity: float):
+    """실잔고 이력 기반 (누적수익률% 점, 일별손익 막대, 최종%). 이력 2점 미만이면 None.
+
+    거래실현(저널) 대신 실제 잔고 변화로 그려 수수료·펀딩·슬리피지까지 반영한다.
+    """
+    if not history or len(history) < 2:
+        return None
+    base = start_equity if start_equity and start_equity > 0 else (history[0][1] or 10_000.0)
+    if base <= 0:
+        return None
+    pts = [(float(ts), (float(eq) / base - 1.0) * 100.0) for ts, eq in history]
+    # 일별손익: 각 날짜 마지막 잔고 − 전일 마지막 잔고(첫날은 기준자본 대비).
+    last_by_day: dict[str, float] = {}
+    order: list[str] = []
+    for ts, eq in history:
+        day = datetime.fromtimestamp(float(ts), KST).strftime("%m-%d")
+        if day not in last_by_day:
+            order.append(day)
+        last_by_day[day] = float(eq)
+    bars: list[tuple[str, float]] = []
+    prev = base
+    for day in order:
+        bars.append((day, last_by_day[day] - prev))
+        prev = last_by_day[day]
+    return pts, bars, pts[-1][1]
 
 
 def _short_time(iso: str | None) -> str:
@@ -713,7 +758,8 @@ def render_html(journal: TradeJournal, equity: float | None = None,
                 start_equity: float | None = None,
                 btc_series: list | None = None,
                 market_extra: dict | None = None,
-                tickers: list | None = None) -> str:
+                tickers: list | None = None,
+                equity_history: list | None = None) -> str:
     st = journal.stats()
     # 헤드라인 누적수익률·총실현손익: 실제 잔고(caller 가 넘긴 equity) 우선 —
     # 수수료·펀딩 등 저널이 못 담는 비용까지 포함해 실잔고와 일치. 없으면 저널 합산.
@@ -735,7 +781,14 @@ def render_html(journal: TradeJournal, equity: float | None = None,
     now_kst = datetime.now(KST).strftime("%Y-%m-%d %H:%M:%S KST")
 
     # --- 포트폴리오 차트 데이터 ---
-    ret_pts, daily_bars, final_pct = _return_series(journal, start_equity or 0.0)
+    # 실잔고 이력이 충분하면 실잔고 기준(수수료·펀딩 포함, 헤드라인과 일치), 없으면 거래실현 기준.
+    _eqb = _return_series_equity(equity_history or [], start_equity or 0.0)
+    if _eqb:
+        ret_pts, daily_bars, final_pct = _eqb
+        series_basis = "실잔고 기준"
+    else:
+        ret_pts, daily_bars, final_pct = _return_series(journal, start_equity or 0.0)
+        series_basis = "거래실현 기준"
     port_color = "#6c72ff"   # 코발트 바이올렛(브랜드 액센트)
     line_series = [{"label": "포트폴리오 수익률", "color": port_color, "points": ret_pts}]
     if btc_series and len(btc_series) >= 2:
@@ -751,11 +804,11 @@ def render_html(journal: TradeJournal, equity: float | None = None,
     chart_section = f"""
   <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:stretch">
     <div style="flex:1;min-width:340px;display:flex;flex-direction:column">
-      <h2>📈 포트폴리오 추이 (수익률 vs BTC 매수후보유)</h2>
+      <h2>📈 포트폴리오 추이 (수익률 vs BTC 매수후보유) <span class="muted" style="font-size:11px">· {series_basis}</span></h2>
       <div class="card" style="flex:1;display:flex;align-items:center">{charts.line_chart(line_series, width=560, height=240)}</div>
     </div>
     <div style="flex:1;min-width:340px;display:flex;flex-direction:column">
-      <h2>📊 일별 손익 (USDT)</h2>
+      <h2>📊 일별 손익 (USDT) <span class="muted" style="font-size:11px">· {series_basis}</span></h2>
       <div class="card" style="flex:1;display:flex;align-items:center">{charts.bar_chart(daily_bars, width=560, height=240, unit="")}</div>
     </div>
   </div>
