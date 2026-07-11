@@ -652,6 +652,11 @@ def render_html(journal: TradeJournal, equity: float | None = None,
         head_pnl = st["total_pnl"]
         head_ret = None  # 아래 final_pct 로 대체
     pnl_color = "#16a34a" if head_pnl >= 0 else "#e23b4a"
+    # 헤드라인 '누적 손익'(실잔고 기준)과 저널 청산손익 합이 다를 수 있음(수수료·펀딩·
+    # 슬리피지·미실현). 두 수치가 벌어지면 거래 실현합을 부제로 함께 노출해 혼동 방지.
+    realized_pnl = float(st["total_pnl"])
+    head_sub = (f"<span class='muted' style='font-size:10px'>거래실현 {realized_pnl:+,.2f}</span>"
+                if abs(head_pnl - realized_pnl) > 0.01 else "")
     events = events or []
     refresh_tag = (f'<meta http-equiv="refresh" content="{refresh_sec}">'
                    if refresh_sec > 0 else "")
@@ -819,7 +824,7 @@ def render_html(journal: TradeJournal, equity: float | None = None,
     <div class="grid">
       {equity_row}
       <div class="stat"><span>누적 수익률</span><b style="color:{ret_color}">{head_ret:+.2f}%</b><span class="muted">{btc_cmp}</span></div>
-      <div class="stat"><span>총 실현손익 (USDT)</span><b style="color:{pnl_color}">{head_pnl:+,.2f}</b></div>
+      <div class="stat"><span>누적 손익 (USDT)</span><b style="color:{pnl_color}">{head_pnl:+,.2f}</b>{head_sub}</div>
       <div class="stat"><span>승률</span><b>{st['win_rate']:.1f}%</b></div>
       <div class="stat"><span>손익비 (PF)</span><b>{st['profit_factor']:.2f}</b></div>
       <div class="stat"><span>샤프 (거래)</span><b>{m['sharpe']:.2f}</b></div>
@@ -830,7 +835,8 @@ def render_html(journal: TradeJournal, equity: float | None = None,
       <div class="stat"><span>청산 거래</span><b>{st['total_trades']} <small style="font-size:12px;color:#94a3b8">(승 {st['wins']}/패 {st['losses']})</small></b></div>
       <div class="stat"><span>열린 포지션</span><b>{st['open_trades']}</b></div>
     </div>
-    <div class="muted" style="margin:4px 0 8px">지표는 청산 {m['n']}건 기준 — 거래가 쌓일수록 안정적입니다.</div>
+    <div class="muted" style="margin:4px 0 8px">지표는 청산 {m['n']}건 기준 — 거래가 쌓일수록 안정적입니다.
+    누적 손익·수익률은 <b>실잔고 기준</b>(수수료·펀딩·슬리피지 포함), 손익비·기대값은 거래기록 실현손익 기준이라 서로 다를 수 있습니다.</div>
     {chart_section}
     <h2>열린 포지션</h2>
     <table><thead><tr><th>심볼</th><th>방향</th><th>진입가</th><th>현재가</th><th>손익률</th><th>PnL(USDT)</th><th>손절</th><th>익절</th><th>모드</th></tr></thead>
