@@ -63,9 +63,12 @@ model: sonnet
 **대시보드용 `research/kol/watch.json` 도 반드시 저장**(대시보드가 이 파일을 읽어 표시):
 ```json
 {"ts": "<ISO8601 UTC>", "tokens": [
-  {"token": "CASHCAT", "chain": "RH체인", "stage": "조기|확산|뒷북",
+  {"token": "CASHCAT", "chain": "RH체인", "ca": "<컨트랙트 주소 또는 빈 문자열>",
+   "stage": "조기|확산|뒷북",
    "kols": "Ansem 외 2", "thesis": "한줄 서사", "risk": "이미급등/저유동 등"}
 ]}
 ```
+- `ca` 는 **컨트랙트 주소**(Solana mint / EVM 0x… 등). 확인되면 반드시 채우고(대시보드가
+  이 값으로 DexScreener 링크 생성), 확인 못 하면 빈 문자열("")로. 추정 주소는 넣지 말 것.
 tokens 는 조기성 우선 정렬, 최대 15개.
 반환 메시지: **조기 단계 토큰 상위 몇 개**(왜 이른지)와 신규 등장 항목, 데이터 신뢰도 한마디.

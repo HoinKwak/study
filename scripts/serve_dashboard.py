@@ -107,6 +107,23 @@ def main() -> None:
             out["oi_notional"] = out["oi_base"] * out["price"]
         return json.dumps(out).encode("utf-8")
 
+    def _api_prices(qs) -> bytes:
+        """열린 포지션 현재가 — symbols=BTC,ETH → {BTC: price, ...} (24h 티커의 lastPrice)."""
+        from crypto_trader.connectors import BinanceDerivativesData
+        raw = (qs.get("symbols", [""])[0] or "")
+        syms = [s for s in raw.split(",") if s]
+        out: dict[str, float] = {}
+        try:
+            tk = BinanceDerivativesData().all_24h_tickers() or {}
+            for s in syms:
+                base = s.split("/")[0].upper()
+                row = tk.get(f"{base}USDT")
+                if row:
+                    out[base] = float(row.get("lastPrice"))
+        except Exception:  # noqa: BLE001
+            pass
+        return json.dumps(out).encode("utf-8")
+
     def _api_symbols() -> bytes:
         try:
             from crypto_trader.monitoring.market_extra import binance_futures_list
@@ -131,6 +148,9 @@ def main() -> None:
                 return
             if path == "/api/derivs":
                 self._send(_api_derivs(parse_qs(parsed.query)), "application/json")
+                return
+            if path == "/api/prices":
+                self._send(_api_prices(parse_qs(parsed.query)), "application/json")
                 return
             if path == "/api/symbols":
                 self._send(_api_symbols(), "application/json")

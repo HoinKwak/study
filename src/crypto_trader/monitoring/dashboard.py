@@ -521,9 +521,18 @@ def _kol_section(kol: dict) -> str:
     for t in tokens[:15]:
         stage = str(t.get("stage", ""))
         sc = next((c for k, c in _STAGE_COLOR.items() if k in stage), "#e2e8f0")
+        ca = str(t.get("ca") or t.get("contract") or t.get("address") or "").strip()
+        if ca:
+            short = ca if len(ca) <= 13 else f"{ca[:6]}…{ca[-4:]}"
+            ca_html = (f"<a href='https://dexscreener.com/search?q={html.escape(ca)}' "
+                       f"target='_blank' rel='noopener' title='{html.escape(ca)}' "
+                       f"style='color:var(--accent);font-family:monospace;font-size:11px'>{html.escape(short)}</a>")
+        else:
+            ca_html = "<span class='muted'>-</span>"
         body.append(
             f"<tr><td><b>{html.escape(str(t.get('token', '')))}</b></td>"
             f"<td class='muted'>{html.escape(str(t.get('chain', '')))}</td>"
+            f"<td>{ca_html}</td>"
             f"<td style='color:{sc}'>{html.escape(stage)}</td>"
             f"<td>{html.escape(str(t.get('kols', '')))}</td>"
             f"<td>{html.escape(str(t.get('thesis', ''))[:70])}</td>"
@@ -532,7 +541,7 @@ def _kol_section(kol: dict) -> str:
     return f"""
   <h2>🐦 KOL 하이프 토큰 <span class="muted">({ts} KST)</span></h2>
   <div class="card" style="overflow-x:auto"><table>
-  <thead><tr><th>토큰</th><th>체인</th><th>단계</th><th>KOL</th><th>서사</th><th>리스크</th></tr></thead>
+  <thead><tr><th>토큰</th><th>체인</th><th>CA</th><th>단계</th><th>KOL</th><th>서사</th><th>리스크</th></tr></thead>
   <tbody>{"".join(body)}</tbody></table>
   <div class="muted" style="margin-top:8px">⚠️ 아이디어·조기경보용, 투자조언 아님. 자체 검증 필수.</div></div>
 """
@@ -726,9 +735,15 @@ def render_html(journal: TradeJournal, equity: float | None = None,
                 )
             else:
                 out.append(
-                    f"<tr><td>{html.escape(t.symbol)}</td>"
+                    f"<tr class='pos-row' data-sym='{html.escape(t.symbol)}' "
+                    f"data-dir='{html.escape(t.direction)}' data-entry='{t.entry_price}' "
+                    f"data-qty='{t.quantity}'>"
+                    f"<td>{html.escape(t.symbol)}</td>"
                     f"<td>{t.direction.upper()}</td>"
                     f"<td>{t.entry_price:.4f}</td>"
+                    f"<td class='pos-cur muted'>-</td>"
+                    f"<td class='pos-pct muted'>-</td>"
+                    f"<td class='pos-pnl muted'>-</td>"
                     f"<td>{t.stop_price:.4f}</td>"
                     f"<td>{t.take_profit:.4f}</td>"
                     f"<td>{html.escape(t.mode)}</td></tr>"
@@ -818,8 +833,9 @@ def render_html(journal: TradeJournal, equity: float | None = None,
     <div class="muted" style="margin:4px 0 8px">지표는 청산 {m['n']}건 기준 — 거래가 쌓일수록 안정적입니다.</div>
     {chart_section}
     <h2>열린 포지션</h2>
-    <table><thead><tr><th>심볼</th><th>방향</th><th>진입가</th><th>손절</th><th>익절</th><th>모드</th></tr></thead>
-    <tbody>{rows(journal.open_trades(), False) or "<tr><td colspan=6>없음</td></tr>"}</tbody></table>
+    <table><thead><tr><th>심볼</th><th>방향</th><th>진입가</th><th>현재가</th><th>손익률</th><th>PnL(USDT)</th><th>손절</th><th>익절</th><th>모드</th></tr></thead>
+    <tbody>{rows(journal.open_trades(), False) or "<tr><td colspan=9>없음</td></tr>"}</tbody></table>
+    <div class="muted" style="margin-top:4px;font-size:11px">현재가·손익률·PnL 은 serve_dashboard 서버 모드에서 실시간 표시(명목가 기준, 수수료 제외).</div>
     <h2>최근 청산 (최대 20건)</h2>
     <table><thead><tr><th>심볼</th><th>방향</th><th>진입</th><th>청산</th><th>손익</th><th>사유</th></tr></thead>
     <tbody>{rows(journal.closed_trades()[-20:][::-1], True) or "<tr><td colspan=6>없음</td></tr>"}</tbody></table>
@@ -852,5 +868,27 @@ def render_html(journal: TradeJournal, equity: float | None = None,
      try{{localStorage.setItem('ct_tab',tab);}}catch(_e){{}} }});
    // 자동 새로고침 후에도 마지막으로 보던 탭 유지
    (function(){{var saved;try{{saved=localStorage.getItem('ct_tab');}}catch(_e){{}}if(saved)_showTab(saved);}})();
+   // 열린 포지션 현재가·손익률·PnL 실시간 채우기(서버 모드)
+   (function(){{
+     var rws=document.querySelectorAll('.pos-row');if(!rws.length)return;
+     var syms=[];rws.forEach(function(r){{var s=r.getAttribute('data-sym');if(s&&syms.indexOf(s)<0)syms.push(s);}});
+     function fmt(v){{if(v>=1000)return v.toLocaleString('en-US',{{maximumFractionDigits:2}});
+       if(v>=1)return v.toFixed(4); if(v>=0.01)return v.toFixed(5); return v.toFixed(7);}}
+     fetch('/api/prices?symbols='+encodeURIComponent(syms.join(',')))
+      .then(function(r){{return r.json();}}).then(function(px){{
+       rws.forEach(function(r){{
+        var base=(r.getAttribute('data-sym')||'').split('/')[0].toUpperCase();
+        var cur=px[base];if(cur==null)return;
+        var entry=parseFloat(r.getAttribute('data-entry')),qty=parseFloat(r.getAttribute('data-qty'));
+        var sign=r.getAttribute('data-dir')==='short'?-1:1;
+        var pnl=(cur-entry)*qty*sign, pct=entry>0?((cur-entry)/entry*100*sign):0;
+        var col=pnl>=0?'#16a34a':'#e23b4a';
+        var cc=r.querySelector('.pos-cur'),pc=r.querySelector('.pos-pct'),pp=r.querySelector('.pos-pnl');
+        if(cc){{cc.textContent='$'+fmt(cur);cc.classList.remove('muted');}}
+        if(pc){{pc.textContent=(pct>=0?'+':'')+pct.toFixed(2)+'%';pc.style.color=col;pc.classList.remove('muted');}}
+        if(pp){{pp.textContent=(pnl>=0?'+':'')+pnl.toFixed(2);pp.style.color=col;pp.classList.remove('muted');}}
+       }});
+      }}).catch(function(){{}});
+   }})();
   </script>
 </body></html>"""
