@@ -1,0 +1,227 @@
+{
+  "anchor": "NOW(2026-07-11)",
+  "symbol": "ETH/USDT",
+  "end_time_utc": "2026-07-11T04:20:00.575000+00:00",
+  "candles": {
+    "1d": 1000,
+    "4h": 2000,
+    "1h": 2000,
+    "15m": 2000
+  },
+  "features": {
+    "1d": {
+      "price": 1797.4,
+      "ma50": 1769.38,
+      "ma200": 2228.67,
+      "price_vs_ma50_pct": 1.58,
+      "price_vs_ma200_pct": -19.35,
+      "ma50_above_ma200": false,
+      "ma50_slope_pct": -4.295,
+      "ma200_slope_pct": -5.763,
+      "cross_recent": null,
+      "hh_hl": {
+        "recent_highs": [
+          1849.54,
+          1779.9,
+          1833.4
+        ],
+        "recent_lows": [
+          1652.09,
+          1512.0,
+          1597.22
+        ],
+        "higher_highs": false,
+        "higher_lows": false
+      },
+      "bollinger_bandwidth": 0.2099,
+      "bandwidth_percentile": 54.1,
+      "atr_pct": 4.03,
+      "vol_surge_vs_ma50": 0.06,
+      "vol_recent10_vs_ma50": 0.76,
+      "rsi": 57.6,
+      "rsi_prev5": 58.7,
+      "rsi_rising": false,
+      "rsi_overbought": false,
+      "supertrend_dir": -1,
+      "supertrend_flip_recent": null,
+      "macd_hist": 22.214,
+      "macd_hist_turning_up": false,
+      "macd_cross_up_recent": false,
+      "adx": 23.6,
+      "cvd_now": -4972408.2,
+      "cvd_slope30": 0.05,
+      "cvd_signal": "trend_confirm_up",
+      "prior_range_high": 1849.54,
+      "breakout_above_prior_range": false
+    },
+    "4h": {
+      "price": 1797.22,
+      "ma50": 1765.91,
+      "ma200": 1692.62,
+      "price_vs_ma50_pct": 1.77,
+      "price_vs_ma200_pct": 6.18,
+      "ma50_above_ma200": true,
+      "ma50_slope_pct": 1.608,
+      "ma200_slope_pct": 0.814,
+      "cross_recent": null,
+      "hh_hl": {
+        "recent_highs": [
+          1833.4,
+          1785.0,
+          1812.0
+        ],
+        "recent_lows": [
+          1728.95,
+          1713.44,
+          1731.99
+        ],
+        "higher_highs": false,
+        "higher_lows": false
+      },
+      "bollinger_bandwidth": 0.0562,
+      "bandwidth_percentile": 31.0,
+      "atr_pct": 1.29,
+      "vol_surge_vs_ma50": 0.02,
+      "vol_recent10_vs_ma50": 0.67,
+      "rsi": 60.7,
+      "rsi_prev5": 62.7,
+      "rsi_rising": false,
+      "rsi_overbought": false,
+      "supertrend_dir": 1,
+      "supertrend_flip_recent": null,
+      "macd_hist": 4.1,
+      "macd_hist_turning_up": false,
+      "macd_cross_up_recent": false,
+      "adx": 23.7,
+      "cvd_now": -2453268.5,
+      "cvd_slope30": -0.01,
+      "cvd_signal": "trend_confirm_up",
+      "prior_range_high": 1833.4,
+      "breakout_above_prior_range": false
+    },
+    "1h": {
+      "price": 1797.22,
+      "ma50": 1769.97,
+      "ma200": 1763.38,
+      "price_vs_ma50_pct": 1.54,
+      "price_vs_ma200_pct": 1.92,
+      "ma50_above_ma200": true,
+      "ma50_slope_pct": 0.651,
+      "ma200_slope_pct": 0.76,
+      "cross_recent": null,
+      "hh_hl": {
+        "recent_highs": [
+          1789.59,
+          1812.0,
+          1799.29
+        ],
+        "recent_lows": [
+          1737.68,
+          1775.0,
+          1784.1
+        ],
+        "higher_highs": false,
+        "higher_lows": true
+      },
+      "bollinger_bandwidth": 0.0105,
+      "bandwidth_percentile": 6.7,
+      "atr_pct": 0.55,
+      "vol_surge_vs_ma50": 0.1,
+      "vol_recent10_vs_ma50": 0.53,
+      "rsi": 59.1,
+      "rsi_prev5": 60.3,
+      "rsi_rising": false,
+      "rsi_overbought": false,
+      "supertrend_dir": 1,
+      "supertrend_flip_recent": null,
+      "macd_hist": -1.121,
+      "macd_hist_turning_up": true,
+      "macd_cross_up_recent": false,
+      "adx": 24.6,
+      "cvd_now": -641079.6,
+      "cvd_slope30": 0.04,
+      "cvd_signal": "trend_confirm_up",
+      "prior_range_high": 1812.0,
+      "breakout_above_prior_range": false
+    },
+    "15m": {
+      "price": 1797.22,
+      "ma50": 1793.09,
+      "ma200": 1768.61,
+      "price_vs_ma50_pct": 0.23,
+      "price_vs_ma200_pct": 1.62,
+      "ma50_above_ma200": true,
+      "ma50_slope_pct": 0.034,
+      "ma200_slope_pct": 0.308,
+      "cross_recent": null,
+      "hh_hl": {
+        "recent_highs": [
+          1798.0,
+          1799.29,
+          1798.24
+        ],
+        "recent_lows": [
+          1789.6,
+          1788.25,
+          1786.77
+        ],
+        "higher_highs": false,
+        "higher_lows": false
+      },
+      "bollinger_bandwidth": 0.0056,
+      "bandwidth_percentile": 5.1,
+      "atr_pct": 0.2,
+      "vol_surge_vs_ma50": 0.15,
+      "vol_recent10_vs_ma50": 0.72,
+      "rsi": 57.6,
+      "rsi_prev5": 58.1,
+      "rsi_rising": false,
+      "rsi_overbought": false,
+      "supertrend_dir": -1,
+      "supertrend_flip_recent": null,
+      "macd_hist": 0.395,
+      "macd_hist_turning_up": true,
+      "macd_cross_up_recent": false,
+      "adx": 9.7,
+      "cvd_now": 66999.8,
+      "cvd_slope30": 0.02,
+      "cvd_signal": "trend_confirm_up",
+      "prior_range_high": 1799.29,
+      "breakout_above_prior_range": false
+    }
+  },
+  "drawdown_context": {
+    "ath_in_window": 4956.78,
+    "drawdown_from_ath_pct": -63.74,
+    "macro_low_250d": 1567.84,
+    "up_from_macro_low_pct": 14.64,
+    "note": "ATH \ub294 \uc218\uc9d1 \uc708\ub3c4\uc6b0(~700 \uc77c\ubd09) \ub0b4 \ucd5c\uace0\uac00 \uae30\uc900 (\uc9c4\uc9dc \uc0ac\uc0c1\ucd5c\uace0\uac00 \uc544\ub2d0 \uc218 \uc788\uc74c)"
+  },
+  "short_term_alignment": {
+    "15m_bull_score_of4": 3,
+    "1h_bull_score_of4": 3,
+    "15m_breakout": false,
+    "1h_breakout": false,
+    "both_supertrend_up": false
+  },
+  "eth_btc_ratio": {
+    "eth_btc": 0.02802,
+    "eth_btc_vs_ma50_pct": 3.33,
+    "eth_btc_slope50_pct": 0.146,
+    "eth_btc_chg_30d_pct": 6.86,
+    "eth_btc_chg_90d_pct": -12.0,
+    "interpretation": "ETH outperforming BTC (ratio rising)"
+  },
+  "post_anchor": {
+    "note": "future unknown (NOW anchor)"
+  },
+  "measured_derivatives": {
+    "oi_change_pct_1h": null,
+    "oi_change_pct_1d": null,
+    "funding_rate": null,
+    "taker_buy_sell_ratio_1h": null,
+    "global_long_short_ratio": null,
+    "top_trader_position_ratio": null,
+    "_status": "futures API unreachable (likely 451 geo-block) \u2014 OI unavailable"
+  }
+}

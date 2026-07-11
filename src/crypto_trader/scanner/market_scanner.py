@@ -60,12 +60,18 @@ class MarketScanner:
         need = max(s.scanner_price_window, s.scanner_vol_lookback) + 2
         kl = self.data.klines(symbol, s.scanner_timeframe, limit=need)
         price = 0.0
+        vol1h = 0.0
         pct24 = None
+        vol24 = None
         if ticker24:
             try:
                 pct24 = float(ticker24.get("priceChangePercent"))
             except (TypeError, ValueError):
                 pct24 = None
+            try:
+                vol24 = float(ticker24.get("quoteVolume"))  # 24h 거래대금(USDT)
+            except (TypeError, ValueError):
+                vol24 = None
 
         def ctx() -> str:
             bits = []
@@ -73,6 +79,10 @@ class MarketScanner:
                 bits.append(f"${_fmt_price(price)}")
             if pct24 is not None:
                 bits.append(f"24h {pct24:+.1f}%")
+            if vol24:
+                bits.append(f"24h량 {_fmt_vol(vol24)}")
+            if vol1h:
+                bits.append(f"1h량 {_fmt_vol(vol1h)}")
             if funding is not None:
                 bits.append(f"펀딩 {funding * 100:+.3f}%")
             return " · ".join(bits)
@@ -89,6 +99,11 @@ class MarketScanner:
             closes = kl["close"]
             volumes = kl["volume"]
             price = closes[-1]
+
+            # 최근 1시간 거래대금 근사 = 최근 12개 '닫힌' 5m 캔들의 (거래량×종가) 합
+            n_1h = max(1, 3600 // 300)  # 5m 기준 12개
+            closed_lo = max(0, len(closes) - 1 - n_1h)
+            vol1h = sum(volumes[i] * closes[i] for i in range(closed_lo, len(closes) - 1))
 
             # 직전(닫힌) 캔들 거래량 배수 — 급등/급락 잡음 컷에 사용
             vol_ratio = _closed_vol_ratio(volumes, s.scanner_vol_lookback)
@@ -186,6 +201,19 @@ def _closed_vol_ratio(volumes: list[float], lookback: int) -> float:
     base = volumes[-2 - lookback:-2]
     avg = sum(base) / len(base) if base else 0.0
     return closed / avg if avg > 0 else 0.0
+
+
+def _fmt_vol(usd: float | None) -> str:
+    """거래대금(USD)을 사람이 읽기 좋게. 예: $12M, $340K, $1.2B."""
+    if not usd:
+        return "?"
+    if usd >= 1e9:
+        return f"${usd / 1e9:.1f}B"
+    if usd >= 1e6:
+        return f"${usd / 1e6:.0f}M"
+    if usd >= 1e3:
+        return f"${usd / 1e3:.0f}K"
+    return f"${usd:.0f}"
 
 
 def _fmt_price(p: float) -> str:
