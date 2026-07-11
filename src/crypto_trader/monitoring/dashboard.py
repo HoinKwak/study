@@ -10,8 +10,27 @@ from ..utils.timez import KST, kst_display
 from . import charts
 
 
+_RESEARCH = Path(__file__).resolve().parents[3] / "research"
+
+
 def _now_iso() -> str:
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
+
+
+def _load_json(rel: str) -> dict | list | None:
+    """repo research/ 아래 JSON 로드(없거나 깨지면 None)."""
+    try:
+        return json.loads((_RESEARCH / rel).read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError, ValueError):
+        return None
+
+
+def load_kol_watch() -> dict:
+    return _load_json("kol/watch.json") or {}
+
+
+def load_market_brief() -> dict:
+    return _load_json("market/brief.json") or {}
 
 
 def _epoch(iso: str | None) -> float | None:
@@ -205,6 +224,74 @@ def _mcap_table(rows: list) -> str:
             f"</tr></thead><tbody>{inner}</tbody></table></div>")
 
 
+_STAGE_COLOR = {"조기": "#22c55e", "확산": "#eab308", "뒷북": "#94a3b8"}
+
+
+def _kol_section(kol: dict) -> str:
+    tokens = (kol or {}).get("tokens") or []
+    if not tokens:
+        return ""
+    ts = kst_display((kol or {}).get("ts"), "%m-%d %H:%M")
+    body = []
+    for t in tokens[:15]:
+        stage = str(t.get("stage", ""))
+        sc = next((c for k, c in _STAGE_COLOR.items() if k in stage), "#e2e8f0")
+        body.append(
+            f"<tr><td><b>{html.escape(str(t.get('token', '')))}</b></td>"
+            f"<td class='muted'>{html.escape(str(t.get('chain', '')))}</td>"
+            f"<td style='color:{sc}'>{html.escape(stage)}</td>"
+            f"<td>{html.escape(str(t.get('kols', '')))}</td>"
+            f"<td>{html.escape(str(t.get('thesis', ''))[:70])}</td>"
+            f"<td class='muted'>{html.escape(str(t.get('risk', ''))[:40])}</td></tr>"
+        )
+    return f"""
+  <h2>🐦 KOL 하이프 토큰 <span class="muted">({ts} KST)</span></h2>
+  <div class="card" style="overflow-x:auto"><table>
+  <thead><tr><th>토큰</th><th>체인</th><th>단계</th><th>KOL</th><th>서사</th><th>리스크</th></tr></thead>
+  <tbody>{"".join(body)}</tbody></table>
+  <div class="muted" style="margin-top:8px">⚠️ 아이디어·조기경보용, 투자조언 아님. 자체 검증 필수.</div></div>
+"""
+
+
+def _brief_section(brief: dict) -> str:
+    if not brief:
+        return ""
+    ts = kst_display(brief.get("ts"), "%m-%d %H:%M")
+    market = brief.get("market", "")
+    cards = []
+    for a in brief.get("assets", [])[:6]:
+        bias = str(a.get("bias", ""))
+        bc = "#16a34a" if "롱" in bias or "상승" in bias or "bull" in bias.lower() else (
+            "#dc2626" if "숏" in bias or "하락" in bias or "bear" in bias.lower() else "#94a3b8")
+        cards.append(
+            f"<div class='card' style='flex:1;min-width:240px'>"
+            f"<b>{html.escape(str(a.get('symbol', '')))}</b> "
+            f"<span style='color:{bc}'>{html.escape(bias)}</span>"
+            f"<div style='font-size:13px;margin-top:6px'>{html.escape(str(a.get('summary', ''))[:240])}</div>"
+            f"<div class='muted' style='margin-top:6px'>레벨: {html.escape(str(a.get('levels', '')))}</div>"
+            f"<div class='muted'>촉매: {html.escape(str(a.get('catalysts', ''))[:120])}</div></div>"
+        )
+    notable = brief.get("notable", [])
+    nrows = "".join(
+        f"<tr><td><b>{html.escape(str(n.get('token', '')))}</b></td>"
+        f"<td class='muted'>{html.escape(str(n.get('status', '')))}</td>"
+        f"<td>{html.escape(str(n.get('summary', ''))[:120])}</td></tr>"
+        for n in notable[:12]
+    )
+    notable_html = (f"<h3 style='margin-top:14px'>주목 프로젝트/토큰</h3>"
+                    f"<div class='card' style='overflow-x:auto'><table><thead><tr>"
+                    f"<th>토큰</th><th>상태</th><th>요약</th></tr></thead>"
+                    f"<tbody>{nrows}</tbody></table></div>") if nrows else ""
+    market_html = (f"<div class='card'>{html.escape(str(market)[:400])}</div>"
+                   if market else "")
+    return f"""
+  <h2>📰 시장 분석 요약 <span class="muted">({ts} KST)</span></h2>
+  {market_html}
+  <div style="display:flex;gap:12px;flex-wrap:wrap">{"".join(cards)}</div>
+  {notable_html}
+"""
+
+
 def render_html(journal: TradeJournal, equity: float | None = None,
                 events: list | None = None, refresh_sec: int = 0,
                 start_equity: float | None = None,
@@ -257,6 +344,9 @@ def render_html(journal: TradeJournal, equity: float | None = None,
   <h2>🌐 BTC vs 나스닥·금 괴리 (시작=0%)</h2>
   <div class="card">{charts.line_chart(macro, y_suffix="%")}</div>
 """ if macro else ""
+
+    brief_section = _brief_section(load_market_brief())
+    kol_section = _kol_section(load_kol_watch())
 
     event_section = f"""
   <details class="events">
@@ -327,6 +417,8 @@ def render_html(journal: TradeJournal, equity: float | None = None,
   {chart_section}
   {strength_section}
   {macro_section}
+  {brief_section}
+  {kol_section}
   <h2>열린 포지션</h2>
   <table><thead><tr><th>심볼</th><th>방향</th><th>진입가</th><th>손절</th><th>익절</th><th>모드</th></tr></thead>
   <tbody>{rows(journal.open_trades(), False) or "<tr><td colspan=6>없음</td></tr>"}</tbody></table>

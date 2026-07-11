@@ -6,6 +6,16 @@ line_chart(누적수익률·BTC 비교), bar_chart(일별 손익)를 제공한�
 from __future__ import annotations
 
 import html
+from datetime import datetime, timedelta, timezone
+
+_KST = timezone(timedelta(hours=9))
+
+
+def _date_label(epoch: float) -> str:
+    try:
+        return datetime.fromtimestamp(epoch, _KST).strftime("%m-%d")
+    except (ValueError, OSError, OverflowError):
+        return ""
 
 # 다크 테마 팔레트
 _AXIS = "#334155"
@@ -20,10 +30,11 @@ def _empty(msg: str = "데이터 없음") -> str:
 
 
 def line_chart(series: list[dict], width: int = 720, height: int = 260,
-               pad: int = 40, y_suffix: str = "%") -> str:
+               pad: int = 40, y_suffix: str = "%", x_dates: bool = True) -> str:
     """복수 시계열 라인차트.
 
     series: [{'label': str, 'color': str, 'points': [(x, y), ...]}]  (x 동일 도메인)
+    x_dates=True 이면 x 값을 epoch초로 보고 하단에 날짜(KST MM-DD) 축을 표시.
     """
     pts = [p for s in series for p in s.get("points", [])]
     if len(pts) < 2:
@@ -37,12 +48,13 @@ def line_chart(series: list[dict], width: int = 720, height: int = 260,
     if ymax == ymin:
         ymax = ymin + 1
     yr = ymax - ymin
+    bpad = pad + 16 if x_dates else pad   # 날짜축 공간
 
     def sx(x: float) -> float:
         return pad + (x - xmin) / (xmax - xmin) * (width - 2 * pad)
 
     def sy(y: float) -> float:
-        return height - pad - (y - ymin) / yr * (height - 2 * pad)
+        return height - bpad - (y - ymin) / yr * (height - bpad - pad)
 
     parts = [f'<svg viewBox="0 0 {width} {height}" width="100%" '
              f'style="max-width:{width}px" xmlns="http://www.w3.org/2000/svg">']
@@ -67,6 +79,14 @@ def line_chart(series: list[dict], width: int = 720, height: int = 260,
         d = " ".join(f"{sx(x):.1f},{sy(y):.1f}" for x, y in p)
         parts.append(f'<polyline points="{d}" fill="none" '
                      f'stroke="{s["color"]}" stroke-width="2"/>')
+    # x축 날짜 라벨 (KST) — 5등분
+    if x_dates:
+        for k in range(5):
+            xv = xmin + (xmax - xmin) * k / 4
+            anchor = "start" if k == 0 else ("end" if k == 4 else "middle")
+            parts.append(
+                f'<text x="{sx(xv):.1f}" y="{height - 4}" fill="{_TEXT}" font-size="10" '
+                f'text-anchor="{anchor}">{_date_label(xv)}</text>')
     # 범례 (CJK 글자폭 반영해 겹침 방지)
     lx = pad + 6
     for s in series:
