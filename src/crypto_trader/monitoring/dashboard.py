@@ -209,6 +209,34 @@ def _return_series_equity(history: list, start_equity: float):
     return pts, bars, pts[-1][1]
 
 
+def _trades_csv(journal) -> str:
+    """전체 거래내역을 CSV 텍스트로. (대시보드 다운로드 버튼용)"""
+    import csv
+    import io
+    buf = io.StringIO()
+    w = csv.writer(buf)
+    w.writerow(["opened_at", "closed_at", "symbol", "direction", "sleeve", "mode",
+                "quantity", "entry_price", "exit_price", "notional_usdt",
+                "pnl_usdt", "pnl_pct", "stop_price", "take_profit", "exit_reason", "order_id"])
+    for t in getattr(journal, "trades", []):
+        qty = t.quantity or 0.0
+        entry = t.entry_price or 0.0
+        notional = entry * qty
+        pnl = t.pnl
+        pnl_pct = (pnl / notional * 100.0) if (pnl is not None and notional) else ""
+        w.writerow([
+            getattr(t, "opened_at", "") or "", t.closed_at or "", t.symbol, t.direction,
+            getattr(t, "sleeve", "") or "", getattr(t, "mode", "") or "",
+            qty, entry, (t.exit_price if t.exit_price is not None else ""),
+            round(notional, 4),
+            (round(pnl, 6) if pnl is not None else ""),
+            (round(pnl_pct, 4) if pnl_pct != "" else ""),
+            getattr(t, "stop_price", "") or "", getattr(t, "take_profit", "") or "",
+            getattr(t, "exit_reason", "") or "", getattr(t, "order_id", "") or "",
+        ])
+    return buf.getvalue()
+
+
 def _short_time(iso: str | None) -> str:
     """ISO8601 → 'MM-DD HH:MM' (KST 표시용)."""
     return kst_display(iso, "%m-%d %H:%M")
@@ -887,6 +915,8 @@ def render_html(journal: TradeJournal, equity: float | None = None,
     refresh_tag = (f'<meta http-equiv="refresh" content="{refresh_sec}">'
                    if refresh_sec > 0 else "")
     now_kst = datetime.now(KST).strftime("%Y-%m-%d %H:%M:%S KST")
+    now_file = datetime.now(KST).strftime("%Y%m%d_%H%M")
+    trades_csv_js = json.dumps(_trades_csv(journal))  # 전체 거래 CSV(JS 임베드용)
 
     # --- 포트폴리오 차트 데이터 ---
     # 실잔고 이력이 충분하면 실잔고 기준(수수료·펀딩 포함, 헤드라인과 일치), 없으면 거래실현 기준.
@@ -964,9 +994,12 @@ def render_html(journal: TradeJournal, equity: float | None = None,
             if closed:
                 pnl = t.pnl or 0.0
                 c = "#16a34a" if pnl >= 0 else "#e23b4a"
+                notional_c = (t.entry_price or 0.0) * (t.quantity or 0.0)
                 out.append(
                     f"<tr><td>{html.escape(t.symbol)}</td>"
                     f"<td>{t.direction.upper()}</td>"
+                    f"<td>{t.quantity:g}</td>"
+                    f"<td>{notional_c:,.2f}</td>"
                     f"<td>{t.entry_price:.4f}</td>"
                     f"<td>{(t.exit_price or 0):.4f}</td>"
                     f"<td style='color:{c}'>{pnl:+.2f}</td>"
@@ -1084,9 +1117,10 @@ def render_html(journal: TradeJournal, equity: float | None = None,
     <table><thead><tr><th>심볼</th><th>방향</th><th>수량</th><th>포지션(USDT)</th><th>진입가</th><th>현재가</th><th>손익률</th><th>PnL(USDT)</th><th>손절</th><th>익절</th><th>모드</th></tr></thead>
     <tbody>{rows(journal.open_trades(), False) or "<tr><td colspan=11>없음</td></tr>"}</tbody></table>
     <div class="muted" style="margin-top:4px;font-size:11px">현재가·손익률·PnL 은 serve_dashboard 서버 모드에서 실시간 표시(명목가 기준, 수수료 제외).</div>
-    <h2>최근 청산 (최대 20건)</h2>
-    <table><thead><tr><th>심볼</th><th>방향</th><th>진입</th><th>청산</th><th>손익</th><th>사유</th></tr></thead>
-    <tbody>{rows(journal.closed_trades()[-20:][::-1], True) or "<tr><td colspan=6>없음</td></tr>"}</tbody></table>
+    <h2>최근 청산 (최대 20건)
+      <button id="dl-trades" class="tfbtn" style="margin-left:10px">⬇ 전체 거래 CSV</button></h2>
+    <table><thead><tr><th>심볼</th><th>방향</th><th>수량</th><th>포지션(USDT)</th><th>진입</th><th>청산</th><th>손익</th><th>사유</th></tr></thead>
+    <tbody>{rows(journal.closed_trades()[-20:][::-1], True) or "<tr><td colspan=8>없음</td></tr>"}</tbody></table>
   </div>
 
   <div class="tabpane" data-pane="market" style="display:none">
@@ -1139,5 +1173,15 @@ def render_html(journal: TradeJournal, equity: float | None = None,
        }});
       }}).catch(function(){{}});
    }})();
+   // 전체 거래내역 CSV 다운로드
+   document.addEventListener('click',function(e){{
+     var b=e.target.closest&&e.target.closest('#dl-trades'); if(!b)return;
+     var csv=window.TRADESCSV||''; if(!csv){{alert('거래내역이 없습니다.');return;}}
+     var blob=new Blob(['\\ufeff'+csv],{{type:'text/csv;charset=utf-8'}});
+     var url=URL.createObjectURL(blob),a=document.createElement('a');
+     a.href=url; a.download='crypto_trades_{now_file}.csv'; document.body.appendChild(a);
+     a.click(); document.body.removeChild(a); setTimeout(function(){{URL.revokeObjectURL(url);}},1000);
+   }});
   </script>
+  <script>window.TRADESCSV={trades_csv_js};</script>
 </body></html>"""
