@@ -973,12 +973,15 @@ def render_html(journal: TradeJournal, equity: float | None = None,
                     f"<td>{html.escape(t.exit_reason)}</td></tr>"
                 )
             else:
+                notional = (t.entry_price or 0.0) * (t.quantity or 0.0)  # 진입 명목가(포지션 사이즈)
                 out.append(
                     f"<tr class='pos-row' data-sym='{html.escape(t.symbol)}' "
                     f"data-dir='{html.escape(t.direction)}' data-entry='{t.entry_price}' "
                     f"data-qty='{t.quantity}'>"
                     f"<td>{html.escape(t.symbol)}</td>"
                     f"<td>{t.direction.upper()}</td>"
+                    f"<td>{t.quantity:g}</td>"
+                    f"<td>{notional:,.2f}</td>"
                     f"<td>{t.entry_price:.4f}</td>"
                     f"<td class='pos-cur muted'>-</td>"
                     f"<td class='pos-pct muted'>-</td>"
@@ -1078,8 +1081,8 @@ def render_html(journal: TradeJournal, equity: float | None = None,
     누적 손익·수익률은 <b>실잔고 기준</b>(수수료·펀딩·슬리피지 포함), 손익비·기대값은 거래기록 실현손익 기준이라 서로 다를 수 있습니다.</div>
     {chart_section}
     <h2>열린 포지션</h2>
-    <table><thead><tr><th>심볼</th><th>방향</th><th>진입가</th><th>현재가</th><th>손익률</th><th>PnL(USDT)</th><th>손절</th><th>익절</th><th>모드</th></tr></thead>
-    <tbody>{rows(journal.open_trades(), False) or "<tr><td colspan=9>없음</td></tr>"}</tbody></table>
+    <table><thead><tr><th>심볼</th><th>방향</th><th>수량</th><th>포지션(USDT)</th><th>진입가</th><th>현재가</th><th>손익률</th><th>PnL(USDT)</th><th>손절</th><th>익절</th><th>모드</th></tr></thead>
+    <tbody>{rows(journal.open_trades(), False) or "<tr><td colspan=11>없음</td></tr>"}</tbody></table>
     <div class="muted" style="margin-top:4px;font-size:11px">현재가·손익률·PnL 은 serve_dashboard 서버 모드에서 실시간 표시(명목가 기준, 수수료 제외).</div>
     <h2>최근 청산 (최대 20건)</h2>
     <table><thead><tr><th>심볼</th><th>방향</th><th>진입</th><th>청산</th><th>손익</th><th>사유</th></tr></thead>
