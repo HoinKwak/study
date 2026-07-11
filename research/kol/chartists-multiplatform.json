@@ -1,0 +1,94 @@
+{
+  "ts": "2026-07-11T00:00:00Z",
+  "note": "멀티플랫폼(TradingView·YouTube·Reddit) 교차검증 요약 — 참고용, 투자조언 아님(NFA). candidates는 기존 5인 교차검증 결과 + 신규 발굴 후보를 함께 담음. chartist_views.json은 덮어쓰지 않음. 대시보드 반영은 상위 호출자가 결정.",
+  "methodology": "기존 3문서 정독→플랫폼별 WebSearch→TradingView 프로필 fetch+TradingView News 2차보도로 하드콜 대조→'2025-10 천장 사전적중 여부'를 공통 검증축으로 채점. 억지 퍼센트 없이 정성등급(상/중상/중/중하).",
+  "limitations": [
+    "TradingView 개별 아이디어 본문/과거타깃/무효화레벨은 로그인·JS렌더링으로 직접대조 실패 → 일부 '미확인'.",
+    "YouTube는 큐레이션 매체 평판 위주, 개별영상 과거콜 vs 결과 정밀대조 미수행.",
+    "Reddit은 site:reddit.com 쿼리 무결과 → 개별스레드 인용 실패, 정성 평판신호로만 사용.",
+    "유료 시그널/개인홍보 주체(Doctor Profit, CryptoBullet)의 성과 자가보고는 할인.",
+    "큐레이션·생존·확증편향 상존. 과거적중이 미래를 보장하지 않음."
+  ],
+  "existing_five_crosscheck": [
+    {"name": "Peter Brandt", "handle": "@PeterLBrandt", "x_grade": "상", "adjustment": "유지", "finding": "TradingView 14.5K팔로워/120아이디어로 소규모 → X네이티브 확인, 반박 없음."},
+    {"name": "KillaXBT", "handle": "@KillaXBT", "x_grade": "상(단서)", "adjustment": "소폭 상향", "finding": "2025-06 $121,362 천장콜이 newsBTC/TradingView News로 검증(실제 $126,100, 오차 3.9%)."},
+    {"name": "Benjamin Cowen", "handle": "@intocryptoverse", "x_grade": "상(계량)", "adjustment": "유지~소폭 상향", "finding": "YouTube 92만 '가장 데이터기반' 평판 + TradingView 커뮤니티가 그의 AQR/리스크메트릭 인디케이터로 복제."},
+    {"name": "Rekt Capital", "handle": "@rektcapital", "x_grade": "중상", "adjustment": "유지", "finding": "TradingView 프로필+Forbes/Cointelegraph/RealVision 기고로 크로스플랫폼 신뢰. 정밀정타는 약함."},
+    {"name": "TechDev", "handle": "@TechDev_52", "x_grade": "중상", "adjustment": "유지", "finding": "X·Substack 네이티브, TradingView 활동 약함. 반박없으나 독립 교차검증 소스도 빈약."}
+  ],
+  "candidates": [
+    {
+      "name": "Doctor Profit",
+      "handle_or_channel": "@DrProfitCrypto",
+      "platform": "X + Telegram(유료) + TradingView차트",
+      "grade": "상(주의: 유료시그널 운영)",
+      "new_pick": true,
+      "notable_calls": [
+        "2025-08~09: BTC 115k-125k 구간 숏 준비, 9-10월 체결 → 2025-10-06 $126k 천장 후 급락(적중, X타임스탬프 박제)",
+        "타깃1 $80k 지목 → 실현. 이후 $57k-$87k 횡보 시나리오 → $76k 후 $68k 부합",
+        "2025-02: BTC $97k 부근 조정 사전경고 → 실제 하락(적중)",
+        "오답/리스크: 2024년 M2·금 기반 초장기 상단 $170k~$220k류 제시 → 실제천장 $126k 미달(2028 trapped-top으로 재프레이밍 정황)"
+      ],
+      "sources": [
+        "https://www.tradingview.com/news/newsbtc:97131143c094b:0-analyst-who-predicted-bitcoin-125-000-top-reveals-what-to-expect-next/",
+        "https://x.com/DrProfitCrypto/status/2009574034040918317",
+        "https://www.kucoin.com/news/flash/crypto-trader-doctor-profit-predicts-bitcoin-price-target-of-60-000-after-125-000-peak"
+      ]
+    },
+    {
+      "name": "CryptoBullet",
+      "handle_or_channel": "@CryptoBullet (TradingView)",
+      "platform": "TradingView",
+      "grade": "중상",
+      "new_pick": true,
+      "notable_calls": [
+        "BTC를 EW 더블지그재그(WXY)로 추적: 2025-10 ~$126k 천장을 5파완성으로 규정, 이후 $80k-$85k(X) → $40k(Y, 2026 9~10월) 로드맵",
+        "미확인: 천장을 사전 특정했는지 원문 타임스탬프 직접확인 실패(사후 파동 라벨링 여지)",
+        "리스크: EW 사후 재라벨링·양방서술, 표본작음(팔로워 6.8K/아이디어 71)"
+      ],
+      "sources": [
+        "https://www.tradingview.com/u/CryptoBullet/",
+        "https://www.tradingview.com/news/newsbtc:6e878a888094b:0-bitcoin-price-wave-down-to-40-000-shows-when-the-bottom-will-begin/"
+      ]
+    },
+    {
+      "name": "Tony Severino, CMT",
+      "handle_or_channel": "@TonyTheBullCMT",
+      "platform": "X + TradingView + newsBTC(Head of Research)",
+      "grade": "중",
+      "new_pick": true,
+      "notable_calls": [
+        "CMT 공인시장기술사 자격 + Elliott Wave International 파트너 = 유일 제도권 인증 차티스트",
+        "오답/리스크: 2025-08 CoinDesk '연내 $140k' → 실제천장 $126k 타깃미달(방향/'2026 고통' 정합). 'The Bull' 강세편향"
+      ],
+      "sources": [
+        "https://cmtassociation.org/presenter/tony-severino/",
+        "https://www.coindesk.com/markets/2025/08/04/bitcoin-still-on-track-for-usd140k-this-year-but-2026-will-be-painful-elliott-wave-expert"
+      ]
+    },
+    {
+      "name": "AlanSantana",
+      "handle_or_channel": "@AlanSantana (TradingView)",
+      "platform": "TradingView",
+      "grade": "중/중하 (상위 보류)",
+      "new_pick": false,
+      "notable_calls": [
+        "약 14만 팔로워, 9,700+ 아이디어 — 게시량 압도적이라 '뿌리고 사후에 맞은 것만 부각' 표본편향 큼",
+        "검증된 단일 대표 정타 확보 실패 → 상위 편입 보류"
+      ],
+      "sources": [
+        "https://www.tradingview.com/u/AlanSantana/"
+      ]
+    }
+  ],
+  "recommended_integrated_list": [
+    {"rank": 1, "name": "Peter Brandt", "grade": "상", "status": "유지"},
+    {"rank": 2, "name": "Doctor Profit", "grade": "상(주의)", "status": "신규편입"},
+    {"rank": 3, "name": "KillaXBT", "grade": "상(단서완화)", "status": "소폭상향"},
+    {"rank": 4, "name": "Benjamin Cowen", "grade": "상(계량)", "status": "유지~상향"},
+    {"rank": 5, "name": "Rekt Capital", "grade": "중상", "status": "유지"},
+    {"rank": 6, "name": "TechDev", "grade": "중상", "status": "유지"},
+    {"watch": true, "name": "CryptoBullet", "grade": "중상"},
+    {"watch": true, "name": "Tony Severino, CMT", "grade": "중"}
+  ]
+}
