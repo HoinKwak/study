@@ -10,9 +10,12 @@ state/dashboard.html 을 서빙한다. 스캐너(run_scanner)가 이 파일을 �
 from __future__ import annotations
 
 import argparse
+import json
 import sys
+from datetime import datetime, timezone
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from pathlib import Path
+from urllib.parse import parse_qs, urlparse
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
@@ -44,18 +47,61 @@ def main() -> None:
 
     settings = get_settings()
 
+    def _tf_params(tf: str):
+        """타임프레임 → (interval, limit)."""
+        table = {
+            "1d": ("15m", 96), "7d": ("1h", 168), "30d": ("4h", 180),
+            "6m": ("1d", 180), "1y": ("1d", 365),
+        }
+        if tf == "ytd":
+            now = datetime.now(timezone.utc)
+            jan1 = datetime(now.year, 1, 1, tzinfo=timezone.utc)
+            return ("1d", max(2, min(366, (now - jan1).days + 1)))
+        return table.get(tf, ("1h", 168))
+
+    def _api_klines(qs) -> bytes:
+        from crypto_trader.connectors import BinanceDerivativesData
+        symbol = (qs.get("symbol", ["BTC"])[0] or "BTC").upper()
+        tf = qs.get("tf", ["7d"])[0]
+        interval, limit = _tf_params(tf)
+        try:
+            kl = BinanceDerivativesData().klines(f"{symbol}/USDT", interval, limit)
+            points = [[int(kl["open_time"][i]), kl["close"][i]]
+                      for i in range(len(kl["close"]))] if kl else []
+        except Exception:  # noqa: BLE001
+            points = []
+        return json.dumps({"symbol": symbol, "tf": tf, "points": points}).encode("utf-8")
+
+    def _api_symbols() -> bytes:
+        try:
+            from crypto_trader.monitoring.market_extra import binance_futures_list
+            syms = [f["symbol"] for f in binance_futures_list()]
+        except Exception:  # noqa: BLE001
+            syms = []
+        return json.dumps(syms).encode("utf-8")
+
     class Handler(BaseHTTPRequestHandler):
-        def do_GET(self):  # noqa: N802
-            if self.path not in ("/", "/index.html", "/dashboard.html"):
-                self.send_response(404)
-                self.end_headers()
-                return
-            body = _render(settings, args.refresh)
+        def _send(self, body: bytes, ctype: str) -> None:
             self.send_response(200)
-            self.send_header("Content-Type", "text/html; charset=utf-8")
+            self.send_header("Content-Type", ctype)
             self.send_header("Content-Length", str(len(body)))
             self.end_headers()
             self.wfile.write(body)
+
+        def do_GET(self):  # noqa: N802
+            parsed = urlparse(self.path)
+            path = parsed.path
+            if path == "/api/klines":
+                self._send(_api_klines(parse_qs(parsed.query)), "application/json")
+                return
+            if path == "/api/symbols":
+                self._send(_api_symbols(), "application/json")
+                return
+            if path in ("/", "/index.html", "/dashboard.html"):
+                self._send(_render(settings, args.refresh), "text/html; charset=utf-8")
+                return
+            self.send_response(404)
+            self.end_headers()
 
         def log_message(self, *_a):  # 접속 로그 소음 억제
             pass

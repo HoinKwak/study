@@ -112,8 +112,9 @@ def sparkline(closes: list[float], width: int = 130, height: int = 36,
         f"{i / (n - 1) * (width - 2) + 1:.1f},"
         f"{height - 2 - (v - ymin) / (ymax - ymin) * (height - 4):.1f}"
         for i, v in enumerate(ys))
-    return (f'<svg viewBox="0 0 {width} {height}" width="{width}" height="{height}" '
-            f'xmlns="http://www.w3.org/2000/svg"><polyline points="{pts}" fill="none" '
+    return (f'<svg viewBox="0 0 {width} {height}" width="100%" height="{height}" '
+            f'preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">'
+            f'<polyline points="{pts}" fill="none" '
             f'stroke="{color}" stroke-width="1.5"/></svg>')
 
 

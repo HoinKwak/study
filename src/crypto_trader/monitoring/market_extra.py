@@ -99,14 +99,22 @@ def mcap_top_relative(top_n: int = 10, timeout: int = 20) -> list[dict]:
     b7 = btc.get("price_change_percentage_7d_in_currency")
     b30 = btc.get("price_change_percentage_30d_in_currency")
 
+    # 바이낸스 상장 코인만 남겨 잡토큰(FIGR_HELOC/RAIN/LEO 등) 제외
+    try:
+        tk = BinanceDerivativesData().all_24h_tickers() or {}
+    except Exception:  # noqa: BLE001
+        tk = {}
+
     def rel(a, b):
         return round(a - b, 1) if (a is not None and b is not None) else None
 
     out: list[dict] = []
     for x in rows:
         sym = str(x.get("symbol", "")).lower()
-        if sym in STABLE_LIKE or sym == "btc":
+        if sym in STABLE_LIKE or sym == "btc" or "_" in sym:
             continue
+        if tk and f"{sym.upper()}USDT" not in tk:
+            continue  # 바이낸스 미상장 제외
         out.append({
             "symbol": sym.upper(),
             "r1": rel(x.get("price_change_percentage_24h_in_currency"), b1),

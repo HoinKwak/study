@@ -304,45 +304,87 @@ def _top_section(tickers) -> str:
     left = (f"<div style='flex:3;min-width:360px;display:grid;"
             f"grid-template-columns:repeat(4,1fr);gap:10px'>{''.join(minis)}</div>")
 
-    # 우: 큰 차트 + 티커명 클릭 검색
-    opts, bigs = [], []
-    for i, t in enumerate(top):
-        sym = str(t.get("symbol", ""))
-        pts = _pct_pts(t.get("closes") or [], t.get("times") or [])
-        svg = (charts.line_chart([{"label": f"{sym} 7일(%)", "color": "#6c72ff",
-                                   "points": pts}], width=560, height=300)
-               if pts else "<div class='muted'>데이터 없음</div>")
-        bigs.append(f"<div class='bigchart' id='big-{html.escape(sym)}' "
-                    f"style='display:{'block' if i == 0 else 'none'}'>{svg}</div>")
-        opts.append(f"<div class='tkopt' data-sym='{html.escape(sym)}' "
-                    f"onclick=\"pickTicker('{html.escape(sym)}')\">{html.escape(sym)}</div>")
-    first = html.escape(str(top[0].get("symbol", ""))) if top else ""
-    right = (f"<div style='flex:4;min-width:360px' class='card'>"
-             f"<button class='tkname' onclick='toggleTk()'>"
-             f"<span id='curticker'>{first}</span> ▾</button>"
-             f"<div id='tksearch' style='display:none;margin:8px 0'>"
-             f"<input class='futsearch' oninput=\"filterTk(this.value)\" placeholder='심볼 검색… 예: SOL'>"
-             f"<div class='tklist'>{''.join(opts)}</div></div>"
-             f"{''.join(bigs)}</div>")
+    # 우: 2개 동적 차트 (티커 + 타임프레임 선택, serve_dashboard API 사용)
+    tfs = [("1일", "1d"), ("7일", "7d"), ("30일", "30d"),
+           ("6개월", "6m"), ("1년", "1y"), ("YTD", "ytd")]
 
-    js = ("<script>"
-          "function toggleTk(){var p=document.getElementById('tksearch');"
-          "p.style.display=p.style.display==='none'?'block':'none';}"
-          "function pickTicker(s){document.querySelectorAll('.bigchart').forEach(function(e){e.style.display='none';});"
-          "var el=document.getElementById('big-'+s);if(el)el.style.display='block';"
-          "document.getElementById('curticker').textContent=s;"
-          "document.getElementById('tksearch').style.display='none';}"
-          "function filterTk(q){q=(q||'').toUpperCase();"
-          "document.querySelectorAll('.tkopt').forEach(function(o){"
-          "o.style.display=o.getAttribute('data-sym').indexOf(q)>=0?'block':'none';});}"
-          "</script>")
+    def _panel(n: int, dsym: str) -> str:
+        tfbtns = "".join(
+            f'<button class="tfbtn" data-n="{n}" data-tf="{v}">{lbl}</button>' for lbl, v in tfs)
+        return (
+            f'<div class="card">'
+            f'<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">'
+            f'<button class="tkname" data-n="{n}"><span id="sym{n}">{html.escape(dsym)}</span> ▾</button>'
+            f'<span>{tfbtns}</span></div>'
+            f'<div id="search{n}" style="display:none;margin:8px 0">'
+            f'<input class="futsearch" data-n="{n}" placeholder="심볼 검색…">'
+            f'<div class="tklist" id="symlist{n}"></div></div>'
+            f'<div id="chart{n}" class="chartarea"><div class="muted">로딩…</div></div></div>')
+
+    d1 = str(top[0].get("symbol", "BTC")) if top else "BTC"
+    d2 = str(top[1].get("symbol", "ETH")) if len(top) > 1 else "ETH"
+    right = (f'<div style="flex:4;min-width:360px;display:flex;flex-direction:column;gap:14px">'
+             f'{_panel(1, d1)}{_panel(2, d2)}</div>')
+
+    cfg = ("<script>window.CHARTCFG=" + json.dumps(
+        {"syms": [str(t.get("symbol", "")) for t in top], "d1": d1, "d2": d2}) + ";</script>")
 
     return f"""
   <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start;margin:14px 0">
     {left}
     {right}
-  </div>{js}
+  </div>{cfg}{_CHART_JS}
 """
+
+
+_CHART_JS = r"""<script>
+(function(){
+ var cfg=window.CHARTCFG||{syms:[],d1:'BTC',d2:'ETH'};
+ var SYMS=(cfg.syms||[]).slice();
+ var SEL={1:{s:cfg.d1,tf:'7d'},2:{s:cfg.d2,tf:'7d'}};
+ function card(n){return document.getElementById('chart'+n).closest('.card');}
+ function hlTf(n){card(n).querySelectorAll('.tfbtn').forEach(function(b){
+   b.classList.toggle('tfbtn-active', b.getAttribute('data-tf')===SEL[n].tf);});}
+ function loadChart(n){var el=document.getElementById('chart'+n);
+   fetch('/api/klines?symbol='+encodeURIComponent(SEL[n].s)+'&tf='+SEL[n].tf)
+   .then(function(r){return r.json();}).then(function(d){drawChart('chart'+n,d);})
+   .catch(function(){el.innerHTML='<div class="muted">차트는 serve_dashboard 서버 모드에서 표시됩니다.</div>';});
+   hlTf(n);}
+ function renderSyms(n,q){q=(q||'').toUpperCase();var box=document.getElementById('symlist'+n);
+   box.innerHTML=SYMS.filter(function(x){return x.toUpperCase().indexOf(q)>=0;}).slice(0,150)
+   .map(function(x){return '<div class="tkopt" data-s="'+x+'" data-n="'+n+'">'+x+'</div>';}).join('');}
+ function drawChart(id,d){var el=document.getElementById(id);var p=(d&&d.points)||[];
+   if(p.length<2){el.innerHTML='<div class="muted">데이터 없음</div>';return;}
+   var W=560,H=300,pad=42,bpad=pad+16,c0=p[0][1];
+   var xs=p.map(function(a){return a[0];});var ys=p.map(function(a){return (a[1]/c0-1)*100;});
+   var xmin=Math.min.apply(null,xs),xmax=Math.max.apply(null,xs);
+   var ymin=Math.min.apply(null,ys.concat([0])),ymax=Math.max.apply(null,ys.concat([0]));
+   if(xmax===xmin)xmax+=1; if(ymax===ymin)ymax+=1;
+   function sx(x){return pad+(x-xmin)/(xmax-xmin)*(W-2*pad);}
+   function sy(v){return H-bpad-(v-ymin)/(ymax-ymin)*(H-bpad-pad);}
+   var o=['<svg viewBox="0 0 '+W+' '+H+'" width="100%" style="max-width:'+W+'px">'];
+   for(var i=0;i<5;i++){var yv=ymin+(ymax-ymin)*i/4,y=sy(yv);
+     o.push('<line x1="'+pad+'" y1="'+y+'" x2="'+(W-pad)+'" y2="'+y+'" stroke="rgba(255,255,255,0.06)"/>');
+     o.push('<text x="6" y="'+(y+4)+'" fill="#8d969e" font-size="11">'+yv.toFixed(1)+'%</text>');}
+   if(ymin<0&&ymax>0){var y0=sy(0);o.push('<line x1="'+pad+'" y1="'+y0+'" x2="'+(W-pad)+'" y2="'+y0+'" stroke="rgba(255,255,255,0.2)" stroke-dasharray="3 3"/>');}
+   o.push('<polyline points="'+p.map(function(a,i){return sx(xs[i]).toFixed(1)+','+sy(ys[i]).toFixed(1);}).join(' ')+'" fill="none" stroke="#6c72ff" stroke-width="2"/>');
+   for(var k=0;k<5;k++){var xv=xmin+(xmax-xmin)*k/4,dt=new Date(xv);
+     var lab=('0'+(dt.getMonth()+1)).slice(-2)+'-'+('0'+dt.getDate()).slice(-2);
+     var an=k===0?'start':(k===4?'end':'middle');
+     o.push('<text x="'+sx(xv).toFixed(1)+'" y="'+(H-4)+'" fill="#8d969e" font-size="10" text-anchor="'+an+'">'+lab+'</text>');}
+   o.push('</svg>');el.innerHTML=o.join('');}
+ document.addEventListener('click',function(e){var t=e.target;if(!t.closest)return;
+   var tf=t.closest('.tfbtn');if(tf){var n=+tf.getAttribute('data-n');SEL[n].tf=tf.getAttribute('data-tf');loadChart(n);return;}
+   var nm=t.closest('.tkname');if(nm){var n2=+nm.getAttribute('data-n');var s=document.getElementById('search'+n2);
+     s.style.display=s.style.display==='none'?'block':'none';if(s.style.display==='block')renderSyms(n2,'');return;}
+   var op=t.closest('.tkopt');if(op){var n3=+op.getAttribute('data-n');SEL[n3].s=op.getAttribute('data-s');
+     document.getElementById('sym'+n3).textContent=SEL[n3].s;document.getElementById('search'+n3).style.display='none';loadChart(n3);}});
+ document.addEventListener('input',function(e){var t=e.target;
+   if(t.classList&&t.classList.contains('futsearch')){var n=+t.getAttribute('data-n');if(n)renderSyms(n,t.value);}});
+ fetch('/api/symbols').then(function(r){return r.json();}).then(function(a){if(a&&a.length)SYMS=a;}).catch(function(){});
+ loadChart(1);loadChart(2);
+})();
+</script>"""
 
 
 _STAGE_COLOR = {"조기": "#22c55e", "확산": "#eab308", "뒷북": "#94a3b8"}
@@ -545,6 +587,9 @@ def render_html(journal: TradeJournal, equity: float | None = None,
   .tklist {{ max-height:240px; overflow-y:auto; margin-top:6px; display:grid; grid-template-columns:repeat(auto-fill,minmax(80px,1fr)); gap:4px; }}
   .tkopt {{ padding:6px 8px; border:1px solid var(--border); border-radius:9999px; font-size:12px; text-align:center; cursor:pointer; }}
   .tkopt:hover {{ background:var(--brand); color:#fff; }}
+  .tfbtn {{ background:transparent; color:var(--muted); border:1px solid var(--border); border-radius:9999px; padding:3px 9px; margin-left:4px; font-size:12px; cursor:pointer; }}
+  .tfbtn-active {{ background:var(--brand); color:#fff; border-color:var(--brand); }}
+  .chartarea {{ margin-top:8px; min-height:200px; }}
 </style></head>
 <body>
   <h1>🤖 crypto-trader 대시보드</h1>
