@@ -323,8 +323,9 @@ def _top_section(tickers) -> str:
 
     d1 = str(top[0].get("symbol", "BTC")) if top else "BTC"
     d2 = str(top[1].get("symbol", "ETH")) if len(top) > 1 else "ETH"
-    right = (f'<div style="flex:4;min-width:360px;display:flex;flex-direction:column;gap:14px">'
-             f'{_panel(1, d1)}{_panel(2, d2)}</div>')
+    right = (f'<div style="flex:5;min-width:340px;display:flex;flex-wrap:wrap;gap:14px">'
+             f'<div style="flex:1;min-width:300px">{_panel(1, d1)}</div>'
+             f'<div style="flex:1;min-width:300px">{_panel(2, d2)}</div></div>')
 
     cfg = ("<script>window.CHARTCFG=" + json.dumps(
         {"syms": [str(t.get("symbol", "")) for t in top], "d1": d1, "d2": d2}) + ";</script>")
@@ -353,25 +354,27 @@ _CHART_JS = r"""<script>
  function renderSyms(n,q){q=(q||'').toUpperCase();var box=document.getElementById('symlist'+n);
    box.innerHTML=SYMS.filter(function(x){return x.toUpperCase().indexOf(q)>=0;}).slice(0,150)
    .map(function(x){return '<div class="tkopt" data-s="'+x+'" data-n="'+n+'">'+x+'</div>';}).join('');}
+ function fmtPx(v){if(v>=1000)return '$'+v.toLocaleString('en-US',{maximumFractionDigits:0});
+   if(v>=1)return '$'+v.toFixed(2); if(v>=0.01)return '$'+v.toFixed(4); return '$'+v.toFixed(6);}
  function drawChart(id,d){var el=document.getElementById(id);var p=(d&&d.points)||[];
    if(p.length<2){el.innerHTML='<div class="muted">데이터 없음</div>';return;}
-   var W=560,H=300,pad=42,bpad=pad+16,c0=p[0][1];
-   var xs=p.map(function(a){return a[0];});var ys=p.map(function(a){return (a[1]/c0-1)*100;});
+   var W=560,H=300,padL=62,padR=14,padT=14,padB=24;
+   var xs=p.map(function(a){return a[0];});var ys=p.map(function(a){return a[1];});
    var xmin=Math.min.apply(null,xs),xmax=Math.max.apply(null,xs);
-   var ymin=Math.min.apply(null,ys.concat([0])),ymax=Math.max.apply(null,ys.concat([0]));
-   if(xmax===xmin)xmax+=1; if(ymax===ymin)ymax+=1;
-   function sx(x){return pad+(x-xmin)/(xmax-xmin)*(W-2*pad);}
-   function sy(v){return H-bpad-(v-ymin)/(ymax-ymin)*(H-bpad-pad);}
-   var o=['<svg viewBox="0 0 '+W+' '+H+'" width="100%" style="max-width:'+W+'px">'];
-   for(var i=0;i<5;i++){var yv=ymin+(ymax-ymin)*i/4,y=sy(yv);
-     o.push('<line x1="'+pad+'" y1="'+y+'" x2="'+(W-pad)+'" y2="'+y+'" stroke="rgba(255,255,255,0.06)"/>');
-     o.push('<text x="6" y="'+(y+4)+'" fill="#8d969e" font-size="11">'+yv.toFixed(1)+'%</text>');}
-   if(ymin<0&&ymax>0){var y0=sy(0);o.push('<line x1="'+pad+'" y1="'+y0+'" x2="'+(W-pad)+'" y2="'+y0+'" stroke="rgba(255,255,255,0.2)" stroke-dasharray="3 3"/>');}
-   o.push('<polyline points="'+p.map(function(a,i){return sx(xs[i]).toFixed(1)+','+sy(ys[i]).toFixed(1);}).join(' ')+'" fill="none" stroke="#6c72ff" stroke-width="2"/>');
+   var ymin=Math.min.apply(null,ys),ymax=Math.max.apply(null,ys);
+   if(xmax===xmin)xmax+=1; if(ymax===ymin)ymax+=1; var yr=ymax-ymin;
+   function sx(x){return padL+(x-xmin)/(xmax-xmin)*(W-padL-padR);}
+   function sy(v){return H-padB-(v-ymin)/yr*(H-padB-padT);}
+   var col=ys[ys.length-1]>=ys[0]?'#16a34a':'#e23b4a';
+   var o=['<svg viewBox="0 0 '+W+' '+H+'" width="100%">'];
+   for(var i=0;i<5;i++){var yv=ymin+yr*i/4,y=sy(yv);
+     o.push('<line x1="'+padL+'" y1="'+y+'" x2="'+(W-padR)+'" y2="'+y+'" stroke="rgba(255,255,255,0.06)"/>');
+     o.push('<text x="6" y="'+(y+4)+'" fill="#8d969e" font-size="11">'+fmtPx(yv)+'</text>');}
+   o.push('<polyline points="'+p.map(function(a,i){return sx(xs[i]).toFixed(1)+','+sy(ys[i]).toFixed(1);}).join(' ')+'" fill="none" stroke="'+col+'" stroke-width="2"/>');
    for(var k=0;k<5;k++){var xv=xmin+(xmax-xmin)*k/4,dt=new Date(xv);
      var lab=('0'+(dt.getMonth()+1)).slice(-2)+'-'+('0'+dt.getDate()).slice(-2);
      var an=k===0?'start':(k===4?'end':'middle');
-     o.push('<text x="'+sx(xv).toFixed(1)+'" y="'+(H-4)+'" fill="#8d969e" font-size="10" text-anchor="'+an+'">'+lab+'</text>');}
+     o.push('<text x="'+sx(xv).toFixed(1)+'" y="'+(H-6)+'" fill="#8d969e" font-size="10" text-anchor="'+an+'">'+lab+'</text>');}
    o.push('</svg>');el.innerHTML=o.join('');}
  document.addEventListener('click',function(e){var t=e.target;if(!t.closest)return;
    var tf=t.closest('.tfbtn');if(tf){var n=+tf.getAttribute('data-n');SEL[n].tf=tf.getAttribute('data-tf');loadChart(n);return;}
