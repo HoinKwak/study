@@ -31,10 +31,11 @@ class Sleeve:
 
 
 def default_sleeves(settings: Settings) -> list[Sleeve]:
-    """단타 전용 3-타임프레임 구성 (3m / 5m / 10m), 포트폴리오 100%.
+    """단타 전용 2-타임프레임 구성 (10m / 15m), 포트폴리오 100%.
 
-    중기·스윙은 손익비(엣지)가 안 나와 제외한다(정의는 git 이력에 있어 필요 시 복원 가능).
-    단타는 동적 유니버스(24h 거래대금 $30M 이상)에서 3개 타임프레임으로 신호 빈도를 넓힌다.
+    중기·스윙은 손익비(엣지)가 안 나와 제외(정의는 git 이력에 있어 필요 시 복원 가능).
+    백테스트상 3·5분은 노이즈로 적자, 10·15분이 유효 → 10m/15m 만 채택.
+    단타는 동적 유니버스(24h 거래대금 $10M 이상)에서 회전율을 넓힌다.
     (settings.symbols 는 유니버스 조회 실패 시 폴백으로만 사용)
     사이징은 증거금 기준이라 allocation 은 표시용이며, 합이 1.0(=100%)이 되게 둔다.
     """
@@ -52,12 +53,11 @@ def default_sleeves(settings: Settings) -> list[Sleeve]:
             strategy_kind="scalp", eval_interval_sec=eval_sec,
             symbols=scalp_symbols, twap_slices=10, slice_interval_sec=20,
             leverage=settings.major_leverage, maker_entry=True,
-            dynamic_universe=True, min_universe_volume=30e6,
+            dynamic_universe=True, min_universe_volume=10e6,
         )
 
-    # 5m 슬리브는 기존 이름 'scalp' 유지(진행 중 포지션 연속성 보존).
+    # 10m 슬리브는 기존 이름 'scalp' 유지(진행 중 포지션 연속성 보존).
     return [
-        _scalp("scalp3m",  "3m",  "15m", 0.34, 3 * 60),
-        _scalp("scalp",    "5m",  "15m", 0.33, 5 * 60),
-        _scalp("scalp10m", "10m", "30m", 0.33, 10 * 60),
+        _scalp("scalp",    "10m", "30m", 0.5, 10 * 60),
+        _scalp("scalp15m", "15m", "1h",  0.5, 15 * 60),
     ]

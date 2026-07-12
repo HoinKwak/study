@@ -12,15 +12,14 @@ def test_default_sleeves_allocations_sum_to_one():
     sleeves = default_sleeves(_settings())
     assert abs(sum(s.allocation for s in sleeves) - 1.0) < 1e-9
     names = {s.name for s in sleeves}
-    # 단타 전용 3-타임프레임(중기·스윙 제외)
-    assert names == {"scalp3m", "scalp", "scalp10m"}
+    # 단타 전용 2-타임프레임(10m/15m, 중기·스윙 제외)
+    assert names == {"scalp", "scalp15m"}
 
 
 def test_sleeve_timeframes():
     sleeves = {s.name: s for s in default_sleeves(_settings())}
-    assert sleeves["scalp3m"].signal_tf == "3m" and sleeves["scalp3m"].confirm_tf == "15m"
-    assert sleeves["scalp"].signal_tf == "5m" and sleeves["scalp"].confirm_tf == "15m"
-    assert sleeves["scalp10m"].signal_tf == "10m" and sleeves["scalp10m"].confirm_tf == "30m"
+    assert sleeves["scalp"].signal_tf == "10m" and sleeves["scalp"].confirm_tf == "30m"
+    assert sleeves["scalp15m"].signal_tf == "15m" and sleeves["scalp15m"].confirm_tf == "1h"
     assert all(sl.strategy_kind == "scalp" for sl in sleeves.values())
 
 
@@ -33,8 +32,8 @@ def test_allocated_equity():
 def test_default_sleeves_use_configured_symbols():
     s = _settings()
     sleeves = {sl.name: sl for sl in default_sleeves(s)}
-    # 단타는 SOL 제외 (백테스트에서 엣지 없음 확인). 3개 슬리브 모두 동일 유니버스.
-    for name in ("scalp3m", "scalp", "scalp10m"):
+    # 단타는 SOL 제외 (백테스트에서 엣지 없음 확인). 두 슬리브 모두 동일 유니버스.
+    for name in ("scalp", "scalp15m"):
         assert sleeves[name].symbols == ["BTC/USDT", "ETH/USDT"]
-        assert sleeves[name].min_universe_volume == 30e6
+        assert sleeves[name].min_universe_volume == 10e6
         assert sleeves[name].dynamic_universe is True
