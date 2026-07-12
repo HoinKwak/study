@@ -27,6 +27,13 @@
 - 3개 슬리브 포트폴리오(단타 1분 / 중기 15분 / 중장기 4시간), 헤지·isolated 모드, 논리적 자본 배분(50/25/25).
 - 시장 스캐너(급등락·거래량/OI 급증·펀딩 극단 감지) → 텔레그램 알림 + 대시보드 갱신.
 
+### 로컬 실행 환경 (사용자 Windows PC)
+- 프로젝트 경로(고정): `C:\Users\ghdls\Documents\study-claude-personal-ai-assistant-11xcgh\study-claude-personal-ai-assistant-11xcgh`
+- 실행 명령 안내 시 이 경로를 그대로 쓴다(플레이스홀더 `C:\경로\study` 대신).
+- PowerShell은 `&&` 미지원 → 줄을 나누거나 `;` 사용. 가상환경: `.\.venv\Scripts\Activate.ps1`.
+- 3개 프로세스는 각각 별도 창: ① 매매봇 `python -m scripts.run_portfolio`
+  ② 알람봇(스캐너) `python -m scripts.run_scanner` ③ 대시보드 `python -m scripts.serve_dashboard`.
+
 ### 주요 실행 스크립트
 - `python -m scripts.run_scanner` — 시장 스캐너 상시 구동 + `state/dashboard.html` 갱신.
 - `python -m scripts.serve_dashboard` — 로컬 대시보드 웹서버(`http://localhost:8787`).
