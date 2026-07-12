@@ -377,6 +377,15 @@ class BinanceClient:
         cost_min = (m.get("limits", {}).get("cost", {}) or {}).get("min")
         return float(cost_min) if cost_min else 5.0
 
+    def min_amount(self, symbol: str) -> float:
+        """최소 주문 수량(LOT_SIZE minQty). 없으면 0.0(제한 없음)."""
+        try:
+            m = self.market_meta(symbol)
+        except Exception:  # noqa: BLE001 — 메타 조회 실패 시 제한 없음으로 처리
+            return 0.0
+        amt_min = (m.get("limits", {}).get("amount", {}) or {}).get("min")
+        return float(amt_min) if amt_min else 0.0
+
     def max_position_notional(self, symbol: str, leverage: int) -> float | None:
         """해당 레버리지에서 이 심볼이 허용하는 최대 포지션 명목가치(USDT).
 

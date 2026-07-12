@@ -367,30 +367,46 @@ class SleeveWorker:
     # ------------------------------------------------- 단타 (모멘텀 청산)
 
     def _scalp_partial_close(self, rec: TradeRecord, price: float,
-                             frac: float, reason: str) -> None:
+                             frac: float, reason: str) -> bool:
         """단타 부분청산: 보유 수량의 frac 만큼 종가 청산. 나머지는 열린 채로 유지.
 
         거래소에서 해당 수량만 닫고, 그만큼을 '청산된 하위 거래'로 저널에 기록한 뒤
         열린 거래의 수량을 줄인다(누적손익 정확). 실패 시 상태 변경 없이 다음에 재시도.
+
+        짜바리(dust) 방지:
+          - 청산 수량을 거래소 스텝사이즈에 맞춰 반올림하고, 저널 잔량도 '같은 값'으로
+            동기화해 드리프트를 없앤다(반올림 안 된 raw 값을 빼면 잔량이 어긋나 짜바리).
+          - 분할 후 남는 꼬리가 최소주문량 미만이면 분할 자체를 포기(False 반환)해,
+            청산 불가능한 잔량이 남지 않게 한다. 호출자는 이때 전량 청산한다.
+        반환: 분할 청산을 실제로 수행했으면 True, 불가/실패면 False.
         """
         from dataclasses import replace
-        qty_close = rec.quantity * frac
-        if qty_close <= 0:
-            return
         direction = Direction(rec.direction)
-        if self.s.trade_mode is not TradeMode.DRY_RUN and self.binance is not None:
+        live = self.s.trade_mode is not TradeMode.DRY_RUN and self.binance is not None
+        if live:
+            qty_close = self.binance.amount_to_precision(rec.symbol, rec.quantity * frac)
+            remaining = self.binance.amount_to_precision(rec.symbol, rec.quantity - qty_close)
+            min_amt = self.binance.min_amount(rec.symbol)
+            # 분할분 또는 잔여 꼬리가 최소주문량 미만이면 깔끔히 못 쪼갬 → 전량 청산에 맡김
+            if qty_close <= 0 or (min_amt and (qty_close < min_amt or remaining < min_amt)):
+                return False
             try:
                 self.binance.close_quantity(rec.symbol, rec.direction, qty_close)
             except Exception as e:  # noqa: BLE001
                 log.warning("[%s] %s 부분청산 실패: %s", self.sleeve.name, rec.symbol, e)
-                return
+                return False
+        else:
+            qty_close = rec.quantity * frac
+            if qty_close <= 0:
+                return False
+            remaining = rec.quantity - qty_close
         pnl = self._pnl(direction, rec.entry_price, price, qty_close)
         self.risk.register_realized_pnl(pnl)
         self.realize_cb(pnl)
         sub = replace(rec, quantity=qty_close, exit_price=price, closed_at=_now_iso(),
                       pnl=pnl, exit_reason=reason)
         self.journal.trades.append(sub)
-        rec.quantity -= qty_close
+        rec.quantity = remaining   # 거래소 반올림과 동기화된 잔량(짜바리 방지)
         self.journal.save()
         ret_pct = pnl / (rec.entry_price * qty_close) * 100.0 if rec.entry_price else 0.0
         self.notifier.trade(
@@ -399,6 +415,7 @@ class SleeveWorker:
             f"{self._portfolio_line()}",
             title="📗 부분청산 50%",
         )
+        return True
 
     def _scalp_momentum_exit(self, symbol: str, df) -> bool:
         """2단계 청산: 신고가/신저가 갱신 봉에서 50%, 그 다음 봉에서 나머지 50%.
@@ -424,9 +441,14 @@ class SleeveWorker:
         made_new = ((direction is Direction.LONG and bar_high > rec.signal_high)
                     or (direction is Direction.SHORT and bar_low < rec.signal_low))
         if made_new:
-            self._scalp_partial_close(rec, price, 0.5, "momentum_tp1")
-            rec.half_closed = True
-            self.journal.save()
+            # 50% 분할이 스텝사이즈/최소주문량 때문에 깔끔히 안 되면(소액 포지션)
+            # 짜바리를 남기지 않도록 이번 봉에 전량 청산한다.
+            if self._scalp_partial_close(rec, price, 0.5, "momentum_tp1"):
+                rec.half_closed = True
+                self.journal.save()
+            else:
+                self._close_trade(rec, price, "momentum_tp")
+                return True
         return False
 
     _TF_SEC = {"1m": 60, "3m": 180, "5m": 300, "15m": 900, "1h": 3600, "4h": 14400}
