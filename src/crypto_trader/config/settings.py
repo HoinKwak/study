@@ -82,6 +82,9 @@ class Settings(BaseSettings):
     # 최근 N봉이 신고가/신저가를 못 만들고(모멘텀 정체) + 마지막 봉이 역방향일 때 청산.
     # 0 이면 기존처럼 RANGE 즉시 청산(러프). 클수록 더 오래 보유(SL/모멘텀익절에 맡김).
     scalp_chop_confirm_bars: int = 2
+    # SL 거리 배수: 신호봉 시가 기준 손절거리를 이 배수로 확장(1.0=신호봉 시가, 현행).
+    # 증거금 기준 사이징(라이브)에선 포지션 크기 불변·손절만 멀어짐 → 노이즈 손절 완화.
+    scalp_stop_mult: float = 1.0
 
     # --- 시장 스캐너 (급등/급락/거래량·OI 급증 알림) ---
     scanner_enabled: bool = True

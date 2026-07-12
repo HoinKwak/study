@@ -78,6 +78,10 @@ class ScalpStrategy:
                                else getattr(settings, "scalp_require_regime", True))
         # 횡보 전환 청산 시 모멘텀 꺾임 확인 봉수(0=RANGE 즉시 청산).
         self.chop_confirm_bars = int(getattr(settings, "scalp_chop_confirm_bars", 2))
+        # SL 거리 배수: 신호봉 시가 기준 손절거리(entry-open)를 이 배수만큼 넓힌다.
+        # 1.0=신호봉 시가(기존), >1 이면 더 멀리(노이즈 손절 완화). 리스크기준 사이징에선
+        # 손절이 멀수록 포지션이 작아진다(건당 리스크 일정).
+        self.stop_mult = float(getattr(settings, "scalp_stop_mult", 1.0))
 
     def _momentum_faded(self, df: pd.DataFrame, direction: Direction) -> bool:
         """모멘텀 꺾임 판정 — 최근 N봉이 신고가/신저가를 못 만들고 마지막 봉이 역방향.
@@ -184,12 +188,12 @@ class ScalpStrategy:
         entry = c  # 참조 진입가(실제는 TWAP 평균)
         min_tp_dist = entry * self.min_tp_frac    # 최소 익절 거리(수수료를 이겨야 함)
         if direction is Direction.LONG:
-            stop = o                          # 신호봉 시가
+            stop = entry - self.stop_mult * (entry - o)   # 신호봉 시가 기준, 배수만큼 확장
             risk = max(entry - stop, 1e-9)
             tp = max(h, entry + self.rr * risk, entry + min_tp_dist)
             action = Action.OPEN_LONG
         else:
-            stop = o
+            stop = entry + self.stop_mult * (o - entry)
             risk = max(stop - entry, 1e-9)
             tp = min(l, entry - self.rr * risk, entry - min_tp_dist)
             action = Action.OPEN_SHORT

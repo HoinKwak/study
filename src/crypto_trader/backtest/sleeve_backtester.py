@@ -338,9 +338,15 @@ class SleeveBacktester:
                 else:
                     atr_v = float(atr_series.iloc[i])
                     plan = self.risk.build_plan(result.symbol, d.direction, price, atr_v, equity)
-            else:         # scalp: 전략 제시 SL/TP 사이징
-                plan = self.risk.build_plan_with_stop(result.symbol, d.direction, price,
-                                                      d.stop_price, d.take_profit, equity)
+            else:         # scalp: 전략 제시 SL/TP 사이징 (라이브 _size_plan 과 동일)
+                if self.s.position_margin_pct > 0:  # 증거금 기준: 포지션 크기 SL거리와 무관
+                    margin = equity * (self.s.position_margin_pct / 100.0)
+                    plan = self.risk.build_plan_by_margin(result.symbol, d.direction, price,
+                                                          d.stop_price, d.take_profit, margin,
+                                                          leverage=self.risk.max_leverage)
+                else:                                # 리스크 기준: SL 넓히면 포지션 축소
+                    plan = self.risk.build_plan_with_stop(result.symbol, d.direction, price,
+                                                          d.stop_price, d.take_profit, equity)
             if plan is not None:
                 trade = self._open_trade(result, d.direction, i, price, plan.quantity,
                                          plan.stop_price, plan.take_profit, df)
