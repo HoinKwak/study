@@ -53,8 +53,8 @@ class Settings(BaseSettings):
     major_bases: Annotated[list[str], NoDecode] = Field(
         default_factory=lambda: ["BTC", "ETH", "BNB", "SOL", "XRP", "DOGE", "ADA", "TRX", "AVAX", "LINK"]
     )
-    major_leverage: int = 50
-    alt_leverage: int = 20
+    major_leverage: int = 30
+    alt_leverage: int = 10
     risk_per_trade_pct: float = 1.0
     max_open_positions: int = 3
     max_position_notional_pct: float = 100.0  # 포지션당 명목가치 상한(계좌 대비 %)

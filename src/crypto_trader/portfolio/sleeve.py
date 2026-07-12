@@ -31,38 +31,33 @@ class Sleeve:
 
 
 def default_sleeves(settings: Settings) -> list[Sleeve]:
-    """설계 문서 기준 기본 3-슬리브 구성 (50/25/25)."""
+    """단타 전용 3-타임프레임 구성 (3m / 5m / 10m), 포트폴리오 100%.
+
+    중기·스윙은 손익비(엣지)가 안 나와 제외한다(정의는 git 이력에 있어 필요 시 복원 가능).
+    단타는 동적 유니버스(24h 거래대금 $30M 이상)에서 3개 타임프레임으로 신호 빈도를 넓힌다.
+    (settings.symbols 는 유니버스 조회 실패 시 폴백으로만 사용)
+    사이징은 증거금 기준이라 allocation 은 표시용이며, 합이 1.0(=100%)이 되게 둔다.
+    """
     symbols = settings.symbols
-    # 단타는 동적 유니버스: 24h 거래대금 $100M 이상 전 페어 (회전율 확보).
-    # 스퀴즈 필터가 진입을 강하게 거르므로 유니버스를 넓혀 신호 빈도를 복구한다.
-    # (settings.symbols 는 유니버스 조회 실패 시 폴백으로만 사용)
     scalp_symbols = [s for s in symbols if s.split("/")[0] != "SOL"]
-    return [
-        Sleeve(
-            name="swing", allocation=0.50,
-            signal_tf="4h", confirm_tf="1d",
-            strategy_kind="swing",            # RSI 20/80 역추세 → 슈퍼트렌드 피라미딩
-            eval_interval_sec=4 * 3600,
-            symbols=symbols, twap_slices=3, leverage=10,
-        ),
-        Sleeve(
-            name="mid", allocation=0.25,
-            signal_tf="15m", confirm_tf="1h",
-            strategy_kind="mid",              # 1h 추세 + 15m 볼린저 눌림목 평균회귀
-            eval_interval_sec=15 * 60,
-            symbols=symbols, twap_slices=1, leverage=5,
-        ),
-        Sleeve(
-            name="scalp", allocation=0.25,
-            # 1m → 5m 상향: 백테스트 결과 1m 모멘텀은 수수료를 못 이김
-            # (5m + vol 4배가 최선: 승률 68%). TWAP 3슬라이스 = 15분 창.
-            signal_tf="5m", confirm_tf="15m",
-            strategy_kind="scalp",
-            eval_interval_sec=5 * 60,
-            # 증거금 기준 사이징 → 충격 완화 위해 10분할 × 20초 시간분산.
-            # 메이커(post-only) 진입: 수수료 절감(테이커→메이커). 미체결분은 시장가 폴백.
+
+    def _scalp(name: str, signal_tf: str, confirm_tf: str,
+               alloc: float, eval_sec: int) -> Sleeve:
+        # 증거금 기준 사이징 → 충격 완화 위해 10분할 × 20초 시간분산.
+        # 메이커(post-only) 진입: 수수료 절감. 미체결분은 시장가 폴백.
+        # 10m 는 비네이티브 → 워커가 5m 에서 리샘플.
+        return Sleeve(
+            name=name, allocation=alloc,
+            signal_tf=signal_tf, confirm_tf=confirm_tf,
+            strategy_kind="scalp", eval_interval_sec=eval_sec,
             symbols=scalp_symbols, twap_slices=10, slice_interval_sec=20,
-            leverage=30, maker_entry=True,
-            dynamic_universe=True, min_universe_volume=50e6,
-        ),
+            leverage=settings.major_leverage, maker_entry=True,
+            dynamic_universe=True, min_universe_volume=30e6,
+        )
+
+    # 5m 슬리브는 기존 이름 'scalp' 유지(진행 중 포지션 연속성 보존).
+    return [
+        _scalp("scalp3m",  "3m",  "15m", 0.34, 3 * 60),
+        _scalp("scalp",    "5m",  "15m", 0.33, 5 * 60),
+        _scalp("scalp10m", "10m", "30m", 0.33, 10 * 60),
     ]

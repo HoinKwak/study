@@ -84,15 +84,23 @@ class SleeveWorker:
 
     # ------------------------------------------------------------- 데이터
 
+    # 바이낸스 비네이티브 TF → (베이스 네이티브 TF, 배수) 리샘플 매핑
+    _RESAMPLE_FROM = {"10m": ("5m", 2)}
+
     def _fetch_df(self, symbol: str, timeframe: str, limit: int = 200) -> pd.DataFrame | None:
+        base_tf, mult = self._RESAMPLE_FROM.get(timeframe, (timeframe, 1))
         try:
             if self.binance is not None:
-                raw = self.binance.fetch_ohlcv(symbol, timeframe, limit=limit)
+                raw = self.binance.fetch_ohlcv(symbol, base_tf, limit=limit * mult)
             else:
                 import ccxt
                 ex = ccxt.binance({"options": {"defaultType": "future"}})
-                raw = ex.fetch_ohlcv(symbol, timeframe=timeframe, limit=limit)
-            return ohlcv_to_df(raw)
+                raw = ex.fetch_ohlcv(symbol, timeframe=base_tf, limit=limit * mult)
+            df = ohlcv_to_df(raw)
+            if mult > 1:  # 비네이티브(예: 10m) → 네이티브(5m)에서 리샘플
+                from ..backtest.multi_tf import resample_ohlcv
+                df = resample_ohlcv(df, timeframe)
+            return df
         except Exception as e:  # noqa: BLE001
             log.warning("[%s] OHLCV 실패 %s %s: %s", self.sleeve.name, symbol, timeframe, e)
             return None
