@@ -1,70 +1,70 @@
-# KOL 하이프 리스트 — 2026-07-13 00:30 (KST 기준 갱신, 원자료 UTC 2026-07-12 15:30)
+# KOL 하이프 리스트 — 2026-07-13 03:45 (KST 기준 갱신, 원자료 UTC 2026-07-12 18:45)
 
-> ⚠️ 아이디어 소싱·조기경보용. **투자조언 아님(Not financial advice).** KOL 콜은 홍보·포지션 편향이 매우 크고, 유료/봇 KOL·카피트레이드 유인도 섞여 있음. X 로그인월 한계로 **WebSearch 인덱싱·2차 보도·DexScreener/CoinGecko/GeckoTerminal** 기반이며, 원 트윗 직접 확인이 안 된 항목은 **"미확인"**으로 표기. 전회차(2026-07-12 08:30 UTC) 대비 **신규/지속/식음**을 비교 표기함.
+> ⚠️ 아이디어 소싱·조기경보용. **투자조언 아님(Not financial advice).** KOL 콜은 홍보·포지션 편향이 매우 크고, 유료/봇 KOL·카피트레이드 유인도 섞여 있음. X 로그인월 한계로 **WebSearch 인덱싱·2차 보도·DexScreener/CoinGecko/GeckoTerminal** 기반이며, 원 트윗 직접 확인이 안 된 항목은 **"미확인"**으로 표기. 전회차(2026-07-12 15:30 UTC) 대비 **신규/지속/식음**을 비교 표기함.
 
 ## 🎯 토큰 하이프 리스트 (조기성 우선 정렬)
 
 | 토큰 | 체인/DEX | CA | 단계 | 언급 KOL(수) | 서사(요지) | 온체인 코로보 | 신규? | 리스크 | 출처 |
 |---|---|---|---|---|---|---|---|---|---|
-| **Finance Bro** | Robinhood Chain | 미확인 | 🟢조기 | 0(귀속 미확인, CoinGecko RH체인 카테고리 신규 저시총 포착) | RH체인 밈 바스켓 최신 진입, 매체 보도 전 단계 | 🟡 시총 $58K 초극소형, +45~100%대 | **신규** | 🔴 초극소형·러그 위험 극대, CA/유동성/홀더 데이터 전무 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
-| **HOODCAT (Cat in Hood)** | Robinhood Chain | 미확인 | 🟢조기~확산초입 | 0(귀속 미확인, CoinGecko 트렌딩 top3 진입) | CASHCAT 파생 카피캣이나 CoinGecko 글로벌 트렌딩 진입(24h 한때 +2404%) | ✅ 시총 $16.5M, 24h vol $100.4M(회전율 6배+) | **신규** | 🔴 CA 미확인, 카피캣 네이밍, 거래량/시총 비율 이상(워시트레이딩 의심), RH체인 허니팟 경보 다수 | [CoinGecko 트렌딩](https://www.coingecko.com/en/highlights/trending-crypto) |
-| **FOX** | Robinhood Chain | 미확인(소스 상충) | 🟢조기 | 0(귀속 미확인, Coingape·Arbitrage Andy 동시 포착) | RH체인 마스코트 밈, 이번주 CASHCAT·HOODIE와 함께 "최다 상승 3종" | ✅ 최신 스냅샷 시총 $624K·24h +22,500% | **신규** | 🔴 출처 간 시총 상충($624K vs 3일전 $16M 언급) — 데이터 신뢰도 낮음, CA 미확인 | [Coingape](https://coingape.com/markets/3-robinhood-chain-tokens-rallying-the-most-this-week-fox-cashcat-hoodie/) |
-| **$1 ("$1 is all you need")** | Robinhood Chain | 미확인 | 🟢조기~확산초입(주의) | 0(귀속 미확인, RH체인 카테고리 시총 2위) | 저가·접근성 슬로건 밈, 실제 관심 유입인지 판별 필요 | 🟡 시총 $23.8M vs 24h vol $215.9M(회전율 9배+, 워시트레이딩 의심) | **신규** | 🔴 거래량/시총 비율 극단적, 자전거래 의심, KOL 콜 근거 전무 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
-| **SPCX69** | Solana | `SPCXwBHVrKpRqMRawL3NNvt1sXP2Yf3edwRbta53N69` | 🟢조기(데이터 갱신 안 됨) | 0(CT 전반 확산, 전회차 CoinGecko 미국 트렌딩 1위) | SpaceX 브랜드 편승 밈, 전회차 15배 급등 확인 — 이번 회차 재확인 실패 | 🟡 전회차 데이터 그대로(24h +60%대, 시총 $3.4M) | 지속 | 🔴 SpaceX/Musk 무관, 저유동, 갱신 안 됨(식었을 가능성) | [Phemex](https://phemex.com/academy/what-is-spcx69-spacex-meme-token) |
-| **ARROW** | Robinhood Chain | 미확인 | 🟢조기~확산초입 | 0(체인 메타, Arbitrage Andy 뉴스레터) | RH체인 밈 중 드물게 실제 프론트엔드·문서(Arrow Finance) 보유 | ✅ 시총 ~$16M로 CASHCAT 다음 2위권 안착 | 지속(상승) | 🔴 CA 미확인 지속, 저유동성 | [Arbitrage Andy](https://arbletter.arbitrageandy.us/p/meme-coins-are-going-vertical-again) |
-| **TENDIES** | Robinhood Chain | 미확인 | 🟢조기 | 0(WSB 커뮤니티 주도) | WSB 테마 밈, 자체 Reddit/Discord 문화 지속 | ✅ CoinGecko 시총 $2.9M·24h +29.7% | 지속 | 🔴 CA 미확인, 소형 시총 극변동 | [BeInCrypto](https://beincrypto.com/3-crypto-to-watch-on-robinhood-chain-as-meme-coin-frenzy-takes-off/) |
-| **HOODIE** | Robinhood Chain | 미확인(truncated) | 🟡확산 | 0(체인 메타, Coingape "최다상승 3종") | 제로세금·100% 커뮤니티 소유 표방 밈 | ✅ 24h vol $21~57M(소스 상충), 단 하루 만에 반토막 사례도 | 지속(승격) | 🔴 고변동성(하루 -50% 사례), CA/시총 수치 상충 | [Coingape](https://coingape.com/markets/3-robinhood-chain-tokens-rallying-the-most-this-week-fox-cashcat-hoodie/) |
-| **4663** | Robinhood Chain | `0xd4052415613B34Af236024B895574c467f65b6dD` | 🟢조기~확산초입 | 0(체인 메타) | RH체인 Chain ID(4663) 네이밍 밈 | ✅ CoinGecko 시총 $3.0M·24h +104.2% 재확인 | 지속 | 🔴 초소형 시총, 유동성 얕음 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
-| **DIH (Dog In Hood)** | Robinhood Chain | `0x17bb0C898254406b1Ea2e8E99B0C263e26c9E4a4` | 🟡확산 | 0(체인 메타) | RH체인 밈 바스켓 일원, ARROW·JUGGERNAUT과 중위권 | 🟡 최신 거래량 부분 재확인 | 지속 | 🔴 보도별 가격 상충, 변동성 극심 | [Coingape](https://coingape.com/markets/top-robinhood-chain-meme-coins-to-watch-as-volumes-surge-1200/) |
-| **BABYCASHCAT** | Robinhood Chain | `0x57a1AB439e8C24B90Ecc6534C05621d6E68ED35A` | 🟠식음 추정 | 0(카피캣 트렌드) | CASHCAT 파생 카피캣, 2회 연속 재확인 실패 — 관심이 신규 카피캣(HOODCAT)으로 이전된 정황 | 🔴 2회 연속 데이터 갱신 안 됨 | 지속(약화) | 🔴 카피캣·초저시총·러그 위험, 식었을 가능성 높음 | [DexScreener](https://dexscreener.com/robinhood) |
-| **FROGBULL ($FERGANI)** | Solana | `BDbNwA95183CdqUhx2P6R3fWXbefubVbx2wNnCp6pump` | 🟠식음 후보 | 1(Crypto Fergani·스텔스 런처) | 중형 KOL 스텔스 런칭 — 3회 연속 데이터 재검증 실패 | 🔴 데이터 상충 3회 연속 지속 | 지속(약화) | 🔴 검증 데이터 상충 지속, 신뢰도 강등 대상 | [GeckoTerminal(X)](https://x.com/GeckoTerminal/status/2072556426162209164) |
-| **JUGGERNAUT** | Robinhood Chain | `0xD7321801CAae694090694Ff55A9323139F043B88` | 🟠식음 진행 중 | 0(체인 메타) | RH체인 밈 바스켓, 발행 3주+ — 신규 진입 밈(FOX·HOODCAT·$1)에 관심 밀리는 정황 | 🟡 갱신 안 됨 | 지속(약화) | 🟠 모멘텀 둔화 지속, 고점 지났을 가능성 높음 | [DexScreener](https://dexscreener.com/robinhood) |
-| **CASHCAT** | Robinhood Chain | `0x020bfC650A365f8BB26819deAAbF3E21291018b4` | 🔴뒷북(강세 지속) | 3(Ansem 지갑추정·미확인, Vlad Tenev, Alon Cohen) | RH체인 대표 밈, 시총 $175~188M로 2위(ARROW $16M)와 10배+ 격차 유지 | ✅ 압도적 1위 지속, 24h vol $36M+ | 지속 | 🔴 이미 1,500~12,500%대 급등한 뒷북, 신규 진입 late-entry | [Cryptoslate](https://cryptoslate.com/robinhood-launched-a-wall-street-layer-2-chain-and-the-market-crowned-a-150m-cat-coin-first/) |
-| **ANSEM (The Black Bull)** | Solana | `9cRCn9rGT8V2imeM2BaKs13yhMEais3ruM3rPvTGpump` | 🔴뒷북(조정 중) | 1(Ansem 본인, BullpenFi 스마트분배 캠페인) | Ansem 이름 딴 밈(익명 개발자 제작), 홀더 11만+ 확장 지속, 신고가 대비 조정 | ✅ 시총 $200M+대 유지 | 지속 | 🔴 단일 인물 의존, 동명 카피캣 난립 | [crypto.news](https://crypto.news/what-is-ansem-coin-solana-influencer-memecoin-explained/) |
+| **ROB** | Robinhood Chain | 미확인 | 🟢조기 | 0(귀속 미확인, CoinGecko RH체인 카테고리 신규 10위) | RH체인 밈 바스켓 최신 진입, 매체 보도 전 단계 | ✅ 시총 $1.3M·24h +25.2% | **신규** | 🔴 초극소형·CA/유동성/홀더 데이터 전무, 러그 위험 극대 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
+| **REPE (Robinhood Pepe)** | Robinhood Chain | 미확인(동명 다수 혼재) | 🟢조기 | 0(귀속 미확인, CoinGecko RH체인 카테고리 9위) | RH체인+Pepe 밈 결합, 소형 신규 진입 | ✅ 시총 $1.4M·24h +15.5% | **신규** | 🔴 동명 토큰 다수(Reddit Pepe 등) 검색상 혼재 — CA 오기재 방지 위해 공란, 초극소형 시총 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
+| **WEN (Wen Lambo)** | Robinhood Chain | 미확인(동명 타체인 토큰 존재) | 🟢조기~확산초입 | 0(귀속 미확인, CoinGecko RH체인 카테고리 5위 신규) | RH체인 밈 바스켓 중위권 신규 진입 | ✅ 시총 $7.2M·24h +25.9% | **신규** | 🔴 동명 'Wen Lambo(LAMBO)' 토큰이 이더리움 등 별도 존재 — CA 혼동 위험, 공란 처리 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
+| **ANSEM 카피캣 스웜(IMANTIS·PSYOPBULL·GLANSEM)** | Solana | 미확인 | 🟢조기(단일소스·미검증) | 0(자연발생 카피캣, 검색엔진 캐시 스니펫 1건에서만 포착) | ANSEM 하이프 편승 파생 밈 다발 출현(IMANTIS +621%, PSYOPBULL +489%, GLANSEM +812% 단일 관측) | 🟡 재현성·정확한 시점 미확인 | **신규** | 🔴 스냅샷 신뢰도 낮음, 개별 CA 미확인, 카피캣 난립 패턴상 대부분 단명·러그 가능성 매우 높음 | [DexScreener(검색 스니펫)](https://dexscreener.com/solana) |
+| **4663** | Robinhood Chain | `0xd4052415613B34Af236024B895574c467f65b6dD` | 🟢조기~확산초입 | 0(체인 메타) | RH체인 Chain ID(4663) 네이밍 밈, 2회 연속 재상승 | ✅ 시총 $3.0M·24h +54.2%(전회차 +104.2%에 이어) | 지속(재상승) | 🔴 초소형 시총, 유동성 얕음 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
+| **TENDIES** | Robinhood Chain | 미확인 | 🟢조기 | 0(WSB 커뮤니티 주도) | WSB 테마 밈, 커뮤니티 문화 지속 | ✅ 시총 $2.6M·24h +19.3% | 지속 | 🔴 CA 미확인, 소형 시총 극변동 | [BeInCrypto](https://beincrypto.com/3-crypto-to-watch-on-robinhood-chain-as-meme-coin-frenzy-takes-off/) |
+| **HOODIE** | Robinhood Chain | 미확인(동명 2페어 존재) | 🟡확산 | 0(체인 메타, 이전 '최다상승 3종'에 이어 재상승) | 제로세금·100% 커뮤니티 소유 표방 밈, 4위권 재진입 | ✅ 시총 $18.8M·24h +38.4% | 지속(반등) | 🔴 고변동성 반복(과거 -50% 사례), 동명 토큰 CoinGecko상 2개 페어 존재(시총 $18.8M/$2.1M) 혼동 주의 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
+| **HOODCAT (Cat in Hood)** | Robinhood Chain | 미확인 | 🟡확산 | 0(귀속 미확인, 트렌딩 진입 이후 3위권 안착) | CASHCAT 파생 카피캣, 3위 유지하나 모멘텀 정체 | 🟡 시총 $19.9M(24h 변동 0%), 24h vol $121.2M | 지속(둔화) | 🔴 CA 미확인, 거래량/시총 비율 극단적(워시트레이딩 의심 지속) | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
+| **$1 ("$1 is all you need")** | Robinhood Chain | 미확인 | 🟡확산 | 0(귀속 미확인, RH체인 카테고리 2위 시총 유지) | 저가·접근성 슬로건 밈, 시총 유지하나 모멘텀 정체 | 🟡 시총 $20.2M(24h 변동 0%), 24h vol $174.3M | 지속(둔화) | 🔴 거래량/시총 비율 극단적(8배+) 지속, 워시트레이딩 의심 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
+| **ARROW (Arrow Finance)** | Robinhood Chain | 미확인 | 🟡확산 | 0(Arbitrage Andy 뉴스레터·매체 다수) | 재분류: 단순 밈이 아닌 RH체인 네이티브 CDP 대출 프로토콜로 확인 | ✅ 가격 $2.26·24h vol $6.3M | 지속(재분류) | 🔴 CA 미확인, DeFi 프로토콜 특성상 스마트컨트랙트 리스크 별도, 저유동성 | [CoinMarketCap](https://coinmarketcap.com/currencies/arrow-finance/) |
+| **FOX** | Robinhood Chain | 미확인 | 🟠식음 추정 | 0(귀속 미확인) | 전회차 '최다상승 3종'이었으나 이번 회차 top10 탈락 | 🔴 시총 $624K로 10위(ROB $1.3M)보다 낮음 | 지속(약화) | 🔴 모멘텀 급격히 식음, 초소형 시총, CA 미확인 | [Coingape](https://coingape.com/markets/3-robinhood-chain-tokens-rallying-the-most-this-week-fox-cashcat-hoodie/) |
+| **CASHCAT** | Robinhood Chain | `0x020bfC650A365f8BB26819deAAbF3E21291018b4` | 🔴뒷북(강세 지속·신규 촉매) | 3(Vlad Tenev 비KOL, RoaringKitty 미확인·사칭주의, Ansem 지갑추정) | RH체인 대표 밈, 신규 촉매: Hyperliquid 무기한선물 상장(3배 레버리지)+Sunrise 브릿지 솔라나 확장 | ✅ 시총 $169.3M(24h +11.5%), 직전 ATH $200M+ | 지속(신규 촉매) | 🔴 이미 급등한 뒷북, RoaringKitty 관련은 사칭 계정 다수로 진위 불명, Hyperliquid도 '보증 아님' 명시 | [CryptoAdventure](https://cryptoadventure.com/hyperliquid-lists-cashcat-perps-as-token-goes-live-on-solana/) |
+| **ANSEM (The Black Bull)** | Solana | `9cRCn9rGT8V2imeM2BaKs13yhMEais3ruM3rPvTGpump` | 🔴뒷북(카피캣 확산) | 1(Ansem 본인, BullpenFi 스마트분배 캠페인) | Ansem 이름 딴 밈, 홀더 1만+ 유지, 파생 카피캣 스웜 형성 중 | ✅ 시총대 유지, 카피캣(Glass Bull 등) 급등 관측 | 지속 | 🔴 단일 인물 의존, 동명·파생 카피캣 급증으로 시장 혼탁 | [crypto.news](https://crypto.news/what-is-ansem-coin-solana-influencer-memecoin-explained/) |
 
-## 전회차(07-12 08:30 UTC) 대비 변동 요약
-- **신규 등장**: Finance Bro, HOODCAT(Cat in Hood), FOX, $1("$1 is all you need") — 모두 Robinhood Chain, 조기~확산초입 단계. 개별 KOL 귀속은 이번 회차도 미확인이나, CoinGecko 트렌딩·거래량 데이터로 실제 흐름이 붙기 시작한 정황 확인.
-- **승격**: HOODIE(조기→확산, Coingape "최다상승 3종"에 CASHCAT·FOX와 함께 선정되며 지위 확정), ARROW(조기→조기~확산초입, 시총 $16M로 2위권 안착)
-- **지속**: SPCX69, TENDIES, 4663, DIH, CASHCAT, ANSEM
-- **식음 조짐 심화**: BABYCASHCAT·JUGGERNAUT(관심이 신규 카피캣/신규 밈으로 이동 중), FROGBULL(3회 연속 데이터 재확인 실패로 신뢰도 사실상 소진)
-- **테이블에서 제외(뒷북/성격 상이로 `notable`로 이동)**: HOODRAT(전회차 확산 단계였으나 이번 회차 최신 데이터 재확인 실패, 신규 RH체인 밈들에 자리 내줌 — 다음 회차 재확인 필요), TROLL·JTO·USELESS·GOAT(모두 Solana 기존 종목, 조기 디젠 콜보다 "폭넓은 시장 주목" 성격에 가까워 `notable`로 재분류)
+## 전회차(07-12 15:30 UTC) 대비 변동 요약
+- **신규 등장**: ROB, REPE(Robinhood Pepe), WEN(Wen Lambo) — 모두 CoinGecko RH체인 카테고리 top10 신규 진입(각각 9~10위, 5위). ANSEM 카피캣 스웜(IMANTIS·PSYOPBULL·GLANSEM) — 단일 소스 관측이라 신뢰도는 낮지만 ANSEM 테마가 서브카테고리로 확장되는 정황.
+- **모멘텀 재상승**: 4663(+54.2%, 2회 연속 상승), HOODIE(조기~확산→확산 재진입, +38.4%로 반등)
+- **모멘텀 정체(둔화)**: HOODCAT·$1 — 두 종목 모두 24h 변동률 0%로 시총은 유지하나 상승 동력 소진 정황. 거래량/시총 비율은 여전히 극단적이라 계속 관찰 필요.
+- **재분류**: ARROW — 단순 RH체인 밈이 아니라 실제 네이티브 CDP 대출 프로토콜(Arrow Finance)로 확인, 서사·리스크 프로필 갱신.
+- **식음 확정(테이블에서 제외)**: **Finance Bro**(2회 연속 데이터 재확인 실패, CoinGecko 카테고리에서도 미확인 — 제외), **BABYCASHCAT**(3회 연속 갱신 실패), **JUGGERNAUT**(2회 연속 약화 후 이번 회차 top10 밖), **DIH**(이번 회차 재확인 실패, top10 밖), **FROGBULL($FERGANI)**(4회 연속 데이터 상충 — 신뢰도 완전 소진, 다음 회차부터 재검토 시까지 제외), **SPCX69**(2회 연속 재확인 실패 — 식었을 가능성 매우 높음, 제외)
+- **식음 조짐 진입**: FOX — 전회차 '최다상승 3종' 지위였으나 이번 회차 CoinGecko top10에서 완전히 탈락, 신규 밈(ROB·REPE·WEN)에 관심 이동 정황
+- **지속(뒷북)**: CASHCAT(신규 촉매로 재차 주목), ANSEM(카피캣 확산 동반)
 
 ## KOL별 최근 콜
 
 ### Ansem (@blknoiz06) · 팔로워 ~75만+ · 신뢰도: 높음(조기콜 이력), 단 밈·본인 포지션 편향 극심
-- **CASHCAT**: "Ansem-2" 라벨 지갑이 7/8 매수했다는 온체인 추정(Lookonchain), **본인 명시적 콜은 미확인**. 여전히 재확인 불가.
-- **ANSEM(The Black Bull)**: BullpenFi 플랫폼에서 X 활동 연동 "스마트 분배" 스코어링으로 크리에이터 수수료 에어드랍 지속, 홀더 11만+ 유지 · [Phemex](https://phemex.com/academy/who-is-ansem-solana-trader-ansem-token-frenzy)
+- **CASHCAT**: "Ansem-2" 라벨 지갑 매수 추정(Lookonchain), 본인 명시적 콜은 이번 회차도 미확인.
+- **ANSEM(The Black Bull)**: BullpenFi 스마트분배 캠페인 지속, 홀더 1만+ 유지. 최근 이 테마에 편승한 파생 카피캣(Glass Bull·PSYOPBULL·Iron Mantis)이 동시다발 급등 — Ansem 본인이 직접 관여했다는 근거는 없음, 순수 편승 현상 · [crypto.news](https://crypto.news/what-is-ansem-coin-solana-influencer-memecoin-explained/)
 
-### Alon Cohen (Pump.fun 공동창업자) · 신뢰도: 주의(플랫폼 자체 홍보 이해상충)
-- Pump.fun 앱에 신규 소셜 기능 **"Callouts"** 출시 — 계정당 6시간에 1회 팔로워 전체에게 특정 코인을 푸시 알림으로 알릴 수 있음. Cohen 본인이 저시총 토큰을 직접 콜해 "라이브 테스트"하겠다고 예고했으나, **어떤 토큰을 콜했는지·가격 반응은 이번 회차 재확인 실패** · [Cryptonews](https://cryptonews.com/news/pump-fun-callouts-low-cap-gem-100x/)
-- **구조적 주의점**: 이 기능 자체가 "KOL 하이프 → 즉시 유동성 쏠림" 메커니즘을 플랫폼이 공식화한 것 — 향후 회차에서 Callouts발 조기 신호를 우선 추적할 가치 있음(다음 회차 팔로업 필요).
+### RoaringKitty · 신뢰도: 미확인(사칭 리스크 매우 높음)
+- CASHCAT이 "RoaringKitty 지지" 보도로 ATH $200M을 찍었다는 매체 보도가 있으나, 동시에 **RoaringKitty를 사칭한 가짜 계정들이 이 코인을 홍보**하고 있다는 경고도 함께 보도됨 — 본인 실제 언급 여부 자체가 미확인 · [Yahoo Finance](https://finance.yahoo.com/markets/crypto/articles/cash-cat-token-surges-4-133849768.html)
 
-### Crypto Fergani · 팔로워 미확인 · 신뢰도: 낮음(3회차 연속 데이터 검증 실패)
-- **FROGBULL($FERGANI)**: 스텔스 런칭 후 GeckoTerminal 공식 계정이 포착했으나, 3회 연속 재조회 시 데이터 상충 지속 — **신뢰도 사실상 소진, 다음 회차부터 제외 검토**
+### Alon Cohen (Pump.fun 공동창업자) · 신뢰도: 주의(플랫폼 자체 홍보 이해상충) — **팔로업 완료**
+- 전회차 예고했던 "Callouts" 라이브 테스트 확인: 시총 **$14K 토큰**을 콜아웃 기능으로 직접 지목. 기능 출시 후 24시간 플랫폼 거래량 $113M 기록. 계정당 6시간 1회, 팔로워 전체 푸시 알림 가능 · [Crypto Economy](https://crypto-economy.com/pump-fun-rolls-out-callouts-as-ceo-alon-cohen-prepares-live-low-cap-pick/)
+- **구조적 의미 지속**: "KOL 하이프 → 즉시 유동성 쏠림" 메커니즘이 플랫폼 기능으로 공식화됨 — 향후 회차에서 Callouts발 개별 토큰 콜을 지속 추적할 가치 있음(어떤 구체적 토큰이 콜되었는지 티커는 이번 회차도 특정 실패).
 
 ### Vlad Tenev (Robinhood CEO) · KOL은 아니나 RH체인 밈 메타 실질 촉매
-- 7/8 "체인은 밈코인 거래도 잘 작동한다" 트윗 이후 RH체인 DEX 거래량이 급증(누적 $1B+), 파생 밈(CASHCAT·ARROW·TENDIES·DIH·HOODIE·FOX·HOODCAT·$1) 줄줄이 확산 지속
-- **이해상충 주의**: 본인 회사 체인의 토큰을 팔로우·홍보한 셈. 순수 KOL 신호로 취급 금지
+- 7/8 밈코인 옹호 트윗 이후 촉발된 RH체인 밈 메타가 이번 회차도 확대 지속(카테고리 총 시총 $242.9M). 신규 진입(ROB·REPE·WEN)까지 이어지는 "생태계형" 확산 계속.
+- **이해상충 주의**: 본인 회사 체인의 토큰 홍보 효과. 순수 KOL 신호로 취급 금지.
 
 ### ZachXBT · 신뢰도: 높음(온체인 수사·경보형, 홍보 아님)
-- 6월 말 **MemeCore(M)** 인사이더 물량 집중 경고 이후 -74~80% 급락, 시총 $3B 증발 — KOL·인사이더 리스크 사례로 계속 참조
+- **MemeCore(M)** 인사이더 경고 이후 6월 말 추가로 -70%대 재차 급락, BSC 유동성 $10만 미만까지 축소 — KOL·인사이더 리스크 사례로 계속 참조 · [FXEmpire](https://www.fxempire.com/forecasts/article/memecore-price-news-heading-to-zero-zachxbt-slams-project-for-insider-manipulation-1606677)
 
-### Bonk guy / Unipics · 신뢰도: 낮음(노골적 단일종목 홍보)
-- **USELESS** 상시 시딩으로 Schelling meme화 주도, 홍보 편향 명확 · [Bitget](https://web3.bitget.com/en/academy/what-is-useless-coin-useless-a-meme-token-turning-irony-into-real-defi-utility)
+### Crypto Fergani · 팔로워 미확인 · 신뢰도: 소진(4회 연속 데이터 검증 실패)
+- **FROGBULL($FERGANI)**: 4회 연속 재조회 시 데이터 상충 지속 — 이번 회차부터 테이블 제외, 향후 신뢰할 재확인 없으면 완전 삭제 검토
 
 ## 새로 포착된 중형 KOL
-- 이번 회차에서도 신규로 확인된 중형(수만~수십만 팔로워급) 개별 KOL 콜은 **없음**. Finance Bro·HOODCAT·FOX·$1 모두 "체인/커뮤니티 메타 확산"이며 개별 KOL 귀속은 여전히 미확인.
-- **주목할 구조 변화**: Pump.fun의 "Callouts" 기능(6시간당 1콜, 팔로워 전체 푸시)이 신규 KOL 콜 메커니즘으로 공식화됨 — 다음 회차부터 이 기능발 콜을 별도 추적 필요.
-- **Crypto Fergani**는 3회차 연속 재검증 실패로 신뢰도 사실상 소진(강등 확정).
+- 이번 회차에서도 신규로 확인된 중형(수만~수십만 팔로워급) 개별 KOL 콜은 **없음**. ROB·REPE·WEN·ANSEM 카피캣 스웜 모두 "체인/커뮤니티 메타 확산"이며 개별 KOL 귀속은 여전히 미확인.
+- **RoaringKitty**는 이번 회차 CASHCAT 관련 언급이 보도됐으나, 본인 여부 자체가 사칭 리스크로 신뢰 불가 — 대형 KOL 카테고리로 승격시키지 않음.
+- **Pump.fun Callouts**: Alon Cohen의 라이브 테스트가 완료됨을 확인, 구조적으로는 신규 KOL 콜 메커니즘 도입이 실질화됨. 다만 이번 회차도 구체 티커 미확인.
 
 ## 메모
-- **데이터 한계**: X 직접 조회는 로그인월로 막혀 2차 보도·DexScreener/GeckoTerminal/CoinGecko API·공식 계정 인용으로 확인. 이번 회차 신규 4종(Finance Bro·HOODCAT·FOX·$1)은 모두 **컨트랙트 주소 확보 실패** — 추정 주소를 넣지 않고 빈 값으로 처리(대시보드에서 DexScreener 링크 생성 안 됨, 직접 재검색 필요). HOODIE는 검색 스니펫에서 주소가 잘려(truncated) 나와 신뢰할 수 없어 공란 유지.
-- **Robinhood Chain 밈 메타 = 이번 런의 핵심 서사, 규모 확대 중**: 출시(7/1) 11일 만에 누적 DEX 거래량 $1B+, 일 신규토큰 발행 최대 1.6만개. CASHCAT(대장주, 시총 $175~188M로 2위와 10배+ 격차)를 필두로 ARROW·HOODIE가 2~4위권으로 승격, 신규 카피캣(HOODCAT)·초기 소형주(Finance Bro, FOX, $1)가 계속 유입되는 "생태계형" 밈 메타. 여전히 **개별 KOL이 아니라 CEO 트윗+커뮤니티+미디어가 주도**하는 특이 케이스.
-- **스캠 파도 본격화 경고**: Relay Protocol·Protos 보도에 따르면 RH체인 성장과 함께 허니팟·러그풀·피싱·월렛 드레이너 등 스캠도 급증. 한 홀더는 허니팟으로 $56,000 손실 보고. 최근 이틀 거래의 75%+가 밈코인이라는 분석도 있음 — **신규 RH체인 토큰은 소액 테스트 스왑 필수**, 매수는 되나 매도 불가한 허니팟 패턴 주의.
-- **거래량/시총 비율 이상 신호**: HOODCAT(6배+), $1(9배+) 모두 시총 대비 거래량이 비정상적으로 높음 — 실제 신규 관심 유입인지, 소수 지갑의 워시트레이딩(자전거래)인지 다음 회차에서 홀더 수 증가 여부로 재검증 필요.
-- **이미 급등한 뒷북(재확인)**: CASHCAT(1,500~12,500%+ 급등 후 여전히 강세), ANSEM(20,000%+ 후 조정) — 신규 진입은 late-entry 리스크.
-- **CA 신뢰도**: 기존 확보 CA(SPCX69·BABYCASHCAT·FROGBULL·4663·DIH·JUGGERNAUT·CASHCAT·ANSEM)는 DexScreener/공개 소스 대조로 확보, 유지. 신규 4종·HOODIE·ARROW·TENDIES는 확인 실패로 공란.
-- **동명이인 주의**: ANSEM·CASHCAT·BABYCASHCAT·HOODIE·HOODCAT 모두 여러 체인·여러 컨트랙트에 동명/유사명 토큰이 난립. 본 리스트는 시가총액·유동성 기준 압도적 1위 페어만 채택.
+- **데이터 한계**: X 직접 조회는 로그인월로 계속 막혀 2차 보도·DexScreener/GeckoTerminal/CoinGecko API·공식 계정 인용으로 확인. 이번 회차 신규 3종(ROB·REPE·WEN)은 모두 **컨트랙트 주소 확보 실패**(동명 타체인 토큰과의 혼동 위험으로 추정 주소는 기재하지 않음, 공란 유지). ANSEM 카피캣 스웜은 단일 캐시된 검색 스니펫에서만 관측되어 시점·재현성이 특히 불확실함.
+- **Robinhood Chain 밈 메타 = 이번 런의 핵심 서사, 계속 확대**: RH체인 밈 카테고리 총 시총 $242.9M(CoinGecko, 24h +1.4%)로 성장. CASHCAT(대장주, $169.3M~ATH $200M+)이 신규 유통 채널(Hyperliquid 무기한선물, Sunrise 브릿지 솔라나 확장)까지 확보하며 여전히 압도적 1위. 다만 2·3위권(HOODCAT·$1)은 모멘텀 정체 신호, ARROW는 밈이 아닌 실사용 DeFi 프로토콜로 재분류됨.
+- **스캠 파도 지속·구체 사례 추가**: 한 트레이더가 "ROGE는 100% 허니팟, 백도어 컨트랙트가 있다"고 경고하는 등 구체적 스캠 사례 보고 지속(Relay Protocol·Protos 보도). 신규 RH체인 토큰은 소액 테스트 스왑 필수.
+- **뒷북·붕괴 경고 사례 추가**: **SCAM(Scam Altman)** — 머스크의 "Scam Altman" 발언에 편승한 솔라나 밈, 출시 8시간 만에 시총 $10M 돌파 후 24시간 내 -88%, 이후 -99%대까지 추가 붕괴. 한 트레이더 $150K 손실 보고 — 뉴스발 초단기 밈의 전형적 뒷북·붕괴 패턴으로 참조(`notable`에 등재, `tokens` 테이블에는 이미 종료된 사이클이라 미포함).
+- **거래량/시총 비율 이상 신호, 재확인 필요**: HOODCAT(24h vol $121.2M vs 시총 $19.9M, 6배+), $1(24h vol $174.3M vs 시총 $20.2M, 8배+) — 두 종목 모두 24h 가격 변동은 0%인데 거래량만 극단적으로 높은 상태 지속. 다음 회차에서 홀더 수 증가 여부로 워시트레이딩 여부 재검증 필요.
+- **CA 신뢰도**: 기존 확보 CA(4663·CASHCAT·ANSEM)는 DexScreener/공개 소스 대조로 확보, 유지. 이번 회차 신규 3종(ROB·REPE·WEN)·ANSEM 카피캣 스웜·기존 미확보분(TENDIES·HOODIE·HOODCAT·$1·ARROW·FOX)은 확인 실패 또는 동명 혼동 위험으로 공란.
+- **동명이인 주의**: ANSEM·CASHCAT·HOODIE·HOODCAT·REPE·WEN(Wen Lambo) 모두 여러 체인·여러 컨트랙트에 동명/유사명 토큰이 난립. 본 리스트는 RH체인 카테고리 기준 시가총액 상위 페어만 채택하되, 검증 실패 시 CA는 공란 처리.
 
 ---
 *Not financial advice. 본 문서는 공개 2차 자료·DexScreener/CoinGecko/GeckoTerminal API 기반 아이디어 소싱용이며 매수 추천이 아님. 재실행 시 갱신.*
