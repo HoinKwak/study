@@ -71,9 +71,12 @@ class Settings(BaseSettings):
     reward_risk_ratio: float = 1.5     # 익절 = 손절거리 × 이 값 (R배수)
 
     # --- 단타 전략 튜닝 (진입 빈도 조절 — 낮출수록 자주 진입) ---
-    scalp_vol_spike_mult: float = 3.0     # 직전봉 거래량/평균 ≥ 이 배수 (기존 4.0 → 완화)
-    scalp_squeeze_pctile: float = 45.0    # 밴드폭 하위 N% 스퀴즈 (기존 30 → 완화, 100=사실상 해제)
-    scalp_min_body_atr: float = 0.7       # 캔들 몸통 ≥ ATR×이 값 (기존 1.0 → 완화)
+    # 21일·12종목 5m 스윕 최적값: 진입을 조여(vol5/sqz35/body1.3) SL직행 42%→35%,
+    # 손실 85%↓. 잡거래를 걸러 SL직행을 줄이는 방향이 일관되게 유리했다
+    # (추세게이트 ON·손익비 확대는 오히려 SL직행률↑ 역효과였음).
+    scalp_vol_spike_mult: float = 5.0     # 직전봉 거래량/평균 ≥ 이 배수 (선별 강화)
+    scalp_squeeze_pctile: float = 35.0    # 밴드폭 하위 N% 스퀴즈 (더 조인 밴드만, 100=해제)
+    scalp_min_body_atr: float = 1.3       # 캔들 몸통 ≥ ATR×이 값 (강봉만)
     scalp_require_regime: bool = False     # True=추세일치 필수, False=횡보 허용(역추세만 차단)
     # 횡보 전환 청산 정교화: 확인TF가 RANGE 여도 신호TF 모멘텀이 '실제로 꺾였을 때만' 청산.
     # 최근 N봉이 신고가/신저가를 못 만들고(모멘텀 정체) + 마지막 봉이 역방향일 때 청산.
