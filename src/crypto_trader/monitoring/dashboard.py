@@ -919,9 +919,20 @@ def render_html(journal: TradeJournal, equity: float | None = None,
     trades_csv_js = json.dumps(_trades_csv(journal))  # 전체 거래 CSV(JS 임베드용)
 
     # --- 포트폴리오 차트 데이터 ---
-    # 실잔고 이력이 충분하면 실잔고 기준(수수료·펀딩 포함, 헤드라인과 일치), 없으면 거래실현 기준.
+    # 실잔고 이력이 '청산거래가 있는 모든 날짜'를 커버할 때만 실잔고 기준(수수료·펀딩 포함)을
+    # 쓴다. 이력이 짧으면(봇 재시작 직후 등) 과거 거래가 통째로 차트에서 빠지므로,
+    # 그 경우엔 저널(거래실현) 기준으로 폴백해 모든 거래가 올바른 날짜에 표시되게 한다.
     _eqb = _return_series_equity(equity_history or [], start_equity or 0.0)
+    use_equity = bool(_eqb)
     if _eqb:
+        trade_days = {datetime.fromtimestamp(e, KST).strftime("%m-%d")
+                      for e in (_epoch(t.closed_at) for t in journal.closed_trades()
+                                if t.closed_at) if e}
+        eq_days = {datetime.fromtimestamp(float(ts), KST).strftime("%m-%d")
+                   for ts, _ in (equity_history or [])}
+        if trade_days and not trade_days.issubset(eq_days):
+            use_equity = False   # 실잔고 이력이 일부 거래일을 못 덮음 → 저널 기준으로
+    if use_equity:
         ret_pts, daily_bars, final_pct = _eqb
         series_basis = "실잔고 기준"
     else:
