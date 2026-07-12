@@ -38,6 +38,16 @@ def _now_iso() -> str:
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
 
 
+def _iso_to_ms(iso: str | None) -> int:
+    """ISO8601 → epoch ms. 파싱 실패 시 0(=이력 전체 조회)."""
+    if not iso:
+        return 0
+    try:
+        return int(datetime.fromisoformat(iso).timestamp() * 1000)
+    except (ValueError, TypeError):
+        return 0
+
+
 class SleeveWorker:
     def __init__(self, sleeve: Sleeve, settings: Settings,
                  binance: BinanceClient | None, deriv_data: BinanceDerivativesData,
@@ -240,25 +250,45 @@ class SleeveWorker:
             canonical = self.binance.resolve_symbol(rec.symbol)
             if (canonical, rec.direction) in live_keys:
                 continue  # 아직 보유 중
-            # 거래소에서 사라짐 → SL 청산됨. SL 가격으로 근사 청산 기록.
-            exit_price = rec.stop_price or rec.entry_price
             self.binance.cancel_all_orders(rec.symbol)  # 잔여 조건부 주문 정리
-            self._finalize_reconciled_close(rec, exit_price, "exchange_sl")
+            # 거래소에서 사라짐 → SL·수동·외부 청산. 실제 체결가·실현손익을 조회해 정확 반영.
+            since_ms = _iso_to_ms(rec.opened_at)
+            res = None
+            try:
+                res = self.binance.fetch_realized_close(rec.symbol, rec.direction, since_ms)
+            except Exception as e:  # noqa: BLE001
+                log.warning("[%s] %s 실현손익 조회 실패: %s", self.sleeve.name, rec.symbol, e)
+            if res is not None:
+                exit_price, rpnl = res
+                # SL 가격 근처면 손절, 아니면 수동/외부(TP·시장가) 청산으로 라벨
+                is_sl = (rec.stop_price and exit_price > 0
+                         and abs(exit_price - rec.stop_price) / rec.stop_price < 0.0015)
+                reason = "exchange_sl" if is_sl else "수동/외부 청산"
+                self._finalize_reconciled_close(rec, exit_price, reason, realized_pnl=rpnl)
+            else:
+                # 체결내역 조회 실패 → 기존처럼 SL 가격으로 근사
+                self._finalize_reconciled_close(rec, rec.stop_price or rec.entry_price,
+                                                "exchange_sl")
 
     def _finalize_reconciled_close(self, rec: TradeRecord, exit_price: float,
-                                   reason: str) -> None:
+                                   reason: str, realized_pnl: float | None = None) -> None:
         direction = Direction(rec.direction)
-        pnl = self._pnl(direction, rec.entry_price, exit_price, rec.quantity)
+        # 거래소가 준 실현손익이 있으면 그대로(수수료·펀딩 반영), 없으면 가격차로 근사
+        pnl = realized_pnl if realized_pnl is not None else \
+            self._pnl(direction, rec.entry_price, exit_price, rec.quantity)
         self.risk.register_realized_pnl(pnl)
         self.realize_cb(pnl)
         self.journal.record_close(rec.symbol, exit_price, _now_iso(), pnl, reason,
                                   sleeve=self.sleeve.name, direction=rec.direction)
         ret_pct = self._trade_return_pct(rec, pnl)
+        manual = reason != "exchange_sl"
+        label = "수동/외부·리컨실" if manual else "SL·리컨실"
+        title = "📕 청산(수동/외부)" if manual else "📕 청산(SL)"
         self.notifier.trade(
-            f"[{self.sleeve.name}] {rec.symbol} {rec.direction.upper()} 청산 (SL·리컨실)\n"
+            f"[{self.sleeve.name}] {rec.symbol} {rec.direction.upper()} 청산 ({label})\n"
             f"진입 {rec.entry_price:.4f} → {exit_price:.4f} | 보유 {rec.holding_human(_now_iso())}\n"
             f"손익 {pnl:+.2f} USDT ({ret_pct:+.2f}%){self._portfolio_line()}",
-            title="📕 청산(SL)",
+            title=title,
         )
 
     def _evaluate_symbol(self, symbol: str, allocated_equity: float) -> None:

@@ -366,6 +366,44 @@ class BinanceClient:
         return self.create_market_order(symbol, order_side, qty,
                                         position_side=pos_dir, reduce_only=True)
 
+    def fetch_realized_close(self, symbol: str, direction: str,
+                             since_ms: int) -> tuple[float, float] | None:
+        """포지션이 사라진 뒤(SL·수동·외부 청산) 실제 청산가·실현손익을 거래소 체결내역에서 추정.
+
+        since_ms(진입 시각) 이후의 체결 중, 해당 방향을 '줄이는' 쪽(롱→SELL, 숏→BUY)만 골라
+        청산 VWAP 과 realizedPnl 합을 계산한다. 헤지 모드면 positionSide 로 방향을 정확히 가른다.
+        반환 (청산 VWAP, 실현손익) 또는 조회 불가/체결 없음 시 None.
+        """
+        try:
+            trades = self.exchange.fetch_my_trades(self.resolve_symbol(symbol),
+                                                   since=since_ms, limit=200)
+        except Exception as e:  # noqa: BLE001 — 최선노력, 실패 시 상위에서 폴백
+            log.warning("체결내역 조회 실패 %s: %s", symbol, str(e)[:80])
+            return None
+        close_side = "sell" if direction.lower() == "long" else "buy"
+        qty = notional = rpnl = 0.0
+        for t in trades:
+            if (t.get("side") or "").lower() != close_side:
+                continue
+            info = t.get("info") or {}
+            # 헤지 모드: 이 방향 포지션을 줄이는 체결만(반대편 신규진입 제외)
+            pos_side = str(info.get("positionSide") or "").upper()
+            if pos_side and pos_side not in ("BOTH", direction.upper()):
+                continue
+            amt = float(t.get("amount") or 0.0)
+            px = float(t.get("price") or 0.0)
+            if amt <= 0 or px <= 0:
+                continue
+            qty += amt
+            notional += amt * px
+            try:
+                rpnl += float(info.get("realizedPnl") or 0.0)
+            except (TypeError, ValueError):
+                pass
+        if qty <= 0:
+            return None
+        return notional / qty, rpnl
+
     def market_meta(self, symbol: str) -> dict[str, Any]:
         """수량 정밀도/최소 주문량 등 마켓 메타."""
         self.exchange.load_markets()
