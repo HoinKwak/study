@@ -269,7 +269,7 @@ def render_text(journal, equity: float | None = None) -> str:
             lines.append(f"   {t.symbol} {t.direction.upper()} @ {t.entry_price:.4f} "
                          f"SL {t.stop_price:.4f} TP {t.take_profit:.4f} "
                          f"| 오픈 {_short_time(t.opened_at)} 유지 {t.holding_human(now)} ({t.mode})")
-    recent = journal.closed_trades()[-5:]
+    recent = sorted(journal.closed_trades(), key=lambda t: t.closed_at or "", reverse=True)[:5]
     if recent:
         lines.append(" [최근 청산 5건]")
         for t in recent:
@@ -1120,7 +1120,7 @@ def render_html(journal: TradeJournal, equity: float | None = None,
     <h2>최근 청산 (최대 20건)
       <button id="dl-trades" class="tfbtn" style="margin-left:10px">⬇ 전체 거래 CSV</button></h2>
     <table><thead><tr><th>심볼</th><th>방향</th><th>수량</th><th>포지션(USDT)</th><th>진입</th><th>청산</th><th>손익</th><th>사유</th></tr></thead>
-    <tbody>{rows(journal.closed_trades()[-20:][::-1], True) or "<tr><td colspan=8>없음</td></tr>"}</tbody></table>
+    <tbody>{rows(sorted(journal.closed_trades(), key=lambda t: t.closed_at or "", reverse=True)[:20], True) or "<tr><td colspan=8>없음</td></tr>"}</tbody></table>
   </div>
 
   <div class="tabpane" data-pane="market" style="display:none">
