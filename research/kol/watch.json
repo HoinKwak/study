@@ -1,23 +1,50 @@
 {
-  "ts": "2026-07-11T10:30:00Z",
+  "ts": "2026-07-12T08:30:00Z",
   "tokens": [
+    {
+      "token": "SPCX69",
+      "chain": "Solana",
+      "ca": "SPCXwBHVrKpRqMRawL3NNvt1sXP2Yf3edwRbta53N69",
+      "stage": "조기",
+      "kols": "개별 KOL 귀속 미확인 (CT 전반 확산, CoinGecko 미국 트렌딩 1위)",
+      "thesis": "SpaceX 브랜드에 편승한 밈, 상장 당일 15배 급등 후 24h +60%대 지속, '실제 카탈리스트 없는 브랜드 편승' 전형",
+      "risk": "SpaceX/Musk 공식 무관, 저유동·홀더 집중, 단일 트윗으로 소멸 가능, 초저시총($3.4M)"
+    },
+    {
+      "token": "ARROW",
+      "chain": "Robinhood Chain",
+      "ca": "",
+      "stage": "조기",
+      "kols": "개별 KOL 귀속 미확인 (체인 메타 확산, 매체 3+ 보도)",
+      "thesis": "RH체인 밈 중 드물게 실제 프론트엔드·문서(Arrow Finance) 보유, 24h +208%",
+      "risk": "CA 미확인(DexScreener 직접 대조 필요), 최근 매도세 우위·유동성 $15.6만 수준으로 얕음"
+    },
+    {
+      "token": "TENDIES",
+      "chain": "Robinhood Chain",
+      "ca": "",
+      "stage": "조기",
+      "kols": "개별 KOL 귀속 미확인 (WallStreetBets/Reddit·Discord 커뮤니티 주도)",
+      "thesis": "WSB 밈 테마('디젠 vs 개미' 서사), 7/8 $0.001→$0.0055 고점 후 $0.0038대, 자체 커뮤니티 문화 보유",
+      "risk": "CA 미확인, RH체인 초기 밈 특유의 허니팟·저유동 위험, 매체 보도 외 KOL 직접 콜 미확인"
+    },
     {
       "token": "BABYCASHCAT",
       "chain": "Robinhood Chain",
       "ca": "0x57a1AB439e8C24B90Ecc6534C05621d6E68ED35A",
-      "stage": "조기",
+      "stage": "조기(식음 가능성)",
       "kols": "개별 KOL 콜 미확인 (CASHCAT 카피캣 트렌드)",
-      "thesis": "CASHCAT 성공을 모방한 파생 밈, 발행 23시간 만에 거래량 급증($1.26M/24h, 시총 $36만)",
-      "risk": "네이밍 무단 편승(카피캣)·초저시총·러그 위험 매우 높음, 진위 미검증"
+      "thesis": "CASHCAT 성공을 모방한 파생 밈, 7/10 발행 23시간 만에 거래량 급증했던 건, 이후 최신 데이터 재확인 실패",
+      "risk": "네이밍 무단 편승(카피캣)·초저시총·러그 위험 매우 높음, 이번 회차 최신 거래량 재확인 안 됨(식었을 가능성)"
     },
     {
       "token": "FROGBULL($FERGANI)",
       "chain": "Solana",
       "ca": "BDbNwA95183CdqUhx2P6R3fWXbefubVbx2wNnCp6pump",
-      "stage": "조기",
+      "stage": "조기(데이터 취약)",
       "kols": "Crypto Fergani(스텔스 런처, 팔로워수 미확인) · GeckoTerminal 포착",
       "thesis": "중형 KOL 'Crypto Fergani'가 스텔스 런칭, 기브어웨이 게시물로 초기 트래픽 유입 (GeckoTerminal 공식 포착)",
-      "risk": "데이터 얕음·검색 시 페어 소실/상충 확인됨, '48시간 단타' 패턴, 이미 식었을 가능성"
+      "risk": "지난 회차 대비 데이터 재확인 실패 지속, 페어 소실/상충 이력, '48시간 단타' 패턴상 이미 식었을 가능성 높음"
     },
     {
       "token": "4663",
@@ -34,8 +61,26 @@
       "ca": "0x17bb0C898254406b1Ea2e8E99B0C263e26c9E4a4",
       "stage": "확산 초입",
       "kols": "개별 KOL 귀속 미확인 (체인 메타 확산)",
-      "thesis": "RH체인 상위 3대 밈 중 2위 거래량, CashCat 다음 순번 후보",
+      "thesis": "RH체인 상위 3대 밈 중 2위 거래량, ARROW·TENDIES와 함께 CASHCAT 다음 순번 후보군 형성",
       "risk": "보도 간 가격 상충(고점 대비 최대 -97%설 존재), 변동성 극심"
+    },
+    {
+      "token": "HOODRAT",
+      "chain": "Robinhood Chain",
+      "ca": "0x8e62F281f282686fCa6dCB39288069a93fC23F1c",
+      "stage": "확산",
+      "kols": "개별 KOL 귀속 미확인 (체인 메타 확산)",
+      "thesis": "RH체인 2번째 밈, 발행 7일만에 시총 $10~15M 도달",
+      "risk": "봇/유료 프로모션 의혹 보도 존재, 저유동"
+    },
+    {
+      "token": "JUGGERNAUT",
+      "chain": "Robinhood Chain",
+      "ca": "0xD7321801CAae694090694Ff55A9323139F043B88",
+      "stage": "확산(식음 진행 중)",
+      "kols": "개별 KOL 귀속 미확인 (체인 메타 확산)",
+      "thesis": "RH체인 밈 바스켓 일원, 발행 3주차 진입 — 이전 회차 -19% 이후 추가 모멘텀 재확인 안 됨",
+      "risk": "모멘텀 둔화 지속, 이미 고점 지났을 가능성 높음(식은 종목 후보)"
     },
     {
       "token": "TROLL",
@@ -54,51 +99,6 @@
       "kols": "서사 리캡·CryptoDaily 등 매체(2+)",
       "thesis": "JTX 트레이딩 터미널 7월 런칭, 프로토콜 수익 80% JTO 바이백",
       "risk": "카탈리스트 선반영 가능, 런칭 후 되돌림 위험"
-    },
-    {
-      "token": "HOODRAT",
-      "chain": "Robinhood Chain",
-      "ca": "0x8e62F281f282686fCa6dCB39288069a93fC23F1c",
-      "stage": "확산",
-      "kols": "개별 KOL 귀속 미확인 (체인 메타 확산)",
-      "thesis": "RH체인 2번째 밈, 발행 7일만에 시총 $10~15M 도달",
-      "risk": "봇/유료 프로모션 의혹 보도 존재, 저유동"
-    },
-    {
-      "token": "JUGGERNAUT",
-      "chain": "Robinhood Chain",
-      "ca": "0xD7321801CAae694090694Ff55A9323139F043B88",
-      "stage": "확산(식음 조짐)",
-      "kols": "개별 KOL 귀속 미확인 (체인 메타 확산)",
-      "thesis": "RH체인 밈 바스켓 일원, 발행 3주차 진입",
-      "risk": "24h -19%, 모멘텀 둔화·이미 고점 지났을 가능성"
-    },
-    {
-      "token": "BP(Backpack)",
-      "chain": "Solana",
-      "ca": "BPxxfRCXkUVhig4HS1Lh7kZqV6SPJhzfEk4x6fVBjPCy",
-      "stage": "확산",
-      "kols": "거래소 런칭 보도 위주(1+)",
-      "thesis": "거래소 네이티브 토큰, 유저 에어드랍 25%(팀/VC 0%)",
-      "risk": "상장 직후 -25.8%, 언락 매도압"
-    },
-    {
-      "token": "BRETT",
-      "chain": "Base",
-      "ca": "0x532f27101965dd16442E59d40670FaF5eBB142E4",
-      "stage": "확산",
-      "kols": "MEXC·AMBCrypto 밈 리포트(2+)",
-      "thesis": "Base 마스코트, B20 토큰 표준·Coinbase x402 결제 기대감으로 재부각",
-      "risk": "이벤트성 하이프, 되돌림 잦음"
-    },
-    {
-      "token": "PENGU(Pudgy Penguins)",
-      "chain": "Solana",
-      "ca": "2zMMhcVQEXDtdE6vsFS7S7D5oUodfJHE8vd1gnBouauv",
-      "stage": "확산",
-      "kols": "밈 리포트 다수(2+)",
-      "thesis": "Canary Capital PENGU ETF 신청 + Target 트레이딩카드 리테일 확장",
-      "risk": "ETF는 신청 단계, 밈 변동성"
     },
     {
       "token": "USELESS",
@@ -122,41 +122,66 @@
       "token": "CASHCAT",
       "chain": "Robinhood Chain",
       "ca": "0x020bfC650A365f8BB26819deAAbF3E21291018b4",
-      "stage": "뒷북",
+      "stage": "뒷북(재점화 중)",
       "kols": "Ansem(지갑 추정·미확인) · Vlad Tenev(CEO, 비KOL) · Alon Cohen(Pump.fun 공동창업자)",
-      "thesis": "RH체인(7/1 출시) 첫 대표 밈, 3주만에 시총 $150~240M, Tenev 트윗 이후 점화",
-      "risk": "이미 700~1,700%대 급등한 뒷북, 봇/유료KOL 의혹 보도, 공식 후원 아님"
+      "thesis": "RH체인 대표 밈, 시총 $150~240M 박스권 후 7/12 재차 +11%(24h vol $40M+)로 재점화 조짐",
+      "risk": "이미 700~1,700%대 급등한 뒷북, 봇/유료KOL 의혹 보도, 공식 후원 아님, 신규 진입은 late-entry"
     },
     {
       "token": "ANSEM(The Black Bull)",
       "chain": "Solana",
       "ca": "9cRCn9rGT8V2imeM2BaKs13yhMEais3ruM3rPvTGpump",
-      "stage": "뒷북",
+      "stage": "뒷북(조정 중)",
       "kols": "Ansem(@blknoiz06) 본인 — 수수료 에어드랍으로 홀더 확장 캠페인 진행 중",
-      "thesis": "Ansem 이름을 딴 밈(익명 개발자 제작), 홀더 11만+ 확장 목표로 크리에이터 수수료 배포 지속",
-      "risk": "단일 인물 의존·조작 우려, 상위 7개 지갑 74%+ 보유 정황"
+      "thesis": "Ansem 이름을 딴 밈(익명 개발자 제작), 홀더 11만+ 확장 목표로 크리에이터 수수료 배포 지속, 고점 대비 조정",
+      "risk": "단일 인물 의존·조작 우려, 상위 지갑 집중 정황, 동명 카피캣 토큰 다수 난립"
     }
   ],
   "notable": [
     {
       "token": "CASHCAT",
-      "status": "급등 중",
-      "summary": "Robinhood Chain(Arbitrum L2, 7/1 출시) 첫 히트 밈코인. 7/8 하루 700~960%+ 급등, 시총 약 $105M. Vlad Tenev CEO의 팔로우·언급이 촉매. 리스크: Robinhood 공식 무관, 컨트랙트 미검증, 순수 투기."
+      "status": "확산(재점화)",
+      "summary": "Robinhood Chain(7/1 출시) 첫 히트 밈. 700~1,700%+ 급등 후 박스권 소화하다 7/12 재차 +11%(시총 ~$200M, 24h vol $40M+). Vlad Tenev CEO 트윗이 촉매였으나 공식 후원 아님, 순수 투기."
     },
     {
       "token": "ANSEM",
-      "status": "급등 중 (과열)",
-      "summary": "Solana 인플루언서 Ansem 관련 Pump.fun 밈코인(The Black Bull). 7/7 시총 $420M 신고가, 주간 수만 % 급등. 촉매는 Ansem의 크리에이터 수수료 에어드랍 공약. 리스크: 제품·로드맵·수익 전무, 관심 의존 카지노성."
+      "status": "조정",
+      "summary": "Ansem(@blknoiz06) 관련 Pump.fun 밈(The Black Bull). 신고가 대비 조정 중이나 시총 $200M+대 유지. Ansem 본인이 크리에이터 수수료 에어드랍으로 홀더 11만+ 확장 캠페인 지속. 제품·로드맵 없는 관심 의존 자산."
     },
     {
-      "token": "LIT",
-      "status": "급등 중 (펀더멘털성)",
-      "summary": "Lighter(퍼프 DEX) 토큰, $2.6로 1월 이후 최고. 토크노믹스 개편(영구 소각·스테이킹 6% 목표)이 디플레 내러티브. Robinhood Wallet·Telegram 연동. 밈보다 실사용 기반이나 여전히 고변동. 리스크: 경쟁 심한 perp DEX 섹터·기대 선반영."
+      "token": "HYPE(Hyperliquid)",
+      "status": "추세지속",
+      "summary": "$71 안팎, ATH($76.7) 근접. Bitwise 10 Crypto Index 편입, 현물 ETF(BHYP·THYP) 누적 유입 $1.7억+. 7/6 950만 HYPE 언락을 바이백펀드(언락분의 4.6배 보유)가 흡수, 매도압 제한적. MAS 투자경보 등재는 리스크 요인."
     },
     {
-      "token": "PEPE / FARTCOIN",
-      "status": "급등 중 (밈 로테이션)",
-      "summary": "7월 밈 로테이션 주도. PEPE 주간 +15%대(시총 ~$1.12B), FARTCOIN 주간 +30%대 신규 자금 유입. 리스크: 극단적 변동성(일부 밈 90% 급등 후 급락), 순수 심리 주도."
+      "token": "LIT(Lighter)",
+      "status": "확산",
+      "summary": "퍼프 DEX 토큰, $2.6대(1월래 최고). 토크노믹스 개편(영구 소각·스테이킹 6% 목표)이 디플레 내러티브. Robinhood Wallet·Telegram 연동. 밈보다 실사용 기반이나 여전히 고변동, 경쟁 심한 섹터."
+    },
+    {
+      "token": "PENGU(Pudgy Penguins)",
+      "status": "확산",
+      "summary": "Canary Capital PENGU ETF 신청 + Target 트레이딩카드 리테일 확장으로 밈 섹터 트렌딩 지속. ETF는 아직 신청 단계일 뿐 승인 아님."
+    },
+    {
+      "token": "BRETT(Base)",
+      "status": "확산",
+      "summary": "Base 마스코트 밈, B20 토큰 표준·Coinbase x402 결제 기대감으로 재부각, 일간 +19%대. 이벤트성 하이프 특성상 되돌림 잦음."
+    },
+    {
+      "token": "BP(Backpack)",
+      "status": "조정",
+      "summary": "거래소 네이티브 토큰, 유저 에어드랍 25%(팀/VC 0%)로 주목받았으나 $3.1B FDV 데뷔 후 -25.8% 조정. 언락 스케줄상 추가 매도압 우려."
+    },
+    {
+      "token": "ZANO",
+      "status": "이슈(재부상)",
+      "summary": "프라이버시 코인, CoinGecko 트렌딩 상위(24h +10%대). 8/25~27 예정된 6차 하드포크(HF6, 거래소·DEX 연동용 'Gateway Address' 도입)가 촉매. 밈이 아닌 인프라성 재료로 트렌딩 편입은 이례적."
+    },
+    {
+      "token": "MemeCore(M)",
+      "status": "이슈(경고)",
+      "summary": "ZachXBT의 인사이더 물량 집중 경고(두 지갑이 유통량 60%+ 추정) 이후 6월 말 -74~80% 급락, 시총 $3B 증발. 거래소(Binance·Bybit·Kraken) 상장 심사 적정성 논란 지속. KOL/인사이더 리스크 사례로 참고."
     }
   ]
 }
