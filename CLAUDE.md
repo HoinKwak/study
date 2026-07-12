@@ -24,8 +24,37 @@
 **crypto-trader** — 개인용 자동 암호화폐 트레이딩 봇.
 - 사용자 Windows PC에서 로컬 구동, **바이낸스 선물 USDT-M 테스트넷** 대상.
 - 자체 완결형 HTML 라이브 대시보드(인라인 SVG 차트·인라인 JS, Pretendard CDN 외 외부 라이브러리 없음).
-- 3개 슬리브 포트폴리오(단타 1분 / 중기 15분 / 중장기 4시간), 헤지·isolated 모드, 논리적 자본 배분(50/25/25).
+- **단타 전용 포트폴리오(100%)** — 10m·15m 2슬리브(각 50%). 중기·스윙은 손익비 미달로 제외
+  (정의는 git 이력에 있어 복원 가능). 헤지·isolated 모드.
 - 시장 스캐너(급등락·거래량/OI 급증·펀딩 극단 감지) → 텔레그램 알림 + 대시보드 갱신.
+
+### 현재 전략·리스크 설정 (2026-07 기준, 바뀌면 여기 갱신)
+- **단타 슬리브**: `scalp`(10m/확인30m) + `scalp15m`(15m/확인1h). 볼린저 이탈 강봉+거래량 급증 돌파.
+  진입필터 `vol_spike≥5·squeeze≤35%·body≥1.3ATR·regime=False`. 메이커 진입(post-only), 10분할×20초.
+  청산: 모멘텀 신고가→분할(tp1 50%+tp2 50%) + 횡보전환 시 모멘텀 꺾이면 청산. SL=신호봉 시가(stop_mult=1.0).
+- **레버리지**: 시총상위(major_bases) **30x**, 알트 **10x** (`Settings.leverage_for`).
+- **동적 유니버스**: 24h 거래대금 **$10M 이상**(SOL 제외). 사이징은 증거금 기준(`position_margin_pct`).
+- **10m 은 바이낸스 비네이티브** → 워커 `_fetch_df`가 5m에서 리샘플(`TF_RULE` 10m).
+- 백테스트 검증(교차검증): 3·5분 적자, **15분이 가장 유효(흑자)**, 10분은 국면 의존. 발굴 전략
+  ATR-RSI는 우리 프레임워크에서 FAIL(외부 Sharpe 주장 재현 안 됨).
+
+### 백테스트 데이터 소스 (fapi 지역차단 대응 — 중요)
+- 이 클라우드 컨테이너에선 **바이낸스 선물 fapi가 451(지역차단)** — klines·ticker 모두 불가.
+- **선물 캔들**: `https://data.binance.vision/data/futures/um/{monthly|daily}/klines/<SYM>/<TF>/...zip`
+  덤프를 받는다. **선물 전용 알트(XPIN·TAC·EVAA·LAB 등)까지 포함**되므로 실제 유니버스 백테스트 가능.
+  (현물 미러 `data-api.binance.vision`는 선물전용 알트가 없어 부적합 — 유니버스는 '선물' 기준이다.)
+- **선물 유니버스·24h 거래량**: CoinGecko 파생 API(`/derivatives/exchanges/binance_futures?include_tickers=all`,
+  `converted_volume.usd`)로 순위. 10M 이상 ≈ 116종목.
+- 라이브 봇은 스캐너/`connectors/universe.py`로 유니버스 선정(fapi→CoinGecko→현물미러 폴백).
+
+### 정기 리서치 루틴 & 최근 반영된 개선
+- **정기 루틴 3종**(KOL 하이프워치 2h·시장브리핑 12h·전략발굴 12h)은 **이 상시 세션에 바인딩**
+  (`persistent_session_id`)돼 발화 → 이 세션에서 서브에이전트 실행 후 커밋·push. 폰 완료알림은 없음
+  (fresh-session 방식은 새 세션에 레포 쓰기권한이 없어 push 403 → 상시세션 바인딩으로 해결).
+  결과물: `research/kol/`, `research/market/`, `research/strategies/`, `research/backtests/`.
+- **최근 수정**(git 이력): 청산 짜바리 방지(분할청산 스텝사이즈 정합), 수동/외부 청산 정확 반영
+  (`fetch_realized_close`로 실제 체결가·실현손익), 대시보드 '최근청산' 청산시각 정렬, 일별/누적손익이
+  실잔고 이력 부족 시 저널 기준으로 폴백.
 
 ### 로컬 실행 환경 (사용자 Windows PC)
 - 프로젝트 경로(고정): `C:\Users\ghdls\Documents\study-claude-personal-ai-assistant-11xcgh\study-claude-personal-ai-assistant-11xcgh`
