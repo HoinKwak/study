@@ -76,6 +76,30 @@ class ScalpStrategy:
         # 확인 TF 추세 게이트(횡보장 진입 금지). 완화하려면 False.
         self.require_regime = (require_regime if require_regime is not None
                                else getattr(settings, "scalp_require_regime", True))
+        # 횡보 전환 청산 시 모멘텀 꺾임 확인 봉수(0=RANGE 즉시 청산).
+        self.chop_confirm_bars = int(getattr(settings, "scalp_chop_confirm_bars", 2))
+
+    def _momentum_faded(self, df: pd.DataFrame, direction: Direction) -> bool:
+        """모멘텀 꺾임 판정 — 최근 N봉이 신고가/신저가를 못 만들고 마지막 봉이 역방향.
+
+        chop_confirm_bars=0 이면 항상 True(=RANGE 즉시 청산, 기존 동작).
+        데이터가 부족하면 보수적으로 True(청산 허용).
+        """
+        n = self.chop_confirm_bars
+        if n <= 0:
+            return True
+        if len(df) < n + 2:
+            return True
+        recent = df.iloc[-n:]
+        last_c = float(recent["close"].iloc[-1])
+        last_o = float(recent["open"].iloc[-1])
+        if direction is Direction.LONG:
+            prior_high = float(df["high"].iloc[-(n + 1)])
+            no_new_high = all(float(recent["high"].iloc[i]) <= prior_high for i in range(n))
+            return no_new_high and last_c < last_o   # 신고가 실패 + 마지막 음봉
+        prior_low = float(df["low"].iloc[-(n + 1)])
+        no_new_low = all(float(recent["low"].iloc[i]) >= prior_low for i in range(n))
+        return no_new_low and last_c > last_o         # 신저가 실패 + 마지막 양봉
 
     def decide(self, symbol: str, df: pd.DataFrame,
                oi_delta: float | None = None,
@@ -84,9 +108,9 @@ class ScalpStrategy:
         if len(df) < self.bb_period + 2:
             return ScalpDecision(Action.HOLD, Direction.FLAT, reason="데이터 부족")
 
-        # --- 보유 중: 횡보장 전환 시 청산 ---
+        # --- 보유 중: 횡보장 전환 시 청산 (모멘텀이 실제로 꺾였을 때만) ---
         if current_direction is not None:
-            if confirm_regime is Regime.RANGE:
+            if confirm_regime is Regime.RANGE and self._momentum_faded(df, current_direction):
                 return ScalpDecision(Action.CLOSE, Direction.FLAT, reason="횡보장 전환 청산")
             return ScalpDecision(Action.HOLD, Direction.FLAT, reason="추세 유지")
 

@@ -71,10 +71,34 @@ def test_scalp_oi_not_rising_blocks_entry():
 
 
 def test_scalp_exits_on_range_regime():
+    """횡보(RANGE) 전환 + 모멘텀 실제 꺾임(신고가 실패 + 마지막 음봉)이면 청산."""
     df = _base_df()
+    hi = df.columns.get_loc("high")
+    op = df.columns.get_loc("open")
+    cl = df.columns.get_loc("close")
+    df.iloc[-3, hi] = 100.5          # 직전 고점
+    df.iloc[-2, hi] = 100.2          # 신고가 실패
+    df.iloc[-1, hi] = 100.2          # 신고가 실패
+    df.iloc[-1, op] = 100.1
+    df.iloc[-1, cl] = 99.9           # 마지막 음봉
     s = ScalpStrategy(_settings())
     d = s.decide("BTC/USDT", df, current_direction=Direction.LONG, confirm_regime=Regime.RANGE)
     assert d.action is Action.CLOSE
+
+
+def test_scalp_holds_on_range_when_momentum_intact():
+    """횡보(RANGE) 전환이라도 신호TF 모멘텀이 살아있으면(신고가 갱신) 청산하지 않는다."""
+    df = _base_df()
+    hi = df.columns.get_loc("high")
+    op = df.columns.get_loc("open")
+    cl = df.columns.get_loc("close")
+    df.iloc[-2, hi] = 101.0          # 신고가 갱신 중
+    df.iloc[-1, hi] = 101.5
+    df.iloc[-1, op] = 100.5
+    df.iloc[-1, cl] = 101.4          # 양봉 = 모멘텀 유지
+    s = ScalpStrategy(_settings())
+    d = s.decide("BTC/USDT", df, current_direction=Direction.LONG, confirm_regime=Regime.RANGE)
+    assert d.action is Action.HOLD
 
 
 def test_scalp_squeeze_filter_blocks_wide_bands():

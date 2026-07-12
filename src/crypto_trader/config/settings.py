@@ -75,6 +75,10 @@ class Settings(BaseSettings):
     scalp_squeeze_pctile: float = 45.0    # 밴드폭 하위 N% 스퀴즈 (기존 30 → 완화, 100=사실상 해제)
     scalp_min_body_atr: float = 0.7       # 캔들 몸통 ≥ ATR×이 값 (기존 1.0 → 완화)
     scalp_require_regime: bool = False     # True=추세일치 필수, False=횡보 허용(역추세만 차단)
+    # 횡보 전환 청산 정교화: 확인TF가 RANGE 여도 신호TF 모멘텀이 '실제로 꺾였을 때만' 청산.
+    # 최근 N봉이 신고가/신저가를 못 만들고(모멘텀 정체) + 마지막 봉이 역방향일 때 청산.
+    # 0 이면 기존처럼 RANGE 즉시 청산(러프). 클수록 더 오래 보유(SL/모멘텀익절에 맡김).
+    scalp_chop_confirm_bars: int = 2
 
     # --- 시장 스캐너 (급등/급락/거래량·OI 급증 알림) ---
     scanner_enabled: bool = True

@@ -59,9 +59,10 @@ def default_sleeves(settings: Settings) -> list[Sleeve]:
             signal_tf="5m", confirm_tf="15m",
             strategy_kind="scalp",
             eval_interval_sec=5 * 60,
-            # 증거금 기준 사이징($15k 명목) → 충격 완화 위해 10분할 × 10초 시간분산.
-            symbols=scalp_symbols, twap_slices=10, slice_interval_sec=10,
-            leverage=30, maker_entry=False,
+            # 증거금 기준 사이징 → 충격 완화 위해 10분할 × 20초 시간분산.
+            # 메이커(post-only) 진입: 수수료 절감(테이커→메이커). 미체결분은 시장가 폴백.
+            symbols=scalp_symbols, twap_slices=10, slice_interval_sec=20,
+            leverage=30, maker_entry=True,
             dynamic_universe=True, min_universe_volume=50e6,
         ),
     ]
