@@ -54,7 +54,8 @@
   결과물: `research/kol/`, `research/market/`, `research/strategies/`, `research/backtests/`.
 - **최근 수정**(git 이력): 청산 짜바리 방지(분할청산 스텝사이즈 정합), 수동/외부 청산 정확 반영
   (`fetch_realized_close`로 실제 체결가·실현손익), 대시보드 '최근청산' 청산시각 정렬, 일별/누적손익이
-  실잔고 이력 부족 시 저널 기준으로 폴백.
+  실잔고 이력 부족 시 저널 기준으로 폴백, 고아 슬리브 리컨실(제거·개명된 옛 슬리브로 열린 포지션은
+  워커가 안 훑어 영영 '열림'으로 남던 것 → 엔진 `_reconcile_orphan_exits`가 거래소 실체결로 청산 반영).
 
 ### 로컬 실행 환경 (사용자 Windows PC)
 - 프로젝트 경로(고정): `C:\Users\ghdls\Documents\study-claude-personal-ai-assistant-11xcgh\study-claude-personal-ai-assistant-11xcgh`

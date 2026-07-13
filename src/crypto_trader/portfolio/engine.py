@@ -17,7 +17,7 @@ from ..execution import Executor, PaperBroker
 from ..monitoring import Notifier, TradeJournal
 from ..utils import get_logger
 from .sleeve import Sleeve, default_sleeves
-from .worker import SleeveWorker
+from .worker import SleeveWorker, _iso_to_ms, _now_iso
 
 log = get_logger("portfolio")
 
@@ -97,6 +97,69 @@ class PortfolioEngine:
 
     def _realize(self, pnl: float) -> None:
         self._paper_equity += pnl
+
+    def _reconcile_orphan_exits(self) -> None:
+        """활성 슬리브에 없는 열린 포지션(제거·개명된 옛 슬리브)을 청산 반영.
+
+        슬리브 구성을 바꾸면(예: mid/scalp15m 제거) 그 슬리브로 열렸던 포지션은
+        어느 워커의 리컨실도 훑지 않아(`t.sleeve == self.sleeve.name` 필터) 저널에
+        영영 '열림'으로 남는다. 여기서 거래소에 이미 사라진(수동·외부 청산) 그런
+        고아 포지션을 감지해 실제 체결가·실현손익으로 청산 처리한다. 슬리브가 없어졌으니
+        어느 슬리브의 risk 카운터에도 넣지 않는다(paper 잔고는 거래소에서 실시간 조회).
+        """
+        if self.s.trade_mode is TradeMode.DRY_RUN or self.binance is None:
+            return
+        active = {sl.name for sl in self.sleeves}
+        orphans = [t for t in self.journal.open_trades() if t.sleeve not in active]
+        if not orphans:
+            return
+        try:
+            live = self.binance.fetch_positions()
+        except Exception as e:  # noqa: BLE001
+            log.warning("고아 포지션 리컨실 조회 실패: %s", e)
+            return
+        live_keys = {(p.get("symbol"), p.get("side")) for p in live
+                     if float(p.get("contracts") or 0) != 0}
+        for rec in orphans:
+            canonical = self.binance.resolve_symbol(rec.symbol)
+            if (canonical, rec.direction) in live_keys:
+                log.warning("고아 포지션 %s %s (슬리브 '%s' 제거됨)이 거래소에 아직 열려 있음 "
+                            "— 봇이 관리하지 않으니 수동 정리 필요", rec.symbol, rec.direction, rec.sleeve)
+                continue
+            self.binance.cancel_all_orders(rec.symbol)  # 잔여 조건부 주문 정리
+            since_ms = _iso_to_ms(rec.opened_at)
+            res = None
+            try:
+                res = self.binance.fetch_realized_close(rec.symbol, rec.direction, since_ms)
+            except Exception as e:  # noqa: BLE001
+                log.warning("%s 실현손익 조회 실패: %s", rec.symbol, e)
+            if res is not None:
+                exit_price, pnl = res
+            else:
+                exit_price = rec.stop_price or rec.entry_price
+                pnl = self._orphan_pnl(rec, exit_price)  # 조회 실패 → 가격차로 근사
+            is_sl = (rec.stop_price and exit_price > 0
+                     and abs(exit_price - rec.stop_price) / rec.stop_price < 0.0015)
+            reason = "exchange_sl" if is_sl else "수동/외부 청산"
+            self.journal.record_close(rec.symbol, exit_price, _now_iso(), pnl, reason,
+                                      sleeve=rec.sleeve, direction=rec.direction)
+            ret = (pnl / (rec.entry_price * rec.quantity) * 100.0
+                   if rec.entry_price and rec.quantity else 0.0)
+            label = "SL·고아정리" if is_sl else "수동/외부·고아정리"
+            self.notifier.trade(
+                f"[{rec.sleeve}·제거된슬리브] {rec.symbol} {rec.direction.upper()} 청산 ({label})\n"
+                f"진입 {rec.entry_price:.4f} → {exit_price:.4f}\n"
+                f"손익 {pnl:+.2f} USDT ({ret:+.2f}%)",
+                title="📕 청산(고아 정리)")
+            log.info("고아 포지션 정리: %s %s (슬리브 '%s') 손익 %+.2f",
+                     rec.symbol, rec.direction, rec.sleeve, pnl)
+
+    def _orphan_pnl(self, rec, exit_price: float) -> float:
+        """실현손익 조회 실패 시 가격차 기반 근사(테이커 수수료 차감)."""
+        gross = ((exit_price - rec.entry_price) * rec.quantity if rec.direction == "long"
+                 else (rec.entry_price - exit_price) * rec.quantity)
+        fee = (self.s.taker_fee_pct / 100.0) * (rec.entry_price + exit_price) * rec.quantity
+        return gross - fee
 
     def _load_or_init_baseline(self, current_equity: float) -> float:
         """누적 수익률 기준 자본(인셉션 자본)을 산출.
@@ -201,6 +264,7 @@ class PortfolioEngine:
             log.info("[%s] 평가 (자본 %.2f × %.0f%%)", name, total_equity, worker.sleeve.allocation * 100)
             worker.evaluate(total_equity)
             self._last_eval[name] = now
+        self._reconcile_orphan_exits()   # 제거·개명된 옛 슬리브의 열린 포지션 정리
 
     def run_forever(self, tick_sec: int | None = None) -> None:
         # 가장 짧은 슬리브 주기를 틱으로(기본 60s)
