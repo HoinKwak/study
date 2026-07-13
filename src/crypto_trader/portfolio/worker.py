@@ -456,15 +456,18 @@ class SleeveWorker:
         return True
 
     def _scalp_momentum_exit(self, symbol: str, df) -> bool:
-        """2단계 청산: 신고가/신저가 갱신 봉에서 50%, 그 다음 봉에서 나머지 50%.
-
-        - 미청산 상태: 이번 봉 고가>신호봉 고가(롱)/저가<신호봉 저가(숏)면 50% 종가 청산.
-        - 1차 청산(half_closed) 상태: 다음 평가(봉) 종가에 나머지 50% 청산.
-        SL 은 두 단계 내내 거래소 스톱으로 계속 유효.
+        """단타 러너 청산. 1차 익절은 신호봉 고가/저가 갱신 시 50% 종가 청산.
+        나머지 50%(러너)는 `scalp_exit_mode` 에 따라:
+          'trailing' — ATR 트레일링 스톱으로 관리(백테스트 최선, 백테스터 momentum_trail 정합).
+          'split'    — 다음 평가(봉) 종가에 전량 청산(구 방식).
+        SL/트레일 스톱은 거래소 스톱으로 계속 유효.
         """
         rec = self._sleeve_trade(symbol)
         if rec is None or not rec.signal_high:
             return False
+        if self.s.scalp_exit_mode == "trailing":
+            return self._scalp_trailing_exit(df, rec)
+
         price = float(df["close"].iloc[-1])
         bar_high = float(df["high"].iloc[-1])
         bar_low = float(df["low"].iloc[-1])
@@ -487,6 +490,80 @@ class SleeveWorker:
             else:
                 self._close_trade(rec, price, "momentum_tp")
                 return True
+        return False
+
+    def _scalp_atr(self, df) -> float:
+        try:
+            return float(ind.atr(df).iloc[-1])
+        except Exception:  # noqa: BLE001
+            return 0.0
+
+    def _move_scalp_stop(self, rec: TradeRecord, new_stop: float) -> None:
+        """러너 트레일링 스톱을 new_stop 으로 이동(롱=위로만/숏=아래로만).
+
+        라이브는 기존 SL 취소 후 트레일 가격으로 재예약(거래소가 인트라바 체결 → 백테스트
+        정합). dry_run 은 rec.stop_price 만 갱신(_check_sl_tp 가 봉 종가로 처리)."""
+        if new_stop <= 0:
+            return
+        is_long = rec.direction == "long"
+        if rec.stop_price:   # 단조: 롱은 올리기만, 숏은 내리기만
+            if is_long and new_stop <= rec.stop_price:
+                return
+            if not is_long and new_stop >= rec.stop_price:
+                return
+        if self.s.trade_mode is TradeMode.DRY_RUN or self.binance is None:
+            rec.stop_price = new_stop
+            return
+        try:
+            self.binance.cancel_all_orders(rec.symbol)
+            close_side = "sell" if is_long else "buy"
+            qty = self.binance.amount_to_precision(rec.symbol, rec.quantity)
+            self.binance.create_stop_order(rec.symbol, close_side, qty, new_stop,
+                                           position_side=rec.direction)
+            rec.stop_price = new_stop
+        except Exception as e:  # noqa: BLE001
+            log.warning("[%s] %s 트레일 스톱 이동 실패: %s", self.sleeve.name, rec.symbol, e)
+
+    def _scalp_trailing_exit(self, df, rec: TradeRecord) -> bool:
+        """트레일링 러너 청산. 1차 50% 익절 후 잔량을 ATR 트레일링으로 관리."""
+        price = float(df["close"].iloc[-1])
+        bar_high = float(df["high"].iloc[-1])
+        bar_low = float(df["low"].iloc[-1])
+        is_long = rec.direction == "long"
+        mult = self.s.scalp_trail_atr_mult
+        atr = self._scalp_atr(df)
+
+        # 러너 미형성: 신고가/신저가 갱신 → 1차 50% 익절 후 러너 전환
+        if not rec.half_closed:
+            made_new = (bar_high > rec.signal_high) if is_long else (bar_low < rec.signal_low)
+            if not made_new:
+                return False
+            if not self._scalp_partial_close(rec, price, 0.5, "momentum_tp1"):
+                self._close_trade(rec, price, "momentum_tp")   # 소액 → 전량 청산
+                return True
+            rec.half_closed = True
+            rec.run_ext = bar_high if is_long else bar_low
+            if atr > 0:
+                trail = (rec.run_ext - mult * atr) if is_long else (rec.run_ext + mult * atr)
+                self._move_scalp_stop(rec, trail)
+            self.journal.save()
+            return False
+
+        # 러너 보유: (1) 기존 트레일 이탈 체크(직전 스톱 기준 — 룩어헤드 방지)
+        if rec.stop_price and ((is_long and price <= rec.stop_price)
+                               or (not is_long and price >= rec.stop_price)):
+            self._close_trade(rec, rec.stop_price, "momentum_trail")
+            return True
+        # (2) 최고가/최저가 갱신 후 트레일 상향(단조)
+        if is_long:
+            rec.run_ext = max(rec.run_ext or bar_high, bar_high)
+            new_trail = rec.run_ext - mult * atr if atr > 0 else rec.stop_price
+        else:
+            rec.run_ext = min(rec.run_ext or bar_low, bar_low)
+            new_trail = rec.run_ext + mult * atr if atr > 0 else rec.stop_price
+        if atr > 0:
+            self._move_scalp_stop(rec, new_trail)
+        self.journal.save()
         return False
 
     _TF_SEC = {"1m": 60, "3m": 180, "5m": 300, "15m": 900, "1h": 3600, "4h": 14400}

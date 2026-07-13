@@ -85,6 +85,11 @@ class Settings(BaseSettings):
     # SL 거리 배수: 신호봉 시가 기준 손절거리를 이 배수로 확장(1.0=신호봉 시가, 현행).
     # 증거금 기준 사이징(라이브)에선 포지션 크기 불변·손절만 멀어짐 → 노이즈 손절 완화.
     scalp_stop_mult: float = 1.0
+    # 단타 청산 모드: 'trailing'(1차 50% 익절 후 나머지 ATR 트레일링 러너, 백테스트 최선)
+    # 또는 'split'(1차 50% + 다음봉 종가 50%, 구 방식). 백테스트(전체 30M): 트레일링이
+    # split 대비 PF 0.91→0.98·손실 -78%. 백테스터의 'momentum_trail'과 정합.
+    scalp_exit_mode: str = "trailing"
+    scalp_trail_atr_mult: float = 1.0   # 트레일링 폭 = 최고가 − ATR×이 값(작을수록 타이트=유리)
 
     # --- 시장 스캐너 (급등/급락/거래량·OI 급증 알림) ---
     scanner_enabled: bool = True

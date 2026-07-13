@@ -31,7 +31,8 @@ class TradeRecord:
     signal_high: float = 0.0  # 신호봉 고가 (신고가 갱신 기준)
     signal_low: float = 0.0   # 신호봉 저가
     momentum_armed: bool = False  # (레거시) 신고가/신저가 갱신 상태
-    half_closed: bool = False      # 단타 2단계 청산: 1차 50% 청산 완료 → 다음 봉에 나머지
+    half_closed: bool = False      # 단타 2단계 청산: 1차 50% 청산 완료 → 나머지 러너 보유
+    run_ext: float = 0.0           # 트레일링 러너의 최고가(롱)/최저가(숏) 추적값
     # 청산 시 채워짐
     exit_price: float | None = None
     closed_at: str | None = None
