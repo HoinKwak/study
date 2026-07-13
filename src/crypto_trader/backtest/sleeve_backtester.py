@@ -49,6 +49,12 @@ class SleeveBacktester:
         # 체결(TWAP 시간분산 근사). entry_fine_df 는 같은 심볼의 1m OHLCV(DatetimeIndex).
         self.entry_window_sec = entry_window_sec
         self._fine = entry_fine_df
+        # 빠른 창 조회용 사전계산(정렬된 ns 타임스탬프 + 종가 배열 → searchsorted O(logN))
+        self._fine_ts = None
+        self._fine_close = None
+        if entry_fine_df is not None and len(entry_fine_df):
+            self._fine_ts = entry_fine_df.index.asi8
+            self._fine_close = entry_fine_df["close"].to_numpy(dtype=float)
         self.kind = sleeve_kind
         self.confirm_tf = confirm_tf
         self.starting_equity = starting_equity
@@ -369,16 +375,18 @@ class SleeveBacktester:
         return trade, equity
 
     def _entry_window_fill(self, i, df):
-        """신호봉 종료 후 entry_window_sec 동안의 1m 종가 평균(진입 TWAP 근사). 없으면 None."""
-        if self._fine is None or self.entry_window_sec <= 0 or i + 1 >= len(df):
+        """신호봉 종료 후 entry_window_sec 동안의 1m 종가 평균(진입 TWAP 근사). 없으면 None.
+
+        정렬된 ns 타임스탬프 배열에 searchsorted 로 O(logN) 조회(전체 스캔 금지)."""
+        if self._fine_ts is None or self.entry_window_sec <= 0 or i + 1 >= len(df):
             return None
-        bar_dur = df.index[i + 1] - df.index[i]
-        close_t = df.index[i] + bar_dur
-        win_end = close_t + pd.Timedelta(seconds=self.entry_window_sec)
-        seg = self._fine.loc[(self._fine.index >= close_t) & (self._fine.index < win_end), "close"]
-        if len(seg) == 0:
+        close_ns = int(df.index[i].value) + int((df.index[i + 1] - df.index[i]).value)
+        win_end_ns = close_ns + self.entry_window_sec * 1_000_000_000
+        lo = int(np.searchsorted(self._fine_ts, close_ns, side="left"))
+        hi = int(np.searchsorted(self._fine_ts, win_end_ns, side="left"))
+        if hi <= lo:
             return None
-        return float(seg.mean())
+        return float(self._fine_close[lo:hi].mean())
 
     def _apply_swing(self, result, trade, d, i, price, equity, alloc_frac, stage, df):
         """swing: 배분 기반 + 피라미딩."""
