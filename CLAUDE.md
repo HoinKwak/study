@@ -12,6 +12,33 @@
 
 _(현재 공지 없음)_
 
+### 🔁 봇 재시작 코드 (항상 여기 비치)
+재시작은 **해당 창에서 Ctrl+C로 멈추고 → 재실행**. 어느 프로세스를 재시작할지는 §1 「재구동 안내 규약」의 변경위치 판정표 참조.
+
+**공통 — `git pull` (한 번, 아무 창):**
+```powershell
+cd C:\Users\ghdls\Documents\study-claude-personal-ai-assistant-11xcgh\study-claude-personal-ai-assistant-11xcgh
+git pull origin claude/personal-ai-assistant-11xcgh
+```
+**① 매매봇** (매매봇 창 Ctrl+C 후):
+```powershell
+cd C:\Users\ghdls\Documents\study-claude-personal-ai-assistant-11xcgh\study-claude-personal-ai-assistant-11xcgh
+.\.venv\Scripts\Activate.ps1
+python -m scripts.run_portfolio
+```
+**② 알람봇(스캐너)** (알람봇 창 Ctrl+C 후):
+```powershell
+cd C:\Users\ghdls\Documents\study-claude-personal-ai-assistant-11xcgh\study-claude-personal-ai-assistant-11xcgh
+.\.venv\Scripts\Activate.ps1
+python -m scripts.run_scanner
+```
+**③ 대시보드** (대시보드 창 Ctrl+C 후):
+```powershell
+cd C:\Users\ghdls\Documents\study-claude-personal-ai-assistant-11xcgh\study-claude-personal-ai-assistant-11xcgh
+.\.venv\Scripts\Activate.ps1
+python -m scripts.serve_dashboard
+```
+
 ---
 
 ## 0. 커뮤니케이션 규약 (최우선 · 압축되어도 유지)
