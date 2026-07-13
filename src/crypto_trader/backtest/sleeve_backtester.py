@@ -42,6 +42,7 @@ class SleeveBacktester:
                  maker_entry: bool = False, maker_fee: float = 0.0002,
                  leverage: int | None = None,
                  scalp_exit_mode: str = "momentum",
+                 trail_atr_mult: float = 1.5,
                  entry_window_sec: int = 0, entry_fine_df=None,
                  strategy_kwargs: dict | None = None):
         self.s = settings
@@ -73,8 +74,12 @@ class SleeveBacktester:
         #   'momentum_split' — 다음봉 종가 50% + 그다음봉 종가 50% 분할 청산
         #   'bandwalk'       — 밴드 워킹: 종가가 볼린저 중심선(SMA20)을 깰 때까지 보유
         #   'momentum_bandwalk' — 모멘텀 시점 50% 익절 + 나머지 50% 밴드워킹 러너
+        #   'momentum_be'    — [A] 50% 익절 + 나머지 50%는 SL 을 본절(진입가)로 옮겨
+        #                      러너가 신고가를 못 만드는 첫 봉에 종가 청산(본절 보호)
+        #   'momentum_trail' — [B] 50% 익절 + 나머지 50%는 ATR 트레일링 스톱 러너
         #   'tp'             — 고정 TP
         self.scalp_exit_mode = scalp_exit_mode
+        self.trail_atr_mult = trail_atr_mult   # momentum_trail 러너 트레일링 폭(ATR 배수)
         self.risk = RiskManager(settings, max_leverage=leverage)
 
         kw = strategy_kwargs or {}
@@ -208,13 +213,44 @@ class SleeveBacktester:
                     last_exit_idx = i
                     self._scalp_ref = None
 
+            # 1b-0c) [A/B] 러너 관리: 본절(be) 또는 ATR 트레일링(trail).
+            #   be    → 러너가 신고가/신저가를 못 만드는 첫 봉에 종가 청산(SL=본절은 상단 체크).
+            #   trail → 최고점 대비 ATR 배수만큼 스톱을 단조 상향, 청산은 상단 SL 체크가 처리.
+            if (trade is not None and self.kind == "scalp"
+                    and self.scalp_exit_mode in ("momentum_be", "momentum_trail")
+                    and self._scalp_ref is not None
+                    and self._scalp_ref.get("runner")):
+                ref = self._scalp_ref
+                is_long = trade.direction is Direction.LONG
+                new_ext = ((high > ref.get("run_ext", high)) if is_long
+                           else (low < ref.get("run_ext", low)))
+                if new_ext:
+                    ref["run_ext"] = high if is_long else low
+                if self.scalp_exit_mode == "momentum_trail":
+                    atr_v = float(atr_series.iloc[i]) or ref.get("atr", 0.0)
+                    if is_long:
+                        trade.stop_price = max(trade.stop_price,
+                                               ref["run_ext"] - self.trail_atr_mult * atr_v)
+                    else:
+                        trade.stop_price = min(trade.stop_price,
+                                               ref["run_ext"] + self.trail_atr_mult * atr_v)
+                elif not new_ext:   # momentum_be: 모멘텀 스톨 → 종가 청산
+                    fill = self._fill(price, trade.direction, closing=True)
+                    pnl = self._close(trade, i, fill, "runner_be_stall", df)
+                    trade.pnl += ref.get("partial_pnl", 0.0)
+                    equity += pnl
+                    trade = None
+                    last_exit_idx = i
+                    self._scalp_ref = None
+
             # 1b) scalp 모멘텀 청산: 신호봉 고가/저가 갱신 후
             #     momentum       → 다음봉 종가 전량 청산
             #     momentum_split → 다음봉 종가 50%, 그다음봉 종가 나머지 50%
             #     (최소 익절 미달이면 재무장 대기, SL 은 계속 유효)
             if (trade is not None and self.kind == "scalp"
                     and self.scalp_exit_mode in ("momentum", "momentum_split",
-                                                 "momentum_bandwalk")
+                                                 "momentum_bandwalk",
+                                                 "momentum_be", "momentum_trail")
                     and self._scalp_ref is not None
                     and not self._scalp_ref.get("runner")):
                 ref = self._scalp_ref
@@ -238,9 +274,10 @@ class SleeveBacktester:
                                    if trade.direction is Direction.LONG
                                    else (trade.entry_price - price) / trade.entry_price)
                     if profit_frac >= min_tp:
-                        if self.scalp_exit_mode in ("momentum_split", "momentum_bandwalk"):
+                        if self.scalp_exit_mode in ("momentum_split", "momentum_bandwalk",
+                                                    "momentum_be", "momentum_trail"):
                             # 1단계: 절반 익절. split 은 다음봉 종가 예약,
-                            # bandwalk 하이브리드는 잔량을 러너로 전환.
+                            # 나머지(bandwalk/be/trail)는 잔량을 러너로 전환.
                             half = trade.quantity / 2.0
                             fill = self._fill(price, trade.direction, closing=True)
                             fee1 = self._fee(fill * half, closing=True)
@@ -253,6 +290,19 @@ class SleeveBacktester:
                                 ref["final_at"] = i + 1
                             else:
                                 ref["runner"] = True
+                                # 러너 시작 극값(신고가/신저가 추적)
+                                ref["run_ext"] = high if trade.direction is Direction.LONG else low
+                                if self.scalp_exit_mode == "momentum_be":
+                                    # [A] SL 을 본절(진입가)로 이동 → 러너는 무위험
+                                    trade.stop_price = trade.entry_price
+                                elif self.scalp_exit_mode == "momentum_trail":
+                                    # [B] ATR 트레일링 스톱 초기화
+                                    atr_v = float(atr_series.iloc[i])
+                                    ref["atr"] = atr_v
+                                    trade.stop_price = (
+                                        high - self.trail_atr_mult * atr_v
+                                        if trade.direction is Direction.LONG
+                                        else low + self.trail_atr_mult * atr_v)
                         else:
                             fill = self._fill(price, trade.direction, closing=True)
                             equity += self._close(trade, i, fill, "momentum_tp", df)
@@ -366,8 +416,10 @@ class SleeveBacktester:
                         entry_px = win
                 trade = self._open_trade(result, d.direction, i, entry_px, plan.quantity,
                                          plan.stop_price, plan.take_profit, df)
-                # scalp 모멘텀 모드: 고정 TP 비활성(신고가→다음봉 종가로 청산)
-                if self.kind == "scalp" and self.scalp_exit_mode == "momentum":
+                # scalp 모멘텀 계열: 고정 TP 비활성(신고가→모멘텀 로직으로 청산).
+                # momentum/_split/_bandwalk/_be/_trail 모두 _scalp_ref 상태머신을 쓴다.
+                # (과거 == "momentum" 만 초기화해 split/bandwalk 가 고정TP로 새던 버그 수정)
+                if self.kind == "scalp" and self.scalp_exit_mode.startswith("momentum"):
                     self._scalp_ref = {"high": d.signal_high, "low": d.signal_low,
                                        "armed_at": None}
                     trade.take_profit = (float("inf") if d.direction is Direction.LONG
