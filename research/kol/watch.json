@@ -1,197 +1,202 @@
 {
-  "ts": "2026-07-12T23:45:00Z",
+  "ts": "2026-07-13T09:30:00Z",
   "tokens": [
     {
-      "token": "BYCOCKET",
+      "token": "Hoodrat",
       "chain": "Robinhood Chain",
-      "ca": "0x9ef73ffb67d0c8b2beec3c44898d9342ac873997",
+      "ca": "",
       "stage": "조기~확산",
-      "kols": "개별 KOL 귀속 미확인 (CoinGecko RH체인 카테고리 신규 4위 급부상, 자체 사이트가 'First Cult on Robinhood' 표방)",
-      "thesis": "이번 회차 완전 신규 포착. 출시 당일(7/12) 시총 $23.5M·24h +5230%로 폭등, 거래량 $13.2M로 실제 자금 유입 확인",
-      "risk": "출시 당일 극단적 변동성(같은 날 ATH $0.02537/ATL $0.0004 동시 기록), 이미 오늘 하루 5000%+ 급등해 조기 진입 창이 매우 좁음, 신생 미검증 컨트랙트"
+      "kols": "개별 KOL 귀속 미확인 (2개 독립 매체: Yahoo Finance·Coingabbar 공동 포착, CoinGecko RH체인 상위표엔 아직 미노출)",
+      "thesis": "Matt Furie 'The Night Riders' 캐릭터 테마. 24h +418%, 거래량 $13.9M로 시총과 맞먹는 수준(타 신규 토큰 대비 워시트레이딩 의심 낮음) — 실제 자금 유입 정황",
+      "risk": "CA 확보 실패(검색된 주소는 데이터 오염 의심으로 미채택), CoinGecko 카테고리 상위 39위 표에 아직 노출 안 돼 독립 재검증 제한적"
+    },
+    {
+      "token": "The Green Bull (VLAD)",
+      "chain": "Robinhood Chain",
+      "ca": "",
+      "stage": "조기",
+      "kols": "개별 KOL 귀속 미확인 (완전 신규 진입)",
+      "thesis": "Vlad Tenev 패러디 그린 헤지호그 마스코트. 시총 $1.74M·24h +45.6%, 거래량 $1.68M로 시총과 비슷해 초기 실거래 양호",
+      "risk": "CA 미확인, 극초소형 시총, CEO 패러디 성격상 상표·명예훼손 이슈 가능성"
+    },
+    {
+      "token": "watch it grow (SEEDCOIN)",
+      "chain": "Robinhood Chain",
+      "ca": "",
+      "stage": "조기",
+      "kols": "개별 KOL 귀속 미확인 (완전 신규 진입)",
+      "thesis": "완전 신규, 시총 $1.6M·24h +30.9%, '성장' 테마 서사",
+      "risk": "CA 미확인, 프로젝트 정보 극히 제한적, 초소형"
+    },
+    {
+      "token": "one life, its worth an attempt (WORTH)",
+      "chain": "Robinhood Chain",
+      "ca": "",
+      "stage": "조기",
+      "kols": "개별 KOL 귀속 미확인 (완전 신규 진입)",
+      "thesis": "완전 신규, 시총 $894K·24h +7.8%",
+      "risk": "CA 미확인, 서사 불명확, 극초소형 시총"
+    },
+    {
+      "token": "meow (MEOW)",
+      "chain": "Robinhood Chain",
+      "ca": "",
+      "stage": "조기",
+      "kols": "개별 KOL 귀속 미확인 (완전 신규 진입)",
+      "thesis": "완전 신규, 시총 $768K·24h +71.8%, CASHCAT 아류 캣 테마 확산 조짐",
+      "risk": "CA 미확인, 동명 티커(Tiger Inc. MEOW)와 혼동 위험, 카피캣 성격으로 서사 독자성 약함"
+    },
+    {
+      "token": "Exterminate All Humans (HOODBOT)",
+      "chain": "Robinhood Chain",
+      "ca": "",
+      "stage": "조기",
+      "kols": "개별 KOL 귀속 미확인 (완전 신규 진입)",
+      "thesis": "완전 신규, 시총 $380K·24h +36.5%, AI 저항 밈 테마",
+      "risk": "CA 미확인, 극초소형 시총"
+    },
+    {
+      "token": "Baby Cash Cat",
+      "chain": "Robinhood Chain",
+      "ca": "",
+      "stage": "조기",
+      "kols": "개별 KOL 귀속 미확인 (CASHCAT 카피캣, 완전 신규 진입)",
+      "thesis": "CASHCAT 파생 카피캣, 시총 $352K·24h +66.8%",
+      "risk": "CA 미확인, 카피캣 특성상 단명 가능성 매우 높음, 초소형"
+    },
+    {
+      "token": "FOX (Robin Hood)",
+      "chain": "Robinhood Chain",
+      "ca": "",
+      "stage": "조기~확산",
+      "kols": "개별 KOL 귀속 미확인 (CoinGape가 CASHCAT·HOODIE와 함께 '이번 주 최대 랠리 3종'으로 공동 보도)",
+      "thesis": "24h +570.5%로 이번 회차 최대 상승폭, 2개 매체 교차 언급으로 확산 초입 코로보레이션",
+      "risk": "CA 미확인(검색된 동명 이더리움 HOOD 토큰과 혼동 주의, 별개 토큰으로 판단), 시총 $846K로 여전히 초소형, 단기 급등 후 진입창 좁음"
+    },
+    {
+      "token": "Little John (JOHN)",
+      "chain": "Robinhood Chain",
+      "ca": "",
+      "stage": "확산",
+      "kols": "개별 KOL 귀속 미확인 (체인 메타)",
+      "thesis": "전회차 신규 관측($1.77M)에서 이번 회차 $17.2M로 9.7배 급성장",
+      "risk": "CA 미확인, 거래량 $167.5M(시총 대비 9.7배)로 워시트레이딩 강한 의심 — 실유동성보다 봇매매 가능성"
     },
     {
       "token": "530A (buy and retire)",
       "chain": "Robinhood Chain",
       "ca": "0x15e8b90d9444d1a5e9b39f5c9547a104ae69ba11",
-      "stage": "조기",
-      "kols": "개별 KOL 귀속 미확인 (CoinGecko RH체인 카테고리 신규 8위)",
-      "thesis": "이번 회차 신규 포착. 시총 $4.4~5.1M·24h +1592%로 급부상, '은퇴자금 매수 후 보유(retire)' 패러디 — 401K와 유사 계열 서사",
-      "risk": "CA는 확보했으나 프로젝트 정보 극히 제한적, 동명 계열 'buy and retire' 토큰이 다수(솔라나 등)라 혼동 위험, 초소형 시총"
-    },
-    {
-      "token": "Little John",
-      "chain": "Robinhood Chain",
-      "ca": "",
-      "stage": "조기",
-      "kols": "개별 KOL 귀속 미확인 (CoinGecko RH체인 카테고리 신규 10위)",
-      "thesis": "이번 회차 신규 포착. 시총 $1.77M·24h +356%. 로빈후드 설화 속 조력자 캐릭터 'Little John' 테마 — RH체인 밈이 로빈후드 전설 캐릭터 시리즈로 확장될 조짐(미확정 추정)",
-      "risk": "CA 미확인, 극초소형 시총, 프로젝트 정보 전무, 서사 해석은 추정일 뿐"
-    },
-    {
-      "token": "🪶 (Feather)",
-      "chain": "Robinhood Chain",
-      "ca": "",
-      "stage": "조기",
-      "kols": "개별 KOL 귀속 미확인 (CoinGecko RH체인 카테고리 신규 15위)",
-      "thesis": "이번 회차 신규 포착. 시총 $546K·24h +148%. 티커가 깃털 이모지인 정체불명 토큰, 서사 확인 안 됨",
-      "risk": "CA 미확인, 프로젝트 정보 전무, 극초소형 시총, 서사 불명으로 순수 투기 대상"
+      "stage": "확산",
+      "kols": "개별 KOL 귀속 미확인",
+      "thesis": "전회차 조기($4.4~5.1M) 이후 $11.8M로 성장 지속, 자매 토큰 401K(Retirement plan)도 재등장",
+      "risk": "거래량 $147.4M(시총 12.5배)로 극단적 워시트레이딩 의심, 401K 계열 전체 투기성 강함"
     },
     {
       "token": "CASHDOG (Cash Dog in Hood)",
       "chain": "Robinhood Chain",
       "ca": "0x5a283986b204326344a1cc04b52b37f1af54ef72",
-      "stage": "조기~확산(코로보 검증됨)",
-      "kols": "개별 KOL 귀속 미확인 (CASHCAT+DIH 결합 카피캣)",
-      "thesis": "전회차 워시트레이딩 의심(거래량/시총 5.8배)이었으나, 이번 회차 시총 $1.32M→$7.34M(5.6배 성장)로 실거래량($4.1M 유지)과 함께 정직하게 확산 — 조기 신호가 실제 흐름으로 이어진 코로보레이션 성공 사례",
-      "risk": "카피캣 네이밍 특성상 단명 가능성 높음, 신생 컨트랙트 리스크 여전"
+      "stage": "확산(코로보 재점검 필요)",
+      "kols": "개별 KOL 귀속 미확인",
+      "thesis": "전회차 코로보 검증 성공($7.34M) 후 이번 회차 $42.1M로 추가 5.7배 성장",
+      "risk": "거래량 $284.2M(시총 6.7배)로 워시트레이딩 의심 재점화 — 전회차엔 정상 비율이었으나 이번엔 다시 크게 벌어짐, 신뢰도 하향 조정 필요"
     },
     {
       "token": "4663",
       "chain": "Robinhood Chain",
       "ca": "0xd4052415613B34Af236024B895574c467f65b6dD",
       "stage": "확산",
-      "kols": "개별 KOL 귀속 미확인 (체인 메타 확산, 4회 연속 랠리)",
-      "thesis": "RH체인 Chain ID(4663) 네이밍 밈. 시총 $4.9M→$5.2M·24h +261%로 4회 연속(104%→54%→281%→261%) 상승 지속 — 조기 포착 후 반복 코로보레이션된 대표 사례",
+      "kols": "개별 KOL 귀속 미확인 (체인 메타)",
+      "thesis": "5회 연속 랠리($5.3M·24h+54%) — 체인ID 밈이 반복 코로보레이션되는 대표 사례",
       "risk": "초소형 시총, 유동성 얕음, 반복 급등 후 누적 되돌림 위험 증가"
-    },
-    {
-      "token": "WEN (Wen Lambo)",
-      "chain": "Robinhood Chain",
-      "ca": "0xa80eb66b3E0CF66ccB46f8b8C9e7ff5803eEb820",
-      "stage": "조기~확산",
-      "kols": "개별 KOL 귀속 미확인",
-      "thesis": "RH체인 밈 바스켓 중위권 지속 상승, 시총 $8.4M→$8.9M·24h +5.5%로 완만하지만 꾸준한 우상향",
-      "risk": "동명 'Wen Lambo' 타 체인 토큰과 혼동 위험 지속"
-    },
-    {
-      "token": "$1 (1 is all you need)",
-      "chain": "Robinhood Chain",
-      "ca": "0x8c515613d4910a989d1465f931bb5004b42cccf7",
-      "stage": "확산",
-      "kols": "개별 KOL 귀속 미확인, 전회차 notable에서만 다뤄지다 이번 회차 RH체인 카테고리 2위로 폭등 진입",
-      "thesis": "출시일(7/12) 당일 시총 $37.3M·24h +3669%로 CASHCAT에 이어 카테고리 2위 등극, '미니멀 투자(all you need)' 컨셉 패러디",
-      "risk": "이미 오늘 하루 3600%+ 급등해 사실상 뒷북 진입 구간, 같은 날 ATH/ATL 동시 기록 수준의 극심한 변동성"
-    },
-    {
-      "token": "HOODCAT (Cat in Hood)",
-      "chain": "Robinhood Chain",
-      "ca": "0x46cbbcf9daa5140080015924965cc605355dddf9",
-      "stage": "확산(재부상)",
-      "kols": "개별 KOL 귀속 미확인",
-      "thesis": "전회차 notable로 밀렸다가 이번 회차 카테고리 3위로 재부상, 시총 $25.9~26M·24h +3111%, 24h 거래량 $163.8M(시총 대비 6배 이상)",
-      "risk": "거래량/시총 비율 극단적(워시트레이딩 의심), 이미 큰 폭 급등한 이후 진입은 뒷북 위험"
-    },
-    {
-      "token": "HOODIE",
-      "chain": "Robinhood Chain",
-      "ca": "",
-      "stage": "확산~뒷북 혼재",
-      "kols": "개별 KOL 귀속 미확인",
-      "thesis": "동명 두 페어 중 하나($1.7M·+178%)는 재상승, 다른 하나($892K·-97.6%)는 붕괴 — 같은 티커라도 컨트랙트별 운명이 극명하게 갈림",
-      "risk": "CA 미확인 상태로 두 페어 혼동 매우 위험, 잘못된 컨트랙트 매수 시 전액 손실 가능"
     },
     {
       "token": "TENDIES",
       "chain": "Robinhood Chain",
       "ca": "",
-      "stage": "조기→식음 전환중",
+      "stage": "확산(반등)",
       "kols": "WSB 테마 커뮤니티 주도",
-      "thesis": "시총 $2.8M→$2.5M·24h -22.3%로 모멘텀 반전, WSB 테마 지속되나 성장세 둔화",
-      "risk": "CA 미확인, 모멘텀 반전 초기 신호로 추가 하락 가능"
+      "thesis": "전회차 식음 전환(-22.3%)에서 이번 회차 +15.4% 반등",
+      "risk": "CA 미확인, 거래량 $23K로 매우 얕아 반등 지속성 불확실"
     },
     {
-      "token": "ROB",
+      "token": "WEN (Wen Lambo)",
       "chain": "Robinhood Chain",
-      "ca": "",
-      "stage": "식음",
+      "ca": "0xa80eb66b3E0CF66ccB46f8b8C9e7ff5803eEb820",
+      "stage": "확산(정체)",
       "kols": "개별 KOL 귀속 미확인",
-      "thesis": "시총 $1.46M→$1.3M·24h -31.5%로 하락 전환, 조기 성장 이후 식음 국면 진입",
-      "risk": "CA 미확인, 초극소형 시총, 모멘텀 소진"
-    },
-    {
-      "token": "DIH (Dog in Hood)",
-      "chain": "Robinhood Chain",
-      "ca": "0x17bb0C898254406b1Ea2e8E99B0C263e26c9E4a4",
-      "stage": "뒷북(붕괴 지속)",
-      "kols": "개별 KOL 귀속 없음 (매체가 초기 '거래량 상위 3종'으로 보도했던 이력)",
-      "thesis": "7/8 ATH 이후 급락한 상태 유지. 이번 회차 CoinGecko RH체인 카테고리 상위 20위 안에도 노출되지 않아 추가 하락/거래 위축 추정(구체 수치 재확인 실패)",
-      "risk": "이미 고점 대비 대폭 하락, 추가 데이터 갱신 안 됨(정직 표기), 추격 매수 매우 위험"
+      "thesis": "$7.5M·24h+5.2%로 완만한 성장 지속하나 전회차 대비 시총 소폭 감소",
+      "risk": "동명 타체인 토큰 혼동 위험 지속"
     },
     {
       "token": "CASHCAT",
       "chain": "Robinhood Chain",
       "ca": "0x020bfC650A365f8BB26819deAAbF3E21291018b4",
-      "stage": "뒷북(강세 유지)",
-      "kols": "Vlad Tenev(CEO, 비KOL) · RoaringKitty 언급(사칭 리스크로 미확인) · Ansem(지갑 추정·미확인)",
-      "thesis": "RH체인 부동의 대장주, 시총 $174.4M(24h -3.79%)로 카테고리 전체($299M 추정)의 약 58%. 이미 크게 급등한 뒷북 구간에서 소폭 조정",
-      "risk": "이미 1,500%+ 급등한 뒷북, 홀더 해킹 손실 등 컨트랙트 보안 이슈 기보고"
-    },
-    {
-      "token": "ANSEM (The Black Bull)",
-      "chain": "Solana",
-      "ca": "9cRCn9rGT8V2imeM2BaKs13yhMEais3ruM3rPvTGpump",
-      "stage": "뒷북(조정)",
-      "kols": "Ansem 본인",
-      "thesis": "7/6 ATH $420M 이후 조정 지속, 이번 회차 재검색 기준 가격 약 $0.26(고점 대비 -37%대, 이전 회차보다는 소폭 반등)로 변동 중",
-      "risk": "소수 지갑 집중에 따른 시세조작 리스크(CoinGecko 경고 기이력), 다수 카피캣과 혼재"
+      "stage": "뒷북",
+      "kols": "Vlad Tenev(CEO, 비KOL) · RoaringKitty 사칭 계정 반복 확인(본인 아님, 솔라나 CA 첨부한 사칭 트윗 별도 보고됨) · Ansem(지갑 추정·미확인)",
+      "thesis": "RH체인 부동의 대장주. $143.2M·24h+17.8%(소스별 $143~188M 편차 큼). Hyperliquid 무기한선물에서 $0.19→$0.08(-60%) 플래시크래시 후 반등 등 레버리지發 변동성 심함",
+      "risk": "이미 대폭 급등한 뒷북, 레버리지 청산발 급락 반복, 컨트랙트 보안 이슈·사칭 스캠 기보고"
     }
   ],
   "notable": [
     {
       "token": "CASHCAT",
-      "status": "확산(고점권 조정)",
-      "summary": "Robinhood Chain 부동의 1위 밈, 시총 $174.4M(24h -3.79%). RH체인 밈 카테고리 총 시총이 이번 회차 $299M까지 확대(전회차 $265M)됐음에도 CASHCAT 자체는 소폭 조정 국면."
+      "status": "확산(변동성 확대)",
+      "summary": "RH체인 부동의 1위. 이번 회차 소스 간 시총 편차가 큼($143M~$188M, 조사 시점차 반영), Hyperliquid 무기한선물에서 60% 플래시크래시 후 회복 등 레버리지 변동성이 두드러짐."
     },
     {
-      "token": "ANSEM (The Black Bull)",
-      "status": "조정",
-      "summary": "7/6 ATH $420M 이후 큰 조정을 겪은 뒤 등락 반복 중. CoinGecko가 '소수 지갑 집중 시세조작 리스크'를 경고한 바 있으며, Ansem 본인은 다수 카피캣 코인과 무관함을 재차 공표."
+      "token": "Robinhood Chain 밈 메타 전반",
+      "status": "확산(초고속 신규발행 지속)",
+      "summary": "체인 데뷔 후 하루 최대 약 16,000개 신규 토큰 생성 보고(cryptobriefing). 이번 회차만 VLAD·SEEDCOIN·WORTH·MEOW·HOODBOT·Baby Cash Cat·Hoodrat 등 7개 이상 신규 토큰이 상위권 진입 — 발행 속도가 더욱 가속되는 양상."
+    },
+    {
+      "token": "Robinhood Chain 러그/스캠 경보",
+      "status": "이슈",
+      "summary": "cryptonews.net 등이 '지갑 드레이너·피싱·러그풀이 체인에 만연'하다고 보도. 전회차 신규 1위였던 BYCOCKET은 $23.5M→$355K(-98.5%)로 붕괴, 전회차 카테고리 2·3위였던 $1(1 is all you need)·HOODCAT(Cat in Hood)은 이번 회차 CoinGecko 상위 39위 표에서 완전히 사라져 대폭 붕괴 추정(정확 수치 미확인) — 조기 급등 후 뒷북 진입 시 손실 위험을 보여주는 반복 경고 사례."
     },
     {
       "token": "HYPE (Hyperliquid)",
       "status": "추세지속",
-      "summary": "$67.5대, 전고점 $76.70 대비 -13%. 프로토콜 누적 수익 $1B 돌파, 미국 현물 HYPE ETF 순유입 지속 등 펀더멘털은 견조하나 코어 기여자 언락 물량이 매도압 변수로 지속."
+      "summary": "$67.73, 전고점 $76.70 대비 -13%. 시총 $14.85B(랭크#10), 24h 거래량 $227M. 프로토콜 펀더멘털은 견조하나 고점 재도전 여부는 계속 관찰 필요."
+    },
+    {
+      "token": "ANSEM (The Black Bull)",
+      "status": "조정 지속",
+      "summary": "7/6 ATH $420M에서 현재 시총 약 $93.4M(랭크#271)까지 대폭 조정 — 고점 대비 약 -78%. Ansem 본인은 다수 카피캣과 무관함을 재차 공표."
     },
     {
       "token": "LIT (Lighter)",
-      "status": "확산(토크노믹스 개편) — 이번 회차 재검증 안 함, 전회차 데이터 유지",
-      "summary": "$2.5~2.6대. 바이백을 소각으로 전환하는 토크노믹스 개편 발표 후 7개월래 최고가 기록(전회차 기준). RH체인 지갑 내 Lighter 퍼프 통합도 촉매로 거론됨."
+      "status": "확산(토크노믹스 개편) — 이번 회차 재검증 안 함, 전전회차 데이터 유지",
+      "summary": "바이백을 소각으로 전환하는 토크노믹스 개편 발표 후 강세, RH체인 지갑 내 Lighter 퍼프 통합도 촉매로 거론(재검증 필요 누적)."
     },
     {
       "token": "PENGU (Pudgy Penguins)",
-      "status": "조정 — 이번 회차 재검증 안 함, 전회차 데이터 유지",
-      "summary": "Target 리테일 카드 확장 지속. PENGU ETF 최종 결정 여부는 계속 미확인(승인 단정 금지), 가격은 $0.0068대 약세 지지선 테스트 중이었음(전회차 기준)."
+      "status": "조정 — 이번 회차 재검증 안 함, 전전회차 데이터 유지",
+      "summary": "Target 리테일 카드 확장 지속. ETF 최종 승인 여부는 계속 미확인(단정 금지), 재검증 누적 필요."
     },
     {
       "token": "BRETT (Base)",
       "status": "이슈(약세 지속)",
-      "summary": "1월 고점 $0.025 대비 지속 하락해 $0.005대(저점권), 5월 반등 실패 이후 거래량 급감으로 '죽음의 나선' 평가 다수 — 뒷북 낙관 서사 정정 유지."
+      "summary": "1월 고점 $0.025 대비 지속 하락해 $0.005대 저점권, 5월 반등 실패 이후 거래량 급감으로 '죽음의 나선' 평가 다수 — 뒷북 낙관 서사 정정 유지."
     },
     {
       "token": "BP (Backpack)",
-      "status": "조정 — 이번 회차 재검증 안 함, 전회차 데이터 유지",
-      "summary": "6/21 ATH $0.786 대비 -25% 조정 지속, 3/22 커뮤니티 드랍 물량 매도압 우려가 유효했던 상태(전회차 기준)."
+      "status": "조정 — 이번 회차 재검증 안 함, 전전회차 데이터 유지",
+      "summary": "6/21 ATH $0.786 대비 -25% 조정 지속, 커뮤니티 드랍 물량 매도압 우려가 유효했던 상태(재검증 필요 누적)."
     },
     {
       "token": "DIH (Dog in Hood)",
       "status": "이슈(붕괴 지속)",
-      "summary": "RH체인 초기 거래량 상위 3종에 꼽혔으나 7/8 ATH 이후 급락, 이번 회차 CoinGecko 카테고리 상위 20위 밖으로 완전히 밀려남 — 고점 뒷북 매수 위험을 보여주는 경고 사례로 계속 유지."
+      "summary": "RH체인 초기 거래량 상위 3종에 꼽혔으나 7/8 ATH 이후 급락. 3회 연속(전전회차·전회차·이번 회차) CoinGecko 카테고리 상위 20~39위 밖으로 밀려나 있음 — 고점 뒷북 매수 위험을 보여주는 대표 반면교사로 계속 유지."
     },
     {
       "token": "MemeCore (M)",
       "status": "이슈(신뢰 붕괴 지속) — 이번 회차 재검증 안 함",
-      "summary": "ZachXBT의 인사이더 물량 경고 이후 재차 급락, BSC 유동성 $10만 미만까지 축소된 상태 지속(전회차 기준 유지). KOL/인사이더 리스크 참고 사례."
+      "summary": "ZachXBT의 인사이더 물량 경고 이후 재차 급락, BSC 유동성 $10만 미만까지 축소된 상태 지속(재검증 필요 누적). KOL/인사이더 리스크 참고 사례."
     },
     {
       "token": "ARROW (Arrow Finance)",
-      "status": "확산(실사용 서사 유지)",
-      "summary": "RH체인 네이티브 CDP 프로토콜, 토큰화 주식/ETF를 담보로 aUSD 발행. Arbitrage Andy 뉴스레터 기준 시총 약 $16M 언급(2차 소스, CoinGecko 직접 재검증 실패) — 밈 랠리와 별개의 실사용 트래픽으로 계속 거론됨."
-    },
-    {
-      "token": "Robinhood Chain 밈 메타 전반",
-      "status": "확산(신규 토큰 폭증)",
-      "summary": "RH체인 밈 카테고리 총 시총 약 $299M(CoinGecko)로 전회차($265M) 대비 추가 확대. 이번 회차만 BYCOCKET·530A·Little John·Feather 등 완전 신규 토큰이 대거 진입, 하루 만에 수천% 급등하는 패턴이 반복되며 스캠·러그 위험도 동시 확대."
+      "status": "확산(실사용 서사 유지) — 이번 회차 재검증 안 함",
+      "summary": "RH체인 네이티브 CDP 프로토콜, 토큰화 주식/ETF를 담보로 aUSD 발행. 2차 소스 기준 시총 약 $16M 언급(재검증 필요 누적) — 밈 랠리와 별개의 실사용 트래픽으로 계속 거론됨."
     }
   ]
 }
