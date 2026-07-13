@@ -42,6 +42,29 @@ def test_volume_spike_no_trigger_when_flat():
     assert detectors.volume_spike(vols, lookback=20, mult=3.0) is None
 
 
+def test_capitulation_triggers_on_spike_and_drawdown():
+    # 하락 국면(최근고점 100→90) + 마지막봉 거래량 12배 → 캐피출레이션 (배열 21개=lookback+1)
+    closes = [100.0] * 16 + [98, 96, 94, 92, 90.0]
+    vols = [10.0] * 20 + [120.0]
+    res = detectors.capitulation(vols, closes, lookback=20, mult=10.0, min_drawdown_pct=1.5)
+    assert res is not None
+    ratio, _ = res
+    assert ratio >= 11.9
+
+
+def test_capitulation_no_trigger_when_volume_below_mult():
+    closes = [100.0] * 16 + [98, 96, 94, 92, 90.0]
+    vols = [10.0] * 20 + [50.0]  # 5배 — mult 10 미만
+    assert detectors.capitulation(vols, closes, 20, 10.0, 1.5) is None
+
+
+def test_capitulation_no_trigger_without_drawdown():
+    # 거래량은 급증하나 신고가 부근(하락국면 아님) → 미발화
+    closes = [100.0] * 21
+    vols = [10.0] * 20 + [200.0]
+    assert detectors.capitulation(vols, closes, 20, 10.0, 1.5) is None
+
+
 def test_oi_move_surge_and_drop():
     surge = detectors.oi_move([100.0, 100.0, 110.0], lookback=1, threshold_pct=5.0)
     assert surge is not None and surge[0] > 0

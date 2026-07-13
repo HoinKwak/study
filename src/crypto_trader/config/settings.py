@@ -103,6 +103,16 @@ class Settings(BaseSettings):
     scanner_funding_abs: float = 0.0015    # |펀딩비| 이 값 이상이면 극단값 알림(완화)
     scanner_cooldown_min: int = 30         # 같은 심볼·이벤트 재알림 억제(분, 완화)
 
+    # --- BTC 전용 바닥급 대형 캐피출레이션 알람 (일반 vol_spike 와 별도) ---
+    # 리서치(역대 바닥 15m 선물 거래량): 바닥 캐피출레이션은 평상시(5h 평균) 대비 15m
+    # 거래량이 ~10배 이상(대형은 30~64배)으로 튀며 최근 고점 대비 하락 국면. 그 조합만 잡는다.
+    scanner_capitulation_symbol: str = "BTC/USDT"  # 대상(현재 BTC 전용)
+    scanner_capitulation_tf: str = "15m"           # 판정 캔들(바닥 리서치와 동일)
+    scanner_capitulation_lookback: int = 20        # 거래량 평균 기준 캔들 수(20×15m=5h)
+    scanner_capitulation_mult: float = 10.0        # 15m 거래량/평균 ≥ 이 값 = 대형 캐피출레이션
+    scanner_capitulation_min_drawdown_pct: float = 1.5  # 최근고점 대비 최소 하락%(하락국면 확인)
+    scanner_capitulation_cooldown_min: int = 120   # 재알림 억제(분) — 캐피출레이션은 드무니 길게
+
     # --- 알림 (텔레그램, 선택) ---
     telegram_bot_token: str = ""
     telegram_chat_id: str = ""

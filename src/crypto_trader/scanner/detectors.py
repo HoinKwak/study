@@ -42,6 +42,33 @@ def volume_spike(volumes: list[float], lookback: int, mult: float
     return ratio, f"평균 대비 {ratio:.1f}배"
 
 
+def capitulation(volumes: list[float], closes: list[float], lookback: int,
+                 mult: float, min_drawdown_pct: float
+                 ) -> tuple[float, str] | None:
+    """바닥급 대형 캐피출레이션: 거래량 급증(≥mult배) + 하락 국면(최근 고점比 ≥임계%↓).
+
+    바닥 캐피출레이션의 공통특징(리서치): 15m 선물 거래량이 평상시의 수십 배로 튀며
+    가격은 최근 고점 대비 크게 밀린 상태. 일반 거래량 급증(vol_spike)보다 훨씬 높은
+    배수 + 하락국면 조건을 함께 요구해 '바닥/투매 정점'만 잡는다.
+    마지막(-1) 원소가 '닫힌 캔들'이어야 한다(호출부에서 진행 중 캔들 제외).
+    반환 (거래량배수, 상세). 조건 미충족이면 None.
+    """
+    if lookback < 2 or len(volumes) < lookback + 1 or len(closes) < lookback + 1:
+        return None
+    baseline = volumes[-1 - lookback:-1]
+    avg = sum(baseline) / len(baseline)
+    if avg <= 0:
+        return None
+    ratio = volumes[-1] / avg
+    if ratio < mult:
+        return None
+    recent_high = max(closes[-lookback:])
+    dd = (recent_high - closes[-1]) / recent_high if recent_high > 0 else 0.0
+    if dd * 100 < min_drawdown_pct:
+        return None
+    return ratio, f"거래량 평균 대비 {ratio:.1f}배 · 최근고점比 {dd * 100:.1f}%↓"
+
+
 def oi_move(oi_series: list[float], lookback: int, threshold_pct: float
             ) -> tuple[float, str] | None:
     """OI 시계열에서 최근 lookback 구간 변동률. |변동%| ≥ 임계면 반환.

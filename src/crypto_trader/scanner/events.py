@@ -21,6 +21,7 @@ class EventType(str, Enum):
     OI_SURGE = "OI_SURGE"    # OI 급증
     OI_DROP = "OI_DROP"      # OI 급감
     FUNDING = "FUNDING"      # 펀딩비 극단
+    CAPITULATION = "CAPITULATION"  # 바닥급 대형 거래량 캐피출레이션(BTC 15m)
 
     @property
     def label(self) -> str:
@@ -31,6 +32,7 @@ class EventType(str, Enum):
             EventType.OI_SURGE: "OI 급증",
             EventType.OI_DROP: "OI 급감",
             EventType.FUNDING: "펀딩 극단",
+            EventType.CAPITULATION: "대형 캐피출레이션",
         }[self]
 
     @property
@@ -42,6 +44,7 @@ class EventType(str, Enum):
             EventType.OI_SURGE: "🟢",
             EventType.OI_DROP: "🔴",
             EventType.FUNDING: "💰",
+            EventType.CAPITULATION: "🩸",
         }[self]
 
 

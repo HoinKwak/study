@@ -134,6 +134,37 @@ class MarketScanner:
 
         return events
 
+    # -------------------------------------------- BTC 전용 캐피출레이션
+
+    def _detect_btc_capitulation(self, now: datetime) -> list[ScanEvent]:
+        """BTC 15m 바닥급 대형 캐피출레이션(거래량 급증+하락국면)만 별도 감지.
+
+        전 종목 5m vol_spike 와 독립. 15m 캔들·훨씬 높은 배수·하락국면 조건을 요구하고
+        자체 쿨다운(길게)을 쓴다."""
+        s = self.s
+        sym = s.scanner_capitulation_symbol
+        lb = s.scanner_capitulation_lookback
+        kl = self.data.klines(sym, s.scanner_capitulation_tf, limit=lb + 3)
+        if not kl or not kl["close"]:
+            return []
+        # 진행 중(마지막) 캔들 제외 → 닫힌 캔들이 배열의 마지막이 되게 자름
+        closes = kl["close"][:-1]
+        volumes = kl["volume"][:-1]
+        cap = detectors.capitulation(volumes, closes, lb,
+                                     s.scanner_capitulation_mult,
+                                     s.scanner_capitulation_min_drawdown_pct)
+        if not cap:
+            return []
+        if self.store.on_cooldown(sym, EventType.CAPITULATION,
+                                  s.scanner_capitulation_cooldown_min, now):
+            return []
+        ratio, det = cap
+        price = closes[-1] if closes else 0.0
+        vol_usd = volumes[-1] * price
+        detail = f"{det} · 15m거래대금 {_fmt_vol(vol_usd)}"
+        return [ScanEvent(symbol=sym, type=EventType.CAPITULATION.value, value=ratio,
+                          price=price, detail=detail, ts=_now_iso())]
+
     # ---------------------------------------------------------- 한 사이클
 
     def scan_once(self) -> list[ScanEvent]:
@@ -158,6 +189,14 @@ class MarketScanner:
             for ev in evs:
                 self.store.record(ev)
                 new_events.append(ev)
+
+        # BTC 전용 바닥급 캐피출레이션(사이클당 1회, 전 종목 루프와 독립)
+        try:
+            for ev in self._detect_btc_capitulation(now):
+                self.store.record(ev)
+                new_events.append(ev)
+        except Exception as e:  # noqa: BLE001
+            log.debug("BTC 캐피출레이션 감지 실패: %s", e)
 
         if new_events:
             self.store.save()
