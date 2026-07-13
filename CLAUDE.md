@@ -16,6 +16,9 @@
    - 미완료 작업이 있으면 그 상태(무엇을 어디까지 했고 다음이 무엇인지)를 한글로 명확히 남긴다.
    - 압축 후 이어받을 때는 이 파일 → 최근 커밋 → 코드 상태 순으로 확인하고, 사용자에게
      되묻지 말고 마지막 작업을 이어서 진행한다.
+4. **`git pull` 안내 시 재구동 코드를 항상 함께 준다.** 코드 변경을 push하고 `git pull`을
+   안내할 땐, 어떤 프로세스(①매매봇/②알람봇/③대시보드)를 재시작해야 하는지 유형별로 명시하고
+   붙여넣기용 명령 블록을 같이 준다. 상세 규약은 §1의 「재구동 안내 규약」 참조.
 
 ---
 
@@ -63,6 +66,27 @@
 - PowerShell은 `&&` 미지원 → 줄을 나누거나 `;` 사용. 가상환경: `.\.venv\Scripts\Activate.ps1`.
 - 3개 프로세스는 각각 별도 창: ① 매매봇 `python -m scripts.run_portfolio`
   ② 알람봇(스캐너) `python -m scripts.run_scanner` ③ 대시보드 `python -m scripts.serve_dashboard`.
+
+### 재구동 안내 규약 (git pull 안내 시 항상 함께 준다)
+코드 변경 후 `git pull`을 안내할 땐 **반드시 어떤 프로세스를 재시작해야 하는지 유형별로 명시**하고
+아래 붙여넣기용 블록을 함께 준다. 재시작은 **해당 창에서 Ctrl+C로 멈추고 → 재실행**.
+- 어느 프로세스를 재시작할지는 변경 위치로 판단:
+  - `portfolio/`·`strategy/`·`risk/`·`connectors/`·`execution/`·`config/` → **① 매매봇**
+  - `scanner/`·`monitoring/`(스캐너 경로)·detectors → **② 알람봇**
+  - `monitoring/dashboard.py`·`serve_dashboard`·대시보드 API → **③ 대시보드**
+  - 대시보드는 저널만 읽으므로, 매매 로직만 바뀌면 매매봇만 재시작하면 새로고침에 반영된다.
+
+**공통(한 번, 아무 창):**
+```powershell
+cd C:\Users\ghdls\Documents\study-claude-personal-ai-assistant-11xcgh\study-claude-personal-ai-assistant-11xcgh
+git pull origin claude/personal-ai-assistant-11xcgh
+```
+**① 매매봇** / **② 알람봇** / **③ 대시보드** (각 창에서 Ctrl+C 후):
+```powershell
+cd C:\Users\ghdls\Documents\study-claude-personal-ai-assistant-11xcgh\study-claude-personal-ai-assistant-11xcgh
+.\.venv\Scripts\Activate.ps1
+python -m scripts.run_portfolio      # ① 매매봇 (또는 run_scanner=② / serve_dashboard=③)
+```
 
 ### 주요 실행 스크립트
 - `python -m scripts.run_scanner` — 시장 스캐너 상시 구동 + `state/dashboard.html` 갱신.
