@@ -158,6 +158,9 @@ class SleeveBacktester:
         last_exit_idx = -10**9
         # scalp 모멘텀 청산 상태: 신호봉 고/저 기준, 갱신되면 다음봉 종가 청산
         self._scalp_ref: dict | None = None
+        # detect_regime 메모: 확인봉(counts[i])이 안 바뀌면 재계산 생략(ADX 재계산이 최대 병목).
+        # 같은 상위봉 → 같은 confirm_win → 같은 레짐이라 결과 불변(성능만 개선).
+        _rg_n, _rg_val = -1, Regime.NEUTRAL
 
         for i in range(self.warmup, len(df)):
             bar = df.iloc[i]
@@ -341,7 +344,12 @@ class SleeveBacktester:
                 trade, equity = self._apply_simple(result, trade, d, i, price,
                                                    equity, atr_series, df, use_plan=True)
             else:  # scalp
-                regime = detect_regime(confirm_win)[0] if confirm_win is not None else Regime.NEUTRAL
+                n_conf = int(counts[i]) if counts is not None else -1
+                if n_conf != _rg_n:   # 확인봉 바뀔 때만 재계산(그 외 재사용)
+                    _rg_val = (detect_regime(confirm_win)[0]
+                               if confirm_win is not None else Regime.NEUTRAL)
+                    _rg_n = n_conf
+                regime = _rg_val
                 d = self.strategy.decide(symbol, window, oi_delta=None,
                                          current_direction=cur_dir, confirm_regime=regime)
                 trade, equity = self._apply_simple(result, trade, d, i, price,
