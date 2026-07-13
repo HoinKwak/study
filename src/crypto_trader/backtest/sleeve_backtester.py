@@ -42,8 +42,13 @@ class SleeveBacktester:
                  maker_entry: bool = False, maker_fee: float = 0.0002,
                  leverage: int | None = None,
                  scalp_exit_mode: str = "momentum",
+                 entry_window_sec: int = 0, entry_fine_df=None,
                  strategy_kwargs: dict | None = None):
         self.s = settings
+        # 진입창 모델링: >0 이면 신호봉 종가 대신 '진입 창(초)' 동안의 고운(1m) 종가 평균으로
+        # 체결(TWAP 시간분산 근사). entry_fine_df 는 같은 심볼의 1m OHLCV(DatetimeIndex).
+        self.entry_window_sec = entry_window_sec
+        self._fine = entry_fine_df
         self.kind = sleeve_kind
         self.confirm_tf = confirm_tf
         self.starting_equity = starting_equity
@@ -348,7 +353,12 @@ class SleeveBacktester:
                     plan = self.risk.build_plan_with_stop(result.symbol, d.direction, price,
                                                           d.stop_price, d.take_profit, equity)
             if plan is not None:
-                trade = self._open_trade(result, d.direction, i, price, plan.quantity,
+                entry_px = price
+                if self.kind == "scalp" and self.entry_window_sec > 0:
+                    win = self._entry_window_fill(i, df)
+                    if win is not None:
+                        entry_px = win
+                trade = self._open_trade(result, d.direction, i, entry_px, plan.quantity,
                                          plan.stop_price, plan.take_profit, df)
                 # scalp 모멘텀 모드: 고정 TP 비활성(신고가→다음봉 종가로 청산)
                 if self.kind == "scalp" and self.scalp_exit_mode == "momentum":
@@ -357,6 +367,18 @@ class SleeveBacktester:
                     trade.take_profit = (float("inf") if d.direction is Direction.LONG
                                          else 0.0)
         return trade, equity
+
+    def _entry_window_fill(self, i, df):
+        """신호봉 종료 후 entry_window_sec 동안의 1m 종가 평균(진입 TWAP 근사). 없으면 None."""
+        if self._fine is None or self.entry_window_sec <= 0 or i + 1 >= len(df):
+            return None
+        bar_dur = df.index[i + 1] - df.index[i]
+        close_t = df.index[i] + bar_dur
+        win_end = close_t + pd.Timedelta(seconds=self.entry_window_sec)
+        seg = self._fine.loc[(self._fine.index >= close_t) & (self._fine.index < win_end), "close"]
+        if len(seg) == 0:
+            return None
+        return float(seg.mean())
 
     def _apply_swing(self, result, trade, d, i, price, equity, alloc_frac, stage, df):
         """swing: 배분 기반 + 피라미딩."""
