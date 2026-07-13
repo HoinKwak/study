@@ -31,33 +31,25 @@ class Sleeve:
 
 
 def default_sleeves(settings: Settings) -> list[Sleeve]:
-    """단타 전용 2-타임프레임 구성 (10m / 15m), 포트폴리오 100%.
+    """단타 전용 단일 구성 (15m), 포트폴리오 100%.
 
     중기·스윙은 손익비(엣지)가 안 나와 제외(정의는 git 이력에 있어 필요 시 복원 가능).
-    백테스트상 3·5분은 노이즈로 적자, 10·15분이 유효 → 10m/15m 만 채택.
-    단타는 동적 유니버스(24h 거래대금 $10M 이상)에서 회전율을 넓힌다.
+    거래량 임계값 스윕 결과 **15m·유니버스 30M** 이 엣지 최대(PF≈1.06). 3·5·10분은
+    전 구간 약함, 10M 는 잡알트 희석으로 손실 → 15m 단독·30M 채택.
     (settings.symbols 는 유니버스 조회 실패 시 폴백으로만 사용)
-    사이징은 증거금 기준이라 allocation 은 표시용이며, 합이 1.0(=100%)이 되게 둔다.
+    사이징은 증거금 기준이라 allocation 은 표시용(단일 슬리브라 1.0).
     """
     symbols = settings.symbols
     scalp_symbols = [s for s in symbols if s.split("/")[0] != "SOL"]
 
-    def _scalp(name: str, signal_tf: str, confirm_tf: str,
-               alloc: float, eval_sec: int) -> Sleeve:
-        # 증거금 기준 사이징 → 충격 완화 위해 10분할 × 20초 시간분산.
-        # 메이커(post-only) 진입: 수수료 절감. 미체결분은 시장가 폴백.
-        # 10m 는 비네이티브 → 워커가 5m 에서 리샘플.
-        return Sleeve(
-            name=name, allocation=alloc,
-            signal_tf=signal_tf, confirm_tf=confirm_tf,
-            strategy_kind="scalp", eval_interval_sec=eval_sec,
+    # 증거금 기준 사이징 → 충격 완화 위해 10분할 시간분산. 메이커(post-only) 진입.
+    return [
+        Sleeve(
+            name="scalp", allocation=1.0,
+            signal_tf="15m", confirm_tf="1h",
+            strategy_kind="scalp", eval_interval_sec=15 * 60,
             symbols=scalp_symbols, twap_slices=10, slice_interval_sec=20,
             leverage=settings.major_leverage, maker_entry=True,
-            dynamic_universe=True, min_universe_volume=10e6,
-        )
-
-    # 10m 슬리브는 기존 이름 'scalp' 유지(진행 중 포지션 연속성 보존).
-    return [
-        _scalp("scalp",    "10m", "30m", 0.5, 10 * 60),
-        _scalp("scalp15m", "15m", "1h",  0.5, 15 * 60),
+            dynamic_universe=True, min_universe_volume=30e6,
+        ),
     ]
