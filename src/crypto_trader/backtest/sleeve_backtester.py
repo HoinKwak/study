@@ -22,6 +22,7 @@ from ..signals import indicators as ind
 from ..signals.base import Direction
 from ..strategy import Action, MidStrategy, ScalpStrategy, SwingStrategy
 from ..strategy.regime import detect_regime, Regime
+from ..strategy.scalp import ScalpDecision
 from ..strategy.swing import SwingPosition
 from .backtester import BacktestResult, Trade
 from .multi_tf import TF_RULE, resample_ohlcv
@@ -44,6 +45,7 @@ class SleeveBacktester:
                  scalp_exit_mode: str = "momentum",
                  trail_atr_mult: float = 1.5,
                  scalp_sl_rule: str = "initial",
+                 fast_scalp: bool = True,
                  entry_window_sec: int = 0, entry_fine_df=None,
                  strategy_kwargs: dict | None = None):
         self.s = settings
@@ -84,6 +86,10 @@ class SleeveBacktester:
         # scale3_band 청산의 SL 규칙: 'initial'(최초 SL 유지) / 'be_after_tp1'(1차 익절 후 본절)
         # / 'be_after_tp2'(2차 익절 후 본절). scale3_band 모드에서만 의미.
         self.scalp_sl_rule = scalp_sl_rule
+        # fast_scalp: scalp 진입신호·chop·sma20 을 전구간 배열로 1회 사전계산(봉별 pandas 제거).
+        # ScalpStrategy.decide 와 봉별 완전동일 검증됨(tests/test_fast_scalp_parity). scalp 전용.
+        self.fast_scalp = fast_scalp
+        self._fast: dict | None = None
         self.risk = RiskManager(settings, max_leverage=leverage)
 
         kw = strategy_kwargs or {}
@@ -150,6 +156,69 @@ class SleeveBacktester:
 
     # ------------------------------------------------------------ 메인
 
+    def _regime_ok(self, regime, direction) -> bool:
+        """ScalpStrategy.decide 의 확인TF 추세 게이트를 그대로 복제(fast 경로용)."""
+        st = self.strategy
+        if st.require_regime:
+            want = Regime.TREND_UP if direction is Direction.LONG else Regime.TREND_DOWN
+            return regime is None or regime is want
+        bad = Regime.TREND_DOWN if direction is Direction.LONG else Regime.TREND_UP
+        return regime is not bad
+
+    def _precompute_scalp(self, df: pd.DataFrame) -> dict:
+        """scalp 진입 raw 신호(regime 게이트 제외)·chop(모멘텀꺾임)·sma20 을 전구간 배열로 1회 계산.
+        ScalpStrategy.decide 와 봉별 완전동일 검증됨(vectorize 검증 + test_fast_scalp_parity)."""
+        st = self.strategy
+        close = df["close"].to_numpy(float); high = df["high"].to_numpy(float)
+        low = df["low"].to_numpy(float); op = df["open"].to_numpy(float)
+        vol = df["volume"].to_numpy(float)
+        n = len(df)
+        _mid, up_s, lo_s = ind.bollinger_bands(df["close"], st.bb_period, st.bb_std)
+        up = up_s.to_numpy(float); lo = lo_s.to_numpy(float); midn = _mid.to_numpy(float)
+        atr = ind.atr(df).to_numpy(float)
+        bw = pd.Series((up - lo) / np.where(midn == 0, np.nan, midn))
+        thr = (bw.rolling(st.squeeze_lookback).quantile(st.squeeze_pctile / 100.0)
+               .shift(1).to_numpy() if st.squeeze_pctile is not None else None)
+        bw_prev = bw.shift(1).to_numpy()
+        vol_avg = pd.Series(vol).shift(1).rolling(st.vol_lookback).mean().to_numpy()
+        sma20 = df["close"].rolling(20, min_periods=20).mean().to_numpy()
+        long_sig = np.zeros(n, bool); short_sig = np.zeros(n, bool)
+        for i in range(st.bb_period + 1, n):
+            if thr is not None:
+                if not (i >= st.squeeze_lookback + 1 and np.isfinite(bw_prev[i])
+                        and np.isfinite(thr[i]) and bw_prev[i] <= thr[i]):
+                    continue
+            h, l, o, c = high[i], low[i], op[i], close[i]
+            rng = h - l
+            if rng <= 0:
+                continue
+            av = vol_avg[i]
+            if not (av > 0 and vol[i] >= st.vol_spike_mult * av):
+                continue
+            body = abs(c - o)
+            if not (body / rng >= st.strong_body_frac
+                    and (atr[i] <= 0 or body >= st.min_body_atr * atr[i])):
+                continue
+            if c > up[i] and c > o:
+                long_sig[i] = True
+            elif c < lo[i] and c < o:
+                short_sig[i] = True
+        # chop(모멘텀 꺾임) = _momentum_faded 벡터화. ncb<=0 이면 항상 True(RANGE 즉시청산).
+        ncb = st.chop_confirm_bars
+        chop_long = np.zeros(n, bool); chop_short = np.zeros(n, bool)
+        if ncb <= 0:
+            chop_long[:] = True; chop_short[:] = True
+        else:
+            for i in range(ncb, n):
+                ph = high[i - ncb]; pl = low[i - ncb]
+                nnh = bool(np.all(high[i - ncb + 1:i + 1] <= ph))
+                nnl = bool(np.all(low[i - ncb + 1:i + 1] >= pl))
+                chop_long[i] = nnh and close[i] < op[i]
+                chop_short[i] = nnl and close[i] > op[i]
+        return dict(long=long_sig, short=short_sig, chop_long=chop_long,
+                    chop_short=chop_short, sma20=sma20,
+                    high=high, low=low, open=op, close=close)
+
     def run(self, symbol: str, df: pd.DataFrame) -> BacktestResult:
         result = BacktestResult(symbol, starting_equity=self.starting_equity)
         equity = self.starting_equity
@@ -159,6 +228,9 @@ class SleeveBacktester:
 
         confirm, counts = self._confirm_slices(df)
         atr_series = ind.atr(df)
+        # scalp fast 경로: 진입신호·chop·sma20 사전계산(봉별 decide/pandas 제거). 결과 불변.
+        self._fast = (self._precompute_scalp(df)
+                      if (self.kind == "scalp" and self.fast_scalp) else None)
         last_exit_idx = -10**9
         # scalp 모멘텀 청산 상태: 신호봉 고/저 기준, 갱신되면 다음봉 종가 청산
         self._scalp_ref: dict | None = None
@@ -193,7 +265,8 @@ class SleeveBacktester:
             #       그냥 청산(추세 종료로 간주). 손실 중 이탈도 청산(SL 보완).
             if (trade is not None and self.kind == "scalp"
                     and self.scalp_exit_mode == "bandwalk"):
-                sma20 = float(window["close"].iloc[-20:].mean())
+                sma20 = (self._fast["sma20"][i] if self._fast is not None
+                         else float(window["close"].iloc[-20:].mean()))
                 broke = (price < sma20 if trade.direction is Direction.LONG
                          else price > sma20)
                 if broke:
@@ -208,7 +281,8 @@ class SleeveBacktester:
                     and self.scalp_exit_mode == "momentum_bandwalk"
                     and self._scalp_ref is not None
                     and self._scalp_ref.get("runner")):
-                sma20 = float(window["close"].iloc[-20:].mean())
+                sma20 = (self._fast["sma20"][i] if self._fast is not None
+                         else float(window["close"].iloc[-20:].mean()))
                 broke = (price < sma20 if trade.direction is Direction.LONG
                          else price > sma20)
                 if broke:
@@ -336,7 +410,8 @@ class SleeveBacktester:
                 ref = self._scalp_ref
                 is_long = trade.direction is Direction.LONG
                 eq0 = ref["entry_qty"]
-                sma20 = float(window["close"].iloc[-20:].mean())
+                sma20 = (self._fast["sma20"][i] if self._fast is not None
+                         else float(window["close"].iloc[-20:].mean()))
                 if ref.get("stage", 0) == 0:   # 1차: 신고가/신저가 → 25% 청산
                     made = (high > ref["high"]) if is_long else (low < ref["low"])
                     if made:
@@ -404,8 +479,27 @@ class SleeveBacktester:
                                if confirm_win is not None else Regime.NEUTRAL)
                     _rg_n = n_conf
                 regime = _rg_val
-                d = self.strategy.decide(symbol, window, oi_delta=None,
-                                         current_direction=cur_dir, confirm_regime=regime)
+                if self._fast is not None:   # fast 경로: 사전계산 배열로 판정(decide 완전동일)
+                    F = self._fast
+                    if cur_dir is not None:
+                        faded = (F["chop_long"][i] if cur_dir is Direction.LONG
+                                 else F["chop_short"][i])
+                        if regime is Regime.RANGE and faded:
+                            d = ScalpDecision(Action.CLOSE, Direction.FLAT,
+                                              reason="횡보장 전환 청산")
+                        else:
+                            d = ScalpDecision(Action.HOLD, Direction.FLAT, reason="추세 유지")
+                    elif F["long"][i] and self._regime_ok(regime, Direction.LONG):
+                        d = self.strategy._entry(Direction.LONG, F["open"][i], F["high"][i],
+                                                 F["low"][i], F["close"][i], {})
+                    elif F["short"][i] and self._regime_ok(regime, Direction.SHORT):
+                        d = self.strategy._entry(Direction.SHORT, F["open"][i], F["high"][i],
+                                                 F["low"][i], F["close"][i], {})
+                    else:
+                        d = ScalpDecision(Action.HOLD, Direction.FLAT, reason="진입 조건 미충족")
+                else:
+                    d = self.strategy.decide(symbol, window, oi_delta=None,
+                                             current_direction=cur_dir, confirm_regime=regime)
                 trade, equity = self._apply_simple(result, trade, d, i, price,
                                                    equity, atr_series, df, use_plan=False)
 
