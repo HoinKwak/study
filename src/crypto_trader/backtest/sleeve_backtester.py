@@ -43,6 +43,7 @@ class SleeveBacktester:
                  leverage: int | None = None,
                  scalp_exit_mode: str = "momentum",
                  trail_atr_mult: float = 1.5,
+                 scalp_sl_rule: str = "initial",
                  entry_window_sec: int = 0, entry_fine_df=None,
                  strategy_kwargs: dict | None = None):
         self.s = settings
@@ -80,6 +81,9 @@ class SleeveBacktester:
         #   'tp'             — 고정 TP
         self.scalp_exit_mode = scalp_exit_mode
         self.trail_atr_mult = trail_atr_mult   # momentum_trail 러너 트레일링 폭(ATR 배수)
+        # scale3_band 청산의 SL 규칙: 'initial'(최초 SL 유지) / 'be_after_tp1'(1차 익절 후 본절)
+        # / 'be_after_tp2'(2차 익절 후 본절). scale3_band 모드에서만 의미.
+        self.scalp_sl_rule = scalp_sl_rule
         self.risk = RiskManager(settings, max_leverage=leverage)
 
         kw = strategy_kwargs or {}
@@ -322,6 +326,56 @@ class SleeveBacktester:
                     elif trade.direction is Direction.SHORT and low < ref["low"]:
                         ref["armed_at"] = i
 
+            # 1b-2) [신규] scale3_band 3단 청산:
+            #   1차 신고가/신저가 갱신봉 종가 25% → 2차 갱신봉 종가 50% → 잔량은 볼린저 중단(SMA20)
+            #   반대 이탈 종가에 전량. SL 규칙(scalp_sl_rule): initial(최초 유지)/be_after_tp1/be_after_tp2.
+            #   SL·본절 스톱은 상단 인트라바 체크(trade.stop_price)가 처리(부분익절 손익 합산 포함).
+            if (trade is not None and self.kind == "scalp"
+                    and self.scalp_exit_mode == "scale3_band"
+                    and self._scalp_ref is not None):
+                ref = self._scalp_ref
+                is_long = trade.direction is Direction.LONG
+                eq0 = ref["entry_qty"]
+                sma20 = float(window["close"].iloc[-20:].mean())
+                if ref.get("stage", 0) == 0:   # 1차: 신고가/신저가 → 25% 청산
+                    made = (high > ref["high"]) if is_long else (low < ref["low"])
+                    if made:
+                        q = min(eq0 * 0.25, trade.quantity)
+                        fill = self._fill(price, trade.direction, closing=True)
+                        pnlp = self._pnl(trade.direction, trade.entry_price, fill, q) \
+                            - self._fee(fill * q, closing=True)
+                        equity += pnlp
+                        trade.quantity -= q
+                        ref["partial_pnl"] = ref.get("partial_pnl", 0.0) + pnlp
+                        ref["stage"] = 1
+                        ref["run_ext"] = high if is_long else low
+                        if self.scalp_sl_rule == "be_after_tp1":
+                            trade.stop_price = trade.entry_price
+                elif ref.get("stage") == 1:    # 2차: 더 높은 신고가/낮은 신저가 → 50% 청산
+                    made = (high > ref["run_ext"]) if is_long else (low < ref["run_ext"])
+                    if made:
+                        q = min(eq0 * 0.50, trade.quantity)
+                        fill = self._fill(price, trade.direction, closing=True)
+                        pnlp = self._pnl(trade.direction, trade.entry_price, fill, q) \
+                            - self._fee(fill * q, closing=True)
+                        equity += pnlp
+                        trade.quantity -= q
+                        ref["partial_pnl"] = ref.get("partial_pnl", 0.0) + pnlp
+                        ref["stage"] = 2
+                        ref["run_ext"] = high if is_long else low
+                        if self.scalp_sl_rule == "be_after_tp2":
+                            trade.stop_price = trade.entry_price
+                # 잔량: 볼린저 중단 반대 이탈 종가에 전량 청산
+                broke = (price < sma20) if is_long else (price > sma20)
+                if trade is not None and broke:
+                    fill = self._fill(price, trade.direction, closing=True)
+                    pnl = self._close(trade, i, fill, "scale3_band_exit", df)
+                    trade.pnl += ref.get("partial_pnl", 0.0)
+                    equity += pnl
+                    trade = None
+                    last_exit_idx = i
+                    self._scalp_ref = None
+
             # 쿨다운: 청산 직후 재진입 금지 (과매매 억제)
             in_cooldown = trade is None and (i - last_exit_idx) <= self.cooldown_bars
 
@@ -398,6 +452,11 @@ class SleeveBacktester:
         if trade is not None and d.action is Action.CLOSE:
             fill = self._fill(price, trade.direction, closing=True)
             equity += self._close(trade, i, fill, d.reason or "signal_exit", df)
+            # 부분익절(scale3/momentum) 잔량이 시그널 CLOSE 로 끝난 경우: 앞선 부분익절 손익 합산
+            # (equity 는 이미 부분익절 시 반영됨 — trade.pnl 도 일관되게 맞춘다)
+            if self._scalp_ref and self._scalp_ref.get("partial_pnl"):
+                trade.pnl += self._scalp_ref["partial_pnl"]
+            self._scalp_ref = None
             return None, equity
         if trade is None and d.action in (Action.OPEN_LONG, Action.OPEN_SHORT):
             if use_plan:  # mid/regime: 전략 제시 SL/TP 있으면 사용, 없으면 ATR 기본
@@ -424,12 +483,14 @@ class SleeveBacktester:
                         entry_px = win
                 trade = self._open_trade(result, d.direction, i, entry_px, plan.quantity,
                                          plan.stop_price, plan.take_profit, df)
-                # scalp 모멘텀 계열: 고정 TP 비활성(신고가→모멘텀 로직으로 청산).
-                # momentum/_split/_bandwalk/_be/_trail 모두 _scalp_ref 상태머신을 쓴다.
+                # scalp 모멘텀/scale3 계열: 고정 TP 비활성(신고가→상태머신으로 청산).
+                # momentum/_split/_bandwalk/_be/_trail + scale3_band 모두 _scalp_ref 사용.
                 # (과거 == "momentum" 만 초기화해 split/bandwalk 가 고정TP로 새던 버그 수정)
-                if self.kind == "scalp" and self.scalp_exit_mode.startswith("momentum"):
+                if self.kind == "scalp" and (self.scalp_exit_mode.startswith("momentum")
+                                             or self.scalp_exit_mode == "scale3_band"):
                     self._scalp_ref = {"high": d.signal_high, "low": d.signal_low,
-                                       "armed_at": None}
+                                       "armed_at": None, "stage": 0,
+                                       "entry_qty": trade.quantity}
                     trade.take_profit = (float("inf") if d.direction is Direction.LONG
                                          else 0.0)
         return trade, equity
