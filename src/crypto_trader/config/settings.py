@@ -123,6 +123,11 @@ class Settings(BaseSettings):
     telegram_chat_id: str = ""
     notify_min_level: str = "INFO"  # INFO / TRADE / WARN / ERROR
 
+    # --- 대시보드 외부 접속 (선택) ---
+    # 값을 설정하면 serve_dashboard 가 이 토큰 인증을 요구한다(외부 터널 노출 시 잔고 보호).
+    # 비워두면 인증 없이 기존처럼 로컬 전용으로 동작. 최초 접속: http://.../?key=<토큰>
+    dashboard_token: str = ""
+
     # --- 상태 저장 ---
     state_dir: str = "state"
 

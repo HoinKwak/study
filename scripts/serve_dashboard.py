@@ -165,7 +165,24 @@ def main() -> None:
             syms = []
         return json.dumps(syms).encode("utf-8")
 
+    token = (settings.dashboard_token or "").strip()
+
     class Handler(BaseHTTPRequestHandler):
+        def _authorized(self, qs) -> bool:
+            """토큰 미설정 시 항상 허용(로컬 전용). 설정 시 ?key= 또는 쿠키 dtok 일치 요구."""
+            if not token:
+                return True
+            if (qs.get("key", [""])[0] or "") == token:
+                return True
+            cookie = self.headers.get("Cookie", "") or ""
+            return any(c.strip() == f"dtok={token}" for c in cookie.split(";"))
+
+        def _deny(self) -> None:
+            self.send_response(401)
+            self.send_header("Content-Type", "text/html; charset=utf-8")
+            self.end_headers()
+            self.wfile.write("대시보드 접근에는 ?key=&lt;토큰&gt; 이 필요합니다.".encode("utf-8"))
+
         def _send(self, body: bytes, ctype: str) -> None:
             # 브라우저가 자동 새로고침 등으로 응답 도중 연결을 끊으면(WinError 10053 등)
             # 콘솔에 트레이스백이 찍힌다 — 무해하므로 조용히 무시.
@@ -181,6 +198,24 @@ def main() -> None:
         def do_GET(self):  # noqa: N802
             parsed = urlparse(self.path)
             path = parsed.path
+            qs = parse_qs(parsed.query)
+            if not self._authorized(qs):
+                self._deny()
+                return
+            if path in ("/", "/index.html", "/dashboard.html"):
+                # 최초 ?key= 로 통과하면 쿠키를 심어 이후 API 호출(동일 출처)도 자동 인증.
+                body = _render(settings, args.refresh)
+                try:
+                    self.send_response(200)
+                    self.send_header("Content-Type", "text/html; charset=utf-8")
+                    if token and qs.get("key", [""])[0] == token:
+                        self.send_header("Set-Cookie", f"dtok={token}; Path=/; HttpOnly; SameSite=Lax")
+                    self.send_header("Content-Length", str(len(body)))
+                    self.end_headers()
+                    self.wfile.write(body)
+                except (ConnectionError, BrokenPipeError):
+                    pass
+                return
             if path == "/api/klines":
                 self._send(_api_klines(parse_qs(parsed.query)), "application/json")
                 return
@@ -198,9 +233,6 @@ def main() -> None:
                 return
             if path == "/api/symbols":
                 self._send(_api_symbols(), "application/json")
-                return
-            if path in ("/", "/index.html", "/dashboard.html"):
-                self._send(_render(settings, args.refresh), "text/html; charset=utf-8")
                 return
             self.send_response(404)
             self.end_headers()

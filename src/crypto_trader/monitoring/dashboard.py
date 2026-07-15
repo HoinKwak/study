@@ -1013,6 +1013,7 @@ def render_html(journal: TradeJournal, equity: float | None = None,
                     f"<td>{notional_c:,.2f}</td>"
                     f"<td>{t.entry_price:.4f}</td>"
                     f"<td>{(t.exit_price or 0):.4f}</td>"
+                    f"<td class='muted'>{html.escape(t.holding_human())}</td>"
                     f"<td style='color:{c}'>{pnl:+.2f}</td>"
                     f"<td>{html.escape(t.exit_reason)}</td></tr>"
                 )
@@ -1119,6 +1120,7 @@ def render_html(journal: TradeJournal, equity: float | None = None,
       <div class="stat"><span>기대값/거래</span><b>{m['expectancy_pct']:+.2f}%</b></div>
       <div class="stat"><span>손익크기비</span><b>{m['payoff']:.2f}</b></div>
       <div class="stat"><span>청산 거래</span><b>{st['total_trades']} <small style="font-size:12px;color:#94a3b8">(승 {st['wins']}/패 {st['losses']})</small></b></div>
+      <div class="stat"><span>평균 유지시간</span><b>{st['avg_holding_human']}</b></div>
       <div class="stat"><span>열린 포지션</span><b>{st['open_trades']}</b></div>
     </div>
     <div class="muted" style="margin:4px 0 8px">지표는 청산 {m['n']}건 기준 — 거래가 쌓일수록 안정적입니다.
@@ -1130,8 +1132,8 @@ def render_html(journal: TradeJournal, equity: float | None = None,
     <div class="muted" style="margin-top:4px;font-size:11px">현재가·손익률·PnL 은 serve_dashboard 서버 모드에서 실시간 표시(명목가 기준, 수수료 제외).</div>
     <h2>최근 청산 (최대 20건)
       <button id="dl-trades" class="tfbtn" style="margin-left:10px">⬇ 전체 거래 CSV</button></h2>
-    <table><thead><tr><th>심볼</th><th>방향</th><th>수량</th><th>포지션(USDT)</th><th>진입</th><th>청산</th><th>손익</th><th>사유</th></tr></thead>
-    <tbody>{rows(sorted(journal.closed_trades(), key=lambda t: t.closed_at or "", reverse=True)[:20], True) or "<tr><td colspan=8>없음</td></tr>"}</tbody></table>
+    <table><thead><tr><th>심볼</th><th>방향</th><th>수량</th><th>포지션(USDT)</th><th>진입</th><th>청산</th><th>거래시간</th><th>손익</th><th>사유</th></tr></thead>
+    <tbody>{rows(sorted(journal.closed_trades(), key=lambda t: t.closed_at or "", reverse=True)[:20], True) or "<tr><td colspan=9>없음</td></tr>"}</tbody></table>
   </div>
 
   <div class="tabpane" data-pane="market" style="display:none">
