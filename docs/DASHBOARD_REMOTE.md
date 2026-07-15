@@ -34,9 +34,13 @@ winget install --id Cloudflare.cloudflared
 
 대시보드가 켜져 있는 상태에서, **새 PowerShell 창**에서:
 ```powershell
-cloudflared tunnel --url http://localhost:8787
+cloudflared tunnel --url http://127.0.0.1:8787
 ```
 출력에 `https://<무작위>.trycloudflare.com` 주소가 뜬다. 이 창을 열어두는 동안만 터널이 유지된다.
+
+> ⚠️ 반드시 `127.0.0.1` 로 지정한다. `localhost` 로 하면 cloudflared 가 IPv6(`[::1]`)로
+> 접속을 시도하는데 서버는 IPv4(`127.0.0.1`)로만 열려 있어, 일부 API·차트 요청이
+> `connection refused` 로 간헐 실패한다(로그에 붉은 ERR). `127.0.0.1` 은 IPv4 로 고정돼 이 문제가 없다.
 
 ## 4) 외부에서 접속
 
