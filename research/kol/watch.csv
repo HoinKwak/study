@@ -1,16 +1,16 @@
 토큰,체인,단계,KOL수,서사,신규여부,시점,출처
-PONS,Robinhood Chain,조기,복수(신원 다수 미확인),"NOXA 셧다운 직후 24시간만에 RH체인 1위 런치패드로 부상, 수수료 전액 $PONS 바이백+소각 디플레구조, mcap $5.88M~$7.3M·당일+95.79%",신규,2026-07-15,https://web3.bitget.com/en/swap/robinhood/0x39dBED3a2bd333467115dE45665cC57F813C4571
-HOPPY,Robinhood Chain(개별페이지 Ethereum표시 상충),조기,0,"RH체인 카테고리기준 mcap $1.41M·당일+43.6%(7일+29.3%), Matt Furie Night Riders 프로그 테마, 단 개별페이지는 Ethereum 별개토큰(-2.8%)으로 상충",신규,2026-07-15,https://www.coingecko.com/en/categories/robinhood-chain-meme
-BULLCAT,Solana(pump.fun),조기(정체진입),1명(Black Bull/Ansem 연관 추정·신원미확인),"전회 131배 급증($4.8K→$629K) 이후 이번회차 mcap 약$629K 근방 정체, 추가성장 미확인",지속(정체),2026-07-15,https://pump.fun/coin/G9j8WWDeJXZdvwQgP82ooDuHmpc3Gy8NCSins71Lpump
-MEOW,Robinhood Chain,조기(재부상지속·다소냉각),0,"mcap $1.8M→$1.23M(당일+61.5%), 거래 지속되나 절대mcap 소폭하락",지속(냉각),2026-07-15,https://www.coingecko.com/en/categories/robinhood-chain-meme
-WORTH,Robinhood Chain(Solana 동명 티커 상충),조기(재검증제한),0,"이번회차 개별페이지 접근실패(404), 전회 mcap $546015(+17%) 기준 추적유지",지속(재검증제한),2026-07-15,https://www.coingecko.com/en/categories/robinhood-chain-meme
-COOKWARE,Robinhood Chain(Solana 스핀오프 $COPPER 별도존재),조기(재검증제한),0,"카테고리 상위10위 밖으로 밀려 재검증 제한, 전회 mcap $607455(-14%) 기준 추적유지",지속(재검증제한),2026-07-15,https://www.coingecko.com/en/categories/robinhood-chain-meme
-SEEDCOIN,Robinhood Chain(NOXA→Pons 전환국면),조기(재검증제한),0,"NOXA 셧다운→Pons 주도권 이동 속 개별 재검증 제한적, 전회 mcap $616K 기준 추적유지",지속(재검증제한),2026-07-15,https://www.coingecko.com/en/categories/robinhood-chain-meme
-4663,Robinhood Chain,확산(반등강화),0(hood4663.cc),"mcap $452877→$1039349(2배이상 증가), 거래량$3.6M로 뚜렷한 재상승, T9키패드 HOOD 테마",지속(급성장),2026-07-15,https://www.coingecko.com/en/coins/4663-token
-TENDIES,Robinhood Chain,확산(모멘텀 소폭냉각),0(KOL특정언급 미확인),"mcap $7.1M→$6.23M(당일+76.0%), 4회차 연속 상위권이나 절대규모 소폭축소",지속(소폭냉각),2026-07-15,https://www.coingecko.com/en/categories/robinhood-chain-meme
-WISHBONE,Robinhood Chain,확산(소폭냉각),0(Matcha 상장촉매),"mcap $4.2M→$3.4M(당일+51.4%)",지속(소폭냉각),2026-07-15,https://www.coingecko.com/en/categories/robinhood-chain-meme
-Wen Lambo (WEN),Robinhood Chain,확산(소폭냉각),0,"mcap $3.2M→$2.61M(당일+38.8%)",지속(소폭냉각),2026-07-15,https://www.coingecko.com/en/categories/robinhood-chain-meme
-JUGGERNAUT (JGN),Robinhood Chain,뒷북(극심한변동성),Drallio+Next100XGEMS(25.6만)+Bluntz Capital,"간밤 +110%로 mcap$17M까지 급등 보도 이후 현재$7.85M(당일-26.74%)로 재급락, 홀더8820명, $100M서사 대비 크게 미달",지속(극심한변동성),2026-07-15,https://web3.bitget.com/en/swap/robinhood/0xD7321801CAae694090694Ff55A9323139F043B88
-HOODRAT,Robinhood Chain,뒷북(변동성극심),0,"mcap $4.515M→$4.053M(당일-51.0%·7일+106.0%), 급등후급락 반복패턴 심화",지속(변동성극심),2026-07-15,https://www.coingecko.com/en/coins/hoodrat-4
-HOODIE,Robinhood Chain,뒷북(추가조정지속),0(언론다수),"mcap $1.075M→$961861(당일-29.1%), 저점다지기 재차 흔들림 지속",지속(추가조정),2026-07-15,https://www.coingecko.com/en/coins/hoodie
-CASHDOG/JOHN/530A (데이터이상그룹),Robinhood Chain,판정불가(구조적결함 12회차이상),0,"12회차 이상 연속 거의동일(CASHDOG$42.13M·JOHN$17.20M·530A$11.81M, 모두0.0%, 거래량 극비정상)",지속(구조결함 고착),2026-07-15,https://www.coingecko.com/en/categories/robinhood-chain-meme
+POOCH,Robinhood Chain,조기,0(순수 온체인 모멘텀만),"Robinhood Chain 최초 'Real Woof Asset' 서사(개발자 실제 반려견), 이번회차 테이블 내 24h 상승률 최고(+117.8%), mcap $189.4K",신규,2026-07-15,https://pooch.meme/
+PONS,Robinhood Chain,조기,복수(신원 다수 미확인)+theunipcs,"NOXA 공백 흡수한 RH체인 1위 런치패드, 바이백+소각 디플레구조, mcap $7.3M로 전회 대비 안정적 유지",지속(안정),2026-07-15,https://web3.bitget.com/en/swap/robinhood/0x39dBED3a2bd333467115dE45665cC57F813C4571
+COOKWARE,Robinhood Chain(Solana 스핀오프 $COPPER 별도),조기(반등확인),0,"전회 재검증 제한 이후 mcap $736.5K·당일+91.5%로 뚜렷한 반등 재확인",지속(반등),2026-07-15,https://www.coingecko.com/en/categories/robinhood-chain-meme
+SEEDCOIN,Robinhood Chain(NOXA 런치패드),조기(반등확인),0,"NOXA→Pons 전환국면에서도 mcap $532.0K·당일+45.1%로 재상승 확인",지속(반등),2026-07-15,https://www.coingecko.com/en/categories/robinhood-chain-meme
+WORTH,Robinhood Chain(Solana 동명 티커 상충),조기(반등확인),0,"전회 재검증실패(404) 이후 mcap $524.0K·당일+39.8%로 정상 재확인 및 성장 지속",지속(반등),2026-07-15,https://www.coingecko.com/en/categories/robinhood-chain-meme
+HOPPY,Robinhood Chain(개별페이지 Ethereum표시 상충 지속),조기,0,"mcap $1.4M·당일+43.6%로 전회와 거의 동일 유지, Night Riders 프로그 테마, 티커충돌 미해소",지속,2026-07-15,https://www.coingecko.com/en/categories/robinhood-chain-meme
+VIBE CAT,Robinhood Chain,조기(신규관찰),0,"이번회차 신규포착, mcap $389.8K·당일+67.3%, 거래량($442.1K)이 시총 상회해 회전율 양호",신규,2026-07-15,https://www.coingecko.com/en/categories/robinhood-chain-meme
+BULLCAT,Solana(pump.fun),조기(정체고착),1명(Black Bull/Ansem 연관 추정·신원미확인),"mcap $629K로 2회차 연속 완전동일 수치 재확인, 정체 고착 심화",지속(정체고착),2026-07-15,https://pump.fun/coin/G9j8WWDeJXZdvwQgP82ooDuHmpc3Gy8NCSins71Lpump
+MEOW,Robinhood Chain,조기~확산경계,0,"mcap $1.23M→$1.4M(당일+62.9%)로 재차 반등, 거래량($1.4M)도 시총과 유사",지속(반등),2026-07-15,https://www.coingecko.com/en/categories/robinhood-chain-meme
+WISHBONE,Robinhood Chain,확산,0(Matcha 상장촉매),"mcap $3.4M→$3.8M(당일+49.0%)로 재상승",지속(재상승),2026-07-15,https://www.coingecko.com/en/categories/robinhood-chain-meme
+Wen Lambo (WEN),Robinhood Chain,확산,0,"mcap $2.61M→$2.6M(당일+40.2%) 수준 유지",지속(유지),2026-07-15,https://www.coingecko.com/en/categories/robinhood-chain-meme
+Robin Hood (FOX),Robinhood Chain,확산(재편입),coingape 기사(JUGGERNAUT와 함께 차기 CASHCAT 후보로 거론),"mcap $855K~$1.7M(소스간 편차)·당일+28.5~50%, 891명 홀더",재편입,2026-07-15,https://coingape.com/markets/2-robinhood-chain-tokens-that-could-be-the-next-cashcat/
+4663,Robinhood Chain,확산→조정(급락),0(hood4663.cc),"전회 2배급증($1.039M) 이후 mcap $444.3K로 급격히 되돌림(7일+73.8%는 유지)",지속(급락),2026-07-15,https://www.coingecko.com/en/categories/robinhood-chain-meme
+JUGGERNAUT (JGN),Robinhood Chain,뒷북(극심한변동성),Drallio+Next100XGEMS(25.6만)+Bluntz Capital,"mcap $7.85M→$13.4~14.4M(소스간편차)로 재반등했으나 '$100M서사'(Drallio 7/13) 대비 크게 미달",지속(재반등),2026-07-15,https://web3.bitget.com/en/swap/robinhood/0xD7321801CAae694090694Ff55A9323139F043B88
+HOODRAT,Robinhood Chain,뒷북(변동성극심),0,"급등-급락 반복패턴 지속, 절대규모는 RH체인 상위권 유지",지속(변동성극심),2026-07-15,https://www.coingecko.com/en/coins/hoodrat-4
