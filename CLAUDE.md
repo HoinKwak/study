@@ -91,6 +91,10 @@ python -m scripts.serve_dashboard
   (`persistent_session_id`)돼 발화 → 이 세션에서 서브에이전트 실행 후 커밋·push. 폰 완료알림은 없음
   (fresh-session 방식은 새 세션에 레포 쓰기권한이 없어 push 403 → 상시세션 바인딩으로 해결).
   결과물: `research/kol/`, `research/market/`, `research/strategies/`, `research/backtests/`.
+- **시장브리핑 루틴이 갱신하는 파일 4종**: `research/market/brief.{md,json}` + `research/kol/chartist_views.json`
+  (대시보드 '상위 차티스트 현재 뷰' — 인물 고정, 뷰만 갱신) + `research/etf/flows.json`(대시보드
+  'ETF Flow' — 과거 이력 보존, 최신일만 append). 이 둘은 원래 자동갱신 루틴이 없어 멈춰 있던 것을
+  시장브리핑 루틴에 편입함. 커밋 시 `research/market/ research/kol/chartist_views.json research/etf/` 함께 add.
 - **최근 수정**(git 이력): 청산 짜바리 방지(분할청산 스텝사이즈 정합), 수동/외부 청산 정확 반영
   (`fetch_realized_close`로 실제 체결가·실현손익), 대시보드 '최근청산' 청산시각 정렬, 일별/누적손익이
   실잔고 이력 부족 시 저널 기준으로 폴백, 고아 슬리브 리컨실(제거·개명된 옛 슬리브로 열린 포지션은
