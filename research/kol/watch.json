@@ -1,187 +1,187 @@
 {
-  "ts": "2026-07-15T11:30:00Z",
+  "ts": "2026-07-15T14:45:00Z",
   "tokens": [
     {
-      "token": "MYSTERY (Matt Furie 'HEDZ' IP 밈)",
+      "token": "ROBINFUN (RH체인 밈 런치패드 토큰)",
+      "chain": "Robinhood Chain",
+      "ca": "0x56A98Db16Cf501b686c14BA00a5DeC02E87083FA",
+      "stage": "조기",
+      "kols": "1명(Crypto Gem 💎 Signals, X, 팔로워/신뢰도 미확인)",
+      "thesis": "신규 포착. RH체인 최초 밈 런치패드(pump.fun 유사, 본딩커브 $4K 시작→$44K 졸업, LP 100% 소각). KOL이 CA와 함께 직접 언급(7/14경). 현재 mcap $267,876, 가격 $0.0003131 — 플랫폼(인프라) 토큰으로 개별 밈과 성격 다름",
+      "risk": "🔴 신생 플랫폼·소형 KOL 1명뿐, 거래량 지표 소스간 상충($11.43 vs $118K), 검증 부족"
+    },
+    {
+      "token": "MYSTERY (Matt Furie 'Night Riders' 밈)",
       "chain": "Robinhood Chain",
       "ca": "",
       "stage": "조기",
-      "kols": "0(커뮤니티, Matt Furie IP 팬 서사)",
-      "thesis": "신규 포착. Pepe/Boy's Club 작가 Matt Furie의 NFT컬렉션 HEDZ #602 캐릭터를 모티브로 한 RH체인 신생 밈. 가격 $6.55e-10, 거래량 $24,889.86 — 극초기 단계, 시총 데이터 미확보. IP 서사가 있어 눈에 띄나 검증 안 된 극소형",
-      "risk": "🔴 CA 미확인, 극초기·극소유동성, 러그 가능성 배제 못함, 시총 데이터조차 미확보"
+      "kols": "0(IP 커뮤니티)",
+      "thesis": "지속(성장 확인). 전회 $6.55e-10·거래량 $24.9K 극초기에서 이번 회차 CoinGecko 기준 mcap $350.3K(당일+33.4%), DEXScreener 별도로도 거래량$210K·유동성$60K·트레이더776명 확인 — 실질 성장이 이어지는 조기 단계",
+      "risk": "CA 미확인, 여전히 극소형, 동일 IP 모티브의 HOODIE·HOODRAT과 서사 중복(분산 위험)"
     },
     {
       "token": "POOCH (Real Woof Asset)",
       "chain": "Robinhood Chain",
       "ca": "",
-      "stage": "조기~확산 초입",
+      "stage": "조기~확산초입",
       "kols": "0(RWA 패러디 서사)",
-      "thesis": "신규 포착. \"RH체인 최초의 Real Woof Asset\" — RWA(실물자산) 토큰화 서사를 개 밈으로 패러디. CoinGecko 카테고리 페이지 기준 당일 +106.4%(가격 $0.0001105). 개발자 실제 반려견 소재로 유기적 확산 조짐",
-      "risk": "CA·정확한 시총 미확인, 패러디 밈 특성상 지속력 불확실"
+      "thesis": "지속(급성장). 전회 당일+106.4%에서 이번 회차 mcap $152.4K·당일+307.9%(CoinGecko)로 추가 급성장 — 개발자 실제 반려견 소재의 유기적 확산이 지속됨",
+      "risk": "CA 미확인, 동명 유사 사이트(poohcoin.meme 등) 혼동 주의, 패러디 밈 특성상 지속력 불확실"
     },
     {
-      "token": "JUGGERNAUT (JGN)",
+      "token": "HOODRAT",
       "chain": "Robinhood Chain",
-      "ca": "0xD7321801CAae694090694Ff55A9323139F043B88",
-      "stage": "확산(조정 진행)",
-      "kols": "Drallio(7/13 최초 지목)+Next100XGEMS(7/15 추종)",
-      "thesis": "전회 재반등($14.4M)에서 이번 회차 Bitget 정확 CA 대조 결과 $7.96M로 대폭 조정(당일 -27.29%). 다만 거래량 $7.53M(회전율 95%↑)·홀더 8.51K로 유동성·참여자 자체는 여전히 두터움 — 급등 후 눌림 국면으로 판단, 완전 붕괴는 아님",
-      "risk": "당일 -27% 급락, 동명이인(2021 레거시 Juggernaut) CoinGecko 슬러그 혼동 위험 지속(반드시 CA 대조), 조정폭 확대 여부 다음 회차 확인 필요"
+      "ca": "0x8e62f281f282686fca6dcb39288069a93fc23f1c",
+      "stage": "확산(조정)",
+      "kols": "0(언론 다수, Matt Furie 'Night Riders' 마스코트 서사)",
+      "thesis": "이번 회차 신규 포착(우리 리스트 기준)이나 실제로는 7/10 ATH($0.01494) 이후 -36.4% 조정 중 — 이미 피크를 지나 확산~뒷북 경계. mcap $10.16M, 거래량 소스상충($621K~$2.85M)",
+      "risk": "이미 고점 대비 -36% 하락, 뒷북 근접, 거래량 소스상충"
     },
     {
       "token": "WISHBONE",
       "chain": "Robinhood Chain",
       "ca": "",
-      "stage": "확산(지속 성장)",
+      "stage": "확산(소스상충·지속성장)",
       "kols": "0(Matcha 상장이 촉매, 지속)",
-      "thesis": "Blockscout 온체인 데이터 기준 $5.0M→$6.68M로 재상승(+34%), 홀더 2,688명 확인 — Matcha 상장 후 안정화를 넘어 재성장 국면 진입",
-      "risk": "CA 미확인, 소형주 특유 변동성 경계 필요"
+      "thesis": "지속. 전회 Blockscout $6.68M(+34%)였으나 이번 회차 CoinGecko는 $3.4M(당일+62.3%)로 절대치 상충 — 다만 두 소스 모두 방향은 '성장 지속'으로 일치",
+      "risk": "CA 미확인, 소스간 절대치 괴리(Blockscout vs CoinGecko) 지속"
     },
     {
-      "token": "RH극초소형 그룹 (RANDY/DATABEAR/FROGCAT)",
+      "token": "WEN (Wen Lambo)",
       "chain": "Robinhood Chain",
       "ca": "",
-      "stage": "조기(재검증 실패)",
-      "kols": "0(커뮤니티, 개별 KOL 미확인)",
-      "thesis": "이번 회차 개별 최신 수치 재확보 실패(검색 결과에 구체 데이터 미노출) — 정직하게 미확인 표기. 전회 수치(RANDY $19.1K·DATABEAR $110.6K·FROGCAT $12.0K, 전고점대비 -35~-75% 후 급반등)를 잠정 유지하되 다음 회차 재검증 필요",
-      "risk": "CA 전원 미확인, 이번 회차 데이터 신선도 낮음(재확인 실패 정직 표기)"
-    },
-    {
-      "token": "TENDIES",
-      "chain": "Robinhood Chain",
-      "ca": "",
-      "stage": "확산(냉각 조짐)",
+      "stage": "확산(회복 확인)",
       "kols": "0",
-      "thesis": "Blockscout 기준 $4.7M→$3.54M로 축소(-25%), 홀더 2,868명 — 전회 유동성 개선세가 이번 회차 다소 꺾임, 완전 뒷북은 아니나 모멘텀 둔화",
-      "risk": "CA 미확인, WEN과 과거 혼재 이력"
-    },
-    {
-      "token": "WORTH (one life, its worth an attempt)",
-      "chain": "Robinhood Chain(카테고리)/Solana(코인페이지, 상충)",
-      "ca": "",
-      "stage": "확산(재검증 실패)",
-      "kols": "0",
-      "thesis": "이번 회차 개별 최신 수치 재확보 실패 — 전회($849.1K, 당일+52.0%) 수치 잠정 유지, 정직하게 미확인 표기",
-      "risk": "체인 정보 상충 지속, CA 미확정, 데이터 신선도 낮음"
-    },
-    {
-      "token": "SEEDCOIN (watch it grow)",
-      "chain": "Robinhood Chain",
-      "ca": "",
-      "stage": "확산(재검증 실패)",
-      "kols": "0",
-      "thesis": "이번 회차 개별 최신 수치 재확보 실패 — 전회($921.7K, 당일+12.2%) 수치 잠정 유지, 정직하게 미확인 표기",
-      "risk": "CA 미확인, 데이터 신선도 낮음, 모멘텀 둔화 조짐 지속"
-    },
-    {
-      "token": "4663",
-      "chain": "Robinhood Chain",
-      "ca": "",
-      "stage": "확산(재검증 실패)",
-      "kols": "0(전용사이트 hood4663.cc)",
-      "thesis": "이번 회차 개별 최신 수치 재확보 실패 — 전회($1.2M, 당일+78.6%, 급반등) 수치 잠정 유지, 정직하게 미확인 표기",
-      "risk": "CA 소스간 상충 지속, 데이터 신선도 낮음"
+      "thesis": "전회 '거래정지 수준(거래량$229.89)→부분회복 미확인(단일소스)'에서 이번 회차 CoinGecko로 mcap $3.8M·당일+33.1% 확인 — 실질 회복으로 판정 상향",
+      "risk": "CA 미확인, 과거 극저유동 이력, 반등 지속성 불확실"
     },
     {
       "token": "Robin Hood (FOX)",
       "chain": "Robinhood Chain",
       "ca": "",
-      "stage": "판정혼조",
+      "stage": "확산(지속 강세)",
       "kols": "0(언론 다수)",
-      "thesis": "이번 회차도 소스 상충 지속: DEXScreener 거래량 $1.0M·당일+159% vs CoinGecko 당일+62.4%~+166.7%(회차마다 상이). 방향은 강세이나 정확한 수치는 소스마다 크게 다름",
-      "risk": "🔴 소스간 괴리 지속, 데이터 신뢰도 낮아 조기신호 활용 부적합, CA 미확인"
+      "thesis": "이번 회차도 CoinGecko $1.4M·당일+57.9%로 지속 강세 확인 — 전회 소스상충 국면에서도 방향성 자체는 계속 양(+)으로 일관",
+      "risk": "소스간 절대 수치 괴리 지속(전회 DEXScreener+159% vs CoinGecko 상이), CA 미확인"
     },
     {
-      "token": "Wen Lambo (WEN)",
+      "token": "JUGGERNAUT (JGN)",
+      "chain": "Robinhood Chain",
+      "ca": "0xD7321801CAae694090694Ff55A9323139F043B88",
+      "stage": "확산(조정 심화)",
+      "kols": "Drallio(7/13 최초지목)+Next100XGEMS(7/15 추종)",
+      "thesis": "Bitget CA 재대조: mcap $8.83M(전회 $7.96M 대비 소폭 반등)이나 당일 -38.80%로 조정 심화, 홀더 8,500명 유지. 콜 이후 지속 하락해 콜 유효성 의문 지속",
+      "risk": "당일 -38.80% 급락, KOL 콜(7/13·7/15) 이후 지속 조정 — 후행지표였을 가능성"
+    },
+    {
+      "token": "WORTH (one life, its worth an attempt)",
+      "chain": "Robinhood Chain(카테고리)/Solana(코인페이지, 상충)",
+      "ca": "",
+      "stage": "확산(완만한 지속상승)",
+      "kols": "0",
+      "thesis": "이번 회차 CoinGecko로 재확인: 가격 $0.00165611·당일+10.6% — 재검증 성공, 완만하지만 지속 상승 확인",
+      "risk": "체인 정보 상충 지속, CA 미확정"
+    },
+    {
+      "token": "TENDIES",
       "chain": "Robinhood Chain",
       "ca": "",
-      "stage": "판정불가(부분회복 미확인)",
+      "stage": "확산(소스상충)",
       "kols": "0",
-      "thesis": "전회 거래량 $229.89(거래정지 수준)이었으나 이번 회차 DEXScreener 트렌딩 목록에 재등장하며 거래량 $1.1M로 표기 — 회복 신호일 수 있으나 단일 소스로 재확인 필요, 성급한 판정변경 보류",
-      "risk": "🔴 소스 1건뿐, 상시 저유동 이력, 조기신호로 쓰기엔 근거 부족"
+      "thesis": "전회 Blockscout 기준 -25% 냉각이었으나 이번 회차 CoinGecko는 mcap $2.9M·당일+27.2%로 반등 — 소스간 방향까지 엇갈려 판정 신뢰도 낮음, 7/8 피크($0.0055)대비는 여전히 낮은 수준($0.0038 부근)",
+      "risk": "소스간 방향(상승/하락)까지 엇갈림, CA 미확인, WEN과 과거 혼재 이력"
+    },
+    {
+      "token": "4663",
+      "chain": "Robinhood Chain",
+      "ca": "",
+      "stage": "뒷북(급락 확인)",
+      "kols": "0(전용사이트 hood4663.cc)",
+      "thesis": "전회 재검증 실패로 $1.2M(+78.6%) 잠정치였으나 이번 회차 CoinGecko로 실측 확인: mcap $1.04M·당일 -78.10% 급락 — 급등 후 급락 완료 국면",
+      "risk": "당일 -78% 급락 확인, CA 소스간 상충 지속, 데이터 신선도 문제는 해소됐으나 방향은 뒷북 확정"
     },
     {
       "token": "Dog In Hood (DIH)",
       "chain": "Robinhood Chain",
       "ca": "0x17bb0c898254406b1ea2e8e99b0c263e26c9e4a4",
-      "stage": "판정불가(재검증 실패·캐시 의심)",
+      "stage": "뒷북(하락 확인)",
       "kols": "0(과거 언론)",
-      "thesis": "이번 회차 검색 결과가 전회 수치($4.71M·+51.5%·거래량$4.93M)와 소수점까지 거의 동일 — 실시간 갱신이 아닌 캐시된 스냅샷일 가능성 높아 정직하게 '재검증 실패'로 표기",
-      "risk": "데이터 신선도 의심, 과거 3연속 판정 번복 이력"
+      "thesis": "전회 검색결과가 소수점까지 동일해 '캐시 의심'이었으나 이번 회차 신선한 수치 확보: 7/8 피크($0.0098) 이후 mcap $3.57M·당일 -55% 확인 — 데이터 신선도 문제 해소, 방향은 뒷북 하락 확정",
+      "risk": "당일 -55% 급락, 7/8 피크대비 큰 폭 하락, 뒤늦은 진입 위험"
     },
     {
       "token": "HOODIE",
       "chain": "Robinhood Chain",
       "ca": "",
-      "stage": "뒷북(재검증 실패·캐시 의심)",
+      "stage": "뒷북(단기반등)",
       "kols": "0(언론 과거언급)",
-      "thesis": "이번 회차 검색 결과가 전회 수치($1.4M, 3,677홀더)와 거의 동일 — 캐시 스냅샷 의심, 정직하게 '재검증 실패'로 표기. 7/11 피크($31M) 대비 -95%대 붕괴 국면 자체는 유지되는 것으로 추정",
-      "risk": "🔴🔴 데이터 신선도 의심, 뒤늦은 진입 시 큰 손실 위험"
-    },
-    {
-      "token": "FROGBULL",
-      "chain": "Solana(pump.fun/PumpSwap)",
-      "ca": "8RuaAXa51fwyDqr2Gc78KnGKsCdEccT3G9ZbJaGUpump",
-      "stage": "뒷북(재검증 실패)",
-      "kols": "1명(KOL 'Crypto Fergani' 스텔스 런칭 주체)",
-      "thesis": "이번 회차 개별 최신 수치 재확보 실패 — 전회($57.7K, 저점횡보, CA상충 미해결) 상태 잠정 유지, 정직하게 미확인 표기",
-      "risk": "🔴🔴 CA 상충 미해결(GeckoTerminal 원문 CA와 불일치), 이미 대부분 하락 완료"
+      "thesis": "전회 캐시 의심 데이터에서 이번 회차 신선한 수치 확보: mcap $930.3K·당일+45.5% 단기 반등이나, 7/11 피크($31M) 대비는 여전히 -97%대 붕괴 국면 — 단기 반등에 현혹되지 말 것",
+      "risk": "🔴 여전히 피크대비 -97%, 단기 반등을 추세전환으로 오인 위험"
     },
     {
       "token": "CASHDOG/JOHN/530A (데이터이상 그룹)",
       "chain": "Robinhood Chain",
       "ca": "0x5a283986b204326344a1cc04b52b37f1af54ef72",
-      "stage": "판정불가(구조적 데이터결함, 5회차 연속)",
+      "stage": "판정불가(구조적 데이터결함, 6회차 연속)",
       "kols": "0(언론)",
-      "thesis": "이번 회차도 CoinGecko 카테고리 페이지 재확인 결과 CASHDOG $42.1M·거래량$284.2M·24h 0.0%, JOHN $17.2M·거래량$167.5M·0.0%, 530A $11.8M·거래량$147.4M·0.0%로 소수점까지 5회차 연속 완전 동일 — CoinGecko 집계 결함 최종 확정, 구조적 문제로 판단",
-      "risk": "🔴🔴 매매·조기신호 판단에 절대 사용 금지, DEX 직접 확인 필수"
+      "thesis": "CoinGecko 카테고리 페이지 6회차 연속 소수점까지 완전 동일(CASHDOG $42.1M·JOHN $17.2M·530A $11.8M, 모두 24h 0.0%) — 구조적 집계결함 재확정. 단, 이번 회차 대안 소스로 530A 실측치 $3.93M(1,647홀더) 확보, CASHDOG는 7/12자 구정보 기사에서 $32M·+3898%(당시 기준) 확인 — CoinGecko 카테고리 페이지 자체가 신뢰 불가함을 재확인",
+      "risk": "🔴🔴 CoinGecko 카테고리 페이지 매매·조기신호 판단에 사용 금지, DEX 직접 확인 필수"
+    },
+    {
+      "token": "FROGBULL",
+      "chain": "Solana(pump.fun/PumpSwap)",
+      "ca": "8RuaAXa51fwyDqr2Gc78KnGKsCdEccT3G9ZbJaGUpump(⚠️CA상충 미해결)",
+      "stage": "뒷북(사실상 소멸)",
+      "kols": "1명(KOL 'Crypto Fergani' 스텔스 런칭 주체)",
+      "thesis": "전회 $57.7K 저점횡보에서 이번 회차 mcap $592로 추가 -99% 붕괴 — 사실상 거래 소멸 수준, KOL 콜 실패 확정",
+      "risk": "🔴🔴 사실상 소멸한 토큰, CA 상충 미해결"
     }
   ],
   "notable": [
     {
       "token": "ARROW (Arrow Finance)",
-      "status": "확산(추세 지속)",
-      "summary": "CoinGecko 트렌딩 1위 지속, ATH $3.47(7/9) 기록 후 현재 $2.11~2.26(소스상충), 시총 $19~25.7M, 당일 +17~40%(소스별 상이). RH체인 유일 실사용(주식·ETF 담보 CDP, aUSD 발행) 프로토콜 서사와 스테이킹 유틸리티 출시가 견조한 거래량($2.2M+) 뒷받침"
+      "status": "확산(추세지속·소폭조정)",
+      "summary": "mcap $16.13M(전회 $19~25.7M대비 조정)·당일+17.5%. RH체인 유일 실사용(주식·ETF담보 CDP, aUSD발행) 프로토콜 서사 유지, 거래량 $6.3M로 견조"
     },
     {
       "token": "CASHCAT",
-      "status": "확산(변동성 지속·뒷북)",
-      "summary": "시총 $150~167M(소스상충), 당일 +11.11%로 안정적 상승. 여전히 이미 크게 급등한 RH체인 대장 뒷북 토큰, $140~190M대 박스권 등락 반복"
+      "status": "뒷북(안정적 박스권)",
+      "summary": "mcap $120~126M(소스상충)·당일+33.7%로 재차 반등. 여전히 RH체인 대장 뒷북 토큰, $120~190M대 박스권 등락 반복. 최근 스캠 계약으로 홀더 1명이 $56K 피해 입은 사례도 보도됨"
     },
     {
       "token": "HYPE (Hyperliquid)",
-      "status": "조정",
-      "summary": "$64.73로 ATH $76.70(6/16) 대비 -15.70%까지 확대된 조정 국면 — 전회 '신고가 도전 지속'에서 '조정'으로 판정 하향. 바이백·ETF 편입 등 펀더멘털 촉매는 유지되나 단기 모멘텀 약화"
+      "status": "조정(반등 시도)",
+      "summary": "$65.55, ATH $76.67(6/16) 대비 -13%로 전회(-15.70%)보다 낙폭 소폭 축소, 당일+3.48% 반등 시도. 조정 국면 자체는 유지"
     },
     {
       "token": "LAB",
-      "status": "이슈(붕괴 지속·팀 대응)",
-      "summary": "$0.27 유지(ATH $27.22 대비 -99%). ZachXBT의 내부자 매도 추적 후 팀이 1,000만 토큰 소각으로 대응했으나, 인사이더 연계 지갑군에 남은 8,150만 토큰 오버행이 회복 억제 요인으로 지속 지목됨"
+      "status": "이슈(오버행 지속, 미갱신)",
+      "summary": "이번 회차 신규 정보 미확인, 전회 수치($0.27, ATH대비-99%) 유지. ZachXBT 추적 이후 팀 소각에도 인사이더 잔여 8,150만 토큰 오버행이 회복 억제 요인으로 지속 지목"
     },
     {
       "token": "PUMP (pump.fun)",
-      "status": "안정화",
-      "summary": "이번 회차 미갱신. 7/12 대량 언락 소화 완료 후 안정 국면이 이어지는지 다음 회차 재확인 필요"
-    },
-    {
-      "token": "Little Pepe (LILPEPE)",
-      "status": "이슈(상장 미확정 지속)",
-      "summary": "이번 회차 미갱신. Binance 심사 최대 기한(~7/14) 경과에도 공식 확정 발표 여전히 없었던 것이 지속되는지 재확인 필요"
-    },
-    {
-      "token": "The Black Bull (ANSEM)",
-      "status": "이슈(변동성 지속)",
-      "summary": "이번 회차 미갱신. BloFin 상장(7/8) 후 -30% 급락(7/10) 이후 추가 정보 미확인"
-    },
-    {
-      "token": "BONK",
-      "status": "이슈(트레저리 미회수 지속)",
-      "summary": "이번 회차 미갱신. $20M 탈취 사건 중 $148K OKX 이동 포착 이후 추가 추적 정보 미확인, 대부분 미회수 상태 추정"
+      "status": "추세지속(안정)",
+      "summary": "mcap $606.53M, 가격 $0.00151. 7/12 대량 언락 소화 후 안정 국면 지속 확인. Kolscan(KOL 지갑추적 서비스) 인수 등으로 KOL 트래킹 강화 행보"
     },
     {
       "token": "Robinhood Chain 밈 메타 전반",
-      "status": "확산(신규 밈 지속 출현)",
-      "summary": "이번 회차 MYSTERY(Matt Furie IP)·POOCH(RWA 패러디) 등 신규 극초기 밈이 계속 출현 — 메타가 냉각되지 않고 신규 진입이 이어지는 초기 순환 국면. 동시에 JUGGERNAUT 급락(-27%)·CASHDOG/JOHN/530A 데이터결함 5회차 고착 등 개별 종목 리스크도 병존"
+      "status": "확산(신규 출현 + 스캠 리스크 병존)",
+      "summary": "ROBINFUN(런치패드)·HOODRAT 등 신규 토큰이 계속 출현하며 메타 자체는 냉각되지 않음. 동시에 Relay Protocol이 7/9 허니팟·지갑드레이너 경고(BSCN 등 보도)를 냈고 CASHCAT 홀더 $56K 피해 사례도 확인 — 신규진입과 스캠 위험이 함께 커지는 국면"
+    },
+    {
+      "token": "Little Pepe (LILPEPE)",
+      "status": "이슈(미갱신)",
+      "summary": "이번 회차도 신규 정보 미확인. Binance 심사 최대기한(~7/14) 경과에도 공식 확정 발표 여전히 없었던 상태 지속 여부 재확인 필요"
+    },
+    {
+      "token": "The Black Bull (ANSEM)",
+      "status": "이슈(변동성 지속, 미갱신)",
+      "summary": "이번 회차 신규 정보 미확인. BloFin 상장(7/8) 후 -30% 급락(7/10) 이후 추가 정보 미확인, 홀더 11만명대 유지 추정"
+    },
+    {
+      "token": "BONK",
+      "status": "이슈(트레저리 미회수 지속, 미갱신)",
+      "summary": "이번 회차 신규 정보 미확인. $20M 탈취 사건 중 $148K OKX 이동 포착 이후 추가 추적 정보 미확인"
     }
   ]
 }
