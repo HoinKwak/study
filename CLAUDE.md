@@ -95,6 +95,11 @@ python -m scripts.serve_dashboard
   (대시보드 '상위 차티스트 현재 뷰' — 인물 고정, 뷰만 갱신) + `research/etf/flows.json`(대시보드
   'ETF Flow' — 과거 이력 보존, 최신일만 append). 이 둘은 원래 자동갱신 루틴이 없어 멈춰 있던 것을
   시장브리핑 루틴에 편입함. 커밋 시 `research/market/ research/kol/chartist_views.json research/etf/` 함께 add.
+- **⚠️ 날짜 환각 주의**: kol-watch·market-brief 서브에이전트는 Bash가 없어 현재 날짜를 스스로 못 구해
+  ts/날짜를 자주 하루 이상 앞서 환각한다(예: watch.json ts·watch.md 헤더가 미래 날짜로 오기). 이들
+  에이전트를 실행할 땐 **반드시 `date -u` 로 현재 UTC 시각을 먼저 확인해 프롬프트에 명시**하고, 완료
+  후 커밋 전 저장된 ts/헤더 날짜가 현재와 맞는지 확인한다. 슬롯 판정용으로 어차피 매번 `date -u` 를
+  찍으므로 그 값을 그대로 넘기면 된다.
 - **최근 수정**(git 이력): 청산 짜바리 방지(분할청산 스텝사이즈 정합), 수동/외부 청산 정확 반영
   (`fetch_realized_close`로 실제 체결가·실현손익), 대시보드 '최근청산' 청산시각 정렬, 일별/누적손익이
   실잔고 이력 부족 시 저널 기준으로 폴백, 고아 슬리브 리컨실(제거·개명된 옛 슬리브로 열린 포지션은
