@@ -1,16 +1,16 @@
 토큰,체인,단계,KOL수,서사,신규여부,시점,출처
-ROBINFUN (RH체인 밈 런치패드 토큰),Robinhood Chain,조기,1명(Crypto Gem 💎 Signals),"RH체인 최초 밈 런치패드. mcap $267876 유지, 가격 소폭상승($0.0003131→$0.000334), 거래량$101K로 안정화",지속,2026-07-15,https://www.coingecko.com/en/coins/robinfun
-MYSTERY (Matt Furie 'Night Riders' 밈),Robinhood Chain,조기,0(IP 커뮤니티),"전회 mcap $350.3K에서 $506,971로 +45% 추가성장, 당일+15.9%·7일+59.7%",지속(추가성장),2026-07-15,https://www.coingecko.com/en/coins/mystery-2
-POOCH (Real Woof Asset),Robinhood Chain,조기~확산초입(재검증실패),0(RWA 패러디),"이번 회차 데이터 상충·오매칭 의심으로 재검증 실패, 직전치(mcap$152.4K·+307.9%)만 잠정유지",지속(재검증실패),2026-07-15,https://www.coingecko.com/en/coins/pooch
-HOODRAT,Robinhood Chain,확산(뒷북근접·추가조정),0(Matt Furie 'Night Riders' 마스코트),"mcap $10.156M·당일-11.40%, ATH대비 -38.80%(전회-36.4%에서 낙폭확대)",지속(조정심화),2026-07-15,https://www.coingecko.com/en/coins/hoodrat-4
-WISHBONE,Robinhood Chain,확산(유동성우려 신규발견),0(Matcha 상장 촉매),"mcap $3.8M·당일+58.4%지만 거래량 단 $2236 — mcap대비 거래량 극히 미미",지속(유동성우려),2026-07-15,https://www.coingecko.com/en/categories/robinhood-chain-meme
-WEN (Wen Lambo),Robinhood Chain,확산(지속),0,"mcap $3.2M(전회$3.8M)·당일+39.8%·거래량$742K",지속,2026-07-15,https://www.coingecko.com/en/categories/robinhood-chain-meme
-Robin Hood (FOX),Robinhood Chain,확산(지속강세),0(언론 다수),"mcap $1.6M(전회$1.4M)·당일+64.4%·거래량$1.2M",지속(강세),2026-07-15,https://www.coingecko.com/en/categories/robinhood-chain-meme
-JUGGERNAUT (JGN),Robinhood Chain,확산(조정지속·낙폭둔화),Drallio(7/13)+Next100XGEMS(7/15),"Bitget CA기준 mcap $9.31M·당일-21.91%(전회-38.80%에서 둔화), 홀더8670명",지속(낙폭둔화),2026-07-15,https://web3.bitget.com/en/swap/robinhood/0xD7321801CAae694090694Ff55A9323139F043B88
-WORTH (one life its worth an attempt),Robinhood Chain(카테고리)/Solana(코인페이지·상충),확산(지속상승),0,"mcap $683K·당일+53.7%·거래량$977K",지속,2026-07-15,https://www.coingecko.com/en/categories/robinhood-chain-meme
-TENDIES,Robinhood Chain,확산(지속),0,"mcap $3.1M·당일+27.0%·거래량$1.2M",지속,2026-07-15,https://www.coingecko.com/en/categories/robinhood-chain-meme
-4663,Robinhood Chain,뒷북(데이터 극심상충),0(전용사이트 hood4663.cc),"카테고리(mcap$666K·+84.4%) vs 개별페이지(mcap$1.04M·-78.10%) 방향까지 정반대",지속(상충심화),2026-07-15,https://www.coingecko.com/en/coins/4663-token
-Dog In Hood (DIH),Robinhood Chain,뒷북(하락, 이번회차 미갱신),0(과거 언론),"이번 회차 재검증 미실시, 직전치(7/8피크대비 mcap$3.57M·당일-55%) 유지",지속(미갱신),2026-07-15,https://www.coingecko.com/en/coins/dog-in-hood
-HOODIE,Robinhood Chain,뒷북(단기반등 지속),0(언론 과거언급),"mcap $1.0M(전회$930.3K)·당일+40.9% but 7/11피크($31M)대비 -97%대 유지",지속(반등지속),2026-07-15,https://www.coingecko.com/en/categories/robinhood-chain-meme
-CASHDOG/JOHN/530A (데이터이상그룹),Robinhood Chain,판정불가(구조적결함 7회차),0,"CoinGecko 카테고리 7회차 연속 완전동일(CASHDOG$42.1M·JOHN$17.2M·530A$11.8M, 모두0.0%)",지속(구조결함 재재확정),2026-07-15,https://www.coingecko.com/en/categories/robinhood-chain-meme
-SEEDCOIN (watch it grow),Robinhood Chain,조기~확산초입(재포착),0,"2회 연속 재검증실패 후 mcap $734K·당일+45.2%·거래량$944K(mcap대비 매우높음) 확인",신규(재포착),2026-07-15,https://www.coingecko.com/en/categories/robinhood-chain-meme
+SEEDCOIN (watch it grow),Robinhood Chain,조기,0,"NOXA 런치패드 기준 mcap $1.5M(전회 $734K서 2배 성장), 3회차 연속 성장 재확인",지속(3회차 성장),2026-07-15,https://fun.noxa.fi/robinhood
+ROBINFUN (RH체인 런치패드 토큰),Robinhood Chain,조기,1명(Crypto Gem 💎 Signals),"이번 회차 신규 데이터 없음, 직전치(mcap $267876) 잠정유지",지속(미갱신),2026-07-15,https://www.coingecko.com/en/coins/robinfun
+MYSTERY (Matt Furie 'Night Riders'),Robinhood Chain(서사)/Ethereum(CoinGecko 표시·상충),조기→식음,0(IP 커뮤니티),"mcap $506971→$289213로 -43%, 체인표시 Ethereum으로 상충 확인(티커충돌 가능성)",지속(성장세 꺾임),2026-07-15,https://www.coingecko.com/en/coins/mystery-2
+WISHBONE,Robinhood Chain,확산,0(Matcha 상장 촉매),"mcap $3.1M·당일+61.9%·거래량$2.3M로 전회 유동성우려 해소",지속(유동성 회복),2026-07-15,https://www.coingecko.com/en/categories/robinhood-chain-meme
+Dog In Hood (DIH),Robinhood Chain,확산(뒷북에서 반등),0(과거 언론),"전회 -55%뒷북에서 mcap $4.6~4.7M·당일+51.50%·거래량$4.9M로 급반등",지속(반등전환),2026-07-15,https://www.coingecko.com/en/coins/dog-in-hood
+JUGGERNAUT (JGN),Robinhood Chain,확산(조정에서 회복세),Drallio+Next100XGEMS(팔로워 약25.6만),"Bitget CA기준 mcap $14.42M(전회$9.31M)·거래량$11.4M, 홀더수 소스상충(5700~8670명)",지속(회복세),2026-07-15,https://web3.bitget.com/en/swap/robinhood/0xD7321801CAae694090694Ff55A9323139F043B88
+MEOW,Robinhood Chain,확산(신규top10 진입·유동성우려),0,"mcap $1.7M·당일+41.1%지만 거래량 단 $5.4K로 극히 미미",신규(top10 진입),2026-07-15,https://www.coingecko.com/en/categories/robinhood-chain-meme
+HOPPY,Robinhood Chain,확산(신규top10 진입·유동성우려),0,"mcap $1.7M·당일+27.0%지만 거래량 단 $1.2K로 사실상 거래정지",신규(top10 진입),2026-07-15,https://www.coingecko.com/en/categories/robinhood-chain-meme
+TENDIES,Robinhood Chain,확산(지속·소폭조정),0,"mcap $2.9M(전회$3.1M)·당일+20.2%·거래량$1.1M",지속,2026-07-15,https://www.coingecko.com/en/categories/robinhood-chain-meme
+WEN (Wen Lambo),Robinhood Chain,확산(지속·소폭조정),0,"mcap $2.8M(전회$3.2M)·당일+46.4%·거래량$645K",지속,2026-07-15,https://www.coingecko.com/en/categories/robinhood-chain-meme
+Robin Hood (FOX),Robinhood Chain,확산(지속),0(언론 다수),"mcap $1.7M(전회$1.6M)·당일+51.4%·거래량$1.2M",지속,2026-07-15,https://www.coingecko.com/en/categories/robinhood-chain-meme
+HOODRAT,Robinhood Chain,뒷북(붕괴 심화),0(Matt Furie 'Night Riders' 마스코트),"mcap $5.13M(전회$10.16M서 반토막)·당일-44.70%, ATH대비 -69.6%(전회-38.80%서 악화)",지속(붕괴심화),2026-07-15,https://www.coingecko.com/en/coins/hoodrat-4
+4663,Robinhood Chain,뒷북(데이터 상충 지속),0(hood4663.cc),"이번 회차 재검증 미실시, 직전 소스간 방향 정반대 상충 상태 잠정유지",지속(미갱신),2026-07-15,https://www.coingecko.com/en/coins/4663-token
+CASHDOG/JOHN/530A (데이터이상그룹),Robinhood Chain,판정불가(구조적결함 8회차),0,"CoinGecko 카테고리 8회차 연속 완전동일(CASHDOG$42.1M·JOHN$17.2M·530A$11.8M, 모두0.0%)",지속(구조결함 재확정),2026-07-15,https://www.coingecko.com/en/categories/robinhood-chain-meme
+POOCH (Real Woof Asset),Robinhood Chain,뒷북(거래중단 확정),0(RWA 패러디),"CoinGecko 확인: 약 1개월 전부터 전 거래소 거래중단 — 재검증 실패 원인 최종 확인",지속(사망확정),2026-07-15,https://www.coingecko.com/en/coins/pooch

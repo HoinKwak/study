@@ -1,88 +1,90 @@
-# KOL 하이프 리스트 — 2026-07-16 01:45 (KST, 원자료 UTC 2026-07-15 16:45)
+# KOL 하이프 리스트 — 2026-07-16 03:45 (KST, 원자료 UTC 2026-07-15 18:45)
 
-> ⚠️ 아이디어 소싱·조기경보용. **투자조언 아님(Not financial advice).** KOL 콜은 홍보·포지션 편향이 매우 크고, 유료/봇 KOL·카피트레이드 유인도 섞여 있음. X 로그인월 한계로 **WebSearch 인덱싱·2차 보도·CoinGecko/GeckoTerminal/DexScreener/Blockscout/Bitget/Coinbase 기반**이며, 원 트윗 직접 확인이 안 된 항목은 **"미확인"**으로 표기. 전회차(2026-07-15 14:45 UTC) 대비 **신규/지속/식음**을 비교 표기함.
+> ⚠️ 아이디어 소싱·조기경보용. **투자조언 아님(Not financial advice).** KOL 콜은 홍보·포지션 편향이 매우 크고, 유료/봇 KOL·카피트레이드 유인도 섞여 있음. X 로그인월 한계로 **WebSearch 인덱싱·2차 보도·CoinGecko/GeckoTerminal/DexScreener/Bitget/Coinbase/kolscan 기반**이며, 원 트윗 직접 확인이 안 된 항목은 **"미확인"**으로 표기. 전회차(2026-07-15 16:45 UTC) 대비 **신규/지속/식음**을 비교 표기함.
 
 ## 이번 회차 핵심 발견
 
-1. **신규 재포착 1종**: **SEEDCOIN**(watch it grow) — 2회 연속 재검증 실패로 상위목록에서 제외됐다가 이번 회차 mcap $734K·당일+45.2%·거래량$944K(시총 대비 거래량 매우 높음)로 실질 활동 확인, 재편입.
-2. **MYSTERY 3회차 연속 성장 확인**: 조기신호 검증 성공이 이어짐 — 전회 mcap $350.3K→이번 $506,971(+45%), 당일+15.9%·7일+59.7%. 본 워치리스트 목적(조기포착→흐름검증)에 가장 부합하는 사례로 자리잡음.
-3. **HOODRAT·4663 뒷북 심화/데이터 극심상충**: HOODRAT은 ATH대비 낙폭이 -36.4%→-38.80%로 확대되며 뒷북 근접 심화. 4663은 이번 회차 **소스 간 방향까지 정반대**(카테고리페이지 +84.4% 반등 vs 개별페이지 -78.10% 급락) — 데이터 신뢰 자체가 붕괴한 사례.
-4. **JUGGERNAUT 낙폭 둔화하나 조정 지속**: Bitget CA기준 당일-21.91%(전회-38.80%에서 둔화)로 급락세는 완화됐으나 여전히 하락 중, 홀더는 8,500→8,670명으로 소폭 증가(참여자 이탈은 없음). **CoinGecko 'juggernaut' 페이지는 티커충돌로 다른 코인(mcap$255K)을 잘못 표시**하고 있음을 이번 회차 확인 — 반드시 CA로만 대조할 것.
-5. **POOCH 재검증 실패**: 전회 급성장 확인됐던 POOCH가 이번 회차 WebSearch에서 상충·오매칭 의심 데이터("1개월 전 거래중단", "BTC표시가격")를 반환 — 정직하게 미확인 처리, 직전치만 잠정 유지.
-6. **CASHDOG/JOHN/530A — 7회차 연속 완전 동일 데이터**: CoinGecko 카테고리 페이지 구조적 결함이 이번 회차도 소수점까지 그대로 재확인됨(CASHDOG$42.1M·JOHN$17.2M·530A$11.8M, 모두 0.0%).
-7. **CASHCAT·ARROW 동시 CoinGecko 트렌딩 진입**: CASHCAT(2위)·ARROW(11위)가 실시간 검색량 기준 트렌딩 상위에 진입 — 다만 CASHCAT은 트렌딩페이지 기준 당일 **-35.6% 급락**(카테고리페이지의 +34%와 정반대) 확인, 극심한 변동성 속 조정. ARROW는 CDP 제품 데모 공개+Alpha Mainnet 예고로 실사용 서사가 살아있는 채 상승.
-8. **LAB 붕괴 심화 — notable 최대 악화 항목**: 전회 "미갱신"에서 이번 회차 CoinGecko 트렌딩 3위 진입과 함께 대형 악재 확인 — ZachXBT가 팀연계 지갑의 $18.3M 추가 덤핑(7/12)을 밝혀냈고, 잔여 8,150만개 오버행에 7/14 신규언락($4.1M)까지 겹쳐 ATH 대비 -99% 지속.
-9. **DIH 이번 회차 미갱신**: 시간 제약으로 재검증 미실시, 직전 확인치(뒷북·-55%)만 유지 — 정직 표기.
-10. **RH체인 메타 신규 소형토큰 다수 출현하나 대부분 거래 미미**: MEOW·HOPPY·VIBE CAT·ROB·BYCOCKET·COOKWARE·$1·VLAD(Green Bull) 등이 CoinGecko 카테고리 상위20에 새로 등장했으나 거래량이 수백~수천 달러 수준으로 극히 미미(발행 러시 성격) — KOL 언급도 미확인이라 본 리스트엔 미편입, SEEDCOIN만 예외적으로 실질 활동 확인돼 편입.
+1. **POOCH 거래중단 최종 확정**: 2회 연속 재검증 실패의 원인이 CoinGecko 명시("약 1개월 전부터 전 거래소 거래중단")로 최종 확인됨 — 조기신호로서 가치 소멸, 다음 회차부터 제외 검토.
+2. **MYSTERY 3회차 성장 스트릭 종료 + 체인 상충 신규 발견**: 전회 mcap $506,971까지 3회 연속 성장했던 MYSTERY가 이번 회차 $289,213로 -43% 급락. 동시에 CoinGecko가 컨트랙트 체인을 **Ethereum**으로 표시(그동안 서사는 Robinhood Chain) — 티커충돌/오매칭 가능성이 신규로 발견돼 데이터 신뢰도 재검증 필요.
+3. **DIH 뒷북→반등 전환**: 전회 -55% 뒷북 하락이었던 DIH가 이번 회차 당일+51.50%·거래량$4.9M로 급반등, mcap $3.57M→$4.6~4.7M. 뒷북 국면에서 재활성화 가능성.
+4. **HOODRAT 붕괴 가속**: mcap $10.16M→$5.13M로 반토막, 당일 -44.70% 급락, ATH대비 낙폭이 -38.80%→-69.6%로 대폭 확대 — 명백한 뒷북 심화.
+5. **JUGGERNAUT 완만한 회복세**: Bitget 기준 mcap $9.31M→$14.42M, 거래량$11.4M로 반등. 다만 홀더수가 소스별(Next100XGEMS 5,700명 vs 전회 Bitget 8,670명) 상충 — CoinGecko 자체 페이지 티커충돌도 지속.
+6. **WISHBONE 유동성 우려 해소**: 전회 거래량 단 $2,236으로 사실상 거래부재 의심됐던 WISHBONE이 이번 회차 거래량 $2.3M로 정상 수준 회복 확인.
+7. **MEOW·HOPPY 신규 top10 진입이나 유동성 극히 부실**: CoinGecko 카테고리 top10에 새로 진입했지만 거래량이 각각 $5.4K·$1.2K에 불과 — mcap 대비 거래 사실상 없음, 조기신호로 신뢰 불가.
+8. **CASHDOG/JOHN/530A 8회차 연속 완전 동일 데이터**: 구조적 결함이 이번 회차도 소수점까지 재확인됨.
+9. **ARROW 수치 반복 의심**: mcap $16.13M·당일+46.3%가 전회와 완전히 동일한 수치로 재확인 — 검색엔진 캐시 반영 가능성, 실시간 데이터 아닐 수 있음(주의 필요). 다만 ArrowPad 런치패드 mainnet 7/20 예정이라는 신규 촉매는 확인됨.
+10. **ANSEM(Black Bull) 재상승**: mcap $56M권(전회 확인)에서 $90.6~98.6M로 반등, 다만 ATH(7/6) 대비 여전히 -46.5%. Ansem 본인의 에어드랍 서사(홀더 25,000→100만 목표) 지속.
+11. **LAB 붕괴 계속 심화**: $0.27(ATH대비 -99%), 7/14 신규 언락까지 겹치며 낙폭 확대 — notable 최대 악화 항목 지위 유지.
+12. **KOL 코디네이션 경계 신호 신규 포착**: 익명 계정(@0xmani)이 "워시드 KOL들이 짜고 유동성을 빼가려 한다"는 우려를 제기, Crypto Fergani發 스텔스런칭($FROGBULL) 사례가 거론됨 — 조기콜 신뢰도 판단 시 참고할 구조적 경계 신호로 메모에 추가.
 
 ## 🎯 토큰 하이프 리스트 (조기성 우선 정렬)
 
 | 토큰 | 체인/DEX | CA | 단계 | 언급 KOL(수) | 서사(요지) | 온체인 코로보 | 신규? | 리스크 | 출처 |
 |---|---|---|---|---|---|---|---|---|---|
-| **ROBINFUN** (RH체인 런치패드) | Robinhood Chain | **`0x56A98Db16Cf501b686c14BA00a5DeC02E87083FA`** ✅ | 🟢조기 | 1명(Crypto Gem 💎 Signals) | RH체인 최초 밈 런치패드. mcap $267,876 유지, 가격 소폭상승 | 🟡 거래량$101K로 안정화(전회 상충 다소 해소) | 지속 | 신생 플랫폼, KOL 1명뿐, 검증부족 | [CoinGecko](https://www.coingecko.com/en/coins/robinfun) |
-| **MYSTERY** (Matt Furie 'Night Riders') | Robinhood Chain | 미확인 | 🟢조기 | 0(IP 커뮤니티) | 전회 $350.3K→이번 $506,971(+45%) 3회차 연속 성장, 당일+15.9%·7일+59.7% | 🟢 거래량$132K로 조기신호 검증 지속성공 | 지속(추가성장) | CA 미확인, HOODIE·HOODRAT과 서사 중복 | [CoinGecko](https://www.coingecko.com/en/coins/mystery-2) |
-| **POOCH** (Real Woof Asset) | Robinhood Chain | 미확인 | 🟢조기~확산초입(재검증실패) | 0(RWA 패러디) | 이번 회차 데이터 상충·오매칭 의심으로 재검증 실패 — 정직 표기 | 🔴 재검증 실패 | 지속(재검증실패) | 이번 회차 데이터 신뢰 불가, CA 미확인 | [CoinGecko](https://www.coingecko.com/en/coins/pooch) |
-| **HOODRAT** | Robinhood Chain | `0x8e62f281f282686fca6dcb39288069a93fc23f1c` | 🟡확산(뒷북근접·추가조정) | 0(Matt Furie 'Night Riders' 마스코트) | mcap $10.156M·당일-11.40%, ATH대비 -38.80%(전회-36.4%에서 낙폭확대) | 🟡 거래량$621K | 지속(조정심화) | 피크 지속이탈, 뒷북 근접 심화 | [CoinGecko](https://www.coingecko.com/en/coins/hoodrat-4) |
-| **WISHBONE** | Robinhood Chain | 미확인 | 🟡확산(유동성우려 신규발견) | 0(Matcha 상장 촉매) | mcap $3.8M·당일+58.4%지만 거래량 단 $2,236 — mcap대비 거래량 극히 미미 | 🔴 거래량/시총 비율 극단적으로 낮음 | 지속(유동성우려) | 사실상 거래부재 가능성, CA 미확인 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
-| **Wen Lambo (WEN)** | Robinhood Chain | 미확인 | 🟡확산(지속) | 0 | mcap $3.2M(전회$3.8M)·당일+39.8%·거래량$742K | 🟢 견조 | 지속 | CA 미확인 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
-| **Robin Hood (FOX)** | Robinhood Chain | 미확인 | 🟡확산(지속강세) | 0(언론 다수) | mcap $1.6M(전회$1.4M)·당일+64.4%·거래량$1.2M | 🟢 지속 강세 | 지속(강세) | CA 미확인, 데이터 신뢰도 낮음 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
-| **JUGGERNAUT (JGN)** | Robinhood Chain | **`0xD7321801CAae694090694Ff55A9323139F043B88`** ✅ | 🟡확산(조정지속·낙폭둔화) | Drallio(7/13)+Next100XGEMS(7/15) | Bitget CA기준 mcap $9.31M·당일-21.91%(전회-38.80%에서 둔화), 홀더8,670명(소폭증가) | 🟡 조정지속에도 참여자 유지 | 지속(낙폭둔화) | ⚠️CoinGecko 'juggernaut' 페이지 티커충돌(다른 코인 오매칭 확인) — CA로만 대조 | [Bitget](https://web3.bitget.com/en/swap/robinhood/0xD7321801CAae694090694Ff55A9323139F043B88) |
-| **WORTH** | RH체인/솔라나(상충) | 미확인 | 🟡확산(지속상승) | 0 | mcap $683K·당일+53.7%·거래량$977K | 🟢 견조 | 지속 | 체인 상충 지속, CA 미확정 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
-| **TENDIES** | Robinhood Chain | 미확인 | 🟡확산(지속) | 0 | mcap $3.1M·당일+27.0%·거래량$1.2M | 🟢 안정적 지속 | 지속 | CA 미확인 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
-| **4663** | Robinhood Chain | 소스상충(비움) | 🔴뒷북(데이터 극심상충) | 0(hood4663.cc) | 카테고리(mcap$666K·+84.4%) vs 개별페이지(mcap$1.04M·-78.10%) — 방향까지 정반대 | 🔴🔴 소스 간 방향 자체가 상충 | 지속(상충심화) | 매매신호 사용 금지 수준 | [CoinGecko](https://www.coingecko.com/en/coins/4663-token) |
-| **Dog In Hood (DIH)** | Robinhood Chain | `0x17bb0c898254406b1ea2e8e99b0c263e26c9e4a4` | 🔴뒷북(하락, 이번회차 미갱신) | 0(과거 언론) | 시간제약으로 재검증 미실시, 직전치(7/8피크대비 mcap$3.57M·당일-55%) 유지 | ⚪ 미갱신 | 지속(미갱신) | 당일 -55% 급락(전회 확인), 뒤늦은 진입 위험 | [CoinGecko](https://www.coingecko.com/en/coins/dog-in-hood) |
-| **HOODIE** | Robinhood Chain | 미확인 | 🔴뒷북(단기반등 지속) | 0(언론 과거언급) | mcap $1.0M(전회$930.3K)·당일+40.9% but 7/11피크($31M)대비 여전히 -97%대 | 🟡 단기반등 지속 | 지속(반등지속) | 🔴 여전히 피크대비 -97%, 반등 오인 위험 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
-| **CASHDOG/JOHN/530A(데이터이상그룹)** | Robinhood Chain | CASHDOG `0x5a283986b204326344a1cc04b52b37f1af54ef72` | ⚫판정불가(구조적결함 7회차) | 0 | CoinGecko 카테고리 7회차 연속 완전동일(CASHDOG$42.1M·JOHN$17.2M·530A$11.8M, 모두0.0%) | 🔴🔴 카테고리 페이지 집계결함 재재확정 | 지속(변화없음) | 매매 신호 사용 절대 금지 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
-| **SEEDCOIN** (watch it grow) | Robinhood Chain | 미확인 | 🟢조기~확산초입(재포착) | 0 | 2회 연속 재검증실패 후 mcap $734K·당일+45.2%·거래량$944K(mcap대비 매우높음) 확인 | 🟢 실거래 활발 시사 | **신규(재포착)** | CA 미확인, 데이터 안정성 낮음(재검증 실패 이력) | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
+| **SEEDCOIN** (watch it grow) | Robinhood Chain | 미확인 | 🟢조기 | 0 | NOXA 런치패드 mcap $1.5M(전회$734K서 2배) — 3회차 연속 성장 | 🟢 mcap 2배 성장 지속 | 지속(3회차성장) | CA 미확인, 소스편차 존재 | [NOXA](https://fun.noxa.fi/robinhood) |
+| **ROBINFUN** (RH체인 런치패드) | Robinhood Chain | **`0x56A98Db16Cf501b686c14BA00a5DeC02E87083FA`** ✅ | 🟢조기 | 1명(Crypto Gem 💎 Signals) | 최초 밈 런치패드, 이번 회차 신규데이터 없음(직전치 유지) | ⚪ 미갱신 | 지속(미갱신) | KOL 1명뿐, 데이터 미갱신 | [CoinGecko](https://www.coingecko.com/en/coins/robinfun) |
+| **MYSTERY** ('Night Riders') | RH체인(서사)/Ethereum(CG표시·상충) | `0x64c5cba9a1bfbd2a5faf601d91beff2dcac2c974` | 🟡조기→식음 | 0(IP 커뮤니티) | 3회차 성장 뒤 mcap $507K→$289K(-43%), 체인표시 Ethereum 상충 신규발견 | 🔴 성장세 꺾임+데이터 상충 | 지속(식음전환) | 체인 상충, 티커충돌 가능성 재검증 필요 | [CoinGecko](https://www.coingecko.com/en/coins/mystery-2) |
+| **WISHBONE** | Robinhood Chain | 미확인 | 🟡확산 | 0(Matcha 상장 촉매) | mcap $3.1M·당일+61.9%·거래량$2.3M, 전회 유동성우려 해소 | 🟢 거래량 정상회복 | 지속(유동성회복) | CA 미확인 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
+| **Dog In Hood (DIH)** | Robinhood Chain | `0x17bb0c898254406b1ea2e8e99b0c263e26c9e4a4` | 🟡확산(뒷북→반등) | 0(과거 언론) | 전회 -55%뒷북서 당일+51.50%·거래량$4.9M 급반등 | 🟢 반등 확인 | 지속(반등전환) | 반등 지속성 불확실, 과거 급락 이력 | [CoinGecko](https://www.coingecko.com/en/coins/dog-in-hood) |
+| **JUGGERNAUT (JGN)** | Robinhood Chain | **`0xD7321801CAae694090694Ff55A9323139F043B88`** ✅ | 🟡확산(회복세) | Drallio+Next100XGEMS(팔로워~25.6만) | Bitget기준 mcap $9.31M→$14.42M·거래량$11.4M | 🟡 반등하나 홀더수 소스상충 | 지속(회복세) | ⚠️CoinGecko 티커충돌 지속, 홀더수 상충 | [Bitget](https://web3.bitget.com/en/swap/robinhood/0xD7321801CAae694090694Ff55A9323139F043B88) |
+| **MEOW** | Robinhood Chain | 미확인 | 🟡확산(신규진입·유동성우려) | 0 | top10 신규진입, mcap $1.7M·당일+41.1% | 🔴 거래량 단$5.4K — 극히 미미 | **신규(top10진입)** | 사실상 거래부재 가능성 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
+| **HOPPY** | Robinhood Chain | 미확인 | 🟡확산(신규진입·유동성우려) | 0 | top10 신규진입, mcap $1.7M·당일+27.0% | 🔴🔴 거래량 단$1.2K — 사실상 정지 | **신규(top10진입)** | 조기신호 신뢰 불가 수준 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
+| **TENDIES** | Robinhood Chain | 미확인 | 🟡확산(지속) | 0 | mcap $2.9M(전회$3.1M)·당일+20.2%·거래량$1.1M | 🟢 안정적 지속 | 지속 | CA 미확인 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
+| **Wen Lambo (WEN)** | Robinhood Chain | 미확인 | 🟡확산(지속) | 0 | mcap $2.8M(전회$3.2M)·당일+46.4%·거래량$645K | 🟢 지속 | 지속 | CA 미확인 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
+| **Robin Hood (FOX)** | Robinhood Chain | 미확인 | 🟡확산(지속) | 0(언론 다수) | mcap $1.7M(전회$1.6M)·당일+51.4%·거래량$1.2M | 🟢 안정적 지속 | 지속 | CA 미확인 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
+| **HOODRAT** | Robinhood Chain | `0x8e62f281f282686fca6dcb39288069a93fc23f1c` | 🔴뒷북(붕괴심화) | 0 | mcap $10.16M→$5.13M 반토막·당일-44.70% | 🔴 ATH대비 -69.6%(전회-38.80%) | 지속(붕괴심화) | 붕괴 가속, 뒤늦은 진입 위험 매우 높음 | [CoinGecko](https://www.coingecko.com/en/coins/hoodrat-4) |
+| **4663** | Robinhood Chain | 소스상충(비움) | 🔴뒷북(상충지속) | 0(hood4663.cc) | 이번 회차 미갱신, 직전 방향까지 정반대 상충 상태 유지 | ⚪ 미갱신 | 지속(미갱신) | 매매신호 사용 금지 수준 지속 | [CoinGecko](https://www.coingecko.com/en/coins/4663-token) |
+| **CASHDOG/JOHN/530A(데이터이상그룹)** | Robinhood Chain | CASHDOG `0x5a283986b204326344a1cc04b52b37f1af54ef72` | ⚫판정불가(구조결함 8회차) | 0 | 8회차 연속 완전동일 데이터(CASHDOG$42.1M·JOHN$17.2M·530A$11.8M, 모두0.0%) | 🔴🔴 구조적 집계결함 재확정 | 지속(변화없음) | 매매 신호 사용 절대 금지 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
+| **POOCH** (Real Woof Asset) | Robinhood Chain | 미확인 | 🔴뒷북(거래중단 확정) | 0 | CoinGecko 확인: 약 1개월 전부터 전 거래소 거래중단 | 🔴 거래 사실상 사망 | 지속(사망확정) | 조기신호 가치 소멸 — 제외 검토 | [CoinGecko](https://www.coingecko.com/en/coins/pooch) |
 
-## 전회차(07-15 14:45 UTC) 대비 변동 요약
+## 전회차(07-15 16:45 UTC) 대비 변동 요약
 
-- **신규 재포착**: SEEDCOIN — 2회 연속 실패 후 실질 성장 확인(mcap대비 거래량 매우 높음).
-- **성장 지속(조기신호 검증 성공)**: MYSTERY — 3회차 연속 성장, 본 리스트 목적에 가장 부합.
-- **재검증 실패(정직 표기)**: POOCH — 상충·오매칭 의심 데이터로 이번 회차 판정 보류.
-- **미갱신(시간제약, 정직 표기)**: DIH — 직전치 유지.
-- **조정 심화**: HOODRAT — ATH대비 낙폭 -36.4%→-38.80%로 확대.
-- **낙폭 둔화하나 조정 지속**: JUGGERNAUT — -38.80%→-21.91%로 급락세 완화, 홀더는 소폭 증가.
-- **데이터 상충 신규/심화**: WISHBONE(거래량/시총 비율 극단적 저조), 4663(소스간 방향까지 정반대로 악화).
-- **데이터 이상 7회차 고착**: CASHDOG·JOHN·530A — 재재확정.
-- **제외**: FROGBULL(사실상 소멸 확정, mcap $592) — 이번 회차 표에서 제외하고 메모에만 기록(추적 종료 검토 대상).
-- **notable 갱신**: LAB(대형 악화, ZachXBT $18.3M 추가덤핑 확인), CASHCAT·ARROW(CoinGecko 트렌딩 동시 진입), HYPE(저점다짐 지속), PUMP(안정 유지), ANSEM(안정화), RH체인 메타(신규 소형토큰 다수 출현하나 대부분 거래 미미).
+- **거래중단 최종확정**: POOCH — 재검증 실패 원인이 실제 거래정지였음을 확인, 제외 검토 대상.
+- **성장 스트릭 종료**: MYSTERY — 3회차 연속 성장 후 -43% 조정, 체인 상충 신규 발견.
+- **뒷북→반등 전환**: DIH — -55% 급락에서 +51.50% 반등.
+- **붕괴 심화**: HOODRAT — ATH대비 -38.80%→-69.6%로 낙폭 대폭 확대.
+- **회복세 지속**: JUGGERNAUT — mcap $9.31M→$14.42M, 홀더수는 소스상충.
+- **유동성 우려 해소**: WISHBONE — 거래량 $2,236→$2.3M로 정상화.
+- **신규 진입(유동성 부실)**: MEOW·HOPPY — top10 신규 진입했으나 거래량 극히 미미.
+- **미갱신(시간제약, 정직 표기)**: ROBINFUN·4663.
+- **데이터 이상 8회차 고착**: CASHDOG·JOHN·530A.
+- **notable 갱신**: ANSEM(반등, mcap $56M→$90-98M), LAB(붕괴 지속 심화), CASHCAT(대장 지위 유지, 조정), ARROW(수치반복 의심+7/20 촉매 확인), HYPE·PUMP(안정 유지), KOL 코디네이션 경계 신호(신규 메모).
 
 ## KOL별 최근 콜
 
 ### Crypto Gem 💎 Signals · 팔로워/신뢰도 미확인
-- **ROBINFUN**: 7/14경 CA와 함께 이른 단계 콜 — 이번 회차도 지속 추적, 상태 큰 변화 없음.
+- **ROBINFUN**: 7/14경 CA와 함께 이른 단계 콜 — 이번 회차 신규 갱신 데이터 없음.
 
 ### Drallio(애널리스트) · 팔로워/신뢰도 미확인
-- **JUGGERNAUT(JGN)**: 7/13 "$100M 시총 도달 가능한 CASHCAT 다음 후보"로 지목했으나, 이번 회차도 mcap $9.31M·당일-21.91% — 낙폭은 둔화됐지만 여전히 콜 이후 순손실 구간.
+- **JUGGERNAUT(JGN)**: 7/13 "$100M 시총 가능한 CASHCAT 다음 후보"로 지목 — 콜 이후 급락했다가 이번 회차 회복세로 전환, 여전히 콜 시점 대비는 미확인(가격 절대치 비교 어려움).
 
-### Next100XGEMS · 팔로워 약 1만~5만(소스 상충) · 신뢰도: 미확인(마케팅 성격 계정 가능성)
-- **JUGGERNAUT**: 7/15 추종 언급 이후 지속 조정 — 여전히 후행지표였을 가능성.
-
-### Crypto Fergani (KOL) · 팔로워/신뢰도 미확인
-- **FROGBULL**: mcap $592로 사실상 소멸 확정(전회 확인) — 이번 회차 재검증 없이 표에서 제외, 콜 실패 최종 확정으로 간주.
+### Next100XGEMS · 팔로워 약 25.6만(확인, Binance 공식파트너) · 신뢰도: 중형 알파콜러
+- **JUGGERNAUT**: 최신 트윗(24h 거래량$11.4M·mcap$10.4M·홀더5,700명 명시) 확인 — 지속 추적 중.
 
 ### Ansem (@blknoiz06) · 팔로워 ~75만+ · 신뢰도: 높음(조기콜 이력), 단 밈·포지션 편향 극심
-- 이번 회차 새로운 특정 토큰 콜 미확인. ANSEM(Black Bull) 가격 안정화 국면 진입 추정.
+- 이번 회차 새로운 특정 토큰 콜 미확인. 본인 이름을 딴 ANSEM(Black Bull)은 mcap $90~98M로 재상승 중이나 여전히 ATH대비 -46.5%.
 
 ### ZachXBT(온체인 조사관)
-- **LAB**: 팀연계 지갑이 $18.3M 규모 LAB($1.20→$0.55로 붕괴시킨 48시간 매도) 추가 덤핑을 7/12 확인. 잔여 8,150만개 오버행 지속.
+- **LAB**: $18.3M 규모 팀연계 지갑 덤핑 폭로(7/12) 여파가 7/14 신규 언락과 겹치며 지속 악화.
+
+### Crypto Fergani(KOL) / @0xmani(익명 관찰자)
+- **FROGBULL**: Crypto Fergani發 스텔스런칭 사례로 재언급 — @0xmani가 "워시드 KOL 코디네이션" 우려를 제기하며 경계 신호로 인용.
 
 ## 새로 포착된 중형 KOL
-- 이번 회차 신규 중형 KOL 발견 없음(Crypto Gem 💎 Signals·Next100XGEMS·Drallio 등 기존 발견 계정만 추적 지속).
+- **Next100XGEMS**(팔로워 약25.6만, Binance 공식파트너): 마케팅 성격이 강하나 실제 온체인 수치(거래량·mcap·홀더)를 구체적으로 인용하는 트윗 확인 — 팔로우 지속 가치 있음.
+- 그 외 신규 중형 KOL 추가 발견 없음(Drallio·Crypto Gem 💎 Signals 등 기존 발견 계정만 추적 지속).
 
 ## 메모
 
-- **데이터 한계(X 접근)**: Kolscan·pump.fun Callouts·MWX 등 KOL 매수 트래킹 아그리게이터 직접 접근은 이번 회차도 제한적. WebSearch 인덱싱·2차 보도·CoinGecko/GeckoTerminal/Blockscout/Bitget/Coinbase 기반으로 보강.
-- **재검증 실패·미갱신 정직 표기**: POOCH(오매칭 의심 데이터), DIH(시간제약 미실시) — 확정치 아님을 명확히 표기, 다음 회차 재확인 필요.
-- **JUGGERNAUT 티커충돌 확인**: CoinGecko의 일반 "juggernaut" 코인 페이지(mcap$255K)는 RH체인 JGN과 무관한 다른 토큰 — 반드시 CA(`0xD7321801...`) 기준으로만 판단할 것. 이런 티커충돌은 워치리스트 전반에 상시 존재할 수 있음에 유의.
-- **4663 데이터 신뢰 붕괴**: 동시간대 두 소스가 방향(+84.4% vs -78.10%)까지 정반대 — 이 정도 상충은 처음 확인된 사례로, 최소 다음 1~2회차는 신호로 사용 불가.
-- **LAB이 이번 회차 최대 악화 항목**: 전회 "미갱신"이었으나 ZachXBT의 추가 폭로($18.3M 덤핑)로 상황이 오히려 크게 나빠짐 — 정기 갱신 없이 방치하면 큰 변화를 놓칠 수 있음을 보여주는 사례.
-- **CASHCAT·ARROW 트렌딩 진입 상충**: CASHCAT은 CoinGecko 트렌딩(검색량 기준)에 오르면서도 가격은 -35.6% 급락 중 — '주목받음'과 '상승 중'은 다른 개념임에 유의.
-- **재검증 지속 실패 그룹**: RANDY/DATABEAR/FROGCAT — 이번 회차도 미시도(4연속 실패 가능성), 다음 회차 재시도 또는 완전 삭제 검토.
-- **FROGBULL 표에서 제외**: mcap $592로 사실상 거래 소멸 확정(전전회차 확인) — 콜 실패가 확정적이라 판단해 이번 회차부터 상위 15개 표에서 제외, 메모로만 유지.
-- **동명이인 주의**: ANSEM·CASHCAT·HOODIE·WEN·FOX·VLAD·WORTH·DIH·MEOW·JUGGERNAUT(2021 레거시+이번 회차 확인된 티커충돌 코인)·FROGBULL·POOCH(poohcoin.meme와 혼동주의)·MYSTERY/HOODRAT(둘 다 Matt Furie 'Night Riders' IP 공유, 별개 토큰) — **반드시 CA 대조 후 매매**.
-- **뒷북 항목 정직 표기**: 4663·DIH·HOODIE·CASHCAT은 이미 피크를 지났거나 급락/조정 국면으로, 조기신호로서의 가치는 낮음.
+- **데이터 한계(X 접근)**: kolscan.io 리더보드는 접근 가능했으나 개별 토큰 티커까지는 노출되지 않음(SOL 손익만 표시). Kolscan·pump.fun Callouts 등 세부 매수 추적은 이번 회차도 제한적.
+- **ARROW 수치 반복 의심**: mcap $16.13M·당일변동률이 전회와 완전히 동일하게 재확인됨 — 검색엔진 캐시 반영 가능성이 있어 실시간 데이터로 단정하지 않음. 다만 CoinMarketCap 별도 조회에서 가격 $2.26(+27.42%)·ArrowPad mainnet 7/20 예정이라는 정성적 신규 정보는 확보됨.
+- **MYSTERY 체인 상충 신규 발견**: CoinGecko 직접 조회에서 컨트랙트가 Ethereum으로 표시됨 — 지금까지 서사(Robinhood Chain)와 불일치. Arbitrum Orbit L2인 RH체인이 Ethereum을 정산레이어로 쓰는 구조상 동일 자산의 L1 컨트랙트일 가능성도 있으나, 확정하지 못해 리스크로 표기. 다음 회차 재검증 필요.
+- **POOCH 제외 검토**: 실제 거래중단이 최종 확인된 만큼, 조기경보 목적에 더 이상 부합하지 않음 — 다음 회차부터 상위 15개 표에서 제외하고 메모로만 유지 검토.
+- **4663 데이터 신뢰 계속 보류**: 소스 간 방향까지 정반대였던 상충이 이번 회차도 해소되지 않음(재검증 시간 제약) — 최소 1~2회차 추가 관찰 필요.
+- **KOL 코디네이션 경계 신호(신규)**: 익명 계정 @0xmani가 "워시드 KOL들이 짜고 밈코인 유동성을 마지막으로 빼가려 한다"는 우려를 제기 — 조기콜이라 해서 무조건 신뢰하지 말고, 반복 등장하는 KOL 그룹·스텔스런칭 패턴에 유의할 것.
+- **동명이인/티커충돌 주의**: ANSEM·CASHCAT·HOODIE·WEN·FOX·VLAD·WORTH·DIH·MEOW·JUGGERNAUT(CoinGecko 티커충돌 확인)·POOCH(poohcoin.meme와 혼동주의)·MYSTERY(이번 회차 체인상충 신규발견)·HOODRAT(Night Riders IP 공유, 별개 토큰) — **반드시 CA 대조 후 매매**.
+- **뒷북 항목 정직 표기**: CASHCAT·HOODRAT·4663·POOCH·CASHDOG/JOHN/530A는 이미 피크를 지났거나 데이터 신뢰 불가로, 조기신호로서의 가치는 낮음. DIH는 뒷북에서 반등 국면 전환 가능성이 있어 예외적으로 재관찰 중.
+- **이번 회차 미확인/미갱신**: ROBINFUN, 4663 — 시간 제약으로 재검증 미실시, 직전치만 잠정 유지.
 
 ---
-*Not financial advice. 본 문서는 공개 2차 자료·CoinGecko/CoinMarketCap/GeckoTerminal/DexScreener/Blockscout/Bitget/Coinbase/WebSearch 기반 아이디어 소싱용이며 매수 추천이 아님. 재실행 시 갱신.*
+*Not financial advice. 본 문서는 공개 2차 자료·CoinGecko/CoinMarketCap/GeckoTerminal/DexScreener/Bitget/Coinbase/kolscan/WebSearch 기반 아이디어 소싱용이며 매수 추천이 아님. 재실행 시 갱신.*
