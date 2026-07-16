@@ -1,80 +1,96 @@
-# KOL 하이프 리스트 — 2026-07-16 16:02 UTC (KST 2026-07-17 01:02)
+# KOL 하이프 리스트 — 2026-07-16 18:02 UTC (KST 2026-07-17 03:02)
 
-> ⚠️ 아이디어 소싱·조기경보용. **투자조언 아님(Not financial advice).** KOL 콜은 홍보·포지션 편향이 매우 크고, 유료/봇 KOL·카피트레이드 유인도 섞여 있음. X 로그인월 한계로 **WebSearch 인덱싱·2차 보도·CoinGecko/GeckoTerminal/DexScreener/CoinMarketCap/beincrypto/coindesk/coingape 기반**이며, 원 트윗 직접 확인이 안 된 항목은 **"미확인"**으로 표기. 직전 회차(2026-07-16 14:20 UTC, 약 1시간 40분 전) 대비 **신규/지속/식음**을 비교 표기함.
+> ⚠️ 아이디어 소싱·조기경보용. **투자조언 아님(Not financial advice).** KOL 콜은 홍보·포지션 편향이 매우 크고, 유료/봇 KOL·카피트레이드 유인도 섞여 있음. X 로그인월 한계로 **WebSearch 인덱싱·2차 보도·CoinGecko/GeckoTerminal/DexScreener/CoinMarketCap/beincrypto/coindesk/coingape 기반**이며, 원 트윗 직접 확인이 안 된 항목은 **"미확인"**으로 표기. 직전 회차(2026-07-16 16:02 UTC, 약 2시간 전) 대비 **신규/지속/식음**을 비교 표기함.
 
 ## 이번 회차 핵심 발견
 
-1. **RH체인 소형 밈 동반 반등 물결 포착**: MEOW(+51.1%)·VIBE CAT(+41~48.5%)·4663(+40.5~75.9%)가 불과 1시간 40분 사이 동시에 강하게 반등 — 개별 서사보다 RH체인 소형밈 섹터 전체의 베타 성격 강함. 카테고리 전체 mcap도 $209M→$219.7M(+7.4%)로 확대.
-2. **VIBE CAT, "식음" 판정이 즉시 번복됨 — 데이터 변동성 경고**: 직전 회차 거래량 $402K→$7,665(1/50 급감)로 "식음 전환"이라 판정했으나, 불과 1시간 40분 만에 거래량 $393K~$407K·가격 +41~48.5%로 재반등. 초기 신호 판정 시 최소 3회차 이상 지속 관찰이 필요함을 다시 한번 보여주는 사례.
-3. **ARROW(Arrow Finance) 신규 추가 — ArrowPad 런치패드(7/20 D-4) 모토큰**: beincrypto가 "RH체인서 지켜볼 3종" 중 하나로 소개, 보도 시점 mcap $25.7M·+208%까지 급등했으나 재확인 시 mcap $16.9M·-7.2%로 조정 중. 프론트엔드·문서를 갖춘 소수의 '실체 있는' RH체인 DeFi 프로젝트로 평가되며, 런치패드 정식 출시가 임박한 촉매 대기 상태.
-4. **PONS, 낙폭 재확대 — 반전 아닌 지속 하락**: 직전 -24.10%(낙폭 축소)에서 이번 -45.20%로 오히려 낙폭이 커짐, 4회 연속 하락 확정. 거래량은 $13.57M로 여전히 왕성해 "거래는 활발하나 가격은 지속 하락"하는 조정 심화 패턴.
-5. **HODL(Diamond Hands), 식음 확정**: 검색된 Diamond Hands 개별페이지가 Solana PumpSwap 버전으로 mcap $8,369·거래량 $14.83에 불과 — 사실상 거래 소멸. RH체인 정품 CA 기준 데이터는 여전히 확인 못함.
-6. **Chill House·PUNCH 신규 확인 — 둘 다 이미 뒷북(펌프덤프 완료)**: Chill House는 Vitalik 등 저격 바이럴로 mcap $18M→$30.24M까지 급등했다가 재확인 시 $2.3M로 대폭 하락. PUNCH도 주간 +22,290% 보도됐으나 재확인 시 mcap $2.6M로 초기 급등분 대부분 반납, 상위 3지갑 물량 7.75% 집중된 러그 위험 지적. 둘 다 "이미 다 지나간" 사례로 기록, 추격 금지.
-7. **ANSEM, mcap $82.26M(-9.3%)로 소폭 반등**: 직전 회차($76.27M) 대비 회복됐으나 7/6 ATH 대비 여전히 큰 폭 조정 국면. 한때 검색된 "$400M 돌파" 보도는 시점이 오래된 것으로 판단해 폐기, CoinMarketCap 실시간 수치로 대체.
-8. **CASHCAT, $108.7M(+1.0%)로 재반등해 $100M대 안착**: NOXA 충격파 소화 완료 추정, 대장주 지위 유지.
-9. **CASHDOG·Little John, 24h 변동률 0.0% 표기 — 데이터 정체 의심**: CoinGecko 카테고리 페이지 데이터 갱신 지연 가능성, RH체인 신생토큰 특유의 데이터 신뢰도 문제 지속.
-10. **VLAD·WORTH·DUMBMONEY·COOKWARE·HOODIE·SEEDCOIN·HOPPY·FOX, 2회 연속 개별 재확인 실패**: 도구/검색 커버리지 한계로 연속 갱신 못함 — 직전 수치를 참고치로만 유지.
+1. **신규 토큰 2종 포착**: THROBBIN(RH체인 카테고리 top10 신규 진입, mcap $999K, 유머성 밈)과 530A "buy and retire"(LaunchHood 발행, mcap $11.8M인데 24h거래량 $147.4M로 시총의 12배 — 극단적 회전율로 워시트레이딩 의심).
+2. **VLAD, 유동성 풀 드레인 확정 — 러그 의심**: 2회 연속 개별 재확인 실패 끝에 매체 보도로 확인됨. COOPER·VladDog와 함께 트레일링 DEX거래량 $9.5M~$19M을 기록했으나 "현재 풀이 드레인된 상태"로 명시. 하이프 사실상 종료, 식음 확정으로 재판정.
+3. **ROBINFUN, 거래량 사실상 소멸 확인**: 24h거래량 단 $11.43(직전 회차는 소스간 상충으로 혼조 판정) — 명확한 식음 전환으로 재판정.
+4. **PONS, 5회 연속 하락 확정 — 조정에서 식음으로 전환**: 직전 -45.20%에서 이번 -52.40%로 낙폭 더 확대. 거래량은 $12.0M로 여전히 활발하나 가격 지속 붕괴 패턴이 장기화됨.
+5. **Robin Hood(FOX), 2회 연속 재확인 실패 후 확인 — '가속력 소진' 판정이 뒤집힘**: mcap $1,062,491(+42.4%)로 강한 반등, coingape가 이번 주 급등 상위 3종(FOX·CASHCAT·HOODIE)에 재차 포함.
+6. **ARROW, 신규 촉매 확인 — ARROW Staking·LP Staking 유틸리티 라이브**: ArrowPad 런치패드(7/20 D-4) 출시 전 추가 촉매 형성. 가격은 여전히 조정 국면($16.9M, -8.7%).
+7. **$INDEX 신규 확인 — 순수 밈이 아닌 유틸리티 서사**: 체인 수수료로 NVDA·AAPL 등 토큰화 주식을 매입해 홀더에게 분배하는 구조, mcap $16~18M·+150~157%(24h) 급등. Vlad Tenev 개발자 독려 발언이 촉매.
+8. **NOXA2.0(noxa2.fun) 신규 확인 — 정통성 미확인**: 원 NOXA(7/11 셧다운·7/15 수수료 100% 환원 발표)와 별개로 "NOXA 브랜드 계승" 주장 사이트 등장, 공식 후속인지 제3자 사칭인지 확인 안 됨.
+9. **CASHCAT, 소스간 데이터 상충 심화**: 카테고리 페이지 mcap $84.0M(+20.6%, 반등) vs 개별 코인페이지 mcap $96.0M(-13.9%, 하락) — 방향성 판단조차 소스 의존적인 상태.
+10. **CASHDOG·Little John, 3회 연속 24h변동률 0.0% 표기**: CoinGecko 데이터 갱신 정지 의심이 심화됨(2회 연속에서 3회 연속으로).
+11. **WORTH·DUMBMONEY·COOKWARE·SEEDCOIN, 3회 연속 개별 재확인 실패**: 도구/검색 커버리지 한계 지속. HOPPY·HODL(Diamond Hands)은 이번 회차 표에서 제외(HOPPY는 3회 연속 실패로 우선순위 하향, HODL은 식음 확정 상태 유지로 노트에만 기록).
 
 ## 🎯 토큰 하이프 리스트 (조기성 우선 정렬)
 
 | 토큰 | 체인/DEX | CA | 단계 | 언급 KOL(수) | 서사(요지) | 온체인 코로보 | 신규? | 리스크 | 출처 |
 |---|---|---|---|---|---|---|---|---|---|
-| **ARROW (Arrow Finance)** | Robinhood Chain(ArrowPad 모토큰) | **`0xf2915d1e3c1b0c769d0c756ec43f1c1f6c99cd03`** ✅ | 🟠확산 초입(208%급등 후 조정) | 0(beincrypto 기사) | ArrowPad 런치패드(7/20 D-4) 촉매 대기 | 🟠 mcap $16.9M(-7.20%), 거래량 $457,208 — 보도시점 mcap $25.7M·+208%서 조정 | **신규** | 🟠 이미 급등 후 조정, 유동성 얇음, 직접 KOL 코로보 없음 | [CoinGecko](https://www.coingecko.com/en/coins/arrow-2) |
-| **MEOW** | Robinhood Chain(티커충돌) | **`0x75c8258eaa6d0f94b82951194191ca3efb0bcbe2`** ✅ | 🟢조기(강한 회복 지속) | 0 | RH체인 소형밈 동반반등 물결 | 🟢 mcap $2.6M→$2.68M(+51.1%), 거래량 $2.12M | 지속(성장) | 🔴 저유동성 지속, 티커충돌, 섹터 베타 성격 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
-| **4663** | Robinhood Chain | **`0xd4052415613b34af236024b895574c467f65b6dd`** ✅ | 🟢조기(반전 — 급반등) | 0(hood4663.cc) | 하락에서 급반등 | 🟢 mcap $485K→$657K~$744K(+40.5~75.9%) | 지속(반전) | 🟠 소스간 등락률 부호 불일치 이력, 주간 기준 여전히 큰 폭 하락 | [CoinGecko](https://www.coingecko.com/en/coins/4663-token) |
-| **VIBE CAT** | Robinhood Chain(Uniswap V3) | **`0x2355431b83b1a8e40172d099d90243d8d666b56b`** ✅ | 🟡조기(반전 — 식음판정 번복) | 0 | 식음 전환 판정 1시간여 만에 재반등 | 🟡 거래량 $7,665→$393K~$407K(+41~48.5%) | 지속(반전) | 🔴 극심한 단기 변동성, KOL 코로보 0 지속 | [CoinGecko](https://www.coingecko.com/en/coins/vibing-cat-2) |
-| **ROBINFUN** | Robinhood Chain(런치패드) | **`0x56a98db16cf501b686c14ba00a5dec02e87083fa`** ✅ | 🟡조기(데이터 혼조) | 1(Crypto Gem Signals, 주의) | 소스간 수치 상충, 방향은 상승 | 🟡 mcap $385K~$636K, 거래량 $6.25~$40.85(구간별 상충) | 지속(혼조) | 프로모션 콜 신뢰도 낮음, 수치 상충 심각 | [CoinGecko](https://www.coingecko.com/en/coins/robinfun) |
-| **PONS** | Robinhood Chain(런치패드) | **`0x39dBED3a2bd333467115dE45665cC57F813C4571`** ✅ | 🟠확산~조정 심화(낙폭 재확대) | theunipcs(과거) | 4회 연속 하락, 거래는 왕성 | 🟠 24h -45.20%(직전-24.10%서 재확대), 거래량 $13.57M | 지속(악화) | 🟠 4회 연속 하락, 낙폭 재확대 | [CoinGecko](https://www.coingecko.com/en/coins/pons) |
-| **VLAD** | Robinhood Chain | 미확인 | 🟡조기(재확인 실패 2회연속) | 0 | Robinhood CEO 이름 딴 밈 | 직전: mcap $452,980·+16.5% | 지속(미확인) | CA 미확인, 2회 연속 갱신 못함 | [vladbull.fun](https://www.vladbull.fun/) |
-| **WORTH** | Robinhood Chain | 미확인 | 🟡조기(재확인 실패 2회연속) | 0 | 신규진입 중 최고회전율(과거) | 직전: mcap $759,027·+25.4% | 지속(미확인) | CA 미확인, 2회 연속 갱신 못함 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
-| **DUMBMONEY** | Robinhood Chain(티커충돌 극심) | 미확인 | 🟡조기(RH체인 특정 재확인 실패 2회연속) | 0 | RH체인 정품 특정 실패, Solana버전은 성장 | Solana판 mcap $112,656 | 지속(미확인) | 🟠 CA 미확인+티커충돌 4중 | [CoinGecko](https://www.coingecko.com/en/coins/dumb-money-3) |
-| **COOKWARE** | Robinhood Chain | 미확인 | 🟡조기(재확인 실패 2회연속) | 0 | 절대mcap 소폭하락, 거래 활발(과거) | 직전: mcap $752,569·+53.0% | 지속(미확인) | CA 미확인, 2회 연속 갱신 못함 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
-| **HOODIE** | Robinhood Chain | 미확인 | 🟡조기(재확인 실패 2회연속) | 0 | 과거 붕괴 후 재성장(과거) | 직전: mcap $775,005·+20.8% | 지속(미확인) | 과거 붕괴 이력, CA 미확인 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
-| **SEEDCOIN** | Robinhood Chain(NOXA 이후) | 미확인 | 🟡조기(재확인 실패 2회연속) | 0 | 거래량 mcap과 맞먹는 수준(과거) | 직전: mcap $465,286·+31.9% | 지속(미확인) | CA 미확인, 2회 연속 갱신 못함 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
-| **HOPPY** | Robinhood Chain(표시 상충) | 미확인 | 🔴조기(재확인 실패 2회연속·거래거의소멸 추정) | 0 | 극단적 저거래 지속 추정 | 직전: mcap $915,130, 거래량 $2,771 | 지속(미확인) | 🔴 거래정지 수준 추정 지속, 티커충돌 의심 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
-| **HODL(Diamond Hands)** | Robinhood Chain(정품 재확인 못함)/Solana판 확인 | **`0xf4c450c1570c2dbda91de1ed2e39995a15028c97`**(RH체인 CA, 재대조 필요) | 🔴식음 확정 | 0 | 안정 유지하던 토큰이 사실상 거래 소멸 | 🔴 Solana판 mcap $8,369·거래량 $14.83(거의사망) | 지속(식음 확정) | 🔴 거래 사실상 정지 확정적, RH체인 정품 CA 대조 필요 | [CoinGecko](https://www.coingecko.com/en/coins/diamond-hands-3) |
-| **Robin Hood(FOX)** | Robinhood Chain | 미확인 | 🟠조정 지속(재확인 실패 2회연속) | coingape 기사(과거) | 3회 연속 가속력 소진(과거) | 직전: mcap $1,855,816·+15.1% | 지속(미확인) | 가속력 소진 추세, CA 미확인 | [coingape](https://coingape.com/markets/2-robinhood-chain-tokens-that-could-be-the-next-cashcat/) |
+| **THROBBIN** | Robinhood Chain(Uniswap V3) | **`0xe8fb470e0685437d7739bd2aacba60b228800335`** ✅ | 🟢조기(신규 발견) | 0 | 카테고리 top10 신규 진입, 유머밈 | 🟢 mcap $999,365, 24h 0.0%(정체 표기) | **신규** | 🔴 초소형·정보 거의 없음, KOL 코로보 전무 | [throbbin.xyz](https://www.throbbin.xyz/) |
+| **4663** | Robinhood Chain | **`0xd4052415613b34af236024b895574c467f65b6dd`** ✅ | 🟢조기(지속 성장) | 0(hood4663.cc) | 반등 후 지속 성장 확인 | 🟢 mcap $657K~$744K→$1,039,349, 거래량 $3.6M | 지속(성장) | 🟠 소스간 수치 편차 이력, 초소형 시총 | [CoinGecko](https://www.coingecko.com/en/coins/4663-token) |
+| **VIBE CAT** | Robinhood Chain(Uniswap V3) | **`0x2355431b83b1a8e40172d099d90243d8d666b56b`** ✅ | 🟡조기(등락 반복 지속) | 0 | 급반등 이후 소폭 조정 | 🟡 mcap $506,603, 거래량 $478K | 지속 | 🔴 극심한 단기 변동성 이력, KOL 코로보 0 지속 | [CoinGecko](https://www.coingecko.com/en/coins/vibing-cat-2) |
+| **MEOW** | Robinhood Chain(티커충돌) | **`0x75c8258eaa6d0f94b82951194191ca3efb0bcbe2`** ✅ | 🟡조기(성장 둔화) | 0 | RH체인 소형밈 동반반등 물결에서 다소 이탈 | 🟡 mcap $2.68M(+51.1%)→$2.165M(+32.8%) | 지속(둔화) | 🔴 저유동성 지속, 티커충돌, 섹터 베타 성격 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
+| **Robin Hood(FOX)** | Robinhood Chain | 미확인 | 🟢조기~확산(반전 급반등) | coingape 기사(급등 상위3종 재등장) | 가속력소진 판정이 뒤집힘 | 🟢 mcap $1,062,491(+42.4%) | 지속(반전) | 🟠 CA 미확인, 과거 소진 이력 반복 가능성 | [coingape](https://coingape.com/markets/3-robinhood-chain-tokens-rallying-the-most-this-week-fox-cashcat-hoodie/) |
+| **ARROW(Arrow Finance)** | Robinhood Chain(ArrowPad 모토큰) | **`0xf2915d1e3c1b0c769d0c756ec43f1c1f6c99cd03`** ✅ | 🟠확산 초입(신규촉매: 스테이킹 출시) | 0(beincrypto) | ArrowPad D-4 앞두고 Staking·LP Staking 유틸리티 라이브 | 🟠 mcap $16.9M(-8.7%), 거래량 $1.1M, 7일-3.5% | 지속(신규촉매) | 🟠 이미 208%급등 후 조정 지속, 유동성 얇음 | [CoinGecko](https://www.coingecko.com/en/coins/arrow-2) |
+| **530A(buy and retire)** | Robinhood Chain(LaunchHood) | **`0x6e47d95928cb39b5e51be425aab2a5190418e943`** ✅ | 🔴조기(신규 발견·데이터 이상치) | 0 | LaunchHood 발행, 정보 거의 없음 | 🔴 mcap $11.8M, 거래량 $147.4M(시총 12배) | **신규** | 🔴 워시트레이딩 의심, 프로젝트 정보 부재 | [LaunchHood](https://launchhood.com/token/0x6e47d95928cb39b5e51be425aab2a5190418e943) |
+| **HOODIE** | Robinhood Chain | 미확인 | 🟡조기(정체·재확인 성공) | coingape 기사(급등 상위3종, 실데이터는 정체) | 매체보도(급등)와 실데이터(정체) 괴리 | 🟡 mcap $771,309(직전 $775,005과 거의 동일) | 지속(정체) | 과거 붕괴 이력, CA 미확인, 보도-데이터 괴리 | [CoinGecko](https://www.coingecko.com/en/coins/hoodie) |
+| **PONS** | Robinhood Chain(런치패드) | **`0x39dBED3a2bd333467115dE45665cC57F813C4571`** ✅ | 🔴조정심화→식음전환(5연속하락) | theunipcs(과거) | 5회 연속 하락 확정, 거래는 왕성 | 🔴 24h -52.40%(직전-45.20%서 재확대), 거래량 $12.0M | 지속(악화) | 🔴 5회 연속 하락, 경쟁 런치패드 대비 관심 이탈 | [CoinGecko](https://www.coingecko.com/en/coins/pons) |
+| **ROBINFUN** | Robinhood Chain(런치패드) | **`0x56a98db16cf501b686c14ba00a5dec02e87083fa`** ✅ | 🔴식음전환(거래량 소멸) | 1(Crypto Gem Signals, 과거) | 거래 사실상 정지 확인 | 🔴 mcap $267,876, 24h거래량 $11.43 | 지속(식음) | 🔴 거래 사실상 정지, 프로모션 콜 신뢰도 낮음 재확인 | [CoinGecko](https://www.coingecko.com/en/coins/robinfun) |
+| **VLAD** | Robinhood Chain | 미확인 | 🔴식음확정(풀드레인·러그의심) | 0 | 트레일링거래량 있었으나 현재 풀 드레인 | 🔴 트레일링거래량 $9.5M~$19M 기록 후 풀 고갈 확인 | 지속(식음확정) | 🔴 유동성 풀 드레인 확정, 러그 의심, CA 끝내 미확인 | [beincrypto](https://beincrypto.com/3-crypto-to-watch-on-robinhood-chain-as-meme-coin-frenzy-takes-off/) |
+| **WORTH** | Robinhood Chain | 미확인 | 🟡조기(재확인 실패 3회연속) | 0 | 신규진입 중 최고회전율(과거) | 직전: mcap $759,027·+25.4% | 지속(미확인) | CA 미확인, 3회 연속 갱신 못함 — 신뢰도 하락 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
+| **DUMBMONEY** | Robinhood Chain(티커충돌 극심) | 미확인 | 🟡조기(RH체인 재확인 실패 3회연속) | 0(@Dumb__Money, 과거) | RH체인 정품 특정 실패, Solana버전만 참고 | Solana판 mcap $112,656 | 지속(미확인) | 🟠 CA 미확인+티커충돌 4중 | [CoinGecko](https://www.coingecko.com/en/coins/dumb-money-3) |
+| **COOKWARE** | Robinhood Chain | 미확인 | 🟡조기(재확인 실패 3회연속) | 0 | 절대mcap 소폭하락, 거래 활발(과거) | 직전: mcap $752,569·+53.0% | 지속(미확인) | CA 미확인, 3회 연속 갱신 못함 — 신뢰도 하락 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
+| **SEEDCOIN** | Robinhood Chain(NOXA 이후) | 미확인 | 🟡조기(재확인 실패 3회연속) | 0 | 거래량 mcap과 맞먹는 수준(과거) | 직전: mcap $465,286·+31.9% | 지속(미확인) | CA 미확인, 3회 연속 갱신 못함 — 신뢰도 하락 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
+
+## 📌 주목 프로젝트/토큰 (notable)
+
+| 토큰 | 상태 | 요지 |
+|---|---|---|
+| CASHCAT | 확산(대장주·데이터상충) | 카테고리 mcap $84.0M(+20.6%) vs 코인페이지 mcap $96.0M(-13.9%) 상충, ATH대비 -57%, RH체인 대장주 지위 유지 |
+| $INDEX(RH체인 유틸리티) | 확산(신규확인) | 체인수수료로 Stock Token 매입→홀더 분배, mcap $16~18M·+150~157% — 밈이 아닌 유틸리티 서사 |
+| ArrowPad/ARROW — D-4 | 이슈(신규촉매) | Staking·LP Staking 유틸리티 라이브 신규확인, 7/20 런치패드 출시 D-4 |
+| CASHDOG | 확산(정착·2위·데이터정체 3회) | mcap $42.1M, 24h변동 0.0% 3회연속 — 데이터 갱신정지 의심 심화 |
+| TENDIES | 확산(변동성 극심) | mcap $12.5M·+84.3%(타소스 +422% 주장) — 3회연속 수치 크게 상이 |
+| Little John(JOHN) | 확산→조정(데이터정체 3회) | mcap $17.2M, 0.0% 3회연속 — ATH(7/13)대비 조정 지속 |
+| ANSEM(Black Bull) | 조정(등락지속) | mcap $74.9M, 직전($82.26M)대비 하락 — 크리에이터피 에어드랍 화제 대비 크게 식음 |
+| NOXA2.0(noxa2.fun) | 이슈(신규확인·정통성미확인) | NOXA 브랜드 계승 주장 — 원팀 공식후속인지 사칭인지 확인 안 됨 |
+| Chill House | 뒷북(유지) | mcap $2.3M대 유지, 고점대비 대폭하락 지속, 추격 금지 |
+| PUNCH | 뒷북(유지) | mcap $2.6M대 유지, 상위3지갑 물량집중 러그위험 지적 지속 |
 
 ## 전회차 대비 변동 요약
 
-- **신규 추가**: ARROW(Arrow Finance) — ArrowPad 런치패드(7/20 D-4) 모토큰, 이미 208%급등 후 조정 중.
-- **반전(식음→회복)**: VIBE CAT — 1시간 40분 만에 거래량 1/50 급감→1000% 이상 재반등, 판정 뒤집힘.
-- **반전(하락→급반등)**: 4663 — 2회 연속 하락에서 +40.5~75.9% 급반등.
-- **섹터 동반 반등**: MEOW·VIBE CAT·4663 동시 +40~51% — 개별 서사보다 RH체인 소형밈 전체 반등 물결.
-- **악화(낙폭 재확대)**: PONS — -24.10%→-45.20%로 낙폭 재확대, 4회 연속 하락 확정.
-- **식음 확정**: HODL(Diamond Hands) — Solana판 확인 결과 mcap $8,369·거래량 $14.83로 사실상 거래 소멸.
-- **뒷북 신규 확인**: Chill House, PUNCH — 둘 다 SNS 바이럴로 크게 급등했다 이미 대폭 하락, 추격 금지.
-- **재확인 실패(2회 연속)**: VLAD·WORTH·DUMBMONEY·COOKWARE·HOODIE·SEEDCOIN·HOPPY·FOX — 도구/검색 커버리지 한계 지속.
-- **뒷북 확정 유지**: CASHDOG·Little John·TENDIES·CASHCAT — 이미 큰 변동폭 거친 상태.
+- **신규 추가**: THROBBIN(카테고리 top10 신규 진입), 530A/buy and retire(워시트레이딩 의심 이상치), $INDEX(유틸리티 서사), NOXA2.0(정통성 미확인).
+- **식음 확정/전환**: VLAD(풀 드레인 확인), ROBINFUN(거래량 $11.43로 소멸), PONS(5연속 하락으로 조정→식음 재판정).
+- **반전(재확인 성공)**: Robin Hood(FOX) — 2회 연속 실패 후 확인, 가속력소진 판정이 급반등으로 뒤집힘. HOODIE — 재확인 성공했으나 실질 정체.
+- **성장 지속**: 4663 — 2회 연속 반등 후 mcap 추가 성장($744K→$1.04M).
+- **성장 둔화**: MEOW — 직전 $2.68M에서 $2.165M로 소폭 후퇴(여전히 플러스).
+- **신규 촉매 확인**: ARROW(Staking 출시), ArrowPad D-4 재확인.
+- **데이터 상충/정체 심화**: CASHCAT(소스간 방향성 불일치), CASHDOG·Little John(3회 연속 0.0%), TENDIES(3회 연속 수치 상이).
+- **재확인 실패(3회 연속)**: WORTH·DUMBMONEY·COOKWARE·SEEDCOIN — 도구/검색 커버리지 한계 지속.
+- **표에서 제외(우선순위 하향)**: HOPPY(3회연속 실패, 거래거의소멸 추정 지속), HODL/Diamond Hands(식음 확정 상태 유지, 별도 갱신 불필요로 판단).
 
 ## KOL별 최근 콜
 
 ### theunipcs(X) · 팔로워/신뢰도 미확인
-- **Pons**: "NOXA 폐쇄 후 단 하루 만에 1위 런치패드가 됐다"(과거 콜) — 이번 회차 낙폭이 -45.20%로 재확대, 4회 연속 하락.
+- **Pons**: "NOXA 폐쇄 후 단 하루 만에 1위 런치패드가 됐다"(과거 콜) — 이번 회차 -52.40%로 5회 연속 하락, 조정에서 식음으로 재판정.
 
 ### Crypto Gem Signals(@Cryptoo_Gems) · 팔로워/신뢰도 미확인(프로모션성 계정 — 주의)
-- **ROBINFUN**: 지속 홍보 확인 — 이번 회차 소스간 수치 상충으로 실질 회복 지속 여부 재확인 어려움.
+- **ROBINFUN**: 과거 지속 홍보 확인 — 이번 회차 거래량 $11.43로 거래 사실상 소멸 확인돼 프로모션 콜 신뢰도 낮음이 재확인됨.
 
 ### Ansem(@blknoiz06) · 팔로워 ~75만+ · 신뢰도: 높음(조기콜 이력), 단 밈·포지션 편향 극심
-- RH체인 특정 토큰 신규 콜은 이번 회차도 미확인. 7/8 Ansem 연계 지갑이 CASHCAT $233,000 매수했다는 과거 보도 재확인. ANSEM(Black Bull) 본인 토큰은 mcap $82.26M(-9.3%)로 소폭 조정.
+- RH체인 특정 토큰 신규 콜은 이번 회차도 미확인. 본인 토큰 ANSEM(Black Bull)은 mcap $74.9M로 직전 대비 하락, 크리에이터피 에어드랍 화제 대비 크게 식음.
 
-### beincrypto(매체) · 신뢰도: 매체 보도(직접 KOL 아님)
-- **ARROW, TENDIES, DIH**: "RH체인서 지켜볼 3종"으로 소개 — ARROW가 특히 프론트엔드·문서를 갖춘 실체 있는 프로젝트로 평가됨.
+### beincrypto·coingape(매체) · 신뢰도: 매체 보도(직접 KOL 아님)
+- **ARROW**: Staking·LP Staking 유틸리티 라이브 소식 신규 확인.
+- **FOX·CASHCAT·HOODIE**: "이번 주 가장 많이 급등한 RH체인 토큰 3종"으로 재소개 — FOX는 실데이터로도 반등 확인됐으나 HOODIE는 실데이터상 정체.
 
 ## 새로 포착된 중형 KOL
 
-- 이번 회차 신규 중형 KOL 개별 계정 포착은 없음. Chill House·PUNCH는 KOL 개인 콜이 아닌 SNS 바이럴/커뮤니티 주도 확산 사례로 별도 분류.
+- 이번 회차 신규 중형 KOL 개별 계정 포착은 없음. $INDEX·NOXA2.0은 KOL 개인 콜이 아닌 매체 보도/프로젝트 자체 발표 기반으로 별도 분류.
 
 ## 메모
 
-- **데이터 한계(X 접근)**: x.com 직접 조회는 여전히 제한적, WebSearch 인덱싱·2차 보도(beincrypto·coindesk·coingape 등)·CoinGecko/CoinMarketCap/GeckoTerminal 기반. DexScreener는 이번 회차 403으로 직접 접근 실패.
-- **RH체인 데이터 변동성·신뢰도 문제 재확인**: VIBE CAT이 1시간 40분 만에 "식음"→"급반등"으로 판정이 뒤집힌 사례는 RH체인 신생토큰 데이터가 매우 짧은 주기로 크게 출렁이며, CoinGecko 집계(FDV vs 유통시총 혼용 추정)에 구조적 신뢰도 문제가 있음을 재확인시킴. 매매 시 반드시 DEX 화면에서 직접 재확인 필요.
-- **NOXA 런치패드 사실상 시장 퇴장(유지)**: 누적 수수료 약 $12M을 벌어들인 뒤 7/11 신규 런칭 중단→7/14 서비스 다운→7/15 "수수료 100% 크리에이터 환원" 발표(coindesk 확인). 공백을 ArrowPad(7/20 D-4)·Pons·flap.sh 등이 경쟁 중, ARROW 토큰 자체도 선반영 급등 확인.
-- **Chill House·PUNCH — 이미 다 지나간 바이럴 사례**: 둘 다 mcap이 고점 대비 90% 이상 하락한 상태에서 재확인됨. "바이럴됐다"는 뉴스가 검색되는 시점엔 이미 뒷북인 경우가 많다는 것을 보여주는 사례로 기록.
-- **동명이인/티커충돌 주의(누적)**: ANSEM·CASHCAT·CASHDOG·HOODIE·WEN·FOX·WORTH·MEOW·JUGGERNAUT·HOODRAT·BULLCAT·COOKWARE·HOPPY·VIBE CAT·POOCH·HODL(Diamond Hands)·DUMBMONEY·VLAD·Little John·PUNCH — **반드시 CA 대조 후 매매**.
-- **저유동/투기 경고 유지**: 조기 후보 전반은 초소형·KOL 코로보 미약으로 투기성 최상급. PONS·JUGGERNAUT·TENDIES·CASHDOG·Little John·ARROW는 이미 큰 변동폭을 거쳐 추격매수 위험 고조.
-- **이번 회차 재확인 실패(과거 정보만 참고)**: POOCH, WEN·WISHBONE, HYPE(신규가격 재확인 못함), LAB·BONK/BonkDAO(과거 확인치만), HOODRAT(mcap $9.8M권 고착 추정), JUGGERNAUT(정품 CA 기준 재확인 못함), FROGBULL(이번 회차 표에서 제외, 직전까지 뒷북+러그 위험 확정 유지).
-- **ArrowPad/ARROW 촉매 D-4 재확인**: 7/20(월) 정식 출시 재확인, 고정 100만 공급·본딩커브 모델 — NOXA 퇴장 공백을 흡수할 유력 후보로 지위 유지, 모토큰 ARROW는 이미 선반영 급등 후 조정 중.
+- **데이터 한계(X 접근)**: x.com 직접 조회는 여전히 제한적, WebSearch 인덱싱·2차 보도(beincrypto·coindesk·coingape 등)·CoinGecko/CoinMarketCap 기반. DexScreener 직접 접근은 이번 회차도 403으로 실패(WebFetch), WebSearch 인덱싱으로만 일부 보강.
+- **RH체인 데이터 신뢰도 문제 구조적으로 지속**: CASHCAT(카테고리 vs 개별페이지 방향성 불일치), TENDIES(3회 연속 등락률 소스간 상이), CASHDOG·Little John(3회 연속 0.0% 정체 표기) 등 CoinGecko 데이터가 자주 상충·정체돼 매매 시 반드시 DEX 화면에서 직접 재확인 필요.
+- **NOXA 후속 경쟁 구도 복잡화**: 원 NOXA(7/11 셧다운·7/15 수수료 100% 환원)에 더해 ArrowPad(7/20 정식출시)·noxa2.fun(정통성 미확인)·flap.sh 등 여러 후보가 공백을 다투는 중 — 어느 것이 진짜 승계자인지 아직 불투명, 사칭 위험 주의.
+- **VLAD·ROBINFUN·PONS, 이번 회차 하이프 소멸/악화 확정**: 조기 신호였던 토큰들이 시간이 지나며 실제로 식어가는 사례로 기록 — 조기 판정 이후에도 지속 관찰이 필수임을 재확인.
+- **동명이인/티커충돌 주의(누적)**: ANSEM·CASHCAT·CASHDOG·HOODIE·WEN·FOX·WORTH·MEOW·JUGGERNAUT·HOODRAT·BULLCAT·COOKWARE·HOPPY·VIBE CAT·POOCH·HODL(Diamond Hands)·DUMBMONEY·VLAD·Little John·PUNCH·530A — **반드시 CA 대조 후 매매**.
+- **저유동/투기 경고 유지**: 조기 후보 전반은 초소형·KOL 코로보 미약으로 투기성 최상급. 530A는 거래량/시총 비율이 극단적이라 워시트레이딩 강력 의심, 절대 추격 금지.
+- **이번 회차 재확인 실패(과거 정보만 참고)**: HOPPY(3회연속, 거래거의소멸 추정), HODL/Diamond Hands(식음 확정 유지), POOCH·WEN·WISHBONE·HYPE·LAB·BONK/BonkDAO·HOODRAT·JUGGERNAUT·FROGBULL(과거 확인치만, 뒷북+러그 위험 확정 유지).
 
 ---
 *Not financial advice. 본 문서는 공개 2차 자료·CoinGecko/CoinMarketCap/GeckoTerminal/beincrypto/coindesk/coingape/WebSearch 기반 아이디어 소싱용이며 매수 추천이 아님. 재실행 시 갱신.*
