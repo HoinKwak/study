@@ -16,9 +16,13 @@
   - `close + smoothrng < filt[-1]` → `filt = min(filt[-1], close + smoothrng)`
   - 그 외 → `filt = filt[-1]` (레인지 내 움직임은 무시 → 노이즈 필터링 핵심 컨셉)
 - 방향 판정: `filt > filt[-1]` → 상승추세(upward), `filt < filt[-1]` → 하락추세(downward)
-- 롱: `close`가 `filt`를 상향 돌파(crossover) **AND** `upward`(직전 봉 대비 filt 상승) **AND** (옵션, 2차자료) `EMA(50) > EMA(200)` **AND** Bull Power(`high − EMA(13)`) > 임계값
-- 숏: `close`가 `filt`를 하향 돌파(crossunder) **AND** `downward` **AND** (옵션) `EMA(50) < EMA(200)` **AND** Bear Power(`low − EMA(13)`) < −임계값
-- 최소 규칙(옵션 필터 제외)만으로도 완결된 신호 — 옵션 필터는 신호 빈도를 줄이는 보수화 용도로 검토.
+- 롱: `close`가 `filt`를 상향 돌파(crossover) **AND** `upward`(직전 봉 대비 filt 상승) **AND** `EMA(50) > EMA(200)` **AND** Bull Trend
+- 숏: `close`가 `filt`를 하향 돌파(crossunder) **AND** `downward` **AND** `EMA(50) < EMA(200)` **AND** Bear Trend
+- ⚠️ **정정(backtest-reviewer 감사)**: 초판은 EMA50/200·"Bull Power(`high−EMA13`)" 필터를 **옵션(2차자료)**으로,
+  그것도 **틀린 산식(Elder Bull Power)**으로 적었으나, 스펙이 인용한 원본 소스에서는 이 필터가 **진입 필수**이며
+  실제 산식은 **Bull/Bear Trend = `(close − lowest(low,50)) / atr(5)` 기반**(Elder Bull Power 아님)이다. 감사가
+  원본대로 재구현하니 BTC/ETH/ADA/NEAR/1000PEPE에서 PF 1.2~1.7(OOS>1)로, "필터 없는 raw 신호 FAIL"과 결론이
+  갈렸다. 정확한 필터 기준으로 재검증 진행 예정(아래 백테스트 리포트 참조).
 
 ## 청산 규칙
 - **추세전환 청산**: `filt` 방향이 반전되거나 반대 크로스 발생 시 청산(지표 자체가 청산 신호 겸함).
