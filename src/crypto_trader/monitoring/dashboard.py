@@ -426,7 +426,11 @@ def _market_view(tickers) -> str:
         f'<button class="tfbtn indbtn" data-ind="ma100">MA100</button>'
         f'<button class="tfbtn indbtn" data-ind="ma200">MA200</button>'
         f'<button class="tfbtn indbtn" data-ind="st">Supertrend</button>'
-        f'<button class="tfbtn indbtn" data-ind="rsi">RSI</button></div>'
+        f'<button class="tfbtn indbtn" data-ind="rsi">RSI</button>'
+        f'<span class="muted" style="align-self:center;font-size:11px;margin-left:6px">채널</span>'
+        f'<button class="tfbtn chanbtn" data-chan="none">없음</button>'
+        f'<button class="tfbtn chanbtn" data-chan="keltner">켈트너</button>'
+        f'<button class="tfbtn chanbtn" data-chan="donchian">돈치안</button></div>'
         f'<div id="mkt-search" style="display:none;margin:8px 0">'
         f'<input class="futsearch" id="mkt-input" placeholder="심볼 검색…">'
         f'<div class="tklist" id="mkt-list"></div></div>'
@@ -507,6 +511,8 @@ _CHART_JS = r"""<script>
  var IND={ma100:true,ma200:true,st:true,rsi:true};   // 차트 기본 지표(모두 ON)
  try{var _pi=localStorage.getItem('ct_ind');if(_pi){var _po=JSON.parse(_pi);
    for(var _k in _po)if(_k in IND)IND[_k]=!!_po[_k];}}catch(_e){}
+ var CHAN='none';   // 가격밴드 채널(배타 선택): none|keltner|donchian
+ try{var _ch=localStorage.getItem('ct_chan');if(_ch)CHAN=_ch;}catch(_e){}
  function save(k,v){try{localStorage.setItem(k,v);}catch(_e){}}
  // 선택한 심볼·타임프레임 복원(새로고침 후에도 유지)
  try{var _s=localStorage.getItem('ct_sym');if(_s)SEL.s=_s;
@@ -556,6 +562,23 @@ _CHART_JS = r"""<script>
      if(pd===1&&cl[j]<fl)nd=-1;else if(pd===-1&&cl[j]>fu)nd=1;
      dir[j]=nd;st[j]=nd===1?fl:fu;}
    return {st:st,dir:dir};}
+ // Wilder ATR 배열(켈트너용)
+ function atrArr(hi,lo,cl,p){p=p||10;var n=cl.length,atr=new Array(n).fill(null),rma=0,tr,pc;
+   for(var i=0;i<n;i++){pc=i>0?cl[i-1]:cl[i];
+     tr=Math.max(hi[i]-lo[i],Math.abs(hi[i]-pc),Math.abs(lo[i]-pc));
+     if(i<p){rma+=tr;if(i===p-1)atr[i]=rma/p;}else{rma=(atr[i-1]*(p-1)+tr);atr[i]=rma/p;}}
+   return atr;}
+ // 켈트너 채널: EMA(ep) ± mult×ATR(ap)
+ function keltner(hi,lo,cl,ep,ap,mult){ep=ep||20;ap=ap||10;mult=mult||2;
+   var mid=emaA(cl,ep),atr=atrArr(hi,lo,cl,ap),n=cl.length,up=new Array(n).fill(null),lw=new Array(n).fill(null);
+   for(var i=0;i<n;i++){if(mid[i]!=null&&atr[i]!=null){up[i]=mid[i]+mult*atr[i];lw[i]=mid[i]-mult*atr[i];}}
+   return {up:up,mid:mid,lo:lw};}
+ // 돈치안 채널: 최근 p봉 최고가/최저가, 중앙선=평균
+ function donchian(hi,lo,p){p=p||20;var n=hi.length,up=new Array(n).fill(null),lw=new Array(n).fill(null),md=new Array(n).fill(null);
+   for(var i=p-1;i<n;i++){var hh=-Infinity,ll=Infinity;
+     for(var j=i-p+1;j<=i;j++){if(hi[j]>hh)hh=hi[j];if(lo[j]<ll)ll=lo[j];}
+     up[i]=hh;lw[i]=ll;md[i]=(hh+ll)/2;}
+   return {up:up,mid:md,lo:lw};}
  function poly(pts){if(!pts.length)return '';var s='';for(var i=0;i<pts.length;i++)s+=(i?'L':'M')+pts[i][0].toFixed(1)+','+pts[i][1].toFixed(1);return s;}
  // ---- 기술적 종합 점수용 추가 지표 ----
  function clamp(x,a,b){return x<a?a:(x>b?b:x);}
@@ -641,6 +664,7 @@ _CHART_JS = r"""<script>
    var fCl=full.map(function(a){return a[4];}),fHi=full.map(function(a){return a[2];}),fLo=full.map(function(a){return a[3];});
    var ma100=IND.ma100?smaArr(fCl,100):null, ma200=IND.ma200?smaArr(fCl,200):null;
    var rsi=IND.rsi?rsiArr(fCl,14):null, stObj=IND.st?superTrend(fHi,fLo,fCl,10,3):null;
+   var chan=CHAN==='keltner'?keltner(fHi,fLo,fCl,20,10,2):(CHAN==='donchian'?donchian(fHi,fLo,20):null);
    var p=full.slice(warm);   // 표시구간
    var W=Math.max(320,root.clientWidth||680),H=Math.max(180,root.clientHeight||340);
    var padL=64,padR=12,padT=12,padB=26,gap=6;
@@ -654,9 +678,10 @@ _CHART_JS = r"""<script>
    var xmin=Math.min.apply(null,xs),xmax=Math.max.apply(null,xs);
    var lows=p.map(function(a){return a[3];}),highs=p.map(function(a){return a[2];});
    var ymin=Math.min.apply(null,lows),ymax=Math.max.apply(null,highs);
-   // MA·Supertrend 선이 잘리지 않게 y범위에 포함
+   // MA·Supertrend·채널 선이 잘리지 않게 y범위에 포함
    for(var t=0;t<p.length;t++){var fi=warm+t;
-     [ma100&&ma100[fi],ma200&&ma200[fi],stObj&&stObj.st[fi]].forEach(function(v){
+     [ma100&&ma100[fi],ma200&&ma200[fi],stObj&&stObj.st[fi],
+      chan&&chan.up[fi],chan&&chan.lo[fi]].forEach(function(v){
        if(v!=null){if(v<ymin)ymin=v;if(v>ymax)ymax=v;}});}
    if(xmax===xmin)xmax+=1; if(ymax===ymin)ymax+=1; var yr=ymax-ymin;
    var vols=p.map(function(a){return a[5]||0;}),vmax=Math.max.apply(null,vols)||1;
@@ -667,6 +692,18 @@ _CHART_JS = r"""<script>
    for(var i=0;i<5;i++){var yv=ymin+yr*i/4,y=sy(yv);
      o.push('<line x1="'+padL+'" y1="'+y+'" x2="'+(W-padR)+'" y2="'+y+'" stroke="rgba(255,255,255,0.06)"/>');
      o.push('<text x="6" y="'+(y+4)+'" fill="#8d969e" font-size="11">'+fmtPx(yv)+'</text>');}
+   // 가격밴드 채널(켈트너/돈치안) — 캔들 뒤 배경으로 밴드+옅은 채움
+   if(chan){var upP=[],loP=[],mdP=[];
+     for(var c=0;c<p.length;c++){var cfi=warm+c,cx=sx(xs[c]);
+       if(chan.up[cfi]!=null)upP.push([cx,sy(chan.up[cfi])]);
+       if(chan.lo[cfi]!=null)loP.push([cx,sy(chan.lo[cfi])]);
+       if(chan.mid[cfi]!=null)mdP.push([cx,sy(chan.mid[cfi])]);}
+     if(upP.length>1&&loP.length>1){
+       o.push('<path d="'+poly(upP.concat(loP.slice().reverse()))+'Z" fill="#2dd4bf" opacity="0.06" stroke="none"/>');
+       o.push('<path d="'+poly(upP)+'" fill="none" stroke="#2dd4bf" stroke-width="1.2" opacity="0.9"/>');
+       o.push('<path d="'+poly(loP)+'" fill="none" stroke="#2dd4bf" stroke-width="1.2" opacity="0.9"/>');
+       if(mdP.length>1)o.push('<path d="'+poly(mdP)+'" fill="none" stroke="#2dd4bf" stroke-width="1" opacity="0.5" stroke-dasharray="3 3"/>');
+       o.push('<text x="'+(padL+2)+'" y="'+(padT+11)+'" fill="#2dd4bf" font-size="10">'+(CHAN==='keltner'?'Keltner(20,10,2)':'Donchian(20)')+'</text>');}}
    // Supertrend(방향별 색 세그먼트)
    if(stObj){var seg=[],pdir=null;
      for(var s2=0;s2<p.length;s2++){var v=stObj.st[warm+s2];if(v==null){if(seg.length>1)o.push('<path d="'+poly(seg)+'" fill="none" stroke="'+(pdir===1?'#16a34a':'#e23b4a')+'" stroke-width="1.5" opacity="0.9"/>');seg=[];pdir=null;continue;}
@@ -811,9 +848,13 @@ _CHART_JS = r"""<script>
    .map(function(x){return '<div class="tkopt" data-s="'+x+'">'+x+'</div>';}).join('');}
  function hlInd(){document.querySelectorAll('.indbtn').forEach(function(b){
    b.classList.toggle('tfbtn-active', !!IND[b.getAttribute('data-ind')]);});}
+ function hlChan(){document.querySelectorAll('.chanbtn').forEach(function(b){
+   b.classList.toggle('tfbtn-active', b.getAttribute('data-chan')===CHAN);});}
  document.addEventListener('click',function(e){var t=e.target;if(!t.closest)return;
    var ib=t.closest('.indbtn');if(ib){var ik=ib.getAttribute('data-ind');IND[ik]=!IND[ik];
      save('ct_ind',JSON.stringify(IND));hlInd();if(LAST)drawCandles(LAST);return;}
+   var cb=t.closest('.chanbtn');if(cb){CHAN=cb.getAttribute('data-chan');
+     save('ct_chan',CHAN);hlChan();if(LAST)drawCandles(LAST);return;}
    var tf=t.closest('.tfbtn');if(tf){SEL.tf=tf.getAttribute('data-tf');save('ct_tf',SEL.tf);loadChart();return;}
    var oi=t.closest('.oitf');if(oi){SEL.oitf=oi.getAttribute('data-oitf');save('ct_oitf',SEL.oitf);loadOI();return;}
    var cv=t.closest('.cvdtf');if(cv){SEL.cvdtf=cv.getAttribute('data-cvdtf');save('ct_cvdtf',SEL.cvdtf);loadCVD();return;}
@@ -826,7 +867,7 @@ _CHART_JS = r"""<script>
    if(t.id==='mkt-input')renderSyms(t.value);});
  fetch('/api/symbols').then(function(r){return r.json();}).then(function(a){if(a&&a.length)SYMS=a;}).catch(function(){});
  setTxt('mkt-sym',SEL.s);   // 복원된 심볼 라벨 반영
- hlInd();
+ hlInd();hlChan();
  loadChart();loadDerivs();loadOI();loadCVD();loadFearGreed();
 })();
 </script>"""
