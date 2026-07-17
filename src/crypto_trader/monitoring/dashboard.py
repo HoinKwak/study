@@ -408,8 +408,8 @@ def _market_view(tickers) -> str:
     top = _tickers_of(tickers)
     if not top:
         return ""
-    tfs = [("1일", "1d"), ("7일", "7d"), ("30일", "30d"),
-           ("6개월", "6m"), ("1년", "1y"), ("YTD", "ytd")]
+    tfs = [("15분", "15m"), ("1시간", "1h"), ("4시간", "4h"),
+           ("일봉", "1d"), ("주봉", "1w"), ("월봉", "1M")]
     tfbtns = "".join(f'<button class="tfbtn" data-tf="{v}">{lbl}</button>' for lbl, v in tfs)
     ptfs = [("5분", "5m"), ("1시간", "1h"), ("4시간", "4h"), ("1일", "1d")]
     oitfs = "".join(f'<button class="oitf" data-oitf="{v}">{lbl}</button>' for lbl, v in ptfs)
@@ -493,7 +493,8 @@ _CHART_JS = r"""<script>
 (function(){
  var cfg=window.MKTCFG||{syms:[],d1:'BTC'};
  var SYMS=(cfg.syms||[]).slice();
- var SEL={s:cfg.d1,tf:'7d',oitf:'1h',cvdtf:'1h'};
+ var SEL={s:cfg.d1,tf:'4h',oitf:'1h',cvdtf:'1h'};   // tf=캔들 간격(15m/1h/4h/1d/1w/1M)
+ var TFSET={'15m':1,'1h':1,'4h':1,'1d':1,'1w':1,'1M':1};
  var IND={ma100:true,ma200:true,st:true,rsi:true};   // 차트 기본 지표(모두 ON)
  try{var _pi=localStorage.getItem('ct_ind');if(_pi){var _po=JSON.parse(_pi);
    for(var _k in _po)if(_k in IND)IND[_k]=!!_po[_k];}}catch(_e){}
@@ -503,6 +504,7 @@ _CHART_JS = r"""<script>
    var _t=localStorage.getItem('ct_tf');if(_t)SEL.tf=_t;
    var _o=localStorage.getItem('ct_oitf');if(_o)SEL.oitf=_o;
    var _c=localStorage.getItem('ct_cvdtf');if(_c)SEL.cvdtf=_c;}catch(_e){}
+ if(!TFSET[SEL.tf])SEL.tf='4h';   // 옛 기간기준(7d 등) 저장값 보정
  var LAST=null, OILAST=null, CVDLAST=null;
  var root=document.getElementById('mkt-chart');
  if(!root)return;
@@ -559,8 +561,8 @@ _CHART_JS = r"""<script>
    var volH=Math.max(24,Math.round(avail*0.16));
    var rsiH=IND.rsi?Math.max(30,Math.round(avail*0.20)):0;
    var priceBottom=padT+(avail-volH-rsiH-gap*(rsiH?2:1));
-   var rsiTop=priceBottom+gap, rsiBottom=rsiTop+rsiH;
-   var volTop=(rsiH?rsiBottom:priceBottom)+gap, volBottom=H-padB;
+   var volTop=priceBottom+gap, volBottom=volTop+volH;      // 거래량(가격 아래)
+   var rsiTop=volBottom+gap, rsiBottom=rsiTop+rsiH;         // RSI(거래량 아래, 최하단)
    var xs=p.map(function(a){return a[0];});
    var xmin=Math.min.apply(null,xs),xmax=Math.max.apply(null,xs);
    var lows=p.map(function(a){return a[3];}),highs=p.map(function(a){return a[2];});
@@ -596,17 +598,31 @@ _CHART_JS = r"""<script>
    function maPath(arr,color){if(!arr)return;var pts=[];for(var t2=0;t2<p.length;t2++){var vv=arr[warm+t2];if(vv!=null)pts.push([sx(xs[t2]),sy(vv)]);}
      if(pts.length>1)o.push('<path d="'+poly(pts)+'" fill="none" stroke="'+color+'" stroke-width="1.3" opacity="0.95"/>');}
    maPath(ma100,'#f7931a'); maPath(ma200,'#3b82f6');
-   // RSI 하단패널
-   if(rsiH){function ry(v){return rsiBottom-(v/100)*(rsiBottom-rsiTop);}
-     o.push('<rect x="'+padL+'" y="'+rsiTop.toFixed(1)+'" width="'+(W-padL-padR)+'" height="'+rsiH.toFixed(1)+'" fill="rgba(255,255,255,0.02)"/>');
-     [30,50,70].forEach(function(lv){var y=ry(lv);
-       o.push('<line x1="'+padL+'" y1="'+y.toFixed(1)+'" x2="'+(W-padR)+'" y2="'+y.toFixed(1)+'" stroke="rgba(255,255,255,'+(lv===50?0.05:0.10)+')" stroke-dasharray="'+(lv===50?'':'3 3')+'"/>');
+   // RSI 하단패널(거래량 아래) — 과매수(>70) 붉은띠 / 과매도(<30) 초록띠 강조
+   if(rsiH){function ry(v){return rsiBottom-(v/100)*(rsiBottom-rsiTop);}var pw=(W-padL-padR);
+     o.push('<rect x="'+padL+'" y="'+rsiTop.toFixed(1)+'" width="'+pw+'" height="'+rsiH.toFixed(1)+'" fill="rgba(255,255,255,0.02)"/>');
+     o.push('<rect x="'+padL+'" y="'+ry(100).toFixed(1)+'" width="'+pw+'" height="'+(ry(70)-ry(100)).toFixed(1)+'" fill="#e23b4a" opacity="0.09"/>');
+     o.push('<rect x="'+padL+'" y="'+ry(30).toFixed(1)+'" width="'+pw+'" height="'+(ry(0)-ry(30)).toFixed(1)+'" fill="#16a34a" opacity="0.09"/>');
+     [30,50,70].forEach(function(lv){var y=ry(lv),ob=(lv!==50);
+       o.push('<line x1="'+padL+'" y1="'+y.toFixed(1)+'" x2="'+(W-padR)+'" y2="'+y.toFixed(1)+'" stroke="'+(lv===70?'rgba(226,59,74,0.5)':(lv===30?'rgba(22,163,74,0.5)':'rgba(255,255,255,0.05)'))+'" stroke-dasharray="'+(ob?'3 3':'')+'"/>');
        o.push('<text x="'+(W-padR+2)+'" y="'+(y+3)+'" fill="#8d969e" font-size="9">'+lv+'</text>');});
-     var rpts=[];for(var t3=0;t3<p.length;t3++){var rv=rsi[warm+t3];if(rv!=null)rpts.push([sx(xs[t3]),ry(rv)]);}
-     if(rpts.length>1)o.push('<path d="'+poly(rpts)+'" fill="none" stroke="#a855f7" stroke-width="1.2"/>');
+     // RSI 선(구간별 색: >70 빨강, <30 초록, 그 외 보라)
+     function zcol(v){return v>=70?'#e23b4a':(v<=30?'#16a34a':'#a855f7');}
+     var rseg=[],pz=null;
+     for(var t3=0;t3<p.length;t3++){var rv=rsi[warm+t3];
+       if(rv==null){if(rseg.length>1)o.push('<path d="'+poly(rseg)+'" fill="none" stroke="'+pz+'" stroke-width="1.3"/>');rseg=[];pz=null;continue;}
+       var zc=zcol(rv);if(pz!==null&&zc!==pz){o.push('<path d="'+poly(rseg)+'" fill="none" stroke="'+pz+'" stroke-width="1.3"/>');rseg=[rseg[rseg.length-1]];}
+       rseg.push([sx(xs[t3]),ry(rv)]);pz=zc;}
+     if(rseg.length>1)o.push('<path d="'+poly(rseg)+'" fill="none" stroke="'+pz+'" stroke-width="1.3"/>');
+     // 과매수/과매도 강조 점
+     for(var t4=0;t4<p.length;t4++){var rv2=rsi[warm+t4];if(rv2==null)continue;
+       if(rv2>=70)o.push('<circle cx="'+sx(xs[t4]).toFixed(1)+'" cy="'+ry(rv2).toFixed(1)+'" r="1.7" fill="#e23b4a"/>');
+       else if(rv2<=30)o.push('<circle cx="'+sx(xs[t4]).toFixed(1)+'" cy="'+ry(rv2).toFixed(1)+'" r="1.7" fill="#16a34a"/>');}
      o.push('<text x="'+(padL+2)+'" y="'+(rsiTop+11)+'" fill="#a855f7" font-size="10">RSI(14)</text>');}
+   var tf=(d&&d.tf)||SEL.tf,intraday=(tf==='15m'||tf==='1h'||tf==='4h');
    for(var k=0;k<5;k++){var xv=xmin+(xmax-xmin)*k/4,dt=new Date(xv);
      var lab=('0'+(dt.getMonth()+1)).slice(-2)+'-'+('0'+dt.getDate()).slice(-2);
+     if(intraday)lab+=' '+('0'+dt.getHours()).slice(-2)+':'+('0'+dt.getMinutes()).slice(-2);
      var an=k===0?'start':(k===4?'end':'middle');
      o.push('<text x="'+sx(xv).toFixed(1)+'" y="'+(H-6)+'" fill="#8d969e" font-size="10" text-anchor="'+an+'">'+lab+'</text>');}
    o.push('</svg>');root.innerHTML=o.join('');

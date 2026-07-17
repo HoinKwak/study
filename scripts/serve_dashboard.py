@@ -19,7 +19,6 @@ import subprocess
 import sys
 import threading
 import time
-from datetime import datetime, timezone
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
@@ -84,16 +83,12 @@ def main() -> None:
     settings = get_settings()
 
     def _tf_params(tf: str):
-        """타임프레임 → (interval, limit)."""
+        """봉 기준 타임프레임 → (interval, 표시봉수). tf 자체가 캔들 간격."""
         table = {
-            "1d": ("15m", 96), "7d": ("1h", 168), "30d": ("4h", 180),
-            "6m": ("1d", 180), "1y": ("1d", 365),
+            "15m": ("15m", 192), "1h": ("1h", 200), "4h": ("4h", 200),
+            "1d": ("1d", 200), "1w": ("1w", 160), "1M": ("1M", 120),
         }
-        if tf == "ytd":
-            now = datetime.now(timezone.utc)
-            jan1 = datetime(now.year, 1, 1, tzinfo=timezone.utc)
-            return ("1d", max(2, min(366, (now - jan1).days + 1)))
-        return table.get(tf, ("1h", 168))
+        return table.get(tf, ("1h", 200))
 
     def _api_klines(qs) -> bytes:
         from crypto_trader.connectors import BinanceDerivativesData
