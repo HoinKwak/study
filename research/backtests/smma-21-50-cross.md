@@ -1,6 +1,11 @@
 # 백테스트: SMMA 21/50 크로스 (스페이스 레인저 인터뷰 각색)
 
-- **감사 상태**: backtest-reviewer 감사 진행 중 — 완료 시 VALID/SUSPECT/INVALID 판정을 여기 반영.
+- **감사(backtest-reviewer) 판정: VALID** — HOLD 결론에 동의. 감사가 `bt_smma.py`/`run_smma_sweep.py`를
+  직접 재실행해 결과1~3의 모든 셀을 오차 0으로 재현(BTC 1h IS1.39→OOS0.87 등), SMMA=Wilder평활 수동대조
+  일치, 룩어헤드는 1000봉 절단 재실행 실증으로 과거거래 불변 확인, 단위(ms)·리샘플 좌측라벨·수수료 부호·
+  이중부과 없음 검증. CONCERN: 4h/tf200/pullback 고PF는 n=6~14 소표본·소수대박 견인(리포트가 이미 경고),
+  일부 15m MDD 400%+는 비복리 고정명목 아티팩트(표에 미노출). 리포트가 전략을 통과시키려 과장하거나
+  죽이려 축소한 흔적 없음 — "HOLD·라이브 미반영"은 데이터에 부합.
 - **전략 스펙**: `research/strategies/smma-21-50-cross.md`
 - **구현**: `scratchpad/bt_smma.py` (프레임워크 무수정, `ind.atr`만 재사용, bt_trix.py 하네스 계승),
   스윕 `scratchpad/run_smma_sweep.py` → `scratchpad/smma_sweep.csv`.
