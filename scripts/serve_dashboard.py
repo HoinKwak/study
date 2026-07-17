@@ -6,12 +6,19 @@
 state/dashboard.html 을 서빙한다. 스캐너(run_scanner)가 이 파일을 매 사이클
 갱신하므로, 페이지의 자동 새로고침으로 최신 이벤트가 계속 반영된다.
 스캐너가 안 돌고 있으면 매 요청 시 거래 저널 + 저장된 이벤트로 즉석 렌더링한다.
+
+리서치 파일(KOL 워치·시장 브리핑·차티스트·ETF)은 정기 루틴이 원격 브랜치에 push 하므로,
+이 서버가 백그라운드에서 주기적으로 `git pull` 해 로컬 파일을 최신으로 유지한다
+(`--pull-interval` 초, 0이면 비활성). 대시보드 창만 켜두면 리서치가 자동 갱신된다.
 """
 from __future__ import annotations
 
 import argparse
 import json
+import subprocess
 import sys
+import threading
+import time
 from datetime import datetime, timezone
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from pathlib import Path
@@ -26,6 +33,31 @@ from crypto_trader.monitoring.dashboard import (  # noqa: E402
     load_start_equity, render_html)
 from crypto_trader.monitoring.market_extra import load_cached, load_tickers  # noqa: E402
 from crypto_trader.scanner import EventStore  # noqa: E402
+
+_REPO_DIR = Path(__file__).resolve().parent.parent
+
+
+def _autopull_loop(interval: int) -> None:
+    """주기적으로 `git pull --ff-only` 해서 리서치 파일을 최신으로 유지(데몬 스레드).
+
+    정기 루틴이 원격 브랜치에 push 한 리서치 갱신을 로컬 대시보드가 자동 반영하게 한다.
+    ff-only 라 로컬 커밋이 없으면 항상 안전(충돌 시 병합 안 하고 조용히 넘어감).
+    """
+    while True:
+        time.sleep(interval)
+        try:
+            r = subprocess.run(["git", "pull", "--ff-only"], cwd=str(_REPO_DIR),
+                               capture_output=True, text=True, timeout=60)
+            out = (r.stdout or "").strip()
+            if r.returncode == 0 and out and "Already up to date" not in out:
+                print(f"[autopull] 리서치 갱신 반영됨 — 새로고침 시 최신 표시")
+            elif r.returncode != 0:
+                # 네트워크·비-ff 등은 무해하게 무시(다음 주기 재시도). 소음 억제로 짧게만.
+                err = (r.stderr or "").strip().splitlines()
+                print(f"[autopull] pull 실패(무시): {err[-1] if err else r.returncode}")
+        except Exception as e:  # noqa: BLE001
+            print(f"[autopull] 예외(무시): {e}")
+
 
 
 def _render(settings, refresh_sec: int) -> bytes:
@@ -45,6 +77,8 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="대시보드 로컬 웹서버")
     parser.add_argument("--port", type=int, default=8787)
     parser.add_argument("--refresh", type=int, default=30, help="페이지 자동 새로고침(초)")
+    parser.add_argument("--pull-interval", type=int, default=300,
+                        help="리서치 자동 git pull 주기(초). 0이면 비활성")
     args = parser.parse_args()
 
     settings = get_settings()
@@ -239,6 +273,11 @@ def main() -> None:
 
         def log_message(self, *_a):  # 접속 로그 소음 억제
             pass
+
+    if args.pull_interval > 0:
+        threading.Thread(target=_autopull_loop, args=(args.pull_interval,),
+                         daemon=True).start()
+        print(f"리서치 자동갱신: {args.pull_interval}초마다 git pull (--pull-interval 0 이면 끔)")
 
     server = HTTPServer(("127.0.0.1", args.port), Handler)
     print(f"대시보드: http://localhost:{args.port}  (Ctrl+C 종료)")
