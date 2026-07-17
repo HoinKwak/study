@@ -1186,6 +1186,8 @@ def render_html(journal: TradeJournal, equity: float | None = None,
                     f"<td>{notional_c:,.2f}</td>"
                     f"<td>{t.entry_price:.4f}</td>"
                     f"<td>{(t.exit_price or 0):.4f}</td>"
+                    f"<td class='muted' style='font-size:11px'>{html.escape(_short_time(t.opened_at))}</td>"
+                    f"<td class='muted' style='font-size:11px'>{html.escape(_short_time(t.closed_at))}</td>"
                     f"<td class='muted'>{html.escape(t.holding_human())}</td>"
                     f"<td style='color:{c}'>{pnl:+.2f}</td>"
                     f"<td>{html.escape(t.exit_reason)}</td></tr>"
@@ -1305,8 +1307,8 @@ def render_html(journal: TradeJournal, equity: float | None = None,
     <div class="muted" style="margin-top:4px;font-size:11px">현재가·손익률·PnL 은 serve_dashboard 서버 모드에서 실시간 표시(명목가 기준, 수수료 제외).</div>
     <h2>최근 청산 (최대 20건)
       <button id="dl-trades" class="tfbtn" style="margin-left:10px">⬇ 전체 거래 CSV</button></h2>
-    <table><thead><tr><th>심볼</th><th>방향</th><th>수량</th><th>포지션(USDT)</th><th>진입</th><th>청산</th><th>거래시간</th><th>손익</th><th>사유</th></tr></thead>
-    <tbody>{rows(sorted(journal.closed_trades(), key=lambda t: t.closed_at or "", reverse=True)[:20], True) or "<tr><td colspan=9>없음</td></tr>"}</tbody></table>
+    <table><thead><tr><th>심볼</th><th>방향</th><th>수량</th><th>포지션(USDT)</th><th>진입</th><th>청산</th><th>오픈시각</th><th>종료시각</th><th>거래시간</th><th>손익</th><th>사유</th></tr></thead>
+    <tbody>{rows(sorted(journal.closed_trades(), key=lambda t: t.closed_at or "", reverse=True)[:20], True) or "<tr><td colspan=11>없음</td></tr>"}</tbody></table>
   </div>
 
   <div class="tabpane" data-pane="market" style="display:none">
