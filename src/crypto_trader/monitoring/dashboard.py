@@ -433,10 +433,19 @@ def _market_view(tickers) -> str:
         f'<div id="mkt-chart" class="chartarea"><div class="muted">로딩…</div></div>'
         f'<div class="muted" style="text-align:right;font-size:10px;margin-top:2px">↕ 아래 모서리를 끌어 높이 조절 · 하단 막대=거래량</div></div>')
     derivs = (
-        f'<div class="card mkt-derivcard" style="flex:1;min-width:250px">'
+        f'<div class="card mkt-derivcard">'
         f'<div class="muted" style="margin-bottom:8px">파생 지표 · <b id="mkt-dsym">{html.escape(d1)}</b> '
         f'<span style="font-size:11px">(1h)</span></div>'
         f'<div id="mkt-derivs"><div class="muted">로딩…</div></div></div>')
+    # 파생지표 하단: 기술적 종합 점수 3카드(공포·탐욕 / 기술적 분석 / 추세 분석)
+    scores = (
+        f'<div class="card">'
+        f'<div class="muted" style="margin-bottom:8px">📊 기술적 종합 · <b id="sc-sym">{html.escape(d1)}</b> '
+        f'<span style="font-size:11px" id="sc-tf">(4h)</span></div>'
+        f'<div id="sc-body"><div class="muted">로딩…</div></div>'
+        f'<div class="muted" style="font-size:10px;margin-top:6px">기술·추세는 좌측 차트 봉(tf) 기준 산출 · 참고용, 투자조언 아님</div></div>')
+    rightcol = (f'<div style="flex:1;min-width:250px;display:flex;flex-direction:column;gap:14px">'
+                f'{derivs}{scores}</div>')
     oicard = (
         f'<div class="card" style="flex:1;min-width:300px">'
         f'<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px">'
@@ -451,7 +460,7 @@ def _market_view(tickers) -> str:
         f'<div id="mkt-cvd" class="minichart"><div class="muted">로딩…</div></div></div>')
     cfg = ("<script>window.MKTCFG=" + json.dumps(
         {"syms": [str(t.get("symbol", "")) for t in top], "d1": d1}) + ";</script>")
-    return (f'<div style="display:flex;flex-wrap:wrap;gap:14px;align-items:stretch">{chart}{derivs}</div>'
+    return (f'<div style="display:flex;flex-wrap:wrap;gap:14px;align-items:stretch">{chart}{rightcol}</div>'
             f'<div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:14px">{oicard}{cvdcard}</div>'
             f'{cfg}{_CHART_JS}')
 
@@ -548,6 +557,84 @@ _CHART_JS = r"""<script>
      dir[j]=nd;st[j]=nd===1?fl:fu;}
    return {st:st,dir:dir};}
  function poly(pts){if(!pts.length)return '';var s='';for(var i=0;i<pts.length;i++)s+=(i?'L':'M')+pts[i][0].toFixed(1)+','+pts[i][1].toFixed(1);return s;}
+ // ---- 기술적 종합 점수용 추가 지표 ----
+ function clamp(x,a,b){return x<a?a:(x>b?b:x);}
+ function lastNN(a){for(var i=a.length-1;i>=0;i--)if(a[i]!=null)return a[i];return null;}
+ function emaA(v,p){var o=new Array(v.length).fill(null),k=2/(p+1),e=null;
+   for(var i=0;i<v.length;i++){if(v[i]==null){o[i]=null;continue;}e=(e==null?v[i]:v[i]*k+e*(1-k));o[i]=e;}return o;}
+ function macdH(cl){var e12=emaA(cl,12),e26=emaA(cl,26),ml=new Array(cl.length).fill(null);
+   for(var i=0;i<cl.length;i++)if(e12[i]!=null&&e26[i]!=null)ml[i]=e12[i]-e26[i];
+   return {ml:ml,sg:emaA(ml.map(function(x){return x==null?0:x;}),9)};}
+ function trixSig(cl,n){n=n||15;var e3=emaA(emaA(emaA(cl,n),n),n),tx=new Array(cl.length).fill(null);
+   for(var i=1;i<cl.length;i++)if(e3[i]!=null&&e3[i-1]!=null&&e3[i-1]!==0)tx[i]=(e3[i]-e3[i-1])/e3[i-1];
+   return {tx:tx,sg:emaA(tx.map(function(x){return x==null?0:x;}),9)};}
+ function willR(hi,lo,cl,p){p=p||14;var o=new Array(cl.length).fill(null);
+   for(var i=p-1;i<cl.length;i++){var hh=-1e18,ll=1e18;for(var j=i-p+1;j<=i;j++){if(hi[j]>hh)hh=hi[j];if(lo[j]<ll)ll=lo[j];}
+     o[i]=hh===ll?-50:-100*(hh-cl[i])/(hh-ll);}return o;}
+ function stochK(cl){var r=rsiArr(cl,14),p=14,st=new Array(cl.length).fill(null);
+   for(var i=0;i<cl.length;i++){if(r[i]==null)continue;var lo=1e18,hi=-1e18,ok=true;
+     for(var j=i-p+1;j<=i;j++){if(j<0||r[j]==null){ok=false;break;}if(r[j]<lo)lo=r[j];if(r[j]>hi)hi=r[j];}
+     if(ok)st[i]=hi===lo?50:(r[i]-lo)/(hi-lo)*100;}
+   var k=new Array(cl.length).fill(null);for(var m=2;m<cl.length;m++)if(st[m]!=null&&st[m-1]!=null&&st[m-2]!=null)k[m]=(st[m]+st[m-1]+st[m-2])/3;return k;}
+ function bbA(cl,p,mult){p=p||20;mult=mult||2;var mid=smaArr(cl,p),up=new Array(cl.length).fill(null),lo=new Array(cl.length).fill(null);
+   for(var i=p-1;i<cl.length;i++){var s=0;for(var j=i-p+1;j<=i;j++){var dd=cl[j]-mid[i];s+=dd*dd;}var sd=Math.sqrt(s/p);up[i]=mid[i]+mult*sd;lo[i]=mid[i]-mult*sd;}
+   return {mid:mid,up:up,lo:lo};}
+ function adxA(hi,lo,cl,p){p=p||14;var n=cl.length,tr=new Array(n).fill(0),pm=new Array(n).fill(0),nm=new Array(n).fill(0);
+   for(var i=1;i<n;i++){var u=hi[i]-hi[i-1],d=lo[i-1]-lo[i];pm[i]=(u>d&&u>0)?u:0;nm[i]=(d>u&&d>0)?d:0;
+     tr[i]=Math.max(hi[i]-lo[i],Math.abs(hi[i]-cl[i-1]),Math.abs(lo[i]-cl[i-1]));}
+   function rma(a){var o=new Array(n).fill(null),s=0;for(var i=1;i<=p&&i<n;i++)s+=a[i];if(p<n)o[p]=s;for(var i=p+1;i<n;i++)o[i]=o[i-1]-o[i-1]/p+a[i];return o;}
+   var tr2=rma(tr),pr=rma(pm),nr=rma(nm),pdi=new Array(n).fill(null),ndi=new Array(n).fill(null),dx=new Array(n).fill(null),adx=new Array(n).fill(null);
+   for(var i=p;i<n;i++)if(tr2[i]){pdi[i]=100*pr[i]/tr2[i];ndi[i]=100*nr[i]/tr2[i];var sm=pdi[i]+ndi[i];dx[i]=sm?100*Math.abs(pdi[i]-ndi[i])/sm:0;}
+   for(var i=2*p;i<n;i++){if(dx[i]==null)continue;if(adx[i-1]==null){var s2=0,c=0;for(var j=i-p+1;j<=i;j++)if(dx[j]!=null){s2+=dx[j];c++;}adx[i]=c?s2/c:null;}else adx[i]=(adx[i-1]*(p-1)+dx[i])/p;}
+   return {adx:adx,pdi:pdi,ndi:ndi};}
+ function scoreTech(full){if(full.length<40)return null;
+   var cl=full.map(function(a){return a[4];}),hi=full.map(function(a){return a[2];}),lo=full.map(function(a){return a[3];}),vo=full.map(function(a){return a[5]||0;}),L=cl.length-1,vt=[];
+   var rsi=lastNN(rsiArr(cl,14));if(rsi!=null)vt.push(clamp((rsi-50)/20,-1,1));
+   var md=macdH(cl),ml=lastNN(md.ml),sg=lastNN(md.sg);if(ml!=null&&sg!=null)vt.push(ml>sg?0.6:-0.6);
+   var tx=trixSig(cl,15),txv=lastNN(tx.tx),txs=lastNN(tx.sg);if(txv!=null&&txs!=null)vt.push((txv>txs?0.6:-0.6)+(txv>0?0.4:-0.4));
+   var wr=lastNN(willR(hi,lo,cl,14));if(wr!=null)vt.push(clamp((wr+50)/30,-1,1));
+   var sk=lastNN(stochK(cl));if(sk!=null)vt.push(clamp((sk-50)/30,-1,1));
+   var va=0,cc=0;for(var i=Math.max(0,L-19);i<=L;i++){va+=vo[i];cc++;}va=cc?va/cc:0;
+   if(va>0&&L>0)vt.push(clamp(vo[L]/va-1,-1,1)*0.5*(cl[L]>=cl[L-1]?1:-1));
+   if(!vt.length)return null;var s=0;for(var i2=0;i2<vt.length;i2++)s+=clamp(vt[i2],-1,1);
+   return 50+(s/vt.length)*50;}
+ function scoreTrend(full){if(full.length<60)return null;
+   var cl=full.map(function(a){return a[4];}),hi=full.map(function(a){return a[2];}),lo=full.map(function(a){return a[3];}),vo=full.map(function(a){return a[5]||0;}),L=cl.length-1,c=cl[L],vt=[];
+   var st=superTrend(hi,lo,cl,10,3),sd=lastNN(st.dir);if(sd!=null)vt.push(sd>0?1:-1);
+   var m50=lastNN(smaArr(cl,50)),m100=lastNN(smaArr(cl,100)),m200=lastNN(smaArr(cl,200)),al=0,cn=0;
+   if(m50!=null){al+=c>m50?1:-1;cn++;}if(m100!=null){al+=c>m100?1:-1;cn++;}if(m200!=null){al+=c>m200?1:-1;cn++;}
+   if(m100!=null&&m200!=null){al+=m100>m200?1:-1;cn++;}if(cn)vt.push(al/cn);
+   var b=bbA(cl,20,2),mid=lastNN(b.mid),up=lastNN(b.up);if(mid!=null&&up!=null&&up>mid)vt.push(clamp((c-mid)/(up-mid),-1,1));
+   var ax=adxA(hi,lo,cl,14),adL=lastNN(ax.adx),pL=lastNN(ax.pdi),nL=lastNN(ax.ndi);
+   if(pL!=null&&nL!=null)vt.push((pL>nL?1:-1)*(adL!=null?clamp(adL/40,0.3,1):0.6));
+   var r1=0,r2=0;for(var i=Math.max(0,L-9);i<=L;i++)r1+=vo[i];for(var i=Math.max(0,L-19);i<=L-10;i++)if(i>=0)r2+=vo[i];
+   if(r2>0)vt.push(clamp(r1/r2-1,-0.5,0.5)*2*(c>=cl[Math.max(0,L-10)]?1:-1));
+   if(!vt.length)return null;var s=0;for(var i3=0;i3<vt.length;i3++)s+=clamp(vt[i3],-1,1);
+   return 50+(s/vt.length)*50*(adL!=null?clamp(adL/30,0.5,1):0.8);}
+ // ---- 점수 카드 렌더 ----
+ var FG=null;
+ function scColor(v){return v>=75?'#16a34a':(v>=56?'#5fb85f':(v>=45?'#8d969e':(v>=25?'#e07a4a':'#e23b4a')));}
+ function scLabel(v,kind){if(kind==='fg')return v>=75?'극단적 탐욕':(v>=56?'탐욕':(v>=45?'중립':(v>=25?'공포':'극단적 공포')));
+   if(kind==='trend')return v>=75?'강한 상승':(v>=56?'상승':(v>=45?'중립':(v>=25?'하락':'강한 하락')));
+   return v>=75?'강한 매수':(v>=56?'매수':(v>=45?'중립':(v>=25?'매도':'강한 매도')));}
+ function gauge(title,val,kind,sub){
+   if(val==null)return '<div style="margin-bottom:11px"><div style="display:flex;justify-content:space-between"><span class="dlab">'+title+'</span><b style="color:#8d969e">-</b></div></div>';
+   var col=scColor(val),pct=clamp(val,0,100);
+   return '<div style="margin-bottom:11px"><div style="display:flex;justify-content:space-between;align-items:baseline">'+
+     '<span class="dlab">'+title+'</span><span><b style="color:'+col+';font-size:16px">'+Math.round(val)+'</b> '+
+     '<span style="color:'+col+';font-size:11px">'+scLabel(val,kind)+'</span></span></div>'+
+     '<div style="height:6px;background:rgba(255,255,255,0.08);border-radius:3px;margin-top:4px;position:relative">'+
+     '<div style="position:absolute;left:0;top:0;height:6px;width:'+pct+'%;background:'+col+';border-radius:3px"></div></div>'+
+     (sub?'<div class="dsub" style="margin-top:2px">'+sub+'</div>':'')+'</div>';}
+ function renderScores(full){var el=document.getElementById('sc-body');if(!el)return;
+   setTxt('sc-tf','('+SEL.tf+')');setTxt('sc-sym',SEL.s);
+   var fgv=(FG&&FG.value!=null)?FG.value:null;
+   var h=gauge('😱 공포·탐욕(시장)',fgv,'fg',FG&&FG.label?('alternative.me · '+FG.label):'크립토 시장 전체');
+   h+=gauge('📈 기술적 분석',scoreTech(full),'sig','RSI·MACD·TRIX·W%R·StochRSI·거래량');
+   h+=gauge('🧭 추세 분석',scoreTrend(full),'trend','Supertrend·MA50/100/200·BB·ADX·거래량');
+   el.innerHTML=h;}
+ function loadFearGreed(){fetch('/api/feargreed').then(function(r){return r.json();}).then(function(d){FG=d;
+   if(LAST)renderScores((LAST&&LAST.points)||[]);}).catch(function(){});}
  // ---- 캔들 + MA/Supertrend 오버레이 + RSI 하단패널 + 거래량 ----
  function drawCandles(d){LAST=d;var full=(d&&d.points)||[];var warm=(d&&d.warmup)||0;
    if(full.length-warm<2){root.innerHTML='<div class="muted">데이터 없음</div>';return;}
@@ -621,11 +708,12 @@ _CHART_JS = r"""<script>
      o.push('<text x="'+(padL+2)+'" y="'+(rsiTop+11)+'" fill="#a855f7" font-size="10">RSI(14)</text>');}
    var tf=(d&&d.tf)||SEL.tf,intraday=(tf==='15m'||tf==='1h'||tf==='4h');
    for(var k=0;k<5;k++){var xv=xmin+(xmax-xmin)*k/4,dt=new Date(xv);
-     var lab=('0'+(dt.getMonth()+1)).slice(-2)+'-'+('0'+dt.getDate()).slice(-2);
+     var lab=dt.getFullYear()+'-'+('0'+(dt.getMonth()+1)).slice(-2)+'-'+('0'+dt.getDate()).slice(-2);
      if(intraday)lab+=' '+('0'+dt.getHours()).slice(-2)+':'+('0'+dt.getMinutes()).slice(-2);
      var an=k===0?'start':(k===4?'end':'middle');
-     o.push('<text x="'+sx(xv).toFixed(1)+'" y="'+(H-6)+'" fill="#8d969e" font-size="10" text-anchor="'+an+'">'+lab+'</text>');}
+     o.push('<text x="'+sx(xv).toFixed(1)+'" y="'+(H-6)+'" fill="#8d969e" font-size="'+(intraday?9:10)+'" text-anchor="'+an+'">'+lab+'</text>');}
    o.push('</svg>');root.innerHTML=o.join('');
+   renderScores(full);   // 기술/추세 점수(좌측 차트 tf 기준) 갱신
    var pe=document.getElementById('mkt-price');if(pe && (pe.textContent==='—'||pe.textContent===''))pe.textContent=fmtPx(p[p.length-1][4]);}
  function loadChart(){hlTf();
    fetch('/api/klines?symbol='+encodeURIComponent(SEL.s)+'&tf='+SEL.tf)
@@ -737,7 +825,7 @@ _CHART_JS = r"""<script>
  fetch('/api/symbols').then(function(r){return r.json();}).then(function(a){if(a&&a.length)SYMS=a;}).catch(function(){});
  setTxt('mkt-sym',SEL.s);   // 복원된 심볼 라벨 반영
  hlInd();
- loadChart();loadDerivs();loadOI();loadCVD();
+ loadChart();loadDerivs();loadOI();loadCVD();loadFearGreed();
 })();
 </script>"""
 

@@ -34,6 +34,7 @@ from crypto_trader.monitoring.market_extra import load_cached, load_tickers  # n
 from crypto_trader.scanner import EventStore  # noqa: E402
 
 _REPO_DIR = Path(__file__).resolve().parent.parent
+_FG_CACHE = {"t": 0.0, "data": None}   # 공포·탐욕 지수 캐시(30분)
 
 
 def _autopull_loop(interval: int) -> None:
@@ -190,6 +191,23 @@ def main() -> None:
             pass
         return json.dumps(out).encode("utf-8")
 
+    def _api_feargreed() -> bytes:
+        """크립토 공포·탐욕 지수(alternative.me, 시장 전체) — 30분 캐시."""
+        now = time.time()
+        if _FG_CACHE["data"] is not None and now - _FG_CACHE["t"] < 1800:
+            return json.dumps(_FG_CACHE["data"]).encode("utf-8")
+        out = {"value": None, "label": ""}
+        try:
+            import requests
+            d = requests.get("https://api.alternative.me/fng/", timeout=8).json()
+            row = (d.get("data") or [{}])[0]
+            out = {"value": int(row.get("value")), "label": row.get("value_classification", "")}
+            _FG_CACHE["t"] = now
+            _FG_CACHE["data"] = out
+        except Exception:  # noqa: BLE001
+            pass
+        return json.dumps(out).encode("utf-8")
+
     def _api_symbols() -> bytes:
         try:
             from crypto_trader.monitoring.market_extra import binance_futures_list
@@ -266,6 +284,9 @@ def main() -> None:
                 return
             if path == "/api/symbols":
                 self._send(_api_symbols(), "application/json")
+                return
+            if path == "/api/feargreed":
+                self._send(_api_feargreed(), "application/json")
                 return
             self.send_response(404)
             self.end_headers()
