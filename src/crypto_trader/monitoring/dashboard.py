@@ -903,8 +903,17 @@ _MACRO_JS = r"""<script>
    if(ymin<0&&ymax>0){var y0=sy(0);
      o.push('<line x1="'+PAD+'" y1="'+y0.toFixed(1)+'" x2="'+(W-PAD)+'" y2="'+y0.toFixed(1)+'" stroke="#3a4a56" stroke-width="1.3" stroke-dasharray="3 3"/>');}
    series.forEach(function(s){var p=s.points||[];if(p.length<2)return;
-     var d=p.map(function(q){return sx(q[0]).toFixed(1)+','+sy(q[1]).toFixed(1);}).join(' ');
-     o.push('<polyline points="'+d+'" fill="none" stroke="'+s.color+'" stroke-width="2"/>');});
+     // 장 마감/주말 공백(정상 간격의 3.5배 초과)은 직선으로 잇지 않고 세션별로 끊는다.
+     var ds=[];for(var j=1;j<p.length;j++)ds.push(p[j][0]-p[j-1][0]);
+     ds.sort(function(a,b){return a-b;});
+     var md=ds.length?ds[Math.floor(ds.length/2)]:0, gap=md>0?md*3.5:Infinity;
+     var seg=[];
+     function flush(){if(seg.length>1)o.push('<polyline points="'+seg.join(' ')+
+       '" fill="none" stroke="'+s.color+'" stroke-width="2"/>');seg=[];}
+     for(var i=0;i<p.length;i++){
+       if(i>0&&(p[i][0]-p[i-1][0])>gap)flush();
+       seg.push(sx(p[i][0]).toFixed(1)+','+sy(p[i][1]).toFixed(1));}
+     flush();});
    for(var k=0;k<5;k++){var xv=xmin+span*k/4,a=k===0?'start':(k===4?'end':'middle');
      o.push('<text x="'+sx(xv).toFixed(1)+'" y="'+(H-6)+'" fill="#8b93a7" font-size="10" text-anchor="'+a+'">'+dlab(xv,span)+'</text>');}
    var lx=PAD+6;series.forEach(function(s){
