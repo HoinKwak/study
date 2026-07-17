@@ -422,6 +422,11 @@ def _market_view(tickers) -> str:
         f'<button class="tkname" id="mkt-name"><span id="mkt-sym">{html.escape(d1)}</span> ▾</button>'
         f'<b id="mkt-price" style="font-size:16px">—</b></span>'
         f'<span>{tfbtns}</span></div>'
+        f'<div id="mkt-ind" style="display:flex;gap:5px;flex-wrap:wrap;margin-top:6px">'
+        f'<button class="tfbtn indbtn" data-ind="ma100">MA100</button>'
+        f'<button class="tfbtn indbtn" data-ind="ma200">MA200</button>'
+        f'<button class="tfbtn indbtn" data-ind="st">Supertrend</button>'
+        f'<button class="tfbtn indbtn" data-ind="rsi">RSI</button></div>'
         f'<div id="mkt-search" style="display:none;margin:8px 0">'
         f'<input class="futsearch" id="mkt-input" placeholder="심볼 검색…">'
         f'<div class="tklist" id="mkt-list"></div></div>'
@@ -489,6 +494,9 @@ _CHART_JS = r"""<script>
  var cfg=window.MKTCFG||{syms:[],d1:'BTC'};
  var SYMS=(cfg.syms||[]).slice();
  var SEL={s:cfg.d1,tf:'7d',oitf:'1h',cvdtf:'1h'};
+ var IND={ma100:true,ma200:true,st:true,rsi:true};   // 차트 기본 지표(모두 ON)
+ try{var _pi=localStorage.getItem('ct_ind');if(_pi){var _po=JSON.parse(_pi);
+   for(var _k in _po)if(_k in IND)IND[_k]=!!_po[_k];}}catch(_e){}
  function save(k,v){try{localStorage.setItem(k,v);}catch(_e){}}
  // 선택한 심볼·타임프레임 복원(새로고침 후에도 유지)
  try{var _s=localStorage.getItem('ct_sym');if(_s)SEL.s=_s;
@@ -515,17 +523,52 @@ _CHART_JS = r"""<script>
  function num(v){if(v==null)return '-'; var s=v<0?'-':'+',a=Math.abs(v);
    if(a>=1e9)return s+(a/1e9).toFixed(2)+'B'; if(a>=1e6)return s+(a/1e6).toFixed(2)+'M';
    if(a>=1e3)return s+(a/1e3).toFixed(1)+'K'; return s+a.toFixed(0);}
- // ---- 캔들 + 하단 거래량 차트 (컨테이너 크기에 맞춰 렌더 → 세로 리사이즈 대응) ----
- function drawCandles(d){LAST=d;var p=(d&&d.points)||[];
-   if(p.length<2){root.innerHTML='<div class="muted">데이터 없음</div>';return;}
-   var W=Math.max(320,root.clientWidth||680),H=Math.max(160,root.clientHeight||320);
-   var padL=64,padR=12,padT=12,padB=26;
-   var volH=Math.max(26,Math.round((H-padT-padB)*0.20)),volGap=6;
-   var priceBottom=H-padB-volH-volGap;
+ // ---- 지표 계산 헬퍼(전 배열에 대해, null=워밍업 부족) ----
+ function smaArr(v,p){var o=new Array(v.length).fill(null),s=0;
+   for(var i=0;i<v.length;i++){s+=v[i];if(i>=p)s-=v[i-p];if(i>=p-1)o[i]=s/p;}return o;}
+ function rsiArr(cl,p){p=p||14;var o=new Array(cl.length).fill(null);if(cl.length<=p)return o;
+   var ag=0,al=0,k,d;for(k=1;k<=p;k++){d=cl[k]-cl[k-1];if(d>=0)ag+=d;else al-=d;}
+   ag/=p;al/=p;o[p]=al===0?100:100-100/(1+ag/al);
+   for(k=p+1;k<cl.length;k++){d=cl[k]-cl[k-1];var g=d>0?d:0,l2=d<0?-d:0;
+     ag=(ag*(p-1)+g)/p;al=(al*(p-1)+l2)/p;o[k]=al===0?100:100-100/(1+ag/al);}return o;}
+ function superTrend(hi,lo,cl,p,m){p=p||10;m=m||3;var n=cl.length;
+   var atr=new Array(n).fill(null),rma=0,tr,pc;
+   for(var i=0;i<n;i++){pc=i>0?cl[i-1]:cl[i];
+     tr=Math.max(hi[i]-lo[i],Math.abs(hi[i]-pc),Math.abs(lo[i]-pc));
+     if(i<p){rma+=tr;if(i===p-1)atr[i]=rma/p;}else{rma=(atr[i-1]*(p-1)+tr);atr[i]=rma/p;}}
+   var st=new Array(n).fill(null),dir=new Array(n).fill(1),fu=null,fl=null;
+   for(var j=0;j<n;j++){if(atr[j]==null)continue;
+     var hl2=(hi[j]+lo[j])/2,ub=hl2+m*atr[j],lb=hl2-m*atr[j];
+     if(fu==null){fu=ub;fl=lb;dir[j]=cl[j]>=hl2?1:-1;st[j]=dir[j]===1?fl:fu;continue;}
+     fu=(ub<fu||cl[j-1]>fu)?ub:fu; fl=(lb>fl||cl[j-1]<fl)?lb:fl;
+     var pd=dir[j-1]||1,nd=pd;
+     if(pd===1&&cl[j]<fl)nd=-1;else if(pd===-1&&cl[j]>fu)nd=1;
+     dir[j]=nd;st[j]=nd===1?fl:fu;}
+   return {st:st,dir:dir};}
+ function poly(pts){if(!pts.length)return '';var s='';for(var i=0;i<pts.length;i++)s+=(i?'L':'M')+pts[i][0].toFixed(1)+','+pts[i][1].toFixed(1);return s;}
+ // ---- 캔들 + MA/Supertrend 오버레이 + RSI 하단패널 + 거래량 ----
+ function drawCandles(d){LAST=d;var full=(d&&d.points)||[];var warm=(d&&d.warmup)||0;
+   if(full.length-warm<2){root.innerHTML='<div class="muted">데이터 없음</div>';return;}
+   var fCl=full.map(function(a){return a[4];}),fHi=full.map(function(a){return a[2];}),fLo=full.map(function(a){return a[3];});
+   var ma100=IND.ma100?smaArr(fCl,100):null, ma200=IND.ma200?smaArr(fCl,200):null;
+   var rsi=IND.rsi?rsiArr(fCl,14):null, stObj=IND.st?superTrend(fHi,fLo,fCl,10,3):null;
+   var p=full.slice(warm);   // 표시구간
+   var W=Math.max(320,root.clientWidth||680),H=Math.max(180,root.clientHeight||340);
+   var padL=64,padR=12,padT=12,padB=26,gap=6;
+   var avail=H-padT-padB;
+   var volH=Math.max(24,Math.round(avail*0.16));
+   var rsiH=IND.rsi?Math.max(30,Math.round(avail*0.20)):0;
+   var priceBottom=padT+(avail-volH-rsiH-gap*(rsiH?2:1));
+   var rsiTop=priceBottom+gap, rsiBottom=rsiTop+rsiH;
+   var volTop=(rsiH?rsiBottom:priceBottom)+gap, volBottom=H-padB;
    var xs=p.map(function(a){return a[0];});
-   var lows=p.map(function(a){return a[3];}),highs=p.map(function(a){return a[2];});
    var xmin=Math.min.apply(null,xs),xmax=Math.max.apply(null,xs);
+   var lows=p.map(function(a){return a[3];}),highs=p.map(function(a){return a[2];});
    var ymin=Math.min.apply(null,lows),ymax=Math.max.apply(null,highs);
+   // MA·Supertrend 선이 잘리지 않게 y범위에 포함
+   for(var t=0;t<p.length;t++){var fi=warm+t;
+     [ma100&&ma100[fi],ma200&&ma200[fi],stObj&&stObj.st[fi]].forEach(function(v){
+       if(v!=null){if(v<ymin)ymin=v;if(v>ymax)ymax=v;}});}
    if(xmax===xmin)xmax+=1; if(ymax===ymin)ymax+=1; var yr=ymax-ymin;
    var vols=p.map(function(a){return a[5]||0;}),vmax=Math.max.apply(null,vols)||1;
    function sx(x){return padL+(x-xmin)/(xmax-xmin)*(W-padL-padR);}
@@ -535,14 +578,33 @@ _CHART_JS = r"""<script>
    for(var i=0;i<5;i++){var yv=ymin+yr*i/4,y=sy(yv);
      o.push('<line x1="'+padL+'" y1="'+y+'" x2="'+(W-padR)+'" y2="'+y+'" stroke="rgba(255,255,255,0.06)"/>');
      o.push('<text x="6" y="'+(y+4)+'" fill="#8d969e" font-size="11">'+fmtPx(yv)+'</text>');}
+   // Supertrend(방향별 색 세그먼트)
+   if(stObj){var seg=[],pdir=null;
+     for(var s2=0;s2<p.length;s2++){var v=stObj.st[warm+s2];if(v==null){if(seg.length>1)o.push('<path d="'+poly(seg)+'" fill="none" stroke="'+(pdir===1?'#16a34a':'#e23b4a')+'" stroke-width="1.5" opacity="0.9"/>');seg=[];pdir=null;continue;}
+       var dr=stObj.dir[warm+s2];if(pdir!==null&&dr!==pdir){o.push('<path d="'+poly(seg)+'" fill="none" stroke="'+(pdir===1?'#16a34a':'#e23b4a')+'" stroke-width="1.5" opacity="0.9"/>');seg=[seg[seg.length-1]];}
+       seg.push([sx(xs[s2]),sy(v)]);pdir=dr;}
+     if(seg.length>1)o.push('<path d="'+poly(seg)+'" fill="none" stroke="'+(pdir===1?'#16a34a':'#e23b4a')+'" stroke-width="1.5" opacity="0.9"/>');}
+   // 캔들 + 거래량
    for(var j=0;j<p.length;j++){var op=p[j][1],hi=p[j][2],lo=p[j][3],cl=p[j][4];
      var x=sx(xs[j]),up=cl>=op,col=up?'#16a34a':'#e23b4a';
      o.push('<line x1="'+x.toFixed(1)+'" y1="'+sy(hi).toFixed(1)+'" x2="'+x.toFixed(1)+'" y2="'+sy(lo).toFixed(1)+'" stroke="'+col+'" stroke-width="1"/>');
      var yo=sy(op),yc=sy(cl),tp=Math.min(yo,yc),bh=Math.max(1,Math.abs(yc-yo));
      o.push('<rect x="'+(x-cw/2).toFixed(1)+'" y="'+tp.toFixed(1)+'" width="'+cw.toFixed(1)+'" height="'+bh.toFixed(1)+'" fill="'+col+'"/>');
-     var vHt=(vols[j]/vmax)*volH,vy=(H-padB)-vHt;
+     var vHt=(vols[j]/vmax)*volH,vy=volBottom-vHt;
      o.push('<rect x="'+(x-cw/2).toFixed(1)+'" y="'+vy.toFixed(1)+'" width="'+cw.toFixed(1)+'" height="'+Math.max(0.5,vHt).toFixed(1)+'" fill="'+col+'" opacity="0.45"/>');}
-   o.push('<line x1="'+padL+'" y1="'+(priceBottom+volGap/2).toFixed(1)+'" x2="'+(W-padR)+'" y2="'+(priceBottom+volGap/2).toFixed(1)+'" stroke="rgba(255,255,255,0.08)"/>');
+   // 이동평균선
+   function maPath(arr,color){if(!arr)return;var pts=[];for(var t2=0;t2<p.length;t2++){var vv=arr[warm+t2];if(vv!=null)pts.push([sx(xs[t2]),sy(vv)]);}
+     if(pts.length>1)o.push('<path d="'+poly(pts)+'" fill="none" stroke="'+color+'" stroke-width="1.3" opacity="0.95"/>');}
+   maPath(ma100,'#f7931a'); maPath(ma200,'#3b82f6');
+   // RSI 하단패널
+   if(rsiH){function ry(v){return rsiBottom-(v/100)*(rsiBottom-rsiTop);}
+     o.push('<rect x="'+padL+'" y="'+rsiTop.toFixed(1)+'" width="'+(W-padL-padR)+'" height="'+rsiH.toFixed(1)+'" fill="rgba(255,255,255,0.02)"/>');
+     [30,50,70].forEach(function(lv){var y=ry(lv);
+       o.push('<line x1="'+padL+'" y1="'+y.toFixed(1)+'" x2="'+(W-padR)+'" y2="'+y.toFixed(1)+'" stroke="rgba(255,255,255,'+(lv===50?0.05:0.10)+')" stroke-dasharray="'+(lv===50?'':'3 3')+'"/>');
+       o.push('<text x="'+(W-padR+2)+'" y="'+(y+3)+'" fill="#8d969e" font-size="9">'+lv+'</text>');});
+     var rpts=[];for(var t3=0;t3<p.length;t3++){var rv=rsi[warm+t3];if(rv!=null)rpts.push([sx(xs[t3]),ry(rv)]);}
+     if(rpts.length>1)o.push('<path d="'+poly(rpts)+'" fill="none" stroke="#a855f7" stroke-width="1.2"/>');
+     o.push('<text x="'+(padL+2)+'" y="'+(rsiTop+11)+'" fill="#a855f7" font-size="10">RSI(14)</text>');}
    for(var k=0;k<5;k++){var xv=xmin+(xmax-xmin)*k/4,dt=new Date(xv);
      var lab=('0'+(dt.getMonth()+1)).slice(-2)+'-'+('0'+dt.getDate()).slice(-2);
      var an=k===0?'start':(k===4?'end':'middle');
@@ -641,7 +703,11 @@ _CHART_JS = r"""<script>
  function renderSyms(q){q=(q||'').toUpperCase();var box=document.getElementById('mkt-list');
    box.innerHTML=SYMS.filter(function(x){return x.toUpperCase().indexOf(q)>=0;}).slice(0,150)
    .map(function(x){return '<div class="tkopt" data-s="'+x+'">'+x+'</div>';}).join('');}
+ function hlInd(){document.querySelectorAll('.indbtn').forEach(function(b){
+   b.classList.toggle('tfbtn-active', !!IND[b.getAttribute('data-ind')]);});}
  document.addEventListener('click',function(e){var t=e.target;if(!t.closest)return;
+   var ib=t.closest('.indbtn');if(ib){var ik=ib.getAttribute('data-ind');IND[ik]=!IND[ik];
+     save('ct_ind',JSON.stringify(IND));hlInd();if(LAST)drawCandles(LAST);return;}
    var tf=t.closest('.tfbtn');if(tf){SEL.tf=tf.getAttribute('data-tf');save('ct_tf',SEL.tf);loadChart();return;}
    var oi=t.closest('.oitf');if(oi){SEL.oitf=oi.getAttribute('data-oitf');save('ct_oitf',SEL.oitf);loadOI();return;}
    var cv=t.closest('.cvdtf');if(cv){SEL.cvdtf=cv.getAttribute('data-cvdtf');save('ct_cvdtf',SEL.cvdtf);loadCVD();return;}
@@ -654,6 +720,7 @@ _CHART_JS = r"""<script>
    if(t.id==='mkt-input')renderSyms(t.value);});
  fetch('/api/symbols').then(function(r){return r.json();}).then(function(a){if(a&&a.length)SYMS=a;}).catch(function(){});
  setTxt('mkt-sym',SEL.s);   // 복원된 심볼 라벨 반영
+ hlInd();
  loadChart();loadDerivs();loadOI();loadCVD();
 })();
 </script>"""

@@ -100,14 +100,18 @@ def main() -> None:
         symbol = (qs.get("symbol", ["BTC"])[0] or "BTC").upper()
         tf = qs.get("tf", ["7d"])[0]
         interval, limit = _tf_params(tf)
+        # 지표(MA200 등) 계산용 워밍업 봉을 앞에 더 받고, 차트는 표시구간(limit)만 그린다.
+        warmup_bars = 210
         try:
-            kl = BinanceDerivativesData().klines(f"{symbol}/USDT", interval, limit)
+            kl = BinanceDerivativesData().klines(f"{symbol}/USDT", interval, limit + warmup_bars)
             points = [[int(kl["open_time"][i]), kl["open"][i], kl["high"][i],
                        kl["low"][i], kl["close"][i], kl["volume"][i]]
                       for i in range(len(kl["close"]))] if kl else []
         except Exception:  # noqa: BLE001
             points = []
-        return json.dumps({"symbol": symbol, "tf": tf, "points": points}).encode("utf-8")
+        warmup = max(0, len(points) - limit)  # 표시는 마지막 limit 봉, 앞 warmup 봉은 지표계산 전용
+        return json.dumps({"symbol": symbol, "tf": tf, "points": points,
+                           "warmup": warmup}).encode("utf-8")
 
     _DERIV_PERIODS = {"5m", "15m", "30m", "1h", "2h", "4h", "6h", "12h", "1d"}
 
