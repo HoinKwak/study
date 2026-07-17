@@ -35,6 +35,7 @@ from crypto_trader.scanner import EventStore  # noqa: E402
 
 _REPO_DIR = Path(__file__).resolve().parent.parent
 _FG_CACHE = {"t": 0.0, "data": None}   # 공포·탐욕 지수 캐시(30분)
+_MACRO_CACHE: dict[str, dict] = {}     # 매크로 묶음 기간별 캐시(period → {t, data})
 
 
 def _autopull_loop(interval: int) -> None:
@@ -208,6 +209,22 @@ def main() -> None:
             pass
         return json.dumps(out).encode("utf-8")
 
+    def _api_macro(qs) -> bytes:
+        """BTC vs 증시·원자재 매크로 묶음(정규화 괴리 + 카드) — 기간별 10분 캐시."""
+        period = (qs.get("period", ["6mo"])[0] or "6mo")
+        now = time.time()
+        c = _MACRO_CACHE.get(period)
+        if c and now - c["t"] < 600:
+            return json.dumps(c["data"]).encode("utf-8")
+        out = {"period": period, "divergence": [], "cards": []}
+        try:
+            from crypto_trader.monitoring.market_extra import macro_bundle
+            out = macro_bundle(period)
+            _MACRO_CACHE[period] = {"t": now, "data": out}
+        except Exception:  # noqa: BLE001
+            pass
+        return json.dumps(out).encode("utf-8")
+
     def _api_symbols() -> bytes:
         try:
             from crypto_trader.monitoring.market_extra import binance_futures_list
@@ -287,6 +304,9 @@ def main() -> None:
                 return
             if path == "/api/feargreed":
                 self._send(_api_feargreed(), "application/json")
+                return
+            if path == "/api/macro":
+                self._send(_api_macro(parse_qs(parsed.query)), "application/json")
                 return
             self.send_response(404)
             self.end_headers()

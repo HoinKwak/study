@@ -832,6 +832,130 @@ _CHART_JS = r"""<script>
 </script>"""
 
 
+# 매크로(BTC vs 증시·원자재) 기간 선택 표시명
+_MACRO_PERIOD_LABELS = [("1일", "1d"), ("1주일", "1w"), ("한달", "1mo"), ("3개월", "3mo"),
+                        ("6개월", "6mo"), ("1년", "1y"), ("3년", "3y"), ("5년", "5y"),
+                        ("10년", "10y")]
+
+
+def _macro_view(macro) -> str:
+    """BTC vs 증시·원자재 매크로 섹션 — 좌: 정규화 괴리(기간선택), 우: 증시·원자재 카드.
+
+    기간 버튼/카드는 serve_dashboard /api/macro 로 라이브 갱신(서버 모드).
+    정적 렌더에선 캐시된 괴리(macro)를 초기 표시.
+    """
+    btns = "".join(f'<button class="tfbtn mptf" data-mp="{v}">{lbl}</button>'
+                   for lbl, v in _MACRO_PERIOD_LABELS)
+    init = charts.line_chart(macro, y_suffix="%") if macro else '<div class="muted">로딩…</div>'
+    return (
+        '<h2>🌐 BTC vs 증시·원자재 '
+        '<span class="muted" style="font-size:12px">· 시작=0% 정규화</span></h2>'
+        '<div style="display:flex;flex-wrap:wrap;gap:14px;align-items:stretch">'
+        '<div class="card" style="flex:2;min-width:340px;display:flex;flex-direction:column">'
+        '<div style="display:flex;justify-content:space-between;align-items:center;'
+        'flex-wrap:wrap;gap:8px">'
+        '<span class="muted">BTC vs 나스닥·금 괴리</span>'
+        f'<span id="macro-tf">{btns}</span></div>'
+        f'<div id="macro-div" style="margin-top:8px;min-height:300px">{init}</div></div>'
+        '<div class="card" style="flex:1;min-width:280px">'
+        '<div class="muted" style="margin-bottom:8px">주요 증시 · 원자재 '
+        '<span id="macro-cards-lbl" style="font-size:11px">(6개월)</span></div>'
+        '<div id="macro-cards" style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px">'
+        '<div class="muted">서버 모드에서 표시됩니다.</div></div></div>'
+        '</div>' + _MACRO_JS)
+
+
+_MACRO_JS = r"""<script>
+(function(){
+ var W=720,H=300,PAD=44,BPAD=60;
+ var PLBL={'1d':'1일','1w':'1주일','1mo':'한달','3mo':'3개월','6mo':'6개월',
+   '1y':'1년','3y':'3년','5y':'5년','10y':'10년'};
+ var period='6mo';
+ try{var s=localStorage.getItem('ct_macro_tf');if(s&&PLBL[s])period=s;}catch(_e){}
+ var box=document.getElementById('macro-div');
+ if(!box)return;
+ function esc(s){return String(s).replace(/[&<>]/g,function(c){
+   return c==='&'?'&amp;':c==='<'?'&lt;':'&gt;';});}
+ function pad2(n){return (n<10?'0':'')+n;}
+ function dlab(ts,span){var d=new Date(ts*1000);
+   var Y=d.getFullYear(),M=pad2(d.getMonth()+1),D=pad2(d.getDate());
+   if(span<=3*86400)return M+'-'+D+' '+pad2(d.getHours())+':'+pad2(d.getMinutes());
+   if(span<=95*86400)return M+'-'+D;
+   if(span<=800*86400)return (Y%100)+'-'+M;
+   return ''+Y;}
+ function hlTf(){document.querySelectorAll('.mptf').forEach(function(b){
+   b.classList.toggle('tfbtn-active', b.getAttribute('data-mp')===period);});}
+ // 다중 시계열 정규화 라인 (charts.line_chart 의 JS판)
+ function drawDiv(series){
+   var pts=[];series.forEach(function(s){(s.points||[]).forEach(function(p){pts.push(p);});});
+   if(pts.length<2){box.innerHTML='<div class="muted">데이터 없음</div>';return;}
+   var xs=pts.map(function(p){return p[0];}),ys=pts.map(function(p){return p[1];});
+   var xmin=Math.min.apply(null,xs),xmax=Math.max.apply(null,xs);
+   var ymin=Math.min.apply(null,ys.concat([0])),ymax=Math.max.apply(null,ys.concat([0]));
+   if(xmax===xmin)xmax=xmin+1; if(ymax===ymin)ymax=ymin+1;
+   var yr=ymax-ymin,span=xmax-xmin;
+   function sx(x){return PAD+(x-xmin)/(xmax-xmin)*(W-2*PAD);}
+   function sy(y){return H-BPAD-(y-ymin)/yr*(H-BPAD-PAD);}
+   var o=['<svg viewBox="0 0 '+W+' '+H+'" width="100%" style="max-width:'+W+'px" xmlns="http://www.w3.org/2000/svg">'];
+   for(var i=0;i<5;i++){var yv=ymin+yr*i/4,y=sy(yv);
+     o.push('<line x1="'+PAD+'" y1="'+y.toFixed(1)+'" x2="'+(W-PAD)+'" y2="'+y.toFixed(1)+'" stroke="#232838" stroke-width="1"/>');
+     o.push('<text x="6" y="'+(y+4).toFixed(1)+'" fill="#8b93a7" font-size="11">'+(yv>=0?'+':'')+yv.toFixed(1)+'%</text>');}
+   if(ymin<0&&ymax>0){var y0=sy(0);
+     o.push('<line x1="'+PAD+'" y1="'+y0.toFixed(1)+'" x2="'+(W-PAD)+'" y2="'+y0.toFixed(1)+'" stroke="#3a4a56" stroke-width="1.3" stroke-dasharray="3 3"/>');}
+   series.forEach(function(s){var p=s.points||[];if(p.length<2)return;
+     var d=p.map(function(q){return sx(q[0]).toFixed(1)+','+sy(q[1]).toFixed(1);}).join(' ');
+     o.push('<polyline points="'+d+'" fill="none" stroke="'+s.color+'" stroke-width="2"/>');});
+   for(var k=0;k<5;k++){var xv=xmin+span*k/4,a=k===0?'start':(k===4?'end':'middle');
+     o.push('<text x="'+sx(xv).toFixed(1)+'" y="'+(H-6)+'" fill="#8b93a7" font-size="10" text-anchor="'+a+'">'+dlab(xv,span)+'</text>');}
+   var lx=PAD+6;series.forEach(function(s){
+     o.push('<rect x="'+lx+'" y="8" width="10" height="10" fill="'+s.color+'"/>');
+     o.push('<text x="'+(lx+15)+'" y="17" fill="#c7cede" font-size="12">'+esc(s.label)+'</text>');
+     lx+=15+esc(s.label).length*11+22;});
+   o.push('</svg>');box.innerHTML=o.join('');
+ }
+ function spark(pts,col){
+   var ys=pts.map(function(p){return p[1];});if(ys.length<2)return '';
+   var mn=Math.min.apply(null,ys),mx=Math.max.apply(null,ys);if(mx===mn)mx=mn+1;
+   var w=150,h=40,n=ys.length;
+   var d=ys.map(function(v,i){return (i/(n-1)*w).toFixed(1)+','+(h-2-(v-mn)/(mx-mn)*(h-4)).toFixed(1);}).join(' ');
+   return '<svg viewBox="0 0 '+w+' '+h+'" width="100%" style="max-width:'+w+'px" xmlns="http://www.w3.org/2000/svg">'+
+     '<polyline points="'+d+'" fill="none" stroke="'+col+'" stroke-width="1.6"/></svg>';
+ }
+ function fmtP(v){if(v==null)return '-';var a=Math.abs(v);
+   if(a>=1000)return v.toLocaleString('en-US',{maximumFractionDigits:0});
+   return v.toLocaleString('en-US',{maximumFractionDigits:2});}
+ function drawCards(cards){
+   var el=document.getElementById('macro-cards');if(!el)return;
+   if(!cards||!cards.length){el.innerHTML='<div class="muted">데이터 없음</div>';return;}
+   el.innerHTML=cards.map(function(c){
+     var pc=c.pct==null?0:c.pct,col=pc>=0?'#16a34a':'#e23b4a';
+     return '<div style="border:1px solid #232838;border-radius:8px;padding:8px">'+
+       '<div style="display:flex;justify-content:space-between;align-items:baseline">'+
+       '<b style="font-size:12px">'+esc(c.label)+'</b>'+
+       '<span style="color:'+col+';font-size:12px">'+(pc>=0?'+':'')+pc.toFixed(2)+'%</span></div>'+
+       '<div class="muted" style="font-size:11px;margin:2px 0">'+fmtP(c.price)+'</div>'+
+       spark(c.points,c.color)+'</div>';}).join('');
+ }
+ function load(){
+   hlTf();
+   var lbl=document.getElementById('macro-cards-lbl');if(lbl)lbl.textContent='('+(PLBL[period]||period)+')';
+   fetch('/api/macro?period='+period).then(function(r){return r.json();}).then(function(d){
+     if(d&&d.divergence&&d.divergence.length)drawDiv(d.divergence);
+     drawCards(d&&d.cards);
+   }).catch(function(){
+     var el=document.getElementById('macro-cards');
+     if(el)el.innerHTML='<div class="muted">증시·원자재 카드는 serve_dashboard 서버 모드에서 표시됩니다.</div>';
+   });
+ }
+ document.addEventListener('click',function(e){var t=e.target;if(!t.closest)return;
+   var b=t.closest('.mptf');if(!b)return;
+   period=b.getAttribute('data-mp');try{localStorage.setItem('ct_macro_tf',period);}catch(_e){}
+   load();});
+ load();
+})();
+</script>"""
+
+
 _STAGE_COLOR = {"조기": "#22c55e", "확산": "#eab308", "뒷북": "#94a3b8"}
 
 
@@ -1154,10 +1278,7 @@ def render_html(journal: TradeJournal, equity: float | None = None,
     </div>
   </div>
 """ if (alt or mcap) else ""
-    macro_section = f"""
-  <h2>🌐 BTC vs 나스닥·금 괴리 (시작=0%)</h2>
-  <div class="card">{charts.line_chart(macro, y_suffix="%")}</div>
-""" if macro else ""
+    macro_section = _macro_view(macro)
 
     brief_section = _brief_section(load_market_brief())
     kol_section = _kol_section(load_kol_watch())

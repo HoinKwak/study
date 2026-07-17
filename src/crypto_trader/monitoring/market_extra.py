@@ -21,12 +21,41 @@ from ..utils import get_logger
 log = get_logger("market_extra")
 
 _UA = {"User-Agent": "Mozilla/5.0"}
-STOOQ = "https://stooq.com/q/d/l/"
 YAHOO = "https://query1.finance.yahoo.com/v8/finance/chart/"
 COINGECKO_MARKETS = "https://api.coingecko.com/api/v3/coins/markets"
 
+# 매크로 기간 → (Yahoo range, interval, 유지일수). 3·5·10년은 넉넉한 range로 받아 clip.
+_MACRO_PERIODS: dict[str, tuple[str, str, int]] = {
+    "1d":  ("1d",  "5m",   1),
+    "1w":  ("5d",  "30m",  7),
+    "1mo": ("1mo", "1d",   31),
+    "3mo": ("3mo", "1d",   93),
+    "6mo": ("6mo", "1d",   186),
+    "1y":  ("1y",  "1d",   366),
+    "3y":  ("5y",  "1wk",  1096),
+    "5y":  ("5y",  "1wk",  1827),
+    "10y": ("10y", "1wk",  3653),
+}
+# BTC vs 나스닥·금 괴리 라인(정규화 %). (label, color, Yahoo symbol)
+_DIV_SYMS: list[tuple[str, str, str]] = [
+    ("BTC",   "#f7931a", "BTC-USD"),
+    ("나스닥", "#38bdf8", "^IXIC"),
+    ("금",     "#eab308", "GC=F"),
+]
+# 우측 카드: 주요 증시 + 원자재. (label, Yahoo symbol, color)
+_MACRO_MARKETS: list[tuple[str, str, str]] = [
+    ("나스닥",  "^IXIC", "#38bdf8"),
+    ("S&P500", "^GSPC", "#22c55e"),
+    ("코스피",  "^KS11", "#e879f9"),
+    ("니케이",  "^N225", "#f97316"),
+    ("FTSE",   "^FTSE", "#94a3b8"),
+    ("금",      "GC=F",  "#eab308"),
+    ("은",      "SI=F",  "#cbd5e1"),
+    ("WTI유",   "CL=F",  "#a3a3a3"),
+]
+
 # 캐시 스키마 버전 — 데이터 구조/소스가 바뀌면 올려 옛 캐시를 무효화
-_CACHE_VERSION = 2
+_CACHE_VERSION = 3
 
 # 시총 상위에 섞여있는 스테이블/랩드 제외용
 STABLE_LIKE = {
@@ -128,11 +157,16 @@ def mcap_top_relative(top_n: int = 10, timeout: int = 20) -> list[dict]:
 
 # ----------------------------------------------------------- BTC·나스닥·금 괴리
 
-def _fetch_yahoo(symbol: str, days: int, timeout: int = 15
-                 ) -> list[tuple[float, float]] | None:
-    """Yahoo Finance 차트 API → 최근 days 일 (epoch초, 종가). 실패 시 None."""
+def _fetch_yahoo(symbol: str, range_: str = "6mo", interval: str = "1d",
+                 timeout: int = 15) -> list[tuple[float, float]] | None:
+    """Yahoo Finance 차트 API → (epoch초, 종가) 리스트. 실패 시 None.
+
+    symbol 은 원형(^IXIC·GC=F·BTC-USD 등)으로 넘기면 URL 인코딩한다.
+    """
+    from urllib.parse import quote
     try:
-        r = requests.get(f"{YAHOO}{symbol}", params={"range": "6mo", "interval": "1d"},
+        r = requests.get(f"{YAHOO}{quote(symbol)}",
+                         params={"range": range_, "interval": interval},
                          headers=_UA, timeout=timeout)
         r.raise_for_status()
         res = (r.json().get("chart", {}).get("result") or [None])[0]
@@ -141,33 +175,74 @@ def _fetch_yahoo(symbol: str, days: int, timeout: int = 15
     except (requests.RequestException, KeyError, TypeError, IndexError, ValueError) as e:
         log.info("yahoo %s 조회 실패: %s", symbol, str(e)[:60])
         return None
-    pts = [(float(t), float(c)) for t, c in zip(ts, closes) if c is not None]
-    return pts[-days:] if pts else None
+    return [(float(t), float(c)) for t, c in zip(ts, closes) if c is not None] or None
 
 
-def _fetch_stooq(symbol: str, days: int, timeout: int = 15
-                 ) -> list[tuple[float, float]] | None:
-    """stooq 일별 CSV → 최근 days 일 (epoch초, 종가). 실패 시 None."""
-    try:
-        r = requests.get(STOOQ, params={"s": symbol, "i": "d"}, headers=_UA, timeout=timeout)
-        r.raise_for_status()
-        lines = r.text.strip().splitlines()
-    except requests.RequestException as e:
-        log.info("stooq %s 조회 실패: %s", symbol, str(e)[:60])
-        return None
-    if len(lines) < 3 or not lines[0].lower().startswith("date"):
-        return None
-    pts: list[tuple[float, float]] = []
-    for ln in lines[1:]:
-        parts = ln.split(",")
-        if len(parts) < 5:
+def _period_of(days: int) -> str:
+    """일수 → 매크로 기간 키(하위호환용 — 스캐너의 macro_days 매핑)."""
+    for key, thr in (("1d", 1), ("1w", 7), ("1mo", 31), ("3mo", 93),
+                     ("6mo", 186), ("1y", 366), ("3y", 1096), ("5y", 1827)):
+        if days <= thr:
+            return key
+    return "10y"
+
+
+def _fetch_period(symbol: str, period: str) -> list[tuple[float, float]]:
+    """기간 키로 Yahoo 조회 후 유지일수만큼 clip. 실패 시 빈 리스트."""
+    range_, interval, clip = _MACRO_PERIODS.get(period, _MACRO_PERIODS["6mo"])
+    raw = _fetch_yahoo(symbol, range_, interval)
+    if not raw:
+        return []
+    cut = _now() - clip * 86400
+    return [p for p in raw if p[0] >= cut] or raw
+
+
+def _align_normalize(raw: dict[str, list[tuple[float, float]]],
+                     syms: list[tuple[str, str, str]]) -> list[dict]:
+    """여러 시리즈를 공통 시작(각 첫 ts 중 최댓값)에서 잘라 0%부터 정규화 — 라인 시작점 일원화."""
+    firsts = [pts[0][0] for _, _, s in syms for pts in [raw.get(s) or []] if pts]
+    if not firsts:
+        return []
+    common = max(firsts)
+    out: list[dict] = []
+    for label, color, s in syms:
+        pts = [p for p in (raw.get(s) or []) if p[0] >= common]
+        norm = _normalize(pts)
+        if norm:
+            out.append({"label": label, "color": color, "points": norm})
+    return out
+
+
+def macro_bundle(period: str = "6mo") -> dict:
+    """기간별 매크로 묶음 — {divergence: [정규화 라인], cards: [증시·원자재 카드]}.
+
+    BTC·나스닥·금은 Yahoo 단일 소스로 정렬 정규화(시작=0%). 카드는 각 시장의
+    가격 스파크라인 + 기간 등락률. serve_dashboard /api/macro 가 호출.
+    """
+    if period not in _MACRO_PERIODS:
+        period = "6mo"
+    syms = {s for _, _, s in _DIV_SYMS} | {s for _, s, _ in _MACRO_MARKETS}
+    raw = {s: _fetch_period(s, period) for s in syms}
+    div = _align_normalize(raw, _DIV_SYMS)
+    cards: list[dict] = []
+    for label, sym, color in _MACRO_MARKETS:
+        pts = raw.get(sym) or []
+        if len(pts) < 2:
             continue
-        try:
-            dt = datetime.strptime(parts[0], "%Y-%m-%d").replace(tzinfo=timezone.utc)
-            pts.append((dt.timestamp(), float(parts[4])))
-        except (ValueError, IndexError):
-            continue
-    return pts[-days:] if pts else None
+        first, last = pts[0][1], pts[-1][1]
+        pct = (last / first - 1.0) * 100.0 if first else None
+        cards.append({
+            "label": label, "symbol": sym, "color": color, "price": last, "pct": pct,
+            "points": [[round(t), round(c, 4)] for t, c in pts],
+        })
+    return {"period": period, "divergence": div, "cards": cards}
+
+
+def macro_divergence(days: int = 90) -> list[dict]:
+    """BTC/나스닥/금 정규화(%) 시계열 — 정적 렌더(스캐너 캐시)용. 시작점 정렬."""
+    period = _period_of(days)
+    raw = {s: _fetch_period(s, period) for _, _, s in _DIV_SYMS}
+    return _align_normalize(raw, _DIV_SYMS)
 
 
 def _normalize(pts: list[tuple[float, float]]) -> list[tuple[float, float]]:
@@ -175,32 +250,6 @@ def _normalize(pts: list[tuple[float, float]]) -> list[tuple[float, float]]:
         return []
     base = pts[0][1]
     return [(t, (c / base - 1.0) * 100.0) for t, c in pts]
-
-
-def macro_divergence(days: int = 90,
-                     data: BinanceDerivativesData | None = None) -> list[dict]:
-    """BTC/나스닥/금 정규화(%) 시계열 — line_chart 용 series 리스트."""
-    data = data or BinanceDerivativesData()
-    series: list[dict] = []
-
-    btc = data.klines("BTC/USDT", "1d", limit=min(days + 1, 200))
-    if btc and btc.get("close"):
-        norm = _normalize(list(zip((t / 1000.0 for t in btc["open_time"]), btc["close"])))
-        if norm:
-            series.append({"label": "BTC", "color": "#f7931a", "points": norm})
-
-    # Yahoo 우선(^IXIC 나스닥종합, GC=F 금선물) → 실패 시 stooq 폴백
-    for yh, sq, label, color in (
-        ("%5EIXIC", "^ndq", "나스닥", "#38bdf8"),
-        ("GC=F", "xauusd", "금", "#eab308"),
-    ):
-        raw = _fetch_yahoo(yh, days) or _fetch_stooq(sq, days)
-        norm = _normalize(raw) if raw else []
-        if norm:
-            series.append({"label": label, "color": color, "points": norm})
-        else:
-            log.info("매크로 %s 데이터 없음(yahoo·stooq 모두 실패)", label)
-    return series
 
 
 # ----------------------------------------------------- 상단 가격 티커/선택차트
