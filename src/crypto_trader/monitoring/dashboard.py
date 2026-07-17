@@ -799,7 +799,9 @@ _CHART_JS = r"""<script>
  // 리사이즈 재렌더 + 차트 높이 저장(캔들), OI·CVD 폭 변화 재렌더
  if(window.ResizeObserver){
    new ResizeObserver(function(){if(LAST)drawCandles(LAST);
-     try{localStorage.setItem('ct_chart_h', Math.round(root.clientHeight));}catch(_e){}}).observe(root);
+     // 탭 전환으로 차트가 숨겨지면 clientHeight=0 → 이 0을 저장하면 다음 복원 때
+     // sh>0 조건에 걸려 무시돼 높이가 리셋된다. 실제로 보이는 높이(≥140)만 저장.
+     try{var _h=Math.round(root.clientHeight);if(_h>=140)localStorage.setItem('ct_chart_h',_h);}catch(_e){}}).observe(root);
    if(oiEl)new ResizeObserver(function(){if(OILAST&&OILAST.length>1)drawLine(oiEl,OILAST,{color:'#6c72ff',fmt:usd});}).observe(oiEl);
    if(cvdEl)new ResizeObserver(function(){if(CVDLAST&&CVDLAST.length>1){var lv=CVDLAST[CVDLAST.length-1][1];
      drawLine(cvdEl,CVDLAST,{color:lv>=0?'#16a34a':'#e23b4a',fmt:num,zero:true});}}).observe(cvdEl);}
