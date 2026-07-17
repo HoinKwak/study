@@ -1,6 +1,6 @@
 {
-  "ts": "2026-07-17T00:02:00Z",
-  "note": "상위 차티스트 6인의 현재 크립토 뷰 — 참고용, 투자조언 아님. 각 견해는 해당 인물의 주장이며 사실이 아님. 이번 회차(7/17 자정, 자료는 7/16까지)에는 6인 전원 재탐색했다. KillaXBT가 7/15 신규 X 포스팅(확장된 양의 Delta 패턴→'매크로 로우하이' 경계, 6/24 장기축적 스탠스에서 단기 신중론으로 다소 이동)을, Rekt Capital이 7/13 뉴스레터('Bitcoin – Limited Relief Before Extended Downside?', cointelegraph 7/11로 교차확인)로 기존 뷰를 재확인·정교화했으며, Benjamin Cowen은 7월 Bitcoin Cycle Memo(benjamincowen.com)에서 50주 SMA($86,500) 상회를 약세론 무효화 조건으로 신규 제시했다. Peter Brandt는 이번 회차에도 7/15 이후 신뢰 가능한 신규 공개 코멘트를 찾지 못해 기존 뷰·asof를 유지했고, TechDev(뉴스레터 최신 이슈 #97, 약 3주 전 발행 재확인)와 Doctor Profit(검색된 결과가 시점 불분명하거나 과거 사이클($90K대) 언급과 혼동돼 신뢰 가능한 신규 코멘트로 미채택)도 기존 뷰·asof를 유지함(공개 뷰 부족).",
+  "ts": "2026-07-17T12:06:00Z",
+  "note": "상위 차티스트 6인의 현재 크립토 뷰 — 참고용, 투자조언 아님. 각 견해는 해당 인물의 주장이며 사실이 아님. 이번 회차(7/17 정오 UTC, 자료는 7/16까지)에는 6인 전원 재탐색했다. Benjamin Cowen이 7/16 발행된 7월 Bitcoin Cycle Memo(benzinga 7/16 보도로 확인)에서 4분기 바닥론과 50주 SMA($86,500) 무효화 레벨을 재확인해 asof를 7/16으로 갱신했다. Peter Brandt·KillaXBT는 지난 회차(7/15) 이후 신뢰 가능한 신규 공개 코멘트를 찾지 못해 기존 뷰·asof를 유지했고, Rekt Capital(7/13 뉴스레터, 원 도메인 접근 제한 지속)·TechDev(뉴스레터 최신 이슈 #97, 재확인)·Doctor Profit(검색된 결과가 시점 불분명하거나 과거 사이클 언급과 혼동돼 신뢰 가능한 신규 코멘트로 미채택)도 기존 뷰·asof를 유지함(공개 뷰 부족).",
   "chartists": [
     {
       "name": "Peter Brandt",
@@ -20,23 +20,23 @@
       "confidence": "상(단서)",
       "style": "차트/사이클 구조",
       "bias": "단기 경계(매크로 로우하이 가능성) 속 장기 강세 유지",
-      "btc": "7/15 신규 X 포스팅(x.com/KillaXBT/status/2077356154057830492)에서 '작년 8월 이후 BTC의 확장된 양(+)의 Delta 구간은 매번 분산(distribution)으로 끝났다'며, 현재도 Delta가 양의 방향으로 스트레치되며 가격과 함께 움직이는 동일한 셋업이 재현되고 있어 패턴이 유지될 경우 BTC가 '매크로 로우하이(macro lower high)'를 형성 중일 수 있다고 경고. 다만 결국에는 강세 전환을 기대하며(HTF 강세 유지), 명확한 구조 확인 전까지 추격 매수에는 신중할 것을 권고 — 가격이 한동안 더 그린으로 밀릴 수 있다는 단서도 병기. $49,000까지의 추가 하락 가능성을 열어두되 베어 기대심리 반박, $100,000 재돌파는 '2027년(늦은 2분기~3분기 유력)'으로 지연 제시했던 6/24 뷰(Daily Hodl)의 장기 축적 기조는 유지하되, 단기적으로는 로우하이·분산 리스크를 경계하는 방향으로 스탠스가 다소 이동.",
+      "btc": "7/15 신규 X 포스팅(x.com/KillaXBT/status/2077356154057830492)에서 '작년 8월 이후 BTC의 확장된 양(+)의 Delta 구간은 매번 분산(distribution)으로 끝났다'며, 현재도 Delta가 양의 방향으로 스트레치되며 가격과 함께 움직이는 동일한 셋업이 재현되고 있어 패턴이 유지될 경우 BTC가 '매크로 로우하이(macro lower high)'를 형성 중일 수 있다고 경고. 다만 결국에는 강세 전환을 기대하며(HTF 강세 유지), 명확한 구조 확인 전까지 추격 매수에는 신중할 것을 권고 — 가격이 한동안 더 그린으로 밀릴 수 있다는 단서도 병기. $49,000까지의 추가 하락 가능성을 열어두되 베어 기대심리 반박, $100,000 재돌파는 '2027년(늦은 2분기~3분기 유력)'으로 지연 제시했던 6/24 뷰(Daily Hodl)의 장기 축적 기조는 유지하되, 단기적으로는 로우하이·분산 리스크를 경계하는 방향으로 스탠스가 다소 이동. 7/17 재탐색에서도 7/15 이후 신뢰 가능한 신규 공개 업데이트는 확인되지 않음(공개 뷰 부족).",
       "eth": "ETH에 대한 최근 구체적 공개 뷰 부족(공개 뷰 부족).",
-      "market": "감소하는 사이클(체감 수익·얕아지는 조정) 패턴 논리와 장기 축적 관점은 유지하되, 이번 갱신에서는 '확장된 양의 Delta→분산→매크로 로우하이'라는 반복 패턴을 근거로 근시일 내 상승 추격에 대한 경계가 추가됨.",
+      "market": "감소하는 사이클(체감 수익·얕아지는 조정) 패턴 논리와 장기 축적 관점은 유지하되, 이번 갱신에서는 '확장된 양의 Delta→분산→매크로 로우하이'라는 반복 패턴을 근거로 근시일 내 상승 추격에 대한 경계가 추가됨. 7/17 재탐색 결과 이후 신규 공개 코멘트 미확인.",
       "asof": "2026-07-15",
-      "source": "X(2026-07-15) @KillaXBT status/2077356154057830492 'Delta stretched positive... BTC is forming a macro lower high'; Daily Hodl(2026-06-24) 'Analyst Who Nailed 2025 Bitcoin Peak Predicts BTC Surge to $100,000 – But Not This Year'"
+      "source": "X(2026-07-15) @KillaXBT status/2077356154057830492 'Delta stretched positive... BTC is forming a macro lower high'; Daily Hodl(2026-06-24) 'Analyst Who Nailed 2025 Bitcoin Peak Predicts BTC Surge to $100,000 – But Not This Year' — 7/17 재탐색 결과 이후 신규 공개 코멘트 미확인(공개 뷰 부족)"
     },
     {
       "name": "Benjamin Cowen",
       "handle": "@intocryptoverse",
       "confidence": "상(계량)",
       "style": "리스크 메트릭·계량 사이클",
-      "bias": "경계(레인지 지속 전망, 8월 되돌림 경고, 무효화 레벨 신규 제시)",
-      "btc": "7월 Bitcoin Cycle Memo(benjamincowen.com)에서 BTC가 200주 SMA(약 $65,300 부근)를 되찾았으나 이를 '불완전한 회복(incomplete)'으로 평가 — 새로운 강세장 시작이 아니라는 기존 입장 재확인. 2018년 '중간선거 해(midterm year)' 사이클 패턴(2월 저점→3~4월 higher low→5월 lower high→6말~7초 2월 저점 재스윕)을 그대로 따라가고 있다고 진단, 과거 7월 상승률(2018 +40%, 2022 +20%, 2026 현재 +10%) 비교도 유지. 4분기(9월말~10월초)를 사이클 저점 기본 시나리오로 유지하되, 이번 회차에서는 주봉 종가 기준 50주 SMA($86,500) 상회가 약세론을 약화시킬 무효화 레벨로 신규 제시. 정확한 저점 타이밍보다 '바텀워치(bottom-watch) 모드'에서의 인내·DCA를 권고(기존 스탠스 유지).",
-      "eth": "ETH는 2026년 신고가 갱신이 어렵다고 보며, $4,878 부근까지 반등해도 '불트랩'으로 다시 $2,000대까지 되밀릴 수 있다고 경고(기존 뷰, 7월 Cycle Memo에는 ETH 분석이 포함되지 않아 이후 ETH 단독 공개 업데이트 부족).",
-      "market": "제한적 유동성·후기 사이클 진단은 유지. 2026년을 중간선거 해로 규정하며 Fed가 완화 편향을 철회한 고금리 환경이 회복을 복잡하게 만든다는 매크로 진단도 유지. 알트코인 전반에 대해 '99.9%는 내재가치가 없는 쓰레기'라는 비판적 스탠스도 유지. 이번 갱신의 핵심은 온체인 리스크 지표가 축적권에 있으나 '리셋이 아직 불완전'하다는 점과, 2022 사이클과의 유사성·2019 아날로그가 타이밍 창을 초과했다는 점, 그리고 $86,500(50주 SMA) 상회라는 구체적 무효화 조건을 신규 제시한 점.",
-      "asof": "2026-07-15",
-      "source": "benjamincowen.com(2026-07) 'Bitcoin Cycle Memo - July 2026'; Benzinga(2026-07-15) 'Bitcoin Holds $65,000 as Crypto Sentiment Improves...'; beincrypto(2026-07) 'Bitcoin Four-Year Cycle Not Dead, Benjamin Cowen Says BTC Bottom Likely in October 2026'"
+      "bias": "경계(4분기 저점 기본 시나리오 유지, 저점까지 '몇 주가 아닌 몇 개월')",
+      "btc": "7/16 발행된 Bitcoin Cycle Memo - July 2026(benjamincowen.com, benzinga 7/16 'Bitcoin Holds $64,000 as Analyst Says Market Low Is Months, Not Weeks Away'로 교차확인)에서 BTC가 초여름 저점(약 $57,000)에서 200주 SMA를 재탈환해 약 $64,400선까지 반등했으나(10월 고점 대비 약 45~48% 하락 상태) 이를 '불완전한 회복(incomplete)'으로 재차 평가 — 새로운 강세장 시작이 아니라는 기존 입장 재확인. 2018년 '중간선거 해(midterm year)' 사이클 패턴을 그대로 따라가고 있다는 진단도 유지. 4분기(9월말~10월초)를 사이클 저점 기본 시나리오로 유지, 시장 저점까지는 '몇 주가 아니라 몇 개월(months, not weeks)' 남았다고 재확인. 주봉 종가 기준 50주 SMA($86,500) 상회를 약세론 무효화 레벨로 유지. MVRV Z-Score가 과거 주요 저점 대비 여전히 높고, 실현가($53,000 부근)를 아직 재방문하지 않는 등 온체인 리셋이 불완전하다는 근거를 재확인, DCA 권고 유지.",
+      "eth": "ETH는 2026년 신고가 갱신이 어렵다고 보며, $4,878 부근까지 반등해도 '불트랩'으로 다시 $2,000대까지 되밀릴 수 있다고 경고(기존 뷰, 7월 Cycle Memo에는 ETH 단독 분석이 포함되지 않아 이후 ETH 단독 공개 업데이트 부족).",
+      "market": "제한적 유동성·후기 사이클 진단은 유지. 2026년을 중간선거 해로 규정하며 Fed가 완화 편향을 철회한 고금리 환경이 회복을 복잡하게 만든다는 매크로 진단도 유지. 알트코인 전반에 대해 '99.9%는 내재가치가 없는 쓰레기'라는 비판적 스탠스도 유지. 이번(7/16) 갱신의 핵심은 축적 국면 지표는 우호적이나 리셋이 '아직 불완전'하다는 진단을 재확인하고, 시장 저점까지 남은 시간을 '몇 주가 아닌 몇 개월'로 명시적으로 규정한 점, $86,500 무효화 레벨을 재차 강조한 점.",
+      "asof": "2026-07-16",
+      "source": "benjamincowen.com(2026-07-16) 'Bitcoin Cycle Memo - July 2026'; Benzinga(2026-07-16) 'Bitcoin Holds $64,000 as Analyst Says Market Low Is Months, Not Weeks Away'; beincrypto(2026-07) 'Bitcoin Four-Year Cycle Not Dead, Benjamin Cowen Says BTC Bottom Likely in October 2026'"
     },
     {
       "name": "Rekt Capital",
@@ -44,11 +44,11 @@
       "confidence": "중상",
       "style": "반감기 사이클",
       "bias": "경계(아직 바닥 아님, 7월 후반 반등 후 8월 되돌림)",
-      "btc": "7/13 뉴스레터 'Bitcoin – Limited Relief Before Extended Downside?'(newsletter.rektcapital.co, cointelegraph 7/11 'Traders See No Bitcoin Bull-Market Comeback Despite 10% July Gains'로 교차확인)에서 \"역사가 반복된다면 7월 후반에 비트코인의 서머 릴리프 랠리가 힘을 받을 것\"이라며 $70,000 부근을 7월 반등 목표로 재확인. 다만 8월엔 7월 상승분이 되돌려지며(August erases July's gains) 4분기 전형적 베어마켓 바닥으로 이어질 것이라는 시간축을 재차 강조 — 2025년 고점 후 약 270일 경과 시점에서 과거 사이클 평균(약 365일)에 못 미쳐 '아직 바닥권에 근접하지 않았다'는 7/3 진단(Daily Hodl)도 유지. 50개월 EMA 아래 6월 마감→7월 저항 전환, 2022 사이클과 매우 유사한 흐름이라는 기존 진단도 그대로 유지.",
+      "btc": "7/13 뉴스레터 'Bitcoin – Limited Relief Before Extended Downside?'(newsletter.rektcapital.co, cointelegraph 7/11 'Traders See No Bitcoin Bull-Market Comeback Despite 10% July Gains'로 교차확인)에서 \"역사가 반복된다면 7월 후반에 비트코인의 서머 릴리프 랠리가 힘을 받을 것\"이라며 $70,000 부근을 7월 반등 목표로 재확인. 다만 8월엔 7월 상승분이 되돌려지며(August erases July's gains) 4분기 전형적 베어마켓 바닥으로 이어질 것이라는 시간축을 재차 강조 — 2025년 고점 후 약 270일 경과 시점에서 과거 사이클 평균(약 365일)에 못 미쳐 '아직 바닥권에 근접하지 않았다'는 7/3 진단(Daily Hodl)도 유지. 50개월 EMA 아래 6월 마감→7월 저항 전환, 2022 사이클과 매우 유사한 흐름이라는 기존 진단도 그대로 유지. 7/17 재탐색에서도 7/13 이후 신뢰 가능한 신규 뉴스레터/코멘트는 확인되지 않음(원 도메인 newsletter.rektcapital.co.uk는 여전히 카지노 리뷰 사이트로 리디렉션돼 접근 불가, 대체 URL도 홈페이지로 리디렉션돼 특정 신규 이슈 확인 실패 — 공개 뷰 부족).",
       "eth": "ETH에 대한 최근 구체적 공개 뷰 부족(공개 뷰 부족).",
-      "market": "반감기 4년 주기 프레임 유지, 사이클 후반 국면 진단도 유지. 핵심은 '여름 반등은 실재하나 진짜 바닥은 아직 아니다'라는 시간축 — 7월 후반 반등 강화 후 8월 되돌림이라는 구체적 타임라인을 7/13 뉴스레터로 재확인·정교화.",
+      "market": "반감기 4년 주기 프레임 유지, 사이클 후반 국면 진단도 유지. 핵심은 '여름 반등은 실재하나 진짜 바닥은 아직 아니다'라는 시간축 — 7월 후반 반등 강화 후 8월 되돌림이라는 구체적 타임라인을 7/13 뉴스레터로 재확인·정교화한 상태를 유지.",
       "asof": "2026-07-13",
-      "source": "newsletter.rektcapital.co(2026-07-13) 'Bitcoin – Limited Relief Before Extended Downside?'; cointelegraph(2026-07-11) 'Traders See No Bitcoin Bull-Market Comeback Despite 10% July Gains'; Daily Hodl(2026-07-03) 'Analyst Says Bitcoin Not Quite Near Bottom' — 원 뉴스레터 도메인(newsletter.rektcapital.co.uk)은 여전히 카지노 리뷰 사이트로 리디렉션돼 접근 불가하나 대체 도메인(rektcapital.co)과 2차 보도로 교차확인"
+      "source": "newsletter.rektcapital.co(2026-07-13) 'Bitcoin – Limited Relief Before Extended Downside?'; cointelegraph(2026-07-11) 'Traders See No Bitcoin Bull-Market Comeback Despite 10% July Gains'; Daily Hodl(2026-07-03) 'Analyst Says Bitcoin Not Quite Near Bottom' — 7/17 재탐색 결과 원 뉴스레터 도메인·대체 URL 모두 접근 제한/리디렉션으로 신규 이슈 미확인(공개 뷰 부족)"
     },
     {
       "name": "TechDev",
@@ -56,7 +56,7 @@
       "confidence": "중상",
       "style": "DXY/글로벌 유동성 상관",
       "bias": "중립",
-      "btc": "BTC가 $60,000 바로 아래에서 이중바닥(double bottom)을 형성 중이며 '엔진이 녹색으로 전환'됐고 스마트머니와 견해가 일치한다는 평가를 유지(뉴스레터 최신 이슈 #97에서도 동일 프레임, 7/17 재탐색해도 #97(약 3주 전 발행)이 여전히 최신호로 확인되어 신규 이슈 없음). 스마트머니·개인 컨센서스가 일치하는 점 자체를 경계 신호로 지목 — '바닥 초입의 쉬운 돈은 이미 지났다'는 기존 뷰 유지, 초점은 로테이션 타이밍으로 이동.",
+      "btc": "BTC가 $60,000 바로 아래에서 이중바닥(double bottom)을 형성 중이며 '엔진이 녹색으로 전환'됐고 스마트머니와 견해가 일치한다는 평가를 유지(뉴스레터 최신 이슈 #97에서도 동일 프레임, 7/17 재탐색해도 #97이 여전히 최신호로 확인되어 신규 이슈 없음). 스마트머니·개인 컨센서스가 일치하는 점 자체를 경계 신호로 지목 — '바닥 초입의 쉬운 돈은 이미 지났다'는 기존 뷰 유지, 초점은 로테이션 타이밍으로 이동.",
       "eth": "ETH도 약 $1,568 부근에서 이중바닥 형성 중으로 보는 기존 뷰 유지. ETH/BTC 비율로 회복 국면 로테이션 리더를 분석하겠다는 예고도 아직 별도 신규 발행 확인 안 됨(공개 뷰 부족).",
       "market": "BTC-DXY 역상관 극단화 진단과 바닥권 변곡점 진단을 유지. 7/17 재탐색 결과 이슈 #97 이후 신규 뉴스레터를 찾지 못해 기존 뷰를 그대로 유지(공개 뷰 부족).",
       "asof": "2026-06-28",
