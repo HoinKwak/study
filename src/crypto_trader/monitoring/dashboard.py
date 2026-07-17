@@ -397,7 +397,7 @@ def _ticker_strip(tickers) -> str:
         spark = charts.sparkline((t.get("closes") or [])[-48:], width=150, height=36, color=c)
         pct_txt = f"{pct:+.1f}%" if pct is not None else "-"
         minis.append(
-            f"<div class='card' style='margin:0;padding:9px 11px'>"
+            f"<div class='card symlink' data-sym='{sym}' style='margin:0;padding:9px 11px'>"
             f"<div style='display:flex;justify-content:space-between;align-items:baseline'>"
             f"<b style='font-size:14px'>{sym}</b><span style='color:{c};font-size:11px'>{pct_txt}</span></div>"
             f"<div class='muted' style='font-size:11px;margin-bottom:2px'>{_fmt_px(t.get('price'))}</div>"
@@ -898,9 +898,10 @@ _CHART_JS = r"""<script>
    var op=t.closest('.tkopt');if(op){SEL.s=op.getAttribute('data-s');save('ct_sym',SEL.s);
      setTxt('mkt-sym',SEL.s);setTxt('mkt-price','—');
      document.getElementById('mkt-search').style.display='none';loadChart();loadDerivs();loadOI();loadCVD();return;}
-   // 강도·시총 표의 심볼 클릭 → 해당 종목으로 차트 전환 + 차트로 스크롤
+   // 강도·시총 표 / 상단 티커 카드 심볼 클릭 → 시장 탭으로 전환 + 해당 종목 차트 로드 + 스크롤
    var sl=t.closest('.symlink');if(sl){var sy2=(sl.getAttribute('data-sym')||'').toUpperCase();
-     if(sy2){SEL.s=sy2;save('ct_sym',SEL.s);setTxt('mkt-sym',SEL.s);setTxt('mkt-price','—');
+     if(sy2){if(window.__showTab){window.__showTab('market');try{localStorage.setItem('ct_tab','market');}catch(_e2){}}
+       SEL.s=sy2;save('ct_sym',SEL.s);setTxt('mkt-sym',SEL.s);setTxt('mkt-price','—');
        loadChart();loadDerivs();loadOI();loadCVD();
        if(root&&root.scrollIntoView)root.scrollIntoView({behavior:'smooth',block:'center'});}return;}});
  document.addEventListener('input',function(e){var t=e.target;
@@ -1466,7 +1467,8 @@ def render_html(journal: TradeJournal, equity: float | None = None,
   .tkname:hover {{ color:var(--accent); }}
   .tklist {{ max-height:240px; overflow-y:auto; margin-top:6px; display:grid; grid-template-columns:repeat(auto-fill,minmax(80px,1fr)); gap:4px; }}
   .symlink {{ cursor:pointer; }}
-  .symlink:hover {{ color:var(--brand); text-decoration:underline; }}
+  b.symlink:hover {{ color:var(--brand); text-decoration:underline; }}
+  .card.symlink:hover {{ border-color:var(--brand); }}
   .tkopt {{ padding:6px 8px; border:1px solid var(--border); border-radius:9999px; font-size:12px; text-align:center; cursor:pointer; }}
   .tkopt:hover {{ background:var(--brand); color:#fff; }}
   .tfbtn, .oitf, .cvdtf, .etftf {{ background:transparent; color:var(--muted); border:1px solid var(--border); border-radius:9999px; padding:3px 9px; margin-left:4px; font-size:12px; cursor:pointer; }}
@@ -1555,6 +1557,7 @@ def render_html(journal: TradeJournal, equity: float | None = None,
      document.querySelectorAll('.tab').forEach(function(b){{b.classList.toggle('tab-active',b.getAttribute('data-tab')===tab);}});
      document.querySelectorAll('.tabpane').forEach(function(p){{p.style.display=p.getAttribute('data-pane')===tab?'block':'none';}});
      return tab;}}
+   window.__showTab=_showTab;   // 상단 티커 심볼 클릭 시 차트 IIFE가 시장 탭으로 전환하도록 노출
    document.addEventListener('click',function(e){{var t=e.target.closest&&e.target.closest('.tab');if(!t)return;
      var tab=_showTab(t.getAttribute('data-tab'));
      try{{localStorage.setItem('ct_tab',tab);}}catch(_e){{}} }});
