@@ -427,6 +427,7 @@ def _market_view(tickers) -> str:
         f'<button class="tfbtn indbtn" data-ind="ma200">MA200</button>'
         f'<button class="tfbtn indbtn" data-ind="st">Supertrend</button>'
         f'<button class="tfbtn indbtn" data-ind="rsi">RSI</button>'
+        f'<button class="tfbtn indbtn" data-ind="poc">POC</button>'
         f'<span class="muted" style="align-self:center;font-size:11px;margin-left:6px">채널</span>'
         f'<button class="tfbtn chanbtn" data-chan="none">없음</button>'
         f'<button class="tfbtn chanbtn" data-chan="keltner">켈트너</button>'
@@ -508,7 +509,7 @@ _CHART_JS = r"""<script>
  var SYMS=(cfg.syms||[]).slice();
  var SEL={s:cfg.d1,tf:'4h',oitf:'1h',cvdtf:'1h'};   // tf=캔들 간격(15m/1h/4h/1d/1w/1M)
  var TFSET={'15m':1,'1h':1,'4h':1,'1d':1,'1w':1,'1M':1};
- var IND={ma100:true,ma200:true,st:true,rsi:true};   // 차트 기본 지표(모두 ON)
+ var IND={ma100:true,ma200:true,st:true,rsi:true,poc:true};   // 차트 기본 지표(모두 ON)
  try{var _pi=localStorage.getItem('ct_ind');if(_pi){var _po=JSON.parse(_pi);
    for(var _k in _po)if(_k in IND)IND[_k]=!!_po[_k];}}catch(_e){}
  var CHAN='none';   // 가격밴드 채널(배타 선택): none|keltner|donchian
@@ -529,7 +530,7 @@ _CHART_JS = r"""<script>
  try{var sh=parseInt(localStorage.getItem('ct_chart_h'),10);
    if(sh>0)root.style.height=Math.min(720,Math.max(140,sh))+'px';}catch(_e){}
  function setTxt(id,t){var e=document.getElementById(id);if(e)e.textContent=t;}
- function hlTf(){card.querySelectorAll('.tfbtn').forEach(function(b){
+ function hlTf(){card.querySelectorAll('.tfbtn[data-tf]').forEach(function(b){
    b.classList.toggle('tfbtn-active', b.getAttribute('data-tf')===SEL.tf);});}
  function hlBtns(sel,attr,val){document.querySelectorAll(sel).forEach(function(b){
    b.classList.toggle('tfbtn-active', b.getAttribute(attr)===val);});}
@@ -579,6 +580,25 @@ _CHART_JS = r"""<script>
      for(var j=i-p+1;j<=i;j++){if(hi[j]>hh)hh=hi[j];if(lo[j]<ll)ll=lo[j];}
      up[i]=hh;lw[i]=ll;md[i]=(hh+ll)/2;}
    return {up:up,mid:md,lo:lw};}
+ // 매물대(볼륨 프로파일): 표시구간을 가격대 bins로 나눠 각 봉 거래량을 고~저 범위에 분배.
+ // POC=최대거래 가격대, VAH/VAL=누적 70% 밸류에어리어 상·하단.
+ function volProfile(p,bins){bins=bins||48;
+   var lo=Infinity,hi=-Infinity,i;
+   for(i=0;i<p.length;i++){if(p[i][3]<lo)lo=p[i][3];if(p[i][2]>hi)hi=p[i][2];}
+   if(!(hi>lo))return null;
+   var bw=(hi-lo)/bins,vol=new Array(bins).fill(0);
+   for(i=0;i<p.length;i++){var l=p[i][3],h=p[i][2],v=p[i][5]||0;
+     var b0=Math.max(0,Math.min(bins-1,Math.floor((l-lo)/bw)));
+     var b1=Math.max(0,Math.min(bins-1,Math.floor((h-lo)/bw)));
+     var share=v/(b1-b0+1);for(var b=b0;b<=b1;b++)vol[b]+=share;}
+   var pocB=0;for(b=1;b<bins;b++)if(vol[b]>vol[pocB])pocB=b;
+   var total=vol.reduce(function(a,c){return a+c;},0);
+   var loB=pocB,hiB=pocB,acc=vol[pocB],target=total*0.70;
+   while(acc<target&&(loB>0||hiB<bins-1)){
+     var up=hiB<bins-1?vol[hiB+1]:-1,dn=loB>0?vol[loB-1]:-1;
+     if(up>=dn){hiB++;acc+=vol[hiB];}else{loB--;acc+=vol[loB];}}
+   return {poc:lo+(pocB+0.5)*bw, vah:lo+(hiB+1)*bw, val:lo+loB*bw,
+           vol:vol, lo:lo, bw:bw, bins:bins, vmax:Math.max.apply(null,vol)||1};}
  function poly(pts){if(!pts.length)return '';var s='';for(var i=0;i<pts.length;i++)s+=(i?'L':'M')+pts[i][0].toFixed(1)+','+pts[i][1].toFixed(1);return s;}
  // ---- 기술적 종합 점수용 추가 지표 ----
  function clamp(x,a,b){return x<a?a:(x>b?b:x);}
@@ -666,6 +686,7 @@ _CHART_JS = r"""<script>
    var rsi=IND.rsi?rsiArr(fCl,14):null, stObj=IND.st?superTrend(fHi,fLo,fCl,10,3):null;
    var chan=CHAN==='keltner'?keltner(fHi,fLo,fCl,20,10,2):(CHAN==='donchian'?donchian(fHi,fLo,20):null);
    var p=full.slice(warm);   // 표시구간
+   var vp=IND.poc?volProfile(p):null;   // 매물대(볼륨 프로파일)
    var W=Math.max(320,root.clientWidth||680),H=Math.max(180,root.clientHeight||340);
    var padL=64,padR=12,padT=12,padB=26,gap=6;
    var avail=H-padT-padB;
@@ -704,6 +725,12 @@ _CHART_JS = r"""<script>
        o.push('<path d="'+poly(loP)+'" fill="none" stroke="#2dd4bf" stroke-width="1.2" opacity="0.9"/>');
        if(mdP.length>1)o.push('<path d="'+poly(mdP)+'" fill="none" stroke="#2dd4bf" stroke-width="1" opacity="0.5" stroke-dasharray="3 3"/>');
        o.push('<text x="'+(padL+2)+'" y="'+(padT+11)+'" fill="#2dd4bf" font-size="10">'+(CHAN==='keltner'?'Keltner(20,10,2)':'Donchian(20)')+'</text>');}}
+   // 매물대 히스토그램(우측, 배경) — POC 막대는 금색 강조
+   if(vp){var mW=(W-padL-padR)*0.14,xR=W-padR,binH=(priceBottom-padT)/vp.bins;
+     for(var vb=0;vb<vp.bins;vb++){var bpx=vp.lo+(vb+0.5)*vp.bw,by=sy(bpx);
+       var bwid=(vp.vol[vb]/vp.vmax)*mW;if(bwid<0.5)continue;
+       var isPoc=Math.abs(bpx-vp.poc)<vp.bw*0.6;
+       o.push('<rect x="'+(xR-bwid).toFixed(1)+'" y="'+(by-binH*0.45).toFixed(1)+'" width="'+bwid.toFixed(1)+'" height="'+Math.max(1,binH*0.9).toFixed(1)+'" fill="'+(isPoc?'#fbbf24':'#8d969e')+'" opacity="'+(isPoc?0.5:0.20)+'"/>');}}
    // Supertrend(방향별 색 세그먼트)
    if(stObj){var seg=[],pdir=null;
      for(var s2=0;s2<p.length;s2++){var v=stObj.st[warm+s2];if(v==null){if(seg.length>1)o.push('<path d="'+poly(seg)+'" fill="none" stroke="'+(pdir===1?'#16a34a':'#e23b4a')+'" stroke-width="1.5" opacity="0.9"/>');seg=[];pdir=null;continue;}
@@ -722,6 +749,11 @@ _CHART_JS = r"""<script>
    function maPath(arr,color){if(!arr)return;var pts=[];for(var t2=0;t2<p.length;t2++){var vv=arr[warm+t2];if(vv!=null)pts.push([sx(xs[t2]),sy(vv)]);}
      if(pts.length>1)o.push('<path d="'+poly(pts)+'" fill="none" stroke="'+color+'" stroke-width="1.3" opacity="0.95"/>');}
    maPath(ma100,'#f7931a'); maPath(ma200,'#3b82f6');
+   // 매물대 수평선: POC(실선) + VAH/VAL(점선), 금색
+   if(vp){function hline(price,dash,lbl){var y=sy(price);
+     o.push('<line x1="'+padL+'" y1="'+y.toFixed(1)+'" x2="'+(W-padR)+'" y2="'+y.toFixed(1)+'" stroke="#fbbf24" stroke-width="1" opacity="0.9"'+(dash?' stroke-dasharray="4 3"':'')+'/>');
+     o.push('<text x="'+(padL+2)+'" y="'+(y-2).toFixed(1)+'" fill="#fbbf24" font-size="9">'+lbl+'</text>');}
+     hline(vp.vah,true,'VAH'); hline(vp.val,true,'VAL'); hline(vp.poc,false,'POC');}
    // RSI 하단패널(거래량 아래) — 과매수(>70) 붉은띠 / 과매도(<30) 초록띠 강조
    if(rsiH){function ry(v){return rsiBottom-(v/100)*(rsiBottom-rsiTop);}var pw=(W-padL-padR);
      o.push('<rect x="'+padL+'" y="'+rsiTop.toFixed(1)+'" width="'+pw+'" height="'+rsiH.toFixed(1)+'" fill="rgba(255,255,255,0.02)"/>');
