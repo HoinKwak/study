@@ -901,6 +901,11 @@ _CHART_JS = r"""<script>
  setTxt('mkt-sym',SEL.s);   // 복원된 심볼 라벨 반영
  hlInd();hlChan();
  loadChart();loadDerivs();loadOI();loadCVD();loadFearGreed();
+ // 시장 탭이 보일 때 주기적으로 차트·파생 재조회(전체 리로드 없이 갱신)
+ (function(){var SEC=window.CT_REFRESH||0;if(!SEC||SEC<5)return;
+   setInterval(function(){var mp=document.querySelector('.tabpane[data-pane="market"]');
+     if(mp&&mp.style.display==='none')return;   // 안 보이는 탭이면 스킵
+     loadChart();loadDerivs();loadOI();loadCVD();},SEC*1000);})();
 })();
 </script>"""
 
@@ -1294,8 +1299,8 @@ def render_html(journal: TradeJournal, equity: float | None = None,
     head_sub = (f"<span class='muted' style='font-size:10px'>거래실현 {realized_pnl:+,.2f}</span>"
                 if abs(head_pnl - realized_pnl) > 0.01 else "")
     events = events or []
-    refresh_tag = (f'<meta http-equiv="refresh" content="{refresh_sec}">'
-                   if refresh_sec > 0 else "")
+    # 전체 페이지 리로드(meta refresh) 대신 JS 부드러운 갱신에 쓸 주기(초)만 주입.
+    refresh_tag = f'<script>window.CT_REFRESH={int(refresh_sec)};</script>'
     now_kst = datetime.now(KST).strftime("%Y-%m-%d %H:%M:%S KST")
     now_file = datetime.now(KST).strftime("%Y%m%d_%H%M")
     trades_csv_js = json.dumps(_trades_csv(journal))  # 전체 거래 CSV(JS 임베드용)
@@ -1479,8 +1484,8 @@ def render_html(journal: TradeJournal, equity: float | None = None,
 </style></head>
 <body>
   <h1>🤖 crypto-trader 대시보드</h1>
-  <div class="muted">생성 {now_kst}</div>
-  {_ticker_strip(tickers or [])}
+  <div class="muted" id="gen-time">생성 {now_kst}</div>
+  <div id="ticker-strip">{_ticker_strip(tickers or [])}</div>
 
   <div class="tabs">
     <button class="tab tab-active" data-tab="perf">📊 성과</button>
@@ -1545,8 +1550,8 @@ def render_html(journal: TradeJournal, equity: float | None = None,
      try{{localStorage.setItem('ct_tab',tab);}}catch(_e){{}} }});
    // 자동 새로고침 후에도 마지막으로 보던 탭 유지
    (function(){{var saved;try{{saved=localStorage.getItem('ct_tab');}}catch(_e){{}}if(saved)_showTab(saved);}})();
-   // 열린 포지션 현재가·손익률·PnL 실시간 채우기(서버 모드)
-   (function(){{
+   // 열린 포지션 현재가·손익률·PnL 실시간 채우기(서버 모드) — 갱신 후 재호출 가능하게 함수화
+   function fillPositions(){{
      var rws=document.querySelectorAll('.pos-row');if(!rws.length)return;
      var syms=[];rws.forEach(function(r){{var s=r.getAttribute('data-sym');if(s&&syms.indexOf(s)<0)syms.push(s);}});
      function fmt(v){{if(v>=1000)return v.toLocaleString('en-US',{{maximumFractionDigits:2}});
@@ -1566,6 +1571,29 @@ def render_html(journal: TradeJournal, equity: float | None = None,
         if(pp){{pp.textContent=(pnl>=0?'+':'')+pnl.toFixed(2);pp.style.color=col;pp.classList.remove('muted');}}
        }});
       }}).catch(function(){{}});
+   }}
+   fillPositions();
+   // 부드러운 자동 갱신 — 전체 리로드 없이 서버렌더 영역(성과·리서치·티커·생성시각)만 교체.
+   // 차트(시장 탭)는 자체 API 타이머로 갱신되므로 건드리지 않아 스크롤·차트 상태 보존.
+   (function(){{
+     var SEC=window.CT_REFRESH||0; if(!SEC||SEC<5)return;
+     // file:// 로 연 정적 파일은 fetch가 CORS로 막히므로 옛 방식(전체 리로드)로 폴백.
+     if(location.protocol==='file:'){{setInterval(function(){{location.reload();}},SEC*1000);return;}}
+     setInterval(function(){{
+       fetch(location.pathname+location.search,{{cache:'no-store'}}).then(function(r){{return r.text();}}).then(function(html){{
+         var doc=new DOMParser().parseFromString(html,'text/html');
+         ['perf','research'].forEach(function(pane){{
+           var cur=document.querySelector('.tabpane[data-pane="'+pane+'"]');
+           var nw=doc.querySelector('.tabpane[data-pane="'+pane+'"]');
+           if(cur&&nw)cur.innerHTML=nw.innerHTML;   // display(활성탭 여부)는 요소에 남아 보존
+         }});
+         var g=doc.getElementById('gen-time'),gc=document.getElementById('gen-time');
+         if(g&&gc)gc.textContent=g.textContent;
+         var t=doc.getElementById('ticker-strip'),tc=document.getElementById('ticker-strip');
+         if(t&&tc)tc.innerHTML=t.innerHTML;
+         fillPositions();   // 새 pos-row 실시간 가격 재주입
+       }}).catch(function(){{}});
+     }},SEC*1000);
    }})();
    // 전체 거래내역 CSV 다운로드
    document.addEventListener('click',function(e){{
