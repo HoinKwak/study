@@ -37,17 +37,22 @@ _MACRO_PERIODS: dict[str, tuple[str, str, int]] = {
     "10y": ("10y", "1wk",  3653),
 }
 # BTC vs 나스닥·금 괴리 라인(정규화 %). (label, color, Yahoo symbol)
+# 증시는 현물지수(^IXIC 등) 대신 선물(NQ=F 등)을 쓴다 — 현물지수는 정규장 6.5h만
+# 산출돼 야간·주말 공백이 크지만, 지수선물은 CME에서 ~23h(주중 1h 정비휴장·주말만
+# 휴장) 거래돼 BTC·금(GC=F 선물)처럼 거의 연속. 소스 불일치로 나스닥만 끊기던 문제 해결.
 _DIV_SYMS: list[tuple[str, str, str]] = [
     ("BTC",   "#f7931a", "BTC-USD"),
-    ("나스닥", "#38bdf8", "^IXIC"),
+    ("나스닥", "#38bdf8", "NQ=F"),
     ("금",     "#eab308", "GC=F"),
 ]
 # 우측 카드: 주요 증시 + 원자재. (label, Yahoo symbol, color)
+# 나스닥·S&P·니케이는 선물(NQ·ES·NKD)로 연속 커버, 코스피·FTSE는 Yahoo 선물 부재로
+# 현물지수 유지(야간·주말 공백은 세션 끊김으로 표시), 원자재는 이미 선물.
 _MACRO_MARKETS: list[tuple[str, str, str]] = [
-    ("나스닥",  "^IXIC", "#38bdf8"),
-    ("S&P500", "^GSPC", "#22c55e"),
+    ("나스닥",  "NQ=F",  "#38bdf8"),
+    ("S&P500", "ES=F",  "#22c55e"),
     ("코스피",  "^KS11", "#e879f9"),
-    ("니케이",  "^N225", "#f97316"),
+    ("니케이",  "NKD=F", "#f97316"),
     ("FTSE",   "^FTSE", "#94a3b8"),
     ("금",      "GC=F",  "#eab308"),
     ("은",      "SI=F",  "#cbd5e1"),
@@ -55,7 +60,7 @@ _MACRO_MARKETS: list[tuple[str, str, str]] = [
 ]
 
 # 캐시 스키마 버전 — 데이터 구조/소스가 바뀌면 올려 옛 캐시를 무효화
-_CACHE_VERSION = 3
+_CACHE_VERSION = 4
 
 # 시총 상위에 섞여있는 스테이블/랩드 제외용
 STABLE_LIKE = {
