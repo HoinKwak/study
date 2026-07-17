@@ -1,25 +1,26 @@
 토큰,체인,단계,KOL수,서사,신규여부,시점,출처
-WISHBONE,Robinhood Chain(Uniswap V3),조기(확산 초입),Drallio 1,"거래량 $689→$1.24M→$1.46M 3회연속 증가, 단 24h%는 소스간 정반대(+22.7% vs -41.8%)로 변동성 커짐, mcap $2.6M·7일+74.7%",지속(거래량 증가),2026-07-17,https://www.coingecko.com/en/coins/wishbone
-WEN (Wen Lambo),Robinhood Ecosystem(Uniswap V3),조기(안정화),0,"CA 최초 확인(0xa80eb66b...), mcap $3.12M(-4.7%), 거래량 $445K 유지",지속(CA확인),2026-07-17,https://www.coingecko.com/en/coins/wen-lambo
-VIBE CAT,Robinhood Chain(Uniswap V3),조기(안정화 지속),0,"mcap $471K→$502K, 거래량 $386K→$455K 완만한 우상향",지속(안정화),2026-07-17,https://www.coingecko.com/en/coins/vibing-cat-2
-HettyCoin (HET),Robinhood Chain(Uniswap),조기(극초기 신규발굴),0(프로젝트 자체계정뿐),"2021년 Robinhood 플레이스홀더 마스코트 부활 서사, DexScreener 시총 약 $79K, 극초기·거래량 미미",신규,2026-07-17,https://dexscreener.com/robinhood/0x45801f6806c9be10895a6e15d3da131a125e1c3a
-HODL (Diamond Hands),Robinhood Chain,조기(감속),0,"24h+548.8%→+159.2%로 상승폭 크게 둔화, mcap $1.51M→$1.0M 축소, CA 5회연속 미특정",지속(감속),2026-07-17,https://www.coingecko.com/en/categories/robinhood-chain-meme
-4663,Robinhood Chain,조기(재점화 조짐),0(coingape 과거),"거래량 $37→$485,959 급반등, 24h+45.0%, mcap $525K→$594K — 뒷북판정에서 반전, 단 7일은 -45.6%",지속(반전),2026-07-17,https://www.coingecko.com/en/coins/4663-token
-MEOW,Robinhood Chain(티커충돌),조기,0,"mcap $1.74M→$1.7M·+7.8%, 거래량 $42K→$32K 소폭 둔화",지속,2026-07-17,https://www.coingecko.com/en/categories/robinhood-chain-meme
-DUMBMONEY,Robinhood Chain(CA 미특정),조기(재확인 실패 지속),0,"5회 이상 CA 특정 실패, 카테고리 top10 이탈 추정, 데이터 신뢰도 계속 하락",지속(실패),2026-07-17,https://www.coingecko.com/en/categories/robinhood-chain-meme
-STONKCAT ($SCAT 프리세일),Robinhood Chain(프리세일·미상장),조기(프리세일·미검증),0(뉴스와이어),"7/16 프리세일 개시 이후 신규소식 없음, DEX 미상장 지속 추정",지속,2026-07-17,https://www.manilatimes.net/2026/07/16/tmt-newswire/globenewswire/robinhood-chain-news-stonkcat-launches-scat-presale-on-robinhood-chain-amid-growing-memecoin-interest/2386003
-ARROW (Arrow Finance),Robinhood Chain(ArrowPad 모토큰),확산→조정(D-3),0(beincrypto),"mcap $15.7M→$12.9M(-25.3%,7일-29.3%)로 조정, ArrowPad 7/20 출시 D-3 임박",지속(조정),2026-07-17,https://www.coingecko.com/en/coins/arrow-2
-Robin Hood (FOX),Robinhood Chain(Uniswap V3/V4),확산→조정(약화 심화),coingape·Drallio(7/13 과거),"24h-61.8%로 낙폭 확대(직전 +54.8%), mcap $858K 유지되나 모멘텀 약화",지속(약화),2026-07-17,https://www.coingecko.com/en/coins/robin-hood-2
-DIH (Dog In Hood),Robinhood Chain(Uniswap V3/V4·Arcus),뒷북(냉각 지속),0(coingape 과거),"mcap $584K, 24h소스불일치(+0.5%/-6.4%), 7일-76.3%로 낙폭 재확대",지속(냉각),2026-07-17,https://www.coingecko.com/en/coins/dog-in-hood
-HOODIE,Robinhood Chain(Bankr),뒷북,coingape(과거),"mcap $508~516K, 24h-30.5~30.9%, 7일-69~72% 하락 지속",지속(하락),2026-07-17,https://www.coingecko.com/en/coins/hoodie
-PONS,Robinhood Chain(런치패드·NOXA후계 확정),뒷북(악화 지속),theunipcs(과거),"24h-57.5%(직전-48.6%)로 낙폭 재확대, 거래량 $8.88M. NOXA 폐쇄후 24h만에 #1 런치패드 확정",지속(악화),2026-07-17,https://www.coingecko.com/en/coins/pons
-401K (Retirement plan),Robinhood Chain(Uniswap V2),뒷북(붕괴 경고사례 유지),0,"이번 회차 재확인 안 함, 직전 ATH대비-87.6% 붕괴 확인된 경고사례로 유지",지속,2026-07-17,https://www.coingecko.com/en/coins/retirement-plan
-CASHCAT(notable),Robinhood Chain,조정(급락),다수(대장주),"HyperliquidX 퍼프상장 후 셀오프+로테이션, 24h-43.6%,7일-49.0%, ATH대비-74.2%",지속,2026-07-17,https://www.coingecko.com/en/coins/cash-cat
-TENDIES(notable),Robinhood Chain,확산(널리 확산),0(BSCN 등 다수보도, Robinhood 공식계정 노출),"24h+136~178%(보도+450%), mcap $17~18M, CASHCAT 로테이션 수혜 추정",지속,2026-07-17,https://x.com/BSCNews/status/2077698956403106103
-CASHDOG·JOHN·530A 워시트레이딩트리오(notable),Robinhood Chain,이슈(3회연속 동결),0,"세 토큰 모두 24h0.0%·거래량이 mcap의 6.7~12배, 전회차와 완전동일 수치 반복 — 데이터프리즈/워시의심",지속,2026-07-17,https://www.coingecko.com/en/categories/robinhood-chain-meme
-ArrowPad D-3(notable),Robinhood Chain,이슈(임박),0,"7/20 정식출시 D-3, 모토큰은 오히려 조정중",지속,2026-07-17,https://arrowpad.io/
-Vlad.fun 운영중단 후속(notable),Robinhood Chain(런치패드),이슈(미해결),0,"원인 미공개, 법률자문 진행중, 환불안내 미확인",지속,2026-07-17,https://cointelegraph.com/news/robinhood-chain-memecoin-vladfun-halts-integrity
-JUGGERNAUT(notable),Robinhood Chain,뒷북(부분조정),Drallio(7/13)·Bluntz_Capital·Next100XGEMS(신규 발굴),"mcap $13.4M(7/13콜)→약$5.00M로 63%하락, 완전러그는 아님, 신규 중형KOL 스케일인 관찰",지속,2026-07-17,https://dexscreener.com/robinhood/0x588b0785f50063260003b7790c42f1ef74902746
-RH체인 스캠·허니팟 경보(notable),Robinhood Chain,이슈(지속),0,"허니팟 컨트랙트로 $56K 손실 사례 등, 스캠물결 2주째 지속",지속,2026-07-17,https://protos.com/robinhood-chain-scams-are-already-costing-users-dearly/
-ANSEM(notable),Solana(pump.fun),조정,Ansem 본인,"이번회차 재확인 안함, 직전 mcap $350M+ 도달 후 $84.9M로 조정된 상태 유지",지속,2026-07-17,https://www.coingecko.com/en/coins/the-black-bull
-MemeCore(notable),MemeCore 자체체인(M),조정,다수(트레이더·KOL),"7/14 $1.46 고점 이후 $1.22~1.24로 되돌림, 24h-2.97%,7일-16.70%",지속,2026-07-17,https://crypto.news/heres-why-memecore-price-is-breaking-out-today/
+WISHBONE,Robinhood Chain(Uniswap V3),조기(확산 초입),Drallio 1,"거래량 3회연속 증가에 이어 24h+45.7% 가세, mcap $2.46M·거래량 $1.46M 유지",지속(강화),2026-07-17 02:02 UTC,https://www.coingecko.com/en/coins/wishbone
+WEN (Wen Lambo),Robinhood Ecosystem(Uniswap V3),조기(반등),0,"mcap $3.12M→$3.84M(+25.1%)로 반등, 거래량 $673K",지속(반등),2026-07-17 02:02 UTC,https://www.coingecko.com/en/coins/wen-lambo
+STONKCAT ($SCAT),Robinhood Chain(Uniswap),조기(DEX상장 확인·약세 데뷔),0(뉴스와이어),"프리세일 종료 후 DEX 상장 확인, mcap $46,433, 상장 직후 24h-20.08% 약세",신규(DEX상장 확인),2026-07-17 02:02 UTC,https://dexscreener.com/robinhood/0x84DD03f5F4FF8a4C734d6833dacA429270657777
+VIBE CAT,Robinhood Chain(Uniswap V3),조기(조정 전환),0,"mcap $471K→$502K→$314,952(-32.91%)로 우상향 추세 반전",지속(조정),2026-07-17 02:02 UTC,https://www.coingecko.com/en/coins/vibing-cat-2
+HettyCoin (HET),Robinhood Chain(Uniswap),조기(극초기·데이터 정체),0(프로젝트 자체계정뿐),"원CA 재조회 API 실패, 검색캐시로 mcap 약 $79K대 정체 유지 확인",지속(재확인 일부 실패),2026-07-17 02:02 UTC,https://dexscreener.com/robinhood/0x45801f6806c9be10895a6e15d3da131a125e1c3a
+4663,Robinhood Chain,조기(재점화 후 급냉각),0(coingape 과거),"거래량 $485,959로 급반등 후 2시간만에 24h-27.83%로 재냉각, mcap $353K~597K",지속(반전),2026-07-17 02:02 UTC,https://www.coingecko.com/en/coins/4663-token
+MEOW,Robinhood Chain(티커충돌),조기,0,"mcap $1.74M(+13.9%), 거래량 $31K로 완만한 상승 유지",지속,2026-07-17 02:02 UTC,https://www.coingecko.com/en/categories/robinhood-chain-meme
+HODL (Diamond Hands),Robinhood Chain,조기(감속 지속),0,"24h+159.2%→+34.7%로 상승폭 재차 둔화, mcap $1.0M→$1.15M 완만 증가",지속(감속),2026-07-17 02:02 UTC,https://www.coingecko.com/en/categories/robinhood-chain-meme
+ARROW (Arrow Finance),Robinhood Chain(ArrowPad 모토큰),확산→조정(D-3),0(beincrypto),"mcap $12.9M→$15.95M 반등, 단 당일 24h은 -14.19% 하락 지속. ArrowPad 7/20 출시 D-3",지속(반등속 조정),2026-07-17 02:02 UTC,https://www.coingecko.com/en/coins/arrow-2
+Robin Hood (FOX),Robinhood Chain(Uniswap V3/V4),확산→조정(약화 심화),coingape·Drallio(7/13 과거),"24h-61.8%→-63.7~67.2%로 낙폭 더 확대, mcap $651K~875K",지속(약화 심화),2026-07-17 02:02 UTC,https://www.coingecko.com/en/coins/robin-hood-2
+DIH (Dog In Hood),Robinhood Chain(Uniswap V3/V4·Arcus),뒷북(냉각 지속),0(coingape 과거),"mcap $584K→$462~479K로 추가 하락, 24h-14~20%",지속(냉각),2026-07-17 02:02 UTC,https://www.coingecko.com/en/coins/dog-in-hood
+HOODIE,Robinhood Chain(Bankr),뒷북,coingape(과거),"mcap $508~516K→$490,587로 추가 하락, 24h-37.84%(직전-30.5~30.9%)",지속(하락 확대),2026-07-17 02:02 UTC,https://www.coingecko.com/en/coins/hoodie
+PONS,Robinhood Chain(런치패드·NOXA후계 확정),뒷북(악화 지속),theunipcs(과거),"24h-57.5%→-60.64%로 낙폭 재확대, mcap 최초 확인 $3.56M, 거래량 $8.52M",지속(악화),2026-07-17 02:02 UTC,https://www.coingecko.com/en/coins/pons
+401K (Retirement plan),Robinhood Chain(Uniswap V2),뒷북(붕괴 경고사례 유지),0,"이번 회차 재확인 안 함, 직전 ATH대비-87.6% 붕괴 확인된 경고사례로 유지",지속,2026-07-17 02:02 UTC,https://www.coingecko.com/en/coins/retirement-plan
+DUMBMONEY(우선순위 하향),Robinhood Chain(CA 미특정),조기(재확인 실패 지속·메인표 제외),0,"5회 이상 CA 특정 실패, 카테고리 top10 이탈 추정 지속 — 이번 회차부터 메인표에서 memo로 하향",지속(하향),2026-07-17 02:02 UTC,https://www.coingecko.com/en/categories/robinhood-chain-meme
+$INDEX(notable·신규),Robinhood Chain(Uniswap V3/V4),확산(신규 급부상),0(RH CEO 발언 계기, 매체 다수보도),"RH체인 수수료로 주식토큰 매입·분배하는 실질수익형 토큰, mcap $16~26M(소스편차), 24h+65~157%(소스편차)",신규,2026-07-17 02:02 UTC,https://coingape.com/robinhood-chains-index-150-rally-turns-trading-fees-into-real-stock-rewards/
+CASHCAT(notable),Robinhood Chain,반등(로테이션 회귀),다수(대장주),"직전-43.6% 급락에서 이번 회차 24h+44.0%로 반전 반등, mcap $57.6M",지속(반전),2026-07-17 02:02 UTC,https://www.coingecko.com/en/coins/cash-cat
+TENDIES(notable),Robinhood Chain,확산(지속),0(다수보도, Robinhood 공식계정 노출),"mcap $11.3~17.3M(소스편차), 거래량 $15.97M(메인페어)로 여전히 활발",지속,2026-07-17 02:02 UTC,https://dexscreener.com/robinhood/0x45242320DBB855EeA8Fd36804C6487E10E97FCF9
+CASHDOG·JOHN·530A 워시트레이딩트리오(notable),Robinhood Chain,이슈(4회연속 완전동결),0,"세 토큰 모두 24h0.0%·거래량이 mcap의 6.7~12배, 이번 회차도 전회차와 완전동일 수치 반복",지속(악화),2026-07-17 02:02 UTC,https://www.coingecko.com/en/categories/robinhood-chain-meme
+ArrowPad D-3(notable),Robinhood Chain,이슈(임박),0,"7/20 정식출시 D-3, 모토큰은 반등했으나 당일 재하락 반복",지속,2026-07-17 02:02 UTC,https://arrowpad.io/
+Vlad.fun 운영중단 후속(notable),Robinhood Chain(런치패드),이슈(미해결),0,"원인 미공개, 법률자문 진행중, 환불안내 미확인",지속,2026-07-17 02:02 UTC,https://cointelegraph.com/news/robinhood-chain-memecoin-vladfun-halts-integrity
+JUGGERNAUT(notable),Robinhood Chain,뒷북(부분조정·재확인필요),Drallio(7/13)·Bluntz_Capital·Next100XGEMS(이전 회차 포착),"mcap $13.4M(7/13콜)→$4.19M(코인게코, 0.0%프리즈 가능성), 신규 코멘트 이번회차 확인 안됨",지속,2026-07-17 02:02 UTC,https://dexscreener.com/robinhood/0x588b0785f50063260003b7790c42f1ef74902746
+RH체인 스캠·허니팟 경보(notable),Robinhood Chain,이슈(지속),0,"허니팟 컨트랙트로 $56K 손실 사례 등, 스캠물결 2주째 지속",지속,2026-07-17 02:02 UTC,https://protos.com/robinhood-chain-scams-are-already-costing-users-dearly/
+ANSEM(notable),Solana(pump.fun),조정,Ansem 본인,"이번회차 재확인 안함, 직전 mcap $350M+ 도달 후 $84.9M로 조정된 상태 유지",지속,2026-07-17 02:02 UTC,https://www.coingecko.com/en/coins/the-black-bull
+MemeCore(notable),MemeCore 자체체인(M),조정,다수(트레이더·KOL),"이번회차 재확인 안함, 직전 7/14 $1.46 고점 이후 $1.22~1.24로 되돌림",지속,2026-07-17 02:02 UTC,https://crypto.news/heres-why-memecore-price-is-breaking-out-today/
