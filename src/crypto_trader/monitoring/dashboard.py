@@ -321,7 +321,8 @@ def _strength_table(title: str, rows: list) -> str:
         c = "#16a34a" if rel >= 0 else "#e23b4a"
         sym = str(r.get("symbol", "")).replace("/USDT", "")
         body.append(
-            f"<tr><td>{i + 1}</td><td><b>{html.escape(sym)}</b></td>"
+            f"<tr><td>{i + 1}</td>"
+            f"<td><b class='symlink' data-sym='{html.escape(sym)}'>{html.escape(sym)}</b></td>"
             f"<td style='color:{c}'>{rel:+.2f}%</td>"
             f"<td class='muted'>{r.get('alt', 0.0):+.1f}%</td></tr>"
         )
@@ -342,8 +343,10 @@ def _mcap_table(rows: list) -> str:
 
     body = []
     for i, r in enumerate(rows or []):
+        msym = html.escape(str(r.get("symbol", "")))
         body.append(
-            f"<tr><td>{i + 1}</td><td><b>{html.escape(str(r.get('symbol', '')))}</b></td>"
+            f"<tr><td>{i + 1}</td>"
+            f"<td><b class='symlink' data-sym='{msym}'>{msym}</b></td>"
             f"{cell(r.get('r1'))}{cell(r.get('r7'))}{cell(r.get('r30'))}</tr>"
         )
     inner = "".join(body) or "<tr><td colspan=5 class='muted'>데이터 없음</td></tr>"
@@ -894,7 +897,12 @@ _CHART_JS = r"""<script>
      s.style.display=s.style.display==='none'?'block':'none';if(s.style.display==='block')renderSyms('');return;}
    var op=t.closest('.tkopt');if(op){SEL.s=op.getAttribute('data-s');save('ct_sym',SEL.s);
      setTxt('mkt-sym',SEL.s);setTxt('mkt-price','—');
-     document.getElementById('mkt-search').style.display='none';loadChart();loadDerivs();loadOI();loadCVD();}});
+     document.getElementById('mkt-search').style.display='none';loadChart();loadDerivs();loadOI();loadCVD();return;}
+   // 강도·시총 표의 심볼 클릭 → 해당 종목으로 차트 전환 + 차트로 스크롤
+   var sl=t.closest('.symlink');if(sl){var sy2=(sl.getAttribute('data-sym')||'').toUpperCase();
+     if(sy2){SEL.s=sy2;save('ct_sym',SEL.s);setTxt('mkt-sym',SEL.s);setTxt('mkt-price','—');
+       loadChart();loadDerivs();loadOI();loadCVD();
+       if(root&&root.scrollIntoView)root.scrollIntoView({behavior:'smooth',block:'center'});}return;}});
  document.addEventListener('input',function(e){var t=e.target;
    if(t.id==='mkt-input')renderSyms(t.value);});
  fetch('/api/symbols').then(function(r){return r.json();}).then(function(a){if(a&&a.length)SYMS=a;}).catch(function(){});
@@ -1457,6 +1465,8 @@ def render_html(journal: TradeJournal, equity: float | None = None,
   .tkname {{ background:transparent; color:var(--text); border:none; font-size:18px; font-weight:700; cursor:pointer; padding:2px 0; }}
   .tkname:hover {{ color:var(--accent); }}
   .tklist {{ max-height:240px; overflow-y:auto; margin-top:6px; display:grid; grid-template-columns:repeat(auto-fill,minmax(80px,1fr)); gap:4px; }}
+  .symlink {{ cursor:pointer; }}
+  .symlink:hover {{ color:var(--brand); text-decoration:underline; }}
   .tkopt {{ padding:6px 8px; border:1px solid var(--border); border-radius:9999px; font-size:12px; text-align:center; cursor:pointer; }}
   .tkopt:hover {{ background:var(--brand); color:#fff; }}
   .tfbtn, .oitf, .cvdtf, .etftf {{ background:transparent; color:var(--muted); border:1px solid var(--border); border-radius:9999px; padding:3px 9px; margin-left:4px; font-size:12px; cursor:pointer; }}
