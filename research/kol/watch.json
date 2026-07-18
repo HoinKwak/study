@@ -1,103 +1,49 @@
 {
-  "ts": "2026-07-18T02:03:00Z",
+  "ts": "2026-07-18T04:02:00Z",
   "tokens": [
-    {
-      "token": "BIH (Bull in Hood)",
-      "chain": "Robinhood Chain(자체사이트 bullinhood.com, Uniswap 추정)",
-      "ca": "0xE555853720737512E3f8Ccf64159A087B4Da51db",
-      "stage": "조기(지속·CA 신규확인)",
-      "kols": "0(미확인, bittime 트렌딩 애그리게이터 경유 발견)",
-      "thesis": "\"We Buy. We Hold. We Bull.\" 페어런치·LP소각·컨트랙트renounce 주장, 장기보유자 보상형 리워드 구조. 최신 mcap/거래량 재조회는 실패해 직전값(거래량$589K, 유동성$35K, 7일+4,007%) 참고치 유지",
-      "risk": "🔴 CA는 이번 회차 신규 확인했으나 여전히 자체 사이트 단일소스(제3자 교차검증 없음), 직전 조회 유동성 단 $35K로 극히 얕음(대량매도시 폭락위험), '페어런치·LP소각' 문구는 스캠 마케팅에서도 흔함, KOL코로보 0"
-    },
-    {
-      "token": "CATSTR (Cashcat Strategy)",
-      "chain": "Robinhood Chain(Uniswap)",
-      "ca": "0x9de61ff13d51835be18a2434275b41e70945b7a82a4fb611ef3fdab522a31024",
-      "stage": "조기(지속·수치 재차 동일, 캐시 의심 지속)",
-      "kols": "0(미확인)",
-      "thesis": "CASHCAT의 MicroStrategy형 파생 배당 토큰. DexScreener 재조회에서도 mcap $237K로 소수점까지 동일(가격$0.0002372) — 다만 페어 자체가 생성된 지 1일9시간뿐인 신생 페어라 거래가 뜸해 정체됐을 가능성도 배제 못함. 신규로 유동성 $47K 확인",
-      "risk": "🔴 초소형·초기, CASHCAT 종속형 구조(모토큰 급락 시 동반붕괴), 유사 클론 다수(Cash Cat Hub 등) 확산 중, 수치 정체는 캐시 또는 실제 저거래량 둘 다 가능성 있어 다음 회차도 재검증 필요"
-    },
-    {
-      "token": "ROBINHOOD",
-      "chain": "Robinhood Chain(Uniswap V3)",
-      "ca": "0x53d2e1225aace4551194ecbb6bbe5c44d94aa5fa",
-      "stage": "조기(지속·mcap 약 2배 급등)",
-      "kols": "0(미확인)",
-      "thesis": "티커 자체가 'ROBINHOOD'인 소형 밈. MEXC mcap $302.65K(24h+2.82%) — 직전값($148.61K) 대비 약 +104%로 크게 확대, 다른 다수 RH밈이 조정 중인 가운데 눈에 띄는 강세",
-      "risk": "🔴 과거 소스간 상충 이력, 소형·저유동, KOL코로보 0, 급등 초입인지 일시적 변동인지 다음 회차 확인 필요"
-    },
-    {
-      "token": "CRASHCAT",
-      "chain": "Robinhood Chain(Noxa Fun 런치패드, NOXA는 7/16 운영중단)",
-      "ca": "",
-      "stage": "조기(지속·소폭 조정)",
-      "kols": "0(미확인)",
-      "thesis": "CASHCAT 패러디 후속작. MEXC mcap $189.79K(24h+0.26%) — 직전값($217.65K) 대비 약 -13% 소폭 하락",
-      "risk": "🔴 CA 여전히 미확인, 초소형·초기, KOL코로보 0, 모토큰 런치패드(NOXA) 운영중단 여파 주시 필요"
-    },
-    {
-      "token": "STOCKCOIN",
-      "chain": "Robinhood Chain(Uniswap)",
-      "ca": "0x5bd252b4D7AA573813D1c6A4888f778790583667",
-      "stage": "조기(지속·소폭 조정)",
-      "kols": "0(미확인)",
-      "thesis": "RH 밈 계열 신생 소형 토큰. MEXC mcap $108.98K(24h-0.42%) — 직전값($124.83K) 대비 약 -13% 하락",
-      "risk": "🔴 KOL코로보 전무, 초소형·저유동"
-    },
-    {
-      "token": "DATABEAR",
-      "chain": "Robinhood Chain(Uniswap V3)",
-      "ca": "0x90079857237dA767c38D1d261a39848ea424319E",
-      "stage": "조기(지속·안정)",
-      "kols": "0(미확인)",
-      "thesis": "온체인 데이터 디젠 마스코트 밈. MEXC mcap $100.88K(24h+0.18%) — 직전값($106.32K)과 유사, 안정 유지",
-      "risk": "🔴 KOL코로보 전무, 초소형"
-    },
-    {
-      "token": "VIBE CAT",
-      "chain": "Robinhood Chain(Uniswap V3)",
-      "ca": "0x2355431b83b1a8e40172d099d90243d8d666b56b",
-      "stage": "조기(지속·조정)",
-      "kols": "0",
-      "thesis": "MEXC mcap $356.22K(24h+0.17%) — 직전값($440.14K) 대비 약 -19% 하락, 직전 회차 소스전환으로 인한 급등분이 되돌려지는 모양새",
-      "risk": "🔴 소형·변동성 극심"
-    },
-    {
-      "token": "HOODIE",
-      "chain": "Robinhood Chain(Uniswap)",
-      "ca": "0xC72c01AAB5f5678dc1d6f5C6d2B417d91D402Ba3",
-      "stage": "조기(지속·조정 지속)",
-      "kols": "0(미확인)",
-      "thesis": "'RH 최초 스테이킹 플랫폼' 표방. MEXC mcap $441.39K(24h+3.29%) — 직전값($469.61K, 24h-20.07%) 대비 추가 소폭 하락하며 낙폭은 진정",
-      "risk": "🔴 CA 교차검증 미흡, 카피캣 티커혼동 주의"
-    },
-    {
-      "token": "DUMBMONEY",
-      "chain": "Robinhood Chain",
-      "ca": "",
-      "stage": "조기(지속·조정)",
-      "kols": "0(미확인)",
-      "thesis": "장기 방치되다 급반등한 밈. MEXC mcap $519.49K(24h-0.19%) — 직전값($652.89K) 대비 약 -20% 하락",
-      "risk": "🔴 CA 전체주소 미확인, 워시트레이딩·클론 의심 지속"
-    },
     {
       "token": "4663",
       "chain": "Robinhood Chain(Uniswap V3, 체인ID 4663='HOOD' T9유래)",
       "ca": "0xd4052415613b34af236024b895574c467f65b6dd",
-      "stage": "조기(지속·재확인 성공)",
-      "kols": "0(coingape가 반복 지목, 실제 X게시물(@eth_apple)에서 동일 CA로 직접 언급 확인)",
-      "thesis": "체인ID 4663 T9 네이밍 서사 지속. 이번 회차 CoinGecko에서 최초로 개별 mcap 확보: $298,338(24h+5.3%). CA도 실제 X 게시물로 재확인돼 신뢰도 상승",
-      "risk": "🟠 여전히 초소형, 동명 Solana토큰('$4663 The Robinhood Cult') 주의, KOL 직접코로보는 없으나 CA 자체는 이번 회차 이중확인"
+      "stage": "조기(거래량 급증·확산 조짐)",
+      "kols": "0(coingape 반복지목, X게시물@eth_apple 로 CA 재확인 지속)",
+      "thesis": "체인ID 4663 T9 네이밍 서사 지속. CoinGecko mcap $1,039,349(직전 $298,338 대비 약+248% 급증), 24h거래량 $3.6M — GeckoTerminal 가격($0.003878)과 CoinGecko 가격($0.001004)이 여전히 크게 다름",
+      "risk": "🟠 초소형, 소스간 가격 약3.8배 편차 미해소, 급등이 KOL코로보 없이 거래량만으로 확인돼 지속성 불확실, 동명 Solana토큰 주의"
+    },
+    {
+      "token": "REPE (Robinhood Pepe)",
+      "chain": "Robinhood Chain(Uniswap)",
+      "ca": "0x5266eeafF092D6136AB63D18B975A60a0Cc0C8f",
+      "stage": "조기(신규 관찰)",
+      "kols": "0(KOL코로보 미확인, CoinGecko 카테고리+backpack.exchange 아티클 등 2개 독립소스에 명칭 등장)",
+      "thesis": "'로빈후드가 PEPE를 상장했을 때 유행한 Robinhood Pepe' 밈이 RH체인에서 재등장. CoinGecko 카테고리 mcap $336,898(24h+6.0%, 1h+10.4%). X계정 @robinhoodspepe 존재 확인",
+      "risk": "🔴 KOL코로보 전무, 초소형, 이번 회차 최초 포착이라 이력 데이터 없음(다음 회차 재검증 필요)"
+    },
+    {
+      "token": "WISHBONE",
+      "chain": "Robinhood Chain(Uniswap V3, 다중 페어)",
+      "ca": "0x77581054581b9c525e7dd7a0155de43867532d03",
+      "stage": "조기→확산 경계(지속)",
+      "kols": "Drallio 1(과거)",
+      "thesis": "RH체인의 Dog. Blockscout 온체인 mcap $2,277,306(홀더 3,182명) 확인 — 직전값($2.36M)과 대체로 부합. 단, DexScreener 개별 페어별로는 $1.4M~$3.8M까지 편차(다중 풀 분산 영향 추정)",
+      "risk": "🟡 코로보 KOL 1인뿐, 페어 분산으로 mcap 집계 혼선"
+    },
+    {
+      "token": "ARROW (Arrow Finance)",
+      "chain": "Robinhood Chain(ArrowPad 모토큰)",
+      "ca": "0xf2915d1e3c1b0c769d0c756ec43f1c1f6c99cd03",
+      "stage": "확산(ArrowPad D-2, mcap은 큰 폭 되돌림)",
+      "kols": "0(매체)",
+      "thesis": "ArrowPad 런치패드 7/20(월) 출시 예정 — 오늘(7/18) 기준 D-2 유지(arrowpad.io·Foresight News 재확인). CoinGecko mcap $13.278M(24h+0.7%) — 직전($19.44M, 24h+46.40%) 대비 약-31.7%로 급등분 상당부분 되돌림",
+      "risk": "🟠 소스별 mcap 편차 지속 이력, 출시 기대감 선반영 후 조정 국면 가능성"
     },
     {
       "token": "HODL (Diamond Hands)",
       "chain": "Robinhood Chain(Uniswap V3)",
       "ca": "0xF4C450c1570C2DBda91DE1Ed2E39995a15028c97",
-      "stage": "조기(지속·조정)",
+      "stage": "조기(지속·안정)",
       "kols": "0",
-      "thesis": "에어드랍 서사. MEXC mcap $1.12M(24h-0.29%) — 직전값($1.33M) 대비 약 -16% 하락, 과열 진정 흐름 지속",
+      "thesis": "에어드랍 서사. MEXC mcap $1.09M(24h+0.18%) — 직전($1.12M) 대비 거의 동일, 조정 진정",
       "risk": "🔴 티커충돌 극심"
     },
     {
@@ -106,97 +52,151 @@
       "ca": "0xa80eb66b3E0CF66ccB46f8b8C9e7ff5803eEb820",
       "stage": "조기(지속·안정)",
       "kols": "0",
-      "thesis": "MEXC mcap $3.28M(24h+0.78%) — 직전값($3.28M, 24h+0.76%)과 거의 동일, 두 회차 연속 안정 재확인",
-      "risk": "🔴 동일티커 다수버전 존재 지속, KOL코로보 0"
+      "thesis": "MEXC mcap $3.34M(24h+2.98%) — 직전($3.28M) 대비 소폭 상승, 3회차 연속 안정",
+      "risk": "🔴 동일티커 다수버전 존재, KOL코로보 0"
     },
     {
-      "token": "WISHBONE",
+      "token": "HOODIE",
+      "chain": "Robinhood Chain(Uniswap)",
+      "ca": "0xC72c01AAB5f5678dc1d6f5C6d2B417d91D402Ba3",
+      "stage": "조기(조정 심화)",
+      "kols": "0(미확인)",
+      "thesis": "'RH 최초 스테이킹 플랫폼' 표방. MEXC mcap $403.83K(24h-21.03%) — 직전($441.39K) 대비 추가 하락, 낙폭 재확대",
+      "risk": "🔴 CA 교차검증 미흡"
+    },
+    {
+      "token": "VIBE CAT",
       "chain": "Robinhood Chain(Uniswap V3)",
-      "ca": "0x77581054581b9c525e7dd7a0155de43867532d03",
-      "stage": "조기→확산 경계(지속·부분 재확인)",
-      "kols": "Drallio 1(과거)",
-      "thesis": "RH체인의 Dog. MEXC에서 가격$0.002408(24h+7.69%) 신규 확보했으나 mcap은 미표기 — 직전 mcap($2.36M)을 참고치로 유지, 오늘 방향성은 플러스",
-      "risk": "🟡 코로보 KOL 1인뿐, mcap 완전 재확인은 아직 미흡"
+      "ca": "0x2355431b83b1a8e40172d099d90243d8d666b56b",
+      "stage": "조기(조정 지속)",
+      "kols": "0",
+      "thesis": "MEXC mcap $298.31K(24h+0.18%) — 직전($356.22K) 대비 약-16% 추가 하락",
+      "risk": "🔴 소형·변동성 극심"
     },
     {
-      "token": "ARROW (Arrow Finance)",
-      "chain": "Robinhood Chain(ArrowPad 모토큰)",
-      "ca": "0xf2915d1e3c1b0c769d0c756ec43f1c1f6c99cd03",
-      "stage": "확산(ArrowPad D-2, mcap 상승 재확인)",
-      "kols": "0(coingecko·coingabbar 등 매체)",
-      "thesis": "ArrowPad 런치패드 7/20(월) 출시 예정 — 오늘(7/18) 기준 D-2 유지. CoinGecko mcap $19.44M(24h+46.40%, 7일+90.10%, 직전$18.51M 대비 추가 상승), 가격$2.19",
-      "risk": "🟠 소스별 mcap 편차 지속 이력, 출시 기대감 속 변동성 극심"
+      "token": "DUMBMONEY",
+      "chain": "Robinhood Chain",
+      "ca": "",
+      "stage": "조기(조정 심화)",
+      "kols": "0(미확인)",
+      "thesis": "장기 방치되다 급반등했던 밈. MEXC mcap $394.99K(24h-0.33%) — 직전($519.49K) 대비 약-24% 추가 하락, 되돌림 심화",
+      "risk": "🔴 CA 전체주소 미확인, 워시트레이딩·클론 의심 지속"
     },
     {
-      "token": "$INDEX (The Index)",
-      "chain": "Robinhood Chain(Uniswap V3/V4)",
-      "ca": "0x56910D4409F3a0C78C64DD8D0545FF0705389870",
-      "stage": "확산(지속·부분 재확인)",
-      "kols": "0(직접 KOL 미확인, Vlad Tenev CEO 게시물이 트리거)",
-      "thesis": "수수료로 주식토큰을 매입해 분배하는 RWA형 토큰. 기존 mcap $16.75M~$18M대 참고치 재확인(신규 개별 재조사는 못함). LBank 등 일부 소스는 \"+502%\" 표현도 보도하나 시점·기준 불명확",
-      "risk": "🟠 여전히 두자릿수M대 시총, 수익분배 메커니즘 지속가능성 미검증, 소스별 상승폭 표현 큰 편차"
+      "token": "ROBINHOOD",
+      "chain": "Robinhood Chain(Uniswap V3)",
+      "ca": "0x53d2e1225aace4551194ecbb6bbe5c44d94aa5fa",
+      "stage": "조기(급등분 상당 반납)",
+      "kols": "0(미확인)",
+      "thesis": "티커 자체가 'ROBINHOOD'인 소형 밈. MEXC mcap $231.62K(24h+1.70%) — 직전($302.65K, 당시 +104%급등) 대비 약-23% 반납, 급등이 일시적이었을 가능성",
+      "risk": "🔴 과거 소스간 상충 이력, 급등 지속성 미확인으로 판명되는 중"
+    },
+    {
+      "token": "CRASHCAT",
+      "chain": "Robinhood Chain(Noxa Fun 런치패드, NOXA는 7/16 운영중단)",
+      "ca": "",
+      "stage": "조기(지속·거의 보합)",
+      "kols": "0(미확인)",
+      "thesis": "CASHCAT 패러디 후속작. MEXC mcap $190.11K(24h+0.35%) — 직전($189.79K)과 거의 동일",
+      "risk": "🔴 CA 여전히 미확인, 초소형·초기, 모토큰 런치패드(NOXA) 운영중단 여파 주시"
+    },
+    {
+      "token": "STOCKCOIN",
+      "chain": "Robinhood Chain(Uniswap)",
+      "ca": "0x5bd252b4D7AA573813D1c6A4888f778790583667",
+      "stage": "조기(조정)",
+      "kols": "0(미확인)",
+      "thesis": "RH 밈 계열 신생 소형 토큰. MEXC mcap $102.97K(24h-5.02%) — 직전($108.98K) 대비 약-5.5%",
+      "risk": "🔴 KOL코로보 전무, 초소형·저유동"
+    },
+    {
+      "token": "DATABEAR",
+      "chain": "Robinhood Chain(Uniswap V3)",
+      "ca": "0x90079857237dA767c38D1d261a39848ea424319E",
+      "stage": "조기(조정)",
+      "kols": "0(미확인)",
+      "thesis": "온체인 데이터 디젠 마스코트 밈. MEXC mcap $86.91K(24h-2.20%) — 직전($100.88K) 대비 약-14%",
+      "risk": "🔴 KOL코로보 전무, 초소형"
+    },
+    {
+      "token": "CATSTR (Cashcat Strategy)",
+      "chain": "Robinhood Chain(Uniswap)",
+      "ca": "0x9de61ff13d51835be18a2434275b41e70945b7a82a4fb611ef3fdab522a31024",
+      "stage": "조기(지속·3연속 수치 동일, 캐시/저거래량 의심 심화)",
+      "kols": "0(미확인)",
+      "thesis": "CASHCAT의 MicroStrategy형 파생 배당 토큰. DexScreener mcap $237.25K — 3회 연속(약4시간 이상) 완전 동일값, 페어 나이 표기(\"1일9시간 경과\")도 동일하게 재확인돼 캐시/인덱싱 지연 가능성이 더 유력해짐",
+      "risk": "🔴 초소형·초기, CASHCAT 종속형 구조, 실거래 여부 불투명, 클론(Cash Cat Hub 등) 다수 확산 중"
+    },
+    {
+      "token": "BIH (Bull in Hood)",
+      "chain": "Robinhood Chain(자체사이트 bullinhood.com, Uniswap V3)",
+      "ca": "0xE555853720737512E3f8Ccf64159A087B4Da51db",
+      "stage": "조기(급락·식는 조짐)",
+      "kols": "0(bittime 애그리게이터 경유 발견 이력)",
+      "thesis": "\"We Buy. We Hold. We Bull.\" 페어런치·LP소각 주장. 이번 회차 신규 확보: mcap $17,273(24h-61.20%), 24h거래량 $9,479 — 직전 회차 거래량($589K)·유동성($35K) 대비 거래활동이 크게 위축된 것으로 보임",
+      "risk": "🔴 초기 하이프가 빠르게 식는 신호(mcap·거래량 급감), 유동성 매우 얕음, CA 여전히 단일소스"
     }
   ],
   "notable": [
     {
       "token": "CASHCAT",
-      "status": "조정 국면 지속(CoinGecko 기준 하단값으로 수렴)",
-      "summary": "CoinGecko 직접조회: 가격$0.06269(24h-35.50%, 7일-61.30%), mcap $64.54M — 직전 소스간 상충($59M~$150M+) 중 하단에 가까운 값으로 수렴. ATH$0.2278 대비 -72%. 단, CoinGecko가 함께 보고한 ATL($0.079687)이 현재가보다 높아 데이터 정합성 의문(소스 오류 가능성)"
+      "status": "조정 지속(수치 재차 거의 동일, 캐시 의심 확대)",
+      "summary": "CoinGecko 가격$0.06269(24h-35.50%, 7일-61.30%), mcap $62.13M — 24h/7일 등락률이 직전 회차와 소수점까지 완전히 동일해 캐시/인덱싱 지연 가능성이 더 커짐(mcap만 $64.54M→$62.13M로 소폭 하향). 24h거래량은 $66M으로 여전히 활발, ATH대비 약-71~72%"
     },
     {
       "token": "ANSEM(Black Bull)",
-      "status": "소스간 편차 극심 지속(이번 회차 재조사 못함)",
-      "summary": "직전값(Coinbase$259.48M/OpenSea$252.6M/Solana Compass$317.54M/CoinGecko$84.08M) 참고치 유지. Solana 팬토큰(Ansem 본인 공식 프로젝트 아님, 익명 개발자가 발행 후 Ansem 지갑에 대량 전송) 배경 계속 유효"
+      "status": "소스간 편차 극심 지속(이번 회차도 재조사 못함)",
+      "summary": "직전값(Coinbase$259.48M/OpenSea$252.6M/SolanaCompass$317.54M/CoinGecko$84.08M) 참고치 유지. Solana 팬토큰(Ansem 공식 프로젝트 아님) 배경 계속 유효"
     },
     {
       "token": "CASHDOG·Little John(JOHN)·530A — 워시트레이딩 의심 트리오",
-      "status": "이슈(10회 연속 CoinGecko 완전동결)",
-      "summary": "CoinGecko 카테고리페이지 mcap CASHDOG$42,127,398/JOHN$17,195,155/530A$11,813,979, 24h 0.0% — 자릿수까지 완전히 동일한 값이 10회 연속(약 20시간) 이어지는 중, 페이지 캐시 고착이 매우 유력. MEXC의 JOHN$20.80K도 직전 회차와 동일값 재확인 — 다만 CASHDOG 자체가 실사이트(cashdogrobinhood.org)에는 템플릿 변수만 노출돼 있어 CA 직접 확인은 이번 회차도 실패"
+      "status": "이슈(장기 동결 심화, 진짜 비활성 가능성 부상)",
+      "summary": "이번 회차 CoinGecko 개별 재조회는 실패했으나, 독립 소스(BitDegree)가 CASHDOG를 \"mcap $0, Untracked(비활성)\"로 보고 — 단순 캐시 고착이 아니라 실제 거래 급감/방치일 가능성이 커짐. 검색에 걸린 \"+3900% 급등, mcap $32M\" 기사는 7/12자 구정보로 현재와 무관(오인 주의)"
     },
     {
       "token": "TENDIES",
-      "status": "확산(강세 지속)",
-      "summary": "MEXC 가격$0.01972(24h+44.13%) — 직전 회차(24h+48.45%)와 유사한 강한 상승세가 이어짐. ATH$0.02806(7/16) 근접권 유지"
+      "status": "확산(강세 추정, 단 수치 출처 혼선)",
+      "summary": "검색에서 \"mcap $17M, 24h+422%\" 표현이 발견됐으나 게시 시점이 불분명해 오늘자 수치인지 확인 못함(재확인 실패) — 직전 회차 MEXC 기준(24h+44.13%) 참고치 유지"
     },
     {
       "token": "JUGGERNAUT",
-      "status": "확산(CoinGecko로 재확인, 소스간 편차는 여전)",
-      "summary": "CoinGecko mcap $3,074,547(24h+19.2%) 재확인 — 직전 CoinGecko값($2.97M)과 대체로 부합, DexScreener/coingape 계열($5.0M~$13.4M)과는 여전히 큰 편차. Drallio(X)가 'CASHCAT 근접 후보, mcap $100M 잠재력'으로 지목한 이력(7/13) 계속 유효, coingape 기사에서도 재인용됨"
+      "status": "확산(소스편차 더 커짐, 신규 코로보 발견)",
+      "summary": "X계정 @Next100XGEMS(알파 애그리게이터)가 \"~$11.4M 24h거래량, ~$10.4M mcap, 홀더 5,700명\"으로 소개(게시 시점 불명확) — DexScreener $5.00M, CoinGecko(별도 \"Juggernaut/JGN\" 표기) 등 소스간 최대 3배 이상 편차 지속. 토큰 동일성 자체도 재확인 필요"
     },
     {
       "token": "DIH (Dog In Hood)",
-      "status": "확산(모멘텀 강화, mcap 독립 재확인)",
-      "summary": "독립 소스(CoinGecko)에서 가격$0.004570(24h+51.50%), mcap $4,710,354 확인 — 직전 CoinGecko값($4.71M)과 거의 정확히 일치해 신뢰도 상승. 다만 DexScreener 계열 값($736.66K)과는 여전히 약 6.4배 편차 미해소. coingape가 CASHCAT·4663과 함께 '주목할 RH밈'으로 반복 지목 중이라 조기성은 낮아지는 추세(확산 단계로 재분류)"
+      "status": "확산 지속(재확인, 캐시 가능성도 배제 못함)",
+      "summary": "CoinGecko mcap $4.59M(24h+51.50%) — 직전값·직전 24h%와 거의 동일해 순수 재확인인지 캐시인지 불분명. DexScreener값($736.66K)과는 여전히 6배 이상 편차 미해소"
     },
     {
-      "token": "ArrowPad — 런치패드 D-2",
-      "status": "이슈(임박 유지, D-2)",
-      "summary": "7/20(월) 출시 예정 — 오늘(7/18) 기준 D-2 유지. 공식 사이트(arrowpad.io)·Foresight News 등에서 재확인. ARROW 토큰 mcap도 $18.51M→$19.44M로 계속 상승 중"
-    },
-    {
-      "token": "RH체인 스캠·클론 스웜(누적 이슈)",
-      "status": "이슈(신규 러그 사례 2건 추가로 심화)",
-      "summary": "이번 회차 신규 확인: ① MIZUKARA — 온체인 검증 AI를 표방한 토큰이 $67M 거래량을 낸 뒤 0으로 붕괴, 하루새 유사 풀이 수십 개 배포됨(CA: 0x407470F85e0b342a52AaE2F191E135cEF2947777). ② 티커 '1' — Tenev 연계 지갑이 매수한다는 루머로 $80만→$1,500만까지 급등했으나, 해당 지갑이 오래전 해킹된 데모 계정으로 밝혀지며 -93% 붕괴. ③ NOXA 런치패드는 토큰 발행기능을 정지하고 수수료를 전부 크리에이터에게 넘긴 뒤 사실상 폐쇄 — 트레이더들 사이에서 '소프트 러그'로 불림. PONS도 토큰 승인(approval) 관련 프론트엔드 버그가 보고됨"
+      "token": "RH체인 스캠·클론 스웜(Vlad.fun 포함, 누적 이슈)",
+      "status": "이슈(신규 피해사례 추가 포착)",
+      "summary": "\"CASHCAT 보유자가 해킹된 스마트컨트랙트로 $56,000 손실\" 사례가 검색에 신규로 포착(정확한 발생 시점 불명, 다음 회차 재확인 필요) — 기존 MIZUKARA(0붕괴)·티커'1'(-93%붕괴)·NOXA 소프트러그 배경 계속 유효. Vlad.fun은 7/15 이후 재시작 일정·원인·환불 여전히 미공개"
     },
     {
       "token": "THROBBIN·VLAD(Green Bull) — 데이터 이상 신호",
-      "status": "이슈(MEXC 재재확인, 소폭 조정)",
-      "summary": "MEXC 카테고리페이지에서 THROBBIN mcap $701.97K(24h-0.01%), VLAD mcap $572.76K(24h-0.24%) 재확인 — 직전값(THROBBIN$657.21K·VLAD$661.03K) 대비 THROBBIN은 소폭 상승, VLAD는 소폭 하락. 과거 '풀드레인 확정' 분류였던 배경은 계속 유효, 하이프 리스트 미편입 유지"
-    },
-    {
-      "token": "Vlad.fun 운영중단",
-      "status": "이슈(미해결 지속, 상태 불변)",
-      "summary": "7/15 'internal integrity issue'로 오프라인 전환 후 이번 회차까지도 재시작 일정·원인·환불 공개 없음, 법률 자문 진행 중 — 신규 진전 없음. NOXA에 이어 두 번째 런치패드 사실상 폐쇄 사례로 심화(NOXA는 이번 회차 '소프트 러그'로 재규정됨)"
+      "status": "이슈(이번 회차 재조사 못함)",
+      "summary": "직전값(THROBBIN mcap$701.97K·VLAD$572.76K) 참고치 유지 — CoinGecko 카테고리에서 THROBBIN $572,662(24h+18.3%)·VLAD $476,902(24h+53.6%)로 상이한 값도 관측돼(소스 다름) 여전히 데이터 정합성 낮음"
     },
     {
       "token": "MemeCore (M)",
       "status": "조정(이번 회차 재조사 못함)",
-      "summary": "직전값(CMC mcap $1.62B, 가격$1.22, 24h-2.97%, ATH대비-74.8%) 참고치 유지 — 이번 회차 개별 재조사는 시간 배분상 못함"
+      "summary": "직전값(CMC mcap $1.62B, 가격$1.22, 24h-2.97%, ATH대비-74.8%) 참고치 유지"
     },
     {
-      "token": "PONS·PONSTAR — 표에서 notable로 이동",
-      "status": "뒷북 지속 + PONSTAR 급등 관찰(미검증)",
-      "summary": "PONS: 런치패드 바이백 구조, 직전 mcap$7.3M 참고치 유지, 이번 회차 프론트엔드 버그(토큰승인 오류) 신규 보고. PONSTAR(별개 티커): CoinGecko에서 mcap $58,007(24h+102.8%)로 신규 급등 포착됐으나 과거 '뒷북/러그 확정' 분류 이력이 있어 KOL코로보·CA 재검증 없이는 신뢰 어려움 — 다음 회차 확인 필요"
+      "token": "PONS·PONSTAR",
+      "status": "뒷북 지속 + PONSTAR 재검증 실패",
+      "summary": "이번 회차도 PONSTAR의 CA·KOL코로보 재확인 실패 — 지난 회차 급등(24h+102.8%) 포착 이후 지속 여부 불명, 관찰만 유지. PONS는 직전 mcap$7.3M 참고치, 승인(approval) 버그 이슈 계속 유효"
+    },
+    {
+      "token": "$INDEX (The Index)",
+      "status": "확산(재확인 실패 지속, 표에서 notable로 이동)",
+      "summary": "mcap $16M~$18M대 참고치 유지 — 이번 회차도 독립 재조사 실패. 검색에 걸린 \"+150~157%\" 보도는 과거(약 7/13~15) 기사로 확인돼 신규 급등이 아님(오인 주의). 토큰 자체의 조기성이 낮아져 하이프 표에서 notable로 재분류"
+    },
+    {
+      "token": "신규 후보 티커 관찰군(REPE 외)",
+      "status": "이슈(관찰 대상, 대부분 미확인)",
+      "summary": "CoinGecko RH밈 카테고리에서 REPE 외에도 HOODBIRD($357K, 1h+29.4%)·YORK(The Office Dog)·MYSTERY·ROB·SUIT(Dog in a Suit, mcap 데이터 없음) 등 기존 미추적 티커가 다수 확인됨 — KOL·매체 코로보가 전혀 없어 이번 회차 정식 하이프 리스트엔 미편입, 다음 회차 확인 대상. 아울러 과거 '뒷북/러그 확정'으로 분류했던 MEOW·WORTH·401K·SEEDCOIN·HOPPY·COOKWARE 등이 이번 회차 CoinGecko 카테고리에 mcap $330K~$1.18M(일부 24h+100%대)로 여전히 표시돼 과거 판정과 상충 — 재검증 필요"
     }
   ]
 }
