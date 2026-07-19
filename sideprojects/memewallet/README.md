@@ -38,9 +38,9 @@
 | DexScreener | ✅ 200 (키 불필요) | 토큰/페어 데이터 |
 | Birdeye | 🔑 401 (도달O, 키 필요) | Wallet PnL API(실현/미실현) |
 | Bitquery | ✅ 키확보·작동 (아래 주의) | `streaming.bitquery.io/eap` X-API-KEY로 realtime 200 |
-| Dune | 🔑 (도달O, 키 필요) | 무료 2,500쿼리/월 SQL, 과거 Solana DEX |
+| Dune | 🔑 (도달O, 키 필요) | 무료 2,500쿼리/월 SQL, 과거 Solana DEX. **과거백필 채택** |
 | Helius | 🔑 (도달O, 키 필요) | 무료 100k크레딧, RPC+웹훅(⑤ 실시간) |
-| Flipside | 🔑 403 (도달O, 키 필요) | 무료 SQL, **과거** Solana DEX 커버리지 최고 |
+| ~~Flipside~~ | ❌ 종료 | 2026 크립토 데이터 사업 SonarX에 매각·edisyl로 피벗, Flipspace 2026-06-17 종료 → **Dune으로 대체** |
 → **프록시 차단은 없음.** 무료 키만 발급하면 사용 가능.
 
 ### ⚠️ Bitquery 무료 플랜 제약 (2026-07-19 실측)
@@ -58,9 +58,10 @@
 
 ## 다음 단계 (수정: Bitquery=realtime 확인 후)
 - **⑤ 실시간 모니터링**: `BITQUERY_API_KEY` 확보·작동(realtime). 선별 지갑 신규매매 감지에 사용 가능.
-- **①~④ 과거 백필(핵심)**: Bitquery 무료로는 archive 불가 → **Flipside 또는 Dune 무료 SQL 필요**.
-  1. **[블록]** 사장님이 Flipside(권장, 과거 Solana 커버리지 최고) 또는 Dune 무료 가입 → 키를 `.env`에
-     `FLIPSIDE_API_KEY=...`(또는 `DUNE_API_KEY=...`)로 추가.
+- **①~④ 과거 백필(핵심)**: Bitquery 무료로는 archive 불가 → **Dune 무료 SQL 필요**
+  (Flipside는 2026년 크립토 데이터 사업 종료 → Dune 채택).
+  1. **[블록]** 사장님이 Dune(https://dune.com) 무료 가입 → Settings→API Keys → 키를 `.env`에
+     `DUNE_API_KEY=...`로 추가.
   2. 스테이지①: 과거 피크≥$200M 밈코인 확정 목록(Flipside/Dune 과거 mcap로 CoinGecko 시드 보강).
   3. 스테이지②: 1개 토큰으로 초기 홀더 vs 실거래 지갑 분리 + 내부자 태깅(초기 수령·번들러).
   4. 스테이지③: 거래 지갑 lifetime PnL 계산(swap 이력 SQL), 기준 1~5 적용해 후보 산출.
