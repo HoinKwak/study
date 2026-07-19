@@ -10,6 +10,8 @@
 from __future__ import annotations
 
 import json
+import time
+import urllib.error
 import urllib.request
 
 _LB_URL = "https://stats-data.hyperliquid.xyz/Mainnet/leaderboard"
@@ -31,16 +33,39 @@ TOP_LIMIT = 20           # 좌측(상위 트레이더) 최대
 RISING_LIMIT = 12        # 우측(라이징스타) 최대
 
 
+def _request(req: urllib.request.Request, retries: int = 4):
+    """레이트리밋(429)·일시적 5xx·타임아웃은 지수백오프로 재시도.
+
+    ★중요★ 이 재시도가 없으면 검증 중 일시적 429/타임아웃이 예외로 새어나가 해당 후보가
+    '조용히 스킵'되고, 그 결과 상위/라이징 목록 수가 리빌드마다 들쭉날쭉(예: 12→2)해진다.
+    """
+    delay = 1.0
+    for attempt in range(retries):
+        try:
+            with urllib.request.urlopen(req, timeout=30) as r:  # noqa: S310
+                return json.load(r)
+        except urllib.error.HTTPError as e:
+            if e.code in (429, 500, 502, 503, 504) and attempt < retries - 1:
+                ra = e.headers.get("Retry-After") if e.headers else None
+                time.sleep(float(ra) if (ra and ra.replace(".", "", 1).isdigit()) else delay)
+                delay = min(delay * 2, 8.0)
+                continue
+            raise
+        except (urllib.error.URLError, TimeoutError):
+            if attempt < retries - 1:
+                time.sleep(delay)
+                delay = min(delay * 2, 8.0)
+                continue
+            raise
+    raise RuntimeError("unreachable")  # pragma: no cover
+
+
 def _get(url: str) -> dict | list:
-    req = urllib.request.Request(url, headers=_UA)
-    with urllib.request.urlopen(req, timeout=30) as r:  # noqa: S310
-        return json.load(r)
+    return _request(urllib.request.Request(url, headers=_UA))
 
 
 def _post(url: str, payload: dict) -> dict:
-    req = urllib.request.Request(url, data=json.dumps(payload).encode(), headers=_UA)
-    with urllib.request.urlopen(req, timeout=20) as r:  # noqa: S310
-        return json.load(r)
+    return _request(urllib.request.Request(url, data=json.dumps(payload).encode(), headers=_UA))
 
 
 def _window(perfs: list, name: str) -> dict:
