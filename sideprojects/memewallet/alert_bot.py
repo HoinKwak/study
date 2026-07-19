@@ -67,6 +67,25 @@ def query_new_buys(wallets: list[str], since_iso: str) -> list[dict]:
     return d["data"]["Solana"]["DEXTrades"]
 
 
+def _tg_call(url: str, body: dict) -> tuple[bool, str]:
+    """텔레그램 sendMessage 호출 → (성공, 사유). 실패 시 텔레그램 JSON description 반환."""
+    import urllib.error
+    req = urllib.request.Request(url, data=json.dumps(body).encode(),
+                                 headers={"Content-Type": "application/json"})
+    try:
+        with urllib.request.urlopen(req, timeout=20) as r:  # noqa: S310
+            json.load(r)
+        return True, ""
+    except urllib.error.HTTPError as e:
+        try:
+            desc = json.loads(e.read().decode()).get("description", "")
+        except Exception:  # noqa: BLE001
+            desc = str(e)
+        return False, desc
+    except Exception as e:  # noqa: BLE001
+        return False, str(e)
+
+
 def send_telegram(text: str) -> None:
     # ★매매봇과 분리★ 전용 봇/채널 사용. 미설정 시 콘솔만(매매봇 채널로 폴백하지 않음).
     tok = _env("MEMEWALLET_TELEGRAM_BOT_TOKEN")
@@ -75,11 +94,19 @@ def send_telegram(text: str) -> None:
         print("[밈 알림봇 텔레그램 미설정 — 콘솔만. .env에 MEMEWALLET_TELEGRAM_BOT_TOKEN/"
               "MEMEWALLET_TELEGRAM_CHAT_ID 추가하면 별도 채널로 전송]"); return
     url = f"https://api.telegram.org/bot{tok}/sendMessage"
-    body = {"chat_id": chat, "text": text, "parse_mode": "HTML", "disable_web_page_preview": True}
-    try:
-        _post(url, body, {"Content-Type": "application/json"})
-    except Exception as e:  # noqa: BLE001
-        print("텔레그램 전송 실패:", e)
+    ok, why = _tg_call(url, {"chat_id": chat, "text": text, "parse_mode": "HTML",
+                             "disable_web_page_preview": True})
+    if ok:
+        return
+    # HTML 파싱 실패면 평문으로 자동 재시도(태그 제거)
+    if "parse" in why.lower() or "entit" in why.lower() or "tag" in why.lower():
+        import re
+        plain = re.sub(r"<[^>]+>", "", text)
+        ok2, why2 = _tg_call(url, {"chat_id": chat, "text": plain, "disable_web_page_preview": True})
+        if ok2:
+            return
+        why = f"HTML실패({why}) → 평문도실패({why2})"
+    print(f"텔레그램 전송 실패: {why}")
 
 
 def _fmt(t: dict, pnl_by_wallet: dict[str, float]) -> str:
