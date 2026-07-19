@@ -61,6 +61,8 @@
 - ②③ 지갑 PnL·내부자/봇 필터: `analyze_token.py`(토큰별) + `dune_client.py`.
 - ④ lifetime 집계·최종 선별: `aggregate_lifetime.py` → `smart_wallets.json`(**277 스마트머니 지갑**).
 - ⑤ F/U 알림봇: `alert_bot.py`(Bitquery realtime로 신규 매수≥$1,000 감지→텔레그램).
+  알림에 **신규매수/추매 구분 · 현재 해당코인 잔고 · 해당코인 역대 실현손익(근사)** 포함.
+  (잔고=공개 RPC, 역대손익=Bitquery 매수/매도 누적. 무료 플랜은 롤링윈도우라 아주 오래된 이력은 근사.)
 
 **실행(알림봇 상시 구동):**
 ```
