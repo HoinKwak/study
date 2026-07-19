@@ -36,6 +36,7 @@ from crypto_trader.scanner import EventStore  # noqa: E402
 _REPO_DIR = Path(__file__).resolve().parent.parent
 _FG_CACHE = {"t": 0.0, "data": None}   # 공포·탐욕 지수 캐시(30분)
 _MACRO_CACHE: dict[str, dict] = {}     # 매크로 묶음 기간별 캐시(period → {t, data})
+_LEADERBOARD_CACHE = {"t": 0.0, "data": None}   # 리더보드 상위 트레이더 포지션 캐시(10분)
 
 
 def _autopull_loop(interval: int) -> None:
@@ -225,6 +226,22 @@ def main() -> None:
             pass
         return json.dumps(out).encode("utf-8")
 
+    def _api_leaderboard() -> bytes:
+        """Hyperliquid 리더보드 상위 트레이더 현재 포지션 — 10분 캐시(리더보드 40k행+포지션 조회라 무겁다)."""
+        now = time.time()
+        c = _LEADERBOARD_CACHE
+        if c["data"] is not None and now - c["t"] < 600:
+            return json.dumps(c["data"]).encode("utf-8")
+        out = {"source": "hyperliquid", "count": 0, "traders": []}
+        try:
+            from crypto_trader.connectors.hyperliquid_leaderboard import build_bundle
+            out = build_bundle(limit=20)
+            _LEADERBOARD_CACHE["t"] = now
+            _LEADERBOARD_CACHE["data"] = out
+        except Exception:  # noqa: BLE001
+            pass
+        return json.dumps(out).encode("utf-8")
+
     def _api_symbols() -> bytes:
         try:
             from crypto_trader.monitoring.market_extra import binance_futures_list
@@ -307,6 +324,9 @@ def main() -> None:
                 return
             if path == "/api/macro":
                 self._send(_api_macro(parse_qs(parsed.query)), "application/json")
+                return
+            if path == "/api/leaderboard":
+                self._send(_api_leaderboard(), "application/json")
                 return
             self.send_response(404)
             self.end_headers()

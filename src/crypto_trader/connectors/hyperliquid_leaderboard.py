@@ -16,9 +16,10 @@ _LB_URL = "https://stats-data.hyperliquid.xyz/Mainnet/leaderboard"
 _INFO_URL = "https://api.hyperliquid.xyz/info"
 _UA = {"User-Agent": "leaderboard-positions/0.1", "Content-Type": "application/json"}
 
-# 필터 기본값 (사장님 결정: lifetime PnL≥$100K, ROI≥50%, 최근 거래·수익성 추가)
+# 필터 기본값 (사장님 결정: lifetime PnL≥$100K, ROI≥50%, 최근 거래·수익성, 지갑≥$10K)
 MIN_PNL = 100_000.0
 MIN_ROI = 0.50
+MIN_ACCOUNT = 10_000.0   # 현재 계좌가치 최소($2~3 청산계좌 배제)
 
 
 def _get(url: str) -> dict | list:
@@ -51,9 +52,10 @@ def screen(
     rows: list[dict],
     min_pnl: float = MIN_PNL,
     min_roi: float = MIN_ROI,
+    min_account: float = MIN_ACCOUNT,
     require_active: bool = True,
 ) -> list[dict]:
-    """1차 필터(리더보드만으로): lifetime PnL·ROI + 최근 거래활동. PnL 상위 정렬.
+    """1차 필터(리더보드만으로): lifetime PnL·ROI + 지갑사이즈 + 최근 거래활동. PnL 상위 정렬.
 
     require_active=True 이면 최근 한 달 실거래(month vlm>0)도 요구('최근 거래').
     최근 '수익성'(3개월)은 리더보드에 3M 창이 없어 여기서 못 걸러 — 2차(portfolio)에서 90일 PnL로.
@@ -63,7 +65,10 @@ def screen(
         perfs = r.get("windowPerformances") or []
         allt = _window(perfs, "allTime")
         month = _window(perfs, "month")
+        acct = float(r.get("accountValue") or 0.0)
         if allt["pnl"] < min_pnl or allt["roi"] < min_roi:
+            continue
+        if acct < min_account:          # 지갑 사이즈 최소
             continue
         if require_active and month["vlm"] <= 0:
             continue
@@ -154,7 +159,7 @@ def build_bundle(limit: int = 25, recent_days: int = 90) -> dict:
     return {
         "source": "hyperliquid",
         "filter": {
-            "min_pnl": MIN_PNL, "min_roi": MIN_ROI,
+            "min_pnl": MIN_PNL, "min_roi": MIN_ROI, "min_account": MIN_ACCOUNT,
             "recent_trading": True, "recent_profit_days": recent_days,
         },
         "count": len(traders),
