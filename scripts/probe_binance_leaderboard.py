@@ -43,13 +43,15 @@ def main() -> None:
     print("1) top-trader/list (30D PNL 상위, /friendly)")
     st, d = _get(_LIST)
     print("HTTP:", st, "| code:", d.get("code"), "| msg:", d.get("message"))
-    data = d.get("data")
-    # data 구조가 list거나 {list:[...]} 형태일 수 있음
-    rows = data if isinstance(data, list) else (data or {}).get("list") if isinstance(data, dict) else None
+    data = d.get("data") or {}
+    rows = data.get("rows") if isinstance(data, dict) else data   # 실제 구조: data.rows[]
     if not rows:
         print("data 구조:", json.dumps(d, ensure_ascii=False)[:500]); print("=" * 64); return
-    print(f"트레이더 {len(rows)}명. 첫 항목 키:", list(rows[0].keys()))
-    print("첫 항목 샘플:", json.dumps(rows[0], ensure_ascii=False)[:500])
+    print(f"트레이더 {data.get('total', len(rows))}명(rows {len(rows)}). 첫 항목 키:", list(rows[0].keys()))
+    r0 = {k: v for k, v in rows[0].items() if k != "chart"}   # chart는 길어서 제외 표시
+    print("첫 항목(chart 제외):", json.dumps(r0, ensure_ascii=False)[:400])
+    print("chart 있음:", "chart" in rows[0], "| chart.items 길이:",
+          len((rows[0].get("chart") or {}).get("items") or []))
     tid = rows[0].get("topTraderId") or rows[0].get("id")
     if not tid:
         print("(topTraderId 필드 못 찾음 — 위 키 참고)"); print("=" * 64); return
