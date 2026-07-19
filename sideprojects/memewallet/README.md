@@ -37,11 +37,17 @@
 | CoinGecko | ✅ 200 (키 불필요) | 밈 카테고리·현재 mcap·ATH. 스테이지① 시드 |
 | DexScreener | ✅ 200 (키 불필요) | 토큰/페어 데이터 |
 | Birdeye | 🔑 401 (도달O, 키 필요) | Wallet PnL API(실현/미실현) |
-| Bitquery | 🔑 401 (도달O, 키 필요) | SPL 홀더·DEX거래 전이력, 무료 100k포인트 |
-| Dune | 🔑 (도달O, 키 필요) | 무료 2,500쿼리/월 SQL |
+| Bitquery | ✅ 키확보·작동 (아래 주의) | `streaming.bitquery.io/eap` X-API-KEY로 realtime 200 |
+| Dune | 🔑 (도달O, 키 필요) | 무료 2,500쿼리/월 SQL, 과거 Solana DEX |
 | Helius | 🔑 (도달O, 키 필요) | 무료 100k크레딧, RPC+웹훅(⑤ 실시간) |
-| Flipside | 🔑 403 (도달O, 키/차단) | 무료 SQL, 지갑 PnL 자체계산 |
-→ **프록시 차단은 없음.** 무료 키만 발급하면 전 서비스 사용 가능.
+| Flipside | 🔑 403 (도달O, 키 필요) | 무료 SQL, **과거** Solana DEX 커버리지 최고 |
+→ **프록시 차단은 없음.** 무료 키만 발급하면 사용 가능.
+
+### ⚠️ Bitquery 무료 플랜 제약 (2026-07-19 실측)
+- 발급 키(X-API-KEY)는 **작동하나 무료 플랜 = "realtime" 데이터셋 전용**. `archive`(과거) 쿼리는
+  **402 Payment Required**로 막힘. 실측: realtime Solana DEXTrades → 200 OK, archive Blocks → 402.
+- **결론(역할 분담)**: Bitquery 무료키는 **⑤ 실시간 모니터링**에만 사용. **①~④ 과거 백필**
+  (역대 밈코인 거래·lifetime PnL·초기 홀더)은 **Flipside/Dune 무료 SQL**(과거 데이터 무료)로 수행.
 
 ## 스파이크 결과 (2026-07-19)
 - **스테이지① 프로토타입 성공**: CoinGecko 무료로 밈 카테고리 현재 mcap≥$200M **12개** 확보
@@ -50,12 +56,15 @@
   PEPE -90% 등)이 다수라, 완전한 목록은 **과거 시총 데이터(Dune/Flipside/Bitquery, 키 필요)**로
   백필해야 함. ATH가격·ATH일자로 대략 추정은 가능(공급변동으로 부정확).
 
-## 다음 단계 (블록: 무료 API 키 1개 필요)
-1. **[블록 해제 대기]** 사장님이 무료 키 발급 → `.env`에 추가:
-   - 최우선 **1개**: `BITQUERY_API_KEY`(홀더·거래·내부자 판별에 가장 범용) 또는 `BIRDEYE_API_KEY`(지갑 PnL 즉시).
-2. 스테이지② 프로토타입: 1개 토큰(예: BONK 또는 최근 것)으로 초기 홀더 vs 실거래 지갑 분리 + 내부자 태깅.
-3. 스테이지③: 그 토큰의 거래 지갑들 lifetime PnL 계산, 기준 1~5 적용해 후보 지갑 산출.
-4. end-to-end 검증 후 전체 토큰으로 확장 → ⑤ 알림봇(Helius 웹훅 → 텔레그램).
+## 다음 단계 (수정: Bitquery=realtime 확인 후)
+- **⑤ 실시간 모니터링**: `BITQUERY_API_KEY` 확보·작동(realtime). 선별 지갑 신규매매 감지에 사용 가능.
+- **①~④ 과거 백필(핵심)**: Bitquery 무료로는 archive 불가 → **Flipside 또는 Dune 무료 SQL 필요**.
+  1. **[블록]** 사장님이 Flipside(권장, 과거 Solana 커버리지 최고) 또는 Dune 무료 가입 → 키를 `.env`에
+     `FLIPSIDE_API_KEY=...`(또는 `DUNE_API_KEY=...`)로 추가.
+  2. 스테이지①: 과거 피크≥$200M 밈코인 확정 목록(Flipside/Dune 과거 mcap로 CoinGecko 시드 보강).
+  3. 스테이지②: 1개 토큰으로 초기 홀더 vs 실거래 지갑 분리 + 내부자 태깅(초기 수령·번들러).
+  4. 스테이지③: 거래 지갑 lifetime PnL 계산(swap 이력 SQL), 기준 1~5 적용해 후보 산출.
+  5. end-to-end 검증 후 전체 확장 → ⑤ 알림봇(Bitquery realtime/Helius 웹훅 → 텔레그램).
 
 ## 실행
 ```
