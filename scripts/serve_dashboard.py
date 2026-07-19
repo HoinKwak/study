@@ -236,13 +236,13 @@ def main() -> None:
         c = _LEADERBOARD_CACHE.get(source)
         if c and now - c["t"] < 600:
             return json.dumps(c["data"]).encode("utf-8")
-        out = {"source": source, "count": 0, "traders": []}
+        out = {"source": source, "count": 0, "traders": [], "top": [], "rising": []}
         try:
             if source == "binance":
                 from crypto_trader.connectors.binance_leaderboard import build_bundle
             else:
                 from crypto_trader.connectors.hyperliquid_leaderboard import build_bundle
-            out = build_bundle(limit=20)
+            out = build_bundle()
             _LEADERBOARD_CACHE[source] = {"t": now, "data": out}
         except Exception:  # noqa: BLE001
             pass

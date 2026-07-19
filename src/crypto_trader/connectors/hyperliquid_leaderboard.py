@@ -23,6 +23,12 @@ MIN_ACCOUNT = 10_000.0   # 현재 계좌가치 최소($2~3 청산계좌 배제)
 MAJORS = ("BTC", "ETH", "SOL", "XRP", "BNB")   # 포지션 표시 대상(5대 메이저만)
 DIRECTIONAL_MIN = 0.85   # 지배방향 비중 하한(미만=양방향/헤지 북 → 제외)
 MAX_LEV = 25.0           # 포지션 최대 레버리지 상한(초과=고배율 ROI 눈속임 → 제외)
+# 라이징스타(우측 패널): 통산 상위(좌측)와 달리 '최근 한 달 실적·거래빈도' 기준.
+# ※ Hyperliquid month roi는 초기자본 극소 계좌에서 분모왜곡(수백배)이 잦아 순위기준 부적합 →
+#   왜곡 없는 '절대 한 달 PnL'로 정렬하고, 통산 상위와 겹치는 얼굴은 제외해 '신흥' 성격을 살린다.
+FREQ_VLM_MULT = 3.0      # 거래빈도 하한: 최근 한 달 거래대금 ≥ 계좌 × 배수(회전율)
+TOP_LIMIT = 20           # 좌측(상위 트레이더) 최대
+RISING_LIMIT = 12        # 우측(라이징스타) 최대
 
 
 def _get(url: str) -> dict | list:
@@ -82,6 +88,40 @@ def screen(
             "month_pnl": month["pnl"], "month_vlm": month["vlm"],
         })
     out.sort(key=lambda x: -x["pnl"])
+    return out
+
+
+def screen_rising(
+    rows: list[dict],
+    min_account: float = MIN_ACCOUNT,
+    freq_mult: float = FREQ_VLM_MULT,
+) -> list[dict]:
+    """라이징스타 후보: 최근 한 달 수익>0 + 거래빈도(회전율) 하한. **절대 한 달 PnL 내림차순**.
+
+    통산 상위(screen)와 달리 lifetime PnL≥$100K를 요구하지 않는다 — '최근 한 달에 잘하는'
+    트레이더가 목적. 한 달 실적은 (분모왜곡 잦은 roi 대신) 절대 PnL로 보고, 거래활발도는
+    한 달 거래대금/계좌 회전율로 본다. (통산 상위가 고점 숏 후 장기보유라 단기 참고가 안 된다는
+    판단에서 분리한 패널.) turnover(vlm/계좌)를 함께 실어 카드에 '거래빈도'로 표시한다.
+    """
+    out: list[dict] = []
+    for r in rows:
+        perfs = r.get("windowPerformances") or []
+        allt = _window(perfs, "allTime")
+        month = _window(perfs, "month")
+        acct = float(r.get("accountValue") or 0.0)
+        if month["pnl"] <= 0:
+            continue
+        if acct < min_account:   # 먼지계좌 사전제거. 실계좌는 검증(clearinghouseState)서 재확인
+            continue
+        if month["vlm"] < freq_mult * acct:   # 거래빈도(회전율) 하한
+            continue
+        out.append({
+            "addr": r["ethAddress"], "name": r.get("displayName"),
+            "account_value": acct, "pnl": allt["pnl"], "roi": allt["roi"],
+            "month_pnl": month["pnl"], "month_vlm": month["vlm"],
+            "turnover": month["vlm"] / acct,   # 한 달 회전율(거래빈도 대용)
+        })
+    out.sort(key=lambda x: -x["month_pnl"])
     return out
 
 
@@ -176,52 +216,70 @@ def entry_times(addr: str, positions: list[dict]) -> None:
             after = before
 
 
+def _validate_candidate(t: dict, recent_days: int, memo: dict) -> dict | None:
+    """후보 1명 2차 검증: 실계좌·메이저 포지션·양방향/고배율 필터 통과 시 enriched dict, 아니면 None.
+
+    memo[addr]에 조회결과 캐시(top/rising 겹치는 후보 재조회 방지). 값: enriched dict | False.
+    반환은 후보의 랭킹필드(t: month_roi 등) + enriched(포지션·history)를 합친 것.
+    """
+    addr = t["addr"]
+    if addr in memo:
+        cached = memo[addr]
+        return {**t, **cached} if cached else None
+    port = fetch_portfolio(addr, days=recent_days)
+    if not port or port["pnl_recent"] <= 0:   # 최근 수익성(3개월) 필터
+        memo[addr] = False; return None
+    try:
+        pos = fetch_positions(addr, only=MAJORS)   # 5대 메이저 포지션만
+    except Exception:  # noqa: BLE001
+        memo[addr] = False; return None
+    if pos["account_value"] < MIN_ACCOUNT:   # ★실시간 계좌가치로 지갑사이즈 필터(스테일값 아님)★
+        memo[addr] = False; return None
+    ps = pos["positions"]
+    if not ps:                          # 메이저 포지션 보유 트레이더만
+        memo[addr] = False; return None
+    # 양방향(헤지) 제외: 지배방향 비중 < DIRECTIONAL_MIN 이면 델타뉴트럴/헤지 북으로 보고 제외
+    long_ntl = sum(p["notional"] for p in ps if p["side"] == "long")
+    short_ntl = sum(p["notional"] for p in ps if p["side"] == "short")
+    gross = long_ntl + short_ntl
+    if gross <= 0 or max(long_ntl, short_ntl) / gross < DIRECTIONAL_MIN:
+        memo[addr] = False; return None
+    # 고배율 ROI 눈속임 제외: 포지션 최대 레버리지 > MAX_LEV
+    max_lev = max((p.get("leverage") or 0) for p in ps)
+    if max_lev > MAX_LEV:
+        memo[addr] = False; return None
+    try:
+        entry_times(addr, ps)                      # 진입 시각 역산
+    except Exception:  # noqa: BLE001
+        pass
+    enriched = {
+        **pos,
+        "net_side": "long" if long_ntl >= short_ntl else "short",
+        "max_lev": max_lev,
+        "recent_pnl": port["pnl_recent"], "recent_days": recent_days,
+        "pnl_history": port["history"],                 # 역대 PnL 그래프용
+    }
+    memo[addr] = enriched
+    return {**t, **enriched}
+
+
+def _collect(cand: list[dict], limit: int, recent_days: int, memo: dict, scan: int) -> list[dict]:
+    """후보 리스트를 순서대로 2차 검증해 통과분 limit개까지 수집."""
+    out: list[dict] = []
+    for t in cand[:scan]:
+        e = _validate_candidate(t, recent_days, memo)
+        if e:
+            out.append(e)
+            if len(out) >= limit:
+                break
+    return out
+
+
 def top_traders_with_positions(
     limit: int = 25, scan: int = 200, recent_days: int = 90, **kw
 ) -> list[dict]:
-    """필터 통과 상위에서 (최근 `recent_days`일 수익성>0) & (열린 포지션 있음) 트레이더 limit개까지.
-
-    scan: 2차 조회 최대 스캔 수(API 호출 상한). 3개월 수익성은 하락장 감안해 기본 90일.
-    """
-    cand = screen(fetch_leaderboard(), **kw)
-    out: list[dict] = []
-    for t in cand[:scan]:
-        port = fetch_portfolio(t["addr"], days=recent_days)
-        if not port or port["pnl_recent"] <= 0:   # 최근 수익성(3개월) 필터
-            continue
-        try:
-            pos = fetch_positions(t["addr"], only=MAJORS)   # 5대 메이저 포지션만
-        except Exception:  # noqa: BLE001
-            continue
-        if pos["account_value"] < MIN_ACCOUNT:   # ★실시간 계좌가치로 지갑사이즈 필터(스테일값 아님)★
-            continue
-        ps = pos["positions"]
-        if not ps:                          # 메이저 포지션 보유 트레이더만
-            continue
-        # 양방향(헤지) 제외: 지배방향 비중 < DIRECTIONAL_MIN 이면 델타뉴트럴/헤지 북으로 보고 제외
-        long_ntl = sum(p["notional"] for p in ps if p["side"] == "long")
-        short_ntl = sum(p["notional"] for p in ps if p["side"] == "short")
-        gross = long_ntl + short_ntl
-        if gross <= 0 or max(long_ntl, short_ntl) / gross < DIRECTIONAL_MIN:
-            continue
-        # 고배율 ROI 눈속임 제외: 포지션 최대 레버리지 > MAX_LEV
-        max_lev = max((p.get("leverage") or 0) for p in ps)
-        if max_lev > MAX_LEV:
-            continue
-        try:
-            entry_times(t["addr"], ps)                      # 진입 시각 역산
-        except Exception:  # noqa: BLE001
-            pass
-        out.append({
-            **t, **pos,
-            "net_side": "long" if long_ntl >= short_ntl else "short",
-            "max_lev": max_lev,
-            "recent_pnl": port["pnl_recent"], "recent_days": recent_days,
-            "pnl_history": port["history"],                 # 역대 PnL 그래프용
-        })
-        if len(out) >= limit:
-            break
-    return out
+    """필터 통과 상위에서 (최근 `recent_days`일 수익성>0) & (열린 포지션 있음) 트레이더 limit개까지."""
+    return _collect(screen(fetch_leaderboard(), **kw), limit, recent_days, {}, scan)
 
 
 def coin_summary(traders: list[dict]) -> list[dict]:
@@ -256,29 +314,43 @@ def coin_summary(traders: list[dict]) -> list[dict]:
     return out
 
 
-def build_bundle(limit: int = 25, recent_days: int = 90) -> dict:
-    """대시보드용 묶음: 필터 조건 + 코인별 집계 + 상위 트레이더 포지션."""
-    traders = top_traders_with_positions(limit=limit, recent_days=recent_days)
+def build_bundle(
+    top_limit: int = TOP_LIMIT, rising_limit: int = RISING_LIMIT,
+    recent_days: int = 90, scan: int = 200,
+) -> dict:
+    """대시보드용 묶음: 좌 상위 트레이더(통산)·우 라이징스타(최근 한 달) + 코인별 집계.
+
+    리더보드 1회 조회 후 두 후보군을 같은 memo로 검증(겹치는 후보 재조회 방지).
+    """
+    rows = fetch_leaderboard()
+    memo: dict = {}
+    top = _collect(screen(rows), top_limit, recent_days, memo, scan)
+    top_addrs = {t["addr"] for t in top}
+    # 라이징스타는 통산 상위와 겹치는 얼굴 제외 → '이번 달 신흥' 성격 유지
+    rising_cand = [t for t in screen_rising(rows) if t["addr"] not in top_addrs]
+    rising = _collect(rising_cand, rising_limit, recent_days, memo, scan)
     return {
         "source": "hyperliquid",
-        "summary": coin_summary(traders),
+        "summary": coin_summary(top + rising),   # 겹침 없음(위에서 제외) → 그대로 합산
         "filter": {
             "min_pnl": MIN_PNL, "min_roi": MIN_ROI, "min_account": MIN_ACCOUNT,
             "recent_trading": True, "recent_profit_days": recent_days,
             "coins": list(MAJORS),
             "directional_min": DIRECTIONAL_MIN, "max_leverage": MAX_LEV,
+            "rising_freq_mult": FREQ_VLM_MULT, "rising_rank": "month_pnl",
         },
-        "count": len(traders),
-        "traders": traders,
+        "top": top, "rising": rising,
+        "count": len(top) + len(rising),
+        "traders": top,   # 하위호환(옛 렌더가 d.traders 참조)
     }
 
 
 if __name__ == "__main__":
-    b = build_bundle(limit=10)
-    print(f"[Hyperliquid] 필터(PnL≥$100K·ROI≥50%·최근거래·90일수익성>0)·포지션보유 상위 {b['count']}명\n")
-    for t in b["traders"]:
-        print(f"{t['addr'][:10]}… PnL ${t['pnl']:,.0f} ROI {t['roi']*100:.0f}% "
-              f"90d ${t['recent_pnl']:,.0f} | 계좌 ${t['account_value']:,.0f} | 포지션 {len(t['positions'])}개")
-        for p in t["positions"][:4]:
-            print(f"    {p['coin']:7} {p['side']:5} ${p['notional']:,.0f} "
-                  f"진입 {p['entry']} uPnL ${p['upnl']:,.0f} {p['leverage']}x")
+    b = build_bundle(top_limit=8, rising_limit=6)
+    for label, key in (("상위 트레이더(통산)", "top"), ("라이징스타(최근 한 달)", "rising")):
+        print(f"\n[Hyperliquid] {label} {len(b[key])}명")
+        for t in b[key]:
+            extra = (f"한달 ${t['month_pnl']:,.0f} 회전 {t['turnover']:.1f}x" if key == "rising"
+                     else f"90d ${t['recent_pnl']:,.0f}")
+            print(f"  {t['addr'][:10]}… PnL ${t['pnl']:,.0f} ROI {t['roi']*100:.0f}% "
+                  f"{extra} | 계좌 ${t['account_value']:,.0f} | 포지션 {len(t['positions'])}개")

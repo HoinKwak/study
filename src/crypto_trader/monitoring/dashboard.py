@@ -1551,14 +1551,14 @@ def render_html(journal: TradeJournal, equity: float | None = None,
   </div>
 
   <div class="tabpane" data-pane="leaderboard" style="display:none">
-    <h2>🏆 상위 트레이더 현재 포지션</h2>
+    <h2>🏆 리더보드 — 상위 트레이더 / 라이징스타</h2>
     <div style="margin-bottom:8px">
       <button class="tfbtn lbsrc tfbtn-on" data-src="hyperliquid">Hyperliquid</button>
       <button class="tfbtn lbsrc" data-src="binance">Binance</button>
     </div>
-    <div class="muted" style="margin-bottom:8px">필터: 통산 PnL ≥ $100K · 통산 ROI ≥ 50% · 최근 거래 활동 · 5대 메이저 포지션 · 양방향/고배율 제외.
-    각 트레이더의 현재 열린 포지션(명목가 큰 순) · 10분 캐시. <b>정보용, 매매권유 아님.</b>
-    (Binance는 지역차단으로 로컬 대시보드에서만 동작)</div>
+    <div class="muted" style="margin-bottom:8px">좌 <b>상위 트레이더</b>(통산 PnL·ROI 상위 · 현재 포지션) · 우 <b>라이징스타</b>(최근 한 달 수익·거래빈도 상위).
+    5대 메이저(BTC/ETH/SOL/XRP/BNB) · 양방향/고배율 제외 · 10분 캐시. <b>정보용, 매매권유 아님.</b>
+    (Binance는 지역차단으로 로컬 전용 + 포지션은 로그인 필요라 실적·PnL곡선만 표시)</div>
     <div id="lb-root" class="muted">시장 탭처럼 서버 모드(serve_dashboard)에서 로드됩니다 — 리더보드 탭을 열면 불러옵니다.</div>
   </div>
 
@@ -1622,40 +1622,63 @@ def render_html(journal: TradeJournal, equity: float | None = None,
        }}).join('');
        return '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">'+cards+'</div>';
      }}
+     function esc(s){{return String(s==null?'':s).replace(/[<>&]/g,function(c){{return c==='<'?'&lt;':c==='>'?'&gt;':'&amp;';}});}}
+     function card(t){{
+       var addr=t.addr||'';
+       var nm=t.name?esc(t.name):(addr.slice(0,6)+'…'+addr.slice(-4));
+       var head;
+       if(t.profile_url)head='<a href="'+t.profile_url+'" target="_blank" style="font-weight:700">'+nm+'</a>';
+       else if(addr.indexOf('0x')===0)head='<a href="https://hypurrscan.io/address/'+addr+'" target="_blank" style="font-weight:700">'+nm+'</a>';
+       else head='<b>'+nm+'</b>';
+       var m='<span>PnL <b style="color:#16c784">$'+usd(t.pnl)+'</b></span>'
+         +'<span>ROI <b>'+Math.round((t.roi||0)*100)+'%</b></span>';
+       if(t.month_pnl!=null)m+='<span class="muted">한달 <b style="color:'+((t.month_pnl>=0)?'#16c784':'#e23b4a')+'">$'+usd(t.month_pnl)+'</b></span>';
+       if(t.turnover!=null)m+='<span class="muted">회전 '+t.turnover.toFixed(1)+'x</span>';
+       if(t.recent_pnl!=null)m+='<span class="muted">90일 <b style="color:'+((t.recent_pnl>=0)?'#16c784':'#e23b4a')+'">$'+usd(t.recent_pnl)+'</b></span>';
+       if(t.account_value)m+='<span class="muted">계좌 $'+usd(t.account_value)+'</span>';
+       if(t.mdd!=null)m+='<span class="muted">MDD '+Math.round((t.mdd||0)*100)+'%</span>';
+       if(t.subscribers!=null)m+='<span class="muted">구독 '+usd(t.subscribers)+'</span>';
+       if(t.net_side)m+='<span>순방향 '+((t.net_side==='long')?'<span style="color:#16c784">롱</span>':'<span style="color:#e23b4a">숏</span>')+'</span>';
+       if(t.max_lev)m+='<span class="muted">최대'+t.max_lev+'x</span>';
+       var ps=t.positions||[],body;
+       if(ps.length){{
+         var rows=ps.map(function(p){{
+           var uc=(p.upnl>=0)?'#16c784':'#e23b4a';var sd=(p.side==='long')?'롱':'숏';
+           var sc=(p.side==='long')?'#16c784':'#e23b4a';
+           return '<tr><td style="color:'+sc+'">'+p.coin+' '+sd+'</td><td>$'+usd(p.notional)+'</td><td>'+px(p.entry)+'</td>'
+             +'<td style="color:#e0964a">'+px(p.liquidation)+'</td><td>'+fmtT(p.entry_ts)+'</td>'
+             +'<td style="color:'+uc+'">$'+usd(p.upnl)+'</td><td class="muted">'+(p.leverage||'-')+'x</td></tr>';
+         }}).join('');
+         body='<table style="width:100%;font-size:12px"><thead><tr><th>종목/방향</th><th>명목</th><th>진입</th><th>청산</th><th>진입시각</th><th>미실현</th><th>lev</th></tr></thead><tbody>'+rows+'</tbody></table>';
+       }}else{{
+         var st=(t.position_status==='HAS_POSITION')?'보유중':(t.position_status==='NO_POSITION')?'무포지션':(t.position_status||'비공개');
+         body='<div class="muted" style="font-size:12px">현재 포지션: '+st+' <span style="opacity:.7">(바이낸스 포지션 상세는 로그인 필요)</span></div>';
+       }}
+       return '<div style="margin:8px 0;padding:8px;border:1px solid var(--line,#233);border-radius:8px">'
+         +'<div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:4px">'+head+m+'</div>'
+         +'<div style="display:flex;gap:12px;flex-wrap:wrap;align-items:flex-start">'
+         +'<div><div class="muted" style="font-size:11px">역대 누적 PnL</div>'+spark(t.pnl_history)+'</div>'
+         +'<div style="flex:1;min-width:300px">'+body+'</div></div></div>';
+     }}
+     function col(title,sub,list){{
+       var cards=((list||[]).map(card).join(''))||'<div class="muted" style="font-size:12px">해당 트레이더 없음</div>';
+       return '<div style="flex:1;min-width:340px">'
+         +'<h3 style="margin:4px 0 2px">'+title+'</h3>'
+         +'<div class="muted" style="font-size:11px;margin-bottom:6px">'+sub+'</div>'+cards+'</div>';
+     }}
      function render(d){{
        var root=document.getElementById('lb-root');if(!root)return;
-       var ts=(d&&d.traders)||[];
-       if(!ts.length){{
+       var top=(d&&d.top)||(d&&d.traders)||[];var rising=(d&&d.rising)||[];
+       if(!top.length&&!rising.length){{
          var msg=(d&&d.source==='binance')
-           ?'Binance 리더보드는 지역차단으로 <b>로컬 대시보드</b>에서만 동작합니다(개발서버는 빈 결과).'
+           ?'Binance 스마트머니는 지역차단으로 <b>로컬 대시보드</b>에서만 동작합니다(개발서버는 빈 결과).'
            :'데이터 없음 — 서버 모드에서만 동작하며, 첫 로드는 리더보드 대량행 조회로 다소 걸립니다.';
          root.innerHTML='<span class="muted">'+msg+'</span>';return;}}
        var h=sumCards(d.summary||[]);
-       ts.forEach(function(t){{
-         var pos=(t.positions||[]).map(function(p){{
-           var col=(p.upnl>=0)?'#16c784':'#e23b4a';var sd=(p.side==='long')?'롱':'숏';
-           var sc=(p.side==='long')?'#16c784':'#e23b4a';
-           return '<tr><td style="color:'+sc+'">'+p.coin+' '+sd+'</td><td>$'+usd(p.notional)+'</td><td>'+px(p.entry)+'</td>'
-             +'<td style="color:#e0964a">'+px(p.liquidation)+'</td>'
-             +'<td>'+fmtT(p.entry_ts)+'</td>'
-             +'<td style="color:'+col+'">$'+usd(p.upnl)+'</td><td class="muted">'+(p.leverage||'-')+'x</td></tr>';
-         }}).join('');
-         var addr=t.addr||'';var short=addr.slice(0,6)+'…'+addr.slice(-4);
-         var nb=(t.net_side==='long')?'<span style="color:#16c784">롱</span>':'<span style="color:#e23b4a">숏</span>';
-         h+='<div style="margin:10px 0;padding:8px;border:1px solid var(--line,#233);border-radius:8px">'
-           +'<div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:4px">'
-           +'<a href="https://hypurrscan.io/address/'+addr+'" target="_blank" style="font-weight:700">'+short+'</a>'
-           +'<span>순방향 '+nb+'</span>'
-           +'<span>통산 PnL <b style="color:#16c784">$'+usd(t.pnl)+'</b></span>'
-           +'<span>ROI <b>'+Math.round((t.roi||0)*100)+'%</b></span>'
-           +'<span class="muted">90일 <b style="color:'+((t.recent_pnl>=0)?'#16c784':'#e23b4a')+'">$'+usd(t.recent_pnl)+'</b></span>'
-           +'<span class="muted">계좌 $'+usd(t.account_value)+'</span>'
-           +'<span class="muted">최대'+(t.max_lev||'-')+'x</span></div>'
-           +'<div style="display:flex;gap:14px;flex-wrap:wrap;align-items:flex-start">'
-           +'<div><div class="muted" style="font-size:11px">역대 누적 PnL</div>'+spark(t.pnl_history)+'</div>'
-           +'<table style="flex:1;min-width:380px;font-size:12px"><thead><tr><th>종목/방향</th><th>명목(USD)</th><th>진입가</th><th>청산가</th><th>진입시각</th><th>미실현</th><th>lev</th></tr></thead><tbody>'+pos+'</tbody></table>'
-           +'</div></div>';
-       }});
+       h+='<div style="display:flex;gap:16px;flex-wrap:wrap">'
+         +col('🏆 상위 트레이더','통산 PnL·ROI 상위 · 현재 포지션',top)
+         +col('🚀 라이징스타','최근 한 달 수익·거래빈도 상위'+((d&&d.source==='binance')?' (ROI 상위 대체)':''),rising)
+         +'</div>';
        root.innerHTML=h;
      }}
      function load(src){{
