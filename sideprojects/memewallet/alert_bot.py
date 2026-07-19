@@ -146,8 +146,11 @@ def enrich(t: dict) -> dict:
     hist = token_realized(owner, mint)
     price = (usd / bought) if bought > 0 else None            # 이번 매수 단가(USD/토큰)
     bal_usd = (bal * price) if (bal is not None and price) else None
+    # 사자마자 매도(청산): 감지시점 잔고가 이번 매수분의 30% 미만 = 사실상 전량 이탈 → 뒷북 신호
+    exited = bal is not None and bought > 0 and bal < bought * 0.3
     return {"owner": owner, "mint": mint, "usd": usd, "bought": bought, "bal": bal,
-            "bal_usd": bal_usd, "hist": hist, "category": _category(usd, bought, bal, hist)}
+            "bal_usd": bal_usd, "hist": hist, "exited": exited,
+            "category": _category(usd, bought, bal, hist)}
 
 
 def _tg_call(url: str, body: dict) -> tuple[bool, str]:
@@ -231,12 +234,13 @@ def _fmt(t: dict, pnl_by_wallet: dict[str, float], ex: dict | None = None) -> st
     return "\n".join(lines)
 
 
-def run(once: bool = False, dry: bool = False) -> None:
+def run(once: bool = False, dry: bool = False, keep_exited: bool = False) -> None:
     wmap = _wallets(); wallets = list(wmap)
     st = json.loads(_STATE.read_text()) if _STATE.exists() else {}
     seen = set(st.get("seen", []))
     since = st.get("last_time") or time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime(time.time() - 600))
-    print(f"[알림봇] 감시 {len(wallets)}지갑, ≥${MIN_USD:,.0f}, since {since}, dry={dry}")
+    filt = "표시" if keep_exited else "필터링"
+    print(f"[알림봇] 감시 {len(wallets)}지갑, ≥${MIN_USD:,.0f}, since {since}, dry={dry}, 사자마자매도={filt}")
     while True:
         try:
             trades = query_new_buys(wallets, since)
@@ -247,18 +251,26 @@ def run(once: bool = False, dry: bool = False) -> None:
                 if sig not in seen and sig not in uniq:
                     uniq[sig] = t
             new = sorted(uniq.values(), key=lambda t: t["Block"]["Time"])
+            sent = skipped = 0
             for t in new:
                 ex = enrich(t)                       # 신규/추매·현재잔고·역대손익
+                seen.add(t["Transaction"]["Signature"])
+                since = max(since, t["Block"]["Time"])
+                # 사자마자 매도(청산) 건은 뒷북이라 발송 제외(--keep-exited 로 다시 볼 수 있음)
+                if ex.get("exited") and not keep_exited:
+                    sym = t["Trade"]["Buy"]["Currency"]["Symbol"]
+                    print(f"[스킵] 사자마자 매도 — {sym} {ex['owner'][:6]}…{ex['owner'][-4:]}")
+                    skipped += 1
+                    continue
                 msg = _fmt(t, wmap, ex)
                 print(msg.replace("\n", " | "))
                 if not dry:
                     send_telegram(msg)
-                seen.add(t["Transaction"]["Signature"])
-                since = max(since, t["Block"]["Time"])
+                sent += 1
             # state 저장(seen은 최근 2000개만 유지)
             _STATE.write_text(json.dumps({"seen": list(seen)[-2000:], "last_time": since}))
             if new:
-                print(f"  → {len(new)}건 신규 알림")
+                print(f"  → 신규 {len(new)}건 (발송 {sent} · 사자마자매도 스킵 {skipped})")
         except Exception as e:  # noqa: BLE001
             print("폴링 오류:", e)
         if once:
@@ -267,4 +279,4 @@ def run(once: bool = False, dry: bool = False) -> None:
 
 
 if __name__ == "__main__":
-    run(once="--once" in sys.argv, dry="--dry" in sys.argv)
+    run(once="--once" in sys.argv, dry="--dry" in sys.argv, keep_exited="--keep-exited" in sys.argv)
