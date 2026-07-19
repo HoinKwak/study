@@ -56,7 +56,23 @@
   PEPE -90% 등)이 다수라, 완전한 목록은 **과거 시총 데이터(Dune/Flipside/Bitquery, 키 필요)**로
   백필해야 함. ATH가격·ATH일자로 대략 추정은 가능(공급변동으로 부정확).
 
-## 다음 단계 (수정: Bitquery=realtime 확인 후)
+## 완료 상태 (2026-07-19) — ①~⑤ 전 단계 구현·검증
+- ① 대상 토큰: `mints.json`(2024+ 피크≥$200M 밈 15종 Solana mint).
+- ②③ 지갑 PnL·내부자/봇 필터: `analyze_token.py`(토큰별) + `dune_client.py`.
+- ④ lifetime 집계·최종 선별: `aggregate_lifetime.py` → `smart_wallets.json`(**277 스마트머니 지갑**).
+- ⑤ F/U 알림봇: `alert_bot.py`(Bitquery realtime로 신규 매수≥$1,000 감지→텔레그램).
+
+**실행(알림봇 상시 구동):**
+```
+python sideprojects/memewallet/alert_bot.py          # 상시 폴링(120초)
+python sideprojects/memewallet/alert_bot.py --once --dry   # 1회 테스트(콘솔만)
+```
+필요 .env 키: `BITQUERY_API_KEY`·`DUNE_API_KEY`(백필용)·`TELEGRAM_BOT_TOKEN`·`TELEGRAM_CHAT_ID`.
+
+**갱신(주기적 재선별)**: `aggregate_lifetime.py` 재실행 → smart_wallets.json 갱신하면 알림봇이
+다음 폴링부터 새 지갑 목록 사용. 새 200M+ 토큰 편입 시 `mints.json`에 mint 추가.
+
+### 다음 단계 (수정: Bitquery=realtime 확인 후)
 - **⑤ 실시간 모니터링**: `BITQUERY_API_KEY` 확보·작동(realtime). 선별 지갑 신규매매 감지에 사용 가능.
 - **①~④ 과거 백필(핵심)**: Bitquery 무료로는 archive 불가 → **Dune 무료 SQL 필요**
   (Flipside는 2026년 크립토 데이터 사업 종료 → Dune 채택).
