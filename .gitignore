@@ -33,3 +33,4 @@ paper_state.json
 
 # 백테스트 작업 스크립트·데이터 캐시(재현용, 저장소 미포함)
 scratchpad/
+sideprojects/memewallet/alert_state.json
