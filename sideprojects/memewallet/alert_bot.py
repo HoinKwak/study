@@ -8,7 +8,8 @@ smart_wallets.json(277 지갑)의 신규 밈 매수를 Bitquery realtime으로 �
 실행: python sideprojects/memewallet/alert_bot.py          (상시 폴링)
       python sideprojects/memewallet/alert_bot.py --once   (1회 조회·알림, 테스트)
       python sideprojects/memewallet/alert_bot.py --dry     (텔레그램 미발송, 콘솔만)
-키: .env 의 BITQUERY_API_KEY, TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID. 프록시 HTTPS_PROXY 자동.
+키: .env 의 BITQUERY_API_KEY + **매매봇과 분리된 전용** MEMEWALLET_TELEGRAM_BOT_TOKEN,
+    MEMEWALLET_TELEGRAM_CHAT_ID. 프록시 HTTPS_PROXY 자동.
 """
 from __future__ import annotations
 
@@ -67,9 +68,12 @@ def query_new_buys(wallets: list[str], since_iso: str) -> list[dict]:
 
 
 def send_telegram(text: str) -> None:
-    tok, chat = _env("TELEGRAM_BOT_TOKEN"), _env("TELEGRAM_CHAT_ID")
+    # ★매매봇과 분리★ 전용 봇/채널 사용. 미설정 시 콘솔만(매매봇 채널로 폴백하지 않음).
+    tok = _env("MEMEWALLET_TELEGRAM_BOT_TOKEN")
+    chat = _env("MEMEWALLET_TELEGRAM_CHAT_ID")
     if not tok or not chat:
-        print("[텔레그램 미설정 — 콘솔만]"); return
+        print("[밈 알림봇 텔레그램 미설정 — 콘솔만. .env에 MEMEWALLET_TELEGRAM_BOT_TOKEN/"
+              "MEMEWALLET_TELEGRAM_CHAT_ID 추가하면 별도 채널로 전송]"); return
     url = f"https://api.telegram.org/bot{tok}/sendMessage"
     body = {"chat_id": chat, "text": text, "parse_mode": "HTML", "disable_web_page_preview": True}
     try:

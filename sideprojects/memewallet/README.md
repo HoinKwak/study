@@ -67,7 +67,8 @@
 python sideprojects/memewallet/alert_bot.py          # 상시 폴링(120초)
 python sideprojects/memewallet/alert_bot.py --once --dry   # 1회 테스트(콘솔만)
 ```
-필요 .env 키: `BITQUERY_API_KEY`·`DUNE_API_KEY`(백필용)·`TELEGRAM_BOT_TOKEN`·`TELEGRAM_CHAT_ID`.
+필요 .env 키: `BITQUERY_API_KEY`·`DUNE_API_KEY`(백필용) + **매매봇과 분리된 전용 텔레그램**
+`MEMEWALLET_TELEGRAM_BOT_TOKEN`·`MEMEWALLET_TELEGRAM_CHAT_ID`(BotFather로 새 봇 생성 후).
 
 **갱신(주기적 재선별)**: `aggregate_lifetime.py` 재실행 → smart_wallets.json 갱신하면 알림봇이
 다음 폴링부터 새 지갑 목록 사용. 새 200M+ 토큰 편입 시 `mints.json`에 mint 추가.
