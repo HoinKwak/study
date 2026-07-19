@@ -117,20 +117,37 @@ def token_realized(wallet: str, mint: str) -> dict | None:
         return None
 
 
+def _category(usd: float, bought: float, bal: float | None, hist: dict | None) -> str:
+    """이번 매수의 성격 판별. 잔고(현재 보유)와 역대이력을 함께 본다.
+
+    - 추매: 잔고가 이번 매수분보다 크게 많음(기존 보유 위에 더 삼).
+    - 매도후청산: 산 물량이 지금 거의 안 남음(사고 곧 되팖 = 라운드트립). 0 잔고가 여기.
+    - 재진입: 예전에 사고판 이력이 있는데 지금은 거의 안 들고 다시 삼.
+    - 신규매수: 이력 없이 처음, 지금 대략 이번 매수분만 보유.
+    """
+    if bal is None or bought <= 0:
+        return "매수"
+    had_hist = bool(hist and (hist["buy_usd"] > usd * 1.3 or hist.get("sells", 0) > 0))
+    if bal < bought * 0.3:          # 산 토큰이 지금 거의 없음 → 이미 매도
+        return "🔁 매수후 매도"
+    if bal > bought * 1.3:          # 기존 보유 위에 더 삼
+        return "➕ 추매"
+    if had_hist:                    # 사고팔았다가 다시(잔고는 대략 이번 매수분)
+        return "🔁 재진입"
+    return "🆕 신규매수"
+
+
 def enrich(t: dict) -> dict:
-    """알림 1건에 신규/추매·현재잔고·해당코인 역대손익 부가정보 계산."""
+    """알림 1건에 성격(신규/추매/재진입/청산)·현재잔고·해당코인 역대손익 부가정보 계산."""
     tr = t["Trade"]; owner = tr["Buy"]["Account"]["Owner"]; mint = tr["Buy"]["Currency"]["MintAddress"]
     usd = float(tr["Sell"].get("AmountInUSD") or 0.0)
     bought = float(tr["Buy"].get("Amount") or 0.0)            # 이번에 산 토큰 수량(UI)
     bal = token_balance(owner, mint)                          # 현재 총 보유(이번 매수 반영 후)
-    # 신규 vs 추매: 잔고가 이번 매수분보다 유의미하게 크면 기존 보유가 있던 것 → 추매
-    is_add = None
-    if bal is not None and bought > 0:
-        is_add = bal > bought * 1.3
+    hist = token_realized(owner, mint)
     price = (usd / bought) if bought > 0 else None            # 이번 매수 단가(USD/토큰)
     bal_usd = (bal * price) if (bal is not None and price) else None
-    return {"owner": owner, "mint": mint, "usd": usd, "bal": bal, "is_add": is_add,
-            "bal_usd": bal_usd, "hist": token_realized(owner, mint)}
+    return {"owner": owner, "mint": mint, "usd": usd, "bought": bought, "bal": bal,
+            "bal_usd": bal_usd, "hist": hist, "category": _category(usd, bought, bal, hist)}
 
 
 def _tg_call(url: str, body: dict) -> tuple[bool, str]:
@@ -175,20 +192,34 @@ def send_telegram(text: str) -> None:
     print(f"텔레그램 전송 실패: {why}")
 
 
+def _qty(n) -> str:
+    """토큰 수량 압축 표기(1.77M·3.4K 등)."""
+    n = float(n or 0.0); a = abs(n)
+    if a >= 1e9:
+        return f"{n / 1e9:.2f}B"
+    if a >= 1e6:
+        return f"{n / 1e6:.2f}M"
+    if a >= 1e3:
+        return f"{n / 1e3:.1f}K"
+    return f"{n:,.0f}"
+
+
 def _fmt(t: dict, pnl_by_wallet: dict[str, float], ex: dict | None = None) -> str:
     tr = t["Trade"]; owner = tr["Buy"]["Account"]["Owner"]
     sym = tr["Buy"]["Currency"]["Symbol"]; mint = tr["Buy"]["Currency"]["MintAddress"]
     usd = float(tr["Sell"]["AmountInUSD"]); life = pnl_by_wallet.get(owner, 0)
     ex = ex or {}
-    # 신규매수 vs 추매(기존 보유 위에 더 삼)
-    tag = "🆕 신규매수" if ex.get("is_add") is False else ("➕ 추매" if ex.get("is_add") else "매수")
+    tag = ex.get("category") or "매수"
+    # 매수 금액 + 수량
+    qty = f" ({_qty(ex['bought'])}개)" if ex.get("bought") else ""
     lines = [f"🟢 <b>스마트머니 {tag}</b>",
              f"지갑 <code>{owner[:6]}…{owner[-4:]}</code> (통산 ${life:,.0f})",
-             f"매수 <b>{sym}</b>  ${usd:,.0f}"]
-    # 현재 해당코인 잔고
+             f"매수 <b>{sym}</b>  ${usd:,.0f}{qty}"]
+    # 현재 해당코인 잔고(수량 + ≈USD). 0이면 전량 매도 상태
     if ex.get("bal") is not None:
-        bal_usd = f" (≈${ex['bal_usd']:,.0f})" if ex.get("bal_usd") else ""
-        lines.append(f"보유 {ex['bal']:,.0f} {sym}{bal_usd}")
+        bal_usd = f" ≈${ex['bal_usd']:,.0f}" if ex.get("bal_usd") else ""
+        note = " — 전량 매도 상태" if ex["bal"] <= 0 else ""
+        lines.append(f"현재보유 {_qty(ex['bal'])} {sym}{bal_usd}{note}")
     # 해당코인 역대 손익(실현 근사)
     h = ex.get("hist")
     if h:
