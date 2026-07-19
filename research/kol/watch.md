@@ -1,107 +1,110 @@
-# KOL 하이프 리스트 — 2026-07-19 20:02 UTC (KST 2026-07-20 05:02)
+# KOL 하이프 리스트 — 2026-07-19 22:02 UTC (KST 2026-07-20 07:02)
 
-> ⚠️ 아이디어 소싱·조기경보용. **투자조언 아님(Not financial advice).** KOL 콜은 홍보·포지션 편향이 매우 크고, 유료/봇 KOL·카피트레이드 유인도 섞여 있음. X 로그인월 한계로 **WebSearch 인덱싱·2차 보도·CoinGecko/GeckoTerminal/coingape/WEEX/coindesk 등 기반**이며, 소스간 수치 편차가 매우 크다. 원 트윗 직접 확인이 안 된 항목은 **"미확인"**으로 표기. 직전 회차(2026-07-19 18:02 UTC, 약 2시간 전) 대비 **신규/지속/식음**을 비교 표기함.
+> ⚠️ 아이디어 소싱·조기경보용. **투자조언 아님(Not financial advice).** KOL 콜은 홍보·포지션 편향이 매우 크고, 유료/봇 KOL·카피트레이드 유인도 섞여 있음. X 로그인월 한계로 **WebSearch 인덱싱·2차 보도·CoinGecko/GeckoTerminal/coingape/coindesk 등 기반**이며, 소스간 수치 편차가 크다. 원 트윗 직접 확인이 안 된 항목은 **"미확인"**으로 표기. 직전 회차(2026-07-19 20:02 UTC, 약 2시간 전) 대비 **신규/지속/식음**을 비교 표기함.
 
 ## 이번 회차 핵심 발견
 
-1. **RH체인 카테고리 mcap, 여러 회차 만에 처음 감소 전환**: $204M(+14.1%)→$194M(+8.4%)로 -4.9%. 개별 초소형 토큰 다수(MEOW·WORTH·THROBBIN·REPE·VIBE CAT 등)가 동시에 냉각한 것과 일치 — RH체인 초소형 열기의 국면 전환 가능성.
-2. **CASHCAT, 처음으로 하락 전환**: mcap $82.32M(+40.1%)→$72.8M(+23.3%)로 -11.6%. 7/11 ATH($150~200M) 대비 하회 폭이 더 벌어짐.
-3. **YOLO, 냉각 판정을 다시 뒤집고 재가속**: 직전 회차 '조정 국면 진입 가능성'(mcap -17.8%)으로 판정했으나 이번 회차 mcap$3.3M·+383.1%로 이번 회차 전체 최고 상승률 기록 — 2회 연속 방향 전환, 펌프앤덤프 전형 패턴 우려.
-4. **JUGGERNAUT·WISHBONE, 확산 국면 처음 꺾임**: JUGGERNAUT mcap $4.39M→$3.9M(-11.1%, 4회 연속 상승 처음 중단), WISHBONE 상승률 +40.9%→+4.3%로 급둔화(12회+ 연속 플러스의 모멘텀 약화).
-5. **신규 관측 토큰 5종**: foreskin(+87.0%)·watch it grow(+25.0%)·The Green Bull(+6.5%)·The Office Dog(+4.1%)이 이번 회차 처음 top30에 편입. Dumb Money·HOPPY도 처음 실데이터 확보(재등장).
-6. **⚠️ 데이터 매핑 불확실성 신규 발견**: 이번 CoinGecko 조회에서 티커 대신 '풀네임'이 반환돼, 직전 회차 티커(COOKWARE·FOX·ROBINHOOD 등)와의 매핑이 불확실해짐. mcap 근접도로 최선 추정했으나(Copper pot of wealth≈COOKWARE, Robin Hood≈FOX) **확정 못함, 정직 표기**. 원조 'ROBINHOOD' 티커는 이번 top30에서 아예 확인 안 됨.
-7. **ANSEM, 소스 편차 이례적으로 확대**: CoinGecko 직접조회 mcap$76.1M vs Trust Wallet $188.53M vs 직전 회차 자체 참고치 $174.1M — 최대 2.5배 차이. 실제 조정 여부·폭을 판단할 수 없어 방향성 불명으로 정직 표기.
-8. **DIH, top30에서 완전 이탈**: 직전까지 coingape가 최상위 거래량 3종에 포함시켰으나 이번 CoinGecko 실측 top30엔 전혀 등장하지 않음 — 자체 과거 '뒷북/러그 확정' 판정과 오히려 부합하는 방향.
-9. **Dumb Money, 과거 러그 판정과 실데이터 상충**: 과거 회차 메모는 'DUMBMONEY'를 '뒷북/러그 확정'으로 분류했으나 이번 회차 실데이터는 +20.9% 상승 중 — 상충 정보, 신중 접근 필요.
-10. **워시트레이딩 의심 그룹, 지속 강화**: CASHDOG·JOHN·530A 계속 0.0% 유지, 401K 10회+ 연속 동일값, MYSTERY도 4회 연속 완전 동일값(+35.0%) 재확인.
+1. **RH체인 카테고리 티커 매핑 문제 해소**: 이번 CoinGecko 조회에서 짧은 티커가 정상 반환돼, 직전 회차의 "매핑 미확정" 항목이 확정됨 — Copper pot of wealth=**COOKWARE**, Robin Hood=**FOX**, watch it grow=**SEEDCOIN**, The Green Bull=**VLAD**(Robinhood CEO Vlad Tenev 연상), The Office Dog=**YORK**. 이전 회차 mcap 근접도 추정이 모두 맞았던 것으로 확인.
+2. **DIH 재평가 — 과거 '뒷북/러그' 판정 정정**: CoinGecko RH체인 카테고리 목록엔 여전히 미등장하지만, DIH를 단독 조회하면 mcap **$4.71M**(CoinGecko 랭크#1534), 24h거래량 $4.93M, Uniswap DIH/WETH 페어($4.52M 24h거래량) 활성 거래가 확인됨. 이는 JUGGERNAUT·WISHBONE급 규모로, 카테고리 태깅 누락 때문에 "완전 이탈"로 잘못 판정했던 것으로 정정. **정직 정정 사례**.
+3. **RH체인 카테고리 mcap, 2회 연속 감소**: $204M(+14.1%)→$194M(+8.4%)→**$190M(+7.2%)**로 2연속 축소(-4.9%→-2.1%). 열기 국면 전환이 이어지는 중.
+4. **CASHCAT·TENDIES, 하락/둔화 지속**: CASHCAT mcap $72.8M→$70.29M(-3.4%), CMC 별도조회는 $66.2M(+19.24%)로 소스편차 지속. TENDIES $22.8M→$22.04M(-3.3%)로 3회 연속 상승률 둔화, mcap도 처음 소폭 감소.
+5. **YOLO, 처음 뚜렷한 mcap 감소**: mcap $3.3M(+383.1%)→$2.9M(+302.7%)로 -12%. 2회 연속 방향전환에 이어 3회째 흐름 변화 — 펌프앤덤프 전형 패턴 우려 심화, 정점 통과 가능성.
+6. **WISHBONE, fade 경고 뒤집고 재가속**: 직전 회차 급둔화(+40.9%→+4.3%) 경고했으나 이번 +26.1%로 재가속. JUGGERNAUT는 반대로 2회 연속 냉각(mcap -7.7%).
+7. **신규/재등장 다수**: **$1(is all you need)** 신규 확인, **ROBINHOOD** 티커가 top30 완전이탈 후 재진입(30위, $196K), MEOW·WORTH·HODL·THROBBIN·REPE·4663·ROB도 재관측(자리 제약으로 표 미포함).
+8. **foreskin, top30에서 사라짐**: 직전 회차 신규 최고 상승률(+87.0%)이었으나 이번 회차 top30 리스트에서 확인 안 됨 — 식음/이탈 가능성.
+9. **HOPPY, 데이터정체 의심 신규 발견**: 24h%가 직전과 완전 동일(+9.1%), mcap도 근접값 — CASHDOG/JOHN/530A/401K/MYSTERY와 유사한 데이터 동결 패턴 가능성(확정 아님).
+10. **MYSTERY 5연속·401K 11회+연속 데이터 동결**: 워시트레이딩/데이터정체 의심 그룹 계속 강화.
+11. **FROGBULL 재부상 미확인 정보**: GeckoTerminal 공식 X 계정이 "KOL Crypto Fergani가 스텔스런칭"이라 언급 — 과거 자체 'fade확정' 판정과 상충, 스텔스런칭 특성상 러그 위험 높음, 재검증 필요.
 
 ## 🎯 토큰 하이프 리스트 (조기성 우선 정렬)
 
 | 토큰 | 체인/DEX | CA | 단계 | 언급 KOL(수) | 서사(요지) | 온체인 코로보 | 신규? | 리스크 | 출처 |
 |---|---|---|---|---|---|---|---|---|---|
-| **foreskin** | RH Chain(Uniswap) | 미확인 | 🟢조기(신규 편입) | 0 | 첫 top30 관측 | 🟢 mcap$0.26M(+87.0%) | **신규** | 🔴 신규·초소형, 자극적 명칭 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
-| **Copper pot of wealth**(COOKWARE 추정) | RH Chain(Uniswap) | 미확인 | 🟡조기(매핑불확실) | 0 | 직전 COOKWARE 연속 추정 | 🟡 mcap$0.66M(+41.4%, 추정-10%) | 지속(불확실) | 🟡 매핑 미확정, CA미확인 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
-| **watch it grow** | RH Chain(Uniswap) | 미확인 | 🟢조기(신규 편입) | 0 | 첫 top30 관측 | 🟢 mcap$0.43M(+25.0%) | **신규** | 🟠 초소형, CA미확인 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
-| **YOLO** | RH Chain(Uniswap) | 미확인 | 🟠확산(재가속·최고상승률) | 0 | 냉각판정 뒤집힘 | 🟠 mcap$3.3M(+383.1%, 직전+255.9%) | 지속(반전) | 🔴 변동성 극심, 방향전환 반복 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
-| **Robin Hood**(FOX 추정) | RH Chain(Uniswap) | 미확인 | 🟡조기(매핑불확실) | 0 | 직전 FOX 연속 추정 | 🟡 mcap$0.84M(+73.9%, 근접치) | 지속(불확실) | 🟡 매핑 미확정, 명칭 도용 혼동 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
-| **HOODIE** | RH Chain(Uniswap) | 미확인 | 🟢조기(가속 지속) | 0 | mcap 완만 성장 | 🟢 mcap$0.69M(+76.2%, 직전+84.5%) | 지속 | 🟠 CA미확인 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
-| **Bycocket** | RH Chain(Uniswap) | 미확인 | 🟢조기(반등 재가속) | 0 | 급둔화 후 반등 | 🟢 mcap$0.44M(+11.9%) | 재등장 | 🟡 판정 불안정성 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
-| **Wen Lambo**(WEN) | RH Chain(Uniswap) | 미확인 | 🟡조기~확산(재가속) | 0 | 둔화 뒤집고 재가속 | 🟢 mcap$2.1M(+21.0%) | 재등장 | 🟡 판정 불안정성 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
-| **Dumb Money** | RH Chain(Uniswap) | 미확인 | 🔴조기(과거판정 상충) | 0 | 과거 '러그확정' vs 현재 상승 | 🟡 mcap$0.32M(+20.9%) | 재등장(상충) | 🔴 신뢰도 낮음, 상충정보 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
-| **HOPPY** | RH Chain(Uniswap) | 미확인 | 🟢조기(재등장) | 0 | 첫 실데이터 확보 | 🟢 mcap$0.32M(+9.1%) | 재등장 | 🟡 CA미확인 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
-| **The Green Bull** | RH Chain(Uniswap) | 미확인 | 🟡조기(신규 편입) | 0 | 첫 top30 관측, 'Bull'테마 | 🟡 mcap$0.49M(+6.5%) | **신규** | 🟠 초소형, 모멘텀 약함 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
-| **The Office Dog** | RH Chain(Uniswap) | 미확인 | 🟡조기(신규 편입) | 0 | 첫 top30 관측 | 🟡 mcap$0.37M(+4.1%) | **신규** | 🟡 모멘텀 낮음 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
-| **JUGGERNAUT** | RH Chain(Uniswap) | `0xD7321801CAae694090694Ff55A9323139F043B88` | 🟠확산(냉각 전환) | Drallio+Bluntz_Capital(과거)+Next100XGEMS(⚠️유료) | mcap$100M 잠재력 주장(미검증) | 🟠 mcap$3.9M(+17.7%, 직전$4.39M) 첫 감소 | 지속(냉각) | 🟡 KOL주장-실측 간극 약26배 | [coingape](https://coingape.com/markets/2-robinhood-chain-tokens-that-could-be-the-next-cashcat/) |
-| **WISHBONE** | RH Chain(Uniswap V3) | `0x77581054581b9c525e7dd7a0155de43867532d03` | 🟠확산(급둔화·fade경고) | Drallio 1(과거) | 12회+연속 모멘텀 약화 | 🟠 mcap$3.3M(+4.3%, 직전+40.9%) | 지속(둔화) | 🟠 확산 정점 통과 가능성 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
-| **Vibing Cat**(VIBE CAT) | RH Chain(Uniswap) | 미확인 | 🟠조기(냉각) | 0 | mcap 대폭 감소 | 🟠 mcap$0.52M(+31.9%, 직전mcap-26.5%) | 지속(냉각) | 🟠 CA미확인, 명칭 혼동 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
+| **SEEDCOIN**(watch it grow) | RH Chain(Uniswap) | 미확인 | 🟢조기(가속 지속) | 0 | 티커 확정, 재가속 | 🟢 mcap$0.45M(+33.0%, 직전+25.0%) | 지속(가속) | 🟢 CA미확인, 코로보0 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
+| **$1**(is all you need) | RH Chain(Uniswap) | 미확인 | 🟢조기(신규 관측) | 0 | 이번 회차 첫 확인 | 🟢 mcap$0.36M(+30.2%) | **신규** | 🔴 초소형, 자극적 티커 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
+| **COOKWARE**(Copper pot of wealth) | RH Chain(Uniswap) | 미확인 | 🟢조기~확산(가속 지속) | 0 | 티커 확정, 성장 지속 | 🟢 mcap$0.84M(+43.7%, 직전+41.4%) | 지속(가속) | 🟡 CA미확인 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
+| **WISHBONE** | RH Chain(Uniswap V3) | `0x77581054581b9c525e7dd7a0155de43867532d03` | 🟠확산(재가속, fade경고 해소) | Drallio 1(과거) | 급둔화 뒤집고 재가속 | 🟢 mcap$3.25M(+26.1%, 직전+4.3%) | 지속(재가속) | 🟠 코로보1인뿐, 변동성 큼 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
+| **VLAD**(The Green Bull) | RH Chain(Uniswap) | 미확인 | 🟢조기(완만 지속 성장) | 0 | 티커 확정(Vlad Tenev 연상) | 🟢 mcap$0.51M(+3.9%, 직전+6.5%) | 지속 | 🟠 모멘텀 약함, 인물명 혼동 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
+| **ROBINHOOD** | RH Chain(Uniswap) | 미확인 | 🟡조기(재등장, 최하위권) | 0 | top30 이탈 후 재진입 | 🟡 mcap$0.196M(+27.2%) | 재등장 | 🔴 최소형, 회사명 도용 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
+| **DUMBMONEY** | RH Chain(Uniswap) | 미확인 | 🔴조기(상충정보 지속·가속) | 0 | 과거 러그판정과 상충 | 🟡 mcap$0.30M(+27.7%, 직전+20.9%) | 지속(가속) | 🔴 신뢰도 낮음, 반복 상충 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
+| **BYCOCKET** | RH Chain(Uniswap) | 미확인 | 🟢조기(안정적 지속) | 0 | 완만한 성장 지속 | 🟢 mcap$0.45M(+9.3%, 직전+11.9%) | 지속 | 🟡 모멘텀 보통 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
+| **FOX**(Robin Hood) | RH Chain(Uniswap) | 미확인 | 🟡조기(냉각) | 0 | 티커 확정, 냉각 | 🟠 mcap$0.70M(+50.4%, 직전+73.9%) | 지속(냉각) | 🟡 명칭 혼동, 냉각 확인 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
+| **HOODIE** | RH Chain(Uniswap) | 미확인 | 🟠조기(냉각 지속) | 0 | 3연속 상승률 둔화 | 🟠 mcap$0.65M(+56.3%, 직전+76.2%) | 지속(냉각) | 🟠 모멘텀 지속 둔화 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
+| **HOPPY** | RH Chain(Uniswap) | 미확인 | 🟡조기(데이터정체 의심) | 0 | 직전과 24h% 완전 동일 | 🟡 mcap$0.321M(+9.1%) | 지속(정체의심) | 🟡 데이터동결 의심 신규 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
+| **YORK**(The Office Dog) | RH Chain(Uniswap) | 미확인 | 🟡조기(정체) | 0 | 티커 확정, 모멘텀 정지 | 🟡 mcap$0.36M(+0.3%, 직전+4.1%) | 지속(정체) | 🟡 모멘텀 소실 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
+| **YOLO** | RH Chain(Uniswap) | 미확인 | 🟠확산(정점통과 우려) | 0 | 첫 뚜렷한 mcap감소 | 🟠 mcap$2.9M(+302.7%, 직전+383.1%) | 지속(둔화) | 🔴 변동성 극심, 3회 방향전환 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
+| **WEN**(Wen Lambo) | RH Chain(Uniswap) | 미확인 | 🟡조기~확산(지표 괴리) | 0 | mcap↑ %급락 괴리 | 🟡 mcap$2.56M(+0.7%, 직전+21.0%) | 지속(괴리) | 🟡 지표 해석 불확실 | [CoinGecko](https://www.coingecko.com/en/categories/robinhood-chain-meme) |
+| **JUGGERNAUT** | RH Chain(Uniswap) | `0xD7321801CAae694090694Ff55A9323139F043B88` | 🟠확산(냉각 2연속) | Drallio+Bluntz_Capital(과거)+Next100XGEMS(⚠️유료) | mcap$100M 주장(미검증) | 🟠 mcap$3.6M(+17.4%, 직전+17.7%) -7.7% | 지속(냉각) | 🟡 KOL주장-실측 괴리 확대 | [coingape](https://coingape.com/markets/2-robinhood-chain-tokens-that-could-be-the-next-cashcat/) |
 
-> **표 변동 안내**: 데이터 매핑 이슈로 이번 회차는 CoinGecko가 티커 대신 풀네임을 반환해 직전 회차와의 1:1 대조가 어려워짐(정직 표기, 위 매핑불확실 항목 참조). **표에서 빠진 항목(참고치 유지, 완전 폐기 아님)**: **MEOW**(mcap+22.3%→-19.4% 급감, 상승률46.1%→2.2%), **WORTH**(mcap-16%, 상승률55.2%→3.7%), **THROBBIN**(거의정체, 26.5%→0.3%), **REPE**(mcap-13.5%, 35.8%→2.3%), **ROB**(mcap-12.9%, 42.0%→23.1%, 그나마 양호), **HODL**(mcap거의정체, 12.1%→6.3%), **4663**(계속 fade, +19.5%→+8.9%) — 모두 냉각·둔화 확인, 자리 부족으로 표에서 제외. **원조 ROBINHOOD 티커**는 이번 top30에서 아예 확인 안 됨(하위권 이탈 또는 매핑 이슈).
+> **표에서 빠진 항목(참고치 유지, 완전 폐기 아님)**: **MEOW**($1.43M,+11.9%)·**WORTH**($0.79M,+8.2%)·**HODL**($0.75M,+14.2%)·**THROBBIN**($0.74M,+4.3%)·**REPE**($0.46M,+8.0%)·**4663**($0.44M,+10.0%)·**ROB**($0.37M,+9.8%) — 모두 직전 회차 자리 제약으로 표에서 제외됐다 이번 회차 재관측(냉각~보합 혼재). **VIBE CAT**($0.51M, 24h%가 31.9%→3.9%로 급감)도 냉각 지속. **foreskin**은 이번 회차 top30에서 확인 안 됨(식음/이탈 가능성).
 
 ## 📌 주목 프로젝트/토큰 (notable)
 
 | 토큰 | 상태 | 요지 |
 |---|---|---|
-| **RH체인 전체(카테고리·TVL·HOOD언락)** | mcap 소폭 감소 전환(첫 하락) | 카테고리 mcap$194M(+8.4%, 직전$204M/+14.1%) -4.9%. HOOD $121M 언락 리스크 유지 |
-| **CASHCAT** | 하락 전환(뒷북 유지, 하회 심화) | mcap$72.8M(+23.3%, 직전$82.32M/+40.1%) -11.6%, 처음 하락. CA `0x020bfc650a365f8bb26819deaabf3e21291018b4`. ATH$150~200M(7/11) 대비 하회 폭 확대 |
-| **CASHDOG·JOHN·530A·MYSTERY** | 데이터 동결 지속(강화) | 세 토큰 0.0% 지속, MYSTERY도 mcap$0.35M(+35.0%)로 4회 연속 완전동일값 |
-| **401K** | 데이터 동결 지속(10회+연속) | mcap$0.72M(+176.2%) — 완전 동일값 10회+연속 |
-| **TENDIES** | 완만한 성장 지속(상승률 둔화) | mcap$22.8M(+15.3%, 직전$21.90M/+25.6%) +4.1%, 상승률 둔화 |
-| **ANSEM(The Black Bull)** | 소스편차 급확대(방향성 불명) | CoinGecko mcap$76.1M vs Trust Wallet$188.53M vs 직전자체$174.1M — 최대2.5배 편차. CA `9cRCn9rGT8V2imeM2BaKs13yhMEais3ruM3rPvTGpump` |
-| **HYPE(Hyperliquid)** | 박스권 지속 | 가격$60.96(24h+4%), mcap$13.4B~15.4B. ATH$76.67(6/16) 대비 하회 지속 |
-| **DIH(Dog in Hood)** | top30에서 완전 이탈(냉각 심화) | 직전 coingape 최상위3종 포함이었으나 이번 CoinGecko top30에 전혀 미등장 — 자체 '뒷북/러그확정'과 부합 |
-| **Solana 밈코인 섹터 전반** | 약세+상충정보 미해결 | Chill House 상충정보 재검증 미시도. 'Bull'테마 밈코인 다수 동시 부스트 유행 확인 |
-| **SPX6900(SPX)** | 지속(재확인 못함) | 직전값(mcap$318.7M) 참고치 유지 |
-| **$INDEX(The Index)** | 지속(재확인 못함) | 직전값(24h+150%, mcap$18M대) 참고치 유지 |
-| **MemeCore(M)** | 지속(재확인 못함) | 직전값(mcap$1.62B) 참고치 유지 |
+| **RH체인 전체(카테고리·HOOD언락)** | mcap 2연속 감소 | 카테고리 mcap$190M(+7.2%, 직전$194M/+8.4%) -2.1%. HOOD $121M 언락 리스크 유지 |
+| **CASHCAT** | 하락 지속(소스편차 재확인) | CoinGecko mcap$70.29M(+6.1%, 직전+23.3%) -3.4%, CMC별도 $66.2M(+19.24%). CA `0x020bfc650a365f8bb26819deaabf3e21291018b4` |
+| **CASHDOG·JOHN·530A** | 데이터 동결 지속(강화) | 3종 계속 0.0% 지속 |
+| **401K** | 데이터 동결 지속(11회+연속) | mcap$724,265(+176.2%) — 완전 동일값 11회+연속 |
+| **MYSTERY** | 데이터 동결 지속(5연속) | mcap$350,317(+35.0%) — 5회 연속 완전 동일값 |
+| **TENDIES** | 성장 둔화 지속(3연속) | mcap$22.04M(+4.3%, 직전$22.8M/+15.3%) -3.3%, mcap도 첫 감소 |
+| **DIH(Dog in Hood)** | 재평가: 실제 활동 확인 | 카테고리 목록엔 미등장하나 단독조회시 mcap$4.71M(rank#1534)·24h거래량$4.93M 확인 — 과거 '완전이탈=러그' 판정 정정(카테고리 태깅 누락으로 추정) |
+| **ANSEM(The Black Bull)** | 소스편차 지속(재확인 부분적) | Trust Wallet mcap$188.53M(직전과 동일수치, 캐시 가능성) — CoinGecko 재조회 못함. CA `9cRCn9rGT8V2imeM2BaKs13yhMEais3ruM3rPvTGpump`(재검증 필요) |
+| **HYPE(Hyperliquid)** | 박스권 상단 견조 | 가격$60.96(24h+4%), mcap$15.38B(직전 범위 상단). ATH$76.67(6/16) 대비 -20% |
+| **Solana 밈코인 섹터** | 약세 지속 + 미확인 정보 | 섹터mcap$2.86B(-4.5%), 거래량$5.02B(+7.77%). FROGBULL이 KOL Crypto Fergani 스텔스런칭으로 재부상 언급(과거 fade확정과 상충, 미확인) |
+| **SPX6900·$INDEX·MemeCore** | 지속(2회+ 재확인 못함) | 직전값 참고치 유지 |
 
-## 전회차(18:02 UTC) 대비 변동 요약
+## 전회차(20:02 UTC) 대비 변동 요약
 
-- **신규 편입(4건)**: foreskin, watch it grow, The Green Bull, The Office Dog — 이번 회차 처음 top30 관측.
-- **재등장(3건)**: Bycocket·Wen Lambo(WEN)(직전 둔화로 제외 후 반등), Dumb Money·HOPPY(첫 실데이터, Dumb Money는 과거 러그판정과 상충).
-- **냉각 전환(다수, 표에서 제외)**: MEOW·WORTH·THROBBIN·REPE·ROB·HODL — RH체인 초소형 다수가 동시에 상승률 급둔화·mcap 감소.
-- **확산 국면 꺾임(2건)**: JUGGERNAUT(mcap 첫 감소), WISHBONE(상승률 급둔화).
-- **반전 재가속(1건)**: YOLO — 냉각 판정을 다시 뒤집고 이번 회차 최고 상승률 기록.
-- **매핑 불확실(2건)**: Copper pot of wealth(≈COOKWARE 추정), Robin Hood(≈FOX 추정) — CoinGecko 풀네임 반환으로 직전 회차 티커와 1:1 매칭 불가.
-- **notable 변동**: CASHCAT 처음 하락 전환, RH체인 카테고리 mcap 처음 감소 전환, ANSEM 소스편차 급확대, DIH top30 완전 이탈.
+- **매핑 확정(6건)**: COOKWARE·FOX·SEEDCOIN·VLAD·YORK — 직전 회차 "매핑 불확실" 추정이 모두 맞았던 것으로 확정.
+- **신규(1건)**: $1(is all you need).
+- **재등장(1건)**: ROBINHOOD — top30 완전이탈 후 30위로 재진입.
+- **재가속(2건)**: WISHBONE(+4.3%→+26.1%), DUMBMONEY(+20.9%→+27.7%, 상충 지속).
+- **냉각/둔화 지속(6건)**: JUGGERNAUT(2연속, mcap-7.7%)·YOLO(첫 뚜렷한 mcap감소, -12%)·FOX(-16.7%)·HOODIE(-5.8%)·YORK(정체)·TENDIES(3연속 둔화, notable).
+- **데이터정체 의심 강화**: CASHDOG·JOHN·530A 지속, 401K 11회+연속, MYSTERY 5연속, **HOPPY 신규 편입 가능성**.
+- **정정/재평가(1건, 중요)**: DIH — 과거 "top30 완전이탈=러그방향" 판정을 정정, 단독조회로 실제 mcap$4.71M·거래량$4.93M 활동 확인.
+- **이탈/식음 추정(1건)**: foreskin — 이번 회차 top30에서 확인 안 됨.
+- **미확인 신규정보**: FROGBULL(Solana) 재부상 언급, 과거 fade확정과 상충 — 재검증 필요.
 
 ## KOL별 최근 콜
 
 ### Drallio(X) · 팔로워/신뢰도 미확인 · RH체인 신생토큰 콜 다수(과거)
-- **JUGGERNAUT**(7/13, 과거): "CASHCAT에 가장 근접한 베팅", mcap$100M 잠재력 주장 — 실측 mcap$3.9M로 약26배 하회, 이번 회차 mcap 첫 감소까지 확인.
-- **WISHBONE**: "RH체인의 Dog"으로 네이밍 — 12회+ 연속 플러스는 유지하나 이번 회차 모멘텀 급둔화.
+- **JUGGERNAUT**(7/13, 과거): "CASHCAT에 가장 근접한 베팅", mcap$100M 잠재력 주장 — 실측 mcap$3.6M로 약28배 하회, 이번 회차도 2연속 냉각.
+- **WISHBONE**: "RH체인의 Dog"으로 네이밍 — 12회+ 연속 플러스 유지, 이번 회차 fade경고를 뒤집고 재가속.
 
 ### @Bluntz_Capital(X) · 팔로워 33.8만 · 실전 기술적 트레이더
 - **JUGGERNAUT**: "스케일인 시작" — 과거 콜, 이번 회차도 후속 콜 확인 못함.
 
 ### Next 100X GEMS(X) · 팔로워 25.6만(확인) · ⚠️ 유료 마케팅/샤웃아웃 플랫폼 — 신뢰도 낮음
-- **JUGGERNAUT**: 과거 mcap~$10.4M 주장 시점 — 실측은 이번 회차 오히려 $3.9M로 더 하회.
+- **JUGGERNAUT**: 과거 mcap~$10.4M 주장 시점 — 실측은 이번 회차도 여전히 더 하회($3.6M).
 
 ### Ansem 본인(X, @blknoiz06) · 팔로워 약75만
-- **$ANSEM(Black Bull)**: 7/7 mcap$420M 신고점→BloFin상장(7/8) 후 급락→이번 회차 소스편차 급확대(CoinGecko$76.1M vs Trust Wallet$188.53M) — 방향성 판단 불가, 정직 표기.
+- **$ANSEM(Black Bull)**: 7/7 mcap$420M 신고점→BloFin상장(7/8) 후 급락→이번 회차 Trust Wallet 참고치 $188.53M(직전과 동일수치, 갱신여부 불명) — CoinGecko 재조회 못함, 방향성 판단 보류.
 
-### coingape·WEEX·coindesk 등(매체) · 신뢰도: 매체 보도(직접 KOL 아님)
-- **CASHCAT**: 이번 회차 CoinGecko 기준 처음 하락 전환(+40.1%→+23.3%).
-- **DIH**: 직전까지 coingape 최상위3종 지목했으나 이번 회차 CoinGecko top30에서 완전 이탈 — 상충 해소 방향(러그 판정 쪽으로).
+### GeckoTerminal(X, 공식) · 신뢰도: 데이터 플랫폼(직접 KOL 아님)
+- **FROGBULL**(Solana): "KOL Crypto Fergani가 스텔스런칭"이라 언급 — 과거 자체 'fade확정' 판정과 상충, 미확인/재검증 필요, 스텔스런칭 특유의 러그 리스크 존재.
+
+### coingape·coindesk 등(매체) · 신뢰도: 매체 보도(직접 KOL 아님)
+- **CASHCAT**: 이번 회차도 CoinGecko 기준 하락 지속(+23.3%→+6.1%), CMC는 오히려 +19.24%로 소스 편차.
+- **DIH**: 직전 "완전 이탈" 판정을 이번 회차 단독조회로 정정 — 실제로는 mcap$4.71M 규모로 계속 거래 중.
 
 ### Arthur Hayes(X) · 팔로워 대형 · 매크로/알파 콜러
-- **HYPE(Hyperliquid)**: 8월까지 $150 목표 발언(과거, notable 참고) — mcap$13.4B~15.4B 박스권 지속, 목표가와 여전히 큰 격차.
+- **HYPE(Hyperliquid)**: 8월까지 $150 목표 발언(과거, notable 참고) — mcap$15.38B로 소폭 상향, 목표가와 여전히 큰 격차.
 
 ## 새로 포착된 중형 KOL
 
-- 이번 회차도 신규 확보한 신뢰 가능한 중형(1만~수십만) 크립토 KOL의 **조기 알파 콜**은 없음. foreskin·watch it grow·The Green Bull·The Office Dog·Bycocket·Wen Lambo·Dumb Money·HOPPY 등 모두 CoinGecko 카테고리 데이터 기반 포착이며 개별 KOL 콜 코로보는 확인하지 못함. Drallio·@Bluntz_Capital(팔로워33.8만)·Next100XGEMS(팔로워25.6만)는 이전 회차 확보 콜로, 이번 회차 추가 후속 콜은 확인하지 못함.
+- 이번 회차도 신규 확보한 신뢰 가능한 중형(1만~수십만) 크립토 KOL의 **조기 알파 콜**은 없음. SEEDCOIN·$1·COOKWARE·VLAD·ROBINHOOD·DUMBMONEY·BYCOCKET·FOX·HOODIE·HOPPY·YORK·YOLO·WEN 등 모두 CoinGecko 카테고리 데이터 기반 포착이며 개별 KOL 콜 코로보는 확인하지 못함. Drallio·@Bluntz_Capital(팔로워33.8만)·Next100XGEMS(팔로워25.6만)는 이전 회차 확보 콜로, 이번 회차 추가 후속 콜은 확인하지 못함. GeckoTerminal 공식 계정이 언급한 'KOL Crypto Fergani'(FROGBULL 스텔스런칭)는 신규 발견이나 신뢰도·팔로워 미확인.
 
 ## 메모
 
-- **데이터 한계(X 접근)**: x.com 직접 조회는 여전히 제한적. WebSearch 인덱싱·2차 보도 및 CoinGecko/coingape/WEEX/coindesk 기반.
-- **⚠️ 신규 데이터 이슈(이번 회차)**: CoinGecko RH체인 카테고리 조회 시 이전 회차엔 짧은 티커(예: COOKWARE, FOX, ROBINHOOD)가 반환됐으나 이번 회차엔 풀네임(예: "Copper pot of wealth", "Robin Hood")이 반환됨. mcap 근접도로 최선 추정 매핑했으나 확정하지 못함 — 이후 회차에서 티커 표기가 복원되는지 확인 필요.
-- **워시트레이딩/데이터정체 의심, 계속 강화**: CASHDOG·JOHN·530A 3종 지속 0.0%. 401K도 10회+ 연속. MYSTERY도 4회 연속 완전 동일값(+35.0%) 확인.
-- **RH체인 초소형 토큰, 이번 회차는 전반적 냉각 우세**: 직전 회차엔 다수가 가속을 이어갔으나, 이번 회차엔 MEOW·WORTH·THROBBIN·REPE·ROB·HODL·VIBE CAT 등 다수가 동시에 상승률 급둔화·mcap 감소 — 카테고리 전체 mcap도 처음 축소($204M→$194M)돼 열기 국면 전환 가능성.
-- **CASHCAT, 처음 하락 전환**: mcap$82.32M→$72.8M(-11.6%). 7/11 ATH($150~200M) 대비 하회 폭이 계속 확대.
-- **DIH, 상충 정보 방향 전환**: 과거 회차 메모의 '뒷북/러그 확정' 판정과 coingape 보도(최상위3종 포함)가 상충했었는데, 이번 회차 CoinGecko top30에 DIH가 전혀 등장하지 않아 '러그/뒷북' 쪽으로 무게가 실림. 여전히 tokens 목록엔 미포함.
-- **Dumb Money, 상충 정보 신규 발견**: 과거 '뒷북/러그 확정' 판정 vs 이번 회차 +20.9% 상승 실데이터 — 신중 접근 필요, 재검증 전까지 표에 포함하되 리스크 높음으로 표기.
-- **ANSEM 소스 편차, 이번 회차 이례적으로 확대**: CoinGecko$76.1M vs Trust Wallet$188.53M vs 직전 자체참고치$174.1M — 최대 2.5배 차이, 방향성(상승/하락) 판단 불가로 정직 표기.
-- **재확인 미시도(과거 정보만 참고, 뒷북/러그 확정 유지)**: HettyCoin(HET)·ROBINFUN(완전식음)·구버전 HYPE(RH체인용)·LAB·FROGBULL(fade 확정)·PUNCH·구버전 STONKCAT·HOODINI·ROGE(허니팟 확인)·GameStop/GME(Solana 별개토큰)·PONS·DATABEAR·MemeToro·JIMOTHY·STOCKCOIN·VEX·ARROW·HOODRAT·$BRIAN(Coinbase Man, Base, 뒷북/붕괴완료)·PONSTAR·POOCH·YORK·VLAD·SEEDCOIN — 이번 회차도 자리부족/재확인 미시도로 표에서 제외(완전 폐기 아님, 참고치 유지). **이번 회차 표에서 이동/제외**: MEOW·WORTH·THROBBIN·REPE·ROB·HODL·4663(냉각/둔화로 제외), 원조 ROBINHOOD 티커(top30 미확인).
-- **동명이인/티커충돌 주의(누적, 이번 회차 신규: foreskin·watch it grow·The Green Bull·The Office Dog·Copper pot of wealth·Robin Hood 풀네임 이슈)**: ANSEM(+INU/ARMY/WIFE)·CASHCAT·HOODIE/HOODINI·WEN/Wen Lambo·FOX/Robin Hood(Fox Finance/Etherscan과 별개)·MEOW·JUGGERNAUT·VIBE CAT/Vibing Cat(구버전 Solana VIBE와 별개)·HODL/Diamond Hands·Little John·530A/buy and retire·WISHBONE·401K/Retirement plan·HET·INDEX·BYCOCKET·DATABEAR·ROBINHOOD·VLAD·CRASHCAT·GameStop/GME·CATSTR·PONS·REPE/Robinhood Pepe·SUIT·YORK·HOODBIRD·STONKCAT/SCAT·MemeToro·HumidiFi/WET·JIMOTHY·VEX·YOLO·THROBBIN·HOODRAT·DIH·COOKWARE/Copper pot of wealth·MYSTERY·$1·ROB·HOPPY·Dumb Money·$BRIAN(Coinbase Man, Base)·Chill House 계열 — **반드시 CA 대조 후 매매**.
+- **데이터 한계(X 접근)**: x.com 직접 조회는 여전히 제한적. WebSearch 인덱싱·2차 보도 및 CoinGecko/coingape/coindesk 기반.
+- **✅ 티커 매핑 문제, 이번 회차 해소**: 직전 회차 풀네임 반환 이슈가 이번 회차엔 정상 티커로 복원돼, 매핑 추정 6건이 모두 확정됨. 데이터 소스 자체의 일시적 불안정성으로 추정(원인 불명).
+- **DIH 재평가는 방법론적 교훈**: 특정 CoinGecko "카테고리" 페이지 목록 부재를 곧바로 "토큰 소멸/이탈"로 해석하면 오판 가능 — 향후 tokens 목록 이탈 판정 시 단독조회로 교차 검증 필요.
+- **워시트레이딩/데이터정체 의심, 계속 강화**: CASHDOG·JOHN·530A 3종 지속 0.0%. 401K 11회+연속. MYSTERY 5연속. **HOPPY도 이번 회차 새로 의심 편입**(24h% 완전 동일값).
+- **RH체인 초소형 토큰, 2회 연속 카테고리 mcap 축소**: $204M→$194M→$190M. 완전한 반전인지 일시 조정인지는 다음 회차에서 재확인 필요.
+- **YOLO, 펌프앤덤프 리스크 심화**: 3회 연속 방향전환에 이어 이번엔 mcap 자체가 -12%로 처음 뚜렷하게 줄어 정점 통과 가능성.
+- **재확인 미시도(과거 정보만 참고, 뒷북/러그 확정 유지)**: HettyCoin(HET)·ROBINFUN(완전식음)·구버전 HYPE(RH체인용)·LAB·구FROGBULL(fade 확정 — 이번 회차 재부상 미확인정보와 상충)·PUNCH·구버전 STONKCAT·HOODINI·ROGE(허니팟 확인)·GameStop/GME(Solana 별개토큰)·PONS·DATABEAR·MemeToro·JIMOTHY·STOCKCOIN·VEX·ARROW·HOODRAT·$BRIAN(Coinbase Man, Base, 뒷북/붕괴완료)·PONSTAR·POOCH·VLAD(과거 별개 인물명 토큰과 혼동 주의 — 이번 회차 The Green Bull=VLAD와 별개 가능성)·SEEDCOIN — 이번 회차도 자리부족/재확인 미시도로 표에서 제외(완전 폐기 아님, 참고치 유지).
+- **동명이인/티커충돌 주의(누적, 이번 회차 신규 확정: COOKWARE=Copper pot of wealth·FOX=Robin Hood·SEEDCOIN=watch it grow·VLAD=The Green Bull·YORK=The Office Dog)**: ANSEM(+INU/ARMY/WIFE)·CASHCAT·HOODIE/HOODINI·WEN/Wen Lambo·FOX(Fox Finance/Etherscan과 별개)·MEOW·JUGGERNAUT·VIBE CAT(구버전 Solana VIBE와 별개)·HODL/Diamond Hands·Little John·530A/buy and retire·WISHBONE·401K/Retirement plan·HET·INDEX·BYCOCKET·DATABEAR·ROBINHOOD·VLAD(Green Bull vs 다른 VLAD류 토큰)·CRASHCAT·GameStop/GME·CATSTR·PONS·REPE/Robinhood Pepe·SUIT·YORK·HOODBIRD·STONKCAT/SCAT·MemeToro·HumidiFi/WET·JIMOTHY·VEX·YOLO·THROBBIN·HOODRAT·DIH·MYSTERY·$1·ROB·HOPPY·DUMBMONEY·$BRIAN(Coinbase Man, Base)·FROGBULL(신구 버전 혼동 가능성) — **반드시 CA 대조 후 매매**.
 
 ---
-*Not financial advice. 본 문서는 공개 2차 자료·CoinGecko/GeckoTerminal/coingape/WEEX/coindesk/WebSearch 기반 아이디어 소싱용이며 매수 추천이 아님. 재실행 시 갱신.*
+*Not financial advice. 본 문서는 공개 2차 자료·CoinGecko/GeckoTerminal/coingape/coindesk/WebSearch 기반 아이디어 소싱용이며 매수 추천이 아님. 재실행 시 갱신.*
