@@ -80,7 +80,10 @@ python sideprojects/memewallet/ws_alert.py --test-sig <SIGNATURE>   # 특정 서
 필요 .env 키(추가): `HELIUS_API_KEY`(helius.dev 무료 가입). 텔레그램 키는 아래와 동일.
 - 무료 티어는 표준 `logsSubscribe`만(지갑당 1구독). 향상된 `transactionSubscribe`(다주소 1구독)는
   유료 Developer($49/월)부터 — 무료로도 1M 크레딧이면 24/7 가능.
-- 역대손익(enrich의 token_realized)만 여전히 Bitquery를 쓰나 **발송 알림에만** 호출(스킵분 생략)이라 소모 미미.
+- **Bitquery 완전 제거**: 잔고=Helius RPC(`getTokenAccountsByOwner`), 역대손익=Helius 주소 SWAP tx
+  (`/v0/addresses/{addr}/transactions?type=SWAP`, 스테이블 레그=정확·SOL 레그=현재 SOL가 근사),
+  심볼=DexScreener, SOL가=CoinGecko. ws_alert 실행 시 enrich의 잔고·역대손익을 Helius판으로 교체.
+- 관측성: 구독 확정 `✅ N/N`, 10분 하트비트(구독·수신이벤트·발송·스킵), 구독오류 로깅.
 
 ### ⑤-B 구(舊) Bitquery 폴링판 (`alert_bot.py`, 폴백)
 ```

@@ -23,11 +23,13 @@ from __future__ import annotations
 
 import json
 import sys
+import threading
 import time
 import urllib.request
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
+import alert_bot as _ab  # 모듈 참조(enrich가 쓰는 token_balance/token_realized를 Helius판으로 교체용)
 from alert_bot import (  # 기존 헬퍼 재사용
     MIN_USD, _BASE_MINTS, _STATE, _env, _fmt, _wallets, enrich, send_telegram,
 )
@@ -82,6 +84,89 @@ def token_symbol(mint: str) -> str:
         pass
     _sym_cache[mint] = sym
     return sym
+
+
+def _helius_rpc(method: str, params: list):
+    key = _env("HELIUS_API_KEY")
+    return _post_json(f"https://mainnet.helius-rpc.com/?api-key={key}",
+                      {"jsonrpc": "2.0", "id": 1, "method": method, "params": params})
+
+
+def token_balance_helius(owner: str, mint: str) -> float | None:
+    """지갑의 해당 토큰 현재 잔고(UI). Helius RPC getTokenAccountsByOwner. (Bitquery 미사용)"""
+    try:
+        d = _helius_rpc("getTokenAccountsByOwner", [owner, {"mint": mint}, {"encoding": "jsonParsed"}])
+        tot = 0.0
+        for a in (d.get("result") or {}).get("value") or []:
+            tot += float(a["account"]["data"]["parsed"]["info"]["tokenAmount"].get("uiAmount") or 0.0)
+        return tot
+    except Exception:  # noqa: BLE001
+        return None
+
+
+def token_realized_helius(wallet: str, mint: str, pages: int = 3) -> dict | None:
+    """해당 (지갑,토큰) 매수/매도 누적 USD → 실현손익 근사. Helius 주소 SWAP tx. (Bitquery 대체)
+
+    USD: 스테이블(USDC/USDT) 레그=정확, SOL 레그=현재 SOL가 근사. 최근 pages×100건 창(근사).
+    반환 {"buy_usd","sell_usd","pnl","sells"} | None.
+    """
+    key = _env("HELIUS_API_KEY")
+    if not key:
+        return None
+    buy_usd = sell_usd = 0.0
+    sells = 0
+    px = sol_price()
+    before = None
+    try:
+        for _ in range(pages):
+            url = (f"https://api.helius.xyz/v0/addresses/{wallet}/transactions/"
+                   f"?api-key={key}&type=SWAP&limit=100")
+            if before:
+                url += f"&before={before}"
+            txs = _get_json(url)
+            if not isinstance(txs, list) or not txs:
+                break
+            for tx in txs:
+                recv = sent = 0.0
+                sol_o = sol_i = usd_o = usd_i = 0.0
+                involved = False
+                for tt in tx.get("tokenTransfers") or []:
+                    m = tt.get("mint"); amt = float(tt.get("tokenAmount") or 0.0)
+                    if m == mint:
+                        involved = True
+                        if tt.get("toUserAccount") == wallet:
+                            recv += amt
+                        if tt.get("fromUserAccount") == wallet:
+                            sent += amt
+                    if tt.get("fromUserAccount") == wallet:
+                        if m in _USD_BASE:
+                            usd_o += amt
+                        elif m == _WSOL:
+                            sol_o += amt
+                    if tt.get("toUserAccount") == wallet:
+                        if m in _USD_BASE:
+                            usd_i += amt
+                        elif m == _WSOL:
+                            sol_i += amt
+                for nt in tx.get("nativeTransfers") or []:
+                    a = float(nt.get("amount") or 0.0) / 1e9
+                    if nt.get("fromUserAccount") == wallet:
+                        sol_o += a
+                    elif nt.get("toUserAccount") == wallet:
+                        sol_i += a
+                if not involved:
+                    continue
+                if recv > sent:       # 순매수
+                    buy_usd += usd_o + max(0.0, sol_o - sol_i) * px
+                elif sent > recv:     # 순매도
+                    sell_usd += usd_i + max(0.0, sol_i - sol_o) * px
+                    sells += 1
+            before = txs[-1].get("signature")
+            if len(txs) < 100:
+                break
+        return {"buy_usd": buy_usd, "sell_usd": sell_usd, "pnl": sell_usd - buy_usd, "sells": sells}
+    except Exception:  # noqa: BLE001
+        return None
 
 
 def extract_buy(tx: dict, wallet: str) -> dict | None:
@@ -168,14 +253,20 @@ def run(dry: bool = False, keep_exited: bool = False) -> None:
     if not key:
         print("[오류] .env에 HELIUS_API_KEY가 없습니다. helius.dev 무료 가입 후 키를 추가하세요.")
         return
+    # ★Bitquery 완전 제거★ enrich의 잔고·역대손익을 Helius판으로 교체(monkeypatch)
+    _ab.token_balance = token_balance_helius
+    _ab.token_realized = token_realized_helius
     wmap = _wallets(); wallets = list(wmap)
     st = json.loads(_STATE.read_text()) if _STATE.exists() else {}
     seen: set[str] = set(st.get("seen", []))
     sub_wallet: dict[int, str] = {}      # 구독번호 → 지갑
     req_wallet: dict[int, str] = {}      # 요청id → 지갑
     stat = {"sent": 0, "skip": 0}
+    state = {"confirmed": 0, "sub_err": 0, "events": 0}
 
     def on_open(ws):
+        sub_wallet.clear(); req_wallet.clear()
+        state["confirmed"] = 0; state["sub_err"] = 0
         for i, w in enumerate(wallets):
             req_wallet[i] = w
             ws.send(json.dumps({"jsonrpc": "2.0", "id": i, "method": "logsSubscribe",
@@ -188,14 +279,25 @@ def run(dry: bool = False, keep_exited: bool = False) -> None:
             m = json.loads(raw)
         except Exception:  # noqa: BLE001
             return
-        # 구독 확인: {id, result: subNumber}
+        # 구독 오류: {id, error}
+        if "error" in m:
+            state["sub_err"] += 1
+            if state["sub_err"] <= 3:
+                print("[WS] 구독 오류:", str(m.get("error"))[:140])
+            return
+        # 구독 확정: {id, result: subNumber}
         if "id" in m and isinstance(m.get("result"), int):
             w = req_wallet.get(m["id"])
             if w:
                 sub_wallet[m["result"]] = w
+            state["confirmed"] += 1
+            if state["confirmed"] == len(wallets):
+                print(f"[WS] ✅ 구독 확정 {state['confirmed']}/{len(wallets)} — 실시간 감시 시작"
+                      + (f" (구독오류 {state['sub_err']})" if state["sub_err"] else ""))
             return
         if m.get("method") != "logsNotification":
             return
+        state["events"] += 1
         val = (((m.get("params") or {}).get("result") or {}).get("value") or {})
         if val.get("err"):     # 실패 tx 무시
             return
@@ -219,6 +321,14 @@ def run(dry: bool = False, keep_exited: bool = False) -> None:
         sub_wallet.clear(); req_wallet.clear()
         print(f"[WS 종료] code={code} → 재접속 대기")
 
+    def _heartbeat():
+        # 조용해도 살아있음을 보이게 10분마다 상태 출력(감시 대상 매수는 원래 드묾)
+        while True:
+            time.sleep(600)
+            print(f"[WS] 감시 중 — 구독 {state['confirmed']}/{len(wallets)} · "
+                  f"수신이벤트 {state['events']} · 발송 {stat['sent']} · 스킵 {stat['skip']}")
+    threading.Thread(target=_heartbeat, daemon=True).start()
+
     ws = websocket.WebSocketApp(_WS.format(k=key), on_open=on_open, on_message=on_message,
                                 on_error=on_error, on_close=on_close)
     ws.run_forever(reconnect=5, ping_interval=30, ping_timeout=10)   # 끊기면 자동 재접속·재구독
@@ -229,6 +339,8 @@ def _test_sig(sig: str) -> None:
     key = _env("HELIUS_API_KEY")
     if not key:
         print("[오류] HELIUS_API_KEY 필요"); return
+    _ab.token_balance = token_balance_helius
+    _ab.token_realized = token_realized_helius
     tx = parse_signature(sig, key)
     if not tx:
         print("파싱 실패/미발견"); return
