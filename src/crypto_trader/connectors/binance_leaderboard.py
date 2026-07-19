@@ -33,8 +33,11 @@ def _get(url: str) -> dict:
         return json.load(r)
 
 
-def fetch_list(ranking: str = "PNL", time_range: str = TIME_RANGE, rows: int = 60) -> list[dict]:
-    """스마트머니 목록(공개). ranking: PNL|ROI. time_range 창 기준 실적."""
+def fetch_list(ranking: str = "PNL", time_range: str = TIME_RANGE, rows: int = 20) -> list[dict]:
+    """스마트머니 목록(공개). ranking: PNL|ROI. time_range 창 기준 실적.
+
+    ⚠️ rows는 20 이하만 유효(진단 실측: 50→code 1899100, 60→-1130 'Invalid parameter'로 빈 결과).
+    """
     qs = (f"?page=1&rows={rows}&timeRange={time_range}&rankingType={ranking}"
           f"&onlyShowSharingPosition=false&onlyShowSignalEnabled=false&order=DESC")
     d = _get(_LIST + qs)
