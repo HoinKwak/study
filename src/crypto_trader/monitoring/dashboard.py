@@ -1577,28 +1577,61 @@ def render_html(journal: TradeJournal, equity: float | None = None,
      function usd(n){{n=Number(n)||0;var a=Math.abs(n);
        if(a>=1e9)return (n/1e9).toFixed(2)+'B';if(a>=1e6)return (n/1e6).toFixed(2)+'M';
        if(a>=1e3)return (n/1e3).toFixed(1)+'K';return n.toFixed(0);}}
+     function fmtT(ms){{if(!ms)return '<span class="muted">장기</span>';var d=new Date(ms);
+       return (d.getUTCFullYear()%100)+'/'+(d.getUTCMonth()+1)+'/'+d.getUTCDate();}}
+     function spark(hist){{  // 역대 누적 PnL 스파크라인
+       if(!hist||hist.length<2)return '';
+       var vs=hist.map(function(p){{return p[1];}});
+       var mn=Math.min.apply(null,vs),mx=Math.max.apply(null,vs),rng=(mx-mn)||1,W=200,H=42;
+       var pts=hist.map(function(p,i){{var x=(i/(hist.length-1))*W;var y=H-((p[1]-mn)/rng)*(H-4)-2;
+         return x.toFixed(1)+','+y.toFixed(1);}}).join(' ');
+       var last=vs[vs.length-1],col=(last>=0)?'#16c784':'#e23b4a';
+       var zy=(rng>0)?(H-((0-mn)/rng)*(H-4)-2):H;
+       return '<svg width="'+W+'" height="'+H+'" style="display:block" title="역대 누적 PnL">'
+         +'<line x1="0" y1="'+zy.toFixed(1)+'" x2="'+W+'" y2="'+zy.toFixed(1)+'" stroke="#556" stroke-width="0.5" stroke-dasharray="2,2"/>'
+         +'<polyline points="'+pts+'" fill="none" stroke="'+col+'" stroke-width="1.5"/></svg>';
+     }}
+     function sumCards(s){{  // 코인별 집계 카드
+       if(!s||!s.length)return '';
+       function rng(r){{return r?('$'+usd(r[0])+'~$'+usd(r[1])):'-';}}
+       var cards=s.map(function(c){{
+         return '<div style="flex:1;min-width:150px;padding:8px;border:1px solid var(--line,#233);border-radius:8px">'
+           +'<div style="font-weight:700;margin-bottom:3px">'+c.coin+'</div>'
+           +'<div style="font-size:13px"><span style="color:#16c784">롱 '+c.long_count+'</span> · <span style="color:#e23b4a">숏 '+c.short_count+'</span></div>'
+           +'<div style="font-size:11px" class="muted">롱 $'+usd(c.long_notional)+' / 숏 $'+usd(c.short_notional)+'</div>'
+           +'<div style="font-size:11px" class="muted">청산 롱 '+rng(c.liq_long_range)+'</div>'
+           +'<div style="font-size:11px" class="muted">청산 숏 '+rng(c.liq_short_range)+'</div></div>';
+       }}).join('');
+       return '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">'+cards+'</div>';
+     }}
      function render(d){{
        var root=document.getElementById('lb-root');if(!root)return;
        var ts=(d&&d.traders)||[];
        if(!ts.length){{root.innerHTML='<span class="muted">데이터 없음 — 서버 모드에서만 동작하며, 첫 로드는 리더보드 40k행 조회로 다소 걸립니다.</span>';return;}}
-       var h='';
+       var h=sumCards(d.summary||[]);
        ts.forEach(function(t){{
          var pos=(t.positions||[]).map(function(p){{
            var col=(p.upnl>=0)?'#16c784':'#e23b4a';var sd=(p.side==='long')?'롱':'숏';
            var sc=(p.side==='long')?'#16c784':'#e23b4a';
            return '<tr><td style="color:'+sc+'">'+p.coin+' '+sd+'</td><td>$'+usd(p.notional)+'</td><td>'+(p.entry||'-')+'</td>'
+             +'<td>'+fmtT(p.entry_ts)+'</td>'
              +'<td style="color:'+col+'">$'+usd(p.upnl)+'</td><td class="muted">'+(p.leverage||'-')+'x</td></tr>';
          }}).join('');
          var addr=t.addr||'';var short=addr.slice(0,6)+'…'+addr.slice(-4);
+         var nb=(t.net_side==='long')?'<span style="color:#16c784">롱</span>':'<span style="color:#e23b4a">숏</span>';
          h+='<div style="margin:10px 0;padding:8px;border:1px solid var(--line,#233);border-radius:8px">'
-           +'<div style="display:flex;flex-wrap:wrap;gap:12px;align-items:baseline;margin-bottom:4px">'
+           +'<div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:4px">'
            +'<a href="https://hypurrscan.io/address/'+addr+'" target="_blank" style="font-weight:700">'+short+'</a>'
+           +'<span>순방향 '+nb+'</span>'
            +'<span>통산 PnL <b style="color:#16c784">$'+usd(t.pnl)+'</b></span>'
            +'<span>ROI <b>'+Math.round((t.roi||0)*100)+'%</b></span>'
            +'<span class="muted">90일 <b style="color:'+((t.recent_pnl>=0)?'#16c784':'#e23b4a')+'">$'+usd(t.recent_pnl)+'</b></span>'
            +'<span class="muted">계좌 $'+usd(t.account_value)+'</span>'
-           +'<span class="muted">포지션 '+((t.positions||[]).length)+'개</span></div>'
-           +'<table style="width:100%;font-size:12px"><thead><tr><th>종목/방향</th><th>명목(USD)</th><th>진입</th><th>미실현</th><th>lev</th></tr></thead><tbody>'+pos+'</tbody></table></div>';
+           +'<span class="muted">최대'+(t.max_lev||'-')+'x</span></div>'
+           +'<div style="display:flex;gap:14px;flex-wrap:wrap;align-items:flex-start">'
+           +'<div><div class="muted" style="font-size:11px">역대 누적 PnL</div>'+spark(t.pnl_history)+'</div>'
+           +'<table style="flex:1;min-width:340px;font-size:12px"><thead><tr><th>종목/방향</th><th>명목(USD)</th><th>진입가</th><th>진입시각</th><th>미실현</th><th>lev</th></tr></thead><tbody>'+pos+'</tbody></table>'
+           +'</div></div>';
        }});
        root.innerHTML=h;
      }}

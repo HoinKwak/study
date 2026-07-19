@@ -20,6 +20,9 @@ _UA = {"User-Agent": "leaderboard-positions/0.1", "Content-Type": "application/j
 MIN_PNL = 100_000.0
 MIN_ROI = 0.50
 MIN_ACCOUNT = 10_000.0   # 현재 계좌가치 최소($2~3 청산계좌 배제)
+MAJORS = ("BTC", "ETH", "SOL", "XRP", "BNB")   # 포지션 표시 대상(5대 메이저만)
+DIRECTIONAL_MIN = 0.85   # 지배방향 비중 하한(미만=양방향/헤지 북 → 제외)
+MAX_LEV = 25.0           # 포지션 최대 레버리지 상한(초과=고배율 ROI 눈속임 → 제외)
 
 
 def _get(url: str) -> dict | list:
@@ -83,8 +86,11 @@ def screen(
     return out
 
 
-def pnl_over_days(addr: str, days: int = 90) -> float | None:
-    """portfolio allTime 누적 pnlHistory에서 최근 `days`일 PnL(=누적 최신−누적 days일전)."""
+def fetch_portfolio(addr: str, days: int = 90, max_points: int = 60) -> dict | None:
+    """portfolio allTime 누적 pnlHistory에서 최근 `days`일 PnL + 역대 시계열(다운샘플).
+
+    반환 {"pnl_recent": 최근days일 PnL, "history": [[ts_ms, 누적PnL], ...]}.
+    """
     try:
         d = _post(_INFO_URL, {"type": "portfolio", "user": addr})
     except Exception:  # noqa: BLE001
@@ -93,25 +99,30 @@ def pnl_over_days(addr: str, days: int = 90) -> float | None:
     hist = (wins.get("allTime") or {}).get("pnlHistory") or []
     if len(hist) < 2:
         return None
-    last_ts, last_v = hist[-1][0], float(hist[-1][1])
+    series = [[int(ts), float(v)] for ts, v in hist]
+    last_ts, last_v = series[-1]
     cut = last_ts - days * 86400 * 1000
-    prior = [p for p in hist if p[0] <= cut]
-    base = float(prior[-1][1]) if prior else float(hist[0][1])
-    return last_v - base
+    prior = [p for p in series if p[0] <= cut]
+    base = prior[-1][1] if prior else series[0][1]
+    if len(series) > max_points:   # 스파크라인용 다운샘플
+        step = len(series) / max_points
+        series = [series[int(i * step)] for i in range(max_points)] + [series[-1]]
+    return {"pnl_recent": last_v - base, "history": series}
 
 
-def fetch_positions(addr: str) -> dict:
-    """주소의 현재 계좌·열린 포지션."""
+def fetch_positions(addr: str, only: tuple | None = None) -> dict:
+    """주소의 현재 계좌·열린 포지션. only 지정 시 해당 코인만(예: 5대 메이저)."""
     d = _post(_INFO_URL, {"type": "clearinghouseState", "user": addr})
     ms = d.get("marginSummary", {})
     positions = []
     for ap in d.get("assetPositions", []):
         p = ap.get("position", {})
+        coin = p.get("coin")
         szi = float(p.get("szi") or 0.0)
-        if szi == 0:
+        if szi == 0 or (only and coin not in only):
             continue
         positions.append({
-            "coin": p.get("coin"),
+            "coin": coin,
             "side": "long" if szi > 0 else "short",
             "size": abs(szi),
             "entry": float(p["entryPx"]) if p.get("entryPx") else None,
@@ -119,6 +130,8 @@ def fetch_positions(addr: str) -> dict:
             "upnl": float(p.get("unrealizedPnl") or 0.0),
             "leverage": (p.get("leverage") or {}).get("value"),
             "roe": float(p["returnOnEquity"]) if p.get("returnOnEquity") else None,
+            "liquidation": float(p["liquidationPx"]) if p.get("liquidationPx") else None,
+            "entry_ts": None,  # entry_times()로 채움
         })
     positions.sort(key=lambda x: -x["notional"])
     return {
@@ -126,6 +139,42 @@ def fetch_positions(addr: str) -> dict:
         "total_notional": float(ms.get("totalNtlPos") or 0.0),
         "positions": positions,
     }
+
+
+def entry_times(addr: str, positions: list[dict]) -> None:
+    """userFills(체결이력)로 각 포지션이 '현재 방향으로 열린 시점'을 역산해 entry_ts(ms) 채움.
+
+    체결을 최신→과거로 되짚어 포지션이 0/반대에서 현재 부호로 넘어간 체결의 시각 = 진입시점.
+    최근 2000체결 밖(오래 보유)이면 못 찾아 None 유지.
+    """
+    if not positions:
+        return
+    try:
+        fills = _post(_INFO_URL, {"type": "userFills", "user": addr})
+    except Exception:  # noqa: BLE001
+        return
+    if not isinstance(fills, list):
+        return
+    by_coin: dict[str, list] = {}
+    for f in fills:
+        by_coin.setdefault(f.get("coin"), []).append(f)
+    for pos in positions:
+        fs = by_coin.get(pos["coin"])
+        if not fs:
+            continue
+        # 현재 부호 있는 사이즈(롱=+, 숏=-)
+        cur = pos["size"] if pos["side"] == "long" else -pos["size"]
+        fs.sort(key=lambda x: -(x.get("time") or 0))  # 최신→과거
+        after = cur
+        for f in fs:
+            sz = float(f.get("sz") or 0.0)
+            delta = sz if f.get("side") == "B" else -sz   # B=매수(+), A=매도(-)
+            before = after - delta
+            # 이 체결 이전이 flat이거나 반대부호면, 이 체결이 현재 방향을 연 것
+            if before == 0 or (before > 0) != (cur > 0):
+                pos["entry_ts"] = f.get("time")
+                break
+            after = before
 
 
 def top_traders_with_positions(
@@ -138,29 +187,85 @@ def top_traders_with_positions(
     cand = screen(fetch_leaderboard(), **kw)
     out: list[dict] = []
     for t in cand[:scan]:
-        rp = pnl_over_days(t["addr"], days=recent_days)
-        if rp is None or rp <= 0:          # 최근 수익성(3개월) 필터
+        port = fetch_portfolio(t["addr"], days=recent_days)
+        if not port or port["pnl_recent"] <= 0:   # 최근 수익성(3개월) 필터
             continue
         try:
-            pos = fetch_positions(t["addr"])
+            pos = fetch_positions(t["addr"], only=MAJORS)   # 5대 메이저 포지션만
         except Exception:  # noqa: BLE001
             continue
-        if not pos["positions"]:           # 현재 열린 포지션 있는 트레이더만
+        ps = pos["positions"]
+        if not ps:                          # 메이저 포지션 보유 트레이더만
             continue
-        out.append({**t, **pos, "recent_pnl": rp, "recent_days": recent_days})
+        # 양방향(헤지) 제외: 지배방향 비중 < DIRECTIONAL_MIN 이면 델타뉴트럴/헤지 북으로 보고 제외
+        long_ntl = sum(p["notional"] for p in ps if p["side"] == "long")
+        short_ntl = sum(p["notional"] for p in ps if p["side"] == "short")
+        gross = long_ntl + short_ntl
+        if gross <= 0 or max(long_ntl, short_ntl) / gross < DIRECTIONAL_MIN:
+            continue
+        # 고배율 ROI 눈속임 제외: 포지션 최대 레버리지 > MAX_LEV
+        max_lev = max((p.get("leverage") or 0) for p in ps)
+        if max_lev > MAX_LEV:
+            continue
+        try:
+            entry_times(t["addr"], ps)                      # 진입 시각 역산
+        except Exception:  # noqa: BLE001
+            pass
+        out.append({
+            **t, **pos,
+            "net_side": "long" if long_ntl >= short_ntl else "short",
+            "max_lev": max_lev,
+            "recent_pnl": port["pnl_recent"], "recent_days": recent_days,
+            "pnl_history": port["history"],                 # 역대 PnL 그래프용
+        })
         if len(out) >= limit:
             break
     return out
 
 
+def coin_summary(traders: list[dict]) -> list[dict]:
+    """선별 트레이더들의 코인별 집계: 순롱/순숏 포지션 수·규모·청산가 범위(롱/숏 분리)."""
+    agg: dict[str, dict] = {c: {
+        "coin": c, "long_count": 0, "short_count": 0,
+        "long_notional": 0.0, "short_notional": 0.0,
+        "liq_long": [], "liq_short": [],
+    } for c in MAJORS}
+    for t in traders:
+        for p in t.get("positions", []):
+            a = agg.get(p["coin"])
+            if not a:
+                continue
+            if p["side"] == "long":
+                a["long_count"] += 1
+                a["long_notional"] += p["notional"]
+                if p.get("liquidation"):
+                    a["liq_long"].append(p["liquidation"])
+            else:
+                a["short_count"] += 1
+                a["short_notional"] += p["notional"]
+                if p.get("liquidation"):
+                    a["liq_short"].append(p["liquidation"])
+    out = []
+    for c in MAJORS:
+        a = agg[c]
+        a["liq_long_range"] = [min(a["liq_long"]), max(a["liq_long"])] if a["liq_long"] else None
+        a["liq_short_range"] = [min(a["liq_short"]), max(a["liq_short"])] if a["liq_short"] else None
+        del a["liq_long"], a["liq_short"]
+        out.append(a)
+    return out
+
+
 def build_bundle(limit: int = 25, recent_days: int = 90) -> dict:
-    """대시보드용 묶음: 필터 조건 + 상위 트레이더 포지션."""
+    """대시보드용 묶음: 필터 조건 + 코인별 집계 + 상위 트레이더 포지션."""
     traders = top_traders_with_positions(limit=limit, recent_days=recent_days)
     return {
         "source": "hyperliquid",
+        "summary": coin_summary(traders),
         "filter": {
             "min_pnl": MIN_PNL, "min_roi": MIN_ROI, "min_account": MIN_ACCOUNT,
             "recent_trading": True, "recent_profit_days": recent_days,
+            "coins": list(MAJORS),
+            "directional_min": DIRECTIONAL_MIN, "max_leverage": MAX_LEV,
         },
         "count": len(traders),
         "traders": traders,
