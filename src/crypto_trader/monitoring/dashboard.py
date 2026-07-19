@@ -1579,16 +1579,29 @@ def render_html(journal: TradeJournal, equity: float | None = None,
        if(a>=1e3)return (n/1e3).toFixed(1)+'K';return n.toFixed(0);}}
      function fmtT(ms){{if(!ms)return '<span class="muted">장기</span>';var d=new Date(ms);
        return (d.getUTCFullYear()%100)+'/'+(d.getUTCMonth()+1)+'/'+d.getUTCDate();}}
-     function spark(hist){{  // 역대 누적 PnL 스파크라인
+     function px(v){{if(v==null)return '-';return v>=100?Math.round(v).toLocaleString():v.toFixed(4);}}
+     function spark(hist){{  // 역대 누적 PnL 미니차트(시간축 x · PnL값축 y)
        if(!hist||hist.length<2)return '';
        var vs=hist.map(function(p){{return p[1];}});
-       var mn=Math.min.apply(null,vs),mx=Math.max.apply(null,vs),rng=(mx-mn)||1,W=200,H=42;
-       var pts=hist.map(function(p,i){{var x=(i/(hist.length-1))*W;var y=H-((p[1]-mn)/rng)*(H-4)-2;
+       var mn=Math.min.apply(null,vs),mx=Math.max.apply(null,vs);
+       if(mn>0)mn=0;if(mx<0)mx=0;                 // 0 포함해 부호 보이게
+       var rng=(mx-mn)||1;
+       var W=290,H=100,PL=54,PB=16,PT=6,PR=8,pw=W-PL-PR,ph=H-PT-PB;
+       var t0=hist[0][0],t1=hist[hist.length-1][0],tr=(t1-t0)||1;
+       var pts=hist.map(function(p){{
+         var x=PL+((p[0]-t0)/tr)*pw;var y=PT+(1-(p[1]-mn)/rng)*ph;
          return x.toFixed(1)+','+y.toFixed(1);}}).join(' ');
        var last=vs[vs.length-1],col=(last>=0)?'#16c784':'#e23b4a';
-       var zy=(rng>0)?(H-((0-mn)/rng)*(H-4)-2):H;
+       var zy=PT+(1-(0-mn)/rng)*ph;
+       function yl(v){{var y=PT+(1-(v-mn)/rng)*ph;
+         return '<text x="'+(PL-4)+'" y="'+(y+3).toFixed(1)+'" font-size="9" fill="#8a94a6" text-anchor="end">$'+usd(v)+'</text>';}}
+       function xl(ms,x,an){{var d=new Date(ms);
+         return '<text x="'+x+'" y="'+(H-4)+'" font-size="9" fill="#8a94a6" text-anchor="'+an+'">'+(d.getUTCFullYear()%100)+'/'+(d.getUTCMonth()+1)+'</text>';}}
        return '<svg width="'+W+'" height="'+H+'" style="display:block" title="역대 누적 PnL">'
-         +'<line x1="0" y1="'+zy.toFixed(1)+'" x2="'+W+'" y2="'+zy.toFixed(1)+'" stroke="#556" stroke-width="0.5" stroke-dasharray="2,2"/>'
+         +'<line x1="'+PL+'" y1="'+(PT).toFixed(1)+'" x2="'+PL+'" y2="'+(PT+ph).toFixed(1)+'" stroke="#334" stroke-width="0.5"/>'
+         +'<line x1="'+PL+'" y1="'+zy.toFixed(1)+'" x2="'+(W-PR)+'" y2="'+zy.toFixed(1)+'" stroke="#556" stroke-width="0.5" stroke-dasharray="2,2"/>'
+         +yl(mx)+yl(mn)+(mn<0&&mx>0?yl(0):'')
+         +xl(t0,PL,'start')+xl(t1,W-PR,'end')
          +'<polyline points="'+pts+'" fill="none" stroke="'+col+'" stroke-width="1.5"/></svg>';
      }}
      function sumCards(s){{  // 코인별 집계 카드
@@ -1613,7 +1626,8 @@ def render_html(journal: TradeJournal, equity: float | None = None,
          var pos=(t.positions||[]).map(function(p){{
            var col=(p.upnl>=0)?'#16c784':'#e23b4a';var sd=(p.side==='long')?'롱':'숏';
            var sc=(p.side==='long')?'#16c784':'#e23b4a';
-           return '<tr><td style="color:'+sc+'">'+p.coin+' '+sd+'</td><td>$'+usd(p.notional)+'</td><td>'+(p.entry||'-')+'</td>'
+           return '<tr><td style="color:'+sc+'">'+p.coin+' '+sd+'</td><td>$'+usd(p.notional)+'</td><td>'+px(p.entry)+'</td>'
+             +'<td style="color:#e0964a">'+px(p.liquidation)+'</td>'
              +'<td>'+fmtT(p.entry_ts)+'</td>'
              +'<td style="color:'+col+'">$'+usd(p.upnl)+'</td><td class="muted">'+(p.leverage||'-')+'x</td></tr>';
          }}).join('');
@@ -1630,7 +1644,7 @@ def render_html(journal: TradeJournal, equity: float | None = None,
            +'<span class="muted">최대'+(t.max_lev||'-')+'x</span></div>'
            +'<div style="display:flex;gap:14px;flex-wrap:wrap;align-items:flex-start">'
            +'<div><div class="muted" style="font-size:11px">역대 누적 PnL</div>'+spark(t.pnl_history)+'</div>'
-           +'<table style="flex:1;min-width:340px;font-size:12px"><thead><tr><th>종목/방향</th><th>명목(USD)</th><th>진입가</th><th>진입시각</th><th>미실현</th><th>lev</th></tr></thead><tbody>'+pos+'</tbody></table>'
+           +'<table style="flex:1;min-width:380px;font-size:12px"><thead><tr><th>종목/방향</th><th>명목(USD)</th><th>진입가</th><th>청산가</th><th>진입시각</th><th>미실현</th><th>lev</th></tr></thead><tbody>'+pos+'</tbody></table>'
            +'</div></div>';
        }});
        root.innerHTML=h;

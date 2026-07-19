@@ -68,11 +68,10 @@ def screen(
         perfs = r.get("windowPerformances") or []
         allt = _window(perfs, "allTime")
         month = _window(perfs, "month")
-        acct = float(r.get("accountValue") or 0.0)
         if allt["pnl"] < min_pnl or allt["roi"] < min_roi:
             continue
-        if acct < min_account:          # 지갑 사이즈 최소
-            continue
+        # 지갑 사이즈(min_account)는 리더보드 accountValue가 스테일할 수 있어 여기서 안 거르고
+        # 2차(clearinghouseState 실시간 계좌가치)에서 엄격 적용 — top_traders_with_positions 참조.
         if require_active and month["vlm"] <= 0:
             continue
         out.append({
@@ -178,7 +177,7 @@ def entry_times(addr: str, positions: list[dict]) -> None:
 
 
 def top_traders_with_positions(
-    limit: int = 25, scan: int = 100, recent_days: int = 90, **kw
+    limit: int = 25, scan: int = 200, recent_days: int = 90, **kw
 ) -> list[dict]:
     """필터 통과 상위에서 (최근 `recent_days`일 수익성>0) & (열린 포지션 있음) 트레이더 limit개까지.
 
@@ -193,6 +192,8 @@ def top_traders_with_positions(
         try:
             pos = fetch_positions(t["addr"], only=MAJORS)   # 5대 메이저 포지션만
         except Exception:  # noqa: BLE001
+            continue
+        if pos["account_value"] < MIN_ACCOUNT:   # ★실시간 계좌가치로 지갑사이즈 필터(스테일값 아님)★
             continue
         ps = pos["positions"]
         if not ps:                          # 메이저 포지션 보유 트레이더만
