@@ -137,19 +137,27 @@ def _category(usd: float, bought: float, bal: float | None, hist: dict | None) -
     return "🆕 신규매수"
 
 
-def enrich(t: dict) -> dict:
-    """알림 1건에 성격(신규/추매/재진입/청산)·현재잔고·해당코인 역대손익 부가정보 계산."""
+def enrich(t: dict, keep_exited: bool = False) -> dict:
+    """알림 1건에 성격(신규/추매/재진입/청산)·현재잔고·해당코인 역대손익 부가정보 계산.
+
+    ★포인트 절약★ 사자마자 매도(exited)로 어차피 발송 안 할 건은 Bitquery(token_realized)를
+    호출하지 않고 조기 반환한다(잔고=무료 RPC로만 판정). Bitquery 무료 쿼터 소모를 크게 줄임.
+    """
     tr = t["Trade"]; owner = tr["Buy"]["Account"]["Owner"]; mint = tr["Buy"]["Currency"]["MintAddress"]
     usd = float(tr["Sell"].get("AmountInUSD") or 0.0)
     bought = float(tr["Buy"].get("Amount") or 0.0)            # 이번에 산 토큰 수량(UI)
-    bal = token_balance(owner, mint)                          # 현재 총 보유(이번 매수 반영 후)
-    hist = token_realized(owner, mint)
-    price = (usd / bought) if bought > 0 else None            # 이번 매수 단가(USD/토큰)
-    bal_usd = (bal * price) if (bal is not None and price) else None
+    bal = token_balance(owner, mint)                          # 현재 총 보유(무료 RPC)
     # 사자마자 매도(청산): 감지시점 잔고가 이번 매수분의 30% 미만 = 사실상 전량 이탈 → 뒷북 신호
     exited = bal is not None and bought > 0 and bal < bought * 0.3
+    if exited and not keep_exited:
+        # 발송 안 할 건 → Bitquery 생략(포인트 절약)
+        return {"owner": owner, "mint": mint, "usd": usd, "bought": bought,
+                "bal": bal, "exited": True, "skip": True}
+    hist = token_realized(owner, mint)                        # Bitquery(포인트 소모) — 발송분만
+    price = (usd / bought) if bought > 0 else None            # 이번 매수 단가(USD/토큰)
+    bal_usd = (bal * price) if (bal is not None and price) else None
     return {"owner": owner, "mint": mint, "usd": usd, "bought": bought, "bal": bal,
-            "bal_usd": bal_usd, "hist": hist, "exited": exited,
+            "bal_usd": bal_usd, "hist": hist, "exited": exited, "skip": False,
             "category": _category(usd, bought, bal, hist)}
 
 
@@ -253,11 +261,11 @@ def run(once: bool = False, dry: bool = False, keep_exited: bool = False) -> Non
             new = sorted(uniq.values(), key=lambda t: t["Block"]["Time"])
             sent = skipped = 0
             for t in new:
-                ex = enrich(t)                       # 신규/추매·현재잔고·역대손익
+                ex = enrich(t, keep_exited=keep_exited)   # 신규/추매·현재잔고·역대손익(스킵분은 Bitquery 생략)
                 seen.add(t["Transaction"]["Signature"])
                 since = max(since, t["Block"]["Time"])
                 # 사자마자 매도(청산) 건은 뒷북이라 발송 제외(--keep-exited 로 다시 볼 수 있음)
-                if ex.get("exited") and not keep_exited:
+                if ex.get("skip"):
                     sym = t["Trade"]["Buy"]["Currency"]["Symbol"]
                     print(f"[스킵] 사자마자 매도 — {sym} {ex['owner'][:6]}…{ex['owner'][-4:]}")
                     skipped += 1
@@ -272,7 +280,12 @@ def run(once: bool = False, dry: bool = False, keep_exited: bool = False) -> Non
             if new:
                 print(f"  → 신규 {len(new)}건 (발송 {sent} · 사자마자매도 스킵 {skipped})")
         except Exception as e:  # noqa: BLE001
-            print("폴링 오류:", e)
+            m = str(e)
+            if "403" in m:
+                print("폴링 오류: Bitquery 무료 월 포인트 쿼터 소진(403). 월 리셋 대기 또는 "
+                      "새 무료키 발급/업그레이드 필요. 포인트 절약을 위해 POLL_SEC를 늘리는 것도 방법.")
+            else:
+                print("폴링 오류:", m)
         if once:
             break
         time.sleep(POLL_SEC)
