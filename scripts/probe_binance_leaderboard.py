@@ -1,7 +1,12 @@
-"""바이낸스 리더보드 API 진단 — 로컬(바이낸스 접속 가능)에서 실행해 실제 응답 구조/차단여부 확인.
+"""바이낸스 smart-money(신 리더보드) API 진단 — 로컬 실행.
 
-실행: python -m scripts.probe_binance_leaderboard   (또는 python scripts/probe_binance_leaderboard.py)
-출력 전체를 복사해 주시면 커넥터를 실제 응답에 맞춰 고칩니다.
+2026-07 개편된 실제 엔드포인트(DevTools로 확인):
+- 목록:   GET bapi/futures/v1/friendly/future/smart-money/top-trader/list?...
+- 프로필: GET bapi/asset/v1/friendly/future/smart-money/profile?topTraderId=...
+- 포지션: GET bapi/asset/v1/private/future/smart-money/profile/query-positions?topTraderId=...  (/private/=인증 가능성)
+
+★인증 없는 최소 헤더★로 공개 접근 여부·응답 구조를 확인한다(로그인 쿠키 미사용).
+실행: python -m scripts.probe_binance_leaderboard  → 출력 전체를 붙여주세요.
 """
 from __future__ import annotations
 
@@ -9,12 +14,18 @@ import json
 import urllib.error
 import urllib.request
 
-_BASE = "https://www.binance.com/bapi/futures/v1/public/future/leaderboard"
-_HDR = {"User-Agent": "Mozilla/5.0", "Content-Type": "application/json", "Accept": "*/*"}
+_H = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)", "Accept": "*/*",
+      "clienttype": "web", "content-type": "application/json", "lang": "en", "bnc-location": "KR"}
+_LIST = ("https://www.binance.com/bapi/futures/v1/friendly/future/smart-money/top-trader/list"
+         "?page=1&rows=10&timeRange=30D&rankingType=PNL&onlyShowSharingPosition=true"
+         "&onlyShowSignalEnabled=false&order=DESC")
+_PROFILE = "https://www.binance.com/bapi/asset/v1/friendly/future/smart-money/profile?topTraderId=%s"
+_POS = ("https://www.binance.com/bapi/asset/v1/private/future/smart-money/profile/query-positions"
+        "?topTraderId=%s&marketType=UM&page=1&rows=9")
 
 
-def _post(path: str, body: dict):
-    req = urllib.request.Request(_BASE + path, data=json.dumps(body).encode(), headers=_HDR)
+def _get(url: str):
+    req = urllib.request.Request(url, headers=_H)
     try:
         with urllib.request.urlopen(req, timeout=20) as r:  # noqa: S310
             return r.status, json.load(r)
@@ -22,94 +33,45 @@ def _post(path: str, body: dict):
         try:
             return e.code, json.loads(e.read().decode())
         except Exception:  # noqa: BLE001
-            return e.code, {"raw": str(e)}
-    except Exception as e:  # noqa: BLE001
-        return None, {"error": str(e)}
-
-
-# 바이낸스가 경로/버전을 바꿔 v1 public getLeaderboardRank가 404. 후보들을 순차 시험.
-_CANDIDATES = [
-    ("v1 public getLeaderboardRank", "https://www.binance.com/bapi/futures/v1/public/future/leaderboard/getLeaderboardRank"),
-    ("v2 public getLeaderboardRank", "https://www.binance.com/bapi/futures/v2/public/future/leaderboard/getLeaderboardRank"),
-    ("v3 public getLeaderboardRank", "https://www.binance.com/bapi/futures/v3/public/future/leaderboard/getLeaderboardRank"),
-    ("v2 public searchLeaderboard", "https://www.binance.com/bapi/futures/v2/public/future/leaderboard/searchLeaderboard"),
-    ("v1 friendly getLeaderboardRank", "https://www.binance.com/bapi/futures/v1/friendly/future/leaderboard/getLeaderboardRank"),
-]
-_RANK_BODY = {"isShared": True, "isTrader": False, "periodType": "ALL",
-              "statisticsType": "PNL", "tradeType": "PERPETUAL"}
-
-
-def _post_url(url: str, body: dict):
-    req = urllib.request.Request(url, data=json.dumps(body).encode(), headers=_HDR)
-    try:
-        with urllib.request.urlopen(req, timeout=20) as r:  # noqa: S310
-            return r.status, json.load(r)
-    except urllib.error.HTTPError as e:
-        try:
-            return e.code, json.loads(e.read().decode())
-        except Exception:  # noqa: BLE001
-            return e.code, {"raw": str(e)}
+            return e.code, {"raw": str(e)[:200]}
     except Exception as e:  # noqa: BLE001
         return None, {"error": str(e)}
 
 
 def main() -> None:
-    print("=" * 60)
-    print("리더보드 랭크 엔드포인트 후보 순차 시험:")
-    live = None
-    for name, url in _CANDIDATES:
-        st, d = _post_url(url, _RANK_BODY)
-        data = d.get("data") if isinstance(d, dict) else None
-        n = len(data) if isinstance(data, list) else 0
-        print(f"  [{st}] {name}  → data {n}명" + (f" | msg:{d.get('message')}" if not n else ""))
-        if n:
-            live = (name, url, data); break
-    if not live:
-        print("\n→ 살아있는 랭크 엔드포인트 없음(전부 404/차단/빈결과). 바이낸스 공개 리더보드 폐기 추정.")
-        print("=" * 60); return
-    name, url, data = live
-    print(f"\n★살아있는 엔드포인트: {name}")
-    print("첫 항목 키:", list(data[0].keys()))
-    print("첫 항목 샘플:", json.dumps(data[0], ensure_ascii=False)[:400])
-    uid = data[0].get("encryptedUid")
-    if uid:
-        print("\n2) getOtherPosition (첫 트레이더 포지션)")
-        st2, d2 = _post("/getOtherPosition", {"encryptedUid": uid, "tradeType": "PERPETUAL"})
-        print("HTTP:", st2, "| msg:", d2.get("message"))
-        plist = (d2.get("data") or {}).get("otherPositionRetList")
-        if isinstance(plist, list) and plist:
-            print("포지션 첫 항목 키:", list(plist[0].keys()))
-            print("포지션 샘플:", json.dumps(plist[0], ensure_ascii=False)[:400])
-    print("=" * 60)
-    return
-
-
-def _main_old() -> None:
-    st, d = _post("/getLeaderboardRank", {
-        "isShared": True, "isTrader": False, "periodType": "ALL",
-        "statisticsType": "PNL", "tradeType": "PERPETUAL",
-    })
+    print("=" * 64)
+    print("1) top-trader/list (30D PNL 상위, /friendly)")
+    st, d = _get(_LIST)
     print("HTTP:", st, "| code:", d.get("code"), "| msg:", d.get("message"))
     data = d.get("data")
-    if isinstance(data, list) and data:
-        print(f"상위 트레이더 {len(data)}명. 첫 항목 키:", list(data[0].keys()))
-        print("첫 항목 샘플:", json.dumps(data[0], ensure_ascii=False)[:400])
-        uid = data[0].get("encryptedUid")
-        if uid:
-            print("\n2) getOtherPosition (첫 트레이더 포지션)")
-            st2, d2 = _post("/getOtherPosition", {"encryptedUid": uid, "tradeType": "PERPETUAL"})
-            print("HTTP:", st2, "| code:", d2.get("code"), "| msg:", d2.get("message"))
-            pd = (d2.get("data") or {})
-            plist = pd.get("otherPositionRetList")
-            if isinstance(plist, list) and plist:
-                print("포지션 첫 항목 키:", list(plist[0].keys()))
-                print("포지션 샘플:", json.dumps(plist[0], ensure_ascii=False)[:400])
-            else:
-                print("포지션 데이터 구조:", json.dumps(pd, ensure_ascii=False)[:400])
+    # data 구조가 list거나 {list:[...]} 형태일 수 있음
+    rows = data if isinstance(data, list) else (data or {}).get("list") if isinstance(data, dict) else None
+    if not rows:
+        print("data 구조:", json.dumps(d, ensure_ascii=False)[:500]); print("=" * 64); return
+    print(f"트레이더 {len(rows)}명. 첫 항목 키:", list(rows[0].keys()))
+    print("첫 항목 샘플:", json.dumps(rows[0], ensure_ascii=False)[:500])
+    tid = rows[0].get("topTraderId") or rows[0].get("id")
+    if not tid:
+        print("(topTraderId 필드 못 찾음 — 위 키 참고)"); print("=" * 64); return
+
+    print(f"\n2) profile?topTraderId={tid} (/friendly)")
+    st2, d2 = _get(_PROFILE % tid)
+    print("HTTP:", st2, "| msg:", d2.get("message"))
+    if isinstance(d2.get("data"), dict):
+        print("profile 키:", list(d2["data"].keys()))
+        print("profile 샘플:", json.dumps(d2["data"], ensure_ascii=False)[:500])
+
+    print(f"\n3) query-positions?topTraderId={tid} (/private ← 인증필요 여부 관건)")
+    st3, d3 = _get(_POS % tid)
+    print("HTTP:", st3, "| code:", d3.get("code"), "| msg:", d3.get("message"))
+    pd = d3.get("data")
+    plist = pd if isinstance(pd, list) else (pd or {}).get("list") if isinstance(pd, dict) else None
+    if plist:
+        print("포지션 첫 항목 키:", list(plist[0].keys()))
+        print("포지션 샘플:", json.dumps(plist[0], ensure_ascii=False)[:500])
     else:
-        print("리더보드 data 없음 — 전체 응답(차단/구조 확인용):")
-        print(json.dumps(d, ensure_ascii=False)[:600])
-    print("=" * 60)
+        print("포지션 응답(인증필요면 여기서 실패/빈값):", json.dumps(d3, ensure_ascii=False)[:400])
+    print("=" * 64)
 
 
 if __name__ == "__main__":
