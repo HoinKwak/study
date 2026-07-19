@@ -1551,9 +1551,14 @@ def render_html(journal: TradeJournal, equity: float | None = None,
   </div>
 
   <div class="tabpane" data-pane="leaderboard" style="display:none">
-    <h2>🏆 Hyperliquid 상위 트레이더 현재 포지션</h2>
-    <div class="muted" style="margin-bottom:8px">필터: 통산 PnL ≥ $100K · 통산 ROI ≥ 50% · 최근 거래 활동 · 최근 90일 수익 &gt; 0.
-    각 트레이더의 현재 열린 포지션(명목가 큰 순). Hyperliquid 공개 데이터 · 10분 캐시. <b>정보용, 매매권유 아님.</b></div>
+    <h2>🏆 상위 트레이더 현재 포지션</h2>
+    <div style="margin-bottom:8px">
+      <button class="tfbtn lbsrc tfbtn-on" data-src="hyperliquid">Hyperliquid</button>
+      <button class="tfbtn lbsrc" data-src="binance">Binance</button>
+    </div>
+    <div class="muted" style="margin-bottom:8px">필터: 통산 PnL ≥ $100K · 통산 ROI ≥ 50% · 최근 거래 활동 · 5대 메이저 포지션 · 양방향/고배율 제외.
+    각 트레이더의 현재 열린 포지션(명목가 큰 순) · 10분 캐시. <b>정보용, 매매권유 아님.</b>
+    (Binance는 지역차단으로 로컬 대시보드에서만 동작)</div>
     <div id="lb-root" class="muted">시장 탭처럼 서버 모드(serve_dashboard)에서 로드됩니다 — 리더보드 탭을 열면 불러옵니다.</div>
   </div>
 
@@ -1571,9 +1576,9 @@ def render_html(journal: TradeJournal, equity: float | None = None,
      try{{localStorage.setItem('ct_tab',tab);}}catch(_e){{}} }});
    // 자동 새로고침 후에도 마지막으로 보던 탭 유지
    (function(){{var saved;try{{saved=localStorage.getItem('ct_tab');}}catch(_e){{}}if(saved)_showTab(saved);}})();
-   // 리더보드 탭: 처음 열릴 때 1회 /api/leaderboard 로드(무거워서 지연)
+   // 리더보드 탭: 처음 열릴 때 1회 /api/leaderboard 로드(무거워서 지연) + 소스 토글(HL/Binance)
    (function(){{
-     var loaded=false;
+     var curSrc='hyperliquid', cache={{}};
      function usd(n){{n=Number(n)||0;var a=Math.abs(n);
        if(a>=1e9)return (n/1e9).toFixed(2)+'B';if(a>=1e6)return (n/1e6).toFixed(2)+'M';
        if(a>=1e3)return (n/1e3).toFixed(1)+'K';return n.toFixed(0);}}
@@ -1620,7 +1625,11 @@ def render_html(journal: TradeJournal, equity: float | None = None,
      function render(d){{
        var root=document.getElementById('lb-root');if(!root)return;
        var ts=(d&&d.traders)||[];
-       if(!ts.length){{root.innerHTML='<span class="muted">데이터 없음 — 서버 모드에서만 동작하며, 첫 로드는 리더보드 40k행 조회로 다소 걸립니다.</span>';return;}}
+       if(!ts.length){{
+         var msg=(d&&d.source==='binance')
+           ?'Binance 리더보드는 지역차단으로 <b>로컬 대시보드</b>에서만 동작합니다(개발서버는 빈 결과).'
+           :'데이터 없음 — 서버 모드에서만 동작하며, 첫 로드는 리더보드 대량행 조회로 다소 걸립니다.';
+         root.innerHTML='<span class="muted">'+msg+'</span>';return;}}
        var h=sumCards(d.summary||[]);
        ts.forEach(function(t){{
          var pos=(t.positions||[]).map(function(p){{
@@ -1649,16 +1658,24 @@ def render_html(journal: TradeJournal, equity: float | None = None,
        }});
        root.innerHTML=h;
      }}
-     function load(){{
-       if(loaded)return;loaded=true;
-       var root=document.getElementById('lb-root');if(root)root.innerHTML='<span class="muted">불러오는 중… (첫 로드는 수십 초 걸릴 수 있습니다)</span>';
-       fetch('/api/leaderboard',{{cache:'no-store'}}).then(function(r){{return r.json();}}).then(render)
-         .catch(function(){{loaded=false;if(root)root.innerHTML='<span class="muted">불러오기 실패 — serve_dashboard 서버 모드에서만 동작합니다.</span>';}});
+     function load(src){{
+       src=src||curSrc;
+       var root=document.getElementById('lb-root');if(!root)return;
+       if(cache[src]){{if(curSrc===src)render(cache[src]);return;}}
+       root.innerHTML='<span class="muted">불러오는 중… (첫 로드는 수십 초 걸릴 수 있습니다)</span>';
+       fetch('/api/leaderboard?source='+src,{{cache:'no-store'}}).then(function(r){{return r.json();}})
+         .then(function(d){{cache[src]=d;if(curSrc===src)render(d);}})
+         .catch(function(){{if(curSrc===src)root.innerHTML='<span class="muted">불러오기 실패 — serve_dashboard 서버 모드에서만 동작합니다.</span>';}});
      }}
-     document.addEventListener('click',function(e){{var t=e.target.closest&&e.target.closest('.tab');
-       if(t&&t.getAttribute('data-tab')==='leaderboard')load();}});
-     // 새로고침 후 저장된 탭이 리더보드면 자동 로드
-     try{{if(localStorage.getItem('ct_tab')==='leaderboard')load();}}catch(_e){{}}
+     function setSrc(src){{curSrc=src;
+       document.querySelectorAll('.lbsrc').forEach(function(b){{b.classList.toggle('tfbtn-on',b.getAttribute('data-src')===src);}});
+       load(src);}}
+     document.addEventListener('click',function(e){{
+       var s=e.target.closest&&e.target.closest('.lbsrc');
+       if(s){{setSrc(s.getAttribute('data-src'));return;}}
+       var t=e.target.closest&&e.target.closest('.tab');
+       if(t&&t.getAttribute('data-tab')==='leaderboard')load(curSrc);}});
+     try{{if(localStorage.getItem('ct_tab')==='leaderboard')load(curSrc);}}catch(_e){{}}
    }})();
    // 열린 포지션 현재가·손익률·PnL 실시간 채우기(서버 모드) — 갱신 후 재호출 가능하게 함수화
    function fillPositions(){{

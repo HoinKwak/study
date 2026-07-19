@@ -36,7 +36,7 @@ from crypto_trader.scanner import EventStore  # noqa: E402
 _REPO_DIR = Path(__file__).resolve().parent.parent
 _FG_CACHE = {"t": 0.0, "data": None}   # 공포·탐욕 지수 캐시(30분)
 _MACRO_CACHE: dict[str, dict] = {}     # 매크로 묶음 기간별 캐시(period → {t, data})
-_LEADERBOARD_CACHE = {"t": 0.0, "data": None}   # 리더보드 상위 트레이더 포지션 캐시(10분)
+_LEADERBOARD_CACHE: dict[str, dict] = {}   # 리더보드 소스별 캐시(source → {t,data}, 10분)
 
 
 def _autopull_loop(interval: int) -> None:
@@ -226,18 +226,24 @@ def main() -> None:
             pass
         return json.dumps(out).encode("utf-8")
 
-    def _api_leaderboard() -> bytes:
-        """Hyperliquid 리더보드 상위 트레이더 현재 포지션 — 10분 캐시(리더보드 40k행+포지션 조회라 무겁다)."""
+    def _api_leaderboard(qs) -> bytes:
+        """리더보드 상위 트레이더 현재 포지션 — 소스별(hyperliquid|binance) 10분 캐시.
+
+        무겁다(리더보드 대량행+포지션 조회). 바이낸스는 로컬 전용(개발환경은 지역차단으로 빈 결과).
+        """
+        source = (qs.get("source", ["hyperliquid"])[0] or "hyperliquid").lower()
         now = time.time()
-        c = _LEADERBOARD_CACHE
-        if c["data"] is not None and now - c["t"] < 600:
+        c = _LEADERBOARD_CACHE.get(source)
+        if c and now - c["t"] < 600:
             return json.dumps(c["data"]).encode("utf-8")
-        out = {"source": "hyperliquid", "count": 0, "traders": []}
+        out = {"source": source, "count": 0, "traders": []}
         try:
-            from crypto_trader.connectors.hyperliquid_leaderboard import build_bundle
+            if source == "binance":
+                from crypto_trader.connectors.binance_leaderboard import build_bundle
+            else:
+                from crypto_trader.connectors.hyperliquid_leaderboard import build_bundle
             out = build_bundle(limit=20)
-            _LEADERBOARD_CACHE["t"] = now
-            _LEADERBOARD_CACHE["data"] = out
+            _LEADERBOARD_CACHE[source] = {"t": now, "data": out}
         except Exception:  # noqa: BLE001
             pass
         return json.dumps(out).encode("utf-8")
@@ -326,7 +332,7 @@ def main() -> None:
                 self._send(_api_macro(parse_qs(parsed.query)), "application/json")
                 return
             if path == "/api/leaderboard":
-                self._send(_api_leaderboard(), "application/json")
+                self._send(_api_leaderboard(parse_qs(parsed.query)), "application/json")
                 return
             self.send_response(404)
             self.end_headers()
