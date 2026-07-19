@@ -66,9 +66,25 @@
   **사자마자 매도(감지시점 잔고<이번매수분 30% = 사실상 전량 이탈)는 뒷북이라 기본 발송 제외**
   (`--keep-exited` 로 다시 볼 수 있음).
 
-**실행(알림봇 상시 구동):**
+### ⑤-A 재설계: Helius WebSocket 실시간 감지 (`ws_alert.py`, 권장)
+Bitquery 무료는 realtime 쿼리가 **큐브당 5pt·월 1,000pt**라 120초 폴링이면 **6~7시간**이면 소진된다
+(403 "usage quota reached"). 그래서 감지를 **Helius 무료(월 1M 크레딧) WebSocket `logsSubscribe`**로
+바꿨다 — 폴링 없이 지갑 트랜잭션을 실시간 푸시로 받아 Helius Enhanced Tx로 베이스→밈 매수를 판별.
+알림 부가정보(신규/추매·잔고·역대손익)·포맷·텔레그램·중복제거는 `alert_bot.py`를 그대로 재사용.
 ```
-python sideprojects/memewallet/alert_bot.py          # 상시 폴링(120초)
+pip install websocket-client
+python sideprojects/memewallet/ws_alert.py               # 실시간 상시 구동
+python sideprojects/memewallet/ws_alert.py --dry         # 텔레그램 미발송(콘솔만)
+python sideprojects/memewallet/ws_alert.py --test-sig <SIGNATURE>   # 특정 서명 파싱만 검증
+```
+필요 .env 키(추가): `HELIUS_API_KEY`(helius.dev 무료 가입). 텔레그램 키는 아래와 동일.
+- 무료 티어는 표준 `logsSubscribe`만(지갑당 1구독). 향상된 `transactionSubscribe`(다주소 1구독)는
+  유료 Developer($49/월)부터 — 무료로도 1M 크레딧이면 24/7 가능.
+- 역대손익(enrich의 token_realized)만 여전히 Bitquery를 쓰나 **발송 알림에만** 호출(스킵분 생략)이라 소모 미미.
+
+### ⑤-B 구(舊) Bitquery 폴링판 (`alert_bot.py`, 폴백)
+```
+python sideprojects/memewallet/alert_bot.py          # 상시 폴링(120초) — Bitquery 무료 쿼터 빨리 소진
 python sideprojects/memewallet/alert_bot.py --once --dry   # 1회 테스트(콘솔만)
 ```
 필요 .env 키: `BITQUERY_API_KEY`·`DUNE_API_KEY`(백필용) + **매매봇과 분리된 전용 텔레그램**
