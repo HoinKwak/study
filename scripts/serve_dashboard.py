@@ -37,6 +37,7 @@ _REPO_DIR = Path(__file__).resolve().parent.parent
 _FG_CACHE = {"t": 0.0, "data": None}   # 공포·탐욕 지수 캐시(30분)
 _MACRO_CACHE: dict[str, dict] = {}     # 매크로 묶음 기간별 캐시(period → {t, data})
 _LEADERBOARD_CACHE: dict[str, dict] = {}   # 리더보드 소스별 캐시(source → {t,data}, 10분)
+_BTCD_CACHE = {"t": 0.0, "val": None}      # BTC 도미넌스 현재값 캐시(5분)
 
 
 def _autopull_loop(interval: int) -> None:
@@ -210,6 +211,55 @@ def main() -> None:
             pass
         return json.dumps(out).encode("utf-8")
 
+    def _api_btc_dominance() -> bytes:
+        """BTC 도미넌스(%) 일별 — research/btcd 백필(1년, committed) + 라이브 일별 누적 병합.
+
+        과거 BTC.D = BTC시총 ÷ 전체시총. 전체시총 과거는 사장님 CSV(research/btcd/total_mcap_daily.csv),
+        BTC시총은 CoinGecko 무료(365일). 그 곱으로 만든 백필을 씨앗으로, 이후 /global 현재값을 일별 append.
+        """
+        from pathlib import Path as _P
+
+        from crypto_trader.config import get_settings
+        now = time.time()
+        base_path = _REPO_DIR / "research" / "btcd" / "btc_dominance_daily.json"
+        live_path = _P(get_settings().state_dir) / "btc_dominance_live.json"
+        try:
+            base = json.loads(base_path.read_text()) if base_path.exists() else []
+        except Exception:  # noqa: BLE001
+            base = []
+        try:
+            live = json.loads(live_path.read_text()) if live_path.exists() else []
+        except Exception:  # noqa: BLE001
+            live = []
+        # 현재값(5분 캐시)
+        if _BTCD_CACHE["val"] is None or now - _BTCD_CACHE["t"] >= 300:
+            try:
+                import requests
+                d = requests.get("https://api.coingecko.com/api/v3/global", timeout=8).json()
+                _BTCD_CACHE["val"] = float(d["data"]["market_cap_percentage"]["btc"])
+                _BTCD_CACHE["t"] = now
+            except Exception:  # noqa: BLE001
+                pass
+        dom = _BTCD_CACHE["val"]
+        # 백필+라이브 병합(일 기준 dedup)
+        merged: dict[int, float] = {}
+        for t, v in base + live:
+            merged[(int(t) // 86_400_000) * 86_400_000] = v
+        # 오늘 라이브 append(마지막 샘플이 ~20h보다 오래됐을 때만)
+        ts_ms = int(now * 1000)
+        if dom is not None and (not merged or ts_ms - max(merged) >= 72_000_000):
+            day = (ts_ms // 86_400_000) * 86_400_000
+            merged[day] = round(dom, 3)
+            live.append([day, round(dom, 3)])
+            live = live[-400:]
+            try:
+                live_path.parent.mkdir(parents=True, exist_ok=True)
+                live_path.write_text(json.dumps(live))
+            except Exception:  # noqa: BLE001
+                pass
+        points = sorted([t, v] for t, v in merged.items())
+        return json.dumps({"current": dom, "points": points[-400:]}).encode("utf-8")
+
     def _api_macro(qs) -> bytes:
         """BTC vs 증시·원자재 매크로 묶음(정규화 괴리 + 카드) — 기간별 10분 캐시."""
         period = (qs.get("period", ["6mo"])[0] or "6mo")
@@ -318,6 +368,8 @@ def main() -> None:
                 return
             if path == "/api/cvd_hist":
                 self._send(_api_cvd_hist(parse_qs(parsed.query)), "application/json")
+            if path == "/api/btc_dominance":
+                self._send(_api_btc_dominance(), "application/json")
                 return
             if path == "/api/prices":
                 self._send(_api_prices(parse_qs(parsed.query)), "application/json")

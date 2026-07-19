@@ -466,10 +466,16 @@ def _market_view(tickers) -> str:
         f'<span class="muted">누적 CVD (테이커 매수−매도) · <b id="cvd-val">—</b></span>'
         f'<span>{cvdtfs}</span></div>'
         f'<div id="mkt-cvd" class="minichart"><div class="muted">로딩…</div></div></div>')
+    domcard = (
+        f'<div class="card" style="flex:1;min-width:300px">'
+        f'<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px">'
+        f'<span class="muted">BTC 도미넌스 (%) · <b id="dom-val">—</b></span>'
+        f'<span class="muted" style="font-size:11px">일별 · 1년 백필</span></div>'
+        f'<div id="mkt-dom" class="minichart"><div class="muted">로딩…</div></div></div>')
     cfg = ("<script>window.MKTCFG=" + json.dumps(
         {"syms": [str(t.get("symbol", "")) for t in top], "d1": d1}) + ";</script>")
     return (f'<div style="display:flex;flex-wrap:wrap;gap:14px;align-items:stretch">{chart}{rightcol}</div>'
-            f'<div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:14px">{oicard}{cvdcard}</div>'
+            f'<div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:14px">{oicard}{cvdcard}{domcard}</div>'
             f'{cfg}{_CHART_JS}')
 
 
@@ -524,11 +530,11 @@ _CHART_JS = r"""<script>
    var _o=localStorage.getItem('ct_oitf');if(_o)SEL.oitf=_o;
    var _c=localStorage.getItem('ct_cvdtf');if(_c)SEL.cvdtf=_c;}catch(_e){}
  if(!TFSET[SEL.tf])SEL.tf='4h';   // 옛 기간기준(7d 등) 저장값 보정
- var LAST=null, OILAST=null, CVDLAST=null;
+ var LAST=null, OILAST=null, CVDLAST=null, DOMLAST=null;
  var root=document.getElementById('mkt-chart');
  if(!root)return;
  var card=root.closest('.card');
- var oiEl=document.getElementById('mkt-oi'), cvdEl=document.getElementById('mkt-cvd');
+ var oiEl=document.getElementById('mkt-oi'), cvdEl=document.getElementById('mkt-cvd'), domEl=document.getElementById('mkt-dom');
  // 사용자가 조절한 차트 높이 복원(새로고침 후에도 유지)
  try{var sh=parseInt(localStorage.getItem('ct_chart_h'),10);
    if(sh>0)root.style.height=Math.min(720,Math.max(140,sh))+'px';}catch(_e){}
@@ -868,6 +874,14 @@ _CHART_JS = r"""<script>
      setTxt('cvd-val',num(last));var ve=document.getElementById('cvd-val');if(ve)ve.style.color=col;
      drawLine(cvdEl,p,{color:col,fmt:num,zero:true});})
    .catch(function(){CVDLAST=null;cvdEl.innerHTML='<div class="muted">CVD는 serve_dashboard 서버 모드에서 표시됩니다.</div>';setTxt('cvd-val','-');});}
+ function domFmt(v){return v.toFixed(2)+'%';}
+ function loadDom(){if(!domEl)return;
+   fetch('/api/btc_dominance')
+   .then(function(r){return r.json();}).then(function(d){var p=(d&&d.points)||[];DOMLAST=p;
+     setTxt('dom-val',(d&&d.current!=null)?d.current.toFixed(2)+'%':'-');
+     if(p.length<2){domEl.innerHTML='<div class="muted">누적 수집 중 — 갱신될수록 채워집니다</div>';return;}
+     drawLine(domEl,p,{color:'#e0964a',fmt:domFmt});})
+   .catch(function(){DOMLAST=null;domEl.innerHTML='<div class="muted">BTC.D는 serve_dashboard 서버 모드에서 표시됩니다.</div>';setTxt('dom-val','-');});}
  // 리사이즈 재렌더 + 차트 높이 저장(캔들), OI·CVD 폭 변화 재렌더
  if(window.ResizeObserver){
    new ResizeObserver(function(){if(LAST)drawCandles(LAST);
@@ -876,7 +890,8 @@ _CHART_JS = r"""<script>
      try{var _h=Math.round(root.clientHeight);if(_h>=140)localStorage.setItem('ct_chart_h',_h);}catch(_e){}}).observe(root);
    if(oiEl)new ResizeObserver(function(){if(OILAST&&OILAST.length>1)drawLine(oiEl,OILAST,{color:'#6c72ff',fmt:usd});}).observe(oiEl);
    if(cvdEl)new ResizeObserver(function(){if(CVDLAST&&CVDLAST.length>1){var lv=CVDLAST[CVDLAST.length-1][1];
-     drawLine(cvdEl,CVDLAST,{color:lv>=0?'#16a34a':'#e23b4a',fmt:num,zero:true});}}).observe(cvdEl);}
+     drawLine(cvdEl,CVDLAST,{color:lv>=0?'#16a34a':'#e23b4a',fmt:num,zero:true});}}).observe(cvdEl);
+   if(domEl)new ResizeObserver(function(){if(DOMLAST&&DOMLAST.length>1)drawLine(domEl,DOMLAST,{color:'#e0964a',fmt:domFmt});}).observe(domEl);}
  // ---- 심볼 검색 ----
  function renderSyms(q){q=(q||'').toUpperCase();var box=document.getElementById('mkt-list');
    box.innerHTML=SYMS.filter(function(x){return x.toUpperCase().indexOf(q)>=0;}).slice(0,150)
@@ -897,24 +912,24 @@ _CHART_JS = r"""<script>
      s.style.display=s.style.display==='none'?'block':'none';if(s.style.display==='block')renderSyms('');return;}
    var op=t.closest('.tkopt');if(op){SEL.s=op.getAttribute('data-s');save('ct_sym',SEL.s);
      setTxt('mkt-sym',SEL.s);setTxt('mkt-price','—');
-     document.getElementById('mkt-search').style.display='none';loadChart();loadDerivs();loadOI();loadCVD();return;}
+     document.getElementById('mkt-search').style.display='none';loadChart();loadDerivs();loadOI();loadCVD();loadDom();return;}
    // 강도·시총 표 / 상단 티커 카드 심볼 클릭 → 시장 탭으로 전환 + 해당 종목 차트 로드 + 스크롤
    var sl=t.closest('.symlink');if(sl){var sy2=(sl.getAttribute('data-sym')||'').toUpperCase();
      if(sy2){if(window.__showTab){window.__showTab('market');try{localStorage.setItem('ct_tab','market');}catch(_e2){}}
        SEL.s=sy2;save('ct_sym',SEL.s);setTxt('mkt-sym',SEL.s);setTxt('mkt-price','—');
-       loadChart();loadDerivs();loadOI();loadCVD();
+       loadChart();loadDerivs();loadOI();loadCVD();loadDom();
        if(root&&root.scrollIntoView)root.scrollIntoView({behavior:'smooth',block:'center'});}return;}});
  document.addEventListener('input',function(e){var t=e.target;
    if(t.id==='mkt-input')renderSyms(t.value);});
  fetch('/api/symbols').then(function(r){return r.json();}).then(function(a){if(a&&a.length)SYMS=a;}).catch(function(){});
  setTxt('mkt-sym',SEL.s);   // 복원된 심볼 라벨 반영
  hlInd();hlChan();
- loadChart();loadDerivs();loadOI();loadCVD();loadFearGreed();
+ loadChart();loadDerivs();loadOI();loadCVD();loadDom();loadFearGreed();
  // 시장 탭이 보일 때 주기적으로 차트·파생 재조회(전체 리로드 없이 갱신)
  (function(){var SEC=window.CT_REFRESH||0;if(!SEC||SEC<5)return;
    setInterval(function(){var mp=document.querySelector('.tabpane[data-pane="market"]');
      if(mp&&mp.style.display==='none')return;   // 안 보이는 탭이면 스킵
-     loadChart();loadDerivs();loadOI();loadCVD();},SEC*1000);})();
+     loadChart();loadDerivs();loadOI();loadCVD();loadDom();},SEC*1000);})();
 })();
 </script>"""
 
