@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import json
 import time
+import urllib.error
 import urllib.request
 from pathlib import Path
 
@@ -26,10 +27,31 @@ _CACHE = C.STATE_DIR / "ohlcv_cache"
 MODES = ("fixed", "trailing", "assist")
 
 
-def _get(url: str) -> dict:
-    req = urllib.request.Request(url, headers=_UA)
-    with urllib.request.urlopen(req, timeout=25) as r:  # noqa: S310
-        return json.load(r)
+_last_call = [0.0]   # 호출 간 최소 간격(레이트리밋 페이싱)
+_MIN_GAP = 2.2       # GeckoTerminal 무료 ~30/min → 호출당 2.2s
+
+
+def _get(url: str, tries: int = 5) -> dict:
+    """GeckoTerminal 호출. 호출 간 페이싱 + 429 지수 백오프 재시도."""
+    delay = 5.0
+    for i in range(tries):
+        gap = _MIN_GAP - (time.time() - _last_call[0])
+        if gap > 0:
+            time.sleep(gap)
+        try:
+            req = urllib.request.Request(url, headers=_UA)
+            with urllib.request.urlopen(req, timeout=25) as r:  # noqa: S310
+                out = json.load(r)
+            _last_call[0] = time.time()
+            return out
+        except urllib.error.HTTPError as e:
+            _last_call[0] = time.time()
+            if e.code == 429 and i < tries - 1:
+                ra = e.headers.get("Retry-After") if e.headers else None
+                time.sleep(float(ra) if ra and str(ra).isdigit() else delay)
+                delay = min(delay * 2, 60.0)
+                continue
+            raise
 
 
 def top_pool(mint: str) -> str | None:
@@ -66,22 +88,30 @@ def ohlcv(pool: str, oldest_ts: int) -> list[tuple]:
         if oldest_in_page <= oldest_ts:
             break
         before = oldest_in_page
-        time.sleep(2.2)   # GeckoTerminal 무료 레이트리밋 배려
     return sorted([(t, *v) for t, v in bars.items()])
 
 
 def cached_ohlcv(mint: str, oldest_ts: int) -> list[tuple] | None:
-    """토큰 시간봉 캐시(디스크). 없으면 풀조회→수집→저장. 실패 시 None(러그/데이터없음)."""
+    """토큰 시간봉 캐시(디스크). 없으면 풀조회→수집→저장. 실패 시 None.
+
+    ★빈 결과는 캐시하지 않는다★ — 레이트리밋/일시오류로 빈값을 캐시하면 재실행해도
+    영영 no_data로 남던 버그(초판) 방지. 데이터 있을 때만 저장, 없으면 다음 실행 재시도.
+    """
     _CACHE.mkdir(parents=True, exist_ok=True)
     f = _CACHE / f"{mint}.json"
     if f.exists():
         raw = json.loads(f.read_text())
-        return [tuple(x) for x in raw] if raw else None
-    pool = top_pool(mint)
-    time.sleep(1.0)
-    bars = ohlcv(pool, oldest_ts) if pool else []
-    f.write_text(json.dumps(bars))
-    return bars or None
+        if raw:
+            return [tuple(x) for x in raw]
+    try:
+        pool = top_pool(mint)
+        bars = ohlcv(pool, oldest_ts) if pool else []
+    except Exception:  # noqa: BLE001
+        bars = []
+    if bars:
+        f.write_text(json.dumps(bars))   # 성공분만 캐시
+        return bars
+    return None
 
 
 def _net(gross: float, slip_bps: int = C.DEFAULT_SLIPPAGE_BPS) -> float:
