@@ -14,8 +14,9 @@ Bitquery 폴링(무료 월 1,000pt라 몇 시간이면 소진)을 버리고, Hel
 3. tokenTransfers/nativeTransfers에서 '지갑이 받은 비베이스 토큰(매수) + 지불한 베이스(USD)' 추출.
 4. ≥ MIN_USD($1,000) 매수만 → enrich(신규/추매·잔고·역대손익) → send_telegram.
 
-실행: python sideprojects/memewallet/ws_alert.py [--dry] [--keep-exited]
+실행: python sideprojects/memewallet/ws_alert.py [--dry] [--keep-exited] [--min USD]
       python sideprojects/memewallet/ws_alert.py --test-sig <SIGNATURE>   # 파싱만 검증(키 필요)
+      --min: 매수 최소 USD 하향(기본 $1,000). 예 `--min 50` = 파이프라인 감지·발송 검증용.
 키: .env HELIUS_API_KEY + (기존) MEMEWALLET_TELEGRAM_BOT_TOKEN/CHAT_ID.
 의존: pip install websocket-client
 """
@@ -44,6 +45,7 @@ _ENH = "https://api.helius.xyz/v0/transactions/?api-key={k}"
 _WS = "wss://mainnet.helius-rpc.com/?api-key={k}"
 _sym_cache: dict[str, str] = {}
 _sol_px = [0.0, 0.0]   # (price, ts)
+_MIN = MIN_USD   # 매수 최소 USD(기본 $1,000). --min 으로 낮춰 파이프라인 검증 가능.
 
 
 def _post_json(url: str, body: dict) -> dict | list:
@@ -198,7 +200,7 @@ def extract_buy(tx: dict, wallet: str) -> dict | None:
         elif nt.get("toUserAccount") == wallet:
             sol_in += amt
     usd = usd_out + max(0.0, sol_out - sol_in) * sol_price()
-    if not bought_mint or usd < MIN_USD:
+    if not bought_mint or usd < _MIN:
         return None
     return {"mint": bought_mint, "bought": bought_amt, "usd": usd}
 
@@ -246,9 +248,12 @@ def handle_signature(sig: str, wallet: str, key: str, wmap: dict, seen: set,
     return "sent"
 
 
-def run(dry: bool = False, keep_exited: bool = False) -> None:
+def run(dry: bool = False, keep_exited: bool = False, min_usd: float | None = None) -> None:
     import websocket  # 지연 임포트(미설치 시 안내)
 
+    global _MIN
+    if min_usd is not None:
+        _MIN = min_usd   # 검증용 임계값 하향(--min). 기본은 $1,000.
     key = _env("HELIUS_API_KEY")
     if not key:
         print("[오류] .env에 HELIUS_API_KEY가 없습니다. helius.dev 무료 가입 후 키를 추가하세요.")
@@ -271,7 +276,7 @@ def run(dry: bool = False, keep_exited: bool = False) -> None:
             req_wallet[i] = w
             ws.send(json.dumps({"jsonrpc": "2.0", "id": i, "method": "logsSubscribe",
                                 "params": [{"mentions": [w]}, {"commitment": "confirmed"}]}))
-        print(f"[WS] {len(wallets)}지갑 구독 요청, ≥${MIN_USD:,.0f}, dry={dry}, "
+        print(f"[WS] {len(wallets)}지갑 구독 요청, ≥${_MIN:,.0f}, dry={dry}, "
               f"사자마자매도={'표시' if keep_exited else '필터링'}")
 
     def on_message(ws, raw):
@@ -363,4 +368,7 @@ if __name__ == "__main__":
         i = sys.argv.index("--test-sig")
         _test_sig(sys.argv[i + 1])
     else:
-        run(dry="--dry" in sys.argv, keep_exited="--keep-exited" in sys.argv)
+        _min = None
+        if "--min" in sys.argv:
+            _min = float(sys.argv[sys.argv.index("--min") + 1])
+        run(dry="--dry" in sys.argv, keep_exited="--keep-exited" in sys.argv, min_usd=_min)
