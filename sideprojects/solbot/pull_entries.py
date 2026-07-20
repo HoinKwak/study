@@ -16,6 +16,7 @@ from __future__ import annotations
 import json
 import sys
 import time
+import urllib.error
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -35,6 +36,21 @@ def _wallets() -> list[str]:
     return [w["wallet"] for w in data]
 
 
+def _get_retry(url: str, tries: int = 6) -> list | dict:
+    """Helius 429/5xx에 지수 백오프 재시도(무료 티어 레이트리밋 대응)."""
+    delay = 1.5
+    for i in range(tries):
+        try:
+            return W._get_json(url)
+        except urllib.error.HTTPError as e:
+            if e.code in (429, 500, 502, 503, 504) and i < tries - 1:
+                ra = e.headers.get("Retry-After") if e.headers else None
+                time.sleep(float(ra) if ra and ra.isdigit() else delay)
+                delay = min(delay * 2, 30.0)
+                continue
+            raise
+
+
 def pull_wallet(wallet: str, key: str, since_ts: int) -> list[dict]:
     """지갑 1개의 SINCE 이후 베이스→밈 매수(≥MIN_USD) 목록."""
     out: list[dict] = []
@@ -44,9 +60,9 @@ def pull_wallet(wallet: str, key: str, since_ts: int) -> list[dict]:
         if before:
             url += f"&before={before}"
         try:
-            txs = W._get_json(url)
+            txs = _get_retry(url)
         except Exception as e:  # noqa: BLE001
-            print(f"  [경고] {wallet[:6]} 조회 실패: {str(e)[:80]}")
+            print(f"  [경고] {wallet[:6]} 조회 실패(재시도 후도): {str(e)[:80]}")
             break
         if not isinstance(txs, list) or not txs:
             break
@@ -64,7 +80,7 @@ def pull_wallet(wallet: str, key: str, since_ts: int) -> list[dict]:
         before = txs[-1].get("signature")
         if stop or len(txs) < 100:
             break
-        time.sleep(0.15)      # 예의상 딜레이
+        time.sleep(0.35)      # 페이지 간 딜레이(레이트리밋 배려)
     return out
 
 
@@ -77,19 +93,28 @@ def main() -> None:
     wallets = _wallets()
     print(f"엔트리 추출 시작: {len(wallets)}지갑, {SINCE_ISO} 이후, ≥${MIN_USD:,.0f} 베이스→밈 매수")
     all_entries: list[dict] = []
+    fails = 0
     for i, w in enumerate(wallets, 1):
-        es = pull_wallet(w, key, since_ts)
+        try:
+            es = pull_wallet(w, key, since_ts)
+        except Exception:  # noqa: BLE001
+            es = []; fails += 1
         all_entries.extend(es)
         if i % 20 == 0 or es:
-            print(f"  [{i}/{len(wallets)}] {w[:6]}… +{len(es)}건 (누적 {len(all_entries)})")
+            print(f"  [{i}/{len(wallets)}] {w[:6]}… +{len(es)}건 (누적 {len(all_entries)}, 실패 {fails})")
+        time.sleep(0.35)      # 지갑 간 딜레이(레이트리밋 배려)
     all_entries.sort(key=lambda e: e["ts"])
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps({"since": SINCE_ISO, "min_usd": MIN_USD,
                                "pulled_at": datetime.now(timezone.utc).isoformat(),
-                               "n": len(all_entries), "entries": all_entries},
+                               "n": len(all_entries), "wallets": len(wallets),
+                               "failed_wallets": fails, "entries": all_entries},
                               ensure_ascii=False, indent=1))
     uniq_tokens = len({e["mint"] for e in all_entries})
-    print(f"\n완료: 엔트리 {len(all_entries)}건, 고유토큰 {uniq_tokens}개 → {OUT}")
+    print(f"\n완료: 엔트리 {len(all_entries)}건, 고유토큰 {uniq_tokens}개, "
+          f"실패지갑 {fails}/{len(wallets)} → {OUT}")
+    if fails > len(wallets) * 0.1:
+        print(f"⚠️ 실패 지갑이 {fails}개로 많습니다(레이트리밋). 데이터 불완전 — 재실행 권장.")
     print("이 파일을 커밋/전달하면 클라우드에서 백테스트를 돌립니다:")
     print("  git add sideprojects/solbot/state/entries.json -f && git commit -m 'solbot 엔트리 데이터' && git push")
 
