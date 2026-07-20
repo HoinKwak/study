@@ -46,6 +46,7 @@ _WS = "wss://mainnet.helius-rpc.com/?api-key={k}"
 _sym_cache: dict[str, str] = {}
 _sol_px = [0.0, 0.0]   # (price, ts)
 _MIN = MIN_USD   # 매수 최소 USD(기본 $1,000). --min 으로 낮춰 파이프라인 검증 가능.
+_parse_errs: list[str] = []   # parse_signature 실패 사유(첫 5건) — 크레딧소진/레이트리밋 진단용
 
 
 def _post_json(url: str, body: dict) -> dict | list:
@@ -219,23 +220,36 @@ def parse_signature(sig: str, key: str) -> dict | None:
     """signature → Helius Enhanced Tx(파싱). 실패/미발견 시 None."""
     try:
         d = _post_json(_ENH.format(k=key), {"transactions": [sig]})
-    except Exception:  # noqa: BLE001
+    except Exception as e:  # noqa: BLE001
+        if len(_parse_errs) < 5:      # 첫 5건만 보관(크레딧소진 401·레이트리밋 429 등 진단)
+            _parse_errs.append(str(e)[:120])
         return None
     return d[0] if isinstance(d, list) and d else None
 
 
 def handle_signature(sig: str, wallet: str, key: str, wmap: dict, seen: set,
-                     dry: bool, keep_exited: bool) -> str:
-    """서명 1건 처리: 파싱→매수판별→enrich→발송. 반환: 'sent'|'skip'|'none'."""
+                     dry: bool, keep_exited: bool, funnel: dict | None = None) -> str:
+    """서명 1건 처리: 파싱→매수판별→enrich→발송. 반환: 'sent'|'skip'|'none'.
+
+    funnel(선택): 어디서 걸러지는지 계측 카운터(attempt/parse_fail/parsed/buy). 진단용.
+    """
     if sig in seen:
         return "none"
     seen.add(sig)
+    if funnel is not None:
+        funnel["attempt"] += 1
     tx = parse_signature(sig, key)
     if not tx:
+        if funnel is not None:
+            funnel["parse_fail"] += 1
         return "none"
+    if funnel is not None:
+        funnel["parsed"] += 1
     buy = extract_buy(tx, wallet)
     if not buy:
         return "none"
+    if funnel is not None:
+        funnel["buy"] += 1
     t = _to_trade(buy, wallet, sig)
     ex = enrich(t, keep_exited=keep_exited)   # 스킵분은 Bitquery 생략(포인트 절약)
     if ex.get("skip"):
@@ -268,6 +282,7 @@ def run(dry: bool = False, keep_exited: bool = False, min_usd: float | None = No
     req_wallet: dict[int, str] = {}      # 요청id → 지갑
     stat = {"sent": 0, "skip": 0}
     state = {"confirmed": 0, "sub_err": 0, "events": 0}
+    funnel = {"resolved": 0, "attempt": 0, "parse_fail": 0, "parsed": 0, "buy": 0}  # 진단 퍼널
 
     def on_open(ws):
         sub_wallet.clear(); req_wallet.clear()
@@ -310,8 +325,9 @@ def run(dry: bool = False, keep_exited: bool = False, min_usd: float | None = No
         w = sub_wallet.get((m.get("params") or {}).get("subscription"))
         if not sig or not w:
             return
+        funnel["resolved"] += 1   # 지갑·서명 매핑 성공(여기까진 정상 수신)
         try:
-            r = handle_signature(sig, w, key, wmap, seen, dry, keep_exited)
+            r = handle_signature(sig, w, key, wmap, seen, dry, keep_exited, funnel)
         except Exception as e:  # noqa: BLE001
             print("처리 오류:", str(e)[:120]); return
         if r in stat:
@@ -332,6 +348,11 @@ def run(dry: bool = False, keep_exited: bool = False, min_usd: float | None = No
             time.sleep(600)
             print(f"[WS] 감시 중 — 구독 {state['confirmed']}/{len(wallets)} · "
                   f"수신이벤트 {state['events']} · 발송 {stat['sent']} · 스킵 {stat['skip']}")
+            # 진단 퍼널: 어디서 걸러지는지. parse_fail이 크면 Helius 크레딧소진/레이트리밋 의심.
+            print(f"[WS] 퍼널 — 매핑 {funnel['resolved']} · 파싱시도 {funnel['attempt']} · "
+                  f"파싱실패 {funnel['parse_fail']} · 파싱성공 {funnel['parsed']} · 매수감지 {funnel['buy']}")
+            if _parse_errs:
+                print(f"[WS] 파싱에러 예시: {_parse_errs[0]}")
     threading.Thread(target=_heartbeat, daemon=True).start()
 
     ws = websocket.WebSocketApp(_WS.format(k=key), on_open=on_open, on_message=on_message,
