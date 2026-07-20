@@ -1,50 +1,68 @@
 {
-  "ts": "2026-07-20T02:02:00Z",
+  "ts": "2026-07-20T04:02:00Z",
   "tokens": [
+    {
+      "token": "JUGGERNAUT",
+      "chain": "Robinhood Chain(Uniswap)",
+      "ca": "0xD7321801CAae694090694Ff55A9323139F043B88",
+      "stage": "확산(재가속)",
+      "kols": "Drallio+Bluntz_Capital(팔로워33.8만)+Next100XGEMS(⚠️유료, 모두 과거)",
+      "thesis": "mcap$5.0M(24h+68.1%, 직전$4.4M/+18.0%) — mcap+13.6%·24h%가 18.0%→68.1%로 강한 재가속, KOL mcap$100M 주장과는 여전히 약20배 괴리",
+      "risk": "🟡 KOL주장-실측 간극 큼, 유료 샤웃아웃 이력"
+    },
+    {
+      "token": "BYCOCKET",
+      "chain": "Robinhood Chain(Uniswap)",
+      "ca": "",
+      "stage": "조기(재가속)",
+      "kols": "0(미확인)",
+      "thesis": "mcap$0.43M(24h+35.4%, 직전$0.37M/+6.1%) — 직전 회차 첫 냉각 이후 mcap+16.2%·24h%도 6.1%→35.4%로 강한 재가속",
+      "risk": "🟡 CA미확인, 변동성 큼(냉각→재가속 반복)"
+    },
     {
       "token": "COOKWARE(Copper pot of wealth)",
       "chain": "Robinhood Chain(Uniswap)",
       "ca": "",
-      "stage": "조기(강한 가속)",
+      "stage": "조기(냉각 전환)",
       "kols": "0(미확인)",
-      "thesis": "mcap$0.86M(24h+121.6%, 직전$0.84M/+43.7%) — 24h%가 43.7%→121.6%로 급가속, RH체인 top30 중 이번 회차 최강 모멘텀",
+      "thesis": "mcap$0.80M(24h+92.8%, 직전$0.86M/+121.6%) — mcap-7.0%·24h%도 121.6%→92.8%로 둔화, 2회 연속 급가속 뒤 첫 냉각 조짐",
       "risk": "🟡 CA미확인, KOL코로보 0, 초소형"
     },
     {
       "token": "FOX(Robin Hood)",
       "chain": "Robinhood Chain(Uniswap)",
       "ca": "",
-      "stage": "조기(반전 가속)",
+      "stage": "조기(가속 지속)",
       "kols": "0(미확인)",
-      "thesis": "mcap$0.99M(24h+113.3%, 직전$0.70M/+50.4%) — 직전 회차 냉각(-16.7%) 뒤 mcap+40.7%·24h%도 급반등",
-      "risk": "🟡 CA미확인, 회사명 연상 네이밍 혼동, 반전 신뢰도 미검증"
+      "thesis": "mcap$0.95M(24h+109.3%, 직전$0.99M/+113.3%) — mcap-4.0%로 소폭 둔화했으나 24h%는 여전히 100%대 유지, 고점권 지속",
+      "risk": "🟡 CA미확인, 회사명 연상 네이밍 혼동, 고점권 변동성"
     },
     {
-      "token": "JUGGERNAUT",
-      "chain": "Robinhood Chain(Uniswap)",
-      "ca": "0xD7321801CAae694090694Ff55A9323139F043B88",
-      "stage": "확산(냉각 반전)",
-      "kols": "Drallio+Bluntz_Capital(팔로워33.8만)+Next100XGEMS(⚠️유료, 모두 과거)",
-      "thesis": "mcap$4.4M(24h+18.0%, 직전$3.6M/+17.4%) — mcap+22.2%로 2연속 냉각 뒤 반전 상승, KOL mcap$100M 주장과는 여전히 약23배 괴리",
-      "risk": "🟡 KOL주장-실측 간극 큼, 유료 샤웃아웃 이력"
+      "token": "WISHBONE",
+      "chain": "Robinhood Chain(Uniswap V3, 다중 페어)",
+      "ca": "0x77581054581b9c525e7dd7a0155de43867532d03",
+      "stage": "확산(소폭 반등)",
+      "kols": "Drallio 1(과거, 'RH체인의 Dog'로 네이밍)",
+      "thesis": "mcap$3.3M(24h+9.8%, 직전$3.1M/+5.4%) — mcap+6.5%·24h%도 소폭 반등, 직전 급둔화 이후 안정화 조짐",
+      "risk": "🟠 코로보 1인뿐, 변동성 반복 큼"
     },
     {
       "token": "SEEDCOIN(watch it grow)",
       "chain": "Robinhood Chain(Uniswap)",
       "ca": "",
-      "stage": "조기(냉각 전환)",
+      "stage": "조기(신호 상충)",
       "kols": "0(미확인)",
-      "thesis": "mcap$0.41M(24h+14.6%, 직전$0.45M/+33.0%) — mcap-9.9%·24h%도 33.0%→14.6%로 뚜렷한 둔화, 가속 흐름 꺾임",
-      "risk": "🟡 CA미확인, 모멘텀 둔화 전환"
+      "thesis": "mcap$0.35M(24h+34.5%, 직전$0.41M/+14.6%) — mcap-14.6%인데 24h%는 14.6%→34.5%로 급등, 방향성 상충으로 해석 불확실",
+      "risk": "🟡 CA미확인, 지표 상충(데이터 신뢰도 낮음)"
     },
     {
       "token": "$1(is all you need)",
       "chain": "Robinhood Chain(Uniswap)",
       "ca": "",
-      "stage": "조기(냉각 전환)",
+      "stage": "조기(냉각 지속)",
       "kols": "0(미확인)",
-      "thesis": "mcap$0.33M(24h+16.6%, 직전$0.36M/+30.2%) — mcap-7.6%·24h%도 급둔화, 등장 2회차만에 열기 식음 조짐",
-      "risk": "🔴 초소형, 자극적 티커, CA미확인, 조기 식음 신호"
+      "thesis": "mcap$0.31M(24h+12.9%, 직전$0.33M/+16.6%) — mcap-6.1%·24h%도 소폭 둔화, 2회 연속 냉각 흐름 유지",
+      "risk": "🔴 초소형, 자극적 티커, CA미확인, 2회연속 냉각"
     },
     {
       "token": "VLAD(The Green Bull)",
@@ -52,35 +70,8 @@
       "ca": "",
       "stage": "조기(보합)",
       "kols": "0(미확인)",
-      "thesis": "mcap$0.52M(24h+4.1%, 직전$0.51M/+3.9%) — mcap+1.7%로 꾸준한 소폭 안정 흐름 유지",
+      "thesis": "mcap$0.51M(24h+7.4%, 직전$0.52M/+4.1%) — mcap-1.9%로 거의 변화 없음, 장기 보합 지속",
       "risk": "🟡 CA미확인, 모멘텀 약함(장기 보합)"
-    },
-    {
-      "token": "DUMBMONEY",
-      "chain": "Robinhood Chain(Uniswap)",
-      "ca": "",
-      "stage": "조기(지속)",
-      "kols": "0(미확인)",
-      "thesis": "mcap$0.32M(24h+23.9%, 직전$0.30M/+27.7%) — mcap+5.9%로 유사 수준 지속, 과거 '뒷북/러그확정' 판정과 실데이터 반복 상충",
-      "risk": "🔴 과거 러그판정과 상충 반복, 신뢰도 낮음"
-    },
-    {
-      "token": "BYCOCKET",
-      "chain": "Robinhood Chain(Uniswap)",
-      "ca": "",
-      "stage": "조기(냉각)",
-      "kols": "0(미확인)",
-      "thesis": "mcap$0.37M(24h+6.1%, 직전$0.45M/+9.3%) — mcap-16.7%로 3회 연속 관측 중 첫 뚜렷한 냉각",
-      "risk": "🟠 CA미확인, 모멘텀 냉각 전환"
-    },
-    {
-      "token": "YORK(The Office Dog)",
-      "chain": "Robinhood Chain(Uniswap)",
-      "ca": "",
-      "stage": "조기(소폭 반등)",
-      "kols": "0(미확인)",
-      "thesis": "mcap$0.36M(24h+3.4%, 직전$0.36M/+0.3%) — mcap+0.5%·24h%도 소폭 반등, 정체 국면에서 미세 회복",
-      "risk": "🟡 초소형, 모멘텀 미약"
     },
     {
       "token": "WEN(Wen Lambo)",
@@ -88,115 +79,124 @@
       "ca": "",
       "stage": "조기~확산(보합)",
       "kols": "0(미확인)",
-      "thesis": "mcap$2.5M(24h+7.5%, 직전$2.56M/+0.7%) — mcap-2.3% 소폭 감소했으나 24h%는 반등, 지표 해석 여전히 불확실",
+      "thesis": "mcap$2.5M(24h+4.7%, 직전$2.5M/+7.5%) — mcap 거의 동일, 24h%만 소폭 둔화. 장기 보합 지속",
       "risk": "🟡 지표 해석 불확실, CA미확인"
     },
     {
-      "token": "WISHBONE",
-      "chain": "Robinhood Chain(Uniswap V3, 다중 페어)",
-      "ca": "0x77581054581b9c525e7dd7a0155de43867532d03",
-      "stage": "확산(냉각 재확인)",
-      "kols": "Drallio 1(과거, 'RH체인의 Dog'로 네이밍)",
-      "thesis": "mcap$3.1M(24h+5.4%, 직전$3.25M/+26.1%) — 직전 회차 '재가속'이 1회성이었던 것으로 확인, mcap-4.6%·24h%도 26.1%→5.4%로 급둔화 재발",
-      "risk": "🟠 코로보 1인뿐, 변동성 반복 큼, 재가속 신뢰 저하"
+      "token": "YORK(The Office Dog)",
+      "chain": "Robinhood Chain(Uniswap)",
+      "ca": "",
+      "stage": "조기(정체)",
+      "kols": "0(미확인)",
+      "thesis": "mcap$0.36M(24h+1.4%, 직전$0.36M/+3.4%) — mcap 사실상 동일, 24h%도 낮은 수준 지속. 수 회차 연속 정체",
+      "risk": "🟡 초소형, 모멘텀 미약"
     },
     {
       "token": "HOODIE",
       "chain": "Robinhood Chain(Uniswap)",
       "ca": "",
-      "stage": "조기(모멘텀 급소실)",
+      "stage": "조기(미미한 회복)",
       "kols": "0(미확인)",
-      "thesis": "mcap$0.59M(24h+2.4%, 직전$0.65M/+56.3%) — mcap-8.5%, 24h%가 56.3%→2.4%로 사실상 모멘텀 정지, 4회 연속 냉각 흐름의 종착 국면",
-      "risk": "🟠 모멘텀 소실 확정적, CA미확인"
+      "thesis": "mcap$0.59M(24h+8.2%, 직전$0.59M/+2.4%) — mcap 변화 거의 없이 24h%만 소폭 반등, 5회 연속 저모멘텀 국면 지속",
+      "risk": "🟠 모멘텀 여전히 약함, CA미확인"
+    },
+    {
+      "token": "DUMBMONEY",
+      "chain": "Robinhood Chain(Uniswap)",
+      "ca": "",
+      "stage": "조기(약화 지속)",
+      "kols": "0(미확인)",
+      "thesis": "mcap$0.31M(24h+17.7%, 직전$0.32M/+23.9%) — mcap-3.1%·24h%도 소폭 둔화, 완만한 약화 지속",
+      "risk": "🔴 과거 러그판정과 상충 반복, 신뢰도 낮음"
     },
     {
       "token": "HOPPY",
       "chain": "Robinhood Chain(Uniswap)",
       "ca": "",
-      "stage": "조기(데이터 이상 지속)",
+      "stage": "조기(데이터 동결 심화)",
       "kols": "0(미확인)",
-      "thesis": "mcap$321,108(24h+10.0%, 직전$321,107/+9.1%) — mcap이 소수점 단위까지 사실상 동일값 반복(3회 연속 근접), 워시트레이딩/데이터정체 의심 강화",
-      "risk": "🟡 데이터 동결 의심 심화, CA미확인"
+      "thesis": "mcap$0.32M(24h+10.0%, 직전$0.321108M/+10.0%) — 24h%가 소수점까지 완전 동일값으로 재확인, 4회+ 연속 근접 패턴 강화(워시트레이딩/데이터정체 의심 심화)",
+      "risk": "🟠 데이터동결 의심 심화(4회+연속), CA미확인"
     },
     {
       "token": "YOLO",
       "chain": "Robinhood Chain(Uniswap)",
       "ca": "",
-      "stage": "확산(정점통과 확정적)",
+      "stage": "확산(정점통과 지속)",
       "kols": "0(미확인)",
-      "thesis": "mcap$3.1M(24h+95.4%, 직전$2.9M/+302.7%) — 24h%가 302.7%→95.4%로 급락 지속(4회째 방향전환), mcap도 소폭 반등에 그쳐 정점 통과가 더 뚜렷해짐",
-      "risk": "🔴 변동성 극심, 펌프앤덤프 전형, 정점 통과 확정적 우려"
+      "thesis": "mcap$3.7M(24h+20.6%, 직전$3.1M/+95.4%) — mcap은 +19.4%로 소폭 늘었으나 24h%는 95.4%→20.6%로 재차 급락, 5회째 모멘텀 하강",
+      "risk": "🔴 변동성 극심, 펌프앤덤프 전형, 정점통과 지속"
     },
     {
       "token": "HOODBIRD",
       "chain": "Robinhood Chain(Uniswap)",
       "ca": "",
-      "stage": "조기(신규 top30 진입)",
+      "stage": "조기(모멘텀 둔화)",
       "kols": "0(미확인)",
-      "thesis": "mcap$0.21M(24h+22.2%) — 이번 회차 처음 top30 진입(직전 30위였던 ROBINHOOD는 이번 회차 top30에서 이탈, 자리 교체)",
-      "risk": "🔴 최소형(<$0.25M), CA미확인, 신규라 검증 안 됨, ROBINHOOD류 반복 진출입 패턴 주의"
+      "thesis": "mcap$0.24M(24h+5.9%, 직전$0.21M/+22.2%) — mcap+14.0%했으나 24h%는 22.2%→5.9%로 급둔화, top30 진입 뒤 열기 빠르게 식음",
+      "risk": "🔴 최소형(<$0.25M), CA미확인, 신규진입 열기 급냉각"
     }
   ],
   "notable": [
     {
-      "token": "RH체인 전체(카테고리 mcap·HOOD언락리스크)",
-      "status": "카테고리 mcap 3연속 정체~소폭 감소(낙폭은 완화)",
-      "summary": "카테고리 mcap$189M(+4.9%), 직전$190M(+7.2%) 대비 -0.5%로 3회 연속 정체~감소(직전 -2.1%, 그 전 -4.9%) — 낙폭 자체는 둔화돼 바닥 다지기 가능성도 있으나 단정 어려움. HOOD $121M 언락 오버행 지속"
+      "token": "RH체인 전체(카테고리·HOOD언락)",
+      "status": "총액 정체, 24h 변동성은 확대",
+      "summary": "카테고리 mcap$188.3M(+13.8%), 직전$189M(+4.9%) — 총액은 -0.4%로 거의 동일하나 24h% 지표는 오히려 확대돼 개별 종목 변동성이 커진 모습. HOOD $121M 언락 오버행 유지"
     },
     {
       "token": "CASHCAT",
-      "status": "반등(2연속 하락 뒤 재상승)",
-      "summary": "mcap$71.9M(24h+25.7%), 직전$70.29M(+6.1%) 대비 +2.3%, 24h%도 6.1%→25.7%로 반등. 7/11 ATH$150~200M대 대비 여전히 큰폭 하회. CA `0x020bfc650a365f8bb26819deaabf3e21291018b4`"
+      "status": "소스간 수치 편차(재확인 필요)",
+      "summary": "CoinGecko 카테고리 페이지 $68.5M(+20.2%), 반면 CoinGecko 코인페이지·Dexscreener는 $71.8~79.6M(+34.4%) — 소스간 최대 +16% 편차. 직전$71.9M(+25.7%) 대비 대체로 보합~소폭 등락권. CA `0x020bfc650a365f8bb26819deaabf3e21291018b4`"
     },
     {
       "token": "CASHDOG·Little John·530A — 워시트레이딩/데이터정체 의심 그룹",
       "status": "데이터 동결 지속(강화)",
-      "summary": "Cash Dog in Hood$42.1M / Little John$17.2M / buy and retire(530A)$11.8M — 24h변동 정확히 0.0% 계속, 여러 회차 연속 동일 패턴"
+      "summary": "Cash Dog in Hood$42.1M / Little John$17.2M / buy and retire(530A)$11.8M — 24h변동 정확히 0.0% 계속, 여러 회차 연속 동일 패턴 재확인"
     },
     {
       "token": "401K (Retirement plan)",
-      "status": "데이터 동결 지속(12회+ 연속)",
-      "summary": "mcap$724,265, 24h+176.2% — 이번 회차도 소수점까지 완전 동일값 재확인(12회+연속), 워시트레이딩/데이터정체 의심 최장기 항목"
+      "status": "데이터 동결 지속(13회+ 연속)",
+      "summary": "mcap$0.72M, 24h+176.2% — 이번 회차도 소수점까지 완전 동일값 재확인(13회+연속), 워시트레이딩/데이터정체 의심 최장기 항목"
     },
     {
       "token": "MYSTERY",
-      "status": "데이터 동결 지속(6연속 확인)",
-      "summary": "mcap$350,317, 24h+35.0% — 6회 연속 완전 동일값 재확인, 워시트레이딩/데이터정체 의심"
+      "status": "데이터 동결 지속(7연속 확인)",
+      "summary": "mcap$0.35M, 24h+35.0% — 7회 연속 완전 동일값 재확인, 워시트레이딩/데이터정체 의심"
     },
     {
       "token": "TENDIES",
-      "status": "지표 불일치 발생(재확인 필요)",
-      "summary": "이번 회차 mcap$18.0M(24h+35.2%) — 직전$22.04M(+4.3%) 대비 mcap -18.4%인데 24h%는 오히려 급등해 방향성 상충. 데이터 신뢰도 낮음, 다음 회차 재확인 필요"
+      "status": "지표 상충 해소(재정합)",
+      "summary": "mcap$19.3M(24h+33.1%) — 직전$18.0M(+35.2%) 대비 mcap+7.2%, 24h%도 유사 수준으로 방향 일치 회복. 전회차 데이터 상충은 일시적이었던 것으로 보임"
     },
     {
       "token": "DIH(Dog in Hood)",
-      "status": "급락 확인(랭크 대폭 하락)",
-      "summary": "mcap$752,755(24h+28.3%, 24h거래량$262K) — 직전 단독조회치 $4.71M(rank#1534) 대비 약-84%, 랭크도 #1534→#2867로 급락. 지난 회차 '재평가'(활동 확인) 이후 실제로는 빠르게 식어가는 중으로 재확인"
+      "status": "부분 회복(급락 이후 반등)",
+      "summary": "mcap$904,020(24h+21.2%, 거래량$298K, 랭크#2702) — 직전$752,755(rank#2867) 대비 +20.1%, 랭크도 소폭 개선. 다만 재평가 당시 단독조회치 $4.71M 대비로는 여전히 큰 폭 하회"
     },
     {
       "token": "ANSEM (The Black Bull)",
-      "status": "CoinGecko 직접 확인 — 하락 상태",
-      "summary": "CoinGecko 직접 재조회 성공: mcap$91.43M(24h+20.7%, 가격$0.2195) — 직전 Trust Wallet 참고치($188.53M, 캐시 의심)보다 실제로는 크게 낮음, ATH$0.4436(7/6) 대비 -50.5%. CA `9cRCn9rGT8V2imeM2BaKs13yhMEais3ruM3rPvTGpump` 확인됨"
+      "status": "하락 지속",
+      "summary": "mcap$85.84M(24h+14.8%), ATH$0.4436(7/6) 대비 -53.6% — 직전$91.43M(-50.5%) 대비 추가 -6.1%, 하락 추세 지속 재확인. CA `9cRCn9rGT8V2imeM2BaKs13yhMEais3ruM3rPvTGpump`"
     },
     {
       "token": "HYPE (Hyperliquid)",
-      "status": "박스권 하단 이탈 조짐",
-      "summary": "가격$60.35(24h-0.9%, 7일-10.1%), mcap$13.43B로 직전($15.38B) 대비 -12.7% 하락. 직전 회차 '박스권 상단 견조' 판정에서 하단 이탈 조짐으로 전환. ATH$76.67(6/16) 대비 -21% 하회"
+      "status": "박스권 하단 부근 정체(반등 미확인)",
+      "summary": "가격$60.46(24h-0.4%, 7일-10.0%), mcap$13.447B — 직전($13.43B)과 거의 동일해 하단 이탈 이후 반등 전환은 아직 확인 안 됨"
     },
     {
-      "token": "FROGBULL — fade 판정 재확인",
-      "status": "fade 확정(과거 판정이 옳았음)",
-      "summary": "직전 회차 GeckoTerminal의 'KOL Crypto Fergani 스텔스런칭 재부상' 미확인정보를 실측으로 검증: mcap$57,747(24h-31.0%, 7일-89.5%) — 과거 자체 'fade확정' 판정이 맞았음. 스텔스런칭발 정보에 낚이지 않도록 주의"
+      "token": "FROGBULL",
+      "status": "fade 지속(초소형권 정체)",
+      "summary": "mcap$65,180(직전$57,747 대비 +12.9%, 여전히 ATH대비-97.7%) — 소폭 반등했으나 규모상 유의미한 재부상으로 보기 어려움, fade 판정 유지"
     },
     {
       "token": "Solana 밈코인 섹터 전반",
-      "status": "재확인 못함(참고치 유지)",
-      "summary": "이번 회차 섹터 mcap 재조회 시도하지 못함(자리·시간 제약) — 직전값 참고치로만 유지, BONK·dogwifhat·PENGU·FARTCOIN이 여전히 상위권으로 추정"
+      "status": "재확인 완료(하락)",
+      "summary": "섹터 mcap$2.86B(24h-4.5%) — 이번 회차 직접 재확인, 직전 참고치와 규모는 유사하나 24h 하락 확인. BONK·WIF·PENGU·FARTCOIN 등 상위권 유지 추정"
     },
     {
-      "token": "SPX6900(SPX)·$INDEX·MemeCore(M)",
-      "status": "지속(3회+ 연속 재확인 못함)",
-      "summary": "SPX(mcap$318.7M대) / $INDEX(24h+150%대) / MemeCore(mcap$1.62B대) — 모두 직전값 참고치 유지, 이번 회차도 재확인 시도 못함"
+      "token": "SPX6900(SPX)·MemeCore(M) / Base밈 로테이션 조짐",
+      "status": "SPX·MemeCore 보합, Base 섹터 소폭 순환매",
+      "summary": "SPX mcap약$317~320M(24h-2.9%,7일-8.8%)·MemeCore mcap$1.63B(-1.82%) 모두 직전 참고치와 유사(보합). 별도로 Base 밈 섹터가 +5.8%(Toshi·Brett·KiboShib·Ski Mask Dog 주도)로 자금 순환 조짐 — RH체인 외 섹터로도 관심 분산 가능성, 재확인 필요"
     }
   ]
 }
