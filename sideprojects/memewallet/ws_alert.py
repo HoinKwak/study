@@ -343,9 +343,12 @@ def run(dry: bool = False, keep_exited: bool = False, min_usd: float | None = No
         print(f"[WS 종료] code={code} → 재접속 대기")
 
     def _heartbeat():
-        # 조용해도 살아있음을 보이게 10분마다 상태 출력(감시 대상 매수는 원래 드묾)
+        # 조용해도 살아있음을 보이게 상태 출력(감시 대상 매수는 원래 드묾).
+        # 첫 틱은 2분 뒤(진단 빠르게), 이후 10분 주기.
+        interval = 120
         while True:
-            time.sleep(600)
+            time.sleep(interval)
+            interval = 600
             print(f"[WS] 감시 중 — 구독 {state['confirmed']}/{len(wallets)} · "
                   f"수신이벤트 {state['events']} · 발송 {stat['sent']} · 스킵 {stat['skip']}")
             # 진단 퍼널: 어디서 걸러지는지. parse_fail이 크면 Helius 크레딧소진/레이트리밋 의심.
