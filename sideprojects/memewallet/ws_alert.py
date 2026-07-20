@@ -49,15 +49,21 @@ _MIN = MIN_USD   # 매수 최소 USD(기본 $1,000). --min 으로 낮춰 파이�
 _parse_errs: list[str] = []   # parse_signature 실패 사유(첫 5건) — 크레딧소진/레이트리밋 진단용
 
 
+# Helius REST(api.helius.xyz)는 Cloudflare 뒤라 User-Agent 없는 요청을 403으로 막는다.
+# WS(websocket-client)는 자체 UA로 통과하지만 urllib은 UA를 안 붙여 403 → 반드시 지정.
+_UA = "Mozilla/5.0 (memewallet-bot)"
+
+
 def _post_json(url: str, body: dict) -> dict | list:
     req = urllib.request.Request(url, data=json.dumps(body).encode(),
-                                 headers={"Content-Type": "application/json"})
+                                 headers={"Content-Type": "application/json", "User-Agent": _UA})
     with urllib.request.urlopen(req, timeout=25) as r:  # noqa: S310
         return json.load(r)
 
 
 def _get_json(url: str):
-    with urllib.request.urlopen(url, timeout=15) as r:  # noqa: S310
+    req = urllib.request.Request(url, headers={"User-Agent": _UA})
+    with urllib.request.urlopen(req, timeout=15) as r:  # noqa: S310
         return json.load(r)
 
 
