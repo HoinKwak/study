@@ -1,0 +1,64 @@
+{
+  "asset_pair": "KOSPI(^KS11) vs BTC-USD",
+  "span": "2024-07-22 ~ 2026-07-21",
+  "trading_days": 483,
+  "source": "Yahoo Finance daily close",
+  "cumret_2y": {
+    "kospi": 1.432,
+    "btc": -0.035
+  },
+  "return_corr": {
+    "daily": {
+      "pearson": 0.061,
+      "spearman": 0.022
+    },
+    "weekly": {
+      "pearson": 0.208,
+      "spearman": 0.212
+    }
+  },
+  "rolling60_corr": {
+    "recent": 0.141,
+    "min": -0.274,
+    "min_date": "2025-07-08",
+    "max": 0.514,
+    "max_date": "2024-11-01",
+    "neg_fraction": 0.326
+  },
+  "half_corr": {
+    "first_half": 0.141,
+    "second_half": 0.036
+  },
+  "recent_corr": {
+    "3m": 0.137,
+    "6m": 0.0
+  },
+  "sign_quadrants": {
+    "kospi↑_btc↑": 0.278,
+    "kospi↑_btc↓": 0.315,
+    "kospi↓_btc↑": 0.21,
+    "kospi↓_btc↓": 0.197
+  },
+  "lead_lag": {
+    "corr_by_lag": {
+      "-5": 0.04,
+      "-4": -0.043,
+      "-3": -0.013,
+      "-2": 0.012,
+      "-1": 0.19,
+      "0": 0.061,
+      "1": -0.041,
+      "2": -0.019,
+      "3": -0.015,
+      "4": -0.05,
+      "5": -0.029
+    },
+    "best_lag": -1,
+    "note": "k>0: KOSPI가 BTC를 k일 선행(양이면 동행 선행)"
+  },
+  "fx": {
+    "usdkrw_start": 1387.1,
+    "usdkrw_end": 1479.6,
+    "usdkrw_chg": 0.067
+  }
+}
