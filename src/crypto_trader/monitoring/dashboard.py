@@ -1702,7 +1702,10 @@ def render_html(journal: TradeJournal, equity: float | None = None,
        if(cache[src]){{if(curSrc===src)render(cache[src]);return;}}
        root.innerHTML='<span class="muted">불러오는 중… (첫 로드는 수십 초 걸릴 수 있습니다)</span>';
        fetch('/api/leaderboard?source='+src,{{cache:'no-store'}}).then(function(r){{return r.json();}})
-         .then(function(d){{cache[src]=d;if(curSrc===src)render(d);}})
+         .then(function(d){{
+           if(d&&d.loading){{ if(curSrc===src){{root.innerHTML='<span class="muted">불러오는 중… 리더보드 집계(백그라운드) 최대 1~2분 — 잠시만요…</span>';setTimeout(function(){{load(src);}},5000);}} return; }}
+           cache[src]=d;if(curSrc===src)render(d);
+         }})
          .catch(function(){{if(curSrc===src)root.innerHTML='<span class="muted">불러오기 실패 — serve_dashboard 서버 모드에서만 동작합니다.</span>';}});
      }}
      function setSrc(src){{curSrc=src;

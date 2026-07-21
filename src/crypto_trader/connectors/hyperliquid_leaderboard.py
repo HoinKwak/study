@@ -263,16 +263,18 @@ def _reconstruct_entries(positions: list[dict], fills: list) -> None:
             after = before
 
 
-def entry_times_deep(addr: str, positions: list[dict],
-                     max_calls: int = 10, window_ms: int = 3 * 86_400_000) -> None:
+def entry_times_deep(addr: str, positions: list[dict], max_calls: int = 6,
+                     window_ms: int = 4 * 86_400_000, deadline: float | None = None) -> None:
     """2000체결 창을 넘어 과거까지 되짚어 진입시각을 찾는다(라이징스타용 정밀 추적).
 
-    최근 userFills(최신 2000)로 앵커 후, userFillsByTime로 window_ms(기본 3일) 단위로 뒤로
-    페이징하며 체결을 누적해 역산. 활발한 트레이더는 진입체결이 최근 2000건 밖으로 밀려 얕은
-    entry_times로는 못 찾던 것을 여기서 보강. max_calls×window_ms(기본 30일) 밖이면 None 유지
-    (진짜 장기보유). userFillsByTime: 시간범위 내 최대 2000건 반환.
+    ★얕은 entry_times에서 이미 찾은 포지션은 건너뛴다★ — **미해결(entry_ts=None) 포지션이 있을
+    때만** userFills 앵커 + userFillsByTime 역페이징. 전부 이미 찾았으면 API 호출 0(리더보드 지연 방지).
+    max_calls×window_ms(기본 24일) 밖이면 None 유지(진짜 장기). deadline(epoch초) 넘으면 조기 중단.
     """
-    if not positions:
+    unresolved = [p for p in positions if p.get("entry_ts") is None]
+    if not unresolved:
+        return
+    if deadline is not None and time.time() > deadline:
         return
     all_fills: list = []
     try:
@@ -283,6 +285,8 @@ def entry_times_deep(addr: str, positions: list[dict],
         pass
     end = min((int(f.get("time") or 0) for f in all_fills), default=int(time.time() * 1000))
     for _ in range(max_calls):
+        if deadline is not None and time.time() > deadline:
+            break
         start = max(0, end - window_ms)
         try:
             fills = _post(_INFO_URL, {"type": "userFillsByTime", "user": addr,
@@ -294,9 +298,9 @@ def entry_times_deep(addr: str, positions: list[dict],
         end = start
         if start <= 0:
             break
-        time.sleep(0.08)   # info endpoint 배려
+        time.sleep(0.05)   # info endpoint 배려
     if all_fills:
-        _reconstruct_entries(positions, all_fills)
+        _reconstruct_entries(unresolved, all_fills)   # 미해결분만 채움
 
 
 def _validate_candidate(t: dict, recent_days: int, memo: dict) -> dict | None:
@@ -414,9 +418,11 @@ def build_bundle(
     rising = _collect(rising_cand, rising_limit, recent_days, memo, scan)
     # 라이징스타만 진입시각 정밀 추적(2000체결 창 밖까지) — 활발한 트레이더라 얕은 역산으로는
     # 대부분 못 찾아 '장기'로 오표기되던 것을 보강. 상위 트레이더(장기보유)는 그대로 둔다.
+    # 전체 시간예산(25초) — 초과 시 남은 미해결은 '장기'로 두어 리더보드 지연을 상한.
+    deep_deadline = time.time() + 25.0
     for t in rising:
         try:
-            entry_times_deep(t["addr"], t.get("positions", []))
+            entry_times_deep(t["addr"], t.get("positions", []), deadline=deep_deadline)
         except Exception:  # noqa: BLE001
             pass
     return {

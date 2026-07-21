@@ -19,7 +19,7 @@ import subprocess
 import sys
 import threading
 import time
-from http.server import BaseHTTPRequestHandler, HTTPServer
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 
@@ -37,6 +37,22 @@ _REPO_DIR = Path(__file__).resolve().parent.parent
 _FG_CACHE = {"t": 0.0, "data": None}   # 공포·탐욕 지수 캐시(30분)
 _MACRO_CACHE: dict[str, dict] = {}     # 매크로 묶음 기간별 캐시(period → {t, data})
 _LEADERBOARD_CACHE: dict[str, dict] = {}   # 리더보드 소스별 캐시(source → {t,data}, 10분)
+_LB_REFRESHING: set = set()                # 현재 백그라운드 갱신 중인 소스(중복 갱신 방지)
+
+
+def _refresh_leaderboard(source: str) -> None:
+    """백그라운드에서 리더보드 번들 갱신 — 무거운 build_bundle을 요청 스레드 밖에서 돌린다."""
+    try:
+        if source == "binance":
+            from crypto_trader.connectors.binance_leaderboard import build_bundle
+        else:
+            from crypto_trader.connectors.hyperliquid_leaderboard import build_bundle
+        out = build_bundle()
+        _LEADERBOARD_CACHE[source] = {"t": time.time(), "data": out}
+    except Exception:  # noqa: BLE001
+        pass
+    finally:
+        _LB_REFRESHING.discard(source)
 _BTCD_CACHE = {"t": 0.0, "val": None}      # BTC 도미넌스 현재값 캐시(5분)
 
 
@@ -277,26 +293,24 @@ def main() -> None:
         return json.dumps(out).encode("utf-8")
 
     def _api_leaderboard(qs) -> bytes:
-        """리더보드 상위 트레이더 현재 포지션 — 소스별(hyperliquid|binance) 10분 캐시.
+        """리더보드 — 캐시를 즉시 반환하고, 만료/부재 시 백그라운드로 갱신(요청을 안 막음).
 
-        무겁다(리더보드 대량행+포지션 조회). 바이낸스는 로컬 전용(개발환경은 지역차단으로 빈 결과).
+        build_bundle이 무겁다(후보 수십명 순차 API 검증 ~수 분). 동기로 돌리면 최초 로드가 몇 분
+        걸려 탭이 멈춘 것처럼 보인다. → 신선하면 그대로, 오래됐으면 stale값을 즉시 주면서 백그라운드
+        갱신만 트리거. 바이낸스는 로컬 전용(개발환경은 지역차단으로 빈 결과).
         """
         source = (qs.get("source", ["hyperliquid"])[0] or "hyperliquid").lower()
         now = time.time()
         c = _LEADERBOARD_CACHE.get(source)
-        if c and now - c["t"] < 600:
-            return json.dumps(c["data"]).encode("utf-8")
-        out = {"source": source, "count": 0, "traders": [], "top": [], "rising": []}
-        try:
-            if source == "binance":
-                from crypto_trader.connectors.binance_leaderboard import build_bundle
-            else:
-                from crypto_trader.connectors.hyperliquid_leaderboard import build_bundle
-            out = build_bundle()
-            _LEADERBOARD_CACHE[source] = {"t": now, "data": out}
-        except Exception:  # noqa: BLE001
-            pass
-        return json.dumps(out).encode("utf-8")
+        fresh = bool(c and now - c["t"] < 600)
+        if not fresh and source not in _LB_REFRESHING:
+            _LB_REFRESHING.add(source)
+            threading.Thread(target=_refresh_leaderboard, args=(source,), daemon=True).start()
+        if c:
+            return json.dumps({**c["data"], "stale": not fresh}).encode("utf-8")
+        # 최초(캐시 없음): 백그라운드 로딩 중 — 빈 결과 + loading 플래그(프런트가 재폴링)
+        return json.dumps({"source": source, "count": 0, "traders": [], "top": [],
+                           "rising": [], "loading": True}).encode("utf-8")
 
     def _api_symbols() -> bytes:
         try:
@@ -397,7 +411,11 @@ def main() -> None:
                          daemon=True).start()
         print(f"리서치 자동갱신: {args.pull_interval}초마다 git pull (--pull-interval 0 이면 끔)")
 
-    server = HTTPServer(("127.0.0.1", args.port), Handler)
+    # 스레딩 서버: 느린 요청(리더보드 build_bundle 등)이 사이트 전체를 멈추지 않게 한다.
+    server = ThreadingHTTPServer(("127.0.0.1", args.port), Handler)
+    # 리더보드 프리워밍: 서버 시작 즉시 백그라운드로 번들을 미리 채워 첫 방문도 빠르게.
+    _LB_REFRESHING.add("hyperliquid")
+    threading.Thread(target=_refresh_leaderboard, args=("hyperliquid",), daemon=True).start()
     print(f"대시보드: http://localhost:{args.port}  (Ctrl+C 종료)")
     try:
         server.serve_forever()
