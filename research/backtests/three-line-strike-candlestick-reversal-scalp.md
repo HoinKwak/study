@@ -137,3 +137,9 @@
   cd /home/user/study
   python3 scratchpad/three_line_strike.py
   ```
+
+## backtest-reviewer 독립 재검증 — 판정 VALID
+스크립트 전체 재실행으로 모든 표(15m/1h 신호수·IS/OOS·rr×texit 9조합·숏참고)를 예외 없이 재현.
+패턴 정의(3연속 동방향+4봉째 감싸기 반전)가 Bulkowski 표준과 일치, 룩어헤드 없음(SL/TP 루프 i+1부터,
+SL우선), 종목별 OOS 급반전(ETH 1.14→0.11 등)을 투명 노출. 1h OOS 표본(75건)은 리포트 스스로 '경계선'
+명시. 발견된 결함 없음(ADA 신호26 vs 거래25 1건차는 risk<=0 스킵 정상동작). → FAIL 견고(VALID).

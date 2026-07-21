@@ -132,3 +132,13 @@ OOS PF>1)을 둘 다 충족하지 못함.
   cd /home/user/study
   python3 scratchpad/seasonality_2200.py
   ```
+
+## backtest-reviewer 독립 재검증 — 판정 VALID
+스크립트를 직접 재실행해 핵심 표(BTC 단독·7메이저·풀드 IS/OOS·gross 분해)를 소수점까지 재현.
+**+1.76bps 총엣지 = `research/seasonality/btc_hourly.json`(별개 독립 스크립트 sideprojects/btc_seasonality/
+seasonality.py로 생성)과 일치**를 리뷰어가 처음부터 재계산해 확인(mean gross 1.7633bps·승률 50.18%·
+PF 1.0776) — 순환논리가 아닌 진짜 독립 교차검증. 비용 14bps는 프레임워크 표준값(taker0.05%+슬립0.02%
+양측)과 정확히 일치(FAIL 유도용 부풀림 아님). 룩어헤드·단위·OOS분리·유니버스 전부 PASS. → FAIL 견고(VALID).
+**⚠️ §5(진입시각×보유시간 18조합 스윕) 표는 현재 커밋된 스크립트로 재현 불가(스크립트가 파라미터화
+안 됨, scratchpad는 gitignore라 구버전 복구 불가) → 해당 표는 '미확인'으로 간주. 핵심 판정(net PF<1,
+엣지<비용)은 불변.**
