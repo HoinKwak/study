@@ -967,7 +967,9 @@ _CHART_JS = r"""<script>
    for(var i=0;i<WL.length;i++){var s=WL[i],d=q[s]||{};
      var pc=(d.chg24==null)?null:d.chg24,col=(pc==null)?'#8d969e':(pc>=0?'#16a34a':'#e23b4a');
      var pct=(pc==null)?'-':((pc>=0?'+':'')+pc.toFixed(2)+'%'),px=(d.price==null)?'-':fmtPx(d.price);
-     h+='<tr><td><b class="wl-sym" data-s="'+s+'" style="cursor:pointer">'+s+'</b></td>'+
+     h+='<tr class="wl-row" draggable="true" data-idx="'+i+'" style="cursor:move">'+
+        '<td style="color:#8d969e;padding-right:2px" title="드래그로 순서변경">⠿</td>'+
+        '<td><b class="wl-sym" data-s="'+s+'" style="cursor:pointer">'+s+'</b></td>'+
         '<td style="text-align:right">'+px+'</td>'+
         '<td style="text-align:right;color:'+col+'">'+pct+'</td>'+
         '<td style="text-align:right"><span class="wl-del" data-s="'+s+'" title="삭제" style="cursor:pointer;color:#8d969e;padding:0 3px">✕</span></td></tr>';}
@@ -977,11 +979,42 @@ _CHART_JS = r"""<script>
    .then(function(r){return r.json();}).then(function(q){wlRender(q);}).catch(function(){wlRender({});});}
  function wlAdd(sym){sym=(sym||'').toUpperCase().replace(/[^A-Z0-9]/g,'');if(!sym)return;
    if(WL.indexOf(sym)>=0)return; if(WL.length>=10){alert('관심종목은 최대 10개까지입니다.');return;}
-   WL.push(sym);wlSave();wlLoad();}
- function wlDel(sym){var i=WL.indexOf(sym);if(i>=0){WL.splice(i,1);wlSave();wlLoad();}}
+   WL.push(sym);wlSave();wlLoad();renderTopStrip();}
+ function wlDel(sym){var i=WL.indexOf(sym);if(i>=0){WL.splice(i,1);wlSave();wlLoad();renderTopStrip();}}
  function wlSelect(s){if(!s)return;SEL.s=s;save('ct_sym',s);setTxt('mkt-sym',s);setTxt('mkt-price','—');
    loadChart();loadDerivs();loadOI();loadCVD();loadDom();
    if(root&&root.scrollIntoView)root.scrollIntoView({behavior:'smooth',block:'center'});}
+ // 상단 티커 스트립을 관심종목으로 대체(지정 시). closes로 미니 스파크라인 직접 그림.
+ function jspark(cl,col){cl=(cl||[]).filter(function(v){return v!=null;});if(cl.length<2)return '';
+   var w=150,h=36,mn=Math.min.apply(null,cl),mx=Math.max.apply(null,cl);if(mx===mn)mx=mn+1;
+   var n=cl.length,p='';for(var i=0;i<n;i++){p+=(i?' ':'')+(i/(n-1)*(w-2)+1).toFixed(1)+','+(h-2-(cl[i]-mn)/(mx-mn)*(h-4)).toFixed(1);}
+   return '<svg viewBox="0 0 '+w+' '+h+'" width="100%" height="'+h+'" preserveAspectRatio="none"><polyline points="'+p+'" fill="none" stroke="'+col+'" stroke-width="1.5"/></svg>';}
+ function renderTopStrip(){var strip=document.getElementById('ticker-strip');if(!strip)return;
+   if(!WL.length)return;   // 관심종목 미지정 시 서버렌더(시총 상위) 유지
+   fetch('/api/quotes?spark=1&symbols='+encodeURIComponent(WL.join(',')))
+   .then(function(r){return r.json();}).then(function(q){var cards=[];
+     for(var i=0;i<WL.length;i++){var s=WL[i],dd=q[s]||{};
+       var pc=(dd.chg24==null)?null:dd.chg24,col=(pc==null)?'#8d969e':(pc>=0?'#16a34a':'#e23b4a');
+       var pct=(pc==null)?'-':((pc>=0?'+':'')+pc.toFixed(1)+'%'),px=(dd.price==null)?'-':fmtPx(dd.price);
+       cards.push('<div class="card symlink" data-sym="'+s+'" style="margin:0;padding:9px 11px">'+
+         '<div style="display:flex;justify-content:space-between;align-items:baseline">'+
+         '<b style="font-size:14px">'+s+'</b><span style="color:'+col+';font-size:11px">'+pct+'</span></div>'+
+         '<div class="muted" style="font-size:11px;margin-bottom:2px">'+px+'</div>'+jspark(dd.closes,col)+'</div>');}
+     strip.innerHTML='<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin:12px 0">'+cards.join('')+'</div>';
+   }).catch(function(){});}
+ window.CT_WL=WL; window.CT_renderTopStrip=renderTopStrip;
+ // 관심종목 순서 변경(드래그 앤 드롭) — 위임 핸들러
+ var _wlDrag=null;
+ document.addEventListener('dragstart',function(e){var tr=e.target.closest&&e.target.closest('tr.wl-row');
+   if(!tr)return;_wlDrag=parseInt(tr.getAttribute('data-idx'),10);
+   if(e.dataTransfer){e.dataTransfer.effectAllowed='move';try{e.dataTransfer.setData('text/plain',String(_wlDrag));}catch(_e){}}});
+ document.addEventListener('dragover',function(e){var tr=e.target.closest&&e.target.closest('tr.wl-row');
+   if(tr&&_wlDrag!=null){e.preventDefault();if(e.dataTransfer)e.dataTransfer.dropEffect='move';}});
+ document.addEventListener('drop',function(e){var tr=e.target.closest&&e.target.closest('tr.wl-row');
+   if(!tr||_wlDrag==null)return;e.preventDefault();var to=parseInt(tr.getAttribute('data-idx'),10);
+   if(isNaN(to)||to===_wlDrag){_wlDrag=null;return;}
+   var it=WL.splice(_wlDrag,1)[0];WL.splice(to,0,it);_wlDrag=null;wlSave();wlLoad();renderTopStrip();});
+ document.addEventListener('dragend',function(){_wlDrag=null;});
  document.addEventListener('click',function(e){var t=e.target;if(!t.closest)return;
    var wd=t.closest('.wl-del');if(wd){wlDel(wd.getAttribute('data-s'));return;}
    var wsm=t.closest('.wl-sym');if(wsm){wlSelect(wsm.getAttribute('data-s'));return;}
@@ -1011,7 +1044,7 @@ _CHART_JS = r"""<script>
  fetch('/api/symbols').then(function(r){return r.json();}).then(function(a){if(a&&a.length)SYMS=a;}).catch(function(){});
  setTxt('mkt-sym',SEL.s);   // 복원된 심볼 라벨 반영
  hlInd();hlChan();
- loadChart();loadDerivs();loadOI();loadCVD();loadDom();loadFearGreed();wlLoad();
+ loadChart();loadDerivs();loadOI();loadCVD();loadDom();loadFearGreed();wlLoad();renderTopStrip();
  // 시장 탭이 보일 때 주기적으로 차트·파생 재조회(전체 리로드 없이 갱신)
  (function(){var SEC=window.CT_REFRESH||0;if(!SEC||SEC<5)return;
    setInterval(function(){var mp=document.querySelector('.tabpane[data-pane="market"]');
@@ -1848,7 +1881,8 @@ def render_html(journal: TradeJournal, equity: float | None = None,
          var g=doc.getElementById('gen-time'),gc=document.getElementById('gen-time');
          if(g&&gc)gc.textContent=g.textContent;
          var t=doc.getElementById('ticker-strip'),tc=document.getElementById('ticker-strip');
-         if(t&&tc)tc.innerHTML=t.innerHTML;
+         if(t&&tc){{if(window.CT_WL&&window.CT_WL.length){{if(window.CT_renderTopStrip)window.CT_renderTopStrip();}}
+           else{{tc.innerHTML=t.innerHTML;}}}}
          fillPositions();   // 새 pos-row 실시간 가격 재주입
        }}).catch(function(){{}});
      }},SEC*1000);

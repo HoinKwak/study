@@ -216,25 +216,38 @@ def main() -> None:
         return json.dumps(out).encode("utf-8")
 
     def _api_quotes(qs) -> bytes:
-        """관심종목 시세 — symbols=BTC,ETH → {BTC:{price,chg24}, ...} (24h 티커 배치, 1회 호출)."""
+        """관심종목 시세 — symbols=BTC,ETH → {BTC:{price,chg24[,closes]}, ...}.
+
+        24h 티커 배치 1회로 가격·등락률. spark=1이면 각 심볼 최근 48×1h 종가
+        (상단 티커 스파크라인용)도 함께 반환한다.
+        """
         from crypto_trader.connectors import BinanceDerivativesData
         raw = (qs.get("symbols", [""])[0] or "")
+        spark = (qs.get("spark", ["0"])[0] == "1")
         syms = [s for s in raw.split(",") if s][:10]
         out: dict[str, dict] = {}
         if not syms:
             return json.dumps(out).encode("utf-8")
         try:
-            tk = BinanceDerivativesData().all_24h_tickers() or {}
+            d = BinanceDerivativesData()
+            tk = d.all_24h_tickers() or {}
             for s in syms:
                 base = s.split("/")[0].upper()
                 row = tk.get(f"{base}USDT")
                 if not row:
                     continue
                 try:
-                    out[base] = {"price": float(row.get("lastPrice")),
-                                 "chg24": float(row.get("priceChangePercent"))}
+                    rec = {"price": float(row.get("lastPrice")),
+                           "chg24": float(row.get("priceChangePercent"))}
                 except (TypeError, ValueError):
                     continue
+                if spark:
+                    try:
+                        kl = d.klines(base, "1h", 48)
+                        rec["closes"] = [c for c in (kl or {}).get("close", []) if c is not None]
+                    except Exception:  # noqa: BLE001
+                        rec["closes"] = []
+                out[base] = rec
         except Exception:  # noqa: BLE001
             pass
         return json.dumps(out).encode("utf-8")
