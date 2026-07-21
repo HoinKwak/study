@@ -52,9 +52,10 @@ WebSearch/WebFetch 로 최근(가급적 최신) 애널리스트 코멘트·리�
 }
 ```
 
-4. `research/etf/flows.json` — BTC·ETH 스팟 ETF 일별 순유입(대시보드 'ETF Flow' 카드).
-   **과거 이력을 절대 삭제·재작성하지 말 것.** 기존 파일을 읽어 `assets.BTC`/`assets.ETH` 의
-   과거 일별 배열을 그대로 보존하고, **마지막 날짜 이후의 신규 거래일만 append**(중복 날짜 금지).
+4. `research/etf/flows.json` — BTC·ETH·SOL 스팟 ETF 일별 순유입(대시보드 'ETF Flow' 카드).
+   **과거 이력을 절대 삭제·재작성하지 말 것.** 기존 파일을 읽어 `assets` 안의 모든 자산
+   (`BTC`/`ETH`/`SOL` 등 존재하는 키 전부)의 과거 일별 배열을 그대로 보존하고, 각 자산마다
+   **마지막 날짜 이후의 신규 거래일만 append**(중복 날짜 금지). SOL도 BTC/ETH와 동일하게 유지.
    출처는 Farside Investors / SoSoValue 등 일별 순유입 집계(단위: 백만 USD, 유출은 음수). 스키마:
 ```json
 {

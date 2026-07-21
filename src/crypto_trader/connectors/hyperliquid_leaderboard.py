@@ -241,6 +241,64 @@ def entry_times(addr: str, positions: list[dict]) -> None:
             after = before
 
 
+def _reconstruct_entries(positions: list[dict], fills: list) -> None:
+    """체결이력(fills, 시간순 무관)으로 각 포지션 진입시각 역산해 entry_ts 채움(float 정밀도 보정)."""
+    by_coin: dict[str, list] = {}
+    for f in fills:
+        by_coin.setdefault(f.get("coin"), []).append(f)
+    for pos in positions:
+        fs = by_coin.get(pos["coin"])
+        if not fs:
+            continue
+        cur = pos["size"] if pos["side"] == "long" else -pos["size"]
+        fs.sort(key=lambda x: -(x.get("time") or 0))   # 최신→과거
+        after = cur
+        for f in fs:
+            sz = float(f.get("sz") or 0.0)
+            delta = sz if f.get("side") == "B" else -sz
+            before = after - delta
+            if abs(before) < 1e-6 or (before > 0) != (cur > 0):   # float 오차 흡수
+                pos["entry_ts"] = f.get("time")
+                break
+            after = before
+
+
+def entry_times_deep(addr: str, positions: list[dict],
+                     max_calls: int = 10, window_ms: int = 3 * 86_400_000) -> None:
+    """2000체결 창을 넘어 과거까지 되짚어 진입시각을 찾는다(라이징스타용 정밀 추적).
+
+    최근 userFills(최신 2000)로 앵커 후, userFillsByTime로 window_ms(기본 3일) 단위로 뒤로
+    페이징하며 체결을 누적해 역산. 활발한 트레이더는 진입체결이 최근 2000건 밖으로 밀려 얕은
+    entry_times로는 못 찾던 것을 여기서 보강. max_calls×window_ms(기본 30일) 밖이면 None 유지
+    (진짜 장기보유). userFillsByTime: 시간범위 내 최대 2000건 반환.
+    """
+    if not positions:
+        return
+    all_fills: list = []
+    try:
+        recent = _post(_INFO_URL, {"type": "userFills", "user": addr})
+        if isinstance(recent, list):
+            all_fills.extend(recent)
+    except Exception:  # noqa: BLE001
+        pass
+    end = min((int(f.get("time") or 0) for f in all_fills), default=int(time.time() * 1000))
+    for _ in range(max_calls):
+        start = max(0, end - window_ms)
+        try:
+            fills = _post(_INFO_URL, {"type": "userFillsByTime", "user": addr,
+                                      "startTime": start, "endTime": end})
+        except Exception:  # noqa: BLE001
+            break
+        if isinstance(fills, list) and fills:
+            all_fills.extend(fills)
+        end = start
+        if start <= 0:
+            break
+        time.sleep(0.08)   # info endpoint 배려
+    if all_fills:
+        _reconstruct_entries(positions, all_fills)
+
+
 def _validate_candidate(t: dict, recent_days: int, memo: dict) -> dict | None:
     """후보 1명 2차 검증: 실계좌·메이저 포지션·양방향/고배율 필터 통과 시 enriched dict, 아니면 None.
 
@@ -354,6 +412,13 @@ def build_bundle(
     # 라이징스타는 통산 상위와 겹치는 얼굴 제외 → '이번 달 신흥' 성격 유지
     rising_cand = [t for t in screen_rising(rows) if t["addr"] not in top_addrs]
     rising = _collect(rising_cand, rising_limit, recent_days, memo, scan)
+    # 라이징스타만 진입시각 정밀 추적(2000체결 창 밖까지) — 활발한 트레이더라 얕은 역산으로는
+    # 대부분 못 찾아 '장기'로 오표기되던 것을 보강. 상위 트레이더(장기보유)는 그대로 둔다.
+    for t in rising:
+        try:
+            entry_times_deep(t["addr"], t.get("positions", []))
+        except Exception:  # noqa: BLE001
+            pass
     return {
         "source": "hyperliquid",
         "summary": coin_summary(top + rising),   # 겹침 없음(위에서 제외) → 그대로 합산
