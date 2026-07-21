@@ -356,6 +356,22 @@ def _mcap_table(rows: list) -> str:
             f"</tr></thead><tbody>{inner}</tbody></table></div>")
 
 
+def _watchlist_card() -> str:
+    """관심종목(워치리스트) — 사용자가 최대 10개 지정. localStorage 저장·JS가 시세 채움.
+
+    시세는 /api/quotes 배치 조회(가격·24h%). 심볼 클릭 시 해당 종목 차트 로드.
+    """
+    return (
+        "<div class='card' style='min-width:260px'>"
+        "<div style='display:flex;justify-content:space-between;align-items:center;margin-bottom:6px'>"
+        "<span class='muted'>⭐ 관심종목 <span id='wl-count' style='font-size:11px'></span></span></div>"
+        "<div style='display:flex;gap:5px;margin-bottom:8px'>"
+        "<input class='futsearch' id='wl-input' placeholder='심볼 추가 (예: SOL)' "
+        "autocomplete='off' style='flex:1'>"
+        "<button class='tfbtn' id='wl-add' style='margin-left:0;white-space:nowrap'>추가</button></div>"
+        "<div id='wl-list'></div></div>")
+
+
 def _fmt_px(p) -> str:
     if not p:
         return "-"
@@ -941,7 +957,35 @@ _CHART_JS = r"""<script>
    b.classList.toggle('tfbtn-active', !!IND[b.getAttribute('data-ind')]);});}
  function hlChan(){document.querySelectorAll('.chanbtn').forEach(function(b){
    b.classList.toggle('tfbtn-active', b.getAttribute('data-chan')===CHAN);});}
+ // ---- 관심종목(워치리스트) — localStorage 저장, /api/quotes 배치 시세 ----
+ var WL=[]; try{var _wl=localStorage.getItem('ct_wl');if(_wl)WL=(JSON.parse(_wl)||[]).slice(0,10);}catch(_e){}
+ function wlSave(){try{localStorage.setItem('ct_wl',JSON.stringify(WL));}catch(_e){}}
+ function wlRender(q){var box=document.getElementById('wl-list');if(!box)return;q=q||{};
+   var cnt=document.getElementById('wl-count');if(cnt)cnt.textContent='('+WL.length+'/10)';
+   if(!WL.length){box.innerHTML='<div class="muted" style="font-size:12px;padding:4px 0">심볼을 추가하세요 (최대 10개)</div>';return;}
+   var h='<table style="width:100%"><tbody>';
+   for(var i=0;i<WL.length;i++){var s=WL[i],d=q[s]||{};
+     var pc=(d.chg24==null)?null:d.chg24,col=(pc==null)?'#8d969e':(pc>=0?'#16a34a':'#e23b4a');
+     var pct=(pc==null)?'-':((pc>=0?'+':'')+pc.toFixed(2)+'%'),px=(d.price==null)?'-':fmtPx(d.price);
+     h+='<tr><td><b class="wl-sym" data-s="'+s+'" style="cursor:pointer">'+s+'</b></td>'+
+        '<td style="text-align:right">'+px+'</td>'+
+        '<td style="text-align:right;color:'+col+'">'+pct+'</td>'+
+        '<td style="text-align:right"><span class="wl-del" data-s="'+s+'" title="삭제" style="cursor:pointer;color:#8d969e;padding:0 3px">✕</span></td></tr>';}
+   box.innerHTML=h+'</tbody></table>';}
+ function wlLoad(){if(!WL.length){wlRender({});return;}
+   fetch('/api/quotes?symbols='+encodeURIComponent(WL.join(',')))
+   .then(function(r){return r.json();}).then(function(q){wlRender(q);}).catch(function(){wlRender({});});}
+ function wlAdd(sym){sym=(sym||'').toUpperCase().replace(/[^A-Z0-9]/g,'');if(!sym)return;
+   if(WL.indexOf(sym)>=0)return; if(WL.length>=10){alert('관심종목은 최대 10개까지입니다.');return;}
+   WL.push(sym);wlSave();wlLoad();}
+ function wlDel(sym){var i=WL.indexOf(sym);if(i>=0){WL.splice(i,1);wlSave();wlLoad();}}
+ function wlSelect(s){if(!s)return;SEL.s=s;save('ct_sym',s);setTxt('mkt-sym',s);setTxt('mkt-price','—');
+   loadChart();loadDerivs();loadOI();loadCVD();loadDom();
+   if(root&&root.scrollIntoView)root.scrollIntoView({behavior:'smooth',block:'center'});}
  document.addEventListener('click',function(e){var t=e.target;if(!t.closest)return;
+   var wd=t.closest('.wl-del');if(wd){wlDel(wd.getAttribute('data-s'));return;}
+   var wsm=t.closest('.wl-sym');if(wsm){wlSelect(wsm.getAttribute('data-s'));return;}
+   var wab=t.closest('#wl-add');if(wab){var wi=document.getElementById('wl-input');if(wi){wlAdd(wi.value);wi.value='';}return;}
    var ib=t.closest('.indbtn');if(ib){var ik=ib.getAttribute('data-ind');IND[ik]=!IND[ik];
      save('ct_ind',JSON.stringify(IND));hlInd();if(LAST)drawCandles(LAST);return;}
    var cb=t.closest('.chanbtn');if(cb){CHAN=cb.getAttribute('data-chan');
@@ -962,15 +1006,17 @@ _CHART_JS = r"""<script>
        if(root&&root.scrollIntoView)root.scrollIntoView({behavior:'smooth',block:'center'});}return;}});
  document.addEventListener('input',function(e){var t=e.target;
    if(t.id==='mkt-input')renderSyms(t.value);});
+ document.addEventListener('keydown',function(e){
+   if(e.target&&e.target.id==='wl-input'&&e.key==='Enter'){wlAdd(e.target.value);e.target.value='';}});
  fetch('/api/symbols').then(function(r){return r.json();}).then(function(a){if(a&&a.length)SYMS=a;}).catch(function(){});
  setTxt('mkt-sym',SEL.s);   // 복원된 심볼 라벨 반영
  hlInd();hlChan();
- loadChart();loadDerivs();loadOI();loadCVD();loadDom();loadFearGreed();
+ loadChart();loadDerivs();loadOI();loadCVD();loadDom();loadFearGreed();wlLoad();
  // 시장 탭이 보일 때 주기적으로 차트·파생 재조회(전체 리로드 없이 갱신)
  (function(){var SEC=window.CT_REFRESH||0;if(!SEC||SEC<5)return;
    setInterval(function(){var mp=document.querySelector('.tabpane[data-pane="market"]');
      if(mp&&mp.style.display==='none')return;   // 안 보이는 탭이면 스킵
-     loadChart();loadDerivs();loadOI();loadCVD();loadDom();},SEC*1000);})();
+     loadChart();loadDerivs();loadOI();loadCVD();loadDom();wlLoad();},SEC*1000);})();
 })();
 </script>"""
 
@@ -1430,6 +1476,9 @@ def render_html(journal: TradeJournal, equity: float | None = None,
     </div>
     <div style="flex:1;min-width:300px">
       {_mcap_table(mcap)}
+    </div>
+    <div style="flex:1;min-width:260px">
+      {_watchlist_card()}
     </div>
   </div>
 """ if (alt or mcap) else ""

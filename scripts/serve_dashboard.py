@@ -215,6 +215,30 @@ def main() -> None:
             pass
         return json.dumps(out).encode("utf-8")
 
+    def _api_quotes(qs) -> bytes:
+        """관심종목 시세 — symbols=BTC,ETH → {BTC:{price,chg24}, ...} (24h 티커 배치, 1회 호출)."""
+        from crypto_trader.connectors import BinanceDerivativesData
+        raw = (qs.get("symbols", [""])[0] or "")
+        syms = [s for s in raw.split(",") if s][:10]
+        out: dict[str, dict] = {}
+        if not syms:
+            return json.dumps(out).encode("utf-8")
+        try:
+            tk = BinanceDerivativesData().all_24h_tickers() or {}
+            for s in syms:
+                base = s.split("/")[0].upper()
+                row = tk.get(f"{base}USDT")
+                if not row:
+                    continue
+                try:
+                    out[base] = {"price": float(row.get("lastPrice")),
+                                 "chg24": float(row.get("priceChangePercent"))}
+                except (TypeError, ValueError):
+                    continue
+        except Exception:  # noqa: BLE001
+            pass
+        return json.dumps(out).encode("utf-8")
+
     def _api_feargreed() -> bytes:
         """크립토 공포·탐욕 지수(alternative.me, 시장 전체) — 30분 캐시."""
         now = time.time()
@@ -392,6 +416,9 @@ def main() -> None:
                 return
             if path == "/api/prices":
                 self._send(_api_prices(parse_qs(parsed.query)), "application/json")
+                return
+            if path == "/api/quotes":
+                self._send(_api_quotes(parse_qs(parsed.query)), "application/json")
                 return
             if path == "/api/symbols":
                 self._send(_api_symbols(), "application/json")
