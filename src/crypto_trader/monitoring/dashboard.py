@@ -70,7 +70,7 @@ def load_chartist_views() -> dict:
 
 
 def load_etf_flows() -> dict:
-    """BTC·ETH·SOL 스팟 ETF 일별 순유입. research/etf/flows.json."""
+    """BTC·ETH·SOL·XRP 스팟 ETF 일별 순유입. research/etf/flows.json."""
     return _load_json("etf/flows.json") or {}
 
 
@@ -1265,9 +1265,9 @@ _ETF_JS = r"""<script>
 
 
 def _etf_section(data: dict) -> str:
-    """리서치 탭: BTC·ETH·SOL 스팟 ETF 일별 순유입(막대)+누적(선). 시계열 구간 선택(클라이언트)."""
+    """리서치 탭: BTC·ETH·SOL·XRP 스팟 ETF 일별 순유입(막대)+누적(선). 시계열 구간 선택(클라이언트)."""
     assets = (data or {}).get("assets") or {}
-    order = [s for s in ("BTC", "ETH", "SOL") if assets.get(s)]
+    order = [s for s in ("BTC", "ETH", "SOL", "XRP") if assets.get(s)]
     if not order:
         return ""
     ts = kst_display((data or {}).get("ts"), "%m-%d %H:%M")
@@ -1292,7 +1292,7 @@ def _etf_section(data: dict) -> str:
                for s in order}
     cfg = "<script>window.ETFDATA=" + json.dumps({"assets": js_data}) + ";</script>"
     return f"""
-  <h2>🏦 BTC·ETH·SOL 스팟 ETF 순유입 <span class="muted">({ts} KST · 단위 {unit})</span>
+  <h2>🏦 BTC·ETH·SOL·XRP 스팟 ETF 순유입 <span class="muted">({ts} KST · 단위 {unit})</span>
     <span style="margin-left:8px;white-space:nowrap">{tfbtns}</span></h2>
   <div style="display:flex;gap:14px;flex-wrap:wrap">{"".join(cards)}</div>
   <div class="muted" style="margin-top:8px">출처: {src_html} · 누적선은 <b>선택 구간 내</b> 누적. 일 단위 발표(실시간 아님), 지연·정정 가능. 투자조언 아님.</div>
