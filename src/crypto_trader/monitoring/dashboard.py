@@ -439,7 +439,7 @@ def _market_view(tickers) -> str:
         f'<input class="futsearch" id="mkt-input" placeholder="심볼 검색…">'
         f'<div class="tklist" id="mkt-list"></div></div>'
         f'<div id="mkt-chart" class="chartarea"><div class="muted">로딩…</div></div>'
-        f'<div class="muted" style="text-align:right;font-size:10px;margin-top:2px">↕ 아래 모서리를 끌어 높이 조절 · 하단 막대=거래량</div></div>')
+        f'<div class="muted" style="text-align:right;font-size:10px;margin-top:2px">휠=확대/축소 · 드래그=좌우 이동 · 더블클릭=전체 · ↕모서리=높이 · 하단막대=거래량</div></div>')
     derivs = (
         f'<div class="card mkt-derivcard">'
         f'<div class="muted" style="margin-bottom:8px">파생 지표 · <b id="mkt-dsym">{html.escape(d1)}</b> '
@@ -531,6 +531,9 @@ _CHART_JS = r"""<script>
    var _c=localStorage.getItem('ct_cvdtf');if(_c)SEL.cvdtf=_c;}catch(_e){}
  if(!TFSET[SEL.tf])SEL.tf='4h';   // 옛 기간기준(7d 등) 저장값 보정
  var LAST=null, OILAST=null, CVDLAST=null, DOMLAST=null;
+ // 차트 줌/팬 뷰 윈도우. i0..i1 = 표시가능 전체구간(pAll)에서 화면에 그릴 인덱스 범위.
+ // key(심볼|tf|길이)가 바뀌면(=종목·간격 전환) 최근 DEF_SHOWN봉으로 리셋한다.
+ var VIEW={key:null,i0:0,i1:0}, DEF_SHOWN=200;
  var root=document.getElementById('mkt-chart');
  if(!root)return;
  var card=root.closest('.card');
@@ -694,8 +697,15 @@ _CHART_JS = r"""<script>
    var ma100=IND.ma100?smaArr(fCl,100):null, ma200=IND.ma200?smaArr(fCl,200):null;
    var rsi=IND.rsi?rsiArr(fCl,14):null, stObj=IND.st?superTrend(fHi,fLo,fCl,10,3):null;
    var chan=CHAN==='keltner'?keltner(fHi,fLo,fCl,20,10,2):(CHAN==='donchian'?donchian(fHi,fLo,20):null);
-   var p=full.slice(warm);   // 표시구간
-   var vp=IND.poc?volProfile(p):null;   // 매물대(볼륨 프로파일)
+   var pAll=full.slice(warm);   // 표시가능 전체구간(줌아웃 최대)
+   // 줌/팬 뷰 적용: key가 바뀌면(종목·간격 전환) 최근 DEF_SHOWN봉으로 리셋
+   var vk=((d&&d.symbol)||SEL.s)+'|'+((d&&d.tf)||SEL.tf)+'|'+pAll.length;
+   if(VIEW.key!==vk){VIEW.key=vk;VIEW.i1=pAll.length;VIEW.i0=Math.max(0,pAll.length-DEF_SHOWN);}
+   VIEW.i0=Math.max(0,Math.min(pAll.length-3,VIEW.i0|0));
+   VIEW.i1=Math.max(VIEW.i0+3,Math.min(pAll.length,VIEW.i1|0));
+   warm=warm+VIEW.i0;            // full 인덱스 오프셋을 줌 시작점으로 이동(이하 warm+t 그대로 사용)
+   var p=pAll.slice(VIEW.i0,VIEW.i1);   // 화면에 그릴 구간(줌/팬 적용)
+   var vp=IND.poc?volProfile(p):null;   // 매물대(볼륨 프로파일) — 보이는 구간 기준
    var W=Math.max(320,root.clientWidth||680),H=Math.max(180,root.clientHeight||340);
    var padL=64,padR=12,padT=12,padB=26,gap=6;
    var avail=H-padT-padB;
@@ -892,6 +902,37 @@ _CHART_JS = r"""<script>
    if(cvdEl)new ResizeObserver(function(){if(CVDLAST&&CVDLAST.length>1){var lv=CVDLAST[CVDLAST.length-1][1];
      drawLine(cvdEl,CVDLAST,{color:lv>=0?'#16a34a':'#e23b4a',fmt:num,zero:true});}}).observe(cvdEl);
    if(domEl)new ResizeObserver(function(){if(DOMLAST&&DOMLAST.length>1)drawLine(domEl,DOMLAST,{color:'#e0964a',fmt:domFmt});}).observe(domEl);}
+ // ---- 차트 줌(휠)·팬(드래그)·더블클릭 리셋 ----
+ function viewN(){return LAST?(((LAST.points||[]).length)-((LAST.warmup)||0)):0;}  // 표시가능 전체 봉수
+ root.addEventListener('wheel',function(e){
+   if(!LAST)return;var n=viewN();if(n<8)return;e.preventDefault();
+   var w=VIEW.i1-VIEW.i0;if(w<=0)w=Math.min(n,DEF_SHOWN);
+   var rect=root.getBoundingClientRect();
+   var frac=Math.max(0,Math.min(1,(e.clientX-rect.left)/(rect.width||1)));  // 커서 위치를 줌 기준점으로
+   var f=e.deltaY<0?0.82:1.22;                    // 위로 스크롤=확대, 아래로=축소
+   var nw=Math.max(12,Math.min(n,Math.round(w*f)));
+   var anchor=VIEW.i0+frac*w;
+   var ni0=Math.round(anchor-frac*nw);
+   ni0=Math.max(0,Math.min(n-nw,ni0));
+   VIEW.i0=ni0;VIEW.i1=ni0+nw;drawCandles(LAST);
+ },{passive:false});
+ var _drag=null;
+ root.addEventListener('mousedown',function(e){
+   if(!LAST)return;var rect=root.getBoundingClientRect();
+   // 우하단 리사이즈 그립(약 18px)은 브라우저 기본 높이조절에 양보
+   if(e.clientX>rect.right-18&&e.clientY>rect.bottom-18)return;
+   _drag={x:e.clientX,i0:VIEW.i0,i1:VIEW.i1};root.style.cursor='grabbing';
+ });
+ window.addEventListener('mousemove',function(e){
+   if(!_drag||!LAST)return;e.preventDefault();var n=viewN();var w=_drag.i1-_drag.i0;if(w<=0)return;
+   var rect=root.getBoundingClientRect();
+   var dxBars=Math.round((e.clientX-_drag.x)/(rect.width||1)*w);  // 오른쪽 드래그=과거로 이동
+   var ni0=_drag.i0-dxBars;ni0=Math.max(0,Math.min(n-w,ni0));
+   if(ni0!==VIEW.i0){VIEW.i0=ni0;VIEW.i1=ni0+w;drawCandles(LAST);}
+ });
+ window.addEventListener('mouseup',function(){if(_drag){_drag=null;root.style.cursor='';}});
+ root.addEventListener('dblclick',function(){        // 더블클릭=전체 이력(줌 리셋)
+   if(!LAST)return;var n=viewN();VIEW.i0=0;VIEW.i1=n;drawCandles(LAST);});
  // ---- 심볼 검색 ----
  function renderSyms(q){q=(q||'').toUpperCase();var box=document.getElementById('mkt-list');
    box.innerHTML=SYMS.filter(function(x){return x.toUpperCase().indexOf(q)>=0;}).slice(0,150)

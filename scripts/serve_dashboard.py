@@ -103,12 +103,17 @@ def main() -> None:
     settings = get_settings()
 
     def _tf_params(tf: str):
-        """봉 기준 타임프레임 → (interval, 표시봉수). tf 자체가 캔들 간격."""
+        """봉 기준 타임프레임 → (interval, 표시봉수). tf 자체가 캔들 간격.
+
+        표시봉수는 '줌아웃 시 볼 수 있는 최대 이력'. 차트는 기본으로 최근 일부만
+        보여주고(클라이언트 DEF_SHOWN), 휠로 축소하면 이 범위까지 펼쳐진다.
+        warmup(210) + 표시봉 ≤ 1500(fapi 1회 최대)이어야 하므로 상한은 ~1290.
+        """
         table = {
-            "15m": ("15m", 192), "1h": ("1h", 200), "4h": ("4h", 200),
-            "1d": ("1d", 200), "1w": ("1w", 160), "1M": ("1M", 120),
+            "15m": ("15m", 960), "1h": ("1h", 1000), "4h": ("4h", 900),
+            "1d": ("1d", 700), "1w": ("1w", 400), "1M": ("1M", 200),
         }
-        return table.get(tf, ("1h", 200))
+        return table.get(tf, ("1h", 1000))
 
     def _api_klines(qs) -> bytes:
         from crypto_trader.connectors import BinanceDerivativesData
