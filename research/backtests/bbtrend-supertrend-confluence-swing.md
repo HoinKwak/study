@@ -120,3 +120,19 @@ XRP는 OOS에서 PF 2.65로 풀링 전체 지표를 크게 끌어올리는 종�
 TradingView 원문의 참여지표(1.6K 좋아요)가 높았던 만큼 발굴 우선순위는 합리적이었으나, 우리
 프레임워크(수수료+슬리피지 반영, ATR 정규화 청산, 7종목 고정 유니버스, IS/OOS 분리)에서는
 재현되지 않는다. 라이브에 반영하지 않는다.
+
+## backtest-reviewer 검증: **VALID** (FAIL 판정 동의)
+
+`backtest-reviewer`가 `impl/bbtrend_supertrend_swing.py`를 직접 import해 7종목 IS/OOS
+`st_flip` 결과를 재계산 → 종목별 ret%/PF/win%/#tr/MDD가 **소수점까지 완전 일치**
+(BTC IS PF 1.6442·OOS 1.7105, DOGE OOS 0.4977 등). 풀링 PF 재계산 IS 1.2608(n=299)/
+OOS 1.2298(n=249), **XRP LOO 재계산 IS 1.3255(n=260)/OOS 1.0241(n=221)** 모두 리포트와
+일치. `atr_rr` 5개 파라미터 조합도 전부 재현. 데이터 덤프(선물 um 월간)의 ms 단위·봉간격·
+구간(2022-01~2026-06) 정확성까지 직접 확인.
+
+- 룩어헤드 PASS(진입=확정봉 종가, entry_idx=i는 i+1부터 청산 체크), 단위 PASS, 수수료 PASS(왕복 0.14%).
+- CONCERN(경미): ① 표본 종목당 28~50건으로 경계선(리포트도 인정, XRP LOO·atr_rr 스윕으로 보강),
+  ② 커스텀 리플레이 엔진이라 라이브 워커와 바이트 단위 동일 경로는 아님(단 `chandelier_exit_swing.py`
+  전례와 동일 패턴, SuperTrend 래칭 보존 위한 정당한 사유). 둘 다 FAIL을 뒤집는 방향 아님.
+- 결론: "임계값 근처라 애매한 FAIL"이 아니라 4/7종목 OOS 손실 + XRP LOO 붕괴가 코드로 정확히
+  재현된 **구조적 소수종목 의존**. FAIL 강건.
