@@ -1,123 +1,108 @@
-# KOL 하이프 리스트 — 2026-07-22 12:03 UTC (KST 2026-07-22 21:03)
+# KOL 하이프 리스트 — 2026-07-22 14:02 UTC (KST 2026-07-22 23:02)
 
-> ⚠️ 아이디어 소싱·조기경보용. **투자조언 아님(Not financial advice).** KOL 콜은 홍보·포지션 편향이 매우 크고, 유료/봇 KOL·카피트레이드 유인도 섞여 있음. X 로그인월 한계로 **WebSearch 인덱싱·2차 보도·CoinGecko/GeckoTerminal(API 직접조회)/DexScreener/pump.fun 등 기반**이며, 소스간 수치 편차가 있을 수 있다. 원 트윗 직접 확인이 안 된 항목은 **"미확인"**으로 표기. 직전 회차(2026-07-22 10:03 UTC, 약 2시간 전) 대비 **신규/지속/식음**을 비교 표기함.
+> ⚠️ 아이디어 소싱·조기경보용. **투자조언 아님(Not financial advice).** KOL 콜은 홍보·포지션 편향이 매우 크고, 유료/봇 KOL·카피트레이드 유인도 섞여 있음. X 로그인월 한계로 **WebSearch 인덱싱·2차 보도·CoinGecko/GeckoTerminal(API 직접조회)/DexScreener/pump.fun 등 기반**이며, 소스간 수치 편차가 있을 수 있다. 원 트윗 직접 확인이 안 된 항목은 **"미확인"**으로 표기. 직전 회차(2026-07-22 12:03 UTC, 약 2시간 전) 대비 **신규/지속/식음**을 비교 표기함.
 
 ## ★ 이번 회차 핵심 변화
 
-- **🔴 401K 워시트레이딩성 급등락 규명(최우선 검증 과제 해소)**: 직전 회차 최우선 재검증 대상이던 401K를 이번 회차 재확인 — CoinGecko 기준 **24h vol $4.97M(급증 확인)** 이나 **동시에 24h 가격 -69.50% 폭락**도 함께 보고됨. 즉 직전의 'FDV+268% 급증'은 **재활성화(호재)가 아니라 워시트레이딩성 덤핑/러그 패턴**이었을 가능성이 매우 높다는 결론. 관찰 등급에서 **뒷북/위험 확정**으로 하향.
-- **🟢 WALLET·PONS 동반 재가속**: 직전 회차 '감속 조짐'으로 판정했던 **WALLET이 24h+33.77%로 2배 이상 급가속**(직전+14.7%), **PONS도 24h+14.18%로 재가속 지속**(직전+5.05%) — RH체인 조정 국면 속 두 종목이 예외적으로 강한 모멘텀을 보임. 두 판정 모두 이전 회차 결론이 뒤집힘.
-- **🟠 TENDIES 신규 편입 — 로빈후드 공식 노출 후 되돌림**: 로빈후드 공식 크립토 계정이 로빈후드 월렛 내 트렌딩으로 노출시켜 **홀더 4,200+**로 성장했던 TENDIES를 이번 회차 신규 포착. 그러나 재검증 결과 **6개 풀 전부 -12~14% 동반 하락** 확인 — ATH는 7/16(6일 전)이라 보도된 '+277.7%' 헤드라인은 이미 과거 시점, 조기성은 약하나 공식 노출이라는 구조적 서사는 유효.
-- **🔴 JUGGERNAUT 붕괴 가속**: Noxa 런치패드 폐쇄발 구조적 붕괴가 반등 없이 **오히려 가속** — 24h**-41.83%**(직전-27.6%)로 낙폭 확대.
-- **🟠 JIMOTHY 급반전 후 안정화**: 2시간전 -33% 급반전 이후 **추가 붕괴 없이 ATH대비-23.4% 레벨에서 횡보** — 단기 변동성은 진정되는 모습.
-- **🟡 DIH·STONKBROKER 데이터 신뢰성 이슈 해소 방향**: **DIH**는 낙폭이 -17.04%→**-4.17%**로 대폭 완화(소스충돌 항목이었으나 GT 재조회로 낙폭둔화 확인), **STONKBROKER**는 직전 회차 캐싱 의심(동일수치 반복)이 이번 회차 실제 수치 변동(mcap$5.03M→$4.69M)으로 **해소** — 실은 완만히 지속 하락 중이었던 것으로 확인.
-- **NOC 완만한 상승 2회 연속**: 24h+7.14%(직전+4.21%) — 미세하나마 반전 지속.
-- **JUGGERNAUT·WISHBONE·INDEX**: RH체인 밈 메타 조정 지속. WISHBONE은 낙폭 둔화(-18.95%→-10.48%), INDEX는 오히려 낙폭 심화(-16.23%→-22.06%).
-- **ARROW·HOODIE·BULLCAT·4663**: 이번 회차도 재검증 우선순위에서 밀려 미실시 — 직전값 유지, 4663은 이번 회차 리스트에서 제외(중요도 최하위, 15개 상한 관리).
-- **신규 대형 참고 사례(notable) — ANSEM(The Black Bull)**: RH체인 밖에서 Ansem 명의를 딴 별개 대형 토큰 ANSEM이 6월말 7일간 **+19,878%** 폭등 후 현재 mcap $93M~$207M권(소스간 편차)에서 조정 중 — 익명 개발자가 Ansem 지갑에 6.5억개 토큰을 무상 전송한 사례로, 이미 CT 전체가 인지한 전형적 **뒷북** 케이스. BULLCAT과 명칭 혼동 주의.
+- **🆕 RH체인 신규 'AI 에이전트 토큰' 메타 출현 (최대 이벤트)**: 로빈후드가 **7/21 크립토용 에이전틱 트레이딩(MCP서버)을 공식 확장**한 직후, 이를 패러디·편승한 **자율매매 에이전트 컨셉 토큰**들이 잇따라 출시됨 — **r0b**(풀생성 7/21 18:49 UTC, 약 19시간 전, FDV$349K·vol$7.21M·24h+12,907%), **un1**(풀생성 7/22 03:50 UTC, 약 10시간 전, FDV$865K·24h+1,641%)이 극초기 단계에서 거래량이 시총 대비 압도적으로 급증. **RHAGENT**(24h+723.9%)도 같은 메타로 재가속. 이번 회차 가장 이른 단계의 신규 발굴.
+- **🟢 SWOGE·NOCK·WOOD 신규 편입(GeckoTerminal 트렌딩 상위)**: SWOGE는 2일 전 생성돼 24h+174.9%·1h+434.4%로 급가속 중, NOCK·WOOD는 각각 2주 전 생성됐으나 이번 회차 재가속(+152.5%, +20.2%). 서사는 아직 미상이나 거래 흐름은 뚜렷.
+- **🔴 PONS 급반전 조정**: 2회 연속 재가속(직전+14.18%)했던 PONS가 **이번 회차 -20.6%로 급반전**. RH체인 1위 런치패드 지위는 유지.
+- **🟠 WALLET 피크 후 감속**: 직전 회차 급가속(+33.77%)했던 WALLET이 이번 회차 +13.6%로 큰 폭 감속, 1h는 -15.8%로 하락 전환 — 전형적 급등후 조정 패턴.
+- **🟢 JUGGERNAUT 낙폭 둔화**: Noxa 붕괴발 붕괴 가속(직전-41.83%)이 이번 회차 **-25.9%로 진정**, 매수(1,774)>매도(1,490)로 매수 우위 전환. 반등 확정은 아니나 최악은 지난 듯.
+- **🟢 DIH 안정화 확인**: 3회 연속 낙폭 완화 끝에 이번 회차 **24h+0.04%로 사실상 보합** 전환 — 초소형·ATH대비-95%대 선행낙폭은 여전히 큼.
+- **🔴 NOC 반전 음전**: 2회 연속 양전(직전+7.14%)했던 NOC가 이번 회차 -14.6%로 반전.
+- **🔴 TENDIES·STONKBROKER 하락 심화/가속**: TENDIES는 -12.7~13.7%→**-22.9%**로 낙폭 심화, STONKBROKER는 -15.9%→**-25.9%**로 하락 가속. 둘 다 뒷북 성격 지속.
+- **🟡 401K 데이터 신뢰성 이슈 지속**: CoinGecko 수치(price$0.0004385, vol$4.97M, 24h-69.50%)가 **2시간 전 조회값과 완전 동일** — 캐싱 의심 또는 거래 정지 가능성. 워시트레이딩성 붕괴 결론 자체는 유지.
+- **상한 관리로 이번 회차 리스트 제외**: WISHBONE·INDEX·ARROW·HOODIE·BULLCAT·JIMOTHY (15개 상한, 신규 발굴 6종 편입으로 교체) — 직전 회차값 참고로 유효, 다음 회차 재검증 예정.
 
 ## 🎯 토큰 하이프 리스트 (조기성 우선 정렬)
 
 | 토큰 | 체인/DEX | CA | 단계 | 언급 KOL(수) | 서사(요지) | 온체인 코로보 | 신규? | 리스크 | 출처 |
 |---|---|---|---|---|---|---|---|---|---|
-| **WALLET**(Robinhood Wallet) | RH Chain(Uniswap V3) | `0x9501a20bedb8bea0798fe5d4c411f5e270965d49` | 🟢확산(재가속) | 0 | FDV$6.38M(보합),vol$1.13M(보합),24h+33.77%(직전+14.7%대비2배이상급가속) — '감속조짐'판정뒤집힘 | 🟢 급가속 | 지속(재가속) | 🟠 브랜드편승가능성 | [GeckoTerminal](https://api.geckoterminal.com/api/v2/networks/robinhood/pools/0x9501a20bedb8bea0798fe5d4c411f5e270965d49) |
-| **PONS** | RH Chain(Uniswap)-현1위런치패드 | `0x39dBED3a2bd333467115dE45665cC57F813C4571` | 🟢확산(재가속지속) | 0(직접미확인)-VladTenev가창립자팔로우7/21 | FDV$31.21M(직전$30.19M,+3.4%),vol$6.69M(보합),24h+14.18%(직전+5.05%에서추가가속) — 2회연속가속 | 🟢 재가속 지속 | 지속(재가속) | 🟠 급격한변동성 | [GeckoTerminal](https://api.geckoterminal.com/api/v2/networks/robinhood/pools/0x10cc6bd38112cac182db90b6a71d8bb5939526ba) |
-| **FOX**(Robin Hood) | RH Chain(Uniswap V3) | `0x9c49f21adda14af527bc56c2a8fab854f6248685` | 🟢조기(상승지속·안정) | 0 | FDV$1.38M(직전mcap$1.29M,+7%),vol$211K(보합),24h+15.0%(직전+15.1%와거의동일) — 급가속아니나꾸준유지 | 🟢 안정적 지속 | 지속(안정유지) | 🔴 초소형, 매체보도상충 | [GeckoTerminal](https://api.geckoterminal.com/api/v2/networks/robinhood/pools/0x9c49f21adda14af527bc56c2a8fab854f6248685) |
-| **NOC**(Nocturn) | RH Chain(Uniswap) | `0x09fdbfa4488f8bc09076794d06fb50704775dd69` | 🟡조기(완만한상승지속) | 0 | FDV$4.58M(직전$4.49M),vol$123K(직전$109K),24h+7.14%(직전+4.21%) — 2회연속양전 | 🟡 완만 지속 | 지속(완만상승) | 🟠 여전히초기신호 | [GeckoTerminal](https://api.geckoterminal.com/api/v2/networks/robinhood/pools/0x09fdbfa4488f8bc09076794d06fb50704775dd69) |
-| **TENDIES**(신규) | RH Chain(Uniswap,다중페어) | `0x237609918f330add285b8bc5f8f2922283d1c4c5` | 🟠확산→조정진입 | 0(직접미확인)-로빈후드공식계정노출 | FDV~$12.7M(6개풀유사값),총vol~$4.5M,24h-12.7%~-13.7%(전풀공통하락) — ATH는7/16(6일전),홀더4,200+ | 🟠 전풀 동반 하락 | **신규** | 🟠 이미공식노출로뒷북성격 | [GeckoTerminal](https://api.geckoterminal.com/api/v2/networks/robinhood/pools/0x237609918f330add285b8bc5f8f2922283d1c4c5) |
-| **DIH**(Dog In Hood) | RH Chain(Uniswap V3) | `0x21c37681013d088789c6aed0c0a665cc7b7c1bfb` | 🔴뒷북(낙폭대폭둔화) | 0 | FDV$433K/mcap$464K(직전mcap$470K,보합),24h-4.17%(직전-17.04%에서대폭완화) — 소스충돌항목,GT재조회로둔화확인 | 🟡 낙폭 급둔화 | 지속(둔화) | 🔴 ATH대비-95%대 | [GeckoTerminal](https://api.geckoterminal.com/api/v2/networks/robinhood/pools/0x21c37681013d088789c6aed0c0a665cc7b7c1bfb) |
-| **STONKBROKER** | RH Chain(Uniswap V4) | `0xd33c8fd38b06e989cdbd4dffdefab71c4bdd415b24964c8d69e38ff35b068f92` | 🟠조정(지속하락) | 0(직접미확인) | mcap$4.69M(FDV$8.65M,직전$5.03M),vol$2.67M,24h-15.9%(직전-17.76%) — 캐싱의심해소,실은완만지속하락 | 🟠 하락 지속 | 지속(하락지속) | 🔴 추격매수 위험 | [GeckoTerminal](https://api.geckoterminal.com/api/v2/networks/robinhood/pools/0xd33c8fd38b06e989cdbd4dffdefab71c4bdd415b24964c8d69e38ff35b068f92) |
-| **401K**(Retirement plan) | RH Chain(Uniswap V2) | 미확인 | 🔴뒷북/이슈(규명완료) | 0 | price$0.0004385,24h vol$4.97M(급증),동시에24h가격-69.50%폭락 — 재활성화아닌워시트레이딩성덤핑/러그로결론 | 🔴 급증+폭락 동반 | 지속(규명-악재확정) | 🔴 워시트레이딩·러그확정 | [CoinGecko](https://www.coingecko.com/en/coins/retirement-plan) |
-| **JIMOTHY**(Jimothy The Raccoon) | Solana(pump.fun/PumpSwap) | `Ge87EtsjwRQbHaqQmKRno69RFTwh9bfSsm99XNxTpump` | 🟠조정(급반전후안정화) | 0(직접미확인) | mcap$17.8~19.7M(직전$18.29M과유사,횡보),ATH대비-23.4%(직전과동일수준유지) | 🟡 횡보 안정화 | 지속(안정화) | 🔴 변동성 극심 이력 | [CoinGecko](https://www.coingecko.com/en/coins/jimothy-the-raccoon) |
-| **JUGGERNAUT** | RH Chain(Uniswap V3) | `0xD7321801CAae694090694Ff55A9323139F043B88` | 🔴🔴뒷북(붕괴가속) | Drallio+Bluntz_Capital+Next100XGEMS(과거) | FDV$2.09M/mcap$2.19M(직전mcap$2.67M,추가-18%),24h-41.83%(직전-27.6%에서더가속) — 반등조짐전무 | 🔴 붕괴 가속 | 지속(가속) | 🔴 추격매수 절대금지 | [GeckoTerminal](https://api.geckoterminal.com/api/v2/networks/robinhood/pools/0x588b0785f50063260003b7790c42f1ef74902746) |
-| **WISHBONE** | RH Chain(Uniswap V3,다중페어) | `0x77581054581b9c525e7dd7a0155de43867532d03` | 🔴뒷북(낙폭지속둔화) | Drallio 1(과거) | FDV$1.60M(직전$1.67M),vol$474K,24h-10.48%(직전-18.95%에서추가완화) — 2회연속둔화 | 🟡 낙폭 둔화 지속 | 지속(둔화) | 🔴 초소형, 약세지속 | [GeckoTerminal](https://api.geckoterminal.com/api/v2/networks/robinhood/tokens/0x77581054581b9c525e7dd7a0155de43867532d03/pools) |
-| **INDEX** | RH Chain(Uniswap,LBank상장) | `0x56910D4409F3a0C78C64DD8D0545FF0705389870` | 🔴뒷북(하락심화) | 0(미확인,매체다수) | FDV$13.98M(직전$13.95M,보합),vol$1.84M,24h-22.06%(직전-16.23%에서심화) — CEX상장이후오히려심화 | 🔴 하락 심화 | 지속(하락심화) | 🟡 조기성 상실 | [GeckoTerminal](https://api.geckoterminal.com/api/v2/networks/robinhood/tokens/0x56910D4409F3a0C78C64DD8D0545FF0705389870/pools) |
-| **ARROW**(Arrow Finance) | RH Chain(Uniswap V3)-CDP+런치패드 | `0xf2915d1e3c1b0c769d0c756ec43f1c1f6c99cd03` | 🔴뒷북(미재검증) | 0(coingape과거'차기CASHCAT') | 이번회차재검증우선순위에서제외 — 직전값(하락지속,ATH대비-76.4%)유지 | ⚪ 미재검증 | 지속(미재검증) | 🔴 고점대비 -76%대 | [CoinMarketCap](https://coinmarketcap.com/currencies/arrow-finance/) |
-| **HOODIE** | RH Chain(Uniswap V4) | 미확인 | 🔴뒷북(미재검증) | 0(매체다수) | 이번회차도재검증제외 — 직전값(mcap$771K,ATH대비-97.5%)유지 | ⚪ 미재검증 | 지속(미재검증) | 🔴 -97.5%대 붕괴 | [coingape](https://coingape.com/markets/3-robinhood-chain-tokens-rallying-the-most-this-week-fox-cashcat-hoodie/) |
-| **BULLCAT**(The Bull Cat) | Solana(pump.fun) | `G9j8WWDeJXZdvwQgP82ooDuHmpc3Gy8NCSins71Lpump` | 🟡조기(미재검증) | The Black Bull(Ansem패러디) | 이번회차도재검증제외 — 직전소스불일치(Bitget$1.41M vs pump.fun$629K vs CoinGecko$4.8K)유지. 대형토큰ANSEM과혼동주의 | ⚪ 데이터 불일치 | 지속(미재검증) | 🔴 데이터 신뢰도 낮음 | [pump.fun](https://pump.fun/coin/G9j8WWDeJXZdvwQgP82ooDuHmpc3Gy8NCSins71Lpump) |
+| **r0b**(신규) | RH Chain(Uniswap V3) | `0x647dd517c8820fc9874e1a3f58e6e0b9a43395c0` | 🟢조기(메타초기) | 0(미확인)-RH공식에이전틱트레이딩(7/21)과시점일치 | FDV$349K,vol$7.21M(FDV대비약20배),24h+12,907%,풀생성7/21(19h전) — pons.family피기반'자율매매에이전트',에이전트토큰메타최초사례추정 | 🟢 vol/FDV 극단적 | **신규** | 🔴 극초기·극변동성,익명패러디,러그위험매우높음 | [GeckoTerminal](https://api.geckoterminal.com/api/v2/networks/robinhood/pools/0x9714ff9ae944f7008731598d7dd2965e0d2ab09f) |
+| **un1**(신규) | RH Chain(Uniswap V3) | `0xd015f032841ccae428fc3c4be770abe107207777` | 🟢조기(메타초기) | 0(미확인)-r0b와동일메타 | FDV$865K,vol$3.76M,24h+1,641%,1h+15.5%,풀생성7/22(10h전) — 프론트러닝·LP·샌드위치컨셉,r0b뒤이은2번째에이전트토큰 | 🟢 신생·고회전 | **신규** | 🔴 극초기(10h차),얇은유동성$94K | [GeckoTerminal](https://api.geckoterminal.com/api/v2/networks/robinhood/pools/0xc3ae127c430f7d55d44858d50d06a712b7fc7c8f) |
+| **SWOGE**(신규) | RH Chain(Uniswap V3) | `0xdb87393727b666c43f5aecb03d8b419ba54d9b03` | 🟢조기→확산 | 0(미확인) | FDV$2.25M,vol$3.77M,24h+174.9%,1h+434.4%(급가속중),풀생성7/20(2일전) — 서사미상,거래량시총대비압도적 | 🟢 1h급가속 | **신규** | 🟠 서사·개발자미상,극변동성,추격매수주의 | [GeckoTerminal](https://api.geckoterminal.com/api/v2/networks/robinhood/pools/0xcaa4f109e55bdf516fe9215ad4f0ef9cd2b27555) |
+| **RHAGENT**(신규) | RH Chain(Uniswap V3) | `0x894fac757250f8e02180e1856957274d84ac4ba3` | 🟡조기→확산(재가속) | 0(미확인)-rhagent.bot존재 | FDV$454K,vol$4.17M,24h+723.9%,풀생성7/10(2주전)이나이번회차재가속 — 에이전트토큰메타편승 | 🟢 재가속 | **신규** | 🔴 1h-19.7%(되돌림시작),얇은유동성 | [GeckoTerminal](https://api.geckoterminal.com/api/v2/networks/robinhood/pools/0x1722e4a21c93af7afa508e93e41d7bcde665d68e00995b5e53bbf4f51e7f8174) |
+| **NOCK**(신규) | RH Chain(Uniswap V3) | `0x1b27ff6e68a2fd6490543b17c996c109e64eb432` | 🟡확산(재가속) | 0(미확인) | FDV$6.67M,vol$1.16M,24h+152.5%,1h+13.7%,풀생성7/9(2주전)이나이번회차재가속 — 서사미상 | 🟡 재가속 | **신규** | 🟠 유동성$167K로얕음,NOC(Nocturn)와혼동주의 | [GeckoTerminal](https://api.geckoterminal.com/api/v2/networks/robinhood/pools/0xf362ec5a624c8c573299625206c498bff94301db) |
+| **WOOD**(신규) | RH Chain(Uniswap V3) | `0xf8bc08092c06db6148114dcf82af881f1085f92b` | 🟡확산(안정중견) | 0(미확인) | FDV$23.9M,vol$2.04M,24h+20.2%,풀생성7/13 — 트렌딩상위권,이미중견급으로조기성약함 | 🟡 안정적 상승 | **신규** | 🟡 이미중견시총,1h-9.1%되돌림시작 | [GeckoTerminal](https://api.geckoterminal.com/api/v2/networks/robinhood/pools/0xbf3bb81de6285b8310a028d1c2cd38f9419d54c1) |
+| **JUGGERNAUT** | RH Chain(Uniswap V3) | `0xD7321801CAae694090694Ff55A9323139F043B88` | 🟠조정(낙폭둔화) | Drallio+Bluntz_Capital+Next100XGEMS(과거,유료포함) | FDV$2.25M/mcap$2.35M(직전$2.19M,+7%),24h-25.9%(직전-41.83%에서대폭완화),매수1,774>매도1,490 | 🟢 매수우위전환 | 지속(개선방향) | 🔴 여전히-25%대약세 | [GeckoTerminal](https://api.geckoterminal.com/api/v2/networks/robinhood/pools/0x588b0785f50063260003b7790c42f1ef74902746) |
+| **DIH**(Dog In Hood) | RH Chain(Uniswap V3) | `0x21c37681013d088789c6aed0c0a665cc7b7c1bfb` | 🟡조기(안정화확인) | 0 | FDV$473K/mcap$507K(직전$464K,+9%),24h+0.04%(직전-4.17%에서보합전환),1h+4.6% — 3회연속낙폭완화끝에보합 | 🟢 보합전환 | 지속(안정화) | 🔴 ATH대비-95%대,반등확정아님 | [GeckoTerminal](https://api.geckoterminal.com/api/v2/networks/robinhood/pools/0x21c37681013d088789c6aed0c0a665cc7b7c1bfb) |
+| **WALLET** | RH Chain(Uniswap V3) | `0x9501a20bedb8bea0798fe5d4c411f5e270965d49` | 🟠조정(피크대비감속) | 0(미확인) | FDV$5.45M(직전$6.38M,-15%),vol$1.09M,24h+13.6%(직전+33.77%에서큰폭감속),1h-15.8%(하락전환) | 🟠 감속·반전조짐 | 지속(감속) | 🟠 브랜드편승가능성 | [GeckoTerminal](https://api.geckoterminal.com/api/v2/networks/robinhood/pools/0x9501a20bedb8bea0798fe5d4c411f5e270965d49) |
+| **FOX**(Robin Hood) | RH Chain(Uniswap V3) | `0x9c49f21adda14af527bc56c2a8fab854f6248685` | 🟢조기(양전유지·감속) | 0 | FDV$1.37M(직전$1.38M,보합),vol$226K,24h+7.6%(직전+15.0%에서감속),1h-1.2% — 5회연속양전유지 | 🟡 감속 지속 | 지속(감속) | 🔴 초소형,매체보도상충지속 | [GeckoTerminal](https://api.geckoterminal.com/api/v2/networks/robinhood/pools/0x9c49f21adda14af527bc56c2a8fab854f6248685) |
+| **NOC**(Nocturn) | RH Chain(Uniswap) | `0x09fdbfa4488f8bc09076794d06fb50704775dd69` | 🔴조정(반전음전) | 0 | FDV$4.52M(직전$4.58M,보합),vol$107K,24h-14.6%(직전+7.14%에서반전),1h+1.3% — 2회연속양전끝음전전환 | 🔴 반전 | 지속(반전) | 🟠 방향성불안정 | [GeckoTerminal](https://api.geckoterminal.com/api/v2/networks/robinhood/pools/0x09fdbfa4488f8bc09076794d06fb50704775dd69) |
+| **PONS** | RH Chain(Uniswap)-현1위런치패드 | `0x39dBED3a2bd333467115dE45665cC57F813C4571` | 🔴조정(반전하락) | 0(직접미확인)-VladTenev팔로우(7/21)유효 | FDV$26.31M(직전$31.21M,-15.7%),vol$6.56M,24h-20.6%(직전+14.18%에서급반전),1h-6.7% | 🔴 급반전 | 지속(반전하락) | 🔴 급등뒤급락패턴 | [GeckoTerminal](https://api.geckoterminal.com/api/v2/networks/robinhood/pools/0x10cc6bd38112cac182db90b6a71d8bb5939526ba) |
+| **TENDIES** | RH Chain(Uniswap,다중페어) | `0x237609918f330add285b8bc5f8f2922283d1c4c5` | 🔴뒷북(하락심화) | 0(직접미확인)-로빈후드공식노출(과거) | FDV$10.07M(직전$12.7M,-21%),vol$3.60M,24h-22.9%(직전-12.7~13.7%에서심화),1h-10.3% | 🔴 낙폭 심화 | 지속(심화) | 🔴 ATH(7/16)대비지속하락 | [GeckoTerminal](https://api.geckoterminal.com/api/v2/networks/robinhood/pools/0x237609918f330add285b8bc5f8f2922283d1c4c5) |
+| **STONKBROKER** | RH Chain(Uniswap V4) | `0xd33c8fd38b06e989cdbd4dffdefab71c4bdd415b24964c8d69e38ff35b068f92` | 🔴뒷북(하락가속) | 0(직접미확인) | mcap$4.09M(직전$4.69M,-13%),FDV$7.47M,vol$2.65M,24h-25.9%(직전-15.9%에서가속),1h-9.4% | 🔴 가속 | 지속(가속) | 🔴 추격매수위험지속 | [GeckoTerminal](https://api.geckoterminal.com/api/v2/networks/robinhood/pools/0xd33c8fd38b06e989cdbd4dffdefab71c4bdd415b24964c8d69e38ff35b068f92) |
+| **401K**(Retirement plan) | RH Chain(Uniswap V2/V4) | 미확인 | 🔴뒷북/이슈(캐싱의심) | 0 | price$0.0004385,24h vol$4.97M,24h-69.50% — 2시간전조회값과완전동일,캐싱의심,워시트레이딩성붕괴결론유지 | 🔴 데이터정체 | 지속(캐싱의심) | 🔴 워시트레이딩·러그정황유지 | [CoinGecko](https://www.coingecko.com/en/coins/retirement-plan) |
 
-> **교체/조정 내역(이번 회차)**: **401K가 관찰→뒷북/위험 확정**으로 하향(워시트레이딩성 덤핑 규명, -69.50% 폭락 동시 확인). **WALLET·PONS는 감속→급가속으로 판정 반전**. **TENDIES 신규 편입**(공식 노출 뒷북 성격, 현재 되돌림). **JUGGERNAUT는 붕괴 가속**(-27.6%→-41.83%). **JIMOTHY는 급반전 후 안정화**(추가 붕괴 없음). **DIH·STONKBROKER는 데이터 신뢰성 이슈가 이번 회차 실측으로 해소**(DIH 낙폭 대폭 둔화, STONKBROKER 캐싱의심 해소돼 실제 하락지속 확인). **4663은 상한 관리로 이번 회차 리스트에서 제외**(직전값: 미재검증, ATH대비-96%, 중요도 최하위 — CSV/JSON엔 미포함이나 소멸 상태 참고로 유효). **ARROW·HOODIE·BULLCAT은 이번 회차도 재검증 우선순위에서 밀려 직전값 유지**.
+> **교체/조정 내역(이번 회차)**: **r0b·un1·RHAGENT·NOCK·SWOGE·WOOD 6종 신규 편입**(RH체인 신규 'AI에이전트 토큰' 메타 + 트렌딩 상위 재가속 종목), **WISHBONE·INDEX·ARROW·HOODIE·BULLCAT·JIMOTHY 6종은 상한 관리(15개)로 이번 회차 리스트에서 제외**(직전값 유효, 다음 회차 재검증 예정). **PONS·WALLET·NOC는 감속/반전**, **JUGGERNAUT·DIH는 개선(낙폭둔화/보합전환)**, **TENDIES·STONKBROKER는 하락 심화/가속**, **401K는 캐싱 의심 지속**.
 
 ## 📌 주목 프로젝트/토큰 (notable)
 
 | 토큰 | 상태 | 요지 |
 |---|---|---|
-| **401K 워시트레이딩성 급등락 규명** | 이슈 | 직전 회차 'FDV+268%,거래량급증'을 재활성화 신호로 의심했던 401K가 이번 회차 24h가격-69.50% 폭락도 동시 확인 — 워시트레이딩성 덤핑/러그 패턴으로 규명, 최우선 검증 과제 해소 |
-| **TENDIES 공식 노출 후 되돌림(신규)** | 조정 | 로빈후드 공식 크립토 계정이 월렛 내 트렌딩 노출, 홀더 4,200+로 성장했던 TENDIES가 이번 회차 전 풀 동반 -12~14% 하락 확인 — ATH(7/16) 이후 6일 경과, 이미 널리 알려진 뒷북 성격이나 공식 노출 서사는 유효 |
-| **WALLET·PONS 동반 재가속** | 확산 | 직전 '감속조짐' WALLET이 24h+33.77%로 2배 이상 급가속, PONS도 24h+14.18%로 재가속 지속 — RH체인 조정 국면 속 예외적 강세 |
-| **JUGGERNAUT 붕괴 가속** | 이슈 | Noxa 런치패드 폐쇄발 구조적 붕괴가 반등 없이 오히려 가속 — 24h-41.83%(직전-27.6%)로 낙폭 확대, RH체인 밈 메타 조정의 최악 사례 |
-| **JIMOTHY 안정화** | 조정 | 2시간전 -33% 급반전 이후 추가 붕괴 없이 ATH대비-23.4% 레벨에서 횡보 — 단기 변동성은 진정되나 추세전환 근거 불충분 |
-| **CASHCAT 수치 정합성 개선** | 조정 | CoinGecko·GeckoTerminal 양측 모두 mcap$63~64M권으로 정합성 개선(직전 $72M~$83M 편차 대비) — ATH($226M) 대비 -71%대로 하락 지속 |
-| **ANSEM(The Black Bull) — 대형 뒷북 사례(신규 참고)** | 뒷북 | Ansem 명의 별개 대형 토큰 ANSEM이 6월말 7일간 +19,878% 폭등 후 현재 mcap$93M~$207M권(소스간편차)에서 7일간 -14.7% — 익명 개발자가 Ansem 지갑에 6.5억개 토큰 무상 전송, 이미 CT 전체 인지한 뒷북 케이스. BULLCAT과 혼동 주의 |
-| **PONS 런치패드 부상 & RH체인 런치패드 전쟁(메타)** | 확산 | Noxa 붕괴(7/11) 후 Flap·Bankr·Uniswap CCA 경쟁 속 PONS가 활성주소 기준 1위 런치패드 지위 유지 — Vlad Tenev의 7/21 팔로우 이후 PONS 토큰도 2회 연속 재가속 |
-| **RH체인 밈 메타 조정 국면(구조적, 지속)** | 조정 | Noxa 붕괴가 RH체인 밈 전반 조정의 직접 원인으로 재확인 — WALLET·PONS·NOC 등 소수 예외 제외 다수 하락 지속, TENDIES 등 신규 스타 토큰도 곧바로 되돌림 겪는 변동성 큰 국면 |
+| **RH체인 신규 'AI에이전트 토큰' 메타(r0b·un1·RHAGENT)** | 확산 | 로빈후드 7/21 크립토용 에이전틱 트레이딩(MCP서버) 공식 확장 직후 이를 패러디·편승한 자율매매 에이전트 컨셉 토큰들이 잇따라 출시 — 거래량이 시총 대비 압도적, RH체인 최신 메타로 부상 중, 조기 단계 |
+| **PONS 급반전 조정** | 조정 | 2회연속 재가속했던 PONS가 이번 회차 -20.6%로 급반전 — 1위 런치패드 지위는 유지하나 단기 변동성 매우 큼 |
+| **JUGGERNAUT 낙폭 둔화** | 조정 | Noxa 붕괴발 붕괴가속(-41.83%)이 이번 회차 -25.9%로 진정, 매수 우위로 전환 — 반등 확정은 아니나 최악은 지난 듯 |
+| **401K 데이터 신뢰성 이슈 지속** | 이슈 | CoinGecko 수치가 2시간 전 조회값과 완전 동일 — 캐싱 의심 또는 거래 정지 가능성, 워시트레이딩성 붕괴 결론은 유지 |
+| **CASHCAT 지속 하락** | 조정 | RH체인 대장주 CASHCAT, FDV$57M로 24h-22.7% — ATH($226M) 대비 낙폭 지속, 반전 신호 전무 |
+| **UNI(Uniswap) RH체인發 거래량 수혜 서사(뉴스레터)** | 확산 | 뉴스레터(goodmorningcrypto,7/21)가 RH체인 고회전율과 UNI 신규 소각 메커니즘(Hayden Adams 제안)을 근거로 UNI를 '최대 수혜주'로 지목 — 매체 해석, 미검증, 투자조언 아님 |
+| **ANSEM(The Black Bull) 대형 뒷북 사례** | 뒷북 | Ansem 명의 별개 대형 토큰이 6월말 +19,878% 폭등 후 현재 mcap$93M~$207M권(소스간편차)에서 조정 중 — 이미 CT 전체 인지한 전형적 뒷북, BULLCAT과 혼동 주의 |
+| **RH체인 밈메타 전환기(구조적)** | 이슈 | 기존 단순 밈토큰(WALLET·PONS·TENDIES)은 변동성 확대·되돌림 겪는 반면 신규 '에이전트토큰' 메타가 막 부상 — 메타 교체 조짐, 다음 회차 핵심 관찰 포인트 |
 
-## 전회차(10:03 UTC) 대비 변동 요약
+## 전회차(12:03 UTC) 대비 변동 요약
 
-- **401K(등급하향, 규명완료)**: 관찰→뒷북/위험 확정. 24h vol$4.97M 급증 확인되었으나 동시에 가격-69.50%폭락도 확인.
-- **WALLET(신규 급가속)**: 24h+14.7%→+33.77%, 감속조짐→급가속으로 판정 반전.
-- **PONS(재가속 지속)**: 24h+5.05%→+14.18%, 2회연속가속.
-- **TENDIES(신규 편입)**: FDV~$12.7M, 24h-12~14%, 공식노출 뒷북 성격.
-- **JUGGERNAUT**: 24h-27.6%→-41.83%, 붕괴 가속.
-- **JIMOTHY**: -33%급반전 이후 추가붕괴 없이 안정화.
-- **DIH**: 24h-17.04%→-4.17%, 낙폭 대폭 둔화(소스충돌 해소 방향).
-- **STONKBROKER**: mcap$5.03M→$4.69M, 캐싱의심 해소, 완만한 지속하락 확인.
-- **FOX**: 24h+15.1%→+15.0%, 안정적 유지(변화 미미).
-- **NOC**: 24h+4.21%→+7.14%, 완만한 상승 지속.
-- **WISHBONE**: 24h-18.95%→-10.48%, 낙폭 둔화 지속.
-- **INDEX**: 24h-16.23%→-22.06%, 하락 심화.
-- **미재검증(이번 회차)**: ARROW, HOODIE, BULLCAT (4663은 상한관리로 리스트 제외).
-- **CASHCAT**: mcap$72M~$83M 편차→$63~64M로 소스간 정합성 개선, 하락 지속.
+- **신규 6종 편입**: r0b·un1(RH공식 에이전틱트레이딩 확장 직후 출현, 각 19h/10h 전 생성), RHAGENT(재가속), SWOGE(2일전 생성, 급가속중), NOCK·WOOD(2주전 생성, 재가속).
+- **PONS**: 24h+14.18%→**-20.6%**, 급반전 조정.
+- **WALLET**: 24h+33.77%→**+13.6%**, 큰 폭 감속(1h는 -15.8%로 하락 전환).
+- **JUGGERNAUT**: 24h-41.83%→**-25.9%**, 낙폭 대폭 둔화(매수우위 전환).
+- **DIH**: 24h-4.17%→**+0.04%**, 사실상 보합 전환(안정화).
+- **NOC**: 24h+7.14%→**-14.6%**, 반전 음전.
+- **FOX**: 24h+15.0%→**+7.6%**, 양전 유지하나 감속.
+- **TENDIES**: 24h-12.7~13.7%→**-22.9%**, 낙폭 심화.
+- **STONKBROKER**: 24h-15.9%→**-25.9%**, 하락 가속.
+- **401K**: 수치(price/vol/24h%) **2시간 전과 완전 동일** — 캐싱 의심.
+- **제외(상한관리)**: WISHBONE·INDEX·ARROW·HOODIE·BULLCAT·JIMOTHY — 직전값 참고로 유효.
 
 ## KOL별 최근 콜
 
 ### Drallio(X) · 팔로워/신뢰도 미확인 · RH체인 신생토큰 콜 다수(과거)
-- **JUGGERNAUT**(7/13, 과거): "CASHCAT에 가장 근접한 베팅" — 이번 회차 mcap$2.19M로 추가 붕괴 가속, 과거 콜의 유효성 계속 훼손.
-- **WISHBONE**: "RH체인의 Dog"으로 네이밍 — 이번 회차 24h-10.48%(낙폭 지속 완화)로 바닥 형성 가능성 관찰.
+- **JUGGERNAUT**(7/13, 과거): "CASHCAT에 가장 근접한 베팅" — 이번 회차 낙폭이 둔화(-41.83%→-25.9%)되며 과거 콜의 유효성이 소폭 회복 조짐이나 여전히 mcap$2.35M로 저조.
 
 ### @Bluntz_Capital(X) · 팔로워 33.8만 · 실전 기술적 트레이더
-- **JUGGERNAUT**: "스케일인 시작" — 과거 콜, 현재 붕괴 가속으로 완전히 무색해짐.
+- **JUGGERNAUT**: "스케일인 시작" — 과거 콜, 낙폭둔화로 소폭 회복 조짐이나 여전히 대폭 하락권.
 
 ### @Next100XGEMS(X, ⚠️유료 shill 계정) · 팔로워 25.6만
-- **JUGGERNAUT**: 과거 mcap$10.4M 시점 언급 — 현재 mcap$2.19M로 당시 대비 -79%, 유료 shill 콜의 신뢰도 재차 확인.
+- **JUGGERNAUT**: 과거 mcap$10.4M 시점 언급 — 현재 mcap$2.35M로 여전히 당시 대비 -77%대.
 
 ### Vlad Tenev(로빈후드 CEO, 비-트레이더 KOL) · X 팔로우 행위로 시장주목 유발
-- **PONS**: 7/21 PONS 창립자 @MEADGod와 ogle(WLFI어드바이저)를 팔로우 — PONS mcap 2회연속 재가속과 시점 일치, 구조적 신호로 유효성 지속 확인.
+- **PONS**: 7/21 PONS 창립자 @MEADGod와 ogle(WLFI어드바이저)를 팔로우 — 이번 회차 PONS는 -20.6%로 급반전, 구조적 신호와 단기 가격 흐름이 괴리되기 시작.
 
 ### Ansem 본인(X, @blknoiz06) · 팔로워 약75만~100만
-- **PUMP 매수**: 7/20 1,500 SOL($115K) 매수 — 이번 회차 개별 재검증은 안 됨. $86.5M 팀·투자자 언락(7/15)과 상충 구도.
+- **PUMP 매수**: 7/20 1,500 SOL($115K) 매수 — 이번 회차 개별 재검증은 안 됨.
 
-### The Black Bull(X, Ansem 패러디 계정) · 팔로워 미확인
-- **BULLCAT**: Solana pump.fun에서 개시 — 이번 회차 개별 재검증 미실시, 직전 소스간 수치 불일치 결론 유지. (별개 대형토큰 ANSEM과 혼동 주의)
+### 로빈후드 공식(비-트레이더 KOL) · 에이전틱 트레이딩 크립토 확장(7/21) 신규 시장신호
+- **r0b·un1**: 로빈후드가 7/21 크립토용 에이전틱 트레이딩(MCP서버)을 공식 확장한 직후 r0b(19h전)·un1(10h전)이 출시 — 공식 발표와 편승 토큰 출현의 시차가 매우 짧아 구조적 신호로서 유효성 높음, 다만 개별 토큰 자체의 신뢰도는 별개(익명·패러디성).
 
-### 로빈후드 공식 크립토 계정(비-트레이더 KOL) · 공식 노출로 시장주목 유발(신규)
-- **TENDIES**: 로빈후드 월렛 내 트렌딩으로 공식 노출, 홀더 4,200+ — 이번 회차 재검증 결과 전 풀 동반 -12~14% 하락, 노출 자체는 서사로 유효하나 현재는 되돌림 국면.
-
-### coingape·cryptotimes·coindesk·protos·crypto.news(매체) · 신뢰도: 매체 보도(직접 KOL 아님)
-- **Noxa 붕괴**(coindesk 7/15, cryptotimes 7/18, protos): "런치패드가 $12M 수수료를 벌고 사라졌다" — JUGGERNAUT 붕괴 가속의 근본원인으로 계속 유효.
-- **PONS 부상**(odaily, 7/21): "Vlad가 팔로우, Pons가 런치패드 왕좌를 차지하나" — 이번 회차 2회연속 재가속으로 재확인.
-- **TENDIES**(coingabbar): "로빈후드체인 밈코인 300% 급등" — 헤드라인은 과거 시점, 현재는 되돌림 확인.
-
-### 3rd-party 가이드 아티클(매체) · RH체인 알파콜러 소개
-- **@InfoSpace_OG·@oofybog·@I_am_patrimonio**: "RH체인 알파 콜러"로 거론 — 이번 회차도 구체 개별 콜·팔로워수 미검증. 다음 회차 추적 대상 유지.
+### coingape·cryptotimes·coindesk·protos·crypto.news·goodmorningcrypto(매체/뉴스레터) · 신뢰도: 매체 보도(직접 KOL 아님)
+- **Noxa 붕괴**(coindesk 7/15, cryptotimes 7/18, protos): "런치패드가 $12M 수수료를 벌고 사라졌다" — JUGGERNAUT 낙폭둔화의 배경으로 계속 참고.
+- **UNI 수혜 서사**(goodmorningcrypto, 7/21): "RH체인이 UNI의 최대 수혜주" — 개별 알파콜 아닌 매체 해석, 검증 안 됨.
 
 ## 새로 포착된 중형 KOL
 
-- 이번 회차 신규 확보된 검증된 중형 알파콜러는 없음.
-- **@InfoSpace_OG·@oofybog·@I_am_patrimonio** 3인은 여전히 "RH체인 알파 콜러"로 소개된 것만 확인, 구체 콜·팔로워수 미검증 — **다음 회차 우선 검증 대상 유지.**
-- **로빈후드 공식 크립토 계정**: 트레이딩 콜러는 아니나, TENDIES를 월렛 트렌딩에 노출시킨 것이 사실상 KOL급 시장 신호로 작용 — 향후 공식계정의 노출 여부를 조기 신호원으로 추적할 가치 있음.
+- 이번 회차도 검증된 신규 중형 알파콜러(팔로워·콜 실적 확인된 개인 계정)는 확보하지 못함.
+- **로빈후드 공식 계정**은 트레이딩 콜러는 아니나, 7/21 에이전틱 트레이딩 크립토 확장 발표가 r0b·un1 등 신규 토큰 메타를 즉각 촉발한 것이 확인됨 — 공식 발표를 조기 신호원으로 추적할 가치가 계속 입증되는 중.
+- **@InfoSpace_OG·@oofybog·@I_am_patrimonio** 3인은 이번 회차도 재검증 미실시, 여전히 "RH체인 알파 콜러"로만 소개됨 — 다음 회차 우선 검증 대상 유지.
 
 ## 메모
 
-- **데이터 한계(X 접근)**: x.com 직접 조회는 여전히 제한적. WebSearch 인덱싱·2차 보도 기반. GeckoTerminal API(`api.geckoterminal.com`) 직접 WebFetch 조회는 이번 회차도 유효했으며, **STONKBROKER의 이전 회차 캐싱 의심은 이번 회차 실측으로 해소**(수치가 실제로 변동함을 확인).
-- **401K 최우선 규명(완료)**: CoinGecko 상 24h vol$4.97M 급증과 24h가격-69.50%폭락이 동시에 보고됨 — **재활성화가 아닌 워시트레이딩성 덤핑/러그로 결론**. GeckoTerminal API 직접 재확인(풀주소)은 이번 회차도 확보하지 못함, 다음 회차엔 정확한 풀 주소 확보가 필요.
-- **소스 충돌 사례 해소 방향**: **DIH**는 지난 회차 GT(-17.04%) vs WebSearch(+51.5%) 충돌이 이번 회차 GT재조회로 낙폭이 -4.17%까지 완화됨을 확인 — 두 소스 중 어느 쪽이 옳았는지 확정은 어려우나, 최소한 낙폭 진정 방향은 GT·매체 모두와 부합.
-- **⚠️ 런치패드 리스크 구조**: Noxa 붕괴(7/11)가 JUGGERNAUT 등 RH체인 밈 다수의 붕괴 원인임이 재확인 지속됨 — **개별 토큰 리스크뿐 아니라 런치패드/플랫폼 자체의 존속 리스크가 RH체인 밈 전반에 구조적으로 존재**함을 강조.
-- **이미 급등한 뒷북 항목**: **JUGGERNAUT**(붕괴 가속), **TENDIES**(공식노출 후 되돌림, 신규지만 뒷북 성격), **INDEX**(하락 심화), **ARROW·HOODIE**(미재검증, 과거 붕괴세), **ANSEM/The Black Bull**(대형 뒷북, +19,878% 이후 조정) — 추격 매수 비권장.
-- **러그/저유동성 경고**: **401K(워시트레이딩·러그 확정)**·BULLCAT(초소형, 소스간 수치 불일치)·STONKBROKER(지속하락)·FOX(초소형)·DIH(ATH대비-95%대)·HOODIE(-97.5%붕괴)·JUGGERNAUT(붕괴가속)는 극초소형/신생 또는 붕괴 진행형으로 슬리피지·손실 위험이 매우 큼.
-- **fee-capture 토큰 특별 유의**: PONS·INDEX·STONKBROKER·WALLET 모두 유사 수수료 기반 서사를 내세우나, 실제 buyback 집행 트랜잭션·배당 규모는 온체인 직접 검증이 안 된 상태.
-- **RH체인 메타 전반**: Noxa 붕괴 후 런치패드 전쟁(Flap·Bankr·CCA·PONS)이 진행 중이며, **PONS가 현재 선두**이나 유동성이 여러 플랫폼으로 분산되는 과도기 국면 — TENDIES처럼 공식 노출로 급부상해도 곧바로 되돌림을 겪는 등 전반적으로 변동성이 매우 큰 국면 지속.
-- **신규 조기 후보**: RH체인 밖 완전 신규 KOL 하이프 후보는 이번 회차도 확보하지 못함(WebSearch로 광범위 탐색했으나 뚜렷한 신규 조기 종목 미발견). RH체인 내에서는 **TENDIES가 신규 편입**되었으나 조기성은 약함(이미 공식 노출).
-- **동명이인/티커충돌 주의(누적)**: ANSEM(The Black Bull, 대형)·BULLCAT(별개 소형, The Bull Cat)·ARROW·CASHCAT·HOODIE/HOODINI·WEN·FOX(Fox Finance와 별개)·MEOW(2종)·JUGGERNAUT(이더리움 JGN과 별개)·VIBE CAT·HODL·Little John·530A·WISHBONE·401K(retirement-plan 중복의심, Solana 별개 401K도 존재 확인)·HET·INDEX(IT라는 전혀 다른 소형토큰과 혼선)·BYCOCKET·DATABEAR·ROBINHOOD·VLAD·GameStop/GME·CATSTR·PONS·PONSTAR·REPE·SUIT·STONKCAT/SCAT·MemeToro·HumidiFi/WET·JIMOTHY·VEX·YOLO·THROBBIN·DIH(Dog In Hood, Dog Wif Dih와도 혼선)·MYSTERY·ROB·HOPPY·$BRIAN·FROGBULL(사망확인)·Toshi/Brett(Base)·TENOV·4663("HOOD" T9 유래)·CASHDOG(2종)·REALSTONK·BNKR/BankrCoin·AKEDO·PUMP·NOC(Northrop Grumman·Nono Coin·Nocturna와 혼선)·STONKBROKER·WALLET·ROBINFUN·Caldera(ERA, 밈아닌인프라)·ADI(대형L2인프라)·TENDIES(신규,다른TENDIES류토큰존재가능)·Chill House/CHILLHOUSE(2025년10월 스테일 사례) — **반드시 CA·체인·발행일 대조 후 매매**.
+- **데이터 한계(X 접근)**: x.com 직접 조회는 여전히 제한적(가끔 402/페이월). WebSearch 인덱싱·2차 보도 기반. GeckoTerminal API(`api.geckoterminal.com`) 직접 WebFetch는 이번 회차도 대부분 유효했으나 **429(rate limit)가 간헐적으로 발생**해 일부 재시도 필요.
+- **⚠️ 401K 데이터 캐싱/정체 의심**: CoinGecko 페이지 수치(price$0.0004385, vol$4.968957~4.97M, 24h-69.50%)가 **2시간 전과 소수점까지 완전 동일** — 실제 시세 변동 없이 페이지가 캐싱됐거나 해당 페어 거래가 사실상 정지됐을 가능성. 다음 회차엔 GeckoTerminal 풀 주소를 직접 확보해 교차검증 필요.
+- **신규 메타 발굴 근거**: r0b·un1·RHAGENT는 모두 GeckoTerminal 트렌딩 풀 목록(`/networks/robinhood/trending_pools`)에서 포착. r0b·un1은 각각 풀 생성 후 10~19시간 이내로 **이번 리서치 사이클 중 가장 이른 단계의 발굴**. 다만 KOL 개인 계정의 직접 콜은 확인하지 못했고, 로빈후드 공식 에이전틱 트레이딩 발표(7/21)와의 시점 일치만 구조적 근거로 확인됨.
+- **이미 급등한 뒷북 항목**: **TENDIES**(하락심화), **STONKBROKER**(하락가속), **ANSEM/The Black Bull**(대형 뒷북, +19,878% 이후 조정) — 추격 매수 비권장.
+- **러그/저유동성 경고**: **401K**(워시트레이딩·러그 정황), **r0b·un1·RHAGENT·SWOGE·NOCK**(극초기 신생, 유동성 $60K~$250K대로 매우 얇음, 슬리피지·러그 위험 매우 큼), **DIH**(ATH대비-95%대), **JUGGERNAUT**(선행 붕괴 이력) — 모두 슬리피지·손실 위험이 매우 큼.
+- **미재검증 이월 항목(직전값 참고)**: ARROW(하락지속,ATH대비-76.4%), HOODIE(mcap$771K,ATH대비-97.5%), BULLCAT(소스간불일치,$629K~$4.8K), WISHBONE(낙폭둔화,-10.48%), INDEX(하락심화,-22.06%), JIMOTHY(횡보안정화,ATH대비-23.4%) — 상한관리로 이번 회차 표에서만 제외, 리스크 자체는 변동 없다고 가정하지 말 것(다음 회차 필수 재검증).
+- **동명이인/티커충돌 주의(누적, 신규 추가)**: 기존 목록에 더해 **NOCK/NOC(Nocturn) 혼동 주의**, **r0b/un1은 "Robinhood" 약칭·범용 서비스명과 검색 혼선 가능**, **RHAGENT는 "RH Agent" 관련 다수 프로젝트명과 혼선 가능**(rhagent.bot 외 유사명 서비스 존재 가능성) — 매매 전 반드시 CA·체인·풀 생성일 대조.
 
 ---
-*Not financial advice. 본 문서는 공개 2차 자료·CoinGecko/GeckoTerminal(API)/DexScreener/pump.fun/coindesk/cryptotimes/protos/crypto.news/odaily/coingabbar/WebSearch/WebFetch 기반 아이디어 소싱용이며 매수 추천이 아님. 재실행 시 갱신.*
+*Not financial advice. 본 문서는 공개 2차 자료·CoinGecko/GeckoTerminal(API)/DexScreener/pump.fun/coindesk/cryptotimes/protos/crypto.news/goodmorningcrypto/WebSearch/WebFetch 기반 아이디어 소싱용이며 매수 추천이 아님. 재실행 시 갱신.*
