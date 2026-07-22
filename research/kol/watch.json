@@ -1,182 +1,182 @@
 {
-  "ts": "2026-07-22T08:02:00Z",
+  "ts": "2026-07-22T10:03:00Z",
   "tokens": [
     {
       "token": "WALLET(Robinhood Wallet)",
       "chain": "Robinhood Chain(Uniswap V3)",
       "ca": "0x9501a20bedb8bea0798fe5d4c411f5e270965d49",
-      "stage": "🟢조기(재활성화 지속 확인)",
+      "stage": "🟢조기(지속 상승, 감속 조짐)",
       "kols": "0(직접미확인)",
-      "thesis": "GeckoTerminal 재확인: FDV$5.3M→$6.42M(+21%),24h vol$1.12M,24h+20.1% — 직전 회차 100배 거래량 급증이 일시적 반등이 아니라 이번 회차도 상승 지속, 재활성화가 이어지는 유일한 종목",
-      "risk": "🟠 브랜드편승(명칭도용) 가능성, KOL 코로보 여전히 전무"
+      "thesis": "GeckoTerminal 재확인: FDV$6.35M(직전$6.42M대비보합),vol$1.14M,24h+14.7%(직전+20.1%에서둔화) — 4회 연속 상승세이나 상승폭은 점차 축소, 여전히 RH체인 조정국면 속 유일한 지속상승 종목",
+      "risk": "🟠 브랜드편승(명칭도용) 가능성, KOL 코로보 여전히 전무, 상승 감속 조짐"
     },
     {
       "token": "FOX(Robin Hood)",
       "chain": "Robinhood Chain(Uniswap V3)",
       "ca": "0x9c49f21adda14af527bc56c2a8fab854f6248685",
-      "stage": "🟡조기(소폭 반등 지속)",
+      "stage": "🟢조기(상승 가속)",
       "kols": "0(미확인)",
-      "thesis": "GeckoTerminal 재확인: mcap$1.19M,24h vol$200K,24h+8.1% — 초소형이나 완만한 상승, 직전 회차 실체확인(robinhoodfox.com 공식 커뮤니티사이트) 이후 활동 지속",
-      "risk": "🔴 여전히 초소형(~$1.2M), 티커충돌(별개 FOX Finance 등) 가능성 잔존"
+      "thesis": "GeckoTerminal 재확인: mcap$1.29M,24h vol$200K,24h+15.1%(직전+8.1%에서가속) — 초소형이나 상승폭 확대. 단, Protos 등 매체는 FOX를 Noxa붕괴발 급락종목으로 분류한 바 있어 시점차이로 인한 반등일 가능성",
+      "risk": "🔴 여전히 초소형(~$1.3M), 매체보도(급락종목)와 최신수치 상충 — 재검증 필요"
     },
     {
-      "token": "STONKBROKER",
-      "chain": "Robinhood Chain(Anvil AMM/Uniswap V4,NFT연계)",
-      "ca": "",
-      "stage": "🟠조정(재활성화 펌프 하루만에 반전)",
-      "kols": "0(직접미확인)",
-      "thesis": "GeckoTerminal 재확인: mcap$5.17M(FDV$9.54M)로 직전$12.4M 대비 급감,vol$2.81M(직전$4.7M),24h-17.78%(직전+141%에서 급반전) — 직전 회차 재활성화 펌프(+141%)가 이번 회차 즉시 되돌려짐, 지속성 없는 일시 급등이었을 가능성",
-      "risk": "🔴 펌프 즉시 반전 확인, KOL 코로보 전무, 추격매수 위험 실증"
+      "token": "PONS",
+      "chain": "Robinhood Chain(Uniswap) — Pons Family 런치패드(現 RH체인 1위 런치패드)",
+      "ca": "0x39dBED3a2bd333467115dE45665cC57F813C4571",
+      "stage": "🟢확산(재상승 전환 — 냉각→재가속)",
+      "kols": "0(직접미확인) — Vlad Tenev(로빈후드CEO)가 PONS창립자 @MEADGod·ogle(WLFI어드바이저) 팔로우(7/21)",
+      "thesis": "GeckoTerminal 재확인: mcap$30.19M(직전$27.92M대비+8%),vol$6.88M,24h+5.05%(직전+1.5%에서반전) — 직전 회차 '냉각지속' 판정이 뒤집힘. 구조적으로 Noxa 붕괴 후 PONS가 활성주소 기준 RH체인 1위 런치패드로 부상(누적 5만+ 토큰발행), 매체는 7/21 ATH mcap$39M·24h+87~110% 보도(현재는 되돌림)",
+      "risk": "🟠 급격한 변동성(ATH 대비 -23%대), 런치패드 경쟁 지속으로 지위 불안정 가능"
     },
     {
       "token": "NOC(Nocturn)",
       "chain": "Robinhood Chain(Uniswap)",
       "ca": "0x09fdbfa4488f8bc09076794d06fb50704775dd69",
-      "stage": "🟡조기(캐싱의심 해소-진짜 플랫 확인, 관찰순위 하향)",
+      "stage": "🟡조기(정체에서 미세 반전)",
       "kols": "0",
-      "thesis": "GeckoTerminal API 직접조회로 5회연속 동일수치가 캐싱이 아닌 실제 거래정체임을 확인: FDV$4.40M,vol$113K,24h-3.47% — 하이프 신호 전무, 조기 후보로서 가치 낮음",
-      "risk": "🟠 실거래는 있으나 모멘텀 전무, KOL 코로보 없음"
+      "thesis": "GeckoTerminal 재확인: FDV$4.49M,vol$109K,24h+4.21%(직전-3.47%에서반전) — 수 회차 플랫하던 흐름이 이번 회차 소폭 양전, 아직 하이프 신호로 보기엔 이름",
+      "risk": "🟠 반전폭 미미, KOL 코로보 없음, 관찰 지속"
     },
     {
-      "token": "4663",
-      "chain": "Robinhood Chain(Uniswap V3)-체인ID유래밈",
-      "ca": "0xa427ad72db4227910805162ffae9d9b0c87bd1b5",
-      "stage": "🔴뒷북(저점 소폭 반등)",
-      "kols": "0",
-      "thesis": "재확인: mcap$317K→$340~387K,24h+3.4%→+9.9% — 저점권에서 소폭 반등 조짐이나 ATH대비 약-96%, 추세전환 근거 불충분",
-      "risk": "🔴 ATH대비 -96%대, 추격매수 비권장"
+      "token": "STONKBROKER",
+      "chain": "Robinhood Chain(Uniswap V4)",
+      "ca": "",
+      "stage": "🟠조정(데이터 정체 의심 — 재검증 필요)",
+      "kols": "0(직접미확인)",
+      "thesis": "GeckoTerminal 재확인: mcap$5.03M(FDV$9.28M),vol$2.78M,24h-17.76% — 직전 수치(mcap$5.17M,24h-17.78%)와 거의 동일. API 응답에 'last updated 2026-07-18' 표기 확인 — 실제 안정화인지 캐싱인지 불명확, 신뢰도 하향",
+      "risk": "🔴 데이터 신선도 의심, 펌프 즉시반전 이력, 추격매수 위험 실증"
+    },
+    {
+      "token": "401K(Retirement plan)",
+      "chain": "Robinhood Chain(Uniswap V2)",
+      "ca": "",
+      "stage": "🟡관찰(거래량 급증 미확인 신호 — 재검증 필요)",
+      "kols": "0(미확인)",
+      "thesis": "CoinGecko 스니펫: FDV$456,636(직전$123,883대비+268%),24h vol$4.97M(직전 대비 대폭 확대 추정) — 워시트레이딩 붕괴 확정 종목이 갑자기 거래량 급증. GeckoTerminal API 직접 재확인은 이번 회차 실패(404) — 재활성화인지 재차 워시트레이딩인지 불명확, 다음 회차 최우선 재검증 대상",
+      "risk": "🔴 과거 워시트레이딩발 붕괴 이력, 거래량 급증이 동일 패턴 반복일 위험 매우 큼"
     },
     {
       "token": "JIMOTHY(Jimothy The Raccoon)",
       "chain": "Solana(pump.fun/PumpSwap)",
       "ca": "Ge87EtsjwRQbHaqQmKRno69RFTwh9bfSsm99XNxTpump",
-      "stage": "🟢확산(냉각에서 재가속으로 전환)",
+      "stage": "🟠조정(재가속 후 급반전)",
       "kols": "0(직접미확인) — Ansem PUMP 매수와 시점 겹침(과거)",
-      "thesis": "재확인: mcap$25.68M→$27.36M(+6.5%),vol$16.785M→$24.07M(+43%),24h+50.0%→+37.1% — 직전 회차 냉각되던 흐름이 이번 회차 거래량·시총 모두 재상승, 조정이 아닌 재가속 국면 가능성",
-      "risk": "🟠 변동성 큼, 다수매체 이미 보도로 뒷북 근접"
+      "thesis": "CoinGecko 재확인: mcap$27.36M→$18.29M(-33%),vol$24.07M→$19.27M(-20%),24h37.1%→ATH대비-23.4%로전환 — 직전 회차 '재가속' 판정이 이번 회차 급반전, 변동성이 매우 큰 국면 지속",
+      "risk": "🔴 변동성 극심, 2회차 연속 방향전환으로 추세 판단 어려움"
     },
     {
-      "token": "PONS",
-      "chain": "Robinhood Chain(Uniswap) — Pons Family 런치패드",
-      "ca": "0x39dBED3a2bd333467115dE45665cC57F813C4571",
-      "stage": "🟠확산→조정(냉각 지속)",
-      "kols": "0(미확인, 매체다수)",
-      "thesis": "재확인: mcap$31.75M→$27.92M(-12%),vol$9.354M→$7.846M(-16%),24h+36.1%→+1.5% — 모멘텀 둔화 지속, ATH$0.04879는 유지(추가경신 없음)",
-      "risk": "🟠 급격한 변동성, 냉각 국면 지속"
-    },
-    {
-      "token": "INDEX",
-      "chain": "Robinhood Chain(Uniswap, LBank상장)",
-      "ca": "0x56910D4409F3a0C78C64DD8D0545FF0705389870",
-      "stage": "🟡확산(7회만에 검증 성공)",
-      "kols": "0(미확인, 매체다수)",
-      "thesis": "GeckoTerminal 직접조회로 7회째 검증공백 해소: FDV$13.95M,vol$2.06M(24h),24h-16.23% — 7/17 보도(mcap$18M+) 대비 하락했으나 실체는 확인됨, 현재는 하락 국면",
-      "risk": "🟡 이미 CEX(LBank) 상장으로 조기성 약화, 현재 하락 중"
-    },
-    {
-      "token": "BULLCAT(The Bull Cat)",
-      "chain": "Solana(pump.fun)",
-      "ca": "G9j8WWDeJXZdvwQgP82ooDuHmpc3Gy8NCSins71Lpump",
-      "stage": "🟡조기(소스간 수치 불일치, 신뢰도 하향)",
-      "kols": "The Black Bull(Ansem패러디)",
-      "thesis": "이번 회차 소스간 mcap 불일치 확인: Bitget$1.41M vs pump.fun공식$629K vs CoinGecko이상치$4.8K — 수 회차째 WebSearch 스니펫이 동일 price를 반환하는 캐싱 의심 지속",
-      "risk": "🔴 초소형, 데이터 신뢰도 낮음, 신중 필요"
+      "token": "WISHBONE",
+      "chain": "Robinhood Chain(Uniswap V3,다중페어)",
+      "ca": "0x77581054581b9c525e7dd7a0155de43867532d03",
+      "stage": "🔴뒷북(낙폭 둔화 지속)",
+      "kols": "Drallio 1(과거)",
+      "thesis": "GeckoTerminal 재확인: mcap(FDV)$1.67M(직전$1.51M),vol$515K,24h-18.95%(직전-27.12%에서완화) — 낙폭은 둔화되나 여전히 약세 지속",
+      "risk": "🔴 초소형, 지속 약세, 추세반전 근거 불충분"
     },
     {
       "token": "DIH(Dog In Hood)",
       "chain": "Robinhood Chain(Uniswap V3)",
       "ca": "0x21c37681013d088789c6aed0c0a665cc7b7c1bfb",
-      "stage": "🔴뒷북(낙폭 둔화)",
+      "stage": "🔴뒷북(재하락 — 소스 충돌)",
       "kols": "0",
-      "thesis": "재확인: mcap$452K→$519K(+15%),24h-22.7%→-7.3% — 낙폭 축소되나 여전히 ATH대비-95%대, 추세전환 근거 부족",
-      "risk": "🔴 소멸 진행형, 추격매수 절대금지"
-    },
-    {
-      "token": "WISHBONE",
-      "chain": "Robinhood Chain(Uniswap V3, 다중 페어)",
-      "ca": "0x77581054581b9c525e7dd7a0155de43867532d03",
-      "stage": "🔴뒷북(5회만에 재검증-약세 확대)",
-      "kols": "Drallio 1(과거)",
-      "thesis": "GeckoTerminal 재확인(5회만에): mcap$1.51M,vol$518K(24h),24h-27.12% — 직전 참고치(mcap$1.65M,24h-18.3%)보다 낙폭 확대, 약세 지속 확인",
-      "risk": "🔴 추세반전 후 지속 약세, 초소형"
+      "thesis": "GeckoTerminal 재확인: mcap$470K(직전$519K),24h-17.04%(직전-7.3%에서재하락) — 단, WebSearch스니펫은 동시점 +51.5%급등을 보고(소스충돌). GT API 직접조회를 우선 신뢰, 여전히 ATH대비-95%대 소멸 진행형 판단 유지",
+      "risk": "🔴 소멸 진행형, 소스간 수치 충돌로 데이터 신뢰도 낮음, 추격매수 절대금지"
     },
     {
       "token": "JUGGERNAUT",
       "chain": "Robinhood Chain(Uniswap V3)",
       "ca": "0xD7321801CAae694090694Ff55A9323139F043B88",
-      "stage": "🔴뒷북(신규 충격 붕괴 확인)",
+      "stage": "🔴뒷북(붕괴 지속, 반등 없음)",
       "kols": "Drallio+Bluntz_Capital(과거)+Next100XGEMS(⚠️유료,과거)",
-      "thesis": "⚠️신규 확인: mcap$14.42M→$2.87M(-80%),24h-28.91%,vol$1.34M — RH체인 2위 토큰으로 견조하다던 종목이 하루만에 급붕괴. cryptotimes 보도도 'RH체인 밈 전반 조정 국면'으로 JUGGERNAUT·HOODRAT 등 -25%대 하락 언급, 개별종목 문제가 아닌 체인 전반 조정 가능성",
-      "risk": "🔴 RH체인 대표 안정주로 여겨지던 종목의 급붕괴, 추격매수 절대금지"
+      "thesis": "GeckoTerminal 재확인: mcap$2.87M→$2.67M(추가-6.7%),24h-27.6%(직전-28.91%와유사, 낙폭 지속) — 반등 조짐 전무. 근본원인 확인: Noxa런치패드가 7/11 신규발행 중단 후 폐쇄(누적$12M수수료,토큰6만개+발행,봇스팸이유)가 RH체인 밈 전반 급락의 도화선이었음이 다수 매체(coindesk·cryptotimes·protos)로 교차확인",
+      "risk": "🔴 추가하락 지속, 추격매수 절대금지"
+    },
+    {
+      "token": "4663",
+      "chain": "Robinhood Chain(Uniswap V3)-체인ID유래밈",
+      "ca": "0xa427ad72db4227910805162ffae9d9b0c87bd1b5",
+      "stage": "🔴뒷북(미재검증-스테일데이터)",
+      "kols": "0",
+      "thesis": "이번 회차 WebSearch는 7/8~7/9 시점의 스테일 데이터만 반환(직전 실측치 mcap$340~387K와 시점 불일치) — 직접 재검증 실패, 직전값(저점권 소폭반등,ATH대비-96%) 참고 유지",
+      "risk": "🔴 ATH대비 -96%대, 데이터 신선도 낮음"
     },
     {
       "token": "ARROW(Arrow Finance)",
       "chain": "Robinhood Chain(Uniswap V3) — CDP+런치패드 프로토콜",
       "ca": "0xf2915d1e3c1b0c769d0c756ec43f1c1f6c99cd03",
-      "stage": "🔴뒷북(하락 지속)",
+      "stage": "🔴뒷북(미재검증-수치혼선)",
       "kols": "0(직접미확인) — coingape가 과거 '차기 CASHCAT 후보'로 소개",
-      "thesis": "재확인: mcap$7.844M→$7.24M(-7.7%),24h-20.5%→-20.9% — 하락 지속, ATH대비-76.4%",
-      "risk": "🔴 고점대비 -76%대, 추격매수 비권장"
-    },
-    {
-      "token": "401K(Retirement plan)",
-      "chain": "Robinhood Chain(Uniswap V2/V4)",
-      "ca": "",
-      "stage": "🔴뒷북(붕괴 확정 지속)",
-      "kols": "0(미확인)",
-      "thesis": "재확인: FDV$114,674→$123,883(소폭반등),24h-16.5%(지속하락),ATH대비-96.3% — 워시트레이딩발 붕괴 확정 상태 지속",
-      "risk": "🔴 워시트레이딩 후 붕괴 확정 사례, 추격매수 절대비권장"
+      "thesis": "이번 회차 WebSearch 결과가 '$2.26'이라는 단일 price만 반환(mcap·FDV 맥락 없어 직전 mcap$7.24M과 정합성 확인 불가) — 개별 재검증 실패, 직전값(하락지속,ATH대비-76.4%) 참고 유지",
+      "risk": "🔴 고점대비 -76%대, 데이터 정합성 낮음"
     },
     {
       "token": "HOODIE",
       "chain": "Robinhood Chain(Uniswap V4)",
       "ca": "",
-      "stage": "🔴뒷북(미재검증-캐싱의심)",
-      "kols": "0(매체다수, coingape 7/12보도)",
-      "thesis": "이번 회차 WebSearch 결과가 직전 회차와 완전 동일 수치(mcap$771K,24h-35.9%) 반환 — 캐싱 의심, 직접 API 재검증 필요. 매체발 '급등3대장' 보도의 뒷북 붕괴 사례 결론은 유지",
+      "stage": "🔴뒷북(미재검증-캐싱의심 지속)",
+      "kols": "0(매체다수, coingape 7/12·7월중순 보도)",
+      "thesis": "이번 회차도 WebSearch가 '급등3대장(FOX·HOODIE·CASHCAT)' 구도만 반복 보도 — 개별 최신수치 확보 실패, 직전값(mcap$771K,24h-35.9%,ATH대비-97.5%) 결론 유지",
       "risk": "🔴 -97.5%대 붕괴, 추격매수 절대금지, 데이터 신뢰도 낮음"
+    },
+    {
+      "token": "BULLCAT(The Bull Cat)",
+      "chain": "Solana(pump.fun)",
+      "ca": "G9j8WWDeJXZdvwQgP82ooDuHmpc3Gy8NCSins71Lpump",
+      "stage": "🟡조기(미재검증, 소스불일치 지속)",
+      "kols": "The Black Bull(Ansem패러디)",
+      "thesis": "이번 회차 개별 재검증 미실시 — 직전 소스간 불일치(Bitget$1.41M vs pump.fun공식$629K vs CoinGecko이상치$4.8K) 결론 유지",
+      "risk": "🔴 초소형, 데이터 신뢰도 낮음, 신중 필요"
+    },
+    {
+      "token": "INDEX",
+      "chain": "Robinhood Chain(Uniswap, LBank상장)",
+      "ca": "0x56910D4409F3a0C78C64DD8D0545FF0705389870",
+      "stage": "🟡확산(미재검증-직전값유지)",
+      "kols": "0(미확인, 매체다수)",
+      "thesis": "이번 회차 개별 재검증 미실시 — 직전값(FDV$13.95M,24h-16.23%,7/17보도mcap$18M+대비하락중) 참고 유지",
+      "risk": "🟡 이미 CEX(LBank) 상장으로 조기성 약화, 하락 국면 추정"
     }
   ],
   "notable": [
     {
-      "token": "JUGGERNAUT 급붕괴",
-      "status": "이슈(붕괴충격)",
-      "summary": "RH체인 2위 토큰으로 수 회차 견조하다던 JUGGERNAUT가 mcap$14.42M→$2.87M(-80%),24h-28.91%로 하루만에 급붕괴 — cryptotimes 보도가 RH체인 밈 전반의 '조정 국면'(JUGGERNAUT·HOODRAT 등 -25%대)을 확인, 개별 이슈가 아닌 체인 전반 냉각 가능성"
-    },
-    {
-      "token": "WALLET 재활성화 지속 확인",
+      "token": "PONS 런치패드 부상 & RH체인 런치패드 전쟁(메타)",
       "status": "확산",
-      "summary": "직전 회차 100배 거래량 급증이 일시적이 아니었음을 이번 회차도 확인 — FDV$5.3M→$6.42M,24h+20.1%로 지속 상승. RH체인 조정 국면 속에서도 예외적으로 상승 지속 중인 유일한 추적 종목"
+      "summary": "Noxa 붕괴(7/11) 후 Flap(22K+런칭,Noxa기록경신)·Bankr(스톡페어드토큰,AAPL/TSLA유동성)·Uniswap CCA 등이 경쟁하는 가운데 PONS가 활성주소 기준 1위 런치패드로 부상 — 로빈후드 CEO Vlad Tenev가 7/21 PONS창립자 @MEADGod·ogle(WLFI어드바이저)를 팔로우하며 주목도 급상승, PONS토큰 mcap $27.92M→$30.19M(+8%)로 재상승 전환"
     },
     {
-      "token": "STONKBROKER 펌프 즉시 반전",
+      "token": "JUGGERNAUT 붕괴 원인 규명 — Noxa 런치패드 폐쇄",
+      "status": "이슈",
+      "summary": "직전 회차 급붕괴(-80%)의 근본원인이 Noxa런치패드의 7/11 신규발행 전면중단·폐쇄(누적$12M수수료,토큰6만개+발행후 봇스팸 이유로 종료)임을 coindesk·cryptotimes·protos 교차확인 — 이번 회차도 반등없이 추가-6.7% 하락 지속, RH체인 밈 메타 전반의 구조적 조정임을 재확인"
+    },
+    {
+      "token": "WALLET 지속 상승(감속)",
+      "status": "추세지속",
+      "summary": "4회 연속 상승 지속(FDV$6.35M,24h+14.7%)이나 상승폭이 직전 +20.1%에서 둔화 — RH체인 조정국면 속 예외적 강세이나 모멘텀 약화 조짐 관찰 필요"
+    },
+    {
+      "token": "JIMOTHY 급반전(재가속→재조정)",
       "status": "조정",
-      "summary": "직전 회차 24h+141% 재활성화 펌프가 이번 회차 mcap -58%,24h-17.78%로 하루만에 되돌려짐 — 조기 재활성화 신호로 보였던 급등이 지속 불가능한 일시 반등이었을 가능성 재확인(401K 워시트레이딩 사례와 유사한 패턴)"
+      "summary": "직전 회차 '재가속'(vol+43%) 판정 2시간만에 mcap-33%,vol-20%로 급반전 — 변동성이 매우 커 방향성 판단에 신중 필요, ATH대비-23.4%로 전환"
     },
     {
-      "token": "JIMOTHY 재가속",
-      "status": "확산",
-      "summary": "직전 회차 냉각 국면(vol -52%)에서 이번 회차 vol+43%,mcap+6.5%로 재상승 — 조정이 완전한 하락 반전이 아니라 재가속으로 이어지는 패턴, PONS와 대비되는 흐름"
+      "token": "401K 거래량 급증 미확인 신호",
+      "status": "이슈(관찰)",
+      "summary": "워시트레이딩발 붕괴 확정으로 판단했던 401K가 CoinGecko 스니펫 기준 FDV+268%,vol급증($4.97M) 보고 — GeckoTerminal API 직접 재확인은 이번 회차 실패, 재활성화인지 재차 워시트레이딩인지 불명확하여 다음 회차 최우선 검증 대상"
     },
     {
-      "token": "RH체인 전반 밈 조정 국면(메타)",
+      "token": "CASHCAT 변동성 지속",
       "status": "조정",
-      "summary": "cryptotimes(7/17)가 JUGGERNAUT·HOODRAT 등 다수 RH체인 밈이 '중순 이후 밈코인 전반 후퇴'로 -25%대 하락했다고 보도 — WALLET·JIMOTHY 등 예외를 제외하면 RH체인 밈 메타 전반이 초기 폭발적 열기에서 조정·선별 국면으로 이동 중인 것으로 판단"
+      "summary": "소스간 mcap $72M~$83M로 편차 지속, 여전히 ATH($226M) 대비 -60~70%대 — RH체인 대장주도 뚜렷한 추세전환 신호 없음"
     },
     {
-      "token": "INDEX 7회만에 검증공백 해소",
-      "status": "이슈(해소)",
-      "summary": "GeckoTerminal 직접조회로 7회 연속 미검증이던 INDEX 실체를 확인: FDV$13.95M — 7/17 보도(mcap$18M+) 대비 하락했으나 존재·유동성은 확인됨, CEX(LBank) 상장으로 조기성은 이미 약화"
-    },
-    {
-      "token": "CASHCAT 재차 약세 전환",
+      "token": "RH체인 밈 메타 조정 국면(구조적)",
       "status": "조정",
-      "summary": "직전 회차 24h+27.4% 반등 조짐이 이번 회차 -18.3%로 재차 반전 — mcap$66.7M,ATH대비-70.6%. RH체인 대장주도 확정적 추세전환은 아직 아님을 재확인"
+      "summary": "Noxa 붕괴가 RH체인 밈 전반 조정의 직접 원인으로 재확인됨 — WALLET·PONS 등 소수 예외를 제외하면 대다수 종목이 하락/정체, 런치패드 전쟁(Flap·Bankr·CCA·PONS)으로 유동성이 분산되는 과도기 국면"
     },
     {
-      "token": "신규 조기 후보 탐색 — 이번 회차도 미발굴, 스테일 뉴스 주의",
-      "status": "메모",
-      "summary": "Solana 'Chill House(CHILLHOUSE)' 밈코인의 Vitalik 저격 급등 기사를 조사했으나 2025년 10월 사례임을 확인(스테일 뉴스), FROGBULL(Crypto Fergani 스텔스런칭)도 ATH대비-97.7%로 이미 사망 — RH체인 밖에서 새로운 조기 KOL 하이프 후보는 이번 회차도 확보하지 못함"
+      "token": "PUMP(Pump.fun) — Ansem 콜 후속",
+      "status": "추세지속",
+      "summary": "Ansem의 7/20 1,500 SOL($115K)매수 발 상승모멘텀이 이어지는 가운데 $86.5M 규모 팀·투자자 물량 언락(7/15)이 진행 중 — KOL하이프와 공급압력이 상충하는 구도, 크립토 전체 관점에서 참고용(RH체인 조기토큰과는 별개)"
     }
   ]
 }
