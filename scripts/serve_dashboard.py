@@ -243,7 +243,7 @@ def main() -> None:
                     continue
                 if spark:
                     try:
-                        kl = d.klines(base, "1h", 48)
+                        kl = d.klines(f"{base}/USDT", "1h", 48)  # _pair는 '/USDT' 형식 필요
                         rec["closes"] = [c for c in (kl or {}).get("close", []) if c is not None]
                     except Exception:  # noqa: BLE001
                         rec["closes"] = []
