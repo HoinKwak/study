@@ -1,202 +1,192 @@
 {
-  "ts": "2026-07-21T22:02:00Z",
+  "ts": "2026-07-22T00:04:00Z",
   "tokens": [
+    {
+      "token": "DIH(Dog In Hood)",
+      "chain": "Robinhood Chain(Uniswap V3)",
+      "ca": "0x21c37681013d088789c6aed0c0a665cc7b7c1bfb",
+      "stage": "조기~확산(신규 트렌딩 진입, 거래량 재점화)",
+      "kols": "0(직접미확인, coingape·beincrypto 등 매체 다수)",
+      "thesis": "이번 회차 신규 포착: price$0.004570(24h+51.5%,vol$4.93M,FDV$4.71M). coingape·beincrypto가 CASHCAT·4663과 함께 '거래량 1,200%급증' RH체인 3대 토큰으로 소개. ATH$0.009835(-53%) 대비 저점서 재점화 조짐",
+      "risk": "🟠 KOL 코로보 전무(매체보도만), CA는 GeckoTerminal/DexScreener 페어주소 기준(토큰 자체 CA 미확정), ATH대비 여전히 반토막"
+    },
+    {
+      "token": "4663",
+      "chain": "Robinhood Chain(Uniswap V3) — 체인ID 4663 유래 밈",
+      "ca": "0xa427ad72db4227910805162ffae9d9b0c87bd1b5",
+      "stage": "조기~확산(재편입 — 저신호로 제외했던 항목이 거래량 급증 재부상)",
+      "kols": "0(직접미확인)",
+      "thesis": "GeckoTerminal 재확인: price$0.003878(24h+214.3%,vol$3.19M). RH체인 자체 체인ID(4663)를 딴 밈으로 T9 키패드상 'HOOD'를 의미. 이전 회차 신호부족으로 표에서 제외했던 것을 이번 회차 거래량 급증(vol$3.19M)으로 재편입",
+      "risk": "🔴 초소형, KOL 코로보 전무, 순수 숫자밈으로 서사 취약, 급등 직후 급락 패턴 흔함"
+    },
     {
       "token": "NOC(Nocturn)",
       "chain": "Robinhood Chain(Uniswap)",
       "ca": "0x09fdbfa4488f8bc09076794d06fb50704775dd69",
-      "stage": "조기(KOL언급 여전히 미확인, 티커충돌로 데이터 재확인 실패 지속)",
+      "stage": "조기(DexScreener 직접 데이터 확보 성공 — 티커혼선 일부 해소)",
       "kols": "0(직접미확인)",
-      "thesis": "이번 회차도 신선 데이터 확보 실패. 검색 결과 'Nocturna'·'Nono Coin'·Northrop Grumman(NOC, 미국 방산주)·RH체인 자체 NOC 스톡토큰 등 동일 티커 다수 혼재 확인돼 소스 신뢰도가 더 낮아짐. 직전값(mcap~$3.9M) 참고 유지",
-      "risk": "🔴 KOL 코로보레이션 여전히 전무, 티커 충돌 심화로 데이터 신뢰 불가, 초소형"
+      "thesis": "이번 회차 DexScreener 직접 재확인 성공: mcap$4.4M, vol$405K(RH체인 거래량 순위 2위), 유동성$253K, 홀더731명, 'RH체인용 정밀 데이터 인프라' 프로젝트 서사 확인. 그간 혼재됐던 Northrop Grumman(방산주)·Nocturna·Nono Coin 등 동명이인과는 별개 실체로 재확인",
+      "risk": "🟠 KOL 코로보 여전히 전무, 초소형, 인프라 서사의 실사용 검증 안됨"
     },
     {
       "token": "STONKBROKER",
       "chain": "Robinhood Chain(Anvil AMM/Uniswap V4, NFT연계)",
       "ca": "",
-      "stage": "조기~확산(fee-capture — DexScreener 자체 트렌딩 상위권 재확인)",
+      "stage": "조기~확산(fee-capture — 데이터 소스 수렴)",
       "kols": "0(직접미확인)",
-      "thesis": "이번 회차 DexScreener RH체인 트렌딩 상위 4개(REALSTONK·CASHCAT·StonkBroker·SHIBCAT100)에 재등장 확인 — price$0.004820, vol$4.7M/24h로 직전 '고편차 소스'($13.0M/vol$4.7M) 추정치와 거래량 정합돼 활동성 온체인 코로보 강화. ERC-6551 브로커NFT 수수료배당 서사 유지",
-      "risk": "🟠 KOL 코로보레이션 전무, CA 표준형식 아님(V4 PoolID만), mcap 자체는 소스간 편차 지속"
+      "thesis": "재확인: mcap$10.5M, 유동성$1.7M, price$0.003921 — 직전(price$0.004820) 대비 소폭 하락하나 데이터 소스간 수치가 처음으로 수렴하는 조짐(고편차 문제 완화). ERC-6551 브로커NFT 수수료배당 서사 유지",
+      "risk": "🟠 KOL 코로보레이션 전무, CA 표준형식 아님(Uniswap V4 PoolID만)"
     },
     {
       "token": "WALLET(Robinhood Wallet)",
       "chain": "Robinhood Chain(Uniswap V3)",
       "ca": "0x9501a20bedb8bea0798fe5d4c411f5e270965d49",
-      "stage": "조기(KOL언급 미확인, 페어 생성 11일 경과 — 뒤늦게 포착된 것으로 재평가 유지)",
+      "stage": "조기(이번 회차 개별 재검증 안됨 — 직전값 유지)",
       "kols": "0(직접미확인)",
-      "thesis": "DexScreener 재확인: mcap$5.3M(신규 확보), 유동성$555K 유지, price$0.005613~0.008092 범위 변동. WALLET/WETH 페어(52.5M WALLET+136.14 WETH 풀). 공식 Robinhood Wallet 연계는 여전히 미확인",
-      "risk": "🔴 브랜드편승(명칭도용) 가능성, KOL 코로보 전무, 실제로는 이미 11일 지난 페어"
+      "thesis": "이번 회차는 다른 신규 항목(DIH·4663) 우선 확인으로 개별 재검증 미실시. 직전값(mcap$5.3M, 유동성$555K, price$0.005613~0.008092) 참고 유지. 공식 Robinhood Wallet 연계는 여전히 미확인",
+      "risk": "🔴 브랜드편승(명칭도용) 가능성, KOL 코로보 전무, 페어 생성 후 상당기간 경과"
     },
     {
       "token": "BULLCAT(The Bull Cat)",
       "chain": "Solana(pump.fun)",
       "ca": "G9j8WWDeJXZdvwQgP82ooDuHmpc3Gy8NCSins71Lpump",
-      "stage": "조기(5회만에 pump.fun 직접 재확인 성공 — 동일값 재확인)",
+      "stage": "조기(이번 회차 개별 재검증 안됨 — 직전값 유지)",
       "kols": "The Black Bull(Ansem패러디, 팔로워미확인)",
-      "thesis": "이번 회차 pump.fun 페이지 직접 재확인 성공(4회 연속 미검증 후 처음): mcap$629K로 직전값과 정확히 동일 — 실제 장기횡보인지 캐시인지 여전히 불명확하나 최소 페이지 생존·붕괴 아님은 확인",
+      "thesis": "직전값(mcap$629K, pump.fun 페이지 생존 확인) 참고 유지 — 장기 횡보인지 캐시인지는 여전히 불명확",
       "risk": "🔴 초소형(<$1M), 신생·러그위험, mcap 장기 동일값(횡보 or 캐시 불명확)"
     },
     {
       "token": "FOX(Robin Hood)",
       "chain": "Robinhood Chain(Uniswap V3)",
       "ca": "",
-      "stage": "조기(거래량 급감 — 유동성 고갈 심화)",
+      "stage": "조기(이번 회차 개별 재검증 안됨 — 직전값 유지, 거래량 고갈 심화 상태)",
       "kols": "0(미확인)",
-      "thesis": "카테고리 재확인: mcap$953K(24h+13.1%,vol$3,649) — 직전(mcap$989K,+3.8%,vol$261,764) 대비 mcap은 유사하나 거래량이 $261K→$3,649로 약98.6% 추가 급감",
+      "thesis": "직전값(mcap$953K,24h+13.1%,vol$3,649 — 거래량 98.6%급감 확인) 참고 유지",
       "risk": "🔴 초소형, 거래량 사실상 고갈, CA미확인"
     },
     {
       "token": "401K(Retirement plan)",
       "chain": "Robinhood Chain(Uniswap V2/V4)",
       "ca": "",
-      "stage": "조기(데이터 정합성 심각 지속 — 티커 중복 미해소)",
+      "stage": "조기(이번 회차 개별 재검증 안됨 — 티커중복 미해소 지속)",
       "kols": "0(미확인)",
-      "thesis": "카테고리 재확인: mcap$144.7K(24h+78.9%,vol$35,383) — 직전(FDV$456,636,vol$4.97M) 대비 mcap·vol 모두 대폭 하락, 여전히 '401k'·'retirement-plan' 두 CoinGecko 페이지 이원화 문제 미해소",
+      "thesis": "직전값(mcap$144.7K,24h+78.9%,vol$35,383) 참고 유지, '401k'·'retirement-plan' 두 CoinGecko 페이지 이원화 문제 미해소",
       "risk": "🔴 초소형, 티커중복/데이터혼선으로 수치 신뢰 불가 지속, CA미확인"
     },
     {
       "token": "INDEX",
       "chain": "Robinhood Chain(Uniswap, LBank상장)",
       "ca": "0x56910D4409F3a0C78C64DD8D0545FF0705389870",
-      "stage": "조기~확산(fee-capture — 신선 데이터 확보 3회 연속 실패)",
+      "stage": "조기~확산(fee-capture — 신선 데이터 확보 4회 연속 실패)",
       "kols": "0(미확인, 매체다수)",
-      "thesis": "이번 회차도 1차소스(CoinGecko 개별페이지) 재확인 실패, 검색 결과는 7/17자 구보도(coingape mcap$18M+, LBank +502%)만 재인용됨 — 검증공백 3회째 누적",
-      "risk": "🟡 1차소스 검증공백 3회 연속, 이미 CEX(LBank) 상장으로 조기성 약화"
+      "thesis": "이번 회차도 1차소스 재확인 실패, 검증공백 4회째 누적. 7/17자 구보도(coingape mcap$18M+, LBank+502%)만 참고치로 유지",
+      "risk": "🟡 1차소스 검증공백 4회 연속, 이미 CEX(LBank) 상장으로 조기성 약화"
     },
     {
       "token": "JUGGERNAUT",
       "chain": "Robinhood Chain(Uniswap)",
       "ca": "0xD7321801CAae694090694Ff55A9323139F043B88",
-      "stage": "확산(거래량 재붕괴 — boom-bust 패턴 재확인)",
+      "stage": "확산(강한 재가속 — mcap 약 5배 급증)",
       "kols": "Drallio+Bluntz_Capital(팔로워33.8만)+Next100XGEMS(⚠️유료, 모두 과거)",
-      "thesis": "카테고리 재확인: mcap$2.9M(24h+31.9%,vol$19,927) — 직전 회차 거래량 $19K→$1.3M로 68배 급반등했던 것이 이번엔 다시 $1.3M→$19,927로 -98.5% 급감, 반복적 boom-bust 거래량 패턴 재확인",
-      "risk": "🟡 거래량 극심한 반복 변동(급감↔급반등), KOL mcap$100M 주장과 여전히 큰 괴리"
+      "thesis": "이번 회차 급변 확인: mcap$14.42M(price$0.01302,vol$11.6M,24h-7.8%) — 직전($2.9M) 대비 약 5배 급증, RH체인 시총 2위권 재부상. Drallio의 'mcap$100M 잠재력' 콜과의 괴리가 -97%대에서 -86%대로 좁혀짐(여전히 큰 괴리)",
+      "risk": "🟡 거래량 boom-bust 반복 이력, 단기 급변동성 매우 큼, 추격 매수 주의"
     },
     {
       "token": "PONS",
       "chain": "Robinhood Chain(Uniswap) — Pons Family 런치패드",
       "ca": "0x39dBED3a2bd333467115dE45665cC57F813C4571",
-      "stage": "확산(강세 재가속)",
+      "stage": "확산(강세 지속 — 7/21 ATH 경신 후 조정)",
       "kols": "0(미확인, 매체다수)",
-      "thesis": "개별페이지 재확인: mcap$25.319M(price$0.03182,24h+75.9%,7일0.0%,vol$19.688M) — 직전(mcap$28.48M,+54.7%) 대비 mcap은 소폭 하락하나 24h%는 재가속, 5개 거래소·50개 마켓으로 확산 유지. 7일값은 여전히 0.0% 고착",
-      "risk": "🟠 [기존] 프론트엔드 토큰승인버그 이력(cryptotimes 7/18), CEX 미상장, 7일%값 표기 이상 지속"
+      "thesis": "재확인: mcap$29.05M(price$0.03723,24h+87.1%,vol$18.9M) — 7/21 mcap $39M 일시 ATH 경신 후 조정 중이나 여전히 강세 국면. 5개 거래소·50개 마켓 확산 지속",
+      "risk": "🟠 [기존] 프론트엔드 토큰승인버그 이력(cryptotimes 7/18), CEX 미상장, 변동성 매우 큼"
     },
     {
       "token": "WISHBONE",
       "chain": "Robinhood Chain(Uniswap V3, 다중 페어)",
       "ca": "0x77581054581b9c525e7dd7a0155de43867532d03",
-      "stage": "확산→조정(낙폭 둔화 — 하락은 지속하나 속도 완화)",
+      "stage": "확산→조정(이번 회차 개별 재검증 안됨 — 직전값 유지)",
       "kols": "Drallio 1(과거, 'RH체인의 Dog'로 네이밍)",
-      "thesis": "재확인: mcap약$1.65M(24h-18.3%,7일-74.8%,vol$681K) — 직전(24h-39.4%,7일-75.4%) 대비 24h 낙폭이 절반 수준으로 완화됐으나 하락 추세 자체는 지속",
+      "thesis": "직전값(mcap약$1.65M,24h-18.3%,7일-74.8%) 참고 유지 — 낙폭 완화 추세였으나 하락 자체는 지속 중이었음",
       "risk": "🔴 추세반전 후 지속 약세, 초소형, 반복적 급반전 이력"
-    },
-    {
-      "token": "YOLO",
-      "chain": "Robinhood Chain(Uniswap)",
-      "ca": "",
-      "stage": "확산(거래량 거의 소멸 — 수치 신뢰 저하)",
-      "kols": "0(미확인)",
-      "thesis": "카테고리 재확인: mcap$4.6M(24h+67.7%,vol$1,597.61) — 직전(mcap$4.7M,+43.2%,vol$2.3M) 대비 mcap은 유사하나 거래량이 사실상 소멸 수준으로 급감, %변동값의 신뢰도 저하",
-      "risk": "🔴 거래량 극미(유동성 고갈), 과거 조작의심 이력, CA미확인"
-    },
-    {
-      "token": "TENDIES",
-      "chain": "Robinhood Chain(Uniswap V3)",
-      "ca": "",
-      "stage": "확산(대체로 안정 유지)",
-      "kols": "0(미확인, Robinhood 공식계정 언급 보도)",
-      "thesis": "카테고리 재확인: mcap$13.6M(24h+7.7%,vol$3.8M) — 직전(mcap$13.7M,+28.3%) 대비 mcap 거의 동일, 대체로 안정적 유지",
-      "risk": "🟡 변동성 예측 어려움 지속"
     },
     {
       "token": "JIMOTHY(Jimothy The Raccoon)",
       "chain": "Solana(pump.fun/PumpSwap)",
       "ca": "Ge87EtsjwRQbHaqQmKRno69RFTwh9bfSsm99XNxTpump",
-      "stage": "확산(모멘텀 재둔화 — 7일%값 7회 연속 0.0% 고착)",
-      "kols": "0(직접미확인) — Ansem이 별도로 PUMP $100~115K 매수 공개(7/19~20), pump.fun 생태계 전반 재주목",
-      "thesis": "개별페이지 재확인: mcap$17.74M(24h+7.5%,7일0.0%,vol$11.5M) — 직전(24h+36.5%,vol$22.08M) 대비 모멘텀 재차 둔화(거래량 -48%). 7일%값은 정확히 0.0%로 7회 연속 고착(표기오류 확정적)",
-      "risk": "🟠 7일%값 7회연속 0.0%(표기오류), 다수매체 이미 보도로 뒷북 근접, 모멘텀 재가속→재둔화 반복"
+      "stage": "확산(이번 회차 개별 재검증 안됨 — 직전값 유지)",
+      "kols": "0(직접미확인) — Ansem이 별도로 PUMP 매수 공개, pump.fun 생태계 전반 재주목 지속",
+      "thesis": "직전값(mcap$17.74M,24h+7.5%,7일0.0%,vol$11.5M) 참고 유지. 7일%값 7회연속 0.0% 고착 확인됐던 표기오류는 미해소로 간주",
+      "risk": "🟠 7일%값 표기오류, 다수매체 이미 보도로 뒷북 근접, 모멘텀 반복 재가속→재둔화"
     },
     {
       "token": "ARROW(Arrow Finance)",
       "chain": "Robinhood Chain(Uniswap V3) — CDP+런치패드 프로토콜",
       "ca": "0xf2915d1e3c1b0c769d0c756ec43f1c1f6c99cd03",
-      "stage": "뒷북(급락 심화 — ATH대비 낙폭 확대)",
+      "stage": "혼조(데이터 상충 — 뒷북 재평가 보류)",
       "kols": "0(직접미확인) — coingape가 '차기 CASHCAT 후보'로 소개(7/9 전후 고점기 보도)",
-      "thesis": "개별페이지 재확인: mcap$7.545M(price$0.8384,24h-37.2%,7일-58.8%,vol$3.231M) — 직전(mcap$8.01M,-42.5%) 대비 유사 수준 급락 지속. ATH$3.47(7/9) 대비 낙폭이 -74.0%→-75.8%로 확대. Arrow Pad 런치패드 7/20 출시했으나 가격에는 하방 반영",
-      "risk": "🔴 이미 ATH 대비 -75.8% 폭락한 뒷북 자산, 신규 조기 후보 아님, 급락 계속 진행 중"
+      "thesis": "⚠️데이터 상충: 이번 회차 검색결과 price$2.26,mcap$19.44M,vol$6.32M로 직전(price$0.8384,mcap$7.545M) 대비 169%급등한 것처럼 나타났으나, 이는 ATH$3.47 대비 -34.9%에 불과해 직전 회차의 '-75.8%낙폭' 주장과 정면 배치. CoinGecko 소스 캐싱/버전차 의심 — 실제 반등인지 구버전 캐시 재노출인지 다음 회차 교차검증 필수",
+      "risk": "🔴 데이터 신뢰도 이번 회차 최악 수준(수치 2배 이상 상충), 실제 방향성 불명, 추격 매수 절대 금지"
     },
     {
       "token": "ROBINFUN",
       "chain": "Robinhood Chain(런치패드 자체토큰, Uniswap V2/V3/V4)",
       "ca": "0x56A98Db16Cf501b686c14BA00a5DeC02E87083FA",
-      "stage": "뒷북(조기→뒷북 재분류 — 편입 2시간여만에 급락 확정)",
+      "stage": "뒷북(pump-and-dump 사례 지속 — 저점서 소폭 반등)",
       "kols": "Crypto Gem Signals(저신뢰 shill계정) 1",
-      "thesis": "이번 회차 재확인 결과 이미 큰 폭 급락 확인: price$0.000277(24h-4.94%,7일-73.86%,vol$26,758), ATH$0.001303 대비 -78.75%. 직전 회차(20:02) '조기 신규편입'으로 분류했던 것을 이번 회차 데이터로 '뒷북'으로 재분류 — 전형적 저신뢰 shill→pump-and-dump 패턴의 사례",
-      "risk": "🔴 이미 ATH대비 -78.75% 폭락, 저신뢰 단일소스 shill계정발 전형적 pump-and-dump 확정적 사례, 추격 매수 절대 비권장"
+      "thesis": "재확인: price$0.000334(vol$101K), ATH$0.000949 대비 -71.8% — 직전(price$0.000277,ATH$0.001303,-78.75%) 대비 저점서 소폭 반등했으나 ATH 산정치 자체도 하향조정돼(캐싱 의심) 절대 신뢰 불가. 저신뢰 단일소스 콜의 pump-and-dump 사례라는 결론은 변함없음",
+      "risk": "🔴 이미 ATH대비 -70%대 폭락, 저신뢰 단일소스 shill발 pump-and-dump 확정적 사례, 추격 매수 절대 비권장"
     }
   ],
   "notable": [
     {
-      "token": "ROBINFUN — 조기에서 뒷북으로 전환 (사례 연구)",
-      "status": "이슈(pump-and-dump 확정)",
-      "summary": "직전 회차(20:02 UTC) 저신뢰 shill계정 1건 언급으로 '조기 신규편입'했던 ROBINFUN이, 불과 2시간 뒤 재확인에서 ATH 대비 -78.75% 폭락 확인. 저신뢰 단일소스 콜의 위험성을 보여주는 사례 — 조기경보 리스트의 '미확인' 항목은 추격매수 금지 원칙 재확인"
+      "token": "JUGGERNAUT 강한 재가속",
+      "status": "확산(mcap 약 5배 급증)",
+      "summary": "직전 회차 mcap$2.9M에서 이번 회차 mcap$14.42M(vol$11.6M)로 약 5배 급증, RH체인 시총 2위권 재부상. Drallio의 'mcap$100M' 콜과의 괴리가 크게 좁혀짐(여전히 -86%대 괴리)"
     },
     {
-      "token": "RH체인 fee-capture 그룹(PONS·STONKBROKER·WALLET·INDEX)",
-      "status": "확산(PONS 재가속·STONKBROKER 트렌딩 재진입·WALLET mcap$5.3M 확인)",
-      "summary": "PONS는 mcap$25.3M(24h+75.9%)로 재가속. STONKBROKER는 DexScreener RH체인 트렌딩 상위 4개(REALSTONK·CASHCAT·StonkBroker·SHIBCAT100)에 재등장해 온체인 코로보 강화. WALLET은 mcap$5.3M(유동성$555K) 신규 확인. INDEX는 3회 연속 신선 데이터 확보 실패"
+      "token": "PONS 신고가 경신",
+      "status": "확산(7/21 ATH mcap$39M 경신 후 조정)",
+      "summary": "mcap$29.05M(24h+87.1%,vol$18.9M) — 7/21 mcap $39M 일시 ATH 경신, 5개 거래소·50개 마켓으로 확산 지속. 강세 모멘텀 유지"
     },
     {
-      "token": "ARROW — 뒷북 심화",
-      "status": "뒷북(낙폭 확대)",
-      "summary": "ATH$3.47(7/9) 대비 낙폭이 -74.0%→-75.8%로 확대. 7/20 Arrow Pad 런치패드 출시에도 가격은 오히려 지속 하락(24h-37.2%,7일-58.8%) — 촉매가 반영되지 않는 뒷북 자산"
+      "token": "NOC 데이터 확보 성공",
+      "status": "조기(티커혼선 일부 해소)",
+      "summary": "수 회차간 검증실패 끝에 DexScreener 직접 재확인 성공: mcap$4.4M, RH체인 거래량 2위, 'RH체인용 정밀 데이터 인프라' 프로젝트로 서사 확인. 방산주 Northrop Grumman(NOC) 등 동명이인과 구분됨"
     },
     {
-      "token": "CASHDOG·JOHN — 데이터 이상 재확인(볼륨/시총 비율 이상)",
-      "status": "이슈(데이터 신뢰 불가 지속)",
-      "summary": "이번 회차 카테고리 페이지에서 CASHDOG(mcap$42.1M,vol$284.2M,24h0.0%)·JOHN(mcap$17.2M,vol$167.5M,24h0.0%) 모두 거래량이 시총의 6.75배~9.7배에 달하는 비정상 수치로 확인 — 앞서 확정된 'CoinGecko 캐시/미갱신' 문제와 별개로 데이터 자체의 신뢰성이 매우 낮음을 재차 확인"
+      "token": "DIH·4663 신규 트렌드 진입",
+      "status": "조기~확산",
+      "summary": "coingape·beincrypto가 CASHCAT과 함께 '거래량 1,200%급증' RH체인 3대 토큰으로 소개. DIH(vol$4.93M,24h+51.5%), 4663(vol$3.19M,24h+214.3%) 모두 거래량 재점화 확인, KOL 코로보는 아직 미확인"
+    },
+    {
+      "token": "ARROW 데이터 상충(경고 사례)",
+      "status": "이슈(신뢰불가)",
+      "summary": "직전 회차 mcap$7.545M(-75.8%뒷북)에서 이번 회차 mcap$19.44M(-34.9%)로 정반대 수치 확인 — CoinGecko 소스 캐싱/버전차로 추정, 조기경보용 데이터의 근본적 한계를 보여주는 사례"
+    },
+    {
+      "token": "ROBINFUN pump-and-dump 사례 지속",
+      "status": "이슈(뒷북 확정 유지)",
+      "summary": "저신뢰 shill계정 1건 언급으로 편입됐던 ROBINFUN, 여전히 ATH 대비 -70%대 폭락 상태 — 저신뢰 단일소스 콜의 위험성을 보여주는 반복 사례"
+    },
+    {
+      "token": "CASHDOG·JOHN 데이터 신뢰불가 재확인",
+      "status": "이슈(배제 유지)",
+      "summary": "이번 회차 CASHDOG mcap이 $46,776(직전 회차 $42.1M 대비 약 900배 차이)로 재조회돼 CoinGecko 데이터 신뢰 불가성이 극단적으로 재확인됨 — 배제 결정 유지"
     },
     {
       "token": "CASHCAT",
       "status": "안정적 대장주 지위 유지",
-      "summary": "카테고리 재확인 mcap$69.7M(24h+5.0%,vol$9.6M) — 여전히 $65~82M 구간에서 안정적 유지"
+      "summary": "price $0.066~$0.109 범위 유지, ATH$0.2252(7/11) 대비 -69% — RH체인 대장주 지위는 여전히 견고, Vlad Tenev CEO의 7/8 밈코인 트레이딩 언급이 촉매였음"
     },
     {
-      "token": "PUMP(Pump.fun) — Ansem 매수로 재주목",
-      "status": "확산(2개월래 최고가)",
-      "summary": "Ansem(@blknoiz06)이 7/19~20 PUMP를 $100~115K 매수 공개, 가격 +22% 급등해 2개월래 최고가($0.00207) 기록. 거래량 $131M+(전일比+500%), OI $100M→$163M(+63%). 단, 이미 대형·기성 토큰이라 '조기'보다 '확산' 성격 — 코인마켓캡 상위 100 중 최고 상승률"
+      "token": "PUMP(Pump.fun) — Ansem 매수 지속 확산",
+      "status": "확산(2개월래 최고가 유지)",
+      "summary": "Ansem이 7/20 1,500 SOL($115K)을 $0.001675에 매수한 사실이 재확인되며 가격 재차 주목. 이미 대형·기성 토큰이라 '조기'보다 '확산' 성격 — 조기 리스트가 아닌 notable 유지"
     },
     {
-      "token": "BNKR(BankrCoin, Base+RH Chain)",
-      "status": "확산(Buyback Vault+LayerZero 브릿지 — 가격반응 여전히 불확인)",
-      "summary": "7/21 Buyback Vault 출시에 이어 LayerZero OFT로 Base↔RH체인 브릿지 배포, $50K BNKR/WETH 풀 시딩까지 재확인. 다만 이번 회차도 구체적 가격 반응 데이터는 확보되지 않음 — 촉매는 계속 쌓이나 온체인 효과 검증은 이월"
-    },
-    {
-      "token": "JIMOTHY 모멘텀 재둔화",
-      "status": "혼조(재가속 후 재둔화 + 7일% 7회연속 고착)",
-      "summary": "직전 회차 mcap$15.5M→$17.55M 재가속됐던 것이 이번 회차 mcap$17.74M(24h+7.5%,거래량-48%)로 재둔화. 7일%값은 7회 연속 정확히 0.0%로 고착(표기오류 확정적)"
-    },
-    {
-      "token": "WISHBONE 낙폭 둔화",
-      "status": "조정(하락 지속, 속도는 완화)",
-      "summary": "24h-18.3%,7일-74.8% — 직전(24h-39.4%) 대비 낙폭이 절반 수준으로 완화됐으나 추세 자체는 여전히 하락"
-    },
-    {
-      "token": "JUGGERNAUT 거래량 boom-bust 재확인",
-      "status": "이슈(거래량 극심한 반복 변동)",
-      "summary": "직전 회차 $19K→$1.3M(68배 급반등)했던 거래량이 이번 회차 다시 $1.3M→$19,927(-98.5%)로 재붕괴 — 순수 자연 수요라기보다 인위적 개입 가능성 의심"
-    },
-    {
-      "token": "401K 데이터 정합성 지속 이슈",
-      "status": "이슈(수치 신뢰 불가 지속)",
-      "summary": "이번 회차 mcap$144.7K(24h+78.9%)로 재조회, 직전(FDV$456,636) 대비 또 큰 폭 변동 — '401k'·'retirement-plan' 두 페이지 이원화 문제 미해소로 CA 확보 전까지 수치 신뢰 불가"
-    },
-    {
-      "token": "Ansem 파생/편승 밈코인 난립",
-      "status": "이슈(대부분 초소형·무의미)",
-      "summary": "ANSEMINU($1,529)·ANSEM1M($2,340)·ansemcat(pump.fun) 등 Ansem 이름을 딴 파생 토큰이 다수 확인되나 시총이 대부분 수천 달러 수준으로 사실상 무가치 — 브랜드 편승 리스크의 반복 사례, ANSEM(The Black Bull) 본체와 혼동 주의"
+      "token": "Caldera(ERA) — 인프라 프로젝트 트렌딩(참고)",
+      "status": "확산(CoinGecko 검색 트렌딩 1위)",
+      "summary": "24h+73.0%, mcap$13.8M(CoinGecko 검색량 기준 트렌딩 1위). VC(Founders Fund·Dragonfly·Sequoia) 백킹의 롤업 인프라 프로젝트로 밈/디젠 코인이 아님 — KOL 콜 소싱 대상이 아닌 시장 전반 주목 참고용으로만 기재"
     }
   ]
 }
