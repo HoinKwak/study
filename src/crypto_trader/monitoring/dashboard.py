@@ -327,9 +327,9 @@ def _strength_table(title: str, rows: list) -> str:
             f"<td class='muted'>{r.get('alt', 0.0):+.1f}%</td></tr>"
         )
     inner = "".join(body) or "<tr><td colspan=4 class='muted'>데이터 없음</td></tr>"
-    return (f"<div class='card' style='flex:1;min-width:200px'>"
+    return (f"<div class='card' style='min-width:0'>"
             f"<div class='muted' style='margin-bottom:6px'>{title}</div>"
-            f"<table><thead><tr><th>#</th><th>심볼</th><th>BTC대비</th><th>수익률</th>"
+            f"<table class='mtbl'><thead><tr><th>#</th><th>심볼</th><th>BTC대비</th><th>수익률</th>"
             f"</tr></thead><tbody>{inner}</tbody></table></div>")
 
 
@@ -350,9 +350,9 @@ def _mcap_table(rows: list) -> str:
             f"{cell(r.get('r1'))}{cell(r.get('r7'))}{cell(r.get('r30'))}</tr>"
         )
     inner = "".join(body) or "<tr><td colspan=5 class='muted'>데이터 없음</td></tr>"
-    return (f"<div class='card' style='flex:1;min-width:300px'>"
+    return (f"<div class='card' style='min-width:0'>"
             f"<div class='muted' style='margin-bottom:6px'>시총 TOP10 · BTC 대비 수익률</div>"
-            f"<table><thead><tr><th>#</th><th>심볼</th><th>1일</th><th>7일</th><th>30일</th>"
+            f"<table class='mtbl'><thead><tr><th>#</th><th>심볼</th><th>1일</th><th>7일</th><th>30일</th>"
             f"</tr></thead><tbody>{inner}</tbody></table></div>")
 
 
@@ -362,7 +362,7 @@ def _watchlist_card() -> str:
     시세는 /api/quotes 배치 조회(가격·24h%). 심볼 클릭 시 해당 종목 차트 로드.
     """
     return (
-        "<div class='card' style='min-width:260px'>"
+        "<div class='card' style='min-width:0'>"
         "<div style='display:flex;justify-content:space-between;align-items:center;margin-bottom:6px'>"
         "<span class='muted'>⭐ 관심종목 <span id='wl-count' style='font-size:11px'></span></span></div>"
         "<div style='display:flex;gap:5px;margin-bottom:8px'>"
@@ -1502,18 +1502,12 @@ def render_html(journal: TradeJournal, equity: float | None = None,
     macro = me.get("macro") or []
     strength_section = f"""
   <h2>💪 BTC 대비 강도 (스테이블 제외)</h2>
-  <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start">
-    <div style="flex:2;display:flex;gap:12px;flex-wrap:wrap;min-width:320px">
-      {_strength_table("상대강도 1일", alt.get("1d", []))}
-      {_strength_table("상대강도 7일", alt.get("7d", []))}
-      {_strength_table("상대강도 30일", alt.get("30d", []))}
-    </div>
-    <div style="flex:1;min-width:300px">
-      {_mcap_table(mcap)}
-    </div>
-    <div style="flex:1;min-width:260px">
-      {_watchlist_card()}
-    </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;align-items:start">
+    {_strength_table("상대강도 1일", alt.get("1d", []))}
+    {_strength_table("상대강도 7일", alt.get("7d", []))}
+    {_strength_table("상대강도 30일", alt.get("30d", []))}
+    {_mcap_table(mcap)}
+    {_watchlist_card()}
   </div>
 """ if (alt or mcap) else ""
     macro_section = _macro_view(macro)
@@ -1595,6 +1589,9 @@ def render_html(journal: TradeJournal, equity: float | None = None,
   .stat span {{ font-size:11px; color:var(--muted); }} .stat b {{ font-size:18px; }}
   table {{ width:100%; border-collapse:collapse; font-size:13px; }}
   th,td {{ text-align:left; padding:8px 10px; border-bottom:1px solid var(--border); }}
+  /* 강도·시총 등 컴팩트 표: 셀 여백을 줄여 좁은 카드에서도 가로 스크롤 없이 맞춤 */
+  .mtbl {{ font-size:12px; }}
+  .mtbl th, .mtbl td {{ padding:5px 6px; font-variant-numeric:tabular-nums; }}
   th {{ color:var(--muted); font-weight:600; }}
   .card {{ background:var(--surface); border-radius:var(--radius); padding:var(--pad); margin:10px 0; overflow-x:auto; }}
   .muted {{ color:var(--muted-2); font-size:12px; }}
