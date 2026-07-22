@@ -1264,12 +1264,12 @@ def _brief_section(brief: dict) -> str:
             f"<div class='card' style='flex:1;min-width:240px'>"
             f"<b>{html.escape(str(a.get('symbol', '')))}</b> "
             f"<span style='color:{bc}'>{html.escape(bias)}</span>"
-            f"<div style='font-size:13px;margin-top:6px'>{html.escape(str(a.get('summary', ''))[:240])}</div>"
+            f"<div style='font-size:13px;margin-top:6px'>{html.escape(str(a.get('summary', ''))[:1500])}</div>"
             f"<div class='muted' style='margin-top:6px'>레벨: {html.escape(str(a.get('levels', '')))}</div>"
-            f"<div class='muted'>촉매: {html.escape(str(a.get('catalysts', ''))[:120])}</div></div>"
+            f"<div class='muted'>촉매: {html.escape(str(a.get('catalysts', ''))[:500])}</div></div>"
         )
     # 주목 프로젝트/토큰은 KOL 워치(_kol_section)로 통합 이관 — 여기선 렌더하지 않음.
-    market_html = (f"<div class='card'>{html.escape(str(market)[:400])}</div>"
+    market_html = (f"<div class='card'>{html.escape(str(market)[:3000])}</div>"
                    if market else "")
     return f"""
   <h2>📰 시장 분석 요약 <span class="muted">({ts} KST)</span></h2>
@@ -1379,6 +1379,7 @@ _ETF_JS = r"""<script>
    TF=t.getAttribute('data-etf');try{localStorage.setItem('ct_etf_tf',TF);}catch(_e){}drawAll();});
  if(window.ResizeObserver){Object.keys(D).forEach(function(sym){var el=document.getElementById('etf-'+sym);
    if(el)new ResizeObserver(function(){draw(sym);}).observe(el);});}
+ window.CT_drawEtf=drawAll;   // 소프트 자동갱신이 리서치 탭을 교체한 뒤 재렌더용
  drawAll();
 })();
 </script>"""
@@ -1878,6 +1879,8 @@ def render_html(journal: TradeJournal, equity: float | None = None,
            var nw=doc.querySelector('.tabpane[data-pane="'+pane+'"]');
            if(cur&&nw)cur.innerHTML=nw.innerHTML;   // display(활성탭 여부)는 요소에 남아 보존
          }});
+         // 리서치 탭 innerHTML 교체 시 JS로 그리던 ETF 차트가 리셋되므로 재렌더
+         if(window.CT_drawEtf)window.CT_drawEtf();
          var g=doc.getElementById('gen-time'),gc=document.getElementById('gen-time');
          if(g&&gc)gc.textContent=g.textContent;
          var t=doc.getElementById('ticker-strip'),tc=document.getElementById('ticker-strip');
