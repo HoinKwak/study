@@ -1,87 +1,91 @@
-# 선물시장 스카우트 브리핑 — 2026-07-23 (08:28Z)
+# 선물시장 스카우트 브리핑 — 2026-07-23 (10:28Z)
 
 > CEX(바이낸스·바이빗·OKX)·DEX 퍼프(Hyperliquid·Aster·GMX·dYdX) 선물시장에서 지금 주목받는
 > **크립토 네이티브** 종목을 거래량·미결제약정(OI)·펀딩 기준으로 집계. **토큰화 주식·ETF·상품·
-> 프리IPO perp는 전부 제외.** 정보 요약이며 투자조언 아님. 직전 회차(06:34Z, 약 2시간 전) 대비 변화 표기.
+> 프리IPO perp는 전부 제외.** 정보 요약이며 투자조언 아님. 직전 회차(08:28Z, 약 2시간 전) 대비 변화 표기.
 
 ## 시장 전반
 
-- BTC는 **$65~66K 부근**(WebSearch, 7/22 $65,710 / 7/21 $66,310) 완만한 하락 압력 지속, 전반
-  **Fear&Greed 29·BTC 도미넌스 56%+**로 위험회피 성향(WebSearch). 24h perp 거래량·OI 크로스거래소
-  합산 직접 재확인은 이번 회차도 실패(전거래소 통합 API 미노출) — CoinGecko 개별 거래소 티커
-  기준으로만 확인.
-- **BANK(Lorenzo Protocol)는 직전 회차(+38.51%) 대비 추가 재가속** — Binance +70.5%, Bybit
-  +88.8%, ATH $0.295 경신(WebSearch, 7일 +580%대). 재단의 $13.7M 상당 BANK가 Aster로 이전된 것과
-  World Liberty Financial 매입이 겹쳐 BTCFi 내러티브 재점화, 숏 청산 $1M+ 발생 — 이미 극단적으로
-  오른 뒤라 추격 리스크 매우 큼.
-- **ACE(Fusionist)**가 신규 진입 — Binance/Bybit 동반 -10%대 하락, 펀딩 극단 음(-)전환. WebSearch
-  기준 RSI 80대 과매수(7/20) 이후 조정, 전반 위험회피 국면과 맞물린 개별 과열 되돌림 성격.
-- **AKE(Akedo)**는 직전 회차(+5.75%) 대비 상승폭이 추가 둔화(+3.62%)돼 상장 열기가 더 식었다.
-- **1000XECUSDT**는 펀딩 -7.2%로 직전(-11.3%)보다 완화됐으나 여전히 크로스거래소 최상위 음(-) 펀딩.
-- **ZEC**는 Ironwood 업그레이드(7/28, D-5) 앞두고 가격은 $517대로 되돌림(직전 $570대 대비 -3.3%/24h)
-  됐지만 OI는 오히려 +27%·거래량 +49%로 확대(WebSearch) — 업그레이드 앞두고 포지션 축적 정황.
-- 이번 회차 **Aster API가 반복 429로 접속 실패**해 DEX 측 BANK/AKE/ASTER 수치는 재확인 실패.
-- OKX 등에는 CL(원유)·BILL(Bill.com) 등 TradFi 토큰화 perp가 여전히 다수 상장·거래되나 규약에
-  따라 전부 제외.
+- BTC는 **$65.6~65.7K 부근**(CoinGecko 파생 티커, Hyperliquid $65,674 / OKX $65,652)으로 직전
+  회차와 거의 동일 — 뚜렷한 방향성 없음.
+- 위험선호 지표는 **소스 간 편차가 커 정직하게 병기**: WebSearch 기준 한쪽은 Fear&Greed 51(중립),
+  다른 쪽은 33(공포)로 상충 — 직접 재확인 실패. BTC 도미넌스도 이번 회차 재확인 실패(직전 56%+는
+  carried over, 신뢰 낮음). 24h perp 거래량·OI 크로스거래소 합산도 이번 회차 재확인 실패(전거래소
+  통합 API 미노출), CoinGecko 개별 거래소 티커로만 확인.
+- **BANK(Lorenzo Protocol)는 여전히 최대 화제지만 스파이크가 진정되는 국면** — 직전 회차(Binance
+  +70.5%/Bybit +88.8%) 대비 24h 변동률이 Binance +40.97%/Bybit +39.13%/Aster(신규 확인) +39.50%로
+  3거래소 수렴하며 둔화. 롤링 24h 윈도우 특성상 스파이크가 창 밖으로 빠지는 효과일 수 있어 실제
+  추세 반전인지는 다음 회차로 확인 필요, 절대 상승폭은 여전히 큼.
+- **AKE(Akedo)는 급반전 재점화** — 직전 회차(+3.62%, 열기 식음) 대비 Binance +21.67%로 급반등.
+  WebSearch 기준 'Binance Alpha Box 에어드랍' 관련 소형주 로테이션(투기자금·얇은 유동성)이 배경.
+- **BARD(Lombard, 비트코인 DeFi)가 신규 진입** — Binance +12.83%·Bybit +13.26%·OKX +10.48%로 3개
+  거래소 동시 상승. 단 3거래소 모두 펀딩값이 -1.0~-2.0(-100%~-200%대)으로 표시돼 극단적 이례치 —
+  스케일/파싱 오류 가능성 있어 액면 신뢰 대신 '이례적, 검증 필요'로만 표기.
+- **ACE(Fusionist)**는 Bybit -6.0%/Hyperliquid -6.1%/Aster -4.1%로 직전 회차(-10.4%) 대비 낙폭이
+  줄어 하락이 진정되는 모습.
+- **1000XECUSDT**는 펀딩 -4.9%(Binance)로 여전히 크로스거래소 최상위권 음(-) 펀딩 지속.
+- **Aster는 이번 회차 정상 접속**(직전 429 실패에서 회복) — 자체 토큰 ASTER-USDT의 OI $218M 대
+  거래량 $13.2M로 16.5배 괴리, 인센티브 파밍 패턴이 DEX 네이티브에서 더 뚜렷하게 확인됨.
+- WebSearch 맥락: Hyperliquid는 OI $11.07B로 2026 최고치, RWA(토큰화 자산) OI가 $3.6B ATH로 HL 내
+  최대 시장이 됐고 글로벌 perp OI 점유율 9.3%(5월 6.9%→상승) — TradFi 토큰화 확산 맥락으로만 언급,
+  종목 리스트에는 미포함(규약).
+- GMX·dYdX v4는 이번 회차도 404로 접속 실패(직전 회차부터 이어지는 한계).
 
 ## CEX 주목 종목 (메이저 제외, 크립토 네이티브만)
 
 | 종목 | 거래소 | 24h 거래량 | OI | 펀딩 | 24h 변동 | 왜 뜨는가 | 태그 |
 |---|---|---|---|---|---|---|---|
-| **BANK (Lorenzo Protocol)** [재가속 지속] | Binance/Bybit | $1.31B | $48.5M | +0.5% | +70.47% | 직전 회차(+38.51%) 대비 추가 재가속, ATH $0.295(7일 +580%대). $13.7M 재단 물량 Aster 이전 + WLF 매입으로 BTCFi 내러티브 재점화, 숏 청산 다수 — 추격 리스크 매우 큼 | catalyst/rumor |
-| **ACE (Fusionist)** [신규] | Binance/Bybit | $24.6M | $4.0M | -7.0% | -10.37% | Binance -10.4%/Bybit -10.6% 동반 하락, 펀딩 극단 음전환. RSI 과매수 이후 되돌림, Fear&Greed 29·도미넌스 56%+ 위험회피와 맞물림 | funding-extreme/correction |
-| AKE (Akedo) [열기 더 식음] | Binance | $174.7M | $55.2M | +0.5% | +3.62% | 직전(+5.75%) 대비 추가 둔화 — 상장 초기 급등 국면 완전히 지나는 신호 | listing/catalyst |
-| 1000XECUSDT [완화되나 지속] | Binance | $19.0M | $3.9M | -7.2% | -5.72% | 직전(-11.3%) 대비 완화됐으나 여전히 크로스거래소 최상위 음(-) 펀딩, 가격도 추가 하락 | funding-extreme |
-| ASTER | Binance/Bybit | $13.8M | $74.4M | +0.5% | +0.39% | Bybit OI($43.2M) 합산 시 거래량 대비 OI 배율 지속 큼 — 인센티브 파밍 의심 패턴 유지, 가격은 보합 | native/basis-anomaly |
+| **BANK (Lorenzo Protocol)** [스파이크 진정] | Binance/Bybit/Aster | $1.20B | $46.8M | +0.5% | +40.97% | 직전(Binance +70.5%/Bybit +88.8%) 대비 3거래소 +39~41%로 수렴하며 둔화, 여전히 절대 상승폭 큼 — 추격 리스크 지속 | catalyst/rumor (cooling) |
+| **AKE (Akedo)** [급반전 재점화] | Binance | $178.2M | $56.8M | +0.5% | +21.67% | 직전(+3.62%) 대비 급반등. Binance Alpha Box 에어드랍發 소형주 로테이션(WebSearch), 등락 반복 이력이라 지속성 불확실 | listing/catalyst (reversal) |
+| **BARD (Lombard)** [신규] | Binance/Bybit/OKX | $12.8M | $4.0M | -112.4%(이례치) | +12.83% | 3거래소 동시 상승(+10~13%), 비트코인 DeFi(LBTC·Babylon) 토큰. 펀딩값이 전 거래소 -100%~-200%대 극단치로 표시 — 스케일/파싱 오류 가능성, 검증 필요 | native/funding-anomaly (미검증) |
+| ACE (Fusionist) [진정] | Bybit/HL/Aster | $4.5M | $1.6M | -6.6% | -6.00% | 직전(-10.37%) 대비 낙폭 축소 — 과열 되돌림 진정 국면 | funding-extreme (stabilizing) |
+| 1000XECUSDT [지속] | Binance | $16.5M | $3.8M | -4.9% | -6.60% | 직전(-7.2%)과 유사한 수준 지속 — 크로스거래소 최상위 음(-) 펀딩, 숏 쏠림 스트레스 계속 | funding-extreme |
 
-## DEX 퍼프 주목 종목 (Hyperliquid 중심, Aster는 이번 회차 접속 실패)
+## DEX 퍼프 주목 종목 (Hyperliquid·Aster, 이번 회차 둘 다 정상 접속)
 
 | 종목 | 프로토콜 | 24h 거래량 | OI | 펀딩 | 24h 변동 | 왜 뜨는가 | 태그 |
 |---|---|---|---|---|---|---|---|
-| HYPE-USD | Hyperliquid | $351.6M | $1.34B | +0.1% | +0.38% | 네이티브 토큰, DEX 퍼프 1위 유지. 직전($372.4M) 대비 거래량 소폭 감소, OI는 유지, 펀딩 완만 | native |
-| CASHCAT-USD | Hyperliquid | $13.2M | $8.7M | +2.8% | -29.44% | 가격은 직전(-28.6%)과 유사하게 추가 급락 지속인데 펀딩은 +1.3%→+2.8%로 확대 — 가격-펀딩 괴리 이례적 패턴 | listing/meme |
-| **ENA-USD** [신규] | Hyperliquid | $10.3M | $27.9M | +0.1% | +5.97% | 이번 회차 HL 거래량 상위 신규 진입, 알트 중 상대적 강세, 펀딩 완만 | momentum |
-| BANK-USDT | Aster | 미확인 | 미확인 | 미확인 | 미확인 | Aster API 429 반복으로 재확인 실패. WebSearch 기준 재단 $13.7M BANK가 이 입금주소로 이전된 게 재가속 트리거로 지목 — CEX BANK와 동일 테마 | catalyst/rumor |
-| AAVE-USD | Hyperliquid | $11.0M | $85.9M | +0.1% | +1.05% | HL 내 OI 최상위권(거래량 대비 약 7.8배), CEX(Binance/Bybit)에서도 동시 거래량 상위인 크로스마켓 관심 종목 | cross-market/OI |
-
-DEX 지형: Hyperliquid만 이번 회차 정상 접속(200), **Aster는 반복 429로 전면 접속 실패** —
-BANK-USDT·AKE-USDT·ASTER-USDT·CASHCAT(Aster분) DEX 개별 수치 모두 재확인 실패. GMX·dYdX(v4/일반)는
-이번 회차도 404로 접속 실패(직전 회차부터 이어지는 한계). DefiLlama `overview/derivatives`도
-이번 회차 402(결제 필요) 응답으로 프로토콜 순위 교차검증 실패.
+| HYPE-USD | Hyperliquid | $343.2M | $1.35B | +0.1% | +0.15% | 네이티브 토큰, DEX 퍼프 1위 유지. HL 전체 OI $11.07B(2026 최고치)·글로벌 perp 점유율 9.3% — 다만 RWA 시장 확대가 상당 부분 견인(맥락만, 종목 리스트 미포함) | native |
+| **ASTER-USDT** [재확인] | Aster | $13.2M | $218.1M | 0.0% | -0.24% | 이번 회차 접속 정상화 — OI/거래량 16.5배 괴리로 CEX에서 본 배율보다 더 큼, 인센티브 파밍 패턴 재확인 | native/basis-anomaly |
+| **BANK-USDT** [재확인] | Aster | $9.6M | $4.4M | +0.1% | +39.50% | 이번 회차 접속 정상화로 재확인 — CEX BANK와 동일 테마·유사 상승폭(BTCFi 내러티브) | catalyst/rumor (cooling) |
+| CASHCAT-USD [지속 급락] | Hyperliquid/Aster | $13.8M | $8.7M | +1.2%/-2.1% | -26.27%/-27.55% | 직전(-29.4%)과 유사하게 추가 급락 지속. 펀딩은 HL +2.8%→+1.2%, Aster -2.1%로 정상화 방향 — 가격-펀딩 괴리는 완화됐으나 여전히 극변동성 | listing/meme |
+| ENA-USD [지속] | Hyperliquid | $10.8M | $27.0M | +0.1% | +3.89% | 직전(+5.97%) 대비 소폭 둔화되며 모멘텀 지속, 알트 중 상대적 강세 유지 | momentum |
 
 ## 테마 태그
 
-1. **BANK(Lorenzo Protocol) 재가속 지속** — 직전 회차 대비도 추가 확대(Binance +70.5%, Bybit
-   +88.8%), ATH $0.295, 7일 +580%대(WebSearch). $13.7M 재단 물량 Aster 이전 + WLF 매입 + BTCFi
-   내러티브 재점화. 극단적으로 오른 뒤라 추격/되돌림 리스크 매우 큼 (catalyst/rumor).
-2. **ACE(Fusionist) 과열 되돌림** — 크로스거래소(Binance/Bybit) 동반 -10%대 하락, 펀딩 극단 음(-)
-   전환. 전반 시장 Fear&Greed 29·BTC도미넌스 56%+ 위험회피 국면과 맞물린 개별 과매수 조정으로 판단
-   (funding-extreme/correction).
-3. **AKE(Akedo) 상장 열기 지속 둔화** — 직전 회차 대비도 추가 둔화(+5.75%→+3.62%), 초기 급등
-   국면이 완전히 지나는 신호 (listing/catalyst).
-4. **1000XEC 음(-) 펀딩 완화되나 지속** — -11.3%→-7.2%로 완화됐지만 여전히 크로스거래소 최상위
+1. **BANK(Lorenzo Protocol) 스파이크 진정 국면** — 직전 회차 대비 24h 변동률이 +39~41%로 3거래소
+   수렴하며 둔화(직전 Binance +70.5%/Bybit +88.8%). 롤링 윈도우 효과일 수 있어 실제 반전 여부는
+   다음 회차 확인 필요, 절대 상승폭은 여전히 큼 (catalyst/rumor).
+2. **AKE(Akedo) 급반전 재점화** — 직전(+3.62%, 식는 흐름)에서 Binance +21.67%로 급반등, Binance
+   Alpha Box 에어드랍發 소형주 로테이션(WebSearch) — 등락 반복 이력이라 지속성 불확실 (listing/catalyst).
+3. **BARD(Lombard) 신규 진입, 펀딩 이례치** — 3거래소 동시 +10~13% 상승, 비트코인 DeFi(LBTC·Babylon)
+   토큰. 단 펀딩값이 전 거래소 -100%~-200%대 극단치로 표시 — 액면 신뢰 대신 검증 대기 (native/data-anomaly).
+4. **ACE(Fusionist) 조정 진정** — 직전(-10.4%) 대비 낙폭이 -4~6%대로 축소, 과열 되돌림 진정
+   국면 (funding-extreme, stabilizing).
+5. **1000XEC 음(-) 펀딩 지속** — 직전(-7.2%)과 유사한 수준(-4.9%)으로 여전히 크로스거래소 최상위
    숏 쏠림 (funding-extreme).
-5. **ZEC/프라이버시 코인 업그레이드 앞두고 조정** — Ironwood(7/28, D-5) 앞두고 가격 $517대로
-   되돌림(-3.3%/24h, -6.9%/7일)이나 OI는 오히려 +27%·거래량 +49%로 확대(WebSearch) — 포지션 축적
-   정황, 가격·OI가 반대로 움직이는 점 주의 (catalyst/upgrade).
-6. **CASHCAT 가격-펀딩 괴리** — HL 상장 이후 가격은 계속 급락(-29%대)하는데 펀딩은 오히려
-   확대(+1.3%→+2.8%)되는 이례적 패턴, 신규상장 밈코인 극변동성 재확인 (listing/meme, 고위험).
-7. **Aster 접속 실패로 DEX 측 데이터 공백** — 이번 회차 Aster API가 반복 429로 막혀 DEX 쪽
-   BANK/AKE/ASTER 수치는 재확인 실패, CEX 데이터·2차보도로만 대체 (data-gap).
-8. **TradFi 토큰화 perp 여전 다수** — OKX(CL 원유·BILL 등)에 상품·주식화 토큰이 여전히 다수
-   상장/거래되나 규약에 따라 리스트에서 전부 제외.
+6. **Aster 네이티브 DEX OI/거래량 괴리 확대** — 이번 회차 접속 정상화로 확인된 ASTER-USDT는
+   OI $218M 대 거래량 $13.2M(16.5배)로 CEX에서 본 배율보다 더 큼 (native/basis-anomaly).
+7. **CASHCAT 지속 급락, 단 가격-펀딩 괴리는 완화** — HL -26.3%/Aster -27.6% 추가 하락, 펀딩은
+   정상화 방향이나 여전히 극변동성 (listing/meme).
+8. **Hyperliquid 거래소 자체 성장** — OI $11.07B 2026 최고치, 글로벌 perp OI 점유율 9.3%(5월
+   6.9%). RWA(토큰화 자산) OI $3.6B ATH가 상당 부분 견인 — TradFi 토큰화 확산 맥락으로만 언급,
+   종목 리스트 미포함 (context/RWA).
+9. **TradFi 토큰화 perp 여전 다수** — OKX·Hyperliquid에 CL(원유)·빅테크 주식(NVDA·TSLA·AAPL 등)·
+   귀금속 등 상품/주식화 토큰이 다수 상장·거래되나 규약에 따라 전부 제외.
+10. **GMX·dYdX v4 접속 실패 지속** — 이번 회차도 CoinGecko 파생 API 404, 직전 회차부터 이어지는 한계.
 
 ## 데이터 신뢰도
 
-CoinGecko 파생 API 중 `binance_futures`·`bybit`·`okex_swap`·`hyperliquid`는 이번 회차 WebFetch로
-200 확인. 한계: (a) `aster`는 이번 회차 3회 연속 429(요청 과다)로 전면 접속 실패 — DEX 측
-BANK-USDT·AKE-USDT·ASTER-USDT·CASHCAT(Aster분) 수치 전부 재확인 실패, 직전 회차(06:34Z) 수치는
-시점이 달라 이번 표에 재사용하지 않고 공백 처리; (b) `okex` id는 404, `okex_swap`으로 대체 성공
-(단, OI 규모가 작은 알트 다수라 CEX 표에는 미채택 — CL 원유 등 상품 perp도 확인돼 규약대로 제외);
-(c) `gmx`·`dydx_v4`는 이번 회차도 404로 접속 실패(직전 회차부터 이어지는 한계, 발굴 가치도 낮다고
-판단해 생략 이력 지속); (d) DefiLlama `overview/derivatives`는 이번 회차 402(결제 필요) 응답으로
-프로토콜별 거래량 교차검증 실패 — 신규 접속 문제, 재확인 필요; (e) ZEC·시장 전반(BTC 가격,
-Fear&Greed, 도미넌스) 수치는 CEX 개별 티커 미노출로 WebSearch 2차보도 인용, 직접 거래소 API
-재확인 실패. **주식화·상품·프리IPO 토큰은 이번 회차도 규약에 따라 cex/dex 리스트에서 전부 제외.**
+CoinGecko 파생 API 중 `binance_futures`·`bybit`·`okex_swap`·`hyperliquid`·`aster`는 이번 회차 WebFetch로
+모두 200 확인(Aster는 직전 회차 3연속 429에서 회복). 한계: (a) `gmx`·`dydx_v4`는 이번 회차도 404로
+접속 실패(직전 회차부터 이어지는 한계); (b) BARD(Lombard)의 funding_rate가 Binance/Bybit/OKX
+3거래소 모두 -1.0~-2.0(-100%~-200%대)의 극단치로 표시 — 정상적인 8h 펀딩 범위를 크게 벗어나
+스케일/파싱 오류 가능성이 있어 액면 그대로 신뢰하지 않고 '이례적, 검증 필요'로만 표기; (c) 위험선호
+지표(Fear&Greed)는 WebSearch 소스 간 51(중립) vs 33(공포)로 상충 — 직접 재확인 실패, 둘 다 병기;
+(d) BTC 도미넌스는 이번 회차 직접 재확인 실패, 직전 회차 수치를 신뢰도 낮음 표기로만 언급;
+(e) 크로스거래소 24h perp 거래량·OI 총합은 전거래소 통합 API 미노출로 이번 회차도 직접 산출 불가.
+**주식화·상품·프리IPO 토큰(OKX CL 원유, HL NVDA/TSLA/AAPL 등)은 이번 회차도 규약에 따라 cex/dex
+리스트에서 전부 제외.**
 
 *투자조언 아님 — 시장 파악·아이디어 소싱용 정보 요약.*
