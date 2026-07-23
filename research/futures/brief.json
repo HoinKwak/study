@@ -1,55 +1,55 @@
 {
-  "ts": "2026-07-23T04:28:00Z",
-  "market": "24h perp 전체 거래량 약 $150B(전일대비 -12%, WebSearch/The Block 기준), OI는 ~$116B로 횡보 — CoinGecko로 크로스거래소 합산 직접 재확인은 실패, 2차보도 인용. BTC는 유가 급등發 인플레 우려로 $66K 하회(-0.9%, ~$65,900), ETH도 -0.5%(~$1,920)로 전일 위험선호 회복 국면에서 소폭 되돌림. 전반 펀딩은 중립이나 BANK·AKE·ZEC·CASHCAT 등 개별 알트 펀딩은 양(+)으로 과열 롱, Binance 1000XECUSDT는 -9.6%로 과열 숏 신호. 이번 회차 신규 화제는 AKE(Akedo, Binance Alpha/Wallet 상장 + AI 게임생성 내러티브)이며, BANK(Lorenzo Protocol)는 랠리 지속되나 상승폭 둔화(+124%→+14%대, 뒷북 주의), ZEC는 Ironwood 업그레이드(7/28) 임박에 OI +22%(24h, ~$983M)로 재점화. DEX는 Hyperliquid가 퍼프 DEX 점유율 약 37%로 1위 재탈환, Aster는 2위로 축소(한때 9월 70%대에서 하락) — 자체토큰(HYPE·ASTER) 및 AKE의 Aster 상장분 모두 거래량 대비 OI가 비정상적으로 커 방향성 해석 주의. 신규 상장은 이번 주도 CL(원유)·CRCL(Circle)·BMNR(Bitmine) 등 OKX/Aster의 TradFi 토큰화 perp가 다수였으나 규약에 따라 전부 제외.",
+  "ts": "2026-07-23T06:34:00Z",
+  "market": "24h perp 거래량·OI 크로스거래소 합산 직접 재확인은 이번 회차도 실패(전거래소 API 미노출) — CoinGecko 개별 거래소 티커 기준 확인. BTC는 $66K 부근 횡보(-0.35%~-0.35%, Binance/OKX 동일 수준), ETH도 소폭 보합. 리스크는 지속가능한 개별 알트 쏠림 국면(전반 도미넌스 큰 변화 없음). 지속 화제인 BANK(Lorenzo Protocol)는 전 회차(04:28Z, +14.29%) 대비 오히려 재가속 — Binance +38.5%, Bybit +45.2%, Aster +36.6%로 3거래소 동반 급등, 84M BANK Aster 입금 이벤트 후 WLFI 매수 등 후속 재료 겹치며 '뒷북' 판단이 무색해질 정도로 모멘텀 유지 중(주의: 그만큼 이미 크게 오른 뒤 추격 리스크도 큼). ZEC는 Ironwood 업그레이드(7/28) 앞두고 $570대까지 상승(WebSearch, 주간 +20%대) — CEX 개별 티커는 이번 회차도 상위 거래량 순위 밖으로 밀려 직접 재확인 실패. AKE(Akedo)는 Binance/Aster 동시 상장 후 상승폭 둔화(+5.75%/+6.02%, 전회차 +7.65%/+7.19%에서 소폭 감소)로 초기 급등 열기 식는 중. OKX·Aster에는 CL(원유)·CRCL(Circle)·BILL(Bill.com)·AAPL·AMD·AMZN·ADBE·AMAT·AVGO·ARM·ASML·COIN 등 TradFi 토큰화 perp가 여전히 다수 상장·거래되나 규약에 따라 전부 제외.",
   "cex": [
-    {
-      "symbol": "AKE (Akedo)",
-      "venue": "Binance",
-      "vol24_usd": 185003227.99,
-      "oi_usd": 52745855.79,
-      "funding": 0.008,
-      "chg24": 7.65,
-      "why": "Binance Alpha(TGE 2025-08-21)·Binance Wallet Alpha Box 에어드랍 이후 신규 USDT-M perp 상장(최대 50x). AI 프롬프트 기반 게임 생성 플랫폼 내러티브로 7일 +770%대 급등 후 조정. Aster에서도 동시 거래되며 OI $53.4M(거래량 $7.3M의 7배 이상)로 OI/거래량 비율 이상 — ASTER·BANK와 유사한 패턴, 방향성 오해 주의. 신규 진입.",
-      "tag": "listing/catalyst"
-    },
     {
       "symbol": "BANK (Lorenzo Protocol)",
       "venue": "Binance/Bybit/Aster",
-      "vol24_usd": 1489379645.87,
-      "oi_usd": 41473408.88,
+      "vol24_usd": 1479951258.52,
+      "oi_usd": 43922684.54,
       "funding": 0.005,
-      "chg24": 14.29,
-      "why": "CZ 연계로 추정되는 지갑에서 8,400만 BANK가 Aster 입금주소로 이전된 사실이 촉발한 랠리 지속 — ATH $0.27, Binance·Bybit·Aster 세 거래소 모두 오늘도 +13~16%로 동반 상승했으나 전일(+124%) 대비 상승폭은 뚜렷이 둔화. 이미 한 차례 급등한 뒤라 뒷북 추격 주의.",
+      "chg24": 38.511,
+      "why": "직전 회차(04:28Z, +14.29%) 대비 오히려 재가속 — Binance +38.5%, Bybit +45.2%로 확대. 84M BANK가 CZ 연계 추정 지갑에서 Aster 입금주소로 이전된 게 트리거였고 이후 World Liberty Financial 매수 등 후속 재료로 24h 거래대금이 시총을 상회(WebSearch). 이미 큰 폭 상승한 뒤라 추격 리스크 큼, 지속 관찰.",
       "tag": "catalyst/rumor"
     },
     {
-      "symbol": "ZEC (Zcash)",
-      "venue": "Binance/OKX (크로스거래소)",
-      "vol24_usd": null,
-      "oi_usd": 983000000.0,
-      "funding": 0.0105,
-      "chg24": null,
-      "why": "Ironwood 업그레이드(7/28 예정, 신규 shielded pool·위조취약점 영구제거) 임박에 크로스거래소 선물 OI가 24h +22%로 약 $983M까지 증가, 펀딩도 양(+)으로 전환되며 롱 쏠림. 이번 회차 Binance 개별 수치는 WebFetch 요약 과정에서 상위 순위 밖으로 밀려 직접 재확인 실패 — CoinGlass 인용 WebSearch 2차자료.",
-      "tag": "catalyst/upgrade"
+      "symbol": "AKE (Akedo)",
+      "venue": "Binance/Aster",
+      "vol24_usd": 180536066.92,
+      "oi_usd": 54210028.01,
+      "funding": 0.005,
+      "chg24": 5.753,
+      "why": "Binance Alpha(TGE 2025-08-21)·Wallet Alpha Box 에어드랍 이후 USDT-M perp 상장, AI 게임생성(zkWASM) 내러티브. 직전 회차(+7.65%) 대비 상승폭 소폭 둔화 — 초기 급등 열기 식는 신호, 뒷북 주의. OI($54.2M)가 거래량의 3배 수준으로 이상 패턴은 다소 완화.",
+      "tag": "listing/catalyst"
     },
     {
-      "symbol": "HYPE (Hyperliquid)",
-      "venue": "Binance/Bybit/OKX (크로스거래소)",
+      "symbol": "ZEC (Zcash)",
+      "venue": "크로스거래소(Binance/OKX, 개별 미확인)",
       "vol24_usd": null,
       "oi_usd": null,
       "funding": null,
       "chg24": null,
-      "why": "ATH 재도전 모멘텀 지속되나 CEX 크로스거래소 OI 추정치가 소스마다 크게 편차($3.52B~$10.2B, WebSearch)나 있어 이번 회차엔 CEX 수치를 확정 표기하지 않음. 자체 DEX(Hyperliquid) OI $1.35B는 DEX 표에서 직접 확인됨.",
-      "tag": "momentum/native"
+      "why": "Ironwood 업그레이드(7/28, block 3,428,143 예정, 신규 shielded pool로 6/5 발견된 Orchard 취약점 영구 차단) 임박, WebSearch 기준 가격 $570대(주간 +20%대). 이번 회차도 CEX 개별 티커가 CoinGecko 상위 거래량 순위 밖으로 밀려 직접 재확인 실패 — 2차보도 인용.",
+      "tag": "catalyst/upgrade"
+    },
+    {
+      "symbol": "1000XECUSDT",
+      "venue": "Binance",
+      "vol24_usd": 22872828.30,
+      "oi_usd": null,
+      "funding": -0.113,
+      "chg24": -7.813,
+      "why": "펀딩 -11.3%(연환산 과열 숏)로 크로스거래소 전체에서 가장 극단적인 음(-) 펀딩 신호. Aster에서도 동일하게 펀딩 -3%·-8.7% 하락 동반 확인 — 숏 쏠림 지속.",
+      "tag": "funding-extreme"
     },
     {
       "symbol": "ASTER",
-      "venue": "Binance/Bybit/OKX",
-      "vol24_usd": 14857334.98,
-      "oi_usd": 74094965.98,
+      "venue": "Binance/Bybit/OKX/Aster",
+      "vol24_usd": 14439265.16,
+      "oi_usd": 74268826.17,
       "funding": 0.005,
-      "chg24": -0.35,
-      "why": "Hyperliquid의 2위 도전자인 자체 퍼프 DEX(CZ 연계) 토큰. 자체 DEX상 OI($217.5M)가 CEX보다 훨씬 크고 거래량 대비 OI 비율이 매우 높아(15배+) 인센티브 파밍/락업 의심 — 방향성 오해 주의, 지속 관찰 종목.",
+      "chg24": -0.016,
+      "why": "Hyperliquid의 2위 도전자 자체 퍼프 DEX(CZ 연계) 토큰. 자체 DEX상 OI($217.8M)가 CEX보다 훨씬 크고 거래량 대비 OI 비율이 20배 이상으로 지속 — 인센티브 파밍/락업 의심, 방향성 오해 주의. 가격 자체는 보합.",
       "tag": "native/basis-anomaly"
     }
   ],
@@ -57,60 +57,61 @@
     {
       "symbol": "HYPE-USD",
       "protocol": "Hyperliquid",
-      "vol24_usd": 424551552.05,
-      "oi_usd": 1351752623.39,
+      "vol24_usd": 372403255.46,
+      "oi_usd": 1341898476.76,
       "funding": 0.001,
-      "chg24": -2.13,
-      "why": "네이티브 토큰. 프로토콜은 퍼프 DEX 점유율 약 37%로 1위 재탈환(WebSearch). 펀딩은 완만한 수준으로 과열 아님, ATH 재도전 지속.",
+      "chg24": 0.769,
+      "why": "네이티브 토큰. 프로토콜은 퍼프 DEX 점유율 약 37%(WebSearch, 7월초 기준)로 1위 유지, 30일 온체인 perp 거래량 약 $172.6B·OI $9B+ 규모(WebSearch, 자체 통계). 펀딩은 완만해 과열 아님.",
       "tag": "native"
-    },
-    {
-      "symbol": "AKE-USDT",
-      "protocol": "Aster",
-      "vol24_usd": 7330891.83,
-      "oi_usd": 53412575.21,
-      "funding": 0.019,
-      "chg24": 7.19,
-      "why": "Binance와 거의 동시에 Aster에서도 신규 거래 중. 거래량($7.3M) 대비 OI($53.4M)가 7배 이상 커 ASTER 자체 토큰과 유사한 OI/거래량 이상 패턴 — 인센티브 파밍 의심, 방향성 신호로 해석 주의.",
-      "tag": "listing/basis-anomaly"
-    },
-    {
-      "symbol": "ASTER-USDT",
-      "protocol": "Aster",
-      "vol24_usd": 10766388.14,
-      "oi_usd": 217540585.59,
-      "funding": 0.002,
-      "chg24": -0.42,
-      "why": "자체 플랫폼에서 자기 토큰 페어 거래 — 거래량 대비 OI가 20배 이상으로 비정상적으로 커 롱포지션 락업/인센티브 파밍 의심(방향성 신호 아닐 가능성), 지속 관찰.",
-      "tag": "native/basis-anomaly"
     },
     {
       "symbol": "BANK-USDT",
       "protocol": "Aster",
-      "vol24_usd": 14656483.79,
-      "oi_usd": 4368329.11,
+      "vol24_usd": 13132806.65,
+      "oi_usd": 4666045.08,
       "funding": 0.004,
-      "chg24": 13.72,
-      "why": "CZ 연계 추정 지갑의 8,400만 BANK가 바로 이 Aster 입금주소로 이전된 것이 랠리 트리거 — CEX·DEX 동시 확인, 오늘도 +13.7%로 동반 상승하나 상승폭은 둔화 추세.",
+      "chg24": 36.592,
+      "why": "CZ 연계 추정 지갑의 84M BANK가 바로 이 Aster 입금주소로 이전된 것이 랠리 트리거 — CEX·DEX 동시 확인. Aster에서도 +36.6%로 CEX와 유사한 강도로 재가속.",
       "tag": "catalyst/rumor"
     },
     {
+      "symbol": "AKE-USDT",
+      "protocol": "Aster",
+      "vol24_usd": 7113608.68,
+      "oi_usd": 54824270.07,
+      "funding": 0.004,
+      "chg24": 6.022,
+      "why": "Binance와 거의 동시 Aster 상장. 거래량 대비 OI 여전히 7배+ 수준이나(ASTER 자체 토큰과 유사 패턴) 상승폭은 직전 회차(+7.19%) 대비 소폭 둔화.",
+      "tag": "listing/basis-anomaly"
+    },
+    {
       "symbol": "CASHCAT-USD",
-      "protocol": "Hyperliquid",
-      "vol24_usd": 11971652.23,
-      "oi_usd": 8958227.53,
-      "funding": 0.033,
-      "chg24": -23.70,
-      "why": "HL 최초 상장(7/11, 3x 격리마진) 이후에도 펀딩 +3.3%(연환산 과열 롱)로 투기 지속, 24h -23.7% 재조정 — 신규상장 밈코인 극변동성 지속 시연.",
+      "protocol": "Hyperliquid/Aster",
+      "vol24_usd": 12092370.46,
+      "oi_usd": 8572632.96,
+      "funding": 0.013,
+      "chg24": -28.612,
+      "why": "HL 최초 상장(7/11, 3x 격리마진) 이후 펀딩 +1.3%(연환산 과열 롱) 유지 속 24h -28.6% 재조정 지속 — 신규상장 밈코인 극변동성 시연, Aster에서도 -28.4%로 동일 방향 확인.",
       "tag": "listing/meme"
+    },
+    {
+      "symbol": "ASTER-USDT",
+      "protocol": "Aster",
+      "vol24_usd": 10338915.84,
+      "oi_usd": 217765604.32,
+      "funding": 0.0,
+      "chg24": -0.064,
+      "why": "자체 플랫폼에서 자기 토큰 페어 거래 — 거래량 대비 OI 20배 이상으로 비정상적으로 큰 상태 지속(방향성 신호 아닐 가능성, 인센티브 파밍 의심), 지속 관찰.",
+      "tag": "native/basis-anomaly"
     }
   ],
   "themes": [
-    "AKE(Akedo) 신규 상장 랠리 — Binance Alpha/Wallet 에어드랍 이후 USDT-M perp 상장, AI 게임생성 내러티브로 7일 +770%대. CEX·Aster 동시 거래되며 Aster에서 거래량 대비 OI 이상 패턴 (listing/catalyst, basis-anomaly).",
-    "BANK(Lorenzo Protocol) 랠리 지속·둔화 — CZ 연계 지갑→Aster 입금주소 이전이 트리거, 3개 거래소 동반 +13~16%지만 전일 대비 상승폭 뚜렷히 둔화 (catalyst/rumor, 뒷북 주의).",
-    "ZEC/프라이버시 코인 재점화 — Ironwood 업그레이드 7/28 임박, 크로스거래소 OI 24h +22%(~$983M)로 재확대, 펀딩 양전환 (catalyst/upgrade).",
-    "신규상장 밈코인 극변동성(CASHCAT) — Hyperliquid 상장 이후에도 펀딩 과열 롱 지속되며 급등락 반복 (listing/meme, 고위험).",
-    "퍼프 DEX 경쟁구도 — Hyperliquid 점유율 약 37%로 1위 재탈환, Aster는 2위로 축소. 양쪽 모두(및 AKE의 Aster 상장분) 자체·연계 토큰의 거래량 대비 OI가 부풀어 있어 방향성 오해 주의 (basis/native).",
-    "TradFi 토큰화 perp 여전 다수 — 이번 주도 OKX·Aster에 CL(원유)·CRCL(Circle)·BMNR(Bitmine)·AMD·AAPL·AMZN 등 상품·주식화 토큰이 다수 상장/거래되었으나 규약에 따라 리스트에서 전부 제외."
+    "BANK(Lorenzo Protocol) 재가속 랠리 — 84M BANK Aster 입금 이벤트가 트리거, 직전 회차 대비 오히려 상승폭 확대(Binance +38.5%, Bybit +45.2%, Aster +36.6%). WLFI 매수 등 후속 재료 겹침, 이미 크게 오른 뒤라 추격 리스크 큼 (catalyst/rumor).",
+    "AKE(Akedo) 상장 열기 둔화 — Binance Alpha/Wallet 에어드랍 후 급등했으나 직전 회차 대비 상승폭이 소폭 감소, 초기 급등 국면 지나는 신호 (listing/catalyst).",
+    "ZEC/프라이버시 코인 지속 강세 — Ironwood 업그레이드(7/28) 임박, 가격 $570대(주간 +20%대)로 상승 지속. CEX 개별 수치는 이번 회차도 직접 재확인 실패 (catalyst/upgrade).",
+    "1000XEC 극단 음(-) 펀딩 — Binance -11.3%, Aster도 동반 하락, 크로스거래소에서 가장 뚜렷한 숏 쏠림 신호 (funding-extreme).",
+    "신규상장 밈코인 극변동성(CASHCAT) — HL 상장 이후 펀딩 과열 롱 유지 속 급락 지속 재현, Aster 동시상장분도 동일 방향 (listing/meme, 고위험).",
+    "퍼프 DEX 경쟁구도 — Hyperliquid 약 37% 점유율로 1위 유지(9월 한때 Aster 70%대에서 역전됨). ASTER·AKE(Aster 상장분) 모두 거래량 대비 OI가 부풀어 있어 방향성 오해 주의 (basis/native).",
+    "TradFi 토큰화 perp 여전 다수 — OKX(CL·CRCL·BILL·AAPL·AMD·AMZN·ADBE·AMAT·AVGO·ARM·ASML)·Aster(CL·COIN·AMD·ADBE) 등에 상품·주식화·프리IPO(ANTHROPIC 등) 토큰이 다수 상장/거래되나 규약에 따라 리스트에서 전부 제외."
   ]
 }
