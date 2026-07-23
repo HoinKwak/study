@@ -1,113 +1,126 @@
-# 선물시장 스카우트 브리핑 — 2026-07-23 (16:28Z)
+# 선물시장 스카우트 브리핑 — 2026-07-23 (18:28Z)
 
 > CEX(바이낸스·바이빗·OKX)·DEX 퍼프(Hyperliquid·Aster·GMX·dYdX) 선물시장에서 지금 주목받는
 > **크립토 네이티브** 종목을 거래량·미결제약정(OI)·펀딩 기준으로 집계. **토큰화 주식·ETF·상품·
-> 프리IPO perp는 전부 제외.** 정보 요약이며 투자조언 아님. 직전 회차(14:28Z, 약 2시간 전) 대비 변화 표기.
+> 프리IPO perp는 전부 제외.** 정보 요약이며 투자조언 아님. 직전 회차(16:28Z, 약 2시간 전) 대비 변화 표기.
 
 ## 시장 전반
 
-- Hyperliquid BTC-USD 24h -1.795%·ETH-USD -2.738%로 직전 회차(-0.78%/-1.343%)보다 **낙폭이 커져
-  약세 방향이 조금 더 뚜렷해짐** — 절대가격은 이번 회차도 재확인 실패.
-- 위험선호 지표는 이번 회차도 **소스 간 편차 지속**: WebSearch 기준 milkroad 31(공포)·별도소스
-  39(공포, 전일 40/전주 63)·CFGI(BTC 전용) 46(중립) — 직전(23~51) 대비 밴드는 소폭 좁아졌으나
-  여전히 상충, 직접 재확인 실패.
-- **이번 회차 최대 변화는 AKE(Akedo)의 급가속** — 직전(Binance +11.66%/Aster +10.72%)에서 이번
-  회차 Binance +28.27%/Bybit +30.40%/Aster +23.90%로 거의 3배 확대. WebSearch 확인: Binance Alpha
-  Box 에어드랍 이후 208% 랠리로 수개월간 하락채널 상단 돌파 — BNB체인 AI 게임/콘텐츠 토큰. Aster
-  에서는 AKE-USDT OI가 $67.3M까지 급증(거래량 $4.1M 대비 16.3배 괴리)해 **CEX·DEX 동시 강세** 확인.
-- **BANK(Lorenzo Protocol)는 4회 연속 고점권에서 완만히 식는 흐름** — 직전(+38.30~40.21%) 대비
-  Binance +36.34%/Bybit +35.42%/Aster +37.06%로 추가 소폭 둔화, 추세전환은 아직 아님. WebSearch:
-  7/20 재단 추정 지갑에서 8,400만 BANK가 Aster(CZ 연계 거래소) 입금주소로 이체된 것이 랠리 원
-  촉매로 확인(목적은 여전히 미설명), World Liberty Financial도 소량(636,683 BANK) 매수 참여.
-- **ACE(Fusionist)는 4회 연속 약세가 거의 그대로 유지** — Binance -9.39%(직전 -9.33%와 거의 동일)
-  ·Bybit -9.14%(펀딩 -11.9% 극단)·Aster -10.86%.
-- **B2(B² Network)는 관심이 빠르게 냉각** — 직전 3거래소 -34%대 동시 급락에서 Aster 기준 -24.51%로
-  낙폭 축소, 거래량도 $68.7M→$1.6M 급감해 $10M 문턱 밑으로 이탈(Binance·Bybit는 상위 25위 밖으로
-  밀려나 이번 회차 직접 재확인 못함) — 해킹 이슈 관심이 빠르게 식는 모습이나 부분적 확인.
-- 정체불명 티커 **'B'**는 Aster -25.61%(직전 -24.52%)로 원인·프로젝트 정체 여전히 미확인.
-- **APR(aPriori)**는 OKX -25.57%(직전 -25.44%와 거의 동일)로 시빌 에어드랍발 만성 약세 지속 확인
-  (Binance·Bybit는 이번 회차 상위 25위 밖).
-- **BARD(Lombard)는 데이터 이례치가 재발** — 직전 회차 Binance -0.57%로 정상화됐다고 판단했으나
-  이번 회차 OKX에서 펀딩 -18.3%(극단) 재노출(Aster는 -6.5%로 상대적 완화) — 거래소 간 편차가 커
-  액면 신뢰 대신 **미검증** 표기.
-- **신규 포착 BEAT(Audiera)·CAP(Cap Labs)** — OKX에서 각각 +13.91%(거래량 $43.1M)·+13.71%(거래량
-  $17.5M)로 동시 부상. BEAT는 음악/오디오 크리에이터 플랫폼, CAP은 스테이블코인 담보 신용/이자수익
-  프로토콜(cUSD) — 둘 다 구체적 급등 촉매는 미확인.
-- Hyperliquid **KAITO-USD**는 직전(+13.09%) 대비 크게 둔화돼 +4.37% — WebSearch 확인: 7/20
-  유통량 7.29%(약 $15.84M) 토큰 언락과 펀딩 냉각으로 '불트랩' 우려가 제기된 것과 실제 흐름 일치.
-  **CASHCAT-USD**는 Hyperliquid -24.90%·Aster -28.31%로 직전(-22.74%)보다 낙폭 재확대, 밈코인
-  극변동성 지속. **HYPE-USD**는 OI $1.336B(직전 $1.355B와 유사)로 DEX 퍼프 1위 유지. **ASTER-USDT**는
-  OI $217.1M 대 거래량 $15.8M로 13.7배 괴리(직전 15.2배에서 소폭 축소), 인센티브 파밍 패턴 지속.
-- WebSearch 맥락: OKX·Binance에 BILL(Bill.com 주식화)·CRCL(Circle 주식화)·CL(원유 상품)·AAPL·AMD·
-  AMZN·BABA·AMAT 등 TradFi 토큰화 perp가 여전히 다수 상장·거래되나 규약에 따라 전부 제외.
-- **GMX는 이번 회차도 404로 접속 실패**, **dYdX v4는 429(rate limit) 반복 후 재시도로도 회복 못해
-  재확인 실패** — 수 회차째 이어지는 한계.
+- Hyperliquid BTC-USD 24h -1.698%·ETH-USD -2.819%로 직전 회차(-1.795%/-2.738%)와 **거의 동일한
+  약세 유지**. 이번 회차는 WebSearch로 **절대가격도 처음 확인**: Fortune/Yahoo Finance 보도 기준
+  BTC $65,000~66,100 구간(7/23 오전 ET, 전일 대비 소폭 하락).
+- 위험선호 지표는 이번 회차도 **밴드 그대로**: milkroad 31(공포)·별도소스(CoinStats) 39(공포)·
+  CFGI(BTC 전용) 46(중립) — 직전 회차와 완전히 동일한 수치, 소스 간 편차는 지속되나 변화는 없음.
+- 참고(7/7자 다소 오래된 배경 보도, 현재 시점 재확인 아님): BTC 선물 OI가 74만 BTC로 7/3의
+  77.6만 BTC에서 감소 추세, 7월 상승이 숏스퀴즈 위주로 신규 매수 확신이 약했다는 진단.
+- Hyperliquid 총 OI는 최근 $10.88B(7월 최고 $11.07B 근접 유지), 24h 거래량 $9.44B, 30일 거래량
+  $172.63B으로 DEX 퍼프 1위 지위 유지(정확한 기준일 불명, WebSearch 스니펫 기준).
+- **이번 회차 최대 이슈는 AKE(Akedo)의 재가속(3회 연속)** — 직전(Binance +28.27%)에서 이번 회차
+  Binance +46.12%·Bybit +39.81%·Aster +40.77%로 추가 확대, Binance 거래량도 $209.7M→$305.1M
+  급증(OI $72.1M). 2회 전(+11~12%)부터 누적하면 약 4배 확대.
+- **BANK(Lorenzo Protocol)는 5회 연속 고점권 조정** — Binance +16.24%(직전 +36.34%에서 큰 폭
+  둔화)·Bybit +14.52%·Aster +15.93%. WebSearch 재확인: 6월 저점 대비 여전히 1,000%+ 이나 7/21
+  고점 대비 -26.4% 눌림. Binance 거래량은 직전과 거의 동일한 $1.05B로 데이터 정체 가능성 유의.
+- **B2(B² Network)는 해킹이 명확히 재확인됨** — CoinDesk(7/23) 보도: 스테이킹 컨트랙트 업그레이드
+  권한 무단탈취로 859만 B2($3.86M) 유출, NEAR Intents 경유 Zcash로 세탁 진행 중. 가격은
+  Binance -28.27%·Bybit -28.71%·Aster -28.28%로 거래소 간 수치가 거의 완전히 수렴(직전 회차는
+  부분적 확인에 그침).
+- **그동안 미확인이던 정체불명 티커 'B'의 정체가 이번 회차 확인됨** — BUILDon(WLFI 연계 BNB체인
+  생태계/마스코트 토큰)으로, Binance Alpha 상장 후 시총 $200M 돌파 랠리의 되돌림 구간 —
+  Binance -20.53%·Bybit -21.14%·Aster -21.80%.
+- **ACE(Fusionist)는 5회 연속 약세가 오히려 심화** — Binance -10.60%(직전 -9.39%보다 낙폭 확대),
+  펀딩 -7.9%.
+- **APR(aPriori)는 만성 약세 지속, 이번 회차 Binance에서도 처음 확인**(-26.18%, 거래량 $8.7M로
+  $10M 문턱 살짝 밑) — OKX -25.97%(직전 -25.57%와 거의 동일).
+- **BARD(Lombard)는 펀딩 극단이 오히려 심화** — Binance -34.0%(신규 확인, 가장 극단)·OKX
+  -14.4%(직전 -18.3%에서 다소 완화)·Aster -5.7%로 거래소 간 편차가 여전히 매우 커 미검증 유지,
+  다만 3개 거래소 모두 마이너스라는 방향성은 일치.
+- **BEAT(Audiera)·CAP(Cap Labs)는 2회 연속 상승 지속** — OKX BEAT +18.58%(직전 +13.91%, 거래량
+  $52.2M로 증가)·CAP +15.20%(직전 +13.71%, 거래량 $20.0M), 여전히 구체적 촉매 미확인.
+- CORE(Core DAO) -18.89%·BSB -11.63%가 OKX에서 신규 포착됐으나 거래량이 각각 $8.1M·$9.5M로
+  $10M 문턱에 살짝 못 미쳐 참고 표기만.
+- Hyperliquid **CASHCAT-USD**는 -15.37%로 직전(-24.90%) 대비 낙폭이 줄어듦(Aster -18.87%).
+  **KAITO-USD**는 +4.00%로 직전(+4.37%)과 거의 동일 — WebSearch: 7일 기준으로는 +32.2% 반등
+  중이라 언락발 조정은 일단락된 모습. **HYPE-USD**는 OI $1.319B(직전 $1.336B와 유사)로 DEX 퍼프
+  1위 유지, 24h는 -0.89%로 직전(+2.31%)에서 소폭 반락. **ASTER-USDT**는 OI $217.2M 대 거래량
+  $15.3M로 14.2배 괴리(직전 13.7배와 유사), 인센티브 파밍 패턴 지속. **AKE-USDT(Aster)**는 CEX와
+  동일하게 +40.77%(직전 +23.90%)로 재가속, OI $68.0M·거래량 $11.9M로 괴리 5.7배까지 축소(직전
+  16.3배에서 거래량 급증으로 좁혀짐).
+- WebSearch 맥락: OKX에 CL(원유 상품)·BILL(Bill.com 주식화)·CRCL(Circle 주식화) 등 TradFi
+  토큰화 perp가 여전히 상위 거래량에 다수 포함되나 규약에 따라 전부 제외.
+- **GMX·dYdX v4는 이번 회차 둘 다 404로 접속 실패** — 직전 회차(404/429)에 이어 재확인 실패 지속.
 
 ## CEX 주목 종목 (메이저 제외, 크립토 네이티브만)
 
 | 종목 | 거래소 | 24h 거래량 | OI | 펀딩 | 24h 변동 | 왜 뜨는가 | 태그 |
 |---|---|---|---|---|---|---|---|
-| **AKE (Akedo)** [급가속] | Binance/Bybit/Aster | $209.7M | $67.6M | +1.3% | +28.27% | 직전(+11.66%) 대비 거의 3배 확대 — Binance Alpha Box 에어드랍 후 208% 랠리, 하락채널 돌파. BNB체인 AI 게임/콘텐츠 토큰 | listing/airdrop momentum (accelerating) |
-| **BANK (Lorenzo Protocol)** [4회 연속 눌림] | Binance/Bybit/Aster | $1.18B | $50.1M | +0.5% | +36.34% | 직전(+38~40%) 대비 추가 소폭 둔화 — 7/20 재단 추정 지갑 8400만 BANK Aster 이체가 원 촉매, WLF 소량 매수 참여 | catalyst/rumor (extended, cooling further) |
-| **ACE (Fusionist)** [4회 연속 정체] | Binance/Bybit/Aster | $20.4M | $3.6M | -10.0% | -9.39% | 직전(-9.33%)과 거의 동일, 4회 연속 약세 하방 고착 | funding-extreme (persistent weakness, 4th round) |
-| **BEAT (Audiera)** [신규] | OKX | $43.1M | $9.4M | +0.5% | +13.91% | 음악/오디오 크리에이터 플랫폼 토큰, 대형 거래량 급증 — 구체적 촉매 미확인 | listing (촉매 미확인) |
-| **CAP (Cap Labs)** [신규] | OKX | $17.5M | $1.4M | +1.9% | +13.71% | 스테이블코인 담보 신용/이자수익 프로토콜(cUSD) 토큰, 6월 토큰옥션 이후 활성화 — 구체적 촉매 미확인 | narrative/stablecoin-yield (촉매 미확인) |
+| **AKE (Akedo)** [3회 연속 재가속] | Binance/Bybit/Aster | $305.1M | $72.1M | +0.5% | +46.12% | 직전(+28.27%) 대비 또 급가속 — 2회 전(+11~12%)부터 약 4배 확대. Binance Alpha Box 에어드랍 랠리 지속 | listing/airdrop momentum (re-accelerating) |
+| **BANK (Lorenzo Protocol)** [5회 연속 눌림] | Binance/Bybit/Aster | $1.05B | $47.3M | +0.5% | +16.24% | 직전(+36.34%) 대비 큰 폭 둔화 — 7/21 고점 대비 -26.4% 눌림, 6월 저점 대비 여전히 1000%+ | catalyst/rumor (extended pullback) |
+| **B2 (B² Network)** [해킹 확인] | Binance/Bybit/Aster | $38.6M | $5.3M | +0.5% | -28.27% | CoinDesk(7/23) 확인 — 스테이킹 컨트랙트 익스플로잇으로 $3.86M 유출, NEAR Intents 경유 Zcash 세탁 중. 3개 거래소 -28% 안팎 수렴 | hack/exploit (confirmed) |
+| **B (BUILDon)** [정체 확인] | Binance/Bybit/Aster | $22.2M | $11.6M | +0.5% | -20.53% | 수 회차 미확인이던 'B'의 정체 확인 — WLFI 연계 BNB체인 토큰, Binance Alpha 상장 후 시총 $200M 돌파 랠리의 되돌림 | listing unwind/deleveraging (identified) |
+| **BEAT (Audiera)** [2회 연속 상승] | OKX | $52.2M | $9.5M | +0.5% | +18.58% | 직전(+13.91%) 대비 추가 상승, 거래량도 증가 — 구체적 촉매는 여전히 미확인 | listing/narrative (촉매 미확인) |
 
 ## DEX 퍼프 주목 종목 (Hyperliquid·Aster)
 
 | 종목 | 프로토콜 | 24h 거래량 | OI | 펀딩 | 24h 변동 | 왜 뜨는가 | 태그 |
 |---|---|---|---|---|---|---|---|
-| HYPE-USD | Hyperliquid | $311.7M | $1.34B | +0.1% | +2.31% | DEX 퍼프 1위 유지, 직전과 유사 수준 안정 | native |
-| ASTER-USDT | Aster | $15.8M | $217.1M | 0.0% | -0.82% | OI/거래량 13.7배 괴리(직전 15.2배에서 소폭 축소) — 인센티브 파밍 패턴 지속 | native/basis-anomaly |
-| **AKE-USDT** [OI 급증] | Aster | $4.1M | $67.3M | +2.9% | +23.90% | CEX AKE 급가속과 동일 테마 — OI $67.3M로 거래량 대비 16.3배 괴리, CEX·DEX 동시 강세 | listing/airdrop momentum + basis-anomaly |
-| CASHCAT-USD [낙폭 재확대] | Hyperliquid | $13.2M | $8.8M | +0.4% | -24.90% | 직전(-22.74%) 대비 낙폭 재확대(Aster -28.31%) — 신규상장 밈코인 극변동성 지속 | listing/meme |
-| **KAITO-USD** [급둔화] | Hyperliquid | $8.7M | $8.7M | +0.1% | +4.37% | 직전(+13.09%) 대비 상승폭 급격 축소 — 7/20 토큰 언락(유통량 7.29%)·펀딩 냉각발 불트랩 우려 현실화 | momentum reversal (cooling, unlock overhang) |
+| HYPE-USD | Hyperliquid | $270.0M | $1.32B | +0.1% | -0.89% | DEX 퍼프 1위 유지(OI 직전과 유사), 24h는 직전(+2.31%)에서 소폭 반락 | native |
+| ASTER-USDT | Aster | $15.3M | $217.2M | +1.2% | -0.67% | OI/거래량 14.2배 괴리(직전 13.7배와 유사) — 인센티브 파밍 패턴 지속 | native/basis-anomaly |
+| **AKE-USDT** [재가속] | Aster | $11.9M | $68.0M | 0.0% | +40.77% | CEX AKE 재가속과 동일 테마 — 거래량 급증($4.1M→$11.9M)으로 괴리가 16.3배→5.7배로 축소 | listing/airdrop momentum + basis-anomaly |
+| CASHCAT-USD [낙폭 진정] | Hyperliquid | $14.3M | $9.4M | +2.7% | -15.37% | 직전(-24.90%) 대비 낙폭 줄어듦(Aster -18.87%) — 밈코인 극변동성 다소 완화 | listing/meme (decelerating) |
+| **KAITO-USD** [안정화] | Hyperliquid | $8.7M | $8.8M | +0.1% | +3.997% | 24h는 직전과 거의 동일하나 7일 기준 +32.2% 반등 — 7/20 언락발 불트랩 우려 일단락 | stabilizing (post-unlock recovery) |
 
 ## 테마 태그
 
-1. **AKE(Akedo) 급가속** — 직전(+11~12%)에서 전 거래소 +24~30%로 거의 3배 확대. Binance Alpha Box
-   에어드랍 후 208% 랠리, Aster OI $67.3M 급증(16.3배 괴리) — CEX·DEX 동시 강세 (listing/airdrop momentum).
-2. **BANK(Lorenzo Protocol) 4회 연속 완만한 조정** — 직전 +38~40%에서 +35~37%로 추가 소폭 둔화,
-   추세전환 아님. 7/20 재단 추정 지갑 이체가 원 촉매, WLF 소량 매수 (catalyst/rumor, cooling further).
-3. **ACE(Fusionist) 약세 4회 연속 정체** — 직전 -9.33%와 거의 동일한 -9~11%로 하방 고착
+1. **AKE(Akedo) 재가속(3회 연속)** — 직전(+28.27%)에서 전 거래소 +40~46%로 추가 확대, 2회 전
+   (+11~12%) 대비 약 4배. Binance Alpha Box 에어드랍 랠리 지속, Aster OI/거래량 괴리도 축소
+   (listing/airdrop momentum).
+2. **BANK(Lorenzo Protocol) 5회 연속 고점권 조정** — 직전 +36.34%에서 +14~16%로 큰 폭 둔화,
+   7/21 고점 대비 -26.4% 눌림이지만 6월 저점 대비 여전히 1000%+ (catalyst/rumor, extended pullback).
+3. **B2(B² Network) 해킹 명확히 재확인** — CoinDesk(7/23) 보도로 $3.86M 스테이킹 컨트랙트
+   익스플로잇 확인, 3개 거래소 가격이 -28% 안팎으로 수렴 (hack/exploit, confirmed).
+4. **정체불명 티커 'B' 정체 확인** — WLFI 연계 BNB체인 토큰 BUILDon으로 밝혀짐, Binance Alpha
+   상장 후 시총 $200M 돌파 랠리의 되돌림(-20~22%) (listing unwind, identified).
+5. **ACE(Fusionist) 약세 5회 연속, 오히려 심화** — 직전 -9.39%에서 -10.60%로 낙폭 확대
    (funding-extreme, persistent weakness).
-4. **B2(B² Network) 해킹 이슈 관심 빠르게 냉각** — 직전 -34%대에서 Aster -24.51%로 낙폭 축소,
-   거래량 $10M 문턱 밑으로 이탈(부분적 확인) (hack/exploit, cooling).
-5. **정체불명 티커 'B' 지속** — Aster -25.61%, 원인·정체 여전히 미확인 (unverified).
-6. **APR(aPriori) 만성 약세 지속 확인** — OKX -25.57%(직전과 거의 동일), 시빌 에어드랍 매도발 하방
-   고착 (tokenomics/sybil-dump).
-7. **BARD(Lombard) 데이터 이례치 재발** — 직전 정상화 판단했으나 OKX 펀딩 -18.3% 재노출, Aster는
-   -6.5%로 거래소 간 편차 큼 — 미검증 표기 (data-quality/re-emerged).
-8. **신규 BEAT(Audiera)·CAP(Cap Labs) 동시 부상** — OKX +13.91%·+13.71%, 둘 다 구체적 촉매 미확인
-   (listing/narrative, 촉매 미확인).
-9. **Hyperliquid KAITO 급격한 둔화** — 직전 +13.09%에서 +4.37%로 축소. 7/20 토큰 언락·펀딩 냉각발
-   불트랩 우려가 실제 흐름과 일치 (momentum reversal, unlock overhang).
-10. **Hyperliquid CASHCAT 낙폭 재확대** — 직전 -22.74%에서 -24.90%(Aster -28.31%)로 극변동성 지속
-    (listing/meme).
-11. **Aster ASTER-USDT OI/거래량 괴리 소폭 축소** — 13.7배(직전 15.2배), 인센티브 파밍 패턴 지속
-    (native/basis-anomaly).
-12. **위험선호 지표 소스 간 편차 지속(밴드 소폭 축소)** — milkroad 31·별도소스 39·CFGI(BTC) 46,
-    직전(23~51)보다 좁아졌으나 여전히 상충 (data-quality).
-13. **BTC/ETH 약세 방향 소폭 심화** — Hyperliquid BTC-USD -1.80%·ETH-USD -2.74%로 직전보다 낙폭 확대.
-14. **TradFi 토큰화 perp 여전 다수** — OKX·Binance에 BILL·CRCL·CL(원유)·AAPL·AMD·AMZN·BABA·AMAT 등이
-    다수 상장·거래되나 규약에 따라 전부 제외.
-15. **GMX·dYdX v4 접속 실패 지속** — GMX는 이번 회차도 404, dYdX v4는 429 반복 후 재시도로도 회복
-    못해 재확인 실패.
+6. **APR(aPriori) 만성 약세 지속, Binance에서도 첫 확인**(-26.18%) — OKX -25.97%로 직전과 거의
+   동일, 거래량은 두 거래소 모두 $10M 문턱 근접/미달 (tokenomics/sybil-dump).
+7. **BARD(Lombard) 펀딩 극단 심화** — Binance -34.0%(신규 최극단)·OKX -14.4%(다소 완화)·Aster
+   -5.7%로 거래소 간 편차 여전히 매우 큼, 방향성(전부 마이너스)만 일치 — 미검증 유지
+   (data-quality/funding-extreme).
+8. **BEAT(Audiera)·CAP(Cap Labs) 2회 연속 상승** — OKX +18.58%·+15.20%로 거래량도 증가, 구체적
+   촉매는 계속 미확인 (listing/narrative, 촉매 미확인).
+9. **CORE(Core DAO) -18.89%·BSB -11.63% OKX 신규 포착** — 거래량 각각 $8.1M·$9.5M로 $10M 문턱
+   살짝 미달, 참고 표기만 (unverified/sub-threshold).
+10. **Hyperliquid CASHCAT 낙폭 진정** — 직전 -24.90%에서 -15.37%(Aster -18.87%)로 밈코인
+    극변동성 다소 완화 (listing/meme, decelerating).
+11. **Hyperliquid KAITO 안정화** — 24h는 직전과 거의 동일(+4.0%)하나 7일 기준 +32.2% 반등,
+    7/20 언락발 불트랩 우려는 일단락 (stabilizing, post-unlock recovery).
+12. **Aster ASTER-USDT OI/거래량 괴리 유지** — 14.2배(직전 13.7배와 유사), 인센티브 파밍 패턴
+    지속 (native/basis-anomaly).
+13. **위험선호 지표 소스 간 편차 지속(변화 없음)** — milkroad 31·CoinStats 39·CFGI(BTC) 46,
+    직전 회차와 동일 수치 (data-quality).
+14. **BTC 절대가격 이번 회차 처음 확인** — Fortune/Yahoo 보도 기준 $65,000~66,100 구간(7/23
+    오전 ET). Hyperliquid BTC/ETH 24h 변동은 직전과 거의 동일(-1.70%/-2.82%).
+15. **참고(7/7자 다소 오래된 배경, 현재 재확인 아님)** — BTC 선물 OI 감소 추세(77.6만→74만
+    BTC), 7월 상승이 숏스퀴즈 위주로 신규 매수 확신 약했다는 진단.
+16. **TradFi 토큰화 perp 여전 다수** — OKX에 CL(원유)·BILL(Bill.com)·CRCL(Circle) 등이 상위
+    거래량에 다수 포함되나 규약에 따라 전부 제외.
+17. **GMX·dYdX v4 접속 실패 지속** — 이번 회차 둘 다 404(직전 404/429), 수 회차째 이어지는 한계.
 
 ## 데이터 신뢰도
 
-CoinGecko 파생 API 중 `binance_futures`·`bybit`·`okex_swap`(OKX)·`hyperliquid`·`aster`는 이번 회차
-모두 200 확인(단, 다수 엔드포인트에서 초반 429 발생 후 재시도로 회복). 한계: (a) `gmx`는 이번
-회차도 404로 접속 실패(수 회차째 이어지는 한계), `dydx_v4`는 429(rate limit)가 여러 차례 재시도
-후에도 해소되지 않아 이번 회차 데이터 확보 실패 — 둘 다 '재확인 실패'로 표기; (b) BTC 절대가격·
-크로스거래소 24h perp 거래량/OI 총합·BTC 도미넌스는 이번 회차도 직접 산출 불가, Hyperliquid
-BTC-USD/ETH-USD 24h 변동률(-1.795%/-2.738%)만 확인; (c) 위험선호 지표(Fear&Greed)는 WebSearch
-소스 간 31/39/46으로 여전히 상충 — 직접 재확인 실패, 3개 소스 모두 병기; (d) 정체불명 티커 'B'의
-프로젝트 정체·급락 원인은 이번 회차도 WebSearch로 확인하지 못해 '미확인'으로만 표기; (e) B2·APR는
-Binance·Bybit 상위 25위 거래량 밖으로 밀려나 일부 거래소 수치를 이번 회차 재확인하지 못함(OKX·
-Aster 수치만 확정); (f) BARD의 OKX 펀딩(-18.3%)과 Aster 펀딩(-6.5%)이 서로 크게 달라 스케일
-이상값으로 판단, 액면 신뢰 대신 미검증 표기.
-**주식화·상품·프리IPO 토큰(OKX·Binance의 BILL·CRCL·CL 원유·AAPL·AMD·AMZN·BABA·AMAT 등)은 이번
-회차도 규약에 따라 cex/dex 리스트에서 전부 제외.**
+CoinGecko 파생 API 중 `binance_futures`·`bybit`·`hyperliquid`·`aster`는 이번 회차 모두 200 확인.
+`okex`(id)는 이번 회차 지속 404였으나 대체 id `okex_swap`으로 200 확보(과거 회차와 동일 패턴).
+한계: (a) `gmx`·`dydx_v4`는 이번 회차 둘 다 404로 접속 실패 — '재확인 실패'로 표기, 수 회차째
+이어지는 한계; (b) BTC 절대가격은 이번 회차 WebSearch(Fortune/Yahoo)로 처음 확인($65,000~66,100
+구간, 7/23 오전 ET), 크로스거래소 24h perp 거래량/OI 총합·BTC 도미넌스는 여전히 직접 산출 불가;
+(c) 위험선호 지표(Fear&Greed)는 소스 간 31/39/46으로 상충하나 직전 회차와 완전히 동일한 수치라
+데이터 갱신 여부 자체가 불확실 — 3개 소스 모두 병기; (d) BANK의 Binance 24h 거래량($1.05B)이
+직전 회차와 소수점까지 거의 동일해 캐시/지연 가능성 있음 — 액면 신뢰하되 유의 표기; (e) APR·CORE·
+BSB는 거래량이 $10M 문턱 근접/미달이라 참고용으로만 표기; (f) BARD의 Binance(-34.0%)·OKX(-14.4%)·
+Aster(-5.7%) 펀딩이 서로 크게 달라 스케일 이상값으로 판단, 액면 신뢰 대신 미검증 표기.
+**주식화·상품·프리IPO 토큰(OKX의 CL 원유·BILL·CRCL 등)은 이번 회차도 규약에 따라 cex/dex
+리스트에서 전부 제외.**
 
 *투자조언 아님 — 시장 파악·아이디어 소싱용 정보 요약.*
