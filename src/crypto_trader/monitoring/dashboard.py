@@ -74,6 +74,11 @@ def load_etf_flows() -> dict:
     return _load_json("etf/flows.json") or {}
 
 
+def load_futures_brief() -> dict:
+    """CEX·DEX 선물시장 주목 종목 브리핑. research/futures/brief.json (futures-scout)."""
+    return _load_json("futures/brief.json") or {}
+
+
 def _epoch(iso: str | None) -> float | None:
     if not iso:
         return None
@@ -1421,6 +1426,78 @@ def _etf_section(data: dict) -> str:
 """
 
 
+def _fut_usd(v) -> str:
+    """USD 축약 표기 ($1.23B/$45M/$6K)."""
+    try:
+        a = abs(float(v))
+    except (TypeError, ValueError):
+        return "-"
+    if a >= 1e9:
+        return f"${a / 1e9:.2f}B"
+    if a >= 1e6:
+        return f"${a / 1e6:.1f}M"
+    if a >= 1e3:
+        return f"${a / 1e3:.0f}K"
+    return f"${a:.0f}"
+
+
+def _fut_rows(items: list, venue_key: str, venue_label: str) -> str:
+    """선물 주목 종목 표 행 — 심볼·거래소/프로토콜·24h거래량·OI·펀딩·이유·태그."""
+    body = []
+    for it in (items or [])[:12]:
+        chg = it.get("chg24")
+        cc = "#8d969e" if chg is None else ("#16a34a" if chg >= 0 else "#e23b4a")
+        chg_txt = "-" if chg is None else f"{chg:+.1f}%"
+        fr = it.get("funding")
+        try:
+            fr_txt = "-" if fr is None else f"{float(fr) * 100:+.3f}%"
+        except (TypeError, ValueError):
+            fr_txt = "-"
+        body.append(
+            f"<tr><td><b>{html.escape(str(it.get('symbol', '')))}</b> "
+            f"<span style='color:{cc};font-size:11px'>{chg_txt}</span></td>"
+            f"<td class='muted'>{html.escape(str(it.get(venue_key, '')))}</td>"
+            f"<td style='text-align:right'>{_fut_usd(it.get('vol24_usd'))}</td>"
+            f"<td style='text-align:right'>{_fut_usd(it.get('oi_usd'))}</td>"
+            f"<td style='text-align:right'>{fr_txt}</td>"
+            f"<td>{html.escape(str(it.get('why', ''))[:110])}</td>"
+            f"<td class='muted' style='font-size:11px'>{html.escape(str(it.get('tag', '')))}</td></tr>"
+        )
+    if not body:
+        return ""
+    return (f"<div class='muted' style='margin:10px 0 4px'>{venue_label}</div>"
+            f"<div class='card' style='overflow-x:auto'><table class='mtbl'>"
+            f"<thead><tr><th>심볼</th><th>{venue_label.split()[0]}</th><th>24h거래량</th>"
+            f"<th>OI</th><th>펀딩</th><th>이유</th><th>태그</th></tr></thead>"
+            f"<tbody>{''.join(body)}</tbody></table></div>")
+
+
+def _futures_section(data: dict) -> str:
+    """리서치 탭: CEX·DEX 선물시장 주목 종목(거래량·OI·펀딩·이유). research/futures/brief.json."""
+    data = data or {}
+    cex = data.get("cex") or []
+    dex = data.get("dex") or []
+    if not cex and not dex:
+        return ""
+    ts = kst_display(data.get("ts"), "%m-%d %H:%M")
+    market = str(data.get("market", ""))
+    themes = data.get("themes") or []
+    market_html = (f"<div class='card'>{html.escape(market[:1200])}</div>" if market else "")
+    themes_html = ""
+    if themes:
+        lis = "".join(f"<li>{html.escape(str(t)[:300])}</li>" for t in themes[:8])
+        themes_html = (f"<div class='card'><div class='muted' style='margin-bottom:4px'>테마</div>"
+                       f"<ul style='margin:0;padding-left:18px;font-size:13px;line-height:1.7'>{lis}</ul></div>")
+    return f"""
+  <h2>🔮 선물시장 주목 (CEX·DEX perp) <span class="muted">({ts} KST)</span></h2>
+  {market_html}
+  {_fut_rows(cex, "venue", "CEX 거래소")}
+  {_fut_rows(dex, "protocol", "DEX 프로토콜")}
+  {themes_html}
+  <div class="muted" style="margin-top:8px">거래량·OI·펀딩은 조사 시점 스냅샷(지연 가능). 메이저(BTC/ETH/SOL) 제외 상위 위주. 정보 요약이며 투자조언 아님.</div>
+"""
+
+
 def render_html(journal: TradeJournal, equity: float | None = None,
                 events: list | None = None, refresh_sec: int = 0,
                 start_equity: float | None = None,
@@ -1516,6 +1593,7 @@ def render_html(journal: TradeJournal, equity: float | None = None,
     kol_section = _kol_section(load_kol_watch())
     chartists_section = _chartists_section(load_chartist_views())
     etf_section = _etf_section(load_etf_flows())
+    futures_section = _futures_section(load_futures_brief())
 
     event_section = f"""
   <details class="events">
@@ -1680,6 +1758,7 @@ def render_html(journal: TradeJournal, equity: float | None = None,
 
   <div class="tabpane" data-pane="research" style="display:none">
     {chartists_section}
+    {futures_section}
     {etf_section}
     {brief_section}
     {kol_section}
