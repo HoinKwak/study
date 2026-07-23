@@ -88,7 +88,7 @@ python -m scripts.serve_dashboard
 - 라이브 봇은 스캐너/`connectors/universe.py`로 유니버스 선정(fapi→CoinGecko→현물미러 폴백).
 
 ### 정기 리서치 루틴 & 최근 반영된 개선
-- **정기 루틴 3종**(KOL 하이프워치 2h·시장브리핑 12h·전략발굴 12h)은 **이 상시 세션에 바인딩**
+- **정기 루틴 4종**(온체인 트렌딩 조기경보(舊 KOL 하이프워치, kol-watch) 2h·선물 리서치(futures-scout) 2h·시장브리핑 12h·전략발굴 12h)은 **이 상시 세션에 바인딩**
   (`persistent_session_id`)돼 발화 → 이 세션에서 서브에이전트 실행 후 커밋·push. 폰 완료알림은 없음
   (fresh-session 방식은 새 세션에 레포 쓰기권한이 없어 push 403 → 상시세션 바인딩으로 해결).
   결과물: `research/kol/`, `research/market/`, `research/strategies/`, `research/backtests/`.

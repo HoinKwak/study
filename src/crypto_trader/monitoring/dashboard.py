@@ -1199,7 +1199,7 @@ _STAGE_COLOR = {"조기": "#22c55e", "확산": "#eab308", "뒷북": "#94a3b8"}
 
 
 def _kol_section(kol: dict) -> str:
-    """KOL 하이프 토큰 + 주목 프로젝트/토큰(통합). 둘 다 kol/watch.json 에서 로드."""
+    """온체인 트렌딩 조기경보 + 주목 프로젝트/토큰(통합). 둘 다 kol/watch.json 에서 로드."""
     kol = kol or {}
     tokens = kol.get("tokens") or []
     notable = kol.get("notable") or []
@@ -1231,11 +1231,11 @@ def _kol_section(kol: dict) -> str:
                 f"<td class='muted'>{html.escape(str(t.get('risk', ''))[:40])}</td></tr>"
             )
         hype_html = f"""
-  <h2>🐦 KOL 하이프 토큰 <span class="muted">({ts} KST)</span></h2>
+  <h2>🔥 온체인 트렌딩 조기경보 <span class="muted">({ts} KST)</span></h2>
   <div class="card" style="overflow-x:auto"><table>
-  <thead><tr><th>토큰</th><th>체인</th><th>CA</th><th>단계</th><th>KOL</th><th>서사</th><th>리스크</th></tr></thead>
+  <thead><tr><th>토큰</th><th>체인</th><th>CA</th><th>단계</th><th>KOL 코로보</th><th>서사</th><th>리스크</th></tr></thead>
   <tbody>{"".join(body)}</tbody></table>
-  <div class="muted" style="margin-top:8px">⚠️ 아이디어·조기경보용, 투자조언 아님. 자체 검증 필수.</div></div>
+  <div class="muted" style="margin-top:8px">⚠️ 1차 신호=온체인 트렌딩, KOL은 있으면 코로보. 아이디어·조기경보용, 투자조언 아님. 자체 검증 필수.</div></div>
 """
 
     notable_html = ""
