@@ -1,142 +1,138 @@
-# 선물시장 스카우트 브리핑 — 2026-07-24 (22:28Z)
+# 선물시장 스카우트 브리핑 — 2026-07-25 (00:27Z)
 
 > CEX(바이낸스·바이빗·OKX)·DEX 퍼프(Hyperliquid·Aster·GMX·dYdX) 선물시장에서 지금 주목받는
 > **크립토 네이티브** 종목을 거래량·미결제약정(OI)·펀딩 기준으로 집계. **토큰화 주식·ETF·상품·
-> 프리IPO perp는 전부 제외.** 정보 요약이며 투자조언 아님. 직전 회차(20:28Z, 약 2시간 전) 대비 변화 표기.
+> 프리IPO perp는 전부 제외.** 정보 요약이며 투자조언 아님. 직전 회차(22:28Z, 약 2시간 전) 대비 변화 표기.
 
 ## 시장 전반
 
-- **위험선호 지표 cfgi.io 직접 재확인 44/100(중립, 타임스탬프 22:18Z)** — 직전 회차(22:18Z
-  기준 47)에서 소폭 후퇴, 여전히 중립권이나 미세하게 위험회피 쪽. 이번 회차는 BTC(-1.34%~
-  -1.6%)·ETH·ADA·AAVE·ARB·APT·ATOM 등 메이저·중형 알트 대부분이 CEX·DEX 전반에서 -1~4%대
-  약세를 보여 전반적으로 미세한 리스크오프 색채가 있으나, **소수 알트(BANK·ACE·AKE·APR·B2·
-  BASED 등)만 여전히 극단적 강세·고변동을 유지**하는 뚜렷한 **종목별 분산(idiosyncratic
-  dispersion)** 국면. **Hyperliquid HYPE-USD**는 vol $195.3M→$213.4M(증가)·OI $1.310B→
-  $1.290B(소폭 감소)·chg -0.18%→-0.632%(소폭 악화)로 대체로 조용하나 미세하게 약화.
-- **CEX 최대 이슈는 여전히 BANK(Lorenzo Protocol)** — 3거래소 합산 거래대금 약 **$1.107B**로
-  최대 규모 유지하나 chg는 둔화 — Binance +19.273%(직전)→**+13.462%**(본 회차), Bybit
-  +14.631%. **WebSearch로 재확인**: BTCFi(비트코인 유동성 스테이킹) 내러티브가 여전히 확산
-  중이며 한 매체는 '미스터리 지갑 이동 후 517% 급등'·'98% 단일일 랠리로 ATH $0.27 도달'로
-  보도(startupfortune.com, coinpedia.org) — 다만 **CoinMarketCap 기준 현재가 $0.2526·24h
-  +40.3%로 CoinGecko 파생 티커의 chg(+13.462%)와 수치가 상당히 달라** 소스 간 측정 시점·
-  기준 차이로 판단, 정직하게 병기. **OKX는 7회 연속** top리스트 내 BANK 미확인.
-- **ACE(Fusionist)는 뚜렷한 재가속** — CEX+DEX 4거래소(Binance/Bybit/Aster/Hyperliquid)
-  모두 직전 +21~22%대에서 이번 회차 **+33~35%대**로 급등(Binance 33.592%·Bybit 34.646%·
-  Hyperliquid 33.661%·Aster 33.077%). 펀딩도 전 거래소에서 더 극단화(Binance -85.8%→
-  -106.8%·Bybit -72.8%→-156.8%(스케일 이상값 가능성)·Hyperliquid -28.4%→-31.8%) — 숏
-  스퀴즈 심화 시사. **WebSearch 확인**: AAA 콘솔급 게이밍 토큰(Fusionist, Steam/Epic Games
-  Store 출시작), 최근 7일 +55.4%, 일봉 RSI 80.88로 과매수 극단, 명확한 신규 촉매는 특정되지
-  않고 EMA200 저항·구조적 조정 우려가 매체에서 언급됨.
-- **AKE(Akedo)는 직전 급반전 이후 저변동 안정화 국면 진입** — Binance chg 5.45%(직전)→
-  **9.113%**(본 회차)로 소폭 반등, Bybit 7.858%→9.877%도 유사. 펀딩은 계속 완화(Binance
-  -107.7%→-50.6%) — 극단에서 벗어나 플래토 근접.
-- **APR(aPriori)는 3거래소 모두 추가 둔화 지속** — Binance 23.389%→12.698%, OKX
-  22.887%→11.292%, Bybit 25.999%→13.643%로 거의 절반 수준 축소, 7/23 언락 이벤트 이후
-  예상되는 조정이 지속되는 것으로 해석.
-- **B2(BSquared Network)는 3거래소 모두 +21~24%대로 여전히 견조** — 직전 대비 거의 동일
-  수준 유지(급등 후 눌림 없이 고점권 유지), 'B² 2048' AI-비트코인 인프라 내러티브 지속.
-- **DEX 쪽은 CASHCAT-USD가 직전 급등(+24.2%) 대비 이번 회차 둔화** — Hyperliquid
-  +16.055%, Aster +18.029%. **WebSearch 확인**: 7/11 ATH $0.2278(시총 $200M) 대비 현재
-  약 70% 하락한 상태에서 레버리지 유입 후 순간 60%대 와이프아웃 사례가 매체에 보도돼 —
-  여전히 고변동 밈코인 국면 지속(로빈후드 체인 최초 밈코인 지위는 불변).
-- **GRAM-USD(Hyperliquid)는** -0.45%(직전)→**+0.144%**(본 회차)로 8회 연속 관찰 중 처음
-  으로 양(+) 전환. **Aster ASTER-USDT**는 OI/거래량 괴리비가 약 **11.27배로 7회 연속
-  축소**(17.4배→16.4배→15.3배→12.65배→11.88배→11.27배). **Aster AKE-USDT**는 CEX AKE와
-  동일하게 저변동 안정화(chg 9.309%→8.004%, 펀딩 -10.6%→-7.9%).
-- 신규/지속 소형 종목: **ALLO**는 4거래소 모두 소폭 양(+) 유지(Binance +1.098%·OKX
-  +1.309%·Bybit +1.177%), **BILL**은 OKX -5.628%(직전 -5.253%)로 음(-) 지속, **CAP**은
-  OKX +13.19%(직전 +14.226%)로 거의 flat, **CORE**는 OKX -7.646%(직전 -9.85%)로 낙폭
-  축소, **BARD**는 OKX -3.147%·펀딩 -9.8%로 여전히 음(-), **BASED**는 OKX +9.674%·
-  Binance +8.825%로 견조 지속, **BEAT(Audiera)**는 OKX +8.744%(직전 +7.241%)로 소폭
-  재가속, 펀딩 -3.7%(직전 -8.0%)로 완화.
-- **GMX는 이번 회차도 엔드포인트 404**로 접속 실패 지속, **dYdX v4는 이번 회차 429**
-  (레이트리밋)로 실패 유형이 변경(직전은 404) — 온체인 DEX 퍼프 데이터는 이번 회차도
-  Hyperliquid·Aster로만 커버. **OKX 리스트에서 CL(WTI 원유)·CRCL(Circle Internet
-  Group)·BZ·CBRS** 등 주식화/상품/프리IPO 토큰이 이번 회차도 top권 확인되나 규약에 따라
-  전부 제외.
+- **위험선호 지표 cfgi.io 직접 재확인 42/100(중립, 타임스탬프 00:18Z)** — 직전 회차(44)에서
+  추가 소폭 후퇴, 계속 완만한 위험회피 방향. Hyperliquid 기준 **BTC-USD -1.093%·ETH-USD
+  -0.470%**로 메이저는 이번 회차도 약세(낙폭은 다소 완화), Binance **ADA -2.087%·AAVE
+  -3.036%·ARB -3.231%·APT -2.847%**도 전부 음(-)으로 메이저·중형 알트의 완만한 약세 지속.
+  반면 **소수 알트는 오히려 재가속** — 뚜렷한 **종목별 분산(idiosyncratic dispersion)** 국면이
+  한 회차 더 이어짐.
+- **가장 큰 이슈는 AKE(Akedo)의 급격한 재가속** — Binance chg +9.113%(직전)→**+20.269%**
+  (본 회차)로 2배 이상 확대, Bybit +9.877%→+19.053%, Aster +8.004%→+18.71%로 3거래소 동시
+  재점화. **WebSearch 확인**: 24h 약 +36% 상승, 주간 RSI 극단 과매수, 7/15 장기 하락채널
+  상단 돌파, Binance Alpha 에어드랍 버즈 거론(coingabbar.com). 다만 **펀딩은 오히려 완화**
+  (Binance -50.6%→-25.7%)로 가격-펀딩 다이버전스 관찰 — 해석 주의.
+- **BANK(Lorenzo Protocol)는 여전히 최대 거래대금**(3거래소 합산 약 **$1.124B**, Binance
+  $963.7M·Bybit $149.1M·Aster $11.3M) 유지하나 chg는 추가 둔화 — Binance +13.462%(직전)→
+  **+7.553%**(본 회차). **WebSearch 재확인**: 7/20 8400만 BANK 재단 추정 지갑→Aster
+  입금주소 이동이 거래량 260% 급증과 함께 랠리 트리거로 지목(startupfortune.com), World
+  Liberty Financial이 636,683 BANK 매수해 유명 지갑 참여 확인(coinmarketcap.com) — BTCFi
+  유동성 스테이킹 내러티브 지속. **OKX는 8회 연속** top리스트 내 미확인.
+- **ACE(Fusionist)는 4거래소 모두 +30~32%대**로 직전(+33~35%대) 대비 소폭 둔화됐으나 여전히
+  매우 강함. 펀딩은 다소 완화(Binance -106.8%→**-72.9%**)로 숏 스퀴즈 강도가 약간 누그러진
+  신호. **WebSearch 확인**: Game2 테스트 페이즈로 Endurance 네트워크 수수료가 ACE로
+  라우팅되는 것이 촉매로 지목(phemex.com), 7일 +55.4%·RSI 80.88 과매수·EMA200 저항 우려가
+  매체에서 반복 언급.
+- **신규로 두드러진 종목은 BEAT(Audiera, OKX)** — 거래대금이 **$160.2M**까지 확대(직전
+  회차는 거래대금 미기재)됐고 chg는 +8.744%(직전)→+8.353%(거의 유지)로 안정적. **CAP(OKX)**도
+  +13.19%→+14.635%로 재가속 조짐. **APR(aPriori)은** OKX +11.292%(직전)→**+3.416%**로
+  거의 flat까지 추가 냉각, 언락 후 조정이 사실상 마무리 단계로 해석. **B2(BSquared)는**
+  이번 회차 Binance/Bybit/Aster top25 거래대금 리스트에서 확인되지 않아(직전 $43.9M) —
+  top25 밖으로 밀렸거나 요약 누락 가능성, 정직하게 '미확인'으로 표기.
+- **DEX 쪽 HYPE-USD**는 vol $213.4M→$206.5M(소폭 감소)·OI $1.290B→$1.298B(소폭 증가)·chg
+  -0.632%→-0.077%(악화 완화)로 여전히 조용하나 미세하게 안정화. **ACE-USD(Hyperliquid)**는
+  CEX와 동일한 흐름으로 +33.661%→+32.112%. **CASHCAT-USD**는 HL +16.055%→+8.235%로 둔화
+  지속. **GRAM-USD**는 +0.144%(직전, 첫 양전환)→**+0.888%**로 두 번째 연속 양(+) 유지.
+  **Aster ASTER-USDT**는 OI/거래량 괴리비 약 11.27배→**11.13배로 8회 연속 축소**(17.4→
+  16.4→15.3→12.65→11.88→11.27→11.13). Hyperliquid에서 **HEMI-USD**(비트코인-이더리움
+  하이브리드 L2, 크립토 네이티브)가 +13.502%로 소액(vol $0.73M) 신규 관찰됐으나 임계치
+  미달로 표에는 미포함, 참고용 언급만.
+- **GMX는 이번 회차도 404**, **dYdX v4는 이번 회차도 429**(레이트리밋, 직전과 동일 유형)로
+  접속 실패 지속 — 온체인 DEX 퍼프 데이터는 이번 회차도 Hyperliquid·Aster로만 커버.
+  **DefiLlama derivatives 오버뷰 엔드포인트가 이번 회차 402(Payment Required)로 신규 실패**
+  — 프로토콜별 순위 교차검증 소스 하나 상실. OKX·Binance 리스트에서 **CL(WTI 원유)·
+  BZ(천연가스)·CRCL(Circle Internet Group)·CRDO·CBRS(Cerebras 프리IPO)·AAPL·AMD·AMZN·
+  ASML·APP·AMAT** 등 주식화/상품/프리IPO 토큰이 이번 회차도 다수 확인됐고, 신규로
+  **ANTHROPICUSDT**(Anthropic 프리IPO 합성퍼프, 6/2 Binance 상장·SEC 기밀 S-1 제출 직후
+  상장 확인, CBRS와 동일 성격)도 확인돼 전부 제외.
 
 ## CEX 주목 종목 (메이저 제외, 크립토 네이티브만)
 
 | 종목 | 거래소 | 24h 거래량 | OI | 펀딩 | 24h 변동 | 왜 뜨는가 | 태그 |
 |---|---|---|---|---|---|---|---|
-| **BANK (Lorenzo Protocol)** [지속, chg 둔화] | Binance/Bybit/Aster (OKX 7회 연속 미확인) | $1,106.9M | $91.6M | +0.5% | +13.462% | 여전히 최대 거래대금 유지하나 chg 둔화(+19.273%→+13.462%). WebSearch: BTCFi 내러티브 지속, '98% 단일일 랠리 ATH $0.27' 보도 확인되나 CMC 기준(+40.3%)과 CoinGecko 파생 티커(+13.462%) 수치 상당한 괴리 — 정직 병기. OKX 7회 연속 미확인 | catalyst/narrative (BTCFi narrative persists, cross-source discrepancy noted) |
-| **ACE (Fusionist)** [뚜렷한 재가속] | Binance/Bybit (+Aster/HL DEX 동시) | $86.0M | $8.4M | -106.8%(Binance) | +33.592% | 4거래소 모두 +21~22%대→+33~35%대로 급등, 펀딩 더 극단화(숏스퀴즈 시사). WebSearch: AAA 게이밍 토큰, 7일 +55.4%, RSI 80.88 과매수, 신규 촉매 불명확 | funding-extreme/short-squeeze (sharp re-acceleration, overbought, no confirmed catalyst) |
-| **AKE (Akedo)** [저변동 안정화] | Binance/Bybit/Aster | $865.4M | $67.0M | -50.6%(Binance) | +9.113% | 급반전 이후 플래토 근접 — chg 5.45%→9.113%(소폭 반등), 펀딩 계속 완화(-107.7%→-50.6%) | funding-extreme/plateau (post-reversal consolidation) |
-| **APR (aPriori)** [추가 둔화] | Binance/OKX/Bybit | $69.0M | $13.1M | +0.5%(Binance) | +12.698% | 3거래소 모두 거의 절반 수준으로 추가 축소(23%→12~13%대), 7/23 언락 이후 조정 지속 해석 | token-unlock/deceleration (continued cooling, roughly halved) |
-| **B2 (BSquared Network)** [고점권 유지] | Binance/Bybit/Aster | $43.9M | $8.6M | +1.2%(Binance) | +21.581% | 3거래소 모두 +21~24%대로 직전과 거의 동일 수준 유지, 눌림 없이 고점권 지속. 'B² 2048' AI-비트코인 인프라 내러티브 지속 | narrative (sustained plateau at elevated level) |
+| **BANK (Lorenzo Protocol)** [지속, chg 둔화] | Binance/Bybit/Aster (OKX 8회 연속 미확인) | $1,124.1M | $93.2M | +0.8% | +7.553% | 여전히 최대 거래대금 유지하나 chg 추가 둔화(+13.462%→+7.553%). WebSearch: 7/20 재단 추정 지갑→Aster 이동이 랠리 트리거로 지목, WLFI 매수 확인 — BTCFi 내러티브 지속. OKX 8회 연속 미확인 | catalyst/narrative (BTCFi narrative persists, wallet-move trigger confirmed) |
+| **AKE (Akedo)** [급격한 재가속, 신규] | Binance/Bybit/Aster | $916.4M | $87.5M | -25.7%(Binance) | +20.269% | 저변동 안정화에서 3거래소 동시 급격한 재가속(chg 9%대→18~20%대, 2배 이상). WebSearch: 24h +36%, RSI 극단 과매수, 7/15 하락채널 돌파, Binance Alpha 에어드랍 버즈. 단 펀딩은 완화돼 가격-펀딩 다이버전스 | listing/airdrop-buzz (sharp re-acceleration, price-funding divergence) |
+| **ACE (Fusionist)** [소폭 둔화, 여전히 강함] | Binance/Bybit (+Aster/HL DEX 동시) | $99.5M | $8.3M | -72.9%(Binance) | +30.676% | 4거래소 +30~32%대(직전 +33~35%대)로 소폭 둔화, 펀딩도 다소 완화(숏스퀴즈 강도 누그러짐). WebSearch: Game2 수수료 라우팅이 촉매로 특정, RSI 80.88 과매수·EMA200 저항 우려 지속 | funding-extreme/short-squeeze (catalyst now identified: Game2 fee-routing) |
+| **BEAT (Audiera)** [거래대금 급증, 신규 부각] | OKX | $160.2M | $9.6M | -3.3% | +8.353% | 거래대금이 뚜렷하게 확대($160.2M)됐고 chg는 거의 유지(+8.744%→+8.353%) — 소폭 재가속 흐름 지속. 명확한 신규 촉매는 미확인 | sub-threshold-volume-surge (volume expanded, catalyst unconfirmed) |
+| **CAP** [재가속 조짐] | OKX | $46.5M | $2.0M | +0.5% | +14.635% | 직전 거의 flat(+13.19%)에서 +14.635%로 재가속 조짐, 펀딩은 낮은 수준 유지 — 과열 신호는 아직 약함 | listing/narrative (mild re-acceleration from plateau) |
 
 ## DEX 퍼프 주목 종목 (Hyperliquid·Aster)
 
 | 종목 | 프로토콜 | 24h 거래량 | OI | 펀딩 | 24h 변동 | 왜 뜨는가 | 태그 |
 |---|---|---|---|---|---|---|---|
-| HYPE-USD | Hyperliquid | $213.4M | $1.290B | +0.1% | -0.632% | vol 소폭 증가, OI 소폭 감소, chg 소폭 악화. 위험선호(cfgi 47→44)도 소폭 후퇴, 전반적으로 조용한 국면 유지 | native |
-| **CASHCAT-USD** [직전 급등 대비 둔화] | Hyperliquid/Aster | $12.3M | $11.5M | +0.6%(HL) | +16.055% | HL +24.2%→+16.055%, Aster +23.894%→+18.029%로 둔화. WebSearch: ATH 대비 약 70% 하락, 레버리지發 순간 와이프아웃 보도 — 여전히 고변동 밈코인 국면 | listing/meme (deceleration from spike, still high-volatility) |
-| **GRAM-USD** [처음 양전환] | Hyperliquid | $1.4M | $19.6M | +0.1% | +0.144% | -0.45%→+0.144%로 8회 연속 관찰 중 처음 양(+) 전환 | listing/rebrand (first positive flip after plateau) |
-| AKE-USDT | Aster | $67.0M | $18.3M | -7.9% | +8.004% | CEX AKE와 동일하게 저변동 안정화 — chg 9.309%→8.004%, 펀딩 -10.6%→-7.9% | funding-extreme/plateau (mirrors CEX AKE) |
-| ASTER-USDT | Aster | $19.5M | $219.3M | 0.0% | +1.253% | OI/거래량 괴리 약 11.27배로 7회 연속 축소(17.4배→...→11.88배→11.27배) | native/basis-anomaly (7th consecutive narrowing) |
+| HYPE-USD | Hyperliquid | $206.5M | $1.298B | +0.1% | -0.077% | vol 소폭 감소, OI 소폭 증가, chg 악화 완화 — 여전히 조용하나 미세하게 안정화 | native |
+| **ACE-USD** [CEX와 동조] | Hyperliquid | $2.1M | $0.8M | -19.1% | +32.112% | CEX ACE와 동일한 흐름으로 +33.661%→+32.112%. Game2 수수료 라우팅 촉매·RSI 과매수 배경 공유 | funding-extreme/short-squeeze (mirrors CEX ACE) |
+| **AKE-USDT** [급격한 재가속] | Aster | $58.8M | $18.3M | -5.1% | +18.71% | CEX AKE와 동일하게 저변동 안정화에서 급격한 재가속(chg 8.004%→18.71%, 2배 이상), 펀딩은 오히려 완화 | listing/airdrop-buzz (mirrors CEX AKE re-acceleration) |
+| ASTER-USDT | Aster | $19.8M | $219.9M | +0.8% | +1.61% | OI/거래량 괴리 약 11.13배로 8회 연속 축소(17.4배→...→11.27배→11.13배) | native/basis-anomaly (8th consecutive narrowing) |
+| **CASHCAT-USD** [추가 둔화] | Hyperliquid | $10.6M | $10.4M | +0.3% | +8.235% | 직전 둔화(+16.055%)에 이어 추가 둔화(+8.235%) — 고변동 밈코인 국면 유지되나 모멘텀 지속 냉각 | listing/meme (continued deceleration) |
 
 ## 테마 태그
 
-1. **BANK(Lorenzo Protocol) 최대 거래대금 유지, chg 둔화·소스 간 괴리** — Binance
-   +19.273%→+13.462%, CMC 기준은 +40.3%로 큰 차이(측정시점 상이 추정), BTCFi 내러티브
-   지속, OKX 7회 연속 미확인 (catalyst/narrative, cross-source discrepancy noted).
-2. **ACE(Fusionist) 4거래소 뚜렷한 재가속** — +21~22%대→+33~35%대, 펀딩 더 극단화
-   (숏스퀴즈 시사), RSI 80.88 과매수, 신규 촉매 불명확 (funding-extreme/short-squeeze).
-3. **AKE(Akedo) 급반전 이후 저변동 안정화** — chg 5.45%→9.113%, 펀딩 계속 완화
-   (-107.7%→-50.6%) (funding-extreme/plateau, post-reversal consolidation).
-4. **APR(aPriori) 3거래소 모두 둔화 지속(거의 절반 축소)** — Binance 23.389%→12.698%,
-   언락 이후 조정 지속 해석 (token-unlock/deceleration).
-5. **B2(BSquared Network) 고점권 유지** — 3거래소 모두 +21~24%대, 눌림 없이 지속.
-   'B² 2048' AI-비트코인 인프라 내러티브 지속 (narrative, sustained plateau).
-6. **BEAT(Audiera) 소폭 재가속 지속** — OKX +7.241%→+8.744%, 펀딩 -8.0%→-3.7%로 완화
-   (catalyst/narrative, mild re-acceleration).
-7. **CASHCAT(Hyperliquid/Aster) 직전 급등 대비 둔화** — HL +24.2%→+16.055%, Aster
-   +23.894%→+18.029%. WebSearch: ATH 대비 약 70% 하락, 레버리지發 와이프아웃 보도
-   (listing/meme, deceleration, still high-volatility).
-8. **GRAM-USD(Hyperliquid) 8회 연속 관찰 중 처음 양전환** — -0.45%→+0.144%
-   (listing/rebrand, first positive flip).
-9. **Aster ASTER-USDT OI/거래량 괴리 7회 연속 축소** — 17.4배→...→11.88배→11.27배
-   (native/basis-anomaly, 7th consecutive narrowing).
-10. **Aster AKE-USDT CEX AKE와 동일 저변동 안정화** — chg 9.309%→8.004%, 펀딩
-    -10.6%→-7.9% (funding-extreme/plateau, mirrors CEX AKE).
-11. **ALLO 4거래소 소폭 양(+) 유지** — Binance +1.098%·OKX +1.309%·Bybit +1.177%
-    (sub-threshold, stable positive).
-12. **BILL OKX -5.628% 음(-) 지속** (reversal-down/cooling, persistent negative).
-13. **CAP OKX +13.19%로 거의 flat** (listing/narrative, plateauing).
-14. **CORE OKX -7.646%로 낙폭 축소** (declining, small-scale, improving slightly).
-15. **BARD OKX -3.147%, 펀딩 -9.8%로 여전히 음(-)** (funding-extreme, persistent negative).
-16. **BASED OKX +9.674%·Binance +8.825%로 견조 지속** (sub-threshold-reversal, sustained).
-17. **메이저·중형 알트 대부분 -1~4%대 약세 vs 소수 알트만 극단적 강세** — 뚜렷한
-    종목별 분산 국면 (market-wide, idiosyncratic dispersion vs broad mild risk-off).
-18. **위험선호 지표 cfgi.io 44(직전 47, 타임스탬프 22:18Z)** — 소폭 후퇴, 여전히 중립권
-    (risk-sentiment, mild pullback, still neutral).
-19. **TradFi 토큰화/상품/프리IPO perp 지속 확인 및 전부 제외** — CL(WTI 원유)·
-    CRCL(Circle Internet Group)·BZ·CBRS 등 OKX top권에서 재확인, 규약에 따라 제외
+1. **AKE(Akedo) 3거래소 동시 급격한 재가속** — chg 약 9%대→18~20%대(2배 이상), 24h +36%·
+   주간 RSI 극단 과매수·7/15 하락채널 돌파·Binance Alpha 에어드랍 버즈, 펀딩은 완화돼
+   가격-펀딩 다이버전스 (listing/airdrop-buzz, price-funding divergence).
+2. **BANK(Lorenzo Protocol) 최대 거래대금 유지, chg 추가 둔화** — Binance +13.462%→
+   +7.553%, WebSearch로 재단 지갑 이동 트리거·WLFI 매수 확인, OKX 8회 연속 미확인
+   (catalyst/narrative, deceleration continues).
+3. **ACE(Fusionist) 소폭 둔화되나 여전히 매우 강함** — +33~35%대→+30~32%대, 펀딩 다소
+   완화, WebSearch로 Game2 수수료 라우팅 촉매 특정 (funding-extreme/short-squeeze).
+4. **BEAT(Audiera) 거래대금 뚜렷하게 확대**($160.2M) — chg는 거의 유지, 촉매 미확인
+   (sub-threshold-volume-surge, catalyst unconfirmed).
+5. **CAP(OKX) 거의 flat에서 재가속 조짐** — +13.19%→+14.635% (listing/narrative, mild
+   re-acceleration).
+6. **APR(aPriori) 거의 flat까지 추가 냉각** — OKX +11.292%→+3.416%, 언락 후 조정 마무리
+   단계로 해석 (token-unlock/deceleration, near-flat).
+7. **B2(BSquared Network) top25 리스트에서 확인 안 됨**(직전 $43.9M) — top25 이탈 또는
+   요약 누락 가능성, 정직하게 '미확인' 표기 (data-gap, unconfirmed decline).
+8. **CASHCAT(Hyperliquid) 직전 둔화에 이어 추가 둔화** — +16.055%→+8.235%, 고변동 밈코인
+   국면 유지되나 모멘텀 지속 냉각 (listing/meme, continued deceleration).
+9. **GRAM-USD(Hyperliquid) 두 번째 연속 양전환** — +0.144%→+0.888% (listing/rebrand,
+   second consecutive positive).
+10. **Aster ASTER-USDT OI/거래량 괴리 8회 연속 축소** — 17.4배→...→11.27배→11.13배
+    (native/basis-anomaly, 8th consecutive narrowing).
+11. **Hyperliquid HEMI-USD**(비트코인-이더리움 하이브리드 L2) +13.502%로 소액 신규 관찰,
+    임계치 미달로 참고용만 (emerging/sub-threshold, crypto-native L2 mention only).
+12. **메이저·중형 알트 완만한 약세 지속 vs 소수 알트만 극단적 강세** — BTC -1.093%·ETH
+    -0.470%·ADA -2.087%·AAVE -3.036%·ARB -3.231%·APT -2.847% vs BANK·AKE·ACE·BEAT·CAP
+    (market-wide, idiosyncratic dispersion vs mild risk-off).
+13. **위험선호 지표 cfgi.io 42(직전 44, 타임스탬프 00:18Z)** — 추가 소폭 후퇴, 여전히
+    중립권 (risk-sentiment, mild pullback continues, still neutral).
+14. **ANTHROPICUSDT(Anthropic 프리IPO 합성퍼프) 신규 확인 및 제외** — Binance·Bybit,
+    6/2 상장·SEC 기밀 S-1 제출 직후 상장 확인, CBRS와 동일 성격으로 판단해 제외
+    (excluded-pre-ipo-synthetic, newly identified this cycle).
+15. **TradFi 토큰화/상품/프리IPO perp 지속 확인 및 전부 제외** — CL·BZ·CRCL·CRDO·CBRS·
+    AAPL·AMD·AMZN·ASML·APP·AMAT 등 OKX·Binance top권에서 재확인, 규약에 따라 제외
     (excluded-tokenized-equity/commodity, filtering compliant).
-20. **GMX·dYdX v4 접속 실패 지속, 실패 유형 재변경** — GMX는 이번 회차도 404, dYdX v4는
-    이번 회차 429(레이트리밋, 직전은 404)로 변경 — 온체인 DEX 퍼프 데이터는 이번 회차도
-    Hyperliquid·Aster로만 커버 (data-gap, dYdX failure mode reverted to 429).
+16. **GMX·dYdX v4 접속 실패 지속**(직전과 동일 유형) — GMX 404, dYdX v4 429 — 온체인 DEX
+    퍼프 데이터는 이번 회차도 Hyperliquid·Aster로만 커버 (data-gap, unchanged failure mode).
+17. **DefiLlama derivatives 오버뷰 엔드포인트 이번 회차 402(Payment Required)로 신규 실패**
+    — 프로토콜별 순위 교차검증 소스 하나 상실 (data-gap, new failure this cycle).
 
 ## 데이터 신뢰도
 
 CoinGecko 파생 API 중 `binance_futures`·`bybit`·`hyperliquid`·`aster`·`okex_swap`는 이번
-회차 모두 200 확인. `okex_swap`에서 **BANK·ACE·AKE·B2는 여전히 top리스트 내 미확인**(실제
-순위 밖인지 요약 도구 특성상 일부 누락인지 구분 불가, 정직하게 "미확인"으로 표기). 이번
-회차도 WebFetch가 내부적으로 소형 모델 요약을 거치므로 **수치 정밀도(특히 소수점 다수 자리)는
-완전히 신뢰하기 어려움** — 유효숫자 기준 처음 몇 자리만 신뢰 권장. 한계: (a) **GMX는 이번
-회차도 404**, **dYdX v4는 이번 회차 429**(직전 404에서 실패 유형 변경) — 두 프로토콜 모두
-데이터 미확보 지속, 온체인 DEX 퍼프 커버리지는 Hyperliquid·Aster로 제한; (b) **ACE의 Bybit
-펀딩(-156.8%)은 스케일 이상값 가능성** — 절대치보다 방향(정점 대비 더 극단화)만 참고 권장,
-AKE 펀딩(-7.9%~-50.6%)도 동일한 유의사항; (c) **BANK의 chg는 CoinGecko 파생 티커
-(+13.462%)와 CMC 현물가 기준(+40.3%) 간 상당한 괴리 확인** — 측정 시점·집계 방식 차이로
-추정되나 원인 미확정, 두 수치 모두 정직 병기; (d) Binance 원본 응답에서 "AAPERUSDT"라는
-항목이 BANKUSDT와 완전히 동일한 수치로 나타나 소형 모델 요약 과정의 중복/오류 가능성이 있어
-이번 브리핑에서는 배제하고 BANKUSDT만 반영; (e) 위험선호 지표는 cfgi.io 직접 페치(타임스탬프
-22:18Z, 44)를 이번 회차 기준으로 사용, 직전 회차(20:18Z, 47) 대비 소폭 후퇴; (f) ACE의
-재가속 원인은 WebSearch로도 특정 신규 촉매를 찾지 못함(과매수 모멘텀 지속으로 추정, 상관관계
-참고용); (g) 모든 금액·비율은 CoinGecko 파생 API 스냅샷(요청 시점 기준) — 거래소 원문과
-소폭 차이 가능.
-**주식화·상품·프리IPO 토큰(CL·CRCL·BZ·CBRS 등)은 이번 회차도 규약에 따라 cex/dex 리스트에서
-전부 제외.**
+회차 모두 200 확인(WebFetch 기반 요약, 소형 모델 경유). `okex_swap`에서 **BANK·ACE·AKE·B2는
+여전히 top25 내 미확인**(실제 순위 밖인지 요약 도구 특성상 일부 누락인지 구분 불가, 정직하게
+"미확인"으로 표기). **B2는 Binance/Bybit/Aster top25에서도 이번 회차 확인되지 않아** 개별
+재조회 없이 '미확인/데이터 공백'으로만 남김 — 실제 하락인지 표본 누락인지 단정하지 않음.
+수치 정밀도(특히 소수점 다수 자리)는 WebFetch 요약 특성상 완전히 신뢰하기 어려움 — 유효숫자
+기준 처음 몇 자리만 신뢰 권장. 한계: (a) **GMX는 이번 회차도 404**, **dYdX v4는 이번 회차도
+429**(직전과 동일 유형) — 두 프로토콜 모두 데이터 미확보 지속, 온체인 DEX 퍼프 커버리지는
+Hyperliquid·Aster로 제한; (b) **DefiLlama `/overview/derivatives`가 이번 회차 402(Payment
+Required)로 신규 실패** — 프로토콜별 순위 교차검증 불가; (c) **ACE·AKE의 펀딩 절대치**
+(예: Bybit ACE -0.65 즉 -65%대)는 스케일 이상값 가능성 — 절대치보다 방향(완화/극단화)만
+참고 권장; (d) **AKE의 chg 급등과 펀딩 완화가 동시에 나타나는 가격-펀딩 다이버전스**는
+데이터 오류 가능성과 실제 숏포지션 청산/신규 롱 유입 두 해석이 모두 가능해 단정하지 않음;
+(e) 위험선호 지표는 cfgi.io 직접 페치(타임스탬프 00:18Z, 42)를 이번 회차 기준으로 사용;
+(f) ANTHROPICUSDT는 WebSearch로 Anthropic 프리IPO 합성퍼프임을 확인해 CBRS와 동일하게
+제외 처리(리스트에 없던 신규 항목이므로 브리핑에 판단 근거를 명시); (g) 모든 금액·비율은
+CoinGecko 파생 API 스냅샷(요청 시점 기준) — 거래소 원문과 소폭 차이 가능.
+**주식화·상품·프리IPO 토큰(CL·BZ·CRCL·CRDO·CBRS·ANTHROPIC·AAPL·AMD·AMZN·ASML·APP·AMAT
+등)은 이번 회차도 규약에 따라 cex/dex 리스트에서 전부 제외.**
 
 *투자조언 아님 — 시장 파악·아이디어 소싱용 정보 요약.*
