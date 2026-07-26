@@ -1,160 +1,172 @@
-# 선물시장 스카우트 브리핑 — 2026-07-26 (06:27Z / KST 15:27)
+# 선물시장 스카우트 브리핑 — 2026-07-26 (08:28Z / KST 17:28)
 
 > CEX(바이낸스·바이빗·OKX)·DEX 퍼프(Hyperliquid·Aster·GMX·dYdX) 선물시장에서 지금 주목받는
 > **크립토 네이티브** 종목을 거래량·미결제약정(OI)·펀딩 기준으로 집계. **토큰화 주식·ETF·상품·
-> 프리IPO/합성 perp는 전부 제외.** 정보 요약이며 투자조언 아님. 직전 회차(04:28Z, 약 2시간 전)
-> 대비 변화 표기. **이번 회차 최대 특이점: AKE 3연속 가속 이후 급반전(플러스→마이너스), 1000SHIB
-> 추가 가속(+36.5%), B2 데이터 공백 해소(Binance 재확인), BOME 데이터 이상치 관찰(헤드라인
-> 미반영), CASHCAT 낙폭 추가 심화.**
+> 프리IPO/합성 perp는 전부 제외.** 정보 요약이며 투자조언 아님. 직전 회차(06:27Z, 약 2시간 전)
+> 대비 변화 표기. **이번 회차 최대 특이점: 1000SHIB 강세의 새 촉매(한국 김치프리미엄) 확인,
+> AKE 급반전 이후 안정화, BEAT 보합→재가속 전환, AIGENSYN 신규 데이터 확인, CASHCAT 낙폭 완화
+> (반등 아님), BOME 데이터 신뢰도 문제 심화(2회 연속 미반영), BZ가 원유 상품 perp임을 신규 확인
+> (제외 대상 명시 추가).**
 
 ## 시장 전반
 
-- 위험선호 지표는 이번 회차 별도 재수집하지 않아 **직전 회차 갭(cfgi.io 45 vs milkroad/phemex
-  26~27, 중립 vs 공포)이 유지되는 것으로 간주**(확정 아님, caveat 지속).
-- **AKE(Akedo) 3연속 가속 이후 급반전(가장 큰 변화)** — 직전 회차까지 +24.968%→+30.87%로
-  3연속 가속했던 것이 본 회차 **Binance -2.63%, Bybit -0.50%, Aster -2.53%**로 플러스에서
-  마이너스로 급격히 전환 — WebSearch로 '수직 랠리 후 저항에서 반전, 하락삼각형 트렌드라인
-  상향 돌파 후 숏스퀴즈 소진' 서사 확인, 지니계수 0.9992·유동성/시총비 1.82%로 물량 집중·
-  청산 위험 큼.
-- **1000SHIB(Shiba Inu) 추가 가속 지속** — Binance +28.64%→**+36.51%**, Aster **+35.87%** —
-  Shibarium 활동 74% 급증, 거래소 유출 1,750억 SHIB, 소각률 122% 급증 등 온체인 강세 서사
-  지속, 대형 고래 502.5억 SHIB 추가 매집(7/24) 확인.
-- **ALLO(Allora Network) 낙폭 지속 완화(4번째 국면)** — 직전 -31.69%/-30.534%/-31.018%에서
-  본 회차 **Binance -22.65%, Bybit -18.50%, OKX -22.20%, Aster -23.98%**로 낙폭 완화 — 단
-  **OKX는 거래량 $280.1M에 OI는 단 $0.64M**로 극단적 회전율 이상치 관찰(헤지/차익 가능성).
-  Quack AI가 Allora 온체인 시그널을 자동 포트폴리오 관리에 채택한다는 뉴스 확인.
-- **BANK(Lorenzo Protocol) 감속 지속** — 직전 +21.31%/+19.938%/+20.38%에서 본 회차
-  **Binance +12.48%, Bybit +11.26%, Aster +10.66%**로 추가 감속하나 여전히 두 자릿수 상승 —
-  WLF 추정 지갑의 8,400만 BANK를 Aster(CZ 관련 퍼프거래소) 입금주소로 전송한 것이 촉매로
-  재확인(startupfortune/bingx), 공식 설명은 여전히 없음.
-- **ACE(Fusionist) 하락폭 소폭 추가 축소** — Binance -16.96%→**-13.66%**, Bybit -17.349%→
-  **-12.62%**, Aster **-11.67%** — RSI 과열 되돌림 지속 진정.
-- **BEAT(Audiera) 대체로 보합** — 직전 OKX +5.215%에서 본 회차 **+4.846%**(Aster +4.72%)로
-  거의 변화 없음.
-- **B2(BSquared Network) 데이터 공백 해소** — 직전 회차 3거래소 모두 미확인이었던 것이 본
-  회차 **Binance에서 재확인**(vol $33.66M, OI $6.88M, **-12.55%**) — ATH 대비 -76.7% 눌린
-  상태 지속, 구체 촉매는 여전히 특정 못함.
-- **CASHCAT(Hyperliquid) 낙폭 추가 심화** — 직전 -14.411%에서 본 회차 **-21.579%**로 더
-  하락 — 7/11 HL 퍼프 상장 후 60% 플래시크래시($1.3M 롱 청산)·연이은 41~46% 급락·ATH 대비
-  -75% 등 지속적 청산 압력 서사 재확인.
-- **KAITO(Hyperliquid) 소폭 재가속** — 직전 +4.318%에서 본 회차 **+5.993%**로 반등 — $1.05선
-  회복, 일봉 RSI 77.14 과열 지속, 7/20 언락 이후 물량 소화 국면.
-- **ANSEM(Aster) 재가속** — 직전 +14.24%에서 본 회차 **+18.97%**로 확대 — 크리에이터 수수료
-  환원 서사(Ansem/Pump.fun) 지속.
-- **ASTER-USDT의 OI/거래량 괴리비가 약 27.36배→약 34.0배**($218.4M/$6.42M, Aster 기준)로
-  추가 확대 — Binance/Bybit/OKX/HL 전 거래소 가격 변동이 +0.77~0.90%로 균질해 헤지/차익
-  거래 성격 가능성 지속.
-- **CAP(OKX) 신규 관찰**(-14.372%)이나 촉매 특정 실패(OKB 관련 뉴스만 검색, CAP과 무관 확인)
-  — 헤드라인 미반영. **CORE(Core DAO)**는 -6.282%로 지속 하락하나 촉매 여전히 미특정.
-- **BOME(Book of Meme) 데이터 이상치 관찰** — CoinGecko 스냅샷상 OKX +21.034%, HL +20.706%로
-  큰 폭 상승 표시되나, WebSearch 교차확인 결과 실제 변동은 여러 소스에서 +3%대로 보고되고
-  촉매 뉴스도 확인 안 됨 — HL 거래량/OI가 각각 $218K/$240K로 얇아 씬 유동성 왜곡 가능성이
-  높다고 판단, 헤드라인 미반영·데이터 신뢰도에만 정직 기록.
-- **BARD(Lombard)**는 OKX -1.894%→**-1.037%**로 소폭 변화, 펀딩 -9.7%→**-8.8%**로 계속 완화.
-- 데이터 소스: **GMX는 이번 회차도 BTC/ETH만 확인**, 알트 전무(23회 연속). **dYdX는 이번
-  회차도 상위 30종목 전부 메이저·저거래량**(최상위 BTC $4.1M) — 알트 시그널 23회 연속 전무.
-  **OKX는 ALLO·BEAT·BARD·CAP·BILL·CORE는 확인됐으나 BANK·ACE·AKE·B2·AIGENSYN은 여전히
-  미확인**(23회 연속). **DefiLlama derivatives 오버뷰는 402로 17회 연속 실패**. Aster 거래소
-  CoinGecko id는 이번 회차 `aster-futures`(404)가 아닌 **`aster`**로 재확인됨.
+- 위험선호 지표는 이번 회차 재수집 결과 **직전 회차 갭(cfgi.io 44~45 중립 vs milkroad/
+  bitcoinworld 26~33 공포)이 그대로 유지되는 것으로 확인**(확정 아님, caveat 지속).
+- **1000SHIB(Shiba Inu) 강세 지속하나 새 촉매 확인** — Binance **+33.825%**(직전 +36.51%)로
+  소폭 둔화되나 여전히 초강세, 거래량 $640M — 코인데스크(7/26) 보도로 새로 확인: **한국 업비트
+  SHIB/KRW 페어가 글로벌 거래량 10%+ 차지하는 김치프리미엄 랠리**이며 뚜렷한 펀더멘털 촉매
+  없는 '미스터리 랠리'로 재평가(숏 청산은 결과일 뿐) — 기존 Shibarium 활동 급증·소각률·고래
+  매집 온체인 서사와 병행.
+- **AKE(Akedo) 급반전 이후 안정화** — 직전 회차 Binance -2.63%/Bybit -0.50%/Aster -2.53%로
+  급반전했던 것이 본 회차 **Binance -0.49%**(거의 보합), **Bybit -6.95%**(더 큰 하락),
+  **Aster -0.37%**로 거래소 간 편차는 있으나 반등 없이 눌린 국면 지속 — 지니계수 0.9992
+  극단적 물량 집중, 초기 컨트리뷰터/투자자 언락(Q1 2026 클리프) 매도 압력 배경 재확인.
+- **ALLO(Allora Network) 낙폭 지속 완화(5번째 국면)** — 직전 -22.65%/-18.50%/-22.20%에서
+  본 회차 **Binance -11.57%, Bybit -10.85%, OKX -11.54%**로 낙폭이 거의 절반으로 축소 —
+  **OKX는 거래량 $276.9M 대비 OI $0.58M로 회전율 이상치가 더 극단화**(약 478배). 7/24 ATH
+  $0.546 기록 후 조정 중임을 확인(Cobot·Kalshi 연동은 기존 호재).
+- **BANK(Lorenzo Protocol) 감속 추세 진정/안정화** — Binance **+11.06%**(직전 +12.48%, 유사),
+  Bybit **+14.32%**·Aster **+14.30%**(오히려 소폭 재가속)로 두 자릿수 상승 구간에서 안정화 —
+  WLF가 BANK 636,683개(약 $40K) 추가 매수 확인(bingx), 7/23 +46.78%·주간 +517%·ATH $0.27
+  기록 후 현 구간 안착. OKX는 26회 연속 미확인.
+- **ACE(Fusionist) 하락폭 축소 지속(5번째 국면)** — Binance -13.66%→**-10.45%**, Bybit
+  -12.62%→**-9.35%**, Aster -11.67%→**-8.62%**, HL **-9.73%**로 전 거래소 동반 완화.
+- **BEAT(Audiera) 보합에서 재가속으로 전환** — 직전 OKX +4.846%/Aster +4.72%에서 본 회차
+  **OKX +10.44%, Aster +10.63%**로 두 배 이상 확대 — 신규 촉매는 특정 못함.
+- **B2(BSquared Network) 데이터 재현성 강화** — 직전 회차 Binance 단독 확인(-12.55%)에서
+  이번 회차 **Bybit에서도 추가 확인**(-9.16%, Binance -10.61%)돼 지속 하락 재확인 — 단
+  **CoinMarketCap은 동시각 $0.5231·+1.20%**(7/22 ATL $0.3162 이후 반등 주장)로 CoinGecko
+  파생 스냅샷과 방향이 상반돼 소스 간 괴리 존재, 방향성 확정 보류.
+- **AIGENSYN(AI Genesis) 신규 데이터 확인** — 직전까지 OKX 미확인 종목 리스트에서만 언급되던
+  것이 이번 회차 **Binance -5.18%, Bybit -5.22%**(vol $4.16M)에서 데이터 확인 — Gensyn(GNS)과
+  무관한 별개 프로젝트로 확인, 촉매 미특정.
+- **CASHCAT(Hyperliquid) 낙폭 완화(반등 아님, 하락 속도 둔화)** — 직전 -21.579%에서 본 회차
+  **-12.796%**로 하락폭 축소 — 7/11 HL 퍼프 상장 후 반복된 플래시크래시·청산 캐스케이드로
+  ATH 대비 -75% 안팎 눌린 상태 지속.
+- **KAITO(Hyperliquid) 소폭 감속하나 플러스 유지** — 직전 +5.993%에서 본 회차 **+4.755%**로
+  둔화 — $1선 부근 유지, RSI 77대 과열·7/20 언락 소화 국면 지속.
+- **ANSEM(Aster) 재가속 지속** — 직전 +18.97%에서 본 회차 **+20.02%**로 확대 — 크리에이터
+  수수료 환원 서사(Ansem/Pump.fun) 지속.
+- **ASTER-USDT의 OI/거래량 괴리비가 약 34.0배→약 36.7배**($218.76M/$5.97M)로 추가 확대 —
+  전 거래소 가격 변동 +0.85~0.87%로 균질, 헤지/차익거래 성격 가능성 지속.
+- **CAP(OKX) 낙폭 소폭 축소**(-14.372%→-12.31%), **CORE(Core DAO)**는 -7.096%(직전 -6.282%)로
+  지속 하락 — 두 종목 모두 촉매 여전히 미특정.
+- **BOME(Book of Meme) 데이터 신뢰도 문제 심화** — 이번 회차 교차확인 결과 소스 간 편차가
+  더 심해짐: Binance +3.27%, Coinpaprika +24.94%, KuCoin -10.96%, Kraken -4.23%이며 **가격
+  수준 자체도 $0.00041~$0.006336로 약 15배 차이** — 방향성·수치 모두 신뢰 불가로 판단, **2회
+  연속 헤드라인 미반영**.
+- **BARD(Lombard) 펀딩 극단치** — Binance funding -12.0%, Bybit -21.2%로 매우 음수인데 가격
+  변동은 -2.3%대로 작아 펀딩-가격 괴리 존재, 방향성 해석 주의.
+- **BZ(OKX)는 크립토가 아닌 Brent Oil(원유) 상품 perp로 신규 확인**되어 제외 대상에 명시
+  추가(WebSearch로 OKX 공지 확인). **AI(OKX)는 Sleepless AI**(게임+AI 크립토 네이티브)로
+  확인되나 변동폭 작아(-4.6%) 헤드라인 미반영.
+- 데이터 소스: **GMX는 이번 회차도 BTC/ETH만 확인**, 알트 전무(24회 연속). **dYdX는 이번
+  회차도 상위 30종목 전부 메이저·저거래량**(최상위 BTC $3.55M) — 알트 시그널 24회 연속 전무.
+  **OKX는 ALLO·BEAT·CAP·CORE·BILL·AI·BZ는 확인됐으나 BANK·ACE·AKE·B2·AIGENSYN·BARD는
+  여전히 미확인**(26회 연속). **DefiLlama derivatives 오버뷰는 402로 18회 연속 실패**.
 
 ## CEX 주목 종목 (메이저 제외, 크립토 네이티브만)
 
 | 종목 | 거래소 | 24h 거래량 | OI | 펀딩 | 24h 변동 | 왜 뜨는가 | 태그 |
 |---|---|---|---|---|---|---|---|
-| **AKE (Akedo)** [3연속 가속 후 급반전·최대 변화] | Binance/Bybit/Aster | $299.96M | $41.83M | -6.5% | -2.63% | 3연속 가속(+24.968%→+30.87%)이 급반전 — 숏스퀴즈 소진 서사, 지니계수 0.9992로 물량 집중 | sharp-reversal |
-| **1000SHIB (Shiba Inu)** [추가 가속 지속] | Binance/Aster | $567.66M | $48.93M | -1.5% | +36.51% | Shibarium 활동 74% 급증·소각률 122%·고래 매집 서사, +28.64%→+36.51% | narrative-continuing |
-| **ALLO (Allora Network)** [낙폭 지속 완화·4번째 국면] | Binance/Bybit/OKX/Aster | $160.86M | $18.21M | -5.3% | -22.65% | -31.69%→-22.65%로 완화되나 OKX 거래량($280.1M)/OI($0.64M) 극단적 회전율 — Quack AI 연동 뉴스 | decline-easing-continues |
-| **BANK (Lorenzo Protocol)** [감속 지속] | Binance/Bybit/Aster (OKX 23회 연속 미확인) | $891.33M | $66.94M | +0.5% | +12.48% | +21.31%→+12.48%로 추가 감속하나 두 자릿수 유지 — WLF 지갑의 Aster 입금주소 전송 촉매 재확인 | deceleration-continues |
-| **ACE (Fusionist)** [하락폭 추가 축소] | Binance/Bybit/Aster | $41.89M | $3.98M | -6.6% | -13.66% | -16.96%→-13.66%로 감속 — RSI 과열 되돌림 지속 진정 | correction-easing-continues |
-| **BEAT (Audiera)** [보합] | OKX/Aster | $57.07M | $10.27M | -8.3% | +4.846% | +5.215%→+4.846%로 거의 변화 없음, 신규 촉매 미확인 | plateau |
-| **B2 (BSquared Network)** [데이터 공백 해소] | Binance | $33.66M | $6.88M | +0.5% | -12.55% | 직전 회차 3거래소 미확인이었던 것이 Binance에서 재확인 — ATH 대비 -76.7%, 촉매 미특정 | data-gap-resolved |
+| **AKE (Akedo)** [급반전 후 안정화] | Binance/Bybit/Aster | $280.52M | $42.46M | -6.9% | -0.49% | 3연속 가속 후 급반전(직전)이 반등 없이 거의 보합 안착(Bybit는 -6.95%로 더 하락) — 지니계수 0.9992·언락 압력 지속 | consolidation-after-reversal |
+| **1000SHIB (Shiba Inu)** [새 촉매 확인] | Binance/Aster | $640.34M | $47.26M | 0.0% | +33.825% | +36.51%→+33.8%로 소폭 둔화되나 초강세 지속 — 한국 업비트 김치프리미엄 랠리가 실제 동력이라는 코인데스크 보도 신규 확인 | narrative-continuing |
+| **ALLO (Allora Network)** [낙폭 지속 완화·5국면] | Binance/Bybit/OKX/Aster | $155.75M | $17.79M | -2.7% | -11.57% | -22.65%→-11.57%로 낙폭 거의 절반 축소 — OKX 회전율 이상치 더 극단화(478배), 7/24 ATH 이후 조정 | decline-easing-continues |
+| **BANK (Lorenzo Protocol)** [안정화] | Binance/Bybit/Aster (OKX 26회 연속 미확인) | $882.12M | $65.74M | +0.5% | +11.06% | +12.48%→+11.06%로 안정, Bybit·Aster는 오히려 재가속(+14%대) — WLF 추가 매수 확인 | stabilizing-double-digit |
+| **ACE (Fusionist)** [하락폭 축소 지속] | Binance/Bybit/Aster/HL | $33.49M | $3.99M | -9.9% | -10.448% | -13.66%→-10.45%로 전 거래소 동반 완화 — 과열 되돌림 지속 진정 | correction-easing-continues |
+| **BEAT (Audiera)** [보합→재가속] | OKX/Aster | $69.47M | $10.86M | -4.9% | +10.437% | +4.846%→+10.44%로 두 배 이상 확대 — 신규 촉매 미확인 | reacceleration-from-plateau |
+| **B2 (BSquared Network)** [재현성 강화·괴리] | Binance/Bybit | $26.34M | $6.65M | +0.5% | -10.608% | Bybit에서도 추가 확인돼 지속 하락 재확인 — CoinMarketCap 현물가($0.5231/+1.20%)와 방향 상반, 소스 간 괴리 존재 | data-divergence-caveat |
+| **AIGENSYN (AI Genesis)** [신규] | Binance/Bybit | $13.95M | $3.43M | +0.5% | -5.182% | 이번 회차 처음 데이터 확인 — Gensyn(GNS)과 무관, 촉매 미특정 | new-observation |
 
 ## DEX 퍼프 주목 종목 (Hyperliquid·Aster)
 
 | 종목 | 프로토콜 | 24h 거래량 | OI | 펀딩 | 24h 변동 | 왜 뜨는가 | 태그 |
 |---|---|---|---|---|---|---|---|
-| HYPE-USD | Hyperliquid | $108.7M | $1.32B | 0.0% | +2.177% | BTC/ETH 메이저 대비 대체로 유사한 완만한 변동 유지, 거래량 소폭 증가 | native |
-| **AKE-USDT** [CEX와 동일 급반전] | Aster | $12.4M | $17.8M | -1.5% | -2.53% | CEX AKE와 동일하게 3연속 가속 후 급반전 — 플러스에서 마이너스 전환 | sharp-reversal |
-| **BANK-USDT** [CEX와 동일 감속 지속] | Aster | $6.7M | $12.9M | +0.1% | +10.66% | CEX BANK와 동일하게 감속 지속 — WLF 이체의 실제 목적지가 Aster | deceleration-continues |
-| **ASTER-USDT** [괴리 추가 확대] | Aster | $6.4M | $218.4M | +0.1% | +0.82% | OI/거래량 괴리 약 27.36배→약 34.0배로 추가 확대 — 전 거래소 가격 변동 균질, 헤지/차익 성격 가능성 | native/basis-anomaly |
-| **KAITO-USD** [소폭 재가속] | Hyperliquid | $13.3M | $9.3M | -0.2% | +5.993% | +4.318%→+5.993%로 반등 — $1.05선 회복, RSI 77 과열 지속, 언락 소화 국면 | mild-reacceleration |
-| **CASHCAT-USD** [낙폭 추가 심화] | Hyperliquid | $4.7M | $8.9M | +0.5% | -21.579% | -14.411%→-21.579%로 낙폭 확대 — 반복적 플래시크래시·청산 캐스케이드 서사 재확인 | reversal-deepening-continues |
-| **ANSEM-USDT (The Black Bull)** [재가속] | Aster | $1.1M | $2.0M | +0.1% | +18.97% | +14.24%→+18.97%로 재가속 — 크리에이터 수수료 환원 서사 지속 | reacceleration |
+| HYPE-USD | Hyperliquid | $108.96M | $1.32B | -0.1% | +2.369% | BTC/ETH 메이저 대비 유사한 완만한 변동 유지 | native |
+| **AKE-USDT** [보합권 안착] | Aster | $10.43M | $18.59M | -1.0% | -0.37% | CEX AKE와 동일하게 급반전 충격 소화, 낙폭 -2.53%→-0.37% | consolidation-after-reversal |
+| **BANK-USDT** [재가속] | Aster | $7.23M | $13.31M | +1.1% | +14.304% | CEX BANK와 동일, +10.66%→+14.30%로 소폭 재가속 — WLF 이체 목적지 | stabilizing-double-digit |
+| **ASTER-USDT** [괴리 추가 확대] | Aster | $5.97M | $218.76M | +0.6% | +0.85% | OI/거래량 괴리 약 34.0배→약 36.7배 — 전 거래소 가격 변동 균질, 헤지/차익 가능성 | native/basis-anomaly |
+| **KAITO-USD** [소폭 감속] | Hyperliquid | $13.25M | $9.55M | -0.3% | +4.755% | +5.99%→+4.76%로 둔화하나 플러스 유지 — RSI 과열·언락 소화 지속 | mild-deceleration |
+| **CASHCAT-USD** [낙폭 축소·반등 아님] | Hyperliquid | $4.69M | $9.62M | +0.1% | -12.796% | -21.58%→-12.80%로 하락 속도만 둔화 — 반복적 플래시크래시 배경 지속 | decline-easing-from-deepening |
+| **ANSEM-USDT (The Black Bull)** [재가속 지속] | Aster | $1.17M | $1.98M | +0.1% | +20.02% | +18.97%→+20.02%로 확대 — 크리에이터 수수료 환원 서사 지속 | reacceleration-continues |
 
 ## 테마 태그
 
-1. **AKE(Akedo) 3연속 가속 이후 급반전(가장 큰 변화)** — 전 거래소 플러스→마이너스 전환,
-   숏스퀴즈 소진 서사 (sharp-reversal).
-2. **1000SHIB(Shiba Inu) 추가 가속 지속** — Shibarium 활동 급증·소각률 122%·고래 매집 서사
-   (narrative-continuing).
-3. **ALLO(Allora Network) 낙폭 지속 완화(4번째 국면)** — OKX 거래량/OI 극단적 회전율 이상치,
-   Quack AI 연동 뉴스 (decline-easing-continues).
-4. **BANK(Lorenzo Protocol) 감속 지속하나 두 자릿수 상승 유지** — WLF 지갑의 Aster 입금주소
-   전송 촉매 재확인 (deceleration-continues).
-5. **ACE(Fusionist) 하락폭 소폭 추가 축소** — 과열 되돌림 지속 진정 (correction-easing-continues).
-6. **BEAT(Audiera) 거의 변화 없이 보합 유지** (plateau).
-7. **B2(BSquared Network) 데이터 공백 해소** — Binance에서 재확인, ATH 대비 -76.7% 눌림 지속,
-   촉매 미특정 (data-gap-resolved).
-8. **CASHCAT(Hyperliquid) 낙폭 추가 심화** — 반복적 플래시크래시·청산 캐스케이드 서사 재확인
-   (reversal-deepening-continues).
-9. **KAITO(Hyperliquid) 소폭 재가속** — $1.05선 회복, RSI 77 과열 지속, 언락 소화 국면
-   (mild-reacceleration).
-10. **ANSEM(Aster) 재가속** — 크리에이터 수수료 환원 서사 지속 (reacceleration).
-11. **BARD(Lombard) 가격·펀딩 모두 소폭 추가 완화**, 변화 미미 (funding-continued-easing).
-12. **CAP(OKX) 신규 관찰**(-14.372%)이나 구체 촉매 특정 실패 — 헤드라인 미반영
-    (unconfirmed-catalyst, new-observation).
-13. **CORE(Core DAO) 지속 하락**(-6.282%)이나 촉매 여전히 미특정 (unconfirmed-catalyst).
-14. **BOME(Book of Meme) 데이터 이상치 관찰** — CoinGecko 스냅샷상 급등 표시되나 WebSearch
-    교차확인 결과 실제 변동은 +3%대, 촉매 뉴스도 없음 — 씬 유동성 왜곡 가능성, 헤드라인 미반영
-    (data-anomaly, unconfirmed).
-15. **ASTER-USDT OI/거래량 괴리비 추가 확대**(약 27.36배→약 34.0배, $218.4M/$6.42M)
-    (native/basis-anomaly).
-16. **HYPE-USD는 대체로 유사한 완만한 변동 유지**, 거래량 소폭 증가 (native, steady).
-17. **시장 전반: 위험선호 지표 이번 회차 재수집하지 않아 직전 갭 유지로 간주**
-    (market-wide, unrefreshed-caveat).
-18. **GMX 이번 회차도 BTC/ETH만, 알트 전무 — 23회 연속** (data-confirmed, no altcoin signal).
-19. **dYdX 이번 회차도 상위 30종목 전부 메이저·저거래량** — 알트 시그널 23회 연속 전무
+1. **AKE(Akedo) 급반전 이후 안정화** — 반등 없이 눌린 국면, 언락 매도압력 배경 지속
+   (consolidation-after-reversal).
+2. **1000SHIB(Shiba Inu) 강세 지속하나 새 촉매 확인** — 한국 업비트發 김치프리미엄 랠리
+   (코인데스크 7/26), 온체인 서사와 병행 (narrative-continuing, new-driver-identified).
+3. **ALLO(Allora Network) 낙폭 지속 완화(5번째 국면)** — OKX 회전율 이상치 더 극단화,
+   7/24 ATH 이후 조정 (decline-easing-continues).
+4. **BANK(Lorenzo Protocol) 감속 추세 진정/안정화**, Bybit·Aster 소폭 재가속 — WLF 추가 매수
+   확인 (stabilizing-double-digit).
+5. **ACE(Fusionist) 하락폭 축소 지속(5번째 국면)** (correction-easing-continues).
+6. **BEAT(Audiera) 보합에서 재가속 전환**(2배 이상) — 촉매 미특정 (reacceleration-from-plateau).
+7. **B2(BSquared Network) 데이터 재현성 강화**되나 CoinMarketCap 현물가와 방향 상반 —
+   소스 간 괴리 존재 (data-divergence-caveat).
+8. **AIGENSYN(AI Genesis) 신규 데이터 확인** — Gensyn과 무관한 별개 프로젝트 (new-observation).
+9. **CASHCAT(Hyperliquid) 낙폭 축소(반등 아님)** — 반복적 플래시크래시 배경 지속
+   (decline-easing-from-deepening).
+10. **KAITO(Hyperliquid) 소폭 감속하나 플러스 유지** — RSI 과열·언락 소화 지속 (mild-deceleration).
+11. **ANSEM(Aster) 재가속 지속** — 크리에이터 수수료 환원 서사 지속 (reacceleration-continues).
+12. **BARD(Lombard) 펀딩 극단치**(Binance -12.0%, Bybit -21.2%)이나 가격 변동은 작아 펀딩-가격
+    괴리 존재 (funding-price-divergence).
+13. **CAP(OKX) 낙폭 소폭 축소**나 촉매 여전히 미특정 (unconfirmed-catalyst).
+14. **CORE(Core DAO) 지속 하락**이나 촉매 여전히 미특정 (unconfirmed-catalyst).
+15. **BOME(Book of Meme) 데이터 신뢰도 문제 심화** — 소스 간 편차·가격 수준 모두 불일치,
+    2회 연속 헤드라인 미반영 (data-anomaly, unconfirmed).
+16. **BZ(OKX)는 크립토가 아닌 Brent Oil(원유) 상품 perp로 신규 확인** — 제외 대상 명시 추가
+    (excluded-commodity, newly-identified).
+17. **AI(OKX, Sleepless AI)는 크립토 네이티브 확인**되나 변동폭 작아 헤드라인 미반영
+    (crypto-native-confirmed, minor-move).
+18. **ASTER-USDT OI/거래량 괴리비 추가 확대**(약 34.0배→약 36.7배) (native/basis-anomaly).
+19. **HYPE-USD는 대체로 유사한 완만한 변동 유지** (native, steady).
+20. **시장 전반: 위험선호 지표 갭(cfgi.io vs milkroad/bitcoinworld) 재확인·유지**
+    (market-wide, gap-confirmed).
+21. **GMX 이번 회차도 BTC/ETH만, 알트 전무 — 24회 연속** (data-confirmed, no altcoin signal).
+22. **dYdX 이번 회차도 상위 30종목 전부 메이저·저거래량** — 알트 시그널 24회 연속 전무
     (data-confirmed, low-activity).
-20. **DefiLlama derivatives 오버뷰 402로 17회 연속 실패** (data-gap, 17th consecutive failure).
-21. **BANK·ACE·AKE·B2·AIGENSYN은 OKX 재조회 결과 이번 회차도 확인 안 됨 — 23회 연속**
+23. **DefiLlama derivatives 오버뷰 402로 18회 연속 실패** (data-gap, 18th consecutive failure).
+24. **BANK·ACE·AKE·B2·AIGENSYN·BARD는 OKX 재조회 결과 이번 회차도 확인 안 됨 — 26회 연속**
     (응답 절단 가능성 caveat 유지) (data-gap, OKX truncation caveat).
-22. **Aster 거래소 CoinGecko id가 `aster-futures`(404)가 아닌 `aster`로 재확인됨** — 향후 회차
-    참고 (data-source-note).
-23. **Aster DEX에서 BTW-USDT·BULLA-USDT 등 정체 미특정 티커 지속 관찰** — 헤드라인 반영 보류
+25. **Aster DEX에서 BTW-USDT·BULLA-USDT 등 정체 미특정 티커 지속 관찰** — 헤드라인 반영 보류
     (data-gap, unidentified-ticker).
-24. **TradFi 토큰화/상품 perp**(Aster의 AAPL·ADBE·AMAT·AMD·AMZN·ARM·ASML·AVGO·AXTI·BABA·
-    BRKB·CBRS·COIN·COST 등, OKX/Aster의 CL(원유)·CRCL 등) 이번 회차도 다수 확인되어 전부 제외
-    (excluded-tokenized-equity/commodity, filtering compliant).
+26. **TradFi 토큰화/상품 perp**(Aster의 AAPL·ADBE·AMAT·AMD·AMZN·ARM·ASML·AVGO·AXTI·BABA·
+    BRKB·CBRS·COIN·COST 등, OKX의 BZ(Brent Oil)·Binance의 AAPPLUSDT 등) 이번 회차도 다수
+    확인되어 전부 제외 (excluded-tokenized-equity/commodity, filtering compliant).
 
 ## 데이터 신뢰도
 
 CoinGecko 파생 API(WebFetch 기반 텍스트 추출·AI 요약)로 binance_futures·bybit·okex_swap·
-hyperliquid·gmx-perpetuals-v2-arbitrum·dydx_chain·aster(Aster 자체, 구 `aster-futures` id는
-404 확인)를 조회했다. **dYdX·GMX는 각 1회 429(Too Many Requests) 재시도 후 확보**했다.
-**B2(BSquared Network)**는 직전 회차 3거래소 상위 목록에서 확인되지 않아 '미확인'으로
-표기했었는데, 이번 회차 Binance에서 재확인되어(vol $33.66M) 실제 하락이었는지 단순 절단
-누락이었는지는 **여전히 구분하지 못한다** — 데이터 공백이 해소된 것으로만 정직 기록. **BOME
-(Book of Meme)는 CoinGecko 스냅샷상 OKX +21.034%·HL +20.706%로 급등 표시**됐으나, WebSearch로
-교차확인한 결과 여러 소스(CoinGecko/TradingView 계열)가 실제 24h 변동을 +3%대로 보고하고
-있고 뚜렷한 촉매 뉴스도 확인되지 않아 **스냅샷 시점 차이 또는 씬 유동성(HL 거래량 $218K·OI
-$240K)에 의한 왜곡 가능성이 높다고 판단**해 헤드라인에는 반영하지 않았다 — 확정적 결론은
-아니며 다음 회차에서 재확인 필요. **GMX(gmx-perpetuals-v2-arbitrum)는 재확인 결과 여전히
-BTC/ETH(랩드 변형 포함) 6개 페어만 존재** — 23회 연속 알트 시그널 전무. **dYdX(dydx_chain)는
-이번 회차도 상위 30종목 거래량이 전반적으로 낮아**(최상위 BTC $4.1M) 알트 시그널이 여전히
-없다. **OKX(`okex_swap`)는 이번 회차 ALLO·BEAT·BARD·CAP·BILL·CORE는 확인됐으나 BANK·ACE·
-AKE·B2·AIGENSYN은 상위 목록에서 확인되지 않아**, 이 관찰이 실제 미상장을 의미하지 않을 수
-있다는 caveat을 유지한다(23회 연속). **Aster에서 BTW-USDT·BULLA-USDT는 정체를 특정하지
-못해** 헤드라인에 넣지 않고 데이터 신뢰도 항목에만 기록한다. 한계: (a) **DefiLlama
-`/overview/derivatives`가 이번 회차도 402로 17회 연속 실패** — 프로토콜별 순위 교차검증
-불가 지속; (b) **위험선호 지표는 이번 회차 별도 재수집하지 않아** 직전 회차(cfgi.io 45 vs
-milkroad/phemex 26~27) 갭이 유지되는 것으로만 간주(확정 아님); (c) **HYPE-USD OI $1.32B**는
-WebFetch 요약이 반올림한 값으로 정밀치 아님; (d) **CAP·CORE의 배경 촉매는 이번 회차도
-특정하지 못해 미확인으로 표기**(CAP 검색 결과 OKX 자체 토큰 OKB 관련 뉴스만 나와 무관함을
-확인); (e) **ALLO의 낙폭 완화는 4번째 국면**으로, OKX 거래량/OI 극단적 회전율(약 435배,
-$280.1M/$0.64M)은 헤지·차익거래 신호일 가능성이 있어 방향성 해석에 주의; (f) 모든 금액·비율은
-CoinGecko 파생 API 스냅샷(요청 시점 기준) — 거래소 원문과 소폭 차이 가능.
+hyperliquid·gmx-perpetuals-v2-arbitrum·dydx_chain·aster를 조회했다. **GMX·dYdX는 각 2회
+429(Too Many Requests) 재시도 후 확보**했다. **B2(BSquared Network)**는 이번 회차 Bybit에서도
+추가 확인돼(-9.16%) 지속 하락 재현성이 강화됐으나, **CoinMarketCap은 동시각 기준 $0.5231·
++1.20%로 정반대 방향을 보고**해 소스 간 괴리를 정직 기록한다 — CoinGecko 파생 스냅샷(요청
+시점 기준)과 CMC 현물가 조회 시점이 다를 수 있어 확정적 결론은 유보한다. **AIGENSYN**은
+이번 회차 처음으로 Binance·Bybit에서 구체적 데이터가 확인됐다 — 직전 회차까지는 OKX 상위
+목록 미확인 종목으로만 이름이 거론됐었다. **BOME(Book of Meme)는 이번 회차 교차확인에서
+소스 간 불일치가 오히려 심화됐다** — Binance +3.27%, Coinpaprika +24.94%, KuCoin -10.96%,
+Kraken -4.23%로 방향조차 엇갈리고, 보고된 가격 수준 자체도 $0.00041~$0.006336로 약 15배
+차이가 나 단순 시점차로 설명되지 않는다 — **2회 연속 데이터 신뢰 불가로 판단해 헤드라인
+미반영**하며, 다음 회차에도 재확인이 필요하다. **GMX(gmx-perpetuals-v2-arbitrum)는 재확인
+결과 여전히 BTC/ETH(랩드 변형 포함) 6개 페어만 존재** — 24회 연속 알트 시그널 전무.
+**dYdX(dydx_chain)는 이번 회차도 상위 30종목 거래량이 전반적으로 낮아**(최상위 BTC $3.55M)
+알트 시그널이 여전히 없다. **OKX(`okex_swap`)는 이번 회차 ALLO·BEAT·CAP·CORE·BILL·AI·BZ는
+확인됐으나 BANK·ACE·AKE·B2·AIGENSYN·BARD는 상위 목록에서 확인되지 않아**, 이 관찰이 실제
+미상장을 의미하지 않을 수 있다는 caveat을 유지한다(26회 연속). **신규 발견**: OKX의 **BZ는
+크립토가 아닌 Brent Oil(원유) 상품 perp**임을 WebSearch로 확인해 이번 회차부터 명시적 제외
+대상에 추가했다(과거 회차에서 무슨 자산인지 특정 못한 채 헤드라인에서만 배제해왔던 항목).
+**BARD의 펀딩 극단치**(Binance -12.0%, Bybit -21.2%)는 가격 변동(-2.3%대)과 괴리가 있어
+펀딩만으로 방향성을 판단하면 오해 소지가 있다. 한계: (a) **DefiLlama `/overview/derivatives`가
+이번 회차도 402로 18회 연속 실패** — 프로토콜별 순위 교차검증 불가 지속; (b) **위험선호
+지표는 이번 회차 재수집했으나 방법론별 갭(cfgi.io 44~45 vs milkroad/bitcoinworld 26~33)이
+여전히 존재**해 하나의 대표값으로 확정하지 않는다; (c) **HYPE-USD OI $1.32B**는 WebFetch
+요약이 반올림한 값으로 정밀치 아님; (d) **CAP·CORE의 배경 촉매는 이번 회차도 특정하지
+못해** 미확인으로 표기; (e) **ALLO의 낙폭 완화는 5번째 국면**으로, OKX 거래량/OI 극단적
+회전율(약 478배, $276.9M/$0.58M)은 헤지·차익거래 신호일 가능성이 있어 방향성 해석에 주의;
+(f) 모든 금액·비율은 CoinGecko 파생 API 스냅샷(요청 시점 기준) — 거래소 원문과 소폭 차이 가능.
 **주식화·상품·합성 토큰(Aster의 AAPL·ADBE·AMAT·AMD·AMZN·ARM·ASML·AVGO·AXTI·BABA·BRKB·
-CBRS·COIN·COST, OKX/Aster의 CL·CRCL 등)은 이번 회차도 규약에 따라 cex/dex 리스트에서 전부
-제외.**
+CBRS·COIN·COST, OKX의 BZ(Brent Oil), Binance의 AAPPLUSDT 등)은 이번 회차도 규약에 따라
+cex/dex 리스트에서 전부 제외.**
 
 *투자조언 아님 — 시장 파악·아이디어 소싱용 정보 요약.*
