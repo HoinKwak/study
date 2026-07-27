@@ -1,18 +1,18 @@
 {
-  "ts": "2026-07-26T12:06:00Z",
-  "note": "상위 차티스트 6인의 현재 크립토 뷰 — 참고용, 투자조언 아님. 각 견해는 해당 인물의 주장이며 사실이 아님. 이번 회차(7/26 12:06 UTC, 직전 회차 7/26 00:05 UTC 대비 약 12시간 경과)는 미국 ETF 시장이 여전히 일요일 휴장 중이며, BTC는 일요일 새벽 $64,502.54(CoinDesk)로 전일 종가 대비 소폭 상승, ETH $1,880.63(+0.39%), SOL $75.02로 3자산 모두 완만한 반등을 보였으나 직전 박스권을 벗어나지는 못했다. 6인 재탐색 결과 **Benjamin Cowen만 신규 공개 코멘트**(Benzinga, 2026-07-24 발행 'Bitcoin's 9% July Rally May Not Last as 2026 Mirrors 2018: Is a September Drop Coming?')가 확인됐다 — 7월 반등을 2018년 패턴과 비교해 일시적으로 진단하고, 사이클 저점 시점을 기존 9월 말~10월 초에서 11월 말로 다소 후행 제시했다(자신의 ITC 컨퍼런스가 11월 말 예정된 점과 결부해 언급). 나머지 5인(Brandt·KillaXBT·Rekt Capital·TechDev·Doctor Profit)은 이번 회차에도 순수 신규 공개 코멘트가 확인되지 않아 기존 뷰가 그대로 유지된다 — Rekt Capital의 'July Uptrend' 뉴스레터 원문은 이번 회차에도 newsletter.rektcapital.co 접속 시 rektcapital.co 랜딩페이지로 301 리디렉션돼 본문 확인이 계속 불가했고, TechDev 뉴스레터 아카이브(techdev52.com/archive)도 Issue #98(7/19)이 여전히 최신호로 남아 후속호(Issue #99 등)는 확인되지 않았다(공개 뷰 부족 지속, 다음 회차 재확인 필요).",
+  "ts": "2026-07-27T00:03:00Z",
+  "note": "상위 차티스트 6인의 현재 크립토 뷰 — 참고용, 투자조언 아님. 각 견해는 해당 인물의 주장이며 사실이 아님. 이번 회차(7/27 00:03 UTC, 직전 회차 7/26 12:06 UTC 대비 약 12시간 경과, 월요일 진입 초반이나 미국 ETF 시장 개장 전)는 가격도 CoinDesk 기준 최신 스냅샷이 직전 회차와 동일한 일요일 새벽 BTC $64,502.54, ETH $1,880.63(+0.39%), SOL $74.77(+0.44%)로 확인돼 그 이후 신규 가격 보도는 확인되지 않았다(주말 뉴스 공백, 미확인). 6인 재탐색 결과 이번 회차에도 순수 신규 공개 코멘트는 확인되지 않았다 — Benjamin Cowen의 7/24 코멘트(Benzinga 'Bitcoin's 9% July Rally May Not Last as 2026 Mirrors 2018: Is a September Drop Coming?')가 여전히 6인 중 가장 최신이며, 나머지 5인(Brandt·KillaXBT·Rekt Capital·TechDev·Doctor Profit)은 이번 회차에도 신규 공개 코멘트가 확인되지 않아 기존 뷰가 그대로 유지된다 — Rekt Capital의 'July Uptrend' 뉴스레터 원문은 이번 회차에도 newsletter.rektcapital.co 접속 시 rektcapital.co 랜딩페이지로 301 리디렉션돼 본문 확인이 계속 불가했고, TechDev 뉴스레터 아카이브(techdev52.com/archive)도 Issue #98(7/19)이 여전히 최신호로 남아 후속호(Issue #99 등)는 확인되지 않았다(공개 뷰 부족 지속, 다음 회차 재확인 필요). 이제 FOMC(7/28~29)가 이틀 앞으로 다가와 다음 회차에서는 이를 계기로 한 신규 코멘트 발생 가능성에 유의할 필요가 있다.",
   "chartists": [
     {
       "name": "Peter Brandt",
       "handle": "@PeterLBrandt",
       "confidence": "상",
       "style": "고전 차트(50년)",
-      "bias": "경계(추가 하락 우려 심화, 저점 시점 구체화) — 단기 거짓 돌파 반등 가능성과 큰 폭 추가 하락 경고가 병존. 이번 회차(7/26 12:06Z 재탐색)에도 순수 신규 공개 코멘트는 확인되지 않아 기존 뷰 유지(공개 뷰 부족 지속)",
-      "btc": "이번 회차(7/26 12:06Z) 재탐색 결과에도 순수 신규 공개 코멘트는 확인되지 않아 7/20 Benzinga('Bitcoin to $40,000, Then $250,000?')·Cointelegraph 'Trade Secrets' 인터뷰 뷰를 그대로 유지한다. 핵심 논리는 '진정한 약세장 바닥은 광범위한 항복(capitulation) 심리가 필요하다'는 것 — 시장 심리가 비관론으로 충분히 전환되지 않았다고 판단, 현재도 '중립 정도'에 그친다고 평가. 경로로는 우선 추가 반등(거짓 돌파 가능성) 후 시장이 롤오버되며 고 $40,000대까지 하락, 2026년 10월 4일 전후 최종 바닥 전망 — 저가 매수 자제 권고 유지. 장기적으로 2029년 강세장 고점 $250,000~300,000 유지.",
+      "bias": "경계(추가 하락 우려 심화, 저점 시점 구체화) — 단기 거짓 돌파 반등 가능성과 큰 폭 추가 하락 경고가 병존. 이번 회차(7/27 00:03Z 재탐색)에도 순수 신규 공개 코멘트는 확인되지 않아 기존 뷰 유지(공개 뷰 부족 지속)",
+      "btc": "이번 회차(7/27 00:03Z) 재탐색 결과에도 순수 신규 공개 코멘트는 확인되지 않아 7/20 Benzinga('Bitcoin to $40,000, Then $250,000?')·Cointelegraph 'Trade Secrets' 인터뷰 뷰를 그대로 유지한다. 핵심 논리는 '진정한 약세장 바닥은 광범위한 항복(capitulation) 심리가 필요하다'는 것 — 시장 심리가 비관론으로 충분히 전환되지 않았다고 판단, 현재도 '중립 정도'에 그친다고 평가. 경로로는 우선 추가 반등(거짓 돌파 가능성) 후 시장이 롤오버되며 고 $40,000대까지 하락, 2026년 10월 4일 전후 최종 바닥 전망 — 저가 매수 자제 권고 유지. 장기적으로 2029년 강세장 고점 $250,000~300,000 유지.",
       "eth": "ETH에 대한 최근 구체적 공개 뷰 부족(공개 뷰 부족).",
       "market": "반감기 4년 주기(천장 후 약 1년 뒤 바닥) 프레임 유지, 금 대비 BTC 상대적 저조 전망(포트폴리오 일부 금으로 로테이션 고려) 유지. 이번 회차 신규 논지 추가는 없음(공개 뷰 부족).",
       "asof": "2026-07-20",
-      "source": "Benzinga(2026-07-20) 'Bitcoin to $40,000, Then $250,000? Peter Brandt Maps BTC's Next Cycle'; Cointelegraph 'Trade Secrets' 인터뷰; cryptonews.net(2026-07-22) '50-Year Veteran Analyst Peter Brandt Shares Critical Scenario for Bitcoin' 재인용 — 2026-07-26 12:06Z 재탐색 결과에도 신규 공개 코멘트 미확인(공개 뷰 부족)"
+      "source": "Benzinga(2026-07-20) 'Bitcoin to $40,000, Then $250,000? Peter Brandt Maps BTC's Next Cycle'; Cointelegraph 'Trade Secrets' 인터뷰; cryptonews.net(2026-07-22) '50-Year Veteran Analyst Peter Brandt Shares Critical Scenario for Bitcoin' 재인용 — 2026-07-27 00:03Z 재탐색 결과에도 신규 공개 코멘트 미확인(공개 뷰 부족)"
     },
     {
       "name": "KillaXBT",
@@ -20,23 +20,23 @@
       "confidence": "상(단서)",
       "style": "차트/사이클 구조",
       "bias": "단기 변동성 확대 속 장기 강세 유지 — 사이클 저점($57,000)이 이미 형성됐다는 판단 하에, 향후 1~1.5개월 레인지 후 $80,000 회복을 기본 시나리오로 제시. 이번 회차 재탐색에서도 순수 신규 공개 코멘트는 확인되지 않아 기존 뷰(7/23 cryptonews.net 라운드업) 유지",
-      "btc": "이번 회차(2026-07-26 12:06Z) 재탐색에서도 순수 신규 공개 코멘트는 확인되지 않아 7/23 cryptonews.net 애널리스트 라운드업의 기존 뷰를 그대로 유지한다 — 'BTC 사이클 저점은 $57,000에서 이미 형성됐다'는 판단, '향후 1~1.5개월간 레인지 흐름을 거친 뒤 $80,000 회복'이라는 시간축·목표가, 그리고 '레인지 고점 위 유동성 스윕 → 거짓 돌파 확인 → $62,000 아래 재차 하락 → higher-low 형성'이라는 대안 시나리오가 병존하는 구도가 유지된다. 재탐색 과정에서 2026-03-26자 bingx.com 기사('$66,900·$65,900~$64,700 핵심 구간, $64,700 붕괴 시 $50,000대 하락 가능')가 재검색됐으나 이는 4개월 이상 이전 시점의 코멘트로 판단해 채택하지 않는다(당시 BTC $70,646). 별도로 dailyhodl/thestreet 재확인 뷰(2026-06-24, 07-23)에서는 '$100,000 도달은 유력하나 올해는 아니며, 바닥 형성에는 2027년 2~3분기까지 시간이 걸린다'는 장기 신중론도 유지 중이다.",
+      "btc": "이번 회차(2026-07-27 00:03Z) 재탐색에서도 순수 신규 공개 코멘트는 확인되지 않아 7/23 cryptonews.net 애널리스트 라운드업의 기존 뷰를 그대로 유지한다 — 'BTC 사이클 저점은 $57,000에서 이미 형성됐다'는 판단, '향후 1~1.5개월간 레인지 흐름을 거친 뒤 $80,000 회복'이라는 시간축·목표가, 그리고 '레인지 고점 위 유동성 스윕 → 거짓 돌파 확인 → $62,000 아래 재차 하락 → higher-low 형성'이라는 대안 시나리오가 병존하는 구도가 유지된다. 별도로 dailyhodl/thestreet 재확인 뷰(2026-06-24, 07-23)에서는 '$100,000 도달은 유력하나 올해는 아니며, 바닥 형성에는 2027년 2~3분기까지 시간이 걸린다'는 장기 신중론도 유지 중이다.",
       "eth": "ETH에 대한 최근 구체적 공개 뷰 부족(공개 뷰 부족).",
       "market": "감소하는 사이클(체감 수익·얕아지는 조정) 패턴 논리와 장기 축적 관점 유지. 이번 회차 신규 코멘트는 확인되지 않았다.",
       "asof": "2026-07-23",
-      "source": "cryptonews.net(2026-07-23) 'Will Bitcoin price hold $65K support as oil surge revives inflation fears?'(1~1.5개월 레인지 후 $80,000 회복 언급); Benzinga(2026-07-22, 7/24 재인용) 'Bitcoin, Ethereum, XRP, Dogecoin Hold Ground as CLARITY Act Seen Unlocking the Next Wave of Adoption' / 'Bitcoin Slips To $64,000 As ETH, XRP, DOGE Tumble In Macro Sell-Off'(유동성 스윕·higher-low 시나리오 재인용); dailyhodl.com/thestreet.com(2026-06-24, 2026-07-23 재확인) — 2026-07-26 12:06Z 재탐색 결과 순수 신규 공개 코멘트 미확인, 기존 뷰 유지(공개 뷰 부족)"
+      "source": "cryptonews.net(2026-07-23) 'Will Bitcoin price hold $65K support as oil surge revives inflation fears?'(1~1.5개월 레인지 후 $80,000 회복 언급); Benzinga(2026-07-22, 7/24 재인용) 'Bitcoin, Ethereum, XRP, Dogecoin Hold Ground as CLARITY Act Seen Unlocking the Next Wave of Adoption' / 'Bitcoin Slips To $64,000 As ETH, XRP, DOGE Tumble In Macro Sell-Off'(유동성 스윕·higher-low 시나리오 재인용); dailyhodl.com/thestreet.com(2026-06-24, 2026-07-23 재확인) — 2026-07-27 00:03Z 재탐색 결과 순수 신규 공개 코멘트 미확인, 기존 뷰 유지(공개 뷰 부족)"
     },
     {
       "name": "Benjamin Cowen",
       "handle": "@intocryptoverse",
       "confidence": "상(계량)",
       "style": "리스크 메트릭·계량 사이클",
-      "bias": "경계(7월 반등을 2018년 패턴과 비교해 일시적으로 진단, 2~4주 내 되돌림 전망, 사이클 저점 시점을 11월 말로 다소 후행 제시) — 신규 코멘트(2026-07-24)로 업데이트",
-      "btc": "신규 코멘트(Benzinga, 2026-07-24 'Bitcoin's 9% July Rally May Not Last as 2026 Mirrors 2018: Is a September Drop Coming?')를 반영해 뷰를 갱신한다 — BTC가 '약세장 저항 밴드(위)와 200주 이동평균(아래) 사이를 핑퐁'하는 국면이라 진단하며, 2018년과 거의 동일한 패턴(2월 저점 → 6월 말 재시험 → 7월 역추세 반등)이 반복 중이라고 본다. 다만 2026년 변동폭은 2018년(약 40%)보다 좁은 약 20% 레인지라는 점을 차이로 지적. 7월 9% 반등은 2~4주 내 힘을 잃고 8~9월에 되돌려질 가능성이 높다고 전망하며, 관건 변수는 S&P500 — 2018·2022년처럼 8~9월 주식시장이 고점을 찍고 10~20% 조정에 들어가면 BTC도 동반 하락한다는 것이 기본 시나리오다. 사이클 저점 시점은 (기존 7/16 메모의 '9월 말~10월 초'에서) '11월 말'로 다소 후행 제시했으며, 이는 자신의 ITC 컨퍼런스가 11월 말 예정된 점과도 결부해 언급됐다. 연말까지 하락 없이 버틴다면 이를 '시간 기준 항복(time-based capitulation)'으로 해석해 신규 강세장 진입 쪽으로 판단을 재조정하겠다는 조건부 시나리오도 제시했다. 50주 SMA($86,500) 상회를 약세론 무효화 레벨로, 실현가(약 $53,000) 하회를 저점 확정 근거로 삼는 기존 프레임은 유지.",
+      "bias": "경계(7월 반등을 2018년 패턴과 비교해 일시적으로 진단, 2~4주 내 되돌림 전망, 사이클 저점 시점을 11월 말로 다소 후행 제시) — 7/24 코멘트가 이번 회차에도 가장 최신 뷰로 유지",
+      "btc": "7/24 코멘트(Benzinga 'Bitcoin's 9% July Rally May Not Last as 2026 Mirrors 2018: Is a September Drop Coming?')를 이번 회차(7/27 00:03Z 재탐색)에도 그대로 유지한다 — BTC가 '약세장 저항 밴드(위)와 200주 이동평균(아래) 사이를 핑퐁'하는 국면이라 진단하며, 2018년과 거의 동일한 패턴(2월 저점 → 6월 말 재시험 → 7월 역추세 반등)이 반복 중이라고 본다. 다만 2026년 변동폭은 2018년(약 40%)보다 좁은 약 20% 레인지라는 점을 차이로 지적. 7월 9% 반등은 2~4주 내 힘을 잃고 8~9월에 되돌려질 가능성이 높다고 전망하며, 관건 변수는 S&P500 — 2018·2022년처럼 8~9월 주식시장이 고점을 찍고 10~20% 조정에 들어가면 BTC도 동반 하락한다는 것이 기본 시나리오다. 사이클 저점 시점은 '11월 말'로 다소 후행 제시했으며, 이는 자신의 ITC 컨퍼런스가 11월 말 예정된 점과도 결부해 언급됐다. 연말까지 하락 없이 버틴다면 이를 '시간 기준 항복(time-based capitulation)'으로 해석해 신규 강세장 진입 쪽으로 판단을 재조정하겠다는 조건부 시나리오도 제시했다. 50주 SMA($86,500) 상회를 약세론 무효화 레벨로, 실현가(약 $53,000) 하회를 저점 확정 근거로 삼는 기존 프레임은 유지. 이번 회차에도 FOMC(7/28~29)를 앞두고 신규 후속 코멘트는 확인되지 않았다(다음 회차 재확인 필요).",
       "eth": "ETH는 2026년 신고가 갱신이 어렵다고 보며, 반등해도 '불트랩'으로 재차 되밀릴 수 있다는 기존 경계 뷰 유지(ETH 단독 신규 업데이트는 확인되지 않음).",
-      "market": "제한적 유동성·후기 사이클 진단 유지. 신규 코멘트에서는 특히 S&P500을 'BTC가 기다리는 핵심 변수'로 지목 — 2018·2022년 모두 8~9월 주식시장 고점 후 10~20% 조정이 있었다는 패턴을 근거로 제시했다.",
+      "market": "제한적 유동성·후기 사이클 진단 유지. S&P500을 'BTC가 기다리는 핵심 변수'로 지목 — 2018·2022년 모두 8~9월 주식시장 고점 후 10~20% 조정이 있었다는 패턴을 근거로 제시. FOMC(7/28~29)가 이틀 앞으로 다가온 만큼 다음 회차에서 관련 신규 코멘트 발생 가능성 유의.",
       "asof": "2026-07-24",
-      "source": "Benzinga(2026-07-24) 'Bitcoin's 9% July Rally May Not Last as 2026 Mirrors 2018: Is a September Drop Coming?' — 2026-07-26 12:06Z 재탐색으로 신규 확인, 기존 7/16 'Bitcoin Cycle Memo - July 2026'(benjamincowen.com) 대비 사이클 저점 시점 후행 업데이트"
+      "source": "Benzinga(2026-07-24) 'Bitcoin's 9% July Rally May Not Last as 2026 Mirrors 2018: Is a September Drop Coming?' — 2026-07-27 00:03Z 재탐색 결과에도 신규 공개 코멘트 미확인, 기존 7/24 뷰 유지(기존 7/16 'Bitcoin Cycle Memo - July 2026'(benjamincowen.com) 대비 사이클 저점 시점 후행 업데이트는 유지)"
     },
     {
       "name": "Rekt Capital",
@@ -44,35 +44,35 @@
       "confidence": "중상",
       "style": "반감기 사이클",
       "bias": "경계(아직 바닥 아님, 7월 후반 반등 후 8월 되돌림 — 2026년 베어마켓을 약 70% 진행된 것으로 정량화, 2027년을 바닥 형성 국면으로 지목)",
-      "btc": "7/13 뉴스레터 'Bitcoin – Limited Relief Before Extended Downside?'(newsletter.rektcapital.co)의 기존 뷰(7월 후반 서머 릴리프 랠리 → 8월 되돌림 → 4분기 전형적 베어마켓 바닥)를 유지하며, cryptonews.net(7/20) '2026년 베어마켓 약 70% 진행, 2027년 바닥 형성 국면' 진단도 그대로 유지한다. 이번 회차(2026-07-26 12:06Z) 재탐색에서도 순수 신규 공개 코멘트가 확인되지 않았다 — newsletter.rektcapital.co/july-uptrend/ 원문은 이번 회차에도 rektcapital.co 랜딩페이지로 301 리디렉션돼 본문 확인이 계속 불가했다(공개 뷰 부족 지속).",
+      "btc": "7/13 뉴스레터 'Bitcoin – Limited Relief Before Extended Downside?'(newsletter.rektcapital.co)의 기존 뷰(7월 후반 서머 릴리프 랠리 → 8월 되돌림 → 4분기 전형적 베어마켓 바닥)를 유지하며, cryptonews.net(7/20) '2026년 베어마켓 약 70% 진행, 2027년 바닥 형성 국면' 진단도 그대로 유지한다. 이번 회차(2026-07-27 00:03Z) 재탐색에서도 순수 신규 공개 코멘트가 확인되지 않았다 — newsletter.rektcapital.co/july-uptrend/ 원문은 이번 회차에도 rektcapital.co 랜딩페이지로 301 리디렉션돼 본문 확인이 계속 불가했다(공개 뷰 부족 지속).",
       "eth": "ETH에 대한 최근 구체적 공개 뷰 부족(공개 뷰 부족).",
       "market": "반감기 4년 주기 프레임 유지, 사이클 후반 국면 진단도 유지. 핵심은 '여름 반등은 실재하나 진짜 바닥은 아직 아니다'라는 시간축 — 이번 회차 신규 코멘트는 확인되지 않았다.",
       "asof": "2026-07-20",
-      "source": "newsletter.rektcapital.co(2026-07-13) 'Bitcoin – Limited Relief Before Extended Downside?'; cryptonews.net(2026-07-20) 'Trader maintains $67K BTC price target: Five things to know in Bitcoin this week'(베어마켓 70% 진행·2027 바닥 국면 재인용 보도) — 2026-07-26 12:06Z 재탐색 결과 'Bitcoin - The July Uptrend' 원문은 랜딩페이지 301 리디렉션으로 여전히 본문 미확인(공개 뷰 부족)"
+      "source": "newsletter.rektcapital.co(2026-07-13) 'Bitcoin – Limited Relief Before Extended Downside?'; cryptonews.net(2026-07-20) 'Trader maintains $67K BTC price target: Five things to know in Bitcoin this week'(베어마켓 70% 진행·2027 바닥 국면 재인용 보도) — 2026-07-27 00:03Z 재탐색 결과 'Bitcoin - The July Uptrend' 원문은 랜딩페이지 301 리디렉션으로 여전히 본문 미확인(공개 뷰 부족)"
     },
     {
       "name": "TechDev",
       "handle": "@TechDev_52",
       "confidence": "중상",
       "style": "DXY/글로벌 유동성 상관",
-      "bias": "강세 전환(6/28자 '중립·이중바닥' 뷰에서 명확한 회복 국면 진입으로 상향) — 3일봉 슈퍼트렌드 그린 플립 확정을 확신 상향의 트리거로 제시, 7/26 새벽 BTC의 $64,502.54(소폭 반등)로도 그린 플립 확정($71,400)까지는 여전히 거리가 있는 모습",
-      "btc": "뉴스레터 최신호 Issue #98(2026-07-19 발행, 'The Bottom Holds, the Signal Waits, and the Gems Get a Score')의 뷰를 유지한다 — 2026-07-26 12:06Z 재탐색 결과(techdev52.com/archive 페이지 직접 확인) 후속호(Issue #99 등)는 여전히 확인되지 않음(공개 뷰 부족, 다음 회차 확인 필요). 핵심 레벨은 $59,000(최근 저점)·$64,000(박스 저항)·$71,400(3일봉 슈퍼트렌드 그린 플립 레벨). 목표는 단기 $70,000대 초반, 이후 9~10월 $94,000~98,000, 12~1월 $115,000~125,000, 2027년 중반 $140,000~160,000 로드맵 유지. 3일봉 슈퍼트렌드가 BTC·ETH 양쪽에서 동시에 그린으로 전환되는 '단일 그린 플립' 확인 전까지는 확신을 '확정(confirmed)' 단계로 올리지 않고 대기 중이라는 기존 입장도 유지.",
-      "eth": "핵심 레벨은 $1,505(6월 저점)·$1,850(회복 완료)·$2,020(3일봉 슈퍼트렌드 그린 플립 레벨). 목표는 9~10월 $2,800~3,400, 12~1월 $4,500~5,000, 2027년 5~7월 $6,000~6,500 유지. ETH가 7/26 새벽 $1,880.63로 소폭 반등했으나 $1,900~1,920 저항대 아래에 머물러 그린 플립($2,020) 확정은 여전히 지연되고 있음을 시사하나, 본인의 신규 업데이트는 확인되지 않았다.",
+      "bias": "강세 전환(6/28자 '중립·이중바닥' 뷰에서 명확한 회복 국면 진입으로 상향) — 3일봉 슈퍼트렌드 그린 플립 확정을 확신 상향의 트리거로 제시, BTC·ETH 최신 가격 정체로 그린 플립 확정($71,400/$2,020)까지는 여전히 거리가 있는 모습",
+      "btc": "뉴스레터 최신호 Issue #98(2026-07-19 발행, 'The Bottom Holds, the Signal Waits, and the Gems Get a Score')의 뷰를 유지한다 — 2026-07-27 00:03Z 재탐색 결과(techdev52.com/archive 페이지 직접 확인) 후속호(Issue #99 등)는 여전히 확인되지 않음(공개 뷰 부족, 다음 회차 확인 필요). 핵심 레벨은 $59,000(최근 저점)·$64,000(박스 저항)·$71,400(3일봉 슈퍼트렌드 그린 플립 레벨). 목표는 단기 $70,000대 초반, 이후 9~10월 $94,000~98,000, 12~1월 $115,000~125,000, 2027년 중반 $140,000~160,000 로드맵 유지. 3일봉 슈퍼트렌드가 BTC·ETH 양쪽에서 동시에 그린으로 전환되는 '단일 그린 플립' 확인 전까지는 확신을 '확정(confirmed)' 단계로 올리지 않고 대기 중이라는 기존 입장도 유지.",
+      "eth": "핵심 레벨은 $1,505(6월 저점)·$1,850(회복 완료)·$2,020(3일봉 슈퍼트렌드 그린 플립 레벨). 목표는 9~10월 $2,800~3,400, 12~1월 $4,500~5,000, 2027년 5~7월 $6,000~6,500 유지. ETH가 $1,880.63 수준에서 정체하며 $1,900~1,920 저항대 아래에 머물러 그린 플립($2,020) 확정은 여전히 지연되고 있음을 시사하나, 본인의 신규 업데이트는 확인되지 않았다.",
       "market": "BTC-DXY 역상관 진단 프레임은 유지하되, #98호에서는 구리/금 비율·중국 신용 데이터 기반 매크로 포지셔닝('2020년 하반기 유사')으로 논지를 확장한 상태를 유지. 이번 회차 신규 코멘트는 확인되지 않았다.",
       "asof": "2026-07-19",
-      "source": "TechDev 뉴스레터 techdev52.com(Issue #98, 2026-07-19 'The Bottom Holds, the Signal Waits, and the Gems Get a Score') — 2026-07-26 12:06Z 재탐색(아카이브 페이지 직접 확인) 결과 후속호 미확인, 기존 뷰 유지(공개 뷰 부족)"
+      "source": "TechDev 뉴스레터 techdev52.com(Issue #98, 2026-07-19 'The Bottom Holds, the Signal Waits, and the Gems Get a Score') — 2026-07-27 00:03Z 재탐색(아카이브 페이지 직접 확인) 결과 후속호 미확인, 기존 뷰 유지(공개 뷰 부족)"
     },
     {
       "name": "Doctor Profit",
       "handle": "@DrProfitCrypto",
       "confidence": "상(유료 할인)",
       "style": "차트·심리 (스윙)",
-      "bias": "하락 후 반등 준비(단기 저점 매수 진행 중) — '10월 바닥 컨센서스는 오히려 실현되기 어렵다'는 반박 뷰를 구체적 촉매와 함께 유지, 7/26 새벽 소폭 반등은 자신의 $54,000~$64,000 축적 구간 내 흐름으로 해석될 여지",
-      "btc": "신규 KuCoin 기사(2026-07-20 발행, 'Doctor Profit Predicts Bitcoin Won't Fall Below $50,000, Anticipates October FOMO Rally')와 KuCoin(2026-07-21, '숏 포지션 전량 청산·현물 재진입')의 기존 뷰를 유지한다 — 핵심 주장은 '$50,000 아래로 내려갈 가능성이 낮다'며 4년 사이클 약세론에 회의적이라는 것. 약 $64,000에서 비트코인 현물을 매수했고 $54,000~$64,000 구간에서 일일 자본의 5%씩 축적 중이며, 포트폴리오는 BTC:ETH 4:1 비중 유지. 10월 'FOMO 랠리' 촉발 요인으로 ① BlackRock 토큰화 플랫폼 10월 출시, ② CLARITY Act 통과 예상(8/10 데드라인)을 지목. 이번 회차(2026-07-26 12:06Z) 재탐색에서도 순수 신규 공개 코멘트는 확인되지 않아 7/20~21 뷰를 그대로 유지한다.",
+      "bias": "하락 후 반등 준비(단기 저점 매수 진행 중) — '10월 바닥 컨센서스는 오히려 실현되기 어렵다'는 반박 뷰를 구체적 촉매와 함께 유지, 최신 가격 정체는 자신의 $54,000~$64,000 축적 구간 내 흐름으로 해석될 여지",
+      "btc": "신규 KuCoin 기사(2026-07-20 발행, 'Doctor Profit Predicts Bitcoin Won't Fall Below $50,000, Anticipates October FOMO Rally')와 KuCoin(2026-07-21, '숏 포지션 전량 청산·현물 재진입')의 기존 뷰를 유지한다 — 핵심 주장은 '$50,000 아래로 내려갈 가능성이 낮다'며 4년 사이클 약세론에 회의적이라는 것. 약 $64,000에서 비트코인 현물을 매수했고 $54,000~$64,000 구간에서 일일 자본의 5%씩 축적 중이며, 포트폴리오는 BTC:ETH 4:1 비중 유지. 10월 'FOMO 랠리' 촉발 요인으로 ① BlackRock 토큰화 플랫폼 10월 출시, ② CLARITY Act 통과 예상(8/10 데드라인)을 지목. 이번 회차(2026-07-27 00:03Z) 재탐색에서도 순수 신규 공개 코멘트는 확인되지 않아 7/20~21 뷰를 그대로 유지한다.",
       "eth": "ETH 단독 공개 뷰는 부족하나, BTC:ETH 4:1 포트폴리오 비중 유지 언급으로 ETH도 축적 대상에 포함됨이 확인됨(KuCoin 2026-07-20).",
       "market": "S&P500 숏 포지션은 유지 중이라는 기존 확인 유지 — 크립토와 전통자산에 대한 견해가 분리돼 있음. 크립토에 대해서는 '컨센서스가 된 하락 시나리오(10월 바닥)는 실현 가능성이 낮다'는 역발상 진단을 유지하며 BlackRock 토큰화 플랫폼·CLARITY Act 통과라는 구체적 촉매를 제시했다.",
       "asof": "2026-07-21",
-      "source": "KuCoin(2026-07-20) 'Doctor Profit Predicts Bitcoin Won't Fall Below $50,000, Anticipates October FOMO Rally'; KuCoin(2026-07-21) 'Doctor Profit closes all crypto short positions and re-enters the Bitcoin spot market'; Benzinga(2026-07-20) ''Everyone I Know Wants to Buy in October,' Analyst Warns' — 2026-07-26 12:06Z 재탐색 결과 신규 공개 코멘트 미확인(기존 7/20~21 뷰 유지)"
+      "source": "KuCoin(2026-07-20) 'Doctor Profit Predicts Bitcoin Won't Fall Below $50,000, Anticipates October FOMO Rally'; KuCoin(2026-07-21) 'Doctor Profit closes all crypto short positions and re-enters the Bitcoin spot market'; Benzinga(2026-07-20) ''Everyone I Know Wants to Buy in October,' Analyst Warns' — 2026-07-27 00:03Z 재탐색 결과 신규 공개 코멘트 미확인(기존 7/20~21 뷰 유지)"
     }
   ]
 }
