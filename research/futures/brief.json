@@ -1,138 +1,188 @@
 {
-  "ts": "2026-07-26T22:28:00Z",
-  "market": "직전 회차(20:28Z) 대비 2시간 경과. 시장 전반: 웹서치(Coinbase Research, 7월) 기준 최근 며칠간 perp·term futures·옵션 전반에서 OI는 하락하는데 현물·perp·옵션 거래량은 오히려 늘어 '레버리지 청산/디레버리징' 신호로 해석됨 — BTC funding은 양전 유지하되 월말로 갈수록 완화, ETH funding은 마이너스로 전환(롱 임펄스 약화). 25델타 스큐도 다운사이드 보호 쪽으로 악화 — 시장은 여전히 메이저 주도(majors-led)이며 투기 수요는 확산이 아닌 위축 국면. 이번 회차 핵심 변화: (1) **BANK(Lorenzo Protocol) 정점 대비 감속** — 직전 회차 Binance/Bybit/Aster 3거래소가 17.7~17.8%대에서 완전 수렴했으나, 이번 회차 Binance 17.68%→**15.368%**, Bybit 17.83%→**14.645%**, Aster(DEX) 17.71%→**15.42%**로 셋 다 동반 후퇴 — 여전히 두 자릿수 상승이나 '재가속'에서 '정점 후 되돌림'으로 국면 전환. 웹서치(Tapbit/BingX/CoinGecko)는 7/20 저점 대비 100%+ 급등 후 7/26 기준 -7.48%(다른 시점) vs +11.96%(24h) 등 스니펫 간 시점 불일치가 있어 변동성이 여전히 큼을 시사. (2) **AKE·BARD 두 종목 모두 Binance 커버리지 복원** — 직전 회차 신규 커버리지 갭으로 표기됐던 AKE(Bybit·Aster만 확인)와 BARD(OKX만 확인)가 이번 회차 둘 다 Binance 데이터가 재확인됨. AKE는 Binance 거래량 $196.98M으로 Bybit($65.67M)보다 훨씬 커 실제로는 Binance가 주력 거래소였던 것으로 드러남(직전 회차는 상위목록 컷오프 문제였을 가능성). BARD도 Binance -1.331%/funding -0.122로 OKX(-1.333%/-0.126)와 거의 동일 — 극단적 음수 funding이 두 거래소에서 교차 확인됨. (3) **BEAT 다이버전스 해소** — 직전 회차 perp +6.39%인데 funding -0.048로 심화되던 괴리가 이번 회차 funding **-0.048→+0.005**로 플러스 전환, 가격도 +6.39%→+2.838%로 감속 — 다이버전스가 정상화 쪽으로 수렴. 직전 회차의 스팟/perp 방향 불일치(스팟 -10.01%)는 이번 회차 재확인 안 됨(스팟 재조회 미실시, 정직 표기). (4) **CASHCAT funding 이례적 괴리 축소** — 직전 회차 Hyperliquid funding +0.001 vs Aster +0.027로 27배 차이 나던 것이 이번 회차 Hyperliquid **+0.019** vs Aster **+0.018**로 거의 일치 — 오라클-마크가격 괴리가 완화되는 신호. 가격 낙폭은 -16.583%→-15.938%로 소폭 완화 지속. (5) **ANSEM 재차 반전(음→양)** — 직전 회차 -5.97%(양→음 반전)였던 것이 이번 회차 다시 **+4.334%**로 방향이 또 바뀜 — 씬 유동성 기반 휩쏘(whipsaw) 패턴 확인, 방향성 신뢰도 낮음. (6) **CAP 방향 반전(음→양)** — 직전 -2.57%에서 이번 **+2.805%**로 전환, 여전히 낮은 레인지. (7) **KAITO 재상승** — 18.906%→**19.918%**로 20% 근접권에 다시 접근, 과열 지속. (8) **ALLO 낙폭 지속하나 회전율 이상치 완만히 완화** — Binance -10.085%(직전 -8.80%보다 더 깊어짐), OKX -9.537%(직전 -10.766%보다 소폭 회복)로 두 거래소가 엇갈리는 가운데 OKX 회전율은 약 272배→약 **252배**로 소폭 완화되나 여전히 극단적. (9) **1000SHIB·1000PEPE 밈 로테이션 추가 강화** — 1000PEPE Binance +6.999%·Bybit +7.122%(직전 각 5.21%·5.39%에서 상승), 1000SHIB Binance +8.511%·Aster +8.073%(직전 6.98%·8.01%)로 둘 다 더 뜨거워짐. (10) **BOME 소폭 감속하나 여전히 강세 지속** — OKX +17.42%→**+16.534%**로 소폭 둔화, Binance는 6회 연속 미확인(패턴 지속). (11) **GMX는 이번 회차 API 조회 성공(직전 429 실패에서 회복)** — 여전히 BTC/ETH만 존재, 알트 부재 패턴 재확인. (12) **dYdX는 이번 회차도 2회 시도 모두 HTTP 429**로 데이터 확보 실패 — 재확인 실패 지속. (13) GRAM·HYPE·ASTER-USDT는 큰 변화 없이 직전 수준 유지(각각 flat/steady/native-basis-anomaly-stable).",
+  "ts": "2026-07-27T00:27:00Z",
+  "market": "직전 회차(22:28Z) 대비 약 2시간 경과, 날짜가 7/26→7/27로 바뀜. 시장 전반: 웹서치(Gate Wiki 등) 기준 2026년 중반 파생시장은 기관 참여 확대로 총 OI $180~200B 대·BTC funding +0.51%·ETH funding +0.56%(양전 유지)로 제시되는 소스도 있어, 직전 회차 인용한 Coinbase Research의 'OI 하락+디레버리징' 서사와는 결이 다르다(소스별 시점·표본 차이로 추정, 두 서사 모두 확정치 아님 — 정직 표기). 이번 회차 핵심 변화: (1) **AAVE 신규 편입 — 4개 이상 거래소 동시 강세(+9.3~10.3%)**: Binance +9.70%·Bybit +10.265%·Aster +9.923%·Hyperliquid +9.335%·dYdX +9.26%로 사실상 전 거래소 동조 랠리. 웹서치 확인: Stable Vaults 출시(7/9)·Aavenomics 3.0 바이백·V4 아발란체 확장·이더리움 신규 지갑 생성 5년래 최대 등 펀더멘털 촉매 다수 확인 — 통상적인 저시총 급등과 달리 온체인 성장 동반. (2) **ALLO 낙폭 급격히 심화** — 직전 회차 -9.73%(엇갈림)에서 이번 회차 Binance -16.44%·OKX -16.75%·Bybit(ALLORA) -17.617%(funding -0.059)·Aster -17.074%로 4개 거래소 전부 두 자릿수 후반대 낙폭으로 악화. 웹서치(coingabbar) 확인: 7/24 ATH $0.546 형성 후 조정, 유통량 20~24%에 불과해 팀/백커 언락 오버행 우려 지속. (3) **BANK(Lorenzo) 감속 지속·심화** — Binance 15.368%→**4.04%**로 대폭 둔화(2회차 연속 감속), Bybit 14.645%→**6.039%**, Aster 15.42%→**5.74%** — 정점(17%대) 대비 셋 다 큰 폭 후퇴, 웹서치(bingx)에서 과매수 RSI·반전 리스크 언급과 부합. (4) **1000PEPE·1000SHIB 밈 로테이션 3회 연속 재가속** — 1000PEPE Binance 6.999%→**8.41%**·Bybit 7.122%→**8.491%**, 1000SHIB Binance 8.511%→**9.39%** — 지속 강화. (5) **KAITO 소폭 조정하나 여전히 과열권** — 19.918%→**16.632%**로 다소 감속했으나 funding은 -0.003→**-0.007**로 오히려 더 마이너스 심화(가격 상승 중 funding 음전 심화는 이례적, 오라클/포지셔닝 왜곡 가능성 — 주의). 웹서치 확인: 7/20 토큰 언락(공급 4.3%)·7/25 Kaito Studio 전환 촉매 혼재. (6) **CASHCAT funding 수렴 지속·낙폭 완만히 축소** — Hyperliquid 0.019→**0.005**, Aster 0.018→**0.012**로 둘 다 낮아지며 계속 수렴, 가격도 -15.97%→**-13.9%(HL)/-15.07%(Aster)**로 소폭 완화. (7) **BARD 극단적 음수 funding 지속** — Binance -0.122·OKX -0.129로 직전과 거의 동일 수준 유지, 가격은 거의 flat(0.08~0.4%). (8) **CAP 재가속** — +2.805%→**+6.165%**로 상승폭 확대. (9) **BEAT 정상화 유지** — funding 소폭 플러스(0.005/0.001), 가격 +5.3~6.1%로 완만한 정상 레인지. (10) **BOME Binance 미확인 7회 연속** — OKX +17.42%→**+17.621%**, Aster +17.77%, Hyperliquid +16.34%로 강세 지속되나 Binance 상위목록엔 여전히 등장하지 않음. (11) **ANSEM 휩쏘 이후 냉각** — +4.334%→**+0.459%**로 거의 flat 전환, 씬 유동성 지속. (12) **AKE 데이터 갭 역전** — Binance는 이번 회차도 확인(vol $193.72M, funding -0.03, chg +4.33%)되나 Bybit·Aster(AKE-USDT) 양쪽에서 이번 회차 상위목록 미노출 — 직전 회차와 반대로 이번엔 Binance만 확인되는 상황, 재확인 필요. (13) **GMX 3회 연속 BTC/ETH 전용 확인** — 알트 완전 부재 패턴 재확인. (14) **dYdX(dydx_chain) 이번 회차 API 조회 성공**(직전 2회 429에서 회복)했으나 거래량이 BTC $5.2M·ETH $2.27M 등 극히 낮아 CEX 대비 규모가 작음 — 이 CoinGecko 피드가 전체 dYdX 유동성을 온전히 반영하는지 불확실, 참고용으로만 사용.",
   "cex": [
     {
+      "symbol": "AAVE (Aave)",
+      "venue": "Binance/Bybit/Aster (+ Hyperliquid·dYdX는 DEX 목록 별도 반영)",
+      "vol24_usd": 125465061,
+      "oi_usd": 110901967,
+      "funding": 0.01,
+      "chg24": 9.70,
+      "why": "신규 편입 — Binance +9.70%·Bybit +10.265%·Aster +9.923%·Hyperliquid +9.335%·dYdX +9.26%로 5개 거래소 동시 강세. 웹서치 확인: Stable Vaults 출시(7/9)·Aavenomics 3.0 바이백·V4 아발란체 확장 등 펀더멘털 촉매 다수, 온체인 신규지갑 생성 5년래 최대치 동반.",
+      "tag": "new-entry (catalyst-driven-major-alt, cross-venue-consensus)"
+    },
+    {
+      "symbol": "ALLO (Allora Network)",
+      "venue": "Binance/OKX/Bybit/Aster",
+      "vol24_usd": 201101376,
+      "oi_usd": 17956263,
+      "funding": -0.034,
+      "chg24": -16.75,
+      "why": "낙폭 급격히 심화 — 직전 -9.73%(엇갈림)에서 Binance -16.44%·OKX -16.75%·Bybit(ALLORA) -17.617%·Aster -17.074%로 4개 거래소 전부 두 자릿수 후반 낙폭 전환. 웹서치 확인: 7/24 ATH $0.546 이후 조정, 유통량 20~24%로 팀/백커 언락 오버행 우려 지속.",
+      "tag": "decline-intensifying (post-ATH-breakdown, unlock-overhang)"
+    },
+    {
       "symbol": "BANK (Lorenzo Protocol)",
-      "venue": "Binance/Bybit (OKX·Aster는 DEX 목록 별도 반영)",
-      "vol24_usd": 852157158,
-      "oi_usd": 106467811,
+      "venue": "Binance/Bybit (Aster는 DEX 목록 별도 반영)",
+      "vol24_usd": 825626203,
+      "oi_usd": 115412479,
       "funding": 0.005,
-      "chg24": 15.28,
-      "why": "직전 회차 3거래소 완전 동조 재가속(17.7%대)에서 이번 회차 Binance 17.68%→15.368%·Bybit 17.83%→14.645%·Aster(DEX) 17.71%→15.42%로 동반 후퇴 — '재가속'에서 '정점 후 되돌림'으로 국면 전환. 웹서치 스니펫 간 7/26 기준 -7.48%(일부)/+11.96%(24h) 시점 불일치로 변동성 지속 시사.",
-      "tag": "decelerating-from-peak (pullback-post-ATH)"
+      "chg24": 4.04,
+      "why": "정점(17%대) 대비 감속 2회차 연속 심화 — Binance 15.368%→4.04%, Bybit 14.645%→6.039%, Aster 15.42%→5.74%로 셋 다 대폭 후퇴. 웹서치(bingx)에서 과매수 RSI·반전 리스크 지적과 부합.",
+      "tag": "decelerating-further (post-peak-cooldown)"
     },
     {
       "symbol": "1000PEPE (Pepe)",
       "venue": "Binance/Bybit/Aster",
-      "vol24_usd": 406011229,
-      "oi_usd": 105546142,
+      "vol24_usd": 424871236,
+      "oi_usd": 107312143,
       "funding": 0.01,
-      "chg24": 7.03,
-      "why": "추가 재가속 — Binance +5.21%→+6.999%, Bybit +5.39%→+7.122%로 둘 다 상승, 1000SHIB와 동조하며 밈 로테이션 강화.",
-      "tag": "reaccelerating-further (meme-rotation-strengthening)"
+      "chg24": 8.41,
+      "why": "3회 연속 재가속 — Binance 6.999%→8.41%, Bybit 7.122%→8.491%로 둘 다 추가 상승, 1000SHIB와 동조하며 밈 로테이션 강화 지속.",
+      "tag": "reaccelerating-3rd-round (meme-rotation-strengthening)"
     },
     {
       "symbol": "1000SHIB (Shiba Inu)",
       "venue": "Binance/Aster",
-      "vol24_usd": 639715693,
-      "oi_usd": 39306286,
-      "funding": 0.002,
-      "chg24": 8.51,
-      "why": "추가 재가속 — Binance +6.98%→+8.511%, Aster +8.01%→+8.073%로 둘 다 상승세 유지, 1000PEPE와 함께 밈 로테이션 강화 지속.",
-      "tag": "reaccelerating-further (meme-rotation-strengthening)"
+      "vol24_usd": 640036538,
+      "oi_usd": 39066952,
+      "funding": -0.003,
+      "chg24": 9.39,
+      "why": "3회 연속 재가속 — Binance 8.511%→9.39%로 추가 상승. 이번 회차 Bybit 상위목록엔 미노출(재확인 필요).",
+      "tag": "reaccelerating-3rd-round (meme-rotation-strengthening)"
     },
     {
-      "symbol": "ALLO (Allora Network)",
-      "venue": "Binance/OKX",
-      "vol24_usd": 204355903,
-      "oi_usd": 18211797,
-      "funding": -0.034,
-      "chg24": -9.73,
-      "why": "낙폭 지속하나 거래소별 엇갈림 — Binance -8.80%→-10.085%(더 깊어짐), OKX -10.766%→-9.537%(소폭 회복). OKX 회전율 이상치는 약 272배→약 252배로 소폭 완화되나 여전히 극단적(post-ATH 되돌림 국면 지속).",
-      "tag": "decline-continuing (turnover-anomaly-easing-slightly)"
+      "symbol": "KAITO (Kaito)",
+      "venue": "OKX 미확인, Binance/Bybit 미확인 (DEX Hyperliquid가 주력, 아래 dex 항목 참조)",
+      "vol24_usd": 0,
+      "oi_usd": 0,
+      "funding": 0.0,
+      "chg24": 0.0,
+      "why": "KAITO는 이번 회차 CEX 상위목록(Binance/Bybit/OKX)에서 확인되지 않음 — Hyperliquid(DEX)가 주력 거래소로 확인되어 dex 리스트에만 반영(중복 방지, CEX 항목은 자리만 유지·값은 0으로 표기).",
+      "tag": "cex-unconfirmed (see-dex-list)"
     },
     {
       "symbol": "AKE (Akedo)",
-      "venue": "Binance/Bybit",
-      "vol24_usd": 262646080,
-      "oi_usd": 70003138,
-      "funding": -0.012,
-      "chg24": 0.80,
-      "why": "직전 회차 커버리지 갭이던 Binance 데이터가 이번 회차 복원 — $196.98M 거래량으로 Bybit($65.67M)보다 실제로 더 큰 주력 거래소였음이 드러남. 가격은 낮은 양의 레인지(약 0.7~1%) 유지, funding은 소폭 마이너스.",
-      "tag": "binance-coverage-restored (range-bound-modest-positive)"
+      "venue": "Binance (Bybit·Aster 이번 회차 상위목록 미노출)",
+      "vol24_usd": 193720284,
+      "oi_usd": 41656902,
+      "funding": -0.03,
+      "chg24": 4.33,
+      "why": "직전 회차와 반대 양상 — 지난 회차엔 Bybit·Aster만 확인, Binance가 갭이었으나 이번 회차는 Binance만 확인되고 Bybit·Aster 양쪽이 상위목록에서 빠짐(데이터 품질 변동, 재확인 필요).",
+      "tag": "coverage-flip (data-quality-note, needs-reverification)"
     },
     {
       "symbol": "BEAT (Audiera)",
-      "venue": "OKX",
-      "vol24_usd": 68686066,
-      "oi_usd": 10014853,
+      "venue": "OKX/Aster",
+      "vol24_usd": 72817343,
+      "oi_usd": 10965929,
       "funding": 0.005,
-      "chg24": 2.838,
-      "why": "다이버전스 해소 — funding이 -0.048→+0.005로 플러스 전환, 가격도 +6.39%→+2.838%로 감속하며 가격-펀딩 괴리가 정상화 방향으로 수렴. 직전 회차 스팟/perp 방향 불일치는 이번 회차 재조회 미실시(정직 표기).",
-      "tag": "divergence-resolved (funding-flipped-positive)"
+      "chg24": 5.331,
+      "why": "다이버전스 해소 이후 정상 레인지 유지 — funding 소폭 플러스(OKX 0.005/Aster 0.001), 가격 OKX +5.331%·Aster +6.056%로 완만한 상승 지속.",
+      "tag": "normalized-range (post-divergence-stable)"
     },
     {
       "symbol": "CAP (OKX)",
       "venue": "OKX",
-      "vol24_usd": 21164515,
-      "oi_usd": 1143856,
+      "vol24_usd": 20825538,
+      "oi_usd": 1237620,
       "funding": 0.005,
-      "chg24": 2.805,
-      "why": "방향 반전(음→양) — -2.57%에서 +2.805%로 전환, 여전히 낮은 레인지 유지.",
-      "tag": "direction-flip (range-bound-low-level)"
+      "chg24": 6.165,
+      "why": "재가속 — +2.805%→+6.165%로 상승폭 확대, 여전히 소형 레인지.",
+      "tag": "reaccelerating (range-bound-low-level)"
     },
     {
       "symbol": "BARD (Lombard)",
-      "venue": "OKX/Binance (양쪽 모두 복원)",
-      "vol24_usd": 4010811,
-      "oi_usd": 4581607,
-      "funding": -0.124,
-      "chg24": -1.33,
-      "why": "직전 회차 미확인이던 Binance 데이터가 이번 회차 복원(-1.331%/funding -0.122)되어 OKX(-1.333%/-0.126)와 거의 동일한 수치로 교차 확인 — 극단적 음수 funding이 두 거래소에서 재확인됨.",
-      "tag": "funding-extreme-persisting (binance-coverage-restored-cross-confirmed)"
+      "venue": "Binance/OKX",
+      "vol24_usd": 4139612,
+      "oi_usd": 1278566,
+      "funding": -0.126,
+      "chg24": 0.24,
+      "why": "극단적 음수 funding 지속 — Binance -0.122·OKX -0.129로 직전과 거의 동일 수준 유지, 가격은 거의 flat(0.08~0.4%). Binance 측 OI는 이번 회차 수치 미확보.",
+      "tag": "funding-extreme-persisting (price-flat)"
     },
     {
       "symbol": "BOME (Book of Meme)",
-      "venue": "OKX (Binance 6회 연속 미확인)",
-      "vol24_usd": 27524086,
-      "oi_usd": 1299765,
+      "venue": "OKX (Binance 7회 연속 미확인)",
+      "vol24_usd": 28891957,
+      "oi_usd": 1313969,
       "funding": -0.002,
-      "chg24": 16.534,
-      "why": "소폭 감속하나 강세 지속 — OKX +17.42%→+16.534%. Binance는 6회 연속 상위 거래량 목록에서 미확인.",
-      "tag": "elevated-continuing (binance-gap-persists-6-rounds)"
+      "chg24": 17.621,
+      "why": "OKX +17.42%→+17.621%로 강세 지속·소폭 추가 상승, Binance는 7회 연속 상위 거래량 목록에서 미확인.",
+      "tag": "elevated-continuing (binance-gap-persists-7-rounds)"
     }
   ],
   "dex": [
     {
       "symbol": "HYPE-USD",
       "protocol": "Hyperliquid",
-      "vol24_usd": 106151084,
-      "oi_usd": 1328308826,
+      "vol24_usd": 117520697,
+      "oi_usd": 1331282007,
       "funding": 0.001,
-      "chg24": 2.294,
-      "why": "HL 자체 토큰, 대체로 완만한 변동 유지 — 1.33%→2.29%로 소폭 상승.",
+      "chg24": 2.165,
+      "why": "HL 자체 토큰, 대체로 완만한 변동 유지 — 2.29%→2.17%로 큰 변화 없음.",
       "tag": "native (steady)"
+    },
+    {
+      "symbol": "AAVE-USD",
+      "protocol": "Hyperliquid",
+      "vol24_usd": 10641032,
+      "oi_usd": 89406120,
+      "funding": 0.001,
+      "chg24": 9.335,
+      "why": "신규 편입 — CEX AAVE 랠리와 동조(+9.3%), Stable Vaults·바이백 등 펀더멘털 촉매 기반 크로스벤뉴 강세.",
+      "tag": "new-entry (mirrors-CEX-AAVE, catalyst-driven)"
     },
     {
       "symbol": "KAITO-USD",
       "protocol": "Hyperliquid",
-      "vol24_usd": 20866296,
-      "oi_usd": 11249577,
-      "funding": -0.003,
-      "chg24": 19.918,
-      "why": "재상승 — 18.906%→19.918%로 20% 근접권에 다시 접근, 과열권 우려 지속.",
-      "tag": "extreme-persisting (re-approaching-20pct)"
+      "vol24_usd": 21367656,
+      "oi_usd": 11162007,
+      "funding": -0.007,
+      "chg24": 16.632,
+      "why": "19.918%→16.632%로 소폭 조정하나 여전히 과열권 — funding은 -0.003→-0.007로 오히려 더 마이너스 심화(가격 상승 중 funding 음전 심화는 이례적, 주의). 웹서치: 7/20 언락·7/25 Kaito Studio 전환 촉매 혼재.",
+      "tag": "extreme-easing-slightly (funding-anomaly-widening)"
     },
     {
       "symbol": "CASHCAT-USD",
       "protocol": "Hyperliquid/Aster",
-      "vol24_usd": 7526428,
-      "oi_usd": 9982288,
-      "funding": 0.0185,
-      "chg24": -15.97,
-      "why": "낙폭 소폭 완화(-16.583%→-15.97%)되며 두 거래소 funding 이례적 괴리(직전 0.001 vs 0.027, 27배 차이)가 이번 회차 0.019 vs 0.018로 거의 수렴 — 오라클-마크가격 괴리가 완화되는 신호로 추정.",
-      "tag": "decline-easing-slightly (funding-anomaly-converging)"
+      "vol24_usd": 7689678,
+      "oi_usd": 10349627,
+      "funding": 0.0085,
+      "chg24": -14.5,
+      "why": "낙폭 완만히 축소(-15.97%→-13.9%/-15.07%) 지속되며 두 거래소 funding 계속 수렴·동반 하락(0.019/0.018→0.005/0.012) — 오라클-마크가격 괴리 추가 완화.",
+      "tag": "decline-easing-continued (funding-converging-lower)"
     },
     {
       "symbol": "GRAM-USD",
       "protocol": "Hyperliquid",
-      "vol24_usd": 884312,
-      "oi_usd": 20340379,
+      "vol24_usd": 907341,
+      "oi_usd": 20304308,
       "funding": 0.001,
-      "chg24": 1.728,
-      "why": "사실상 횡보 유지 — 0.917%→1.728%로 소폭 변화, OI/거래량 비율 약 23배로 회전율 이상치 지속.",
+      "chg24": 0.079,
+      "why": "사실상 완전 횡보 — 1.728%→0.079%, OI/거래량 비율 약 22배로 회전율 이상치 지속.",
       "tag": "flat (turnover-anomaly-persisting)"
+    },
+    {
+      "symbol": "BANK-USDT",
+      "protocol": "Aster",
+      "vol24_usd": 5129399,
+      "oi_usd": 13283793,
+      "funding": 0.006,
+      "chg24": 5.74,
+      "why": "CEX BANK와 동조하며 정점 대비 감속 지속 — 15.42%→5.74%로 대폭 둔화.",
+      "tag": "mirrors-CEX-BANK (decelerating-further)"
+    },
+    {
+      "symbol": "ASTER-USDT",
+      "protocol": "Aster",
+      "vol24_usd": 6674139,
+      "oi_usd": 219058766,
+      "funding": 0.0,
+      "chg24": -0.079,
+      "why": "OI/거래량 괴리 약 33배로 유사 수준 유지 — 헤지/차익거래 성격 가능성 지속.",
+      "tag": "native/basis-anomaly (ratio-stable)"
     },
     {
       "symbol": "AKE-USDT",
@@ -141,65 +191,44 @@
       "oi_usd": 20078026,
       "funding": 0.0,
       "chg24": 1.707,
-      "why": "CEX AKE와 동조 — 낮은 양의 레인지 유지, funding 중립.",
-      "tag": "mirrors-CEX-AKE"
-    },
-    {
-      "symbol": "BANK-USDT",
-      "protocol": "Aster",
-      "vol24_usd": 5735720,
-      "oi_usd": 13722702,
-      "funding": 0.007,
-      "chg24": 15.42,
-      "why": "CEX BANK와 동조하며 정점 대비 감속 — 17.71%→15.42%.",
-      "tag": "mirrors-CEX-BANK (decelerating-from-peak)"
-    },
-    {
-      "symbol": "ASTER-USDT",
-      "protocol": "Aster",
-      "vol24_usd": 5798765,
-      "oi_usd": 218506731,
-      "funding": 0.0,
-      "chg24": -0.349,
-      "why": "OI/거래량 괴리 약 38배로 유사 수준 유지 — 헤지/차익거래 성격 가능성 지속.",
-      "tag": "native/basis-anomaly (ratio-stable)"
+      "why": "이번 회차 Aster 상위목록에서 미노출(재확인 실패) — 값은 직전 회차(22:28Z) 확인분을 유지 표기, 실제 상태는 다음 회차 재확인 필요.",
+      "tag": "unconfirmed-this-round (carried-forward-value, needs-reverification)"
     },
     {
       "symbol": "ANSEM-USDT (The Black Bull)",
       "protocol": "Aster",
-      "vol24_usd": 704376,
-      "oi_usd": 1973901,
-      "funding": 0.003,
-      "chg24": 4.334,
-      "why": "재차 반전(음→양) — 직전 -5.97%에서 이번 +4.334%로 다시 방향이 바뀜, 씬 유동성 기반 휩쏘 패턴 확인.",
-      "tag": "momentum-reversal-again (whipsaw-thin-liquidity)"
+      "vol24_usd": 689357,
+      "oi_usd": 1942105,
+      "funding": 0.009,
+      "chg24": 0.459,
+      "why": "휩쏘 이후 냉각 — +4.334%→+0.459%로 거의 flat 전환, 씬 유동성 지속.",
+      "tag": "cooling-after-whipsaw (thin-liquidity)"
     },
     {
       "symbol": "BOME-USD",
       "protocol": "Hyperliquid",
-      "vol24_usd": 777245,
-      "oi_usd": 478425,
+      "vol24_usd": 859271,
+      "oi_usd": 530240,
       "funding": 0.001,
-      "chg24": 17.295,
+      "chg24": 16.336,
       "why": "CEX BOME(OKX)와 동조하며 강세 지속, 씬 유동성 지속.",
       "tag": "consensus-continuing (thin-liquidity)"
     }
   ],
   "themes": [
-    "BANK(Lorenzo Protocol) 정점 대비 감속 — 직전 3거래소 완전 동조 재가속(17.7~17.8%)에서 이번 회차 Binance/Bybit/Aster(DEX) 모두 14.6~15.4%대로 동반 후퇴, 웹서치 스니펫 간 시점 불일치(-7.48% vs +11.96%)로 변동성 지속 시사 (decelerating-from-peak, pullback-post-ATH).",
-    "AKE·BARD 두 종목 모두 Binance 커버리지 복원 — 직전 회차 신규 갭이던 두 종목 다 이번 회차 Binance 데이터 재확인, AKE는 Binance가 실제 주력 거래소였음이 드러남(coverage-restored, data-quality-note).",
-    "BEAT 다이버전스 해소 — funding -0.048→+0.005로 플러스 전환, 가격도 감속하며 정상화 방향 (divergence-resolved).",
-    "CASHCAT funding 이례적 괴리(27배)가 거의 수렴(0.019 vs 0.018) — 오라클-마크가격 괴리 완화 추정, 낙폭도 소폭 완화 (funding-anomaly-converging).",
-    "ANSEM 재차 반전(음→양) — 씬 유동성 기반 휩쏘 패턴, 방향성 신뢰도 낮음 (whipsaw-thin-liquidity).",
-    "CAP 방향 반전(음→양), 여전히 낮은 레인지 유지 (direction-flip, range-bound-low-level).",
-    "KAITO(Hyperliquid) 재상승 — 18.906%→19.918%로 20% 근접권 재접근, 과열 지속 (extreme-persisting).",
-    "ALLO 낙폭 지속·거래소별 엇갈림(Binance 심화/OKX 완화), 회전율 이상치는 272배→252배로 소폭 완화되나 지속 (decline-continuing, turnover-anomaly-easing-slightly).",
-    "1000SHIB·1000PEPE 밈 로테이션 추가 강화 — 양 종목 모두 직전 대비 상승폭 확대 (reaccelerating-further, meme-rotation-strengthening).",
-    "BOME 소폭 감속하나 강세 지속(OKX +16.53%), Binance는 6회 연속 미확인 (elevated-continuing, binance-gap-persists-6-rounds).",
-    "GMX는 이번 회차 API 조회 성공(직전 429에서 회복) — 여전히 BTC/ETH만 존재, 알트 완전 부재 패턴 재확인 (data-recovered, altcoin-free-confirmed).",
-    "dYdX는 이번 회차도 2회 시도 모두 HTTP 429로 데이터 확보 실패 — 재확인 실패 지속 (data-unavailable, rate-limited-persisting).",
-    "HYPE-USD·GRAM-USD·ASTER-USDT는 큰 변화 없이 직전 수준 유지(steady/flat/basis-anomaly-stable).",
-    "시장 전반: 웹서치(Coinbase Research 7월) 기준 perp·term futures·옵션 전반 OI 하락 vs 거래량 상승 — 레버리지 청산/디레버리징 신호. BTC funding 완화·ETH funding 마이너스 전환, 25델타 스큐 다운사이드 보호 쪽 악화, 시장은 메이저 주도·투기수요 위축 국면 (market-wide, de-risking-signal).",
-    "TradFi 토큰화/상품/프리IPO perp(Aster·OKX·Bybit의 AAPL·TSLA·NVDA 등)는 이번 회차도 규약에 따라 cex/dex 리스트에서 전부 제외 (excluded-tokenized-equity/commodity, filtering compliant)."
+    "AAVE 신규 편입 — Binance/Bybit/Aster/Hyperliquid/dYdX 5개 거래소 동시 +9.3~10.3% 강세, Stable Vaults 출시·Aavenomics 3.0 바이백·V4 아발란체 확장 등 펀더멘털 촉매 다수 확인 (catalyst-driven-major-alt, cross-venue-consensus).",
+    "ALLO 낙폭 급격히 심화 — 직전 -9.73%에서 4개 거래소 전부 -16~-17.6%대로 악화, 7/24 ATH $0.546 이후 조정·저유통량 언락 오버행 (decline-intensifying, post-ATH-breakdown).",
+    "BANK(Lorenzo) 정점 대비 감속 2회차 연속 심화 — Binance 15.4%→4.0%, Bybit 14.6%→6.0%, Aster 15.4%→5.7%로 셋 다 대폭 후퇴 (decelerating-further, post-peak-cooldown).",
+    "1000PEPE·1000SHIB 밈 로테이션 3회 연속 재가속 — 양 종목 모두 직전 대비 상승폭 추가 확대 (reaccelerating-3rd-round, meme-rotation-strengthening).",
+    "KAITO 소폭 조정(19.9%→16.6%)하나 funding은 오히려 더 마이너스 심화 — 가격 상승 중 funding 음전 심화는 이례적, 오라클/포지셔닝 왜곡 가능성 주의 (extreme-easing-slightly, funding-anomaly-widening).",
+    "CASHCAT funding 수렴 지속·낙폭 완만히 축소 (decline-easing-continued, funding-converging-lower).",
+    "BARD 극단적 음수 funding 두 거래소(Binance/OKX)에서 지속, 가격은 거의 flat (funding-extreme-persisting).",
+    "CAP 재가속(+2.8%→+6.2%), BEAT는 다이버전스 해소 이후 정상 레인지 유지 (reaccelerating / normalized-range).",
+    "BOME는 OKX·Aster·Hyperliquid에서 강세 지속(+16~18%)하나 Binance는 7회 연속 미확인 (elevated-continuing, binance-gap-persists-7-rounds).",
+    "ANSEM 휩쏘 이후 냉각(+4.3%→+0.5%), AKE는 데이터 갭이 역전(직전엔 Binance만 갭, 이번엔 Bybit·Aster가 미노출) — 데이터 품질 변동 지속 관찰 필요 (cooling-after-whipsaw, coverage-flip).",
+    "GMX 3회 연속 BTC/ETH 전용 확인 — 알트 완전 부재 패턴 재확인 (altcoin-free-confirmed).",
+    "dYdX(dydx_chain) 이번 회차 API 조회 성공(직전 2회 429에서 회복)했으나 거래량이 극히 낮아(BTC $5.2M·ETH $2.27M) CEX 대비 규모가 작음 — 이 피드가 전체 dYdX 유동성을 온전히 반영하는지 불확실 (data-recovered-but-low-volume, feed-coverage-uncertain).",
+    "시장 전반: 직전 회차 인용 Coinbase Research(디레버리징 서사)와 이번 회차 웹서치(Gate Wiki, OI $180~200B·funding 양전 서사)가 상충 — 소스별 시점·표본 차이로 추정, 둘 다 확정치 아님 (market-wide, conflicting-narratives-honest-disclosure).",
+    "TradFi 토큰화/상품/프리IPO perp(Binance의 AMD·AAPL·AMZN·ANTHROPIC, OKX의 CL·BZ·COIN·CRCL, GMX의 TSLAX·PAXG·XAUT·XAG·WTI 등)는 이번 회차도 규약에 따라 cex/dex 리스트에서 전부 제외 (excluded-tokenized-equity/commodity, filtering-compliant)."
   ]
 }
