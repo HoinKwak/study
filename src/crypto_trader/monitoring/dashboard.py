@@ -567,8 +567,12 @@ _CHART_JS = r"""<script>
    b.classList.toggle('tfbtn-active', b.getAttribute('data-tf')===SEL.tf);});}
  function hlBtns(sel,attr,val){document.querySelectorAll(sel).forEach(function(b){
    b.classList.toggle('tfbtn-active', b.getAttribute(attr)===val);});}
- function fmtPx(v){if(v>=1000)return '$'+v.toLocaleString('en-US',{maximumFractionDigits:0});
-   if(v>=1)return '$'+v.toFixed(2); if(v>=0.01)return '$'+v.toFixed(4); return '$'+v.toFixed(6);}
+ function fmtPx(v){if(v==null||isNaN(v))return '-';var a=Math.abs(v);   // 값 크기에 따라 소수 자릿수 적응(끝자리 0 자동제거)
+   var o=a>=1000?{maximumFractionDigits:0}:
+         a>=1?{minimumFractionDigits:2,maximumFractionDigits:4}:      // LIT 등 1~1000달러대 알트: 최대 4자리
+         a>=0.01?{minimumFractionDigits:4,maximumFractionDigits:6}:
+         {minimumFractionDigits:6,maximumFractionDigits:8};
+   return '$'+v.toLocaleString('en-US',o);}
  function usd(v){if(v==null)return '-'; var a=Math.abs(v); if(a>=1e9)return '$'+(v/1e9).toFixed(2)+'B';
    if(a>=1e6)return '$'+(v/1e6).toFixed(1)+'M'; if(a>=1e3)return '$'+(v/1e3).toFixed(0)+'K'; return '$'+v.toFixed(0);}
  function num(v){if(v==null)return '-'; var s=v<0?'-':'+',a=Math.abs(v);
