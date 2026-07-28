@@ -1,170 +1,187 @@
 {
-  "ts": "2026-07-28T02:04:00Z",
+  "ts": "2026-07-28T04:03:00Z",
   "tokens": [
     {
-      "token": "PATIENCE",
-      "chain": "Solana(PumpSwap/Meteora,다중풀)",
-      "ca": "Fg9P4xK8pbYaumHhz7QEt2Uma3kNr4PSpEQtUVCgpump",
-      "stage": "확산(3회차,서사확인)",
-      "kols": "",
-      "thesis": "patience.run 공식 런치패드로 확인됨(2회차만에 웹서치로 narrative 확보) — LP 영구락업(Meteora)·매스왑 수수료 10% 보유자 환급 구조. 메인풀 h1-18.4%·h6=h24+934%(직전 622~1189%에서 지속), 유동성 $57,580(직전 $64-67K 대비 -10%)",
-      "risk": "🟡 유동성 소폭 감소·h1 둔화 지속되나 서사(anti-rug 락업 구조)가 이번 회차 확인돼 순수 밈 대비 신뢰도 상향. 여전히 3일 이내 신생 토큰이라 변동성 경계 필요"
-    },
-    {
-      "token": "Ryder",
+      "token": "BNUT",
       "chain": "Solana(PumpSwap)",
-      "ca": "2Y7eLTW8v157ne1tTgZBozcQ3d7snNed7V4jNpNbgcz8",
-      "stage": "조기(재점화,3회차)",
+      "ca": "H3GtwGSrYRVqp7dtjkaDfjE2inydLkHwFkFJSPzrpump",
+      "stage": "조기(신규)",
       "kols": "",
-      "thesis": "2회차 h1-23.20%·h6-28.10%로 하락전환이던 것이 이번 회차 h1+79.92%·h6+3.83%·h24+1123%로 급격 재반등, 유동성 $80,461(직전 $54,029 대비 +49%)",
-      "risk": "🔴 2회 연속 방향 반전(1회차 상승→2회차 하락→3회차 급반등)으로 변동성 극심, 워시비율≈51배($4.13M/$80.4K), 서사 여전히 미확인"
+      "thesis": "GT 1h/6h 트렌딩 신규 확보(Baseball Squirrel 표기, DexScreener도 동일 CA), 풀 생성 오늘(2026-07-28) 확인, h1+11.4~28.61%(소스별)·h6=h24+475% 로 아직 진행형(펀생 초기 유지)",
+      "risk": "🟠 워시비율≈24배, 유동성 $28~31K 저유동. ⚠️ 웹서치에서 동일 티커 'BNUT'의 다른 CA(Raydium, 'BITCOIN SQUIRREL' 표기)가 확인돼 티커 충돌 가능성 — 반드시 본 CA로만 추적할 것"
     },
     {
-      "token": "Brötchen",
-      "chain": "Solana(재점화,USDC페어)",
-      "ca": "9ZtbETDNjnST9Y2zs82FZYy49xUMPgqXRh46YjjRpump",
-      "stage": "재확산(5회차)",
+      "token": "Waymark(WAY)",
+      "chain": "Robinhood Chain(Uniswap V2)",
+      "ca": "0x5b0c34cf165eb4d69c010e3a7394711c996f7777",
+      "stage": "조기(신규)",
       "kols": "",
-      "thesis": "4회차 h24+127%로 냉각 진행이던 것이 이번 회차 h1+14.49%·h6+4.49%·h24+289%로 재차 확산, 유동성 $166,410(직전 $169,853 대비 -2.0%, 거의 보합)",
-      "risk": "🟠 5회차 연속 추적, 냉각→재점화 등락 반복 패턴 지속, 서사 여전히 미확인"
+      "thesis": "RH체인 신규, 풀 생성 오늘(2026-07-28) 추정(h6=h24로 수렴), h1-0.58~-7.59%(소스별 혼조)·h6=h24+712~725%. waymark.money 공식사이트·문서·X(@dudunode) 확인 — 'RH체인 토큰화주식에 투자하는 AI 에이전트' 실체 서사 존재(스테이킹 토큰 미출시, WAY 출시 시 활성화 예정 표기)",
+      "risk": "🟠 워시비율≈30배, 유동성 $63K 저유동. 실체 프로젝트(AI 투자 에이전트)이나 토큰 스테이킹 유틸리티는 아직 '미출시' 상태 — 서사와 토큰 실사용 간 괴리 주의"
     },
     {
-      "token": "Claude",
+      "token": "Ansecoin",
       "chain": "Solana(PumpSwap)",
-      "ca": "9Na7zriZMLtymm9krbRwG14QVod5pm3EVHQN2c5xZ2mc",
-      "stage": "확산~조정초입(신규)",
+      "ca": "8QqfDMqanwugqsvu1nFQjCnjjgiXbMrkKJy2n9uGpump",
+      "stage": "조기(신규,초고위험)",
       "kols": "",
-      "thesis": "GT 6h트렌딩 상위 신규 확보, 풀 생성 약 8.7시간 전(2026-07-27), h1-5.41%·h6-14.32%·h24+312%로 단기 이미 둔화 국면 진입, 유동성 $197,409, 24h 매수 11.1만/매도 5.9만건",
-      "risk": "🔴 워시비율≈404배(회차 최고), 'Claude'라는 AI 관련 유명 명칭에 편승(공식 무관 추정, 서사 웹서치 확인 안 됨), h1·h6 동시 마이너스로 이미 고점 통과 가능성"
+      "thesis": "GT 1h 트렌딩 신규 확보, h1=h6=h24≈824~964%(수치 동일 → 풀 생성 1시간 이내 극초기 추정), 유동성 $39.5~42.5K",
+      "risk": "🔴 극초기(1h 미만) 풀로 검증 데이터 절대 부족, 워시비율≈17.5배(상대적으로 낮으나 표본기간 자체가 짧아 무의미), 서사·웹서치 정보 전무, 초저유동성 러그 위험 최고 수준"
+    },
+    {
+      "token": "Diary(The Fauci Diary)",
+      "chain": "Solana(PumpSwap)",
+      "ca": "9MEYExzYucFLtAk2v8PCdw4SM4xox5o4gPZEywyvpump",
+      "stage": "확산(신규)",
+      "kols": "",
+      "thesis": "GT 1h/6h 트렌딩 신규 확보, h1+323~407%·h6+1153~2256%·h24+667~780%(소스별 편차 큼)로 강한 확산 지속, 유동성 $34.8~37.1K",
+      "risk": "🔴 워시비율≈21~23배, 정치적 소재(Fauci) 밈으로 논란·플랫폼 리스크 가능, 소스간 수치 편차 커 재확인 필요, 저유동성"
     },
     {
       "token": "Nongwan",
       "chain": "Solana(PumpSwap)",
       "ca": "Fvvj98QtaA3RjVgeQn79NokiMaLgBRje1Q9bXetwpump",
-      "stage": "확산~조정초입(신규)",
+      "stage": "조기(재점화,4회차)",
       "kols": "",
-      "thesis": "GT 24h트렌딩 상위 신규 확보, h1-23.71%·h6-19.43%·h24+112%로 단기 하락전환, 유동성 $23,353(신규 토큰 중 최저 수준), 24h 매수 6.7만/매도 5.5만건",
-      "risk": "🔴 유동성 $23K 대비 거래량 $9.86M로 워시비율≈422배(회차 최고 수준), h1·h6 동시 마이너스, 서사 웹서치 확인 안 됨(관련 정보 전무), 초저유동성 러그 위험"
+      "thesis": "직전 회차 h1-23.71%·h6-19.43% 하락전환이던 것이 이번 회차 h1+18.06%·h6+12.94%·h24+111.76%로 재반등, 유동성 $23,353→$23,400(거의 보합)",
+      "risk": "🔴 유동성 $23K대 지속 저수준(초저유동), 직전 회차 워시비율 최고 그룹(≈422배)과 유사 프로필 지속 — CXMT·HOOD·Papoi 붕괴 패턴 재현 가능성 배제 못함"
     },
     {
-      "token": "Smudge",
+      "token": "Claude",
       "chain": "Solana(PumpSwap)",
-      "ca": "H6QbkNxaVKuwhRLRFpRBhBubqGuPk5bqs2NyVf4epump",
-      "stage": "조정진행(신규)",
+      "ca": "9Na7zriZMLtymm9krbRwG14QVod5pm3EVHQN2c5xZ2mc",
+      "stage": "확산(재점화,3회차)",
       "kols": "",
-      "thesis": "GT 6h트렌딩 신규 확보(Smudge the Table Cat), 풀 생성 약 10.8시간 전, h1-36.97%·h6-69.4%·h24+82.79%로 가파른 되돌림 진행 중, 유동성 $26,279",
-      "risk": "🟠 h1·h6 모두 큰 폭 마이너스로 되돌림 이미 상당히 진행, 워시비율≈69배(신규 3종 중 상대적 낮음이나 여전히 높음), 서사 미확인"
+      "thesis": "직전 회차 h1-5.41%·h6-14.32% 둔화이던 것이 이번 회차 h1+28.45%·h6-16.29%·h24+504%(직전 312%에서 확대)로 재반등, 유동성 $197,409→$179,310(-9.2%)",
+      "risk": "🔴 워시비율≈543배(회차 최고, 직전 붕괴한 CXMT·HOOD·Papoi 수준을 상회) — 매우 높은 붕괴 리스크, 'Claude' 명칭 편승 추정(공식 무관)"
+    },
+    {
+      "token": "Brötchen",
+      "chain": "Solana(재점화,USDC페어)",
+      "ca": "9ZtbETDNjnST9Y2zs82FZYy49xUMPgqXRh46YjjRpump",
+      "stage": "확산지속(6회차)",
+      "kols": "",
+      "thesis": "5회차 h1+14.49%·h24+289%→이번 회차 h1+13.29%·h6+6.98%·h24+680.41%(가속)로 지속 확산, 유동성 $166,410→$169,400(+1.8%,거의 보합)",
+      "risk": "🟡 6회차째 비교적 안정적 확산 패턴 지속, 서사 여전히 미확인이나 유동성 안정성은 상대적으로 양호"
+    },
+    {
+      "token": "Ryder",
+      "chain": "Solana(PumpSwap)",
+      "ca": "2Y7eLTW8v157ne1tTgZBozcQ3d7snNed7V4jNpNbgcz8",
+      "stage": "냉각재전환(4회차,변동성극심)",
+      "kols": "",
+      "thesis": "직전 회차 h1+79.92%·h6+3.83% 급반등이던 것이 이번 회차 h1-18.50%·h6-46.16%·h24+504.84%로 재차 하락전환(4번째 방향 반전), 유동성 $80,461→$57,164(-29.0%)",
+      "risk": "🔴 4회 연속 방향 반전(상승→하락→급반등→재하락)이라는 이 워치 최대 변동성 사례, 유동성도 재차 감소, 워시비율≈78배"
+    },
+    {
+      "token": "PATIENCE",
+      "chain": "Solana(PumpSwap/Meteora,다중풀)",
+      "ca": "Fg9P4xK8pbYaumHhz7QEt2Uma3kNr4PSpEQtUVCgpump",
+      "stage": "조정~붕괴전환(4회차,경고)",
+      "kols": "",
+      "thesis": "직전 회차 h1-18.4%·유동성$57,580이던 것이 이번 회차 h1-55.87%·h6-47.25%·h24+88.84%로 급락, 유동성 $57,580→$23,946(-58.4%, 급감)",
+      "risk": "🔴 patience.run LP 영구락업 서사에도 불구, 유동성 58% 급감·가격 h1 -55.87% 급락 관찰 — LP락업이 '무손실'을 보장하지 않음을 실증. 워시비율≈52배로 급증. 서사(anti-rug 구조) 신뢰와 실제 시세 붕괴는 별개임을 정직 표기"
     },
     {
       "token": "◎(S◎L Cat)",
       "chain": "Solana(PumpSwap)",
       "ca": "4FnZDvrkvEJf1MLZrcDKCMeSjuVx5BsHuKWqm3b6pump",
-      "stage": "붕괴진행(5회차)",
+      "stage": "붕괴진행지속(6회차)",
       "kols": "",
-      "thesis": "5회차째 메인풀 h1-3.98%·h6-65.26%·h24+69.41%, 유동성 $20,112(직전 $28,928 대비 -30.5%), 4회 연속 유동성 감소 지속",
-      "risk": "🔴 5회차 연속 추적, 유동성 4회 연속 감소, 토큰명 'S◎L Cat' 확인(이모지 심볼 실체), 서사 가치 소진"
+      "thesis": "6회차째 h1+4.09%·h6-75.32%·h24+66.2%, 유동성 $20,112→$19,939(거의 보합, 5회 연속 감소세는 일단 멈춤)",
+      "risk": "🔴 6회차 연속 추적, 유동성 저수준($20K대) 고착화, 서사 가치 소진 지속"
     },
     {
       "token": "STONKBROKER",
       "chain": "Robinhood Chain(Uniswap V4/V3다중)",
       "ca": "0xe934e36A439C94017B64a3FecE66AF12099aBF50",
-      "stage": "변동성지속(40회차)",
+      "stage": "변동성지속(41회차)",
       "kols": "@0xKnownxd(재확인실패) 외 Bitcoin Foundation(재확인실패,carryover)",
-      "thesis": "39회차 유동성 24.8% 급증이던 것이 이번 회차 메인풀 h1+0.04%·h6+13.57%·h24-7.25%, 유동성 $1,684,234(직전 $2.20M 대비 -23.5%, 급증분 상당부분 반납)",
-      "risk": "🟡 40회차째 장기추적, 유동성 급증(39회차) 후 재차 감소(40회차)로 일회성 유입 추정, 가격 방향성 혼조 지속"
+      "thesis": "40회차 유동성 -23.5%이던 것이 이번 회차 h1+4.71%·h6-1.98%·h24-3.25%, 유동성 $1,684,234→$1,721,099(+2.2%)",
+      "risk": "🟡 41회차째 장기추적, 방향성 혼조 지속되나 유동성은 소폭 반등"
     },
     {
       "token": "WALLET",
       "chain": "Robinhood Chain(Uniswap V3)",
       "ca": "0x0339f5459fc690ac85f1782e15782a151b4a9e1b",
-      "stage": "안정화지속(14회차)",
+      "stage": "안정화지속(15회차)",
       "kols": "",
-      "thesis": "13회차와 유사 → 이번 회차 h1-0.07%·h6+11.91%·h24+7.05%, 유동성 $454,926(직전 $447,828 대비 +1.6%)",
-      "risk": "🟡 14회차째 저수준 등락 반복, 정체구간 고착화 지속"
+      "thesis": "14회차와 유사 → 이번 회차 h1+0.85%·h6+5.05%·h24+9.14%, 유동성 $454,926→$454,623(거의 보합)",
+      "risk": "🟡 15회차째 저변동 안정 유지, 정체구간 고착화 지속"
     },
     {
       "token": "TRUMP2028",
       "chain": "Solana(PumpSwap/Meteora)",
       "ca": "2d2GZdehy2YGrj1MJ3y3yhXjficMa2J3GtncxkTQpump",
-      "stage": "냉각지속(14회차)",
+      "stage": "냉각지속(15회차)",
       "kols": "",
-      "thesis": "13회차 h24-62.92%→이번 회차 h1-14.68%·h6-44.91%·h24-70.56%로 3회 연속 h24 마이너스, 유동성 $37,180(직전 $40,593 대비 -8.4%)",
-      "risk": "🔴 3회 연속 h24 마이너스로 냉각 국면 완전 고착화, 유동성 지속 감소"
+      "thesis": "14회차 h24-70.56%→이번 회차 h1-3.55%·h6-28.09%·h24-65.47%로 4회 연속 h24 마이너스, 유동성 $37,180→$37,036(거의 보합)",
+      "risk": "🔴 4회 연속 h24 마이너스, 냉각국면 완전 고착화 지속"
     },
     {
       "token": "AEON(BSC)",
       "chain": "BSC(다중풀주소혼란)",
       "ca": "0x277add739c6e0477616948357af9e79fe1ec9b80",
-      "stage": "하락지속(13회차)",
+      "stage": "하락지속완화(14회차)",
       "kols": "",
-      "thesis": "12회차 DexScreener 재확인($18,882)→이번 회차 메인풀 h1+0.29%·h6-14.84%·h24-22.73%, 유동성 $17,113(직전 대비 -9.4%, 3회 연속 DexScreener 값 수렴)",
-      "risk": "🔴 3회 연속 DexScreener 수치 수렴으로 신뢰도 상향되나 하락추세 지속. ⚠️ Solana에 별도 동일 심볼 프로젝트 존재, 다중 CA 혼란 지속"
+      "thesis": "13회차 h24-22.73%→이번 회차 h1+2.97%·h6-0.87%·h24-18.3%로 낙폭 소폭 완화, 유동성 $17,113→$17,749(+3.7%)",
+      "risk": "🔴 하락추세 자체는 지속되나 낙폭 완화 경향. ⚠️ Solana에 별도 동일 심볼 프로젝트 존재, 다중 CA 혼란 지속"
     },
     {
       "token": "Vladhood(VLAD)",
       "chain": "Robinhood Chain(Uniswap V3)",
       "ca": "0x92D176ccBeEffeCd8089e841D09ea17b6C22D969",
-      "stage": "주의(12회차,확인된스캠)",
+      "stage": "주의(13회차,확인된스캠)",
       "kols": "The Block·CoinDesk·Yahoo Finance(2026-07-23,carryover)",
-      "thesis": "11회차 h24+31.02%→이번 회차 h1-2.46%·h6+10.59%·h24+28.39%로 유사 수준 지속, 유동성 $69,815(직전 $72,411 대비 -3.6%)",
-      "risk": "🔴 The Block/CoinDesk/Yahoo Finance 확인 스캠($1.2M 탈취 피해). 12회차째 지속 — 절대 추격 금지, 경고 사례로 계속 기록"
+      "thesis": "12회차 h24+28.39%→이번 회차 h1-5.21%·h6-13.70%·h24+16.74%로 상승폭 소폭 둔화, 유동성 $69,815→$70,251(거의 보합)",
+      "risk": "🔴 확인된 스캠($1.2M 탈취 피해). 13회차째 지속 — 절대 추격 금지, 경고 사례로 계속 기록"
     }
   ],
   "notable": [
     {
       "token": "Robinhood Chain 밈 메타 전반",
-      "status": "확산 지속",
-      "summary": "RH체인 밈코인 거래대금이 여전히 트렌딩 상위 대부분을 점유. 다만 이번 회차 Solana 상 신규 밈 3종(CXMT·HOOD·Papoi) 전원이 몇 시간 내 유동성 완전 소실(러그/풀붕괴)로 확인돼, 극초기 온체인 신호의 구조적 고위험이 실증됐다."
+      "status": "확산 지속(가속)",
+      "summary": "CoinDesk 보도(2026-07-13): RH체인 출범 9일 만에 일 거래대금이 약 $20만→$5억 이상으로 급증, DexScreener 트렌딩 상위 12개 중 10개가 RH체인. 토큰화주식이 아닌 밈코인이 실질 활동을 주도하는 구조가 재확인·강화됐다."
     },
     {
-      "token": "CXMT·HOOD(Solana)·Papoi 러그/풀붕괴 확정(신규 경고 사례)",
+      "token": "Cash Cat(CASHCAT, RH체인)",
+      "status": "확산~조정(대형화 완료, 뒷북)",
+      "summary": "RH체인 트렌딩 1위 재확인(거래량 $64.6M), 1주일간 +2,158% 상승 후 시총 약 $156M까지 대형화. CG 트렌딩에서도 재확인되나 이번 회차 h24-17.04%로 조정 진입 — 이미 크게 급등한 '뒷북' 단계로 신규 진입 매력 낮음."
+    },
+    {
+      "token": "Smudge 붕괴 확정(신규 경고 사례)",
       "status": "이슈 — 온체인 조기신호 검증 사례",
-      "summary": "직전 회차(00:04Z) 워시비율 최고치(HOOD≈354배, CXMT≈53배, Papoi≈47배)로 각별 경고했던 3종 전원이 이번 회차 DexScreener 전체 풀 조회에서 유동성 $0으로 확인됨(HOOD 메인풀 h24+999%인데 liquidity $0, CXMT $0, Papoi h24-99.91%·liquidity $0). 고워시비율 경고가 몇 시간 내 실제 붕괴로 이어진 명확한 사례."
+      "summary": "직전 회차(02:04Z) 신규 편입했던 Smudge the Table Cat이 약 2시간 만에 h1-98.53%·h6-99.5%·유동성 $26,279→$2,203(-91.6%)로 사실상 붕괴. CXMT·HOOD·Papoi에 이은 또 다른 급속 붕괴 실증 사례로, 이번 회차 조기경보 표에서 제외했다."
     },
     {
-      "token": "CATE·NVIDIOT 클론 팩토리(경고 사례, carryover)",
-      "status": "이슈 — 지속 경고, 재확인",
-      "summary": "이번 회차 GT Solana 트렌딩 1위 재등장: CATE(HMzvsEEmtzHhvZNw9uwbaG85HCTmFnkbhzUx16cy7ca3) h1-13.06%·h6-51.77%·h24-51.40%, 거래량 $16.37M로 여전히 최대 거래대금이나 하락 지속. 클론 팩토리 패턴 재확인돼 조기경보 표에서 계속 제외."
+      "token": "HOOD(Solana) 클론 팩토리 재발(신규 경고)",
+      "status": "이슈 — 지속 경고",
+      "summary": "GT 1h 트렌딩에 서로 다른 CA를 가진 신규 'HOOD/SOL' 풀 2개가 재등장(거래량 $17.58M·$47.44M, 둘 다 오늘 생성). 직전 회차 퇴출된 HOOD(CA 2YGvow...)와는 다른 주소로, 동일 심볼 클론이 반복 생성되는 패턴 재확인 — 조기경보 표에는 편입하지 않고 경고로만 기록."
+    },
+    {
+      "token": "CATE(RH체인) 클론 붕괴(신규 경고)",
+      "status": "이슈 — 클론 팩토리 패턴 RH체인 확산",
+      "summary": "RH체인 CATE/WETH 풀이 h6-98.18%·h24-96.22%(거래량은 $53.96M로 크게 남아있으나 유동성은 $39.9K로 급감)로 붕괴 확인. Solana에서 반복 경고해온 CATE·NVIDIOT 클론 팩토리 패턴이 RH체인까지 확산됐음을 시사."
     },
     {
       "token": "Vladhood 스캠 사건(지속 경고)",
-      "status": "이슈 — 확인된 스캠, 12회차째 펌프-덤프 반복",
-      "summary": "Robinhood CEO Vlad Tenev X계정 해킹 사칭 스캠($1.2M 탈취) 확인 보도 지속 인용. 12회차째 h24+28.39%로 유사 수준 유지 — 추격 금지 경고 유지."
+      "status": "이슈 — 확인된 스캠, 13회차째 펌프-덤프 반복",
+      "summary": "Robinhood CEO Vlad Tenev X계정 해킹 사칭 스캠($1.2M 탈취) 확인 보도 지속 인용. 13회차째 h24+16.74%로 유사 수준 유지 — 추격 금지 경고 유지."
     },
     {
-      "token": "Geodnet(GEOD)",
-      "status": "확산 지속(CG 트렌딩 1위)",
-      "summary": "CG 트렌딩 검색량 1위 재확인(직전 3위 이내→이번 1위 추정). h24+16.80%, 거래량 $30.99M. DePIN(GPS/RTK) 프로젝트로 지속 주목 확대."
+      "token": "Hyperliquid(HYPE)",
+      "status": "이슈(대형 언락 예정)",
+      "summary": "2026-07-29 유통량의 2.8%(약 $8.17억 상당) 언락 예정 — 단기 매도압력 이슈로 주목. CG 트렌딩에서도 h24-6.10%로 조정 중."
     },
     {
-      "token": "Lorenzo Protocol(BANK)",
-      "status": "신규 트렌딩 상위 진입",
-      "summary": "CG 트렌딩 상위 2위 신규 확인, 거래량 $251.68M로 규모 큼. 다만 h24-14.20%로 가격은 조정 중 — 검색량 급증과 가격 하락이 괴리."
+      "token": "Zama(ZAMA)·Lorenzo Protocol(BANK)·COTI",
+      "status": "혼조(CG 트렌딩 상위 재편)",
+      "summary": "CG 트렌딩 재확인: Zama h24+12.71%로 견조, COTI h24+76.63%로 급등(랭크 500위대 중소형), Lorenzo Protocol(BANK)은 직전 회차 대비 h24-15.92%로 조정 심화 — 검색량-가격 괴리 지속."
     },
     {
-      "token": "Zama(ZAMA)",
-      "status": "확산 지속",
-      "summary": "CG 트렌딩 상위 재확인, h24+16.70%, 거래량 $59.99M. FHE(완전동형암호) 프로젝트로 지속 주목."
-    },
-    {
-      "token": "Pudgy Penguins(PENGU)",
-      "status": "조정 지속(소폭 완화)",
-      "summary": "CG 트렌딩 재확인 h24-3.90%(직전 -6.29%에서 낙폭 소폭 완화), 거래량 $46.87M. 대형화 확정 상태에서 조정 지속."
-    },
-    {
-      "token": "RH체인 토큰화주식×밈코인 결합 서사",
-      "status": "확산 지속",
-      "summary": "GME(GameStop 밈, Robinhood 공식 무관) 등 토큰화주식-밈코인 결합 사례 지속. RH체인 전체 TVL 약 $234M, 누적주소 20만 근접 보도(carryover 맥락 재확인)."
-    },
-    {
-      "token": "PUMP(pump.fun 네이티브 토큰)",
-      "status": "확산 지속(이번 회차 재조회 생략)",
-      "summary": "이번 회차 조회 우선순위에서 밀려 재확인 생략(carryover 상태 유지, 다음 회차 갱신 예정) — 정직 표기."
-    },
-    {
-      "token": "TOESCOIN($TOES)",
-      "status": "소스간 편차, 재확인 실패(carryover)",
-      "summary": "직전 회차 CoinGecko/CoinMarketCap 간 수치 불일치 확인됐던 종목, 이번 회차 재조회 생략(carryover) — 정직 표기."
+      "token": "거시 배경(FOMC/BTC 조정)",
+      "status": "이슈(변동성 확대 요인)",
+      "summary": "2026-07-28~29 FOMC 회의를 앞두고 BTC가 약 $63,173(-2.82%)로 조정, Fear&Greed지수 29(공포). 밈코인 등 고베타 자산 변동성이 거시 이벤트에 더 민감해질 수 있는 구간."
     }
   ]
 }
