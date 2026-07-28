@@ -432,8 +432,8 @@ def _market_view(tickers) -> str:
     top = _tickers_of(tickers)
     if not top:
         return ""
-    tfs = [("15분", "15m"), ("1시간", "1h"), ("4시간", "4h"),
-           ("일봉", "1d"), ("주봉", "1w"), ("월봉", "1M")]
+    tfs = [("1분", "1m"), ("5분", "5m"), ("15분", "15m"), ("1시간", "1h"),
+           ("4시간", "4h"), ("일봉", "1d"), ("주봉", "1w"), ("월봉", "1M")]
     tfbtns = "".join(f'<button class="tfbtn" data-tf="{v}">{lbl}</button>' for lbl, v in tfs)
     ptfs = [("5분", "5m"), ("1시간", "1h"), ("4시간", "4h"), ("1일", "1d")]
     oitfs = "".join(f'<button class="oitf" data-oitf="{v}">{lbl}</button>' for lbl, v in ptfs)
@@ -538,7 +538,7 @@ _CHART_JS = r"""<script>
  var cfg=window.MKTCFG||{syms:[],d1:'BTC'};
  var SYMS=(cfg.syms||[]).slice();
  var SEL={s:cfg.d1,tf:'4h',oitf:'1h',cvdtf:'1h'};   // tf=캔들 간격(15m/1h/4h/1d/1w/1M)
- var TFSET={'15m':1,'1h':1,'4h':1,'1d':1,'1w':1,'1M':1};
+ var TFSET={'1m':1,'5m':1,'15m':1,'1h':1,'4h':1,'1d':1,'1w':1,'1M':1};
  var IND={ma100:true,ma200:true,st:true,rsi:true,poc:true};   // 차트 기본 지표(모두 ON)
  try{var _pi=localStorage.getItem('ct_ind');if(_pi){var _po=JSON.parse(_pi);
    for(var _k in _po)if(_k in IND)IND[_k]=!!_po[_k];}}catch(_e){}
@@ -551,7 +551,7 @@ _CHART_JS = r"""<script>
    var _o=localStorage.getItem('ct_oitf');if(_o)SEL.oitf=_o;
    var _c=localStorage.getItem('ct_cvdtf');if(_c)SEL.cvdtf=_c;}catch(_e){}
  if(!TFSET[SEL.tf])SEL.tf='4h';   // 옛 기간기준(7d 등) 저장값 보정
- var LAST=null, OILAST=null, CVDLAST=null, DOMLAST=null;
+ var LAST=null, OILAST=null, CVDLAST=null, DOMLAST=null, CH=null;
  // 차트 줌/팬 뷰 윈도우. i0..i1 = 표시가능 전체구간(pAll)에서 화면에 그릴 인덱스 범위.
  // key(심볼|tf|길이)가 바뀌면(=종목·간격 전환) 최근 DEF_SHOWN봉으로 리셋한다.
  var VIEW={key:null,i0:0,i1:0}, DEF_SHOWN=200;
@@ -716,7 +716,7 @@ _CHART_JS = r"""<script>
    if(full.length-warm<2){root.innerHTML='<div class="muted">데이터 없음</div>';return;}
    var fCl=full.map(function(a){return a[4];}),fHi=full.map(function(a){return a[2];}),fLo=full.map(function(a){return a[3];});
    var ma100=IND.ma100?smaArr(fCl,100):null, ma200=IND.ma200?smaArr(fCl,200):null;
-   var rsi=IND.rsi?rsiArr(fCl,14):null, stObj=IND.st?superTrend(fHi,fLo,fCl,10,3):null;
+   var rsi=rsiArr(fCl,14), stObj=IND.st?superTrend(fHi,fLo,fCl,10,3):null;  // RSI는 호버 툴팁용으로 항상 계산(패널 표시는 rsiH로 게이트)
    var chan=CHAN==='keltner'?keltner(fHi,fLo,fCl,20,10,2):(CHAN==='donchian'?donchian(fHi,fLo,20):null);
    var pAll=full.slice(warm);   // 표시가능 전체구간(줌아웃 최대)
    // 줌/팬 뷰 적용: key가 바뀌면(종목·간격 전환) 최근 DEF_SHOWN봉으로 리셋
@@ -815,13 +815,24 @@ _CHART_JS = r"""<script>
        if(rv2>=70)o.push('<circle cx="'+sx(xs[t4]).toFixed(1)+'" cy="'+ry(rv2).toFixed(1)+'" r="1.7" fill="#e23b4a"/>');
        else if(rv2<=30)o.push('<circle cx="'+sx(xs[t4]).toFixed(1)+'" cy="'+ry(rv2).toFixed(1)+'" r="1.7" fill="#16a34a"/>');}
      o.push('<text x="'+(padL+2)+'" y="'+(rsiTop+11)+'" fill="#a855f7" font-size="10">RSI(14)</text>');}
-   var tf=(d&&d.tf)||SEL.tf,intraday=(tf==='15m'||tf==='1h'||tf==='4h');
+   var tf=(d&&d.tf)||SEL.tf,intraday=(tf==='1m'||tf==='5m'||tf==='15m'||tf==='1h'||tf==='4h');
    for(var k=0;k<5;k++){var xv=xmin+(xmax-xmin)*k/4,dt=new Date(xv);
      var lab=dt.getFullYear()+'-'+('0'+(dt.getMonth()+1)).slice(-2)+'-'+('0'+dt.getDate()).slice(-2);
      if(intraday)lab+=' '+('0'+dt.getHours()).slice(-2)+':'+('0'+dt.getMinutes()).slice(-2);
      var an=k===0?'start':(k===4?'end':'middle');
      o.push('<text x="'+sx(xv).toFixed(1)+'" y="'+(H-6)+'" fill="#8d969e" font-size="'+(intraday?9:10)+'" text-anchor="'+an+'">'+lab+'</text>');}
    o.push('</svg>');root.innerHTML=o.join('');
+   // ---- 호버 크로스헤어용 스냅샷 저장 + 오버레이 삽입(가격·RSI 툴팁) ----
+   root.style.position='relative';
+   CH={W:W,H:H,padT:padT,priceBottom:priceBottom,ymin:ymin,yr:yr,tf:tf,
+       sxpx:xs.map(sx),xs:xs,p:p,
+       rsiv:p.map(function(_a,t){return rsi[warm+t];})};
+   root.insertAdjacentHTML('beforeend',
+     '<div id="mkt-cx" style="position:absolute;inset:0;pointer-events:none;display:none;z-index:5">'+
+     '<div id="cx-v" style="position:absolute;top:0;bottom:0;width:1px;background:rgba(255,255,255,0.35)"></div>'+
+     '<div id="cx-h" style="position:absolute;left:0;right:0;height:1px;background:rgba(255,255,255,0.22)"></div>'+
+     '<div id="cx-tip" style="position:absolute;background:rgba(18,22,26,0.96);border:1px solid rgba(255,255,255,0.16);'+
+     'border-radius:6px;padding:5px 8px;font-size:11px;color:#e6e8ea;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,0.4)"></div></div>');
    renderScores(full);   // 기술/추세 점수(좌측 차트 tf 기준) 갱신
    var pe=document.getElementById('mkt-price');if(pe && (pe.textContent==='—'||pe.textContent===''))pe.textContent=fmtPx(p[p.length-1][4]);}
  function loadChart(){hlTf();
@@ -954,6 +965,35 @@ _CHART_JS = r"""<script>
  window.addEventListener('mouseup',function(){if(_drag){_drag=null;root.style.cursor='';}});
  root.addEventListener('dblclick',function(){        // 더블클릭=전체 이력(줌 리셋)
    if(!LAST)return;var n=viewN();VIEW.i0=0;VIEW.i1=n;drawCandles(LAST);});
+ // ---- 호버 크로스헤어: 커서 위치의 캔들 가격·RSI 툴팁 ----
+ root.addEventListener('mousemove',function(e){
+   if(!CH||_drag)return;var ov=document.getElementById('mkt-cx');if(!ov)return;
+   var rect=root.getBoundingClientRect();if(!rect.width||!rect.height)return;
+   var cx=e.clientX-rect.left,cy=e.clientY-rect.top;
+   var vx=cx/rect.width*CH.W;                     // CSS픽셀 → viewBox 좌표
+   var best=0,bd=1e18;for(var i=0;i<CH.sxpx.length;i++){var dd=Math.abs(CH.sxpx[i]-vx);if(dd<bd){bd=dd;best=i;}}
+   var vLineCss=CH.sxpx[best]/CH.W*rect.width;     // 캔들에 스냅한 세로선(CSS픽셀)
+   ov.style.display='block';
+   document.getElementById('cx-v').style.left=vLineCss.toFixed(1)+'px';
+   document.getElementById('cx-h').style.top=cy.toFixed(1)+'px';
+   var vy=cy/rect.height*CH.H,curPx=null;          // 커서 y의 가격축 값(가격패널 영역 안일 때만)
+   if(vy>=CH.padT&&vy<=CH.priceBottom)curPx=CH.ymin+(CH.priceBottom-vy)/(CH.priceBottom-CH.padT)*CH.yr;
+   var c=CH.p[best],rv=CH.rsiv?CH.rsiv[best]:null,dt=new Date(CH.xs[best]);
+   var intr=(CH.tf==='1m'||CH.tf==='5m'||CH.tf==='15m'||CH.tf==='1h'||CH.tf==='4h');
+   var tlab=(dt.getMonth()+1)+'/'+dt.getDate()+(intr?(' '+('0'+dt.getHours()).slice(-2)+':'+('0'+dt.getMinutes()).slice(-2)):'');
+   var chg=c[1]?((c[4]-c[1])/c[1]*100):0,cc=chg>=0?'#16a34a':'#e23b4a';
+   var t='<div style="color:#8d969e;margin-bottom:2px">'+tlab+'</div>'+
+     '<div>종가 <b>'+fmtPx(c[4])+'</b> <span style="color:'+cc+'">('+(chg>=0?'+':'')+chg.toFixed(2)+'%)</span></div>'+
+     '<div style="color:#8d969e">고 '+fmtPx(c[2])+' · 저 '+fmtPx(c[3])+'</div>';
+   if(rv!=null){var rc=rv>=70?'#e23b4a':(rv<=30?'#16a34a':'#a855f7');t+='<div>RSI(14) <b style="color:'+rc+'">'+rv.toFixed(1)+'</b></div>';}
+   if(curPx!=null)t+='<div style="color:#8d969e">커서 '+fmtPx(curPx)+'</div>';
+   var tip=document.getElementById('cx-tip');tip.innerHTML=t;
+   var tw=tip.offsetWidth||120,th=tip.offsetHeight||60;     // 우측 끝이면 왼쪽으로 뒤집기
+   var tx=vLineCss+10;if(tx+tw>rect.width)tx=vLineCss-tw-10;if(tx<0)tx=2;
+   var ty=cy+10;if(ty+th>rect.height)ty=rect.height-th-2;if(ty<0)ty=2;
+   tip.style.left=tx.toFixed(1)+'px';tip.style.top=ty.toFixed(1)+'px';
+ });
+ root.addEventListener('mouseleave',function(){var ov=document.getElementById('mkt-cx');if(ov)ov.style.display='none';});
  // ---- 심볼 검색 ----
  function renderSyms(q){q=(q||'').toUpperCase();var box=document.getElementById('mkt-list');
    box.innerHTML=SYMS.filter(function(x){return x.toUpperCase().indexOf(q)>=0;}).slice(0,150)
