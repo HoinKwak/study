@@ -1,13 +1,13 @@
 토큰,체인,단계,KOL코로보,서사,신규여부,시점,출처
-DAHOOD,Robinhood Chain(Uniswap V3),조기(신규·초기반전조짐),-,"풀생성2026-07-28(오늘),h24+14212%(저베이스)나h1-21.28%·h6-5.96%로이미조정시작,유동성$62.4K,거래량$2.12M",신규,2026-07-28T20:04:00Z,https://dexscreener.com/robinhood/0x29fbaa3668e688c83fae9b5dd13cc3cfc097ccbf
-CIAO,Robinhood Chain(Uniswap V3),확산(냉각·신규),-,"풀생성2026-07-27,h1-1.58%보합·h6-22.61%냉각,h24+729~14637%(소스편차),유동성$277.9K",신규,2026-07-28T20:04:00Z,https://dexscreener.com/robinhood/0xc1a0bf772b80ff771b3837e269813f7b62e047be
-BNUT,Solana(PumpSwap/Meteora/PumpFun),확산(재가속·9회차),-,"직전정점통과경계이후이번회차재점화,h1+93.84%,h6+96.12%,h24+660%,유동성+16.7%",지속(9회차),2026-07-28T20:04:00Z,https://dexscreener.com/solana/H3GtwGSrYRVqp7dtjkaDfjE2inydLkHwFkFJSPzrpump
-FRANK,Solana(PumpSwap/Meteora/PumpFun),확산(지속가속·4회차),-,"직전대반전이후이번회차도가속지속,h1+9.35%,h6+1574%,h24+10145%,유동성+75.8%",지속(4회차),2026-07-28T20:04:00Z,https://dexscreener.com/solana/3aqXuwp6HuVXs9vdD9Gpg4dzJaUx443RjK7GXzphpump
-AEON,BSC(PancakeSwap),확산(신규·동일심볼복수CA주의),-,"h1+0.43%보합,h6+52.52%,h24+12560%(평탄화국면),유동성$327.5K,동일심볼전혀다른FDV별개풀존재확인",신규,2026-07-28T20:04:00Z,https://dexscreener.com/bsc/0x012ea6A89cf28Fa1C5Cc6e6f7363702AA4CCB9a2
-PIG,BSC(PancakeSwap V2),확산(지속·3회차),-,"h1-6.32%소폭조정,h6+3.54%,h24+542%유지,유동성-7.3%소폭감소",지속(3회차),2026-07-28T20:04:00Z,https://dexscreener.com/bsc/0xcc1e29100a750a3e9165acc6ebff50595b5a7777
-Diary(The Fauci Diary),Solana(PumpSwap/Meteora/PumpFun),확산(지속·9회차),-,"h1+8.75%,h6+69.54%,h24+2469%거의동일유지,유동성안정,매수매도비균형화조짐",지속(9회차),2026-07-28T20:04:00Z,https://dexscreener.com/solana/9MEYExzYucFLtAk2v8PCdw4SM4xox5o4gPZEywyvpump
-ASTEROID(Asteroid Shiba),Robinhood Chain(Uniswap V2),확산(둔화·3회차),-,"RH체인SPX홀더보상서사지속,h1-5%소폭마이너스,h6+19.69%큰폭둔화,h24+84.62%",지속(3회차),2026-07-28T20:04:00Z,https://dexscreener.com/robinhood/0x38aaf33082b20aff2e33433138de920f131b7777
-Jimothy,Solana(PumpSwap/Meteora/Orca),확산(지속안정적·2회차),-,"h1+5.91%,h6+29.41%,h24+29.48%전구간플러스지속,유동성$443K안정",지속(2회차),2026-07-28T20:04:00Z,https://dexscreener.com/solana/Ge87EtsjwRQbHaqQmKRno69RFTwh9bfSsm99XNxTpump
-CATE,Solana(PumpSwap/Meteora),조정(혼조반등·7회차),-,"h1+18.1%플러스전환반등이나h6-27.13%·h24-36.56%하락지속,유동성+12.3%반등유입",지속(7회차),2026-07-28T20:04:00Z,https://dexscreener.com/solana/Ai66LHZG9MCzg1WKdawwqduVAXpNDUuV8M3uyq5ppump
-budi,Solana(PumpSwap/Meteora/PumpFun),조정(혼조·8회차),-,"h1+31.66%반등이나h6-42.7%여전히약세,h24+97.78%,매수매도거의균형",지속(8회차),2026-07-28T20:04:00Z,https://dexscreener.com/solana/Gihvutvj8wvAFLrazDgoHewwfy75ozjv3bGGdr87pump
-Waymark(WAY),Robinhood Chain(Uniswap V2),조정(정점통과경계·9회차),-,"h1-31.11%·h6-10.86%동시마이너스전환,h24+417%로큰폭둔화,유동성-10.5%추가감소",지속(9회차),2026-07-28T20:04:00Z,https://dexscreener.com/robinhood/0x5b0c34cf165eb4d69c010e3a7394711c996f7777
+Smugs,Solana(PumpSwap/Meteora/PumpFun),조기(신규·초고속경계),-,"풀생성2026-07-28(오늘),h24+323.6%,h6+49.2%나h1-36.1%로수시간만에조정시작,유동성$28.8K매우낮음",신규,2026-07-28T22:03:00Z,https://dexscreener.com/solana/4BwfCsmzbfUUb7uWxTgy4oDhdCHMGZCqntmz3CHdpump
+COSM,BSC(PancakeSwap),조기(완만가속·신규),-,"풀생성2026-07-23,h1+9.68~10.26%,h6+10.70~11.28%로완만지속가속(급등형과다른패턴),유동성$451K",신규,2026-07-28T22:03:00Z,https://dexscreener.com/bsc/0x0d6ae45c96ec4df860300087462266e19140f6dc
+SWOGE,Robinhood Chain(Uniswap V3),조기(가속·신규),-,"풀생성2026-07-20,h1+15.69%>h24+15.07%역전구조로최근가속시사,유동성$69.9K",신규,2026-07-28T22:03:00Z,https://dexscreener.com/robinhood/0xdb87393727b666c43f5aecb03d8b419ba54d9b03
+PIG,BSC(PancakeSwap V2),확산(신규풀+재가속·4회차),-,"오늘신규유동성풀생성확인,h1-6.32%→+12.63%반전상승,유동성+10.4%",지속(4회차),2026-07-28T22:03:00Z,https://dexscreener.com/bsc/0xcc1e29100a750a3e9165acc6ebff50595b5a7777
+DAHOOD,Robinhood Chain(Uniswap V3),조기(반등재가속·2회차),-,"직전h1-21.28%였으나이번h1+13.4%반등,다만GT트렌딩상위목록이탈",지속(2회차),2026-07-28T22:03:00Z,https://dexscreener.com/robinhood/0x29fbaa3668e688c83fae9b5dd13cc3cfc097ccbf
+AEON,BSC(PancakeSwap),확산(재가속·2회차),-,"h1+0.43%→+4.41%,유동성+7.7%로소폭재가속,동일심볼다른FDV별개풀혼재주의",지속(2회차),2026-07-28T22:03:00Z,https://dexscreener.com/bsc/0x012ea6A89cf28Fa1C5Cc6e6f7363702AA4CCB9a2
+FRANK,Solana(PumpSwap/Meteora/PumpFun),확산(반전조짐·5회차),-,"h1+9.35%→-28.9~-30.15%첫반전마이너스,유동성첫감소-13.7%",지속(5회차),2026-07-28T22:03:00Z,https://dexscreener.com/solana/3aqXuwp6HuVXs9vdD9Gpg4dzJaUx443RjK7GXzphpump
+BNUT,Solana(PumpSwap/Meteora/PumpFun),확산(재반전·10회차),-,"직전재점화h1+93.84%였으나이번h1-18.38%재반전하락",지속(10회차),2026-07-28T22:03:00Z,https://dexscreener.com/solana/H3GtwGSrYRVqp7dtjkaDfjE2inydLkHwFkFJSPzrpump
+CIAO,Robinhood Chain(Uniswap V3),조정(냉각지속·2회차),-,"h1-1.58%→-3.94%,유동성2회연속감소-11.9%",지속(2회차),2026-07-28T22:03:00Z,https://dexscreener.com/robinhood/0xc1a0bf772b80ff771b3837e269813f7b62e047be
+Diary(The Fauci Diary),Solana(PumpSwap/Meteora/PumpFun),조정(둔화·10회차),-,"h1+8.75%→-12.95%반전마이너스,유동성10회차만에첫감소-13.2%",지속(10회차),2026-07-28T22:03:00Z,https://dexscreener.com/solana/9MEYExzYucFLtAk2v8PCdw4SM4xox5o4gPZEywyvpump
+Jimothy,Solana(PumpSwap/Meteora/Orca),확산(완만둔화·3회차),-,"h1/h6/h24전반적완만둔화,유동성-4.1%,FDV$8M대로조기단계는지남",지속(3회차),2026-07-28T22:03:00Z,https://dexscreener.com/solana/Ge87EtsjwRQbHaqQmKRno69RFTwh9bfSsm99XNxTpump
+Himgajria,Solana(PumpSwap/Meteora),조정(변동성반등·신규관찰),-,"풀생성12일전,h24+765.95%재차급등,h6-23.88%나h1+13.05%반등,거래량/유동성비100배극단워시의심",신규관찰,2026-07-28T22:03:00Z,https://dexscreener.com/solana/H1adbGC578HdoddVNAZT1Bn4uNrPiioTCfYmRjBHpump
