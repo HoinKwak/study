@@ -84,33 +84,44 @@ def _ret(closes: list[float], back: int) -> float | None:
 
 def alt_strength(min_volume: float, top_n: int = 10, max_symbols: int = 45,
                  data: BinanceDerivativesData | None = None) -> dict:
-    """1/7/30일 BTC 대비 상대강도 TOP N. {'1d':[{symbol,alt,btc,rel}], ...}."""
+    """1시간/4시간/1일/7일 BTC 대비 상대강도 TOP N. {'1h':[{symbol,alt,btc,rel}], ...}.
+
+    인트라데이(1h/4h)는 1h 캔들, 일간(1d/7d)은 1d 캔들에서 계산한다.
+    """
     data = data or BinanceDerivativesData()
     pairs = high_volume_usdt_symbols(min_volume)
     symbols = [s for s, _v in pairs][:max_symbols]
 
-    btc = data.klines("BTC/USDT", "1d", limit=32)
-    btc_closes = btc["close"] if btc else []
-    btc_ret = {w: _ret(btc_closes, w) for w in (1, 7, 30)}
+    # (캔들 interval, limit, [(back, key)]) — 1h 캔들 하나로 1h·4h 동시 산출
+    btc_h = data.klines("BTC/USDT", "1h", limit=8)
+    btc_d = data.klines("BTC/USDT", "1d", limit=10)
+    btc_h_closes = btc_h["close"] if btc_h else []
+    btc_d_closes = btc_d["close"] if btc_d else []
+    # (closes, back, key)
+    def _specs(h_closes, d_closes):
+        return [(h_closes, 1, "1h"), (h_closes, 4, "4h"),
+                (d_closes, 1, "1d"), (d_closes, 7, "7d")]
+    btc_ret = {key: _ret(closes, back)
+               for closes, back, key in _specs(btc_h_closes, btc_d_closes)}
 
-    rows: dict[int, list[dict]] = {1: [], 7: [], 30: []}
+    rows: dict[str, list[dict]] = {"1h": [], "4h": [], "1d": [], "7d": []}
     for sym in symbols:
         if sym == "BTC/USDT":
             continue
-        kl = data.klines(sym, "1d", limit=32)
-        if not kl or not kl.get("close"):
-            continue
-        closes = kl["close"]
-        for w in (1, 7, 30):
-            a = _ret(closes, w)
-            b = btc_ret.get(w)
+        kh = data.klines(sym, "1h", limit=8)
+        kd = data.klines(sym, "1d", limit=10)
+        h_closes = kh["close"] if kh and kh.get("close") else []
+        d_closes = kd["close"] if kd and kd.get("close") else []
+        for closes, back, key in _specs(h_closes, d_closes):
+            a = _ret(closes, back)
+            b = btc_ret.get(key)
             if a is None or b is None:
                 continue
-            rows[w].append({"symbol": sym, "alt": round(a, 2),
-                            "btc": round(b, 2), "rel": round(a - b, 2)})
+            rows[key].append({"symbol": sym, "alt": round(a, 2),
+                              "btc": round(b, 2), "rel": round(a - b, 2)})
     out = {}
-    for w, key in ((1, "1d"), (7, "7d"), (30, "30d")):
-        out[key] = sorted(rows[w], key=lambda r: -r["rel"])[:top_n]
+    for key in ("1h", "4h", "1d", "7d"):
+        out[key] = sorted(rows[key], key=lambda r: -r["rel"])[:top_n]
     return out
 
 

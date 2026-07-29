@@ -1624,9 +1624,10 @@ def render_html(journal: TradeJournal, equity: float | None = None,
     strength_section = f"""
   <h2>💪 BTC 대비 강도 (스테이블 제외)</h2>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;align-items:stretch">
+    {_strength_table("상대강도 1시간", alt.get("1h", []))}
+    {_strength_table("상대강도 4시간", alt.get("4h", []))}
     {_strength_table("상대강도 1일", alt.get("1d", []))}
     {_strength_table("상대강도 7일", alt.get("7d", []))}
-    {_strength_table("상대강도 30일", alt.get("30d", []))}
     {_mcap_table(mcap)}
     {_watchlist_card()}
   </div>
