@@ -1,202 +1,197 @@
 {
-  "ts": "2026-07-29T12:04:00Z",
+  "ts": "2026-07-29T14:04:00Z",
   "tokens": [
     {
       "token": "Diary",
       "chain": "Solana(pump.fun/PumpSwap+Meteora)",
       "ca": "9MEYExzYucFLtAk2v8PCdw4SM4xox5o4gPZEywyvpump",
-      "stage": "조기재가속(5회차,둔화에서반전상승)",
+      "stage": "조기재가속(6회차,가속폭더확대)",
       "kols": "",
-      "thesis": "직전회차h1-5.88%·h6-6.69%로둔화했으나이번회차h1+22.73%,h6+24.21%,h24+35.28%전구간재가속,유동성$62,191.63→$71,724.89(+15.3%)로유동성유입도동반",
-      "risk": "🟠 pump.fun저유동성원천리스크지속,2시간전둔화→재가속반전이라단회차추세확정불가,매수410/매도332(h1)매수우위,KOL원문미확인(코로보없음)"
-    },
-    {
-      "token": "ASTEROID",
-      "chain": "Robinhood Chain(Uniswap V3)",
-      "ca": "0x38aaf33082b20aff2e33433138de920f131b7777",
-      "stage": "확산재가속(5회차,상승률다시가속)",
-      "kols": "",
-      "thesis": "h1+14.19%(직전+0.51%에서가속),h6+34.50%(직전+18.06%대비2배가까이가속),h24+356.27%,유동성$93,900→$98,770.96(+5.2%)",
-      "risk": "🟡 5회차째지속추적이나절대유동성$98.8K로여전히소형,RH체인구조적클론리스크상존,KOL원문미확인(코로보없음)"
-    },
-    {
-      "token": "AEON",
-      "chain": "BSC(PancakeSwap)",
-      "ca": "0x012ea6A89cf28Fa1C5Cc6e6f7363702AA4CCB9a2",
-      "stage": "확산(9회차,원조·클론동반꾸준지속)",
-      "kols": "",
-      "thesis": "원조h1+5.16%,h6+27.68%,h24+336%,유동성$486,518→$504,264(+3.6%)로9회차째꾸준한추가유입지속,클론(0x277add739...)유동성$1.75M수준유지",
-      "risk": "🔴 동일심볼2개이상CA혼재9회차째지속,CA대조필수,KOL원문미확인(코로보없음)"
-    },
-    {
-      "token": "Jimothy",
-      "chain": "Solana(PumpSwap/Meteora/Orca)",
-      "ca": "Ge87EtsjwRQbHaqQmKRno69RFTwh9bfSsm99XNxTpump",
-      "stage": "확산(10회차,대형화·안정지속)",
-      "kols": "",
-      "thesis": "h1+5.01%,h6+26.89%,h24+119.11%로전구간플러스유지,유동성$599,137→$583,121(-2.7%)로소폭감소하나여전히대형",
-      "risk": "🟡 10회차연속추적,이제'조기'보다'정착된대형밈'단계로판단,모멘텀완만둔화추세,KOL원문미확인(코로보없음)"
-    },
-    {
-      "token": "Looks",
-      "chain": "Solana(pump.fun/PumpSwap)",
-      "ca": "HD9imH98GRajpehqc82B72A8qnPgvzWSHAmvJRPepump",
-      "stage": "변동성반등(3회차,급락후재반등·휘프소우패턴)",
-      "kols": "",
-      "thesis": "직전h1-26.74%,h24-34.1%급락이었으나이번회차h1+14.47%,h6+26.77%로반등,다만h24는-30.95%로여전히마이너스(아직완전회복아님)",
-      "risk": "🔴 3회차만에가속→급락→반등을반복하는휘프소우패턴,h1매수107/매도196으로가격상승중매도우위다이버전스(워시가능성),저유동성러그위험지속,KOL원문미확인(코로보없음)"
-    },
-    {
-      "token": "Artcoin",
-      "chain": "Robinhood Chain(Uniswap V3)",
-      "ca": "0x9516922a56171ab9834b88864d1010a6d8633296",
-      "stage": "혼조(5회차,신규다중클론풀발견)",
-      "kols": "",
-      "thesis": "h1+10.85%(직전-0.85%에서플러스전환)이나h6-21.89%(직전-7.01%보다악화)로혼조,h24+869%,유동성$65,800→$65,630로거의보합",
-      "risk": "🔴 이번회차DexScreener배치조회에서Artcoin명의소액클론풀8개이상신규발견(유동성$0.02~$66,대부분사실상죽은풀)—AEON·PLTS·PIPEDOG와동일한클론스팸패턴이Artcoin에도적용됨을최초확인,CA대조필수,KOL원문미확인(코로보없음)"
+      "thesis": "직전h1+22.73%·h6+24.21%재가속이었으나이번회차h1+48.08%(가속더확대),h6+18.43%(소폭둔화),h24+83.23%,유동성$71,724.89→$78,800(+9.9%)로유입지속,매수3079/매도2653(h1)매수우위",
+      "risk": "🟠 pump.fun저유동성원천리스크지속,6회차연속추적중가장강한재가속,단두시간스냅샷만으로는추세확정불가,KOL원문미확인(코로보없음)"
     },
     {
       "token": "Smugs",
       "chain": "Solana(pump.fun/PumpSwap)",
       "ca": "4BwfCsmzbfUUb7uWxTgy4oDhdCHMGZCqntmz3CHdpump",
-      "stage": "조정전환(3회차,2회연속가속후급랭)",
+      "stage": "조정후재가속(4회차,급랭에서반전)",
       "kols": "",
-      "thesis": "직전2회차연속h1+54.61%·h6+152%로강세였으나이번회차h1-29.23%로급반전,h6+43.00%·h24+24.77%로여전히플러스지만뚜렷이둔화,유동성$17,157.78→$15,221.36(-11.3%)",
-      "risk": "🔴 유동성대비거래량비약169배로여전히극단적워시경계,3회차째지속중가속→급랭전환은분배(덤핑)초입가능성,동일심볼다중CA난립지속,KOL원문미확인(코로보없음)"
+      "thesis": "직전회차h1-29.23%급랭이었으나이번회차h1+8.35%로반전,h6+35.59%(직전+43.00%와비슷유지),h24-82.61%(직전+24.77%에서급락,대부분전일급등분이24h윈도우이탈한기저효과),유동성$15,221.36→$17,289(+13.6%)로재유입",
+      "risk": "🔴 유동성대비거래량비율여전히극단적(약95배),4회차연속가속↔급랭반복하는고변동성,워시경계지속,KOL원문미확인(코로보없음)"
     },
     {
       "token": "YODA",
       "chain": "Robinhood Chain(Uniswap V2)",
       "ca": "0x4c4cddb8138c97B123375Cf65b0456AE877410DA",
-      "stage": "확산둔화(3회차,%모멘텀급감이나매수세유지)",
+      "stage": "확산재가속(4회차,h6모멘텀재가속)",
       "kols": "",
-      "thesis": "직전h1+30.49%·h6+74.24%강한재가속이었으나이번회차h1+3.27%·h6+4.69%로모멘텀급감,다만h1매수409/매도145로여전히매수우위약2.8:1",
-      "risk": "🟠 유동성$48,600→$43,783.51(-10%)이탈,h24수치(11,964.79%)여전히비정상적으로과도해데이터정합성의심지속,RH체인클론리스크상존,KOL원문미확인(코로보없음)"
+      "thesis": "직전h1+3.27%·h6+4.69%로급감했으나이번회차h1+2.51%(횡보)·h6+40.04%(뚜렷재가속),유동성$43,783.51→$48,356(+10.4%)로재유입,h24수치(14,476%)여전히비정상적으로과도해데이터정합성의심지속",
+      "risk": "🟠 h24데이터왜곡지속(정합성의심),RH체인클론리스크상존,4회차째변동성반복,KOL원문미확인(코로보없음)"
     },
     {
-      "token": "CZT",
+      "token": "AEON",
       "chain": "BSC(PancakeSwap)",
-      "ca": "0x93857a2c3f2a54b94ce4433c46677e3e9ad8798c",
-      "stage": "조정전환(8회차,7회차만의첫h1마이너스)",
+      "ca": "0x012ea6A89cf28Fa1C5Cc6e6f7363702AA4CCB9a2",
+      "stage": "확산(10회차,원조안정·클론냉각동반)",
       "kols": "",
-      "thesis": "h1-8.412%(7회차만에처음마이너스전환),h6+1.342%(직전+85.89%에서대폭둔화),h24+88.872%,유동성$77,496.74→$75,908.78(-2%)",
-      "risk": "🟠 8회차째변동성반복이력,h1매수68/매도33로매수우위는유지돼완전붕괴신호는아직아님,BSC저유동러그위험지속,KOL원문미확인(코로보없음)"
+      "thesis": "원조h1+4.13%,h6+25.71%,h24+280%,유동성$504,264→$525,231.87(+4.2%)로10회차째꾸준증가지속,클론(0x25042161...)은유동성$1.75M거의보합이나h6-5.5%로냉각조짐",
+      "risk": "🔴 동일심볼2개이상CA혼재10회차째지속,CA대조필수,KOL원문미확인(코로보없음)"
     },
     {
-      "token": "Ferret",
+      "token": "Jimothy",
       "chain": "Solana(PumpSwap/Meteora/Orca)",
-      "ca": "HXuinymFnfjaiM4LkaFDLvvQ4a1WL5qoupdyUGtJpump",
-      "stage": "조정(7회차,둔화지속)",
+      "ca": "Ge87EtsjwRQbHaqQmKRno69RFTwh9bfSsm99XNxTpump",
+      "stage": "확산안정(11회차,모멘텀완만둔화·유동성은증가)",
       "kols": "",
-      "thesis": "직전재가속(h1+11.76%)이었으나이번회차h1-2.15%·h6-7.61%로재차마이너스전환,h24+347.59%,유동성$74,427.67→$70,495.88(-5.3%)",
-      "risk": "🟡 h1거래매수133/매도138로거의균형(약보합분배국면),7회차째장기추적,유동성완만한이탈지속"
-    },
-    {
-      "token": "Deaton",
-      "chain": "Solana(pump.fun/PumpSwap)",
-      "ca": "5QZDZtXwSHGfreiVwkLvhyLm9MN8APjEvEGzyArhpump",
-      "stage": "조정지속(3회차,약보합안정화)",
-      "kols": "",
-      "thesis": "h1-7.13%,h6+42.29%,h24+33.35%로혼조지속,유동성$15,702.60→$16,024.03(+2%)로전회-31.4%급감이후소폭안정화",
-      "risk": "🔴 유동성대비거래량비약155배극단적지속,h1매수85/매도115로매도우위,서사여전히미확인,KOL원문미확인(코로보없음)"
-    },
-    {
-      "token": "DAHOOD",
-      "chain": "Robinhood Chain(Uniswap V3)",
-      "ca": "0x29fbaa3668e688c83fae9b5dd13cc3cfc097ccbf",
-      "stage": "조정전환(9회차,8회차연속상승후급반전+클론확대발견)",
-      "kols": "",
-      "thesis": "8회차연속유동성증가·상승세였으나이번회차h1-7.45%,h6-5.55%,h24-3.09%로전구간마이너스전환,유동성$70,400→$59,170(-16%)",
-      "risk": "🔴 이번회차DexScreener배치조회에서DAHOOD명의소액클론풀5개이상신규발견(유동성$4~$6,763)—Artcoin과동일하게AEON·PLTS·PIPEDOG식클론스팸패턴이DAHOOD에도적용됨을최초확인,h1매수155/매도79로매수우위인데도가격은음전—다이버전스,CA대조필수,KOL원문미확인(코로보없음)"
-    },
-    {
-      "token": "FRANK",
-      "chain": "Solana(pump.fun/PumpSwap)",
-      "ca": "3aqXuwp6HuVXs9vdD9Gpg4dzJaUx443RjK7GXzphpump",
-      "stage": "조정심화(3회차,3회연속h1마이너스)",
-      "kols": "",
-      "thesis": "h1-10.62%·h6-13.62%로3회차연속마이너스폭확대,h24+3392.49%(전회+3600%에서둔화),유동성$98,509.81→$103,442.21(+5%,가격하락중에도유동성은소폭증가)",
-      "risk": "🔴 유동성대비거래량비약117배극단적워시지속,3회차연속냉각확정,가격↓유동성↑다이버전스는신규유입후대량매도위험신호,KOL원문미확인(코로보없음)"
-    },
-    {
-      "token": "DOGCAT",
-      "chain": "Solana(pump.fun/PumpSwap)",
-      "ca": "Cbj8wDvAvbRw8McNPd7ZhUrcw8NSvsyfR4db6pL6pump",
-      "stage": "뒷북/붕괴(4회차,BNUT패턴완결)",
-      "kols": "",
-      "thesis": "4회차연속h1마이너스(-31.19%,전회-19.19%보다악화),h6-66.67%로급붕괴,h24+1458.11%(전회+2326%에서큰폭둔화),유동성$97,956.04→$81,368.74(-17%)",
-      "risk": "🔴 BNUT붕괴패턴이4회차연속에걸쳐완전히재현·완결됨(참조BNUT현재유동성$27,968.54·h24-24.92%로계속붕괴중),매수2053/매도1352(h1)로거래량은유지되나가격급락—전형적워시후덤핑패턴,KOL원문미확인(코로보없음)"
+      "thesis": "h1-0.07%(거의횡보,직전+5.01%에서둔화),h6+6.12%(직전+26.89%대비둔화),h24+152%(직전119%보다개선),유동성$583,121→$627,709(+7.6%)로오히려증가",
+      "risk": "🟡 11회차연속추적,'정착된대형밈'단계로가격모멘텀은완만둔화하나유동성유입은지속,KOL원문미확인(코로보없음)"
     },
     {
       "token": "PIPEDOG",
       "chain": "Robinhood Chain(Uniswap V3)+신규Solana풀출현",
       "ca": "0x5cb6f181081301b44905f3ae15419112ecabd8a6",
-      "stage": "뒷북(6회차,클론카오스전방위확대·크로스체인클론출현)",
+      "stage": "뒷북(7회차,재가속신호혼재)",
       "kols": "",
-      "thesis": "메인풀h1-0.49%,h6+10.06%,h24+8373.69%,유동성$10.3M→$10.44M(+1.4%)로여전히대형이나상승률자체는정점통과.CryptoTimes보도기준7/28출시후시총$400K→피크$73.7M(140배)이미달성후$43M대로되돌림완료—전형적으로'이미크게급등'한뒷북단계",
-      "risk": "🔴 클론가족이RH체인내(기존클론,PIPECAT)를넘어이번회차Solana체인에도동명풀신규생성확인(극초신생,판단보류수준의노이즈),PIPECAT클론은h1-20.85~-23.05%·h6-33.93~-34.99%로이미고점통과후급락중,'Wock'익명커뮤니티계정의AI배포설·모조품경고는KOL코로보가아닌미검증루머로별도취급,KOL원문(정식)미확인(코로보없음)"
+      "thesis": "메인풀h1-0.49%→+13.7%로재가속,h6+10.06%→+27.3%로개선,유동성$10.44M→$11.1M(+6.3%),매수918/매도233(h1,약4:1매수우위)로신규매수유입확인되나이미CryptoTimes보도로피크$73.7M(140배)달성후되돌림완결된단계라뒷북분류유지",
+      "risk": "🔴 클론가족(PIPECAT등)내V4다중풀구조로파편화지속,PIPECAT메인은h1+27.39%나h6-41.41%로급변동,기존클론(0x1e8fd16c...)유동성$348K→$186K(-46.5%)로급붕괴,CA대조필수"
+    },
+    {
+      "token": "Ferret",
+      "chain": "Solana(PumpSwap/Meteora/Orca)",
+      "ca": "HXuinymFnfjaiM4LkaFDLvvQ4a1WL5qoupdyUGtJpump",
+      "stage": "조정지속(8회차,횡보안정)",
+      "kols": "",
+      "thesis": "h1-1.68%·h6-0.43%로직전(h1-2.15%·h6-7.61%)대비낙폭축소,h24+389%(직전347.59%보다개선),유동성$70,495.88→$71,535(+1.5%)로소폭회복",
+      "risk": "🟡 8회차째장기추적,낙폭축소로바닥권가능성이나뚜렷한재가속신호는아직없음,KOL원문미확인(코로보없음)"
+    },
+    {
+      "token": "CZT",
+      "chain": "BSC(PancakeSwap)",
+      "ca": "0x93857a2c3f2a54b94ce4433c46677e3e9ad8798c",
+      "stage": "조정심화(9회차,h6재차마이너스전환)",
+      "kols": "",
+      "thesis": "h1-7.97%(직전-8.412%와비슷유지),h6-17.01%(직전+1.342%에서재차마이너스전환),h24+39.5%(직전88.872%대비대폭둔화),유동성$75,908.78→$74,348(-2.1%)",
+      "risk": "🟠 9회차째변동성반복,모멘텀둔화폭이누적,BSC저유동러그위험지속,KOL원문미확인(코로보없음)"
+    },
+    {
+      "token": "Artcoin",
+      "chain": "Robinhood Chain(Uniswap V3)",
+      "ca": "0x9516922a56171ab9834b88864d1010a6d8633296",
+      "stage": "혼조(6회차,h1재차마이너스전환)",
+      "kols": "",
+      "thesis": "h1-10.44%(직전+10.85%에서재차마이너스전환),h6-10.17%(직전-21.89%보다개선),h24+1390%(직전869%보다개선),유동성$65,630→$64,908(거의보합,-1.1%)",
+      "risk": "🔴 이전회차발견된다중클론풀(8개+,유동성$0.02~$66)패턴지속의심,CA대조필수,KOL원문미확인(코로보없음)"
+    },
+    {
+      "token": "ASTEROID",
+      "chain": "Robinhood Chain(Uniswap V3)",
+      "ca": "0x38aaf33082b20aff2e33433138de920f131b7777",
+      "stage": "조정전환(6회차,재가속에서급랭반전)",
+      "kols": "",
+      "thesis": "직전h1+14.19%·h6+34.50%재가속이었으나이번회차h1-13.65%로마이너스전환,h6+15.73%(대폭둔화),h24+47.21%(직전356.27%에서급락,기저효과),유동성$98,770.96→$90,979(-7.9%)로이탈",
+      "risk": "🟠 6회차연속추적중가장뚜렷한반전,절대유동성$91K로여전히소형,RH체인구조적클론리스크상존,KOL원문미확인(코로보없음)"
+    },
+    {
+      "token": "DAHOOD",
+      "chain": "Robinhood Chain(Uniswap V3)",
+      "ca": "0x29fbaa3668e688c83fae9b5dd13cc3cfc097ccbf",
+      "stage": "조정심화(10회차,3회연속전구간마이너스)",
+      "kols": "",
+      "thesis": "h1-11.75%(직전-7.45%보다악화),h6-13.54%(직전-5.55%보다악화),h24-22.27%(직전-3.09%보다악화)로3회차연속전구간마이너스심화,유동성$59,170→$55,491(-6.2%)로지속이탈",
+      "risk": "🔴 클론풀7개이상재확인(0xeab34ce4·0x60559ccf·0xC316B9F8·0x38b207bb·0x57c1341c신규·0x72ca2c28·0x538d60b5),8회연속상승후반전이일회성아닌추세로확정,CA대조필수,KOL원문미확인(코로보없음)"
+    },
+    {
+      "token": "Deaton",
+      "chain": "Solana(pump.fun/PumpSwap)",
+      "ca": "5QZDZtXwSHGfreiVwkLvhyLm9MN8APjEvEGzyArhpump",
+      "stage": "조정심화(4회차,h6급락)",
+      "kols": "",
+      "thesis": "h1+7.5%(직전-7.13%에서반등)나h6-45.9%(직전+42.29%에서급락반전),h24+12.37%(직전33.35%보다둔화),유동성$16,024.03→$14,299(-10.8%)로이탈",
+      "risk": "🔴 유동성대비거래량비율여전히극단적,매도우위지속,서사여전히미확인,KOL원문미확인(코로보없음)"
+    },
+    {
+      "token": "Looks",
+      "chain": "Solana(pump.fun/PumpSwap)",
+      "ca": "HD9imH98GRajpehqc82B72A8qnPgvzWSHAmvJRPepump",
+      "stage": "조정/휘프소우지속(4회차,h24낙폭재확대)",
+      "kols": "",
+      "thesis": "h1+8.7%(직전+14.47%보다둔화)나h6-11.33%(직전+26.77%에서재차마이너스전환),h24-41.56%(직전-30.95%보다악화),유동성$36,002.97→$34,978(-2.8%)",
+      "risk": "🔴 4회차째가속→급락→반등→재악화를반복하는휘프소우패턴지속,저유동성러그위험,KOL원문미확인(코로보없음)"
+    },
+    {
+      "token": "FRANK",
+      "chain": "Solana(pump.fun/PumpSwap)",
+      "ca": "3aqXuwp6HuVXs9vdD9Gpg4dzJaUx443RjK7GXzphpump",
+      "stage": "뒷북(4회차,4연속h1마이너스)",
+      "kols": "",
+      "thesis": "h1-13.4%(4회연속마이너스,직전-10.62%보다소폭심화),h6-8.5%(직전-13.62%보다소폭개선),h24+494%(직전3392.49%에서큰폭둔화,기저효과),유동성$103,442.21→$102,000대(거의보합,-1.4%)",
+      "risk": "🔴 4회차연속h1마이너스로하락추세확정,유동성대비거래량비율극단적지속(약117배),신규유입후대량매도위험,KOL원문미확인(코로보없음)"
+    },
+    {
+      "token": "DOGCAT",
+      "chain": "Solana(pump.fun/PumpSwap)",
+      "ca": "Cbj8wDvAvbRw8McNPd7ZhUrcw8NSvsyfR4db6pL6pump",
+      "stage": "뒷북/붕괴완결(5회차,유동성지속이탈)",
+      "kols": "",
+      "thesis": "h1-0.19%(거의횡보,직전-31.19%보다개선)나h6-64.33%(직전-66.67%와비슷,여전히심각),h24+924%(직전1458.11%에서둔화),유동성$81,368.74→$64,300(-21%,4~5회차누적으로피크대비약44%감소)",
+      "risk": "🔴 BNUT붕괴패턴5회차째완전재현·완결,유동성지속이탈로사실상뒷북/사양단계확정,KOL원문미확인(코로보없음)"
     }
   ],
   "notable": [
     {
-      "token": "PLTS·CATE·RYDER·PIPEDOG·PIPECAT·DAHOOD·Artcoin — 클론가족 구조적 리스크(전방위 확대)",
-      "status": "이슈(클론스팸패턴이DAHOOD·Artcoin으로도확산확인)",
-      "summary": "PLTS 3번째풀(유동성$507.7K→이번회차$513~518K로거의보합이나h24-63%로급락중,사실상뒷북확정)에이어,이번회차DexScreener배치조회로DAHOOD(클론5개+,유동성$4~6,763)·Artcoin(클론8개+,유동성$0.02~$66)에도동일한다중클론스팸패턴이있음을최초로확인했다. CATE-1클론은유동성$1.30M까지재펌프됐던것이이번회차재조회에서다시$2,579.77로붕괴(2차러그확정,h6-98.65%). RYDER는옛CA(d7737w2i...)유동성$3.48K로러그지속,반면완전히다른신규CA(GcdFfwa4...)의RYDER클론이유동성$44,874.95로새로등장(h1+18.22%,h24+327.67%)—클론가족이계속불어나는패턴. PIPECAT(0x9d98f99b...)은h1-20.85~-23.05%로이미고점통과후급락중. [u.today](https://u.today/beware-of-memecoin-scams-on-robinhood-chain-scatman-hood-and-cashcat-copycats-heres-how-to-avoid) 보도가Hood(DAHOOD유사)·Cashcat카피캣및개발자물량덤핑·허니팟구조를경고,이번회차실측과정확히일치."
+      "token": "RH체인 클론가족 구조적 리스크 — PLTS 3번째풀 사실상 완전러그 확정",
+      "status": "이슈(러그완결·클론구조지속확대)",
+      "summary": "PLTS 3번째풀(직전$507~518K,h24-63%급락중)이 이번회차 유동성$0.19로 사실상 완전붕괴, 3번째풀조차 러그 확정. CATE-1은 2차러그 후 이번회차도 유동성$2,381.42(h24-99.56%)로 여전히 죽은 수준 정체. RYDER 옛CA는 유동성$3,423.74로 러그지속, 신규발견 RYDER클론(GcdFfwa4...)은 유동성$44,132.41(-1.7%)로 유지되나 h1-14.121%로 냉각. PIPECAT 메인은 Uniswap V4 다중 수수료풀 구조로 파편화(10개+ 소액풀 확인)돼 클론 문제가 '동일심볼 다른CA' 뿐 아니라 '같은 토큰의 다중 소액풀 난립'으로도 나타남을 확인. 신규로 'HOODRAT'(DAHOOD 패러디 추정, 유동성$172,647.63, h24+83.025%)도 관찰돼 클론/패러디 토큰 확산이 이번 회차도 계속됨."
     },
     {
-      "token": "Scatman(신규확인·SpaceXAI/Starlink X계정해킹스캠)",
-      "status": "이슈(신규경고사례)",
-      "summary": "[u.today](https://u.today/beware-of-memecoin-scams-on-robinhood-chain-scatman-hood-and-cashcat-copycats-heres-how-to-avoid) 보도에따르면SpaceXAI·Starlink X계정이해킹돼Scatman토큰을홍보,해커가10조개토큰을민팅해약$108,000상당을매도하고이후매수자는휴지조각을떠안았다. RH체인생태계전반의계정해킹·허니팟·개발자물량덤핑리스크를보여주는신규사례로기록."
+      "token": "GME(Robinhood Chain, GameStop 밈코인)",
+      "status": "이슈(신규확인·이미급등후급락)",
+      "summary": "GameStop을 소재로 한 GME 토큰이 RH체인에 등장(생성 약1~2일전 추정), 메인풀 유동성$302,553, h1+9.4%나 h6-60.23%로 이미 큰 폭 급락한 상태 — 전형적 '신규런칭후단기펌프→급락' 패턴으로 판단, tokens 목록에는 편입하지 않고 관찰로만 기록. GAMESTOP 명의 별도 소액풀도 확인돼 클론화조짐 있음."
     },
     {
-      "token": "pump.fun 신규런칭 관찰(이번회차 데이터 한계 정직 기록)",
-      "status": "이슈(신규조기신호부재·데이터한계)",
-      "summary": "이번회차GeckoTerminal new_pools(Solana)조회결과가모두조회시점(2026-07-29T12:03~12:04Z)과거의동시생성된극초신생풀(생성후1분미만)이라시간경과에따른붕괴여부판단이불가능했다—직전회차처럼'생성후수시간~하루경과붕괴확인'같은유의미한데이터를이번엔확보하지못한한계를정직히기록한다. 다만trending_pools에서LOODY(h24-99.19%)·JACARE(h24-83.47%)·pumpkets(h24-77.46%)·BNUT(h24-24.92%,계속붕괴중)등은여전히단기붕괴패턴을보여신규런칭리스크자체는carryover로유효하다."
-    },
-    {
-      "token": "PIPEDOG 단일사례(CryptoTimes 상세보도)",
-      "status": "이슈(이미크게급등후되돌림·뒷북확정)",
-      "summary": "[CryptoTimes](https://www.cryptotimes.io/2026/07/29/pipedog-meme-coin-on-robinhood-chain-surges-over-140x-within-hours-of-launch/) 보도—7/28출시후시총$400K→1시간내$40M→피크$73.7M(140배)달성,현재$43M대로되돌림. Lookonchain이추적한트레이더0x4c8f는$16K를7시간만에$1.2M(77배)으로전환. 익명계정'Wock'이AI에이전트배포설을언급하며모조품(카피캣)주의를당부—단'Wock'은미검증·비공식계정으로KOL코로보로는분류하지않음(정직표기)."
+      "token": "신규 런칭 스캔 — 이번 회차도 데이터 한계(COVID 테마 동시생성 스팸 관찰)",
+      "status": "이슈(데이터한계·봇런칭패턴관찰)",
+      "summary": "GeckoTerminal Solana new_pools 조회결과 이번 회차도 전부 조회시점(2026-07-29T14:06Z)과 거의 동시 생성된 극초신생풀이라 붕괴여부 판단불가(구조적 API 한계, 재확인). 특기사항으로 COVID/COVIDGOV/SARS-CoV-2/covid 등 동일 테마 토큰 5개+가 같은 초단위에 무더기로 생성된 것을 관찰 — 봇을 이용한 테마 동시다발 런칭(스팸형) 패턴으로 추정되나 판단 재료 부족, 조기신호로 채택하지 않음(정직기록)."
     },
     {
       "token": "STONKBROKER",
-      "status": "추세지속(초기둔화조짐)",
-      "summary": "유동성$2.8M→$2.72M(-2.8%),h6+8.68%,h24+60.40%(전회+69.30%대비둔화)—확산단계지속이나이번회차처음으로완만한둔화조짐관찰."
+      "status": "추세지속",
+      "summary": "유동성$2.72M→$2.76M(+1.4%,거의보합),h6+4.44%,h24+71.464%(직전60.40%보다개선)—확산단계지속, 대형화된 안정권."
     },
     {
       "token": "PONS",
-      "status": "이슈(마이너스지속이나낙폭축소)",
-      "summary": "h1-1.42%,h6-3.70%,h24-12.74%(전회-18.76%에서낙폭축소),유동성$1.5M→$1.66M(+10.5%)로유동성은오히려증가. [CCN](https://www.ccn.com/news/crypto/trader-turns-44k-nearly-1m-robinhood-chain-memecoin-pons/)·[Yahoo Finance](https://finance.yahoo.com/markets/crypto/articles/trader-turns-50k-nearly-1m-143331011.html) 보도(carryover)."
+      "status": "이슈(마이너스지속)",
+      "summary": "h1-1.779%,h6-8.691%,h24-27.287%(직전-12.74%보다악화),유동성$1.60M(직전$1.66M대비소폭감소). [CCN](https://www.ccn.com/news/crypto/trader-turns-44k-nearly-1m-robinhood-chain-memecoin-pons/) 보도(carryover)."
     },
     {
       "token": "CASHCAT",
       "status": "추세지속",
-      "summary": "RH체인최대밈코인중하나,유동성$3.28M→$3.17M(-3.3%,거의보합),h1-2.94%·h6+1.21%·h24+16.85%로안정적확산지속재확인. [Fortune](https://fortune.com/crypto/2026/07/13/robinhood-chain-memecoin-trading-cash-cat-vlad-tenev-crypto/)·[CoinDesk](https://www.coindesk.com/tech/2026/07/13/robinhood-built-a-blockchain-for-tokenized-stocks-memecoins-took-over)(carryover)."
+      "summary": "RH체인최대밈코인중하나,유동성$3.06M(직전$3.17M대비소폭감소),h1-1.256%·h6-6.908%·h24+7.306%로안정적확산지속. CoinGecko trending에도재등장(rank555,h24+6.27%). [Fortune](https://fortune.com/crypto/2026/07/13/robinhood-chain-memecoin-trading-cash-cat-vlad-tenev-crypto/)·[CoinDesk](https://www.coindesk.com/tech/2026/07/13/robinhood-built-a-blockchain-for-tokenized-stocks-memecoins-took-over)(carryover)."
     },
     {
       "token": "PUMP",
-      "status": "조정(단기되돌림·버이백서사지속)",
-      "summary": "CoinGecko기준현재가$0.001859(rank76,h24-6.19%로되돌림),다만[cryptonews.net](https://cryptonews.net/news/analytics/33210488/) 보도로$0.0020재탈환·누적바이백$350M+상당·공급15%+영구소각서사는유효(carryover+갱신). Ansem투자코로보(carryover)."
+      "status": "조정",
+      "summary": "CoinGecko trending에서 rank79,h24-5.76%로재차소폭조정,다만누적바이백서사(carryover)는유효. Ansem투자코로보(carryover)."
+    },
+    {
+      "token": "MetaDAO(META)",
+      "status": "확산(CoinGecko trending신규진입)",
+      "summary": "CoinGecko trending 목록에 h24+33.47%로가장강한상승률로신규진입. Solana기반거버넌스프로젝트로 'ownership coins'(futarchy기반토큰홀더실권한) 컨셉을7/10Owners Meeting에서공개, 5월Coinbase상장이후관심지속. RH체인밈코인과는성격이다른중견프로젝트범주로별도기록(carryover아님,이번회차신규주목)."
     },
     {
       "token": "Vladhood(VLAD)/VHOOD",
       "status": "이슈(경고유지)",
-      "summary": "[The Block](https://www.theblock.co/post/409560/robinhood-ceo-x-account-apparently-hacked-promote-vladhood-memecoin-flagged-scam)·[Coingape](https://coingape.com/robinhood-ceo-vlad-tenevs-x-account-hacked-to-promote-fake-memecoin/) 확인된스캠(7/23 CEO X계정해킹,공격자약$1.2M·650ETH편취,carryover)—추격절대금지."
+      "summary": "[The Block](https://www.theblock.co/post/409560/robinhood-ceo-x-account-apparently-hacked-promote-vladhood-memecoin-flagged-scam)·[Coingape](https://coingape.com/robinhood-ceo-vlad-tenevs-x-account-hacked-to-promote-fake-memecoin/) 확인된스캠(7/23 CEO X계정해킹,carryover)—추격절대금지."
     },
     {
-      "token": "CASHDOG(Cash Dog in Hood)",
-      "status": "이슈(2차보도코로보,carryover)",
-      "summary": "SolanaFloor·The Defiant에서RH체인밈코인2위로언급(carryover),개별온체인수치이번회차도미확인."
+      "token": "RH체인 구조적 스캠 경고(복수매체, carryover)",
+      "status": "이슈(경계유지)",
+      "summary": "KuCoin·crypto.news·Protos·u.today(Scatman/Hood/Cashcat카피캣)·cryptodaily.co.uk 누적보도(carryover). 이번회차 PLTS완전러그·HOODRAT신규클론·GME급락으로구조적리스크가재확인됨."
     },
     {
-      "token": "RH체인 구조적 스캠 경고(복수매체,이번회차보강)",
-      "status": "이슈(경계강화)",
-      "summary": "KuCoin·crypto.news·Protos 누적보도(carryover)에더해이번회차[u.today](https://u.today/beware-of-memecoin-scams-on-robinhood-chain-scatman-hood-and-cashcat-copycats-heres-how-to-avoid) Scatman/Hood/Cashcat카피캣보도,[cryptodaily.co.uk](https://cryptodaily.co.uk/2026/07/robinhood-chain-memecoin-problem) 'Web3분배가제품설계를앞지른다'는구조적진단,Relay Protocol의'매수는성사되나즉시디플로이어지갑으로토큰회수'허니팟계약경고까지추가로확인됐다."
-    },
-    {
-      "token": "거시배경(FOMC 결과 임박)",
-      "status": "이슈(변동성확대,결과약6시간후)",
-      "summary": "Kevin Warsh의장주재FOMC성명이2026-07-29 18:00 UTC(현재시각기준약6시간후)로임박,결과전까지시장전반경계모드지속(carryover)."
+      "token": "거시배경(Robinhood Q2 실적 + FOMC 결과 임박)",
+      "status": "이슈(변동성확대예상)",
+      "summary": "Robinhood 2분기실적이2026-07-29발표예정(RH체인·Stock Token채택첫가늠자),Kevin Warsh의장주재FOMC성명도2026-07-29 18:00 UTC(현재시각기준약4시간후)로임박—이중촉매로시장전반경계모드지속(FOMC는carryover,실적은신규)."
     }
   ]
 }
