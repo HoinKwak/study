@@ -16,13 +16,14 @@ _(현재 공지 없음)_
 
 > 큰 작업 시작 전·컨텍스트 70% 초과 시·상태가 바뀔 때 이 블록을 최신화해 커밋한다.
 > 이어받을 때 여기부터 읽으면 "지금 무엇을 어디까지 했는지" 한눈에 파악된다.
-> (마지막 갱신: 2026-07-28)
+> (마지막 갱신: 2026-07-30)
 
 - **현재 모드**: 상시 세션에서 **정기 리서치 루틴 4종**을 발화받아 서브에이전트로 수행 → 검증 → 커밋·push 반복.
   - kol-watch(온체인 트렌딩 조기경보) 2h · futures-scout(선물 리서치) 2h · market-brief(시장 브리핑) 12h · strategy-scout→backtester→**backtest-reviewer**(전략 발굴+백테스트) 12h.
   - 매 사이클 공통 절차: `git pull` → `date -u`로 UTC 확보 → 서브에이전트에 그 UTC 명시(에이전트는 Bash 없어 날짜 환각 방지) → 산출물 스키마/ts/렌더 검증 → 파일경로별 `git add` → 한글 커밋(푸터 `Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>`) → push.
   - 검증 포인트: watch.json `ts/tokens/notable` 스키마·ts 일치·대시보드 렌더 스모크테스트; futures brief 주식화토큰 제외 스캔; ETF flows 과거이력 prefix보존·신규거래일만 append; chartist_views 인물 6인 고정.
-- **미션 #28(진행중)**: **15m/1h VALID 전략 발굴**. 지금까지 발굴·백테스트한 다수 전략 **전부 FAIL**(backtest-reviewer로 재검증해 거짓 FAIL 아님 확인). **scalp15m이 여전히 유일 라이브 전략**. Andean Oscillator가 과거 가장 유망했으나 PASS엔 미달(페이퍼 모니터링 후보로만 기록, 미조치).
+- **미션 #28(진행중)**: **15m/1h VALID 전략 발굴**. 지금까지 발굴·백테스트한 다수 전략 **전부 FAIL**(backtest-reviewer로 재검증해 거짓 FAIL 아님 확인). 최근(7/30): AC 투바 룰 FAIL·VALID(수수료 이전에도 음의 기대값), 삼각형 브레이크아웃 FAIL·SUSPECT(no-go 유지, 스윙반경 1→3~5 재검이 선택 과제로 남음). 리뷰어가 커스텀 리플레이 엔진의 '진입수수료 pnl 미반영' 공통버그 발견(FAIL 방향 강화라 결론 불변, 향후 구현 시 점검항목). **scalp15m이 여전히 유일 라이브 전략**. Andean Oscillator가 과거 가장 유망했으나 PASS엔 미달(페이퍼 모니터링 후보로만 기록, 미조치).
+- **기타(7/30)**: 사장님이 LIT(Lighter) 수동 트레이딩 중 — 차트 해석·미시구조 Q&A 진행(정보 제공만, 매매 판단 개입 없음). LIT 심층 리서치 노트 `research/notes/lit-research-2026-07-30.md` 커밋됨(토큰 정체·RH 파트너십 사실검증·HYPE 비교 밸류·12월 클리프 리스크). market-brief 검증 중 ETH ETF 과거이력 임의수정 발견→백업본 복원 사례 있음(append-only 검증 계속 철저히).
 - **미조치 대기**: #45 Lighter 리더보드 커넥터, #46 폴리마켓 롱샷편향 실측 — 요청 없으면 착수 안 함.
 - **다음 할 일**: 도착하는 정기 루틴 프롬프트를 계속 위 절차대로 처리. 새 지시가 없으면 라이브 전략·리스크 파라미터는 임의로 바꾸지 않는다.
 
