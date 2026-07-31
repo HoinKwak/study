@@ -1,72 +1,73 @@
-# 시장 브리핑 (2026-07-30 12:05 UTC (KST 2026-07-30 21:05))
+# 시장 브리핑 — 2026-07-31 00:04 UTC (KST 2026-07-31 09:04)
 
-> 정보 요약이며 투자조언 아님. 매매 추천이 아닌 상황 파악용 브리핑입니다. 직전 브리핑:
-> 2026-07-30 00:03 UTC.
+> 정보 요약이며 투자조언이 아닙니다. 상반된 뷰가 있는 경우 양쪽을 병기했습니다. 직전 브리핑:
+> 2026-07-30 12:05 UTC.
 
 ## 전체 시장 심리
 
-7/29 18:00 UTC FOMC 동결(3.50~3.75%, 9-3 매파적 표결) 발표 이후 하루가 더 지나며 시장은
-"안도랠리 되돌림 → 재차 약보합" 국면으로 정리되는 중입니다. BTC는 발표 직후 $64,700까지
-튀었다가 되밀렸고, 7/30 오전 기준 $63,620~64,000대(24시간 -0.6%, 주간 -4.61%)에서 거래
-중이며([cryptotimes.io 7/30](https://www.cryptotimes.io/2026/07/30/bitcoin-ethereum-fall-after-fomc-meeting-keeps-rates-unchanged/)),
-ETH도 $1,882~1,912대로 소폭 약세(-1.9%)입니다. 24시간 청산은 약 $401M(롱 청산 $298M
-비중)로 레버리지 청소가 이어졌습니다. 공포탐욕지수는 소스별 괴리가 지속돼(milkroad 계열
-28, bitcoinworld 35, cfgi.io 44) 단일 확정치는 미확인이나 대체로 "공포~약한 공포" 구간이
-우세합니다.
+7/29 18:00 UTC FOMC 동결(3.50~3.75%, 9-3 매파적 표결, 3명이 25bp 인상 주장) 이후 이틀째, 시장은
+'안도랠리 → 되돌림 → 재차 완만한 반등'의 톱니 흐름이다. 7/30(목) BTC는 $63,902.90에 개장해
+오전 9시(ET) $64,838까지 반등, ETH는 $1,908.34→$1,923.23, SOL은 $76.42(+1.9%)로 3자산 모두
+완만히 회복했다(coingabbar·finance.yahoo.com·fortune.com 7/30). 글로벌 시총 약 $2.27~2.28T,
+BTC 도미넌스 약 56.3%(변화 미미). 공포탐욕지수는 소스별 편차가 극심하다 — milkroad계열
+28~29(공포), coinstats 37(공포), rootdata 27(공포), cfgi.io 44~50(중립) — 단일 확정치는 미확인,
+대체로 '공포~약한 공포' 우세.
 
-ETF 자금은 뚜렷한 반전이 확인됐습니다 — BTC는 7/29 **+$32.11M** 순유입(IBIT +$89.83M
-주도, FBTC -$43.08M·ARKB -$14.62M 유출 상쇄, KuCoin·Blockchain.News·Bloomingbit 등
-다수 매체 교차확인)으로 7/23·24·27·28 4거래일 연속 순유출 스트릭을 종료했지만, 7월 전체
-월간 순유입은 약 $205M로 사상 최저 수준입니다(SoSoValue 인용, CoinDesk 7/30). ETH는
-7/29 **+$14.53M**(Morgan Stanley MSSE 데뷔 $5.15M·BlackRock ETHB $5.91M·ETHA $3.47M)로
-BTC와 무관하게 견조한 자금 유입을 이어갔습니다. 반면 SOL은 7/28 **-$18.07M** 순유출
-(런칭 이후 두 번째로 큰 일일 유출)로 "7월 모든 거래일 순유입" 스트릭이 끊겼습니다.
+**ETF 자금**: 이미 기록된 7/29 데이터(BTC +$32.11M로 4거래일 연속 유출 종료, ETH +$14.53M —
+KuCoin·Blockchain.News·Bloomingbit·coinotag·news.bitcoin.com 교차확인)에 더해, 이번 회차
+재탐색에서 같은 7/29(수요일)에 대해 ETH를 -$18.65M(gncrypto.news·fxstreet·crypto-economy·
+coingabbar 7/30)~-$32.9M(Farside 인용, financefeeds.com)로 정반대 부호로 보도하는 상충
+클러스터가 새로 발견됐다. 과거 이력(파일 기록)은 원칙상 수정하지 않으며, 이 상충은 SoSoValue류
+집계의 발행사별 정정 반영 시점 차이로 추정되나 원인은 미확인이다. BTC는 7월 전체 월간 순유입이
+약 $205M로 사상 최저(SoSoValue, coindesk.com 7/30). XRP는 7/29 +$584,710 순유입(Franklin XRPZ
+단독, crypto-economy.com·crypto.news·u.today 3개 매체 교차확인, 누적 $1.5B 돌파)이 새로
+확인됐으나 직전 거래일 7/28 확정치를 뒷받침할 근거가 없어 연속성이 끊긴 채 이번 회차 반영은
+보류했다(다음 회차 일괄 반영 예정). SOL도 7/29 확정치 근거 부재로 갱신 보류.
 
-CLARITY Act는 하원 통과·상원 은행위 통과 후 상원 본회의 표결 대기 상태입니다. Thune
-원내대표가 8월 휴회 전 표결을 공언했고 Lummis가 7/22 은행·농업위 절충안을 공개했으나,
-민주당 다수는 DOJ의 윤리조항 단독 집행권한에 여전히 반대해 60표 확보가 불투명합니다.
+**CLARITY Act**: 상원 본회의 표결 일정 미확정 지속. 데드라인 프레이밍이 기존 '8/7'에서
+'8/10(상원 지역구활동기 시작일)'으로 일부 매체에서 재조정됐다(bitcoinfoundation.org·thehill.com
+7월 하순). Thune 원내대표는 7/22 '몇 주 안에 표결'을 언급했으나 윤리조항·법집행권한 조항 협상이
+난항, 최소 민주당 7표 확보가 불투명.
 
 ## 자산별 뷰
 
 ### BTC — 중립
-- 4거래일 연속 ETF 순유출을 7/29 +$32.1M 순유입으로 끊었으나 가격은 $63,620~64,000대
-  박스권을 벗어나지 못함.
-- Benjamin Cowen의 "동결 후 9월 인상 가능성" 예측이 적중했다며 알트코인 긴축 리스크 경계론
-  재확인(9월 15~16일 FOMC가 다음 체크포인트). Peter Brandt는 고$40,000대(10/4 전후 저점)
-  경고를 유지. 반대로 Doctor Profit·TechDev는 저점매수·조기 반전 시나리오 유지.
-- 지지: $63,000~64,000(단기) / $63,171·$62,446·$61,995(고전 피벗) / $59,000(6월 저점).
-- 저항: $65,500 / $67,500(50일선) / $73,200(200일선).
-- 촉매: 9월 FOMC 재인상 가능성, CLARITY Act 상원 표결(8월 데드라인), ETF 자금 순유입
-  반전의 지속 여부(아직 1일치), 미-이란 지정학·유가.
+7/29 FOMC 안도랠리 되돌림 후 7/30 재차 완만한 반등($63,900→$64,838). ETF는 7/29 +$32.1M로
+4거래일 연속 유출을 끊었으나 7월 전체 월간유입은 사상 최저($205M). 기술지표는 15강세/14약세로
+팽팽한 중립(coinstats.app 7/30). 7/30 신규 일별 ETF 확정치는 이번 회차 탐색 시점까지 미발표(대기).
 
-### ETH — 중립, 완만한 긍정
-- BTC 자금 이탈 국면에서도 7/29 +$14.53M 순유입을 이어가며 자산별 디커플링 지속.
-  Morgan Stanley MSSE 데뷔 첫날 거래대금 $19M로 기관 접근성 확대.
-- 다만 Cowen은 "긴축은 알트코인에 가장 타격이 클 것"이라는 경계론을 유지해 상단은 제한적.
-- 지지: $1,850(주요) / $1,800(슈퍼트렌드선 부근).
-- 저항: $1,940 / $2,000(심리적, 예측시장 확률 약 32%) / $2,300~2,400.
-- 촉매: $1,940~2,000 저항 돌파 시도, MSSE 초기 자금 유입 속도, Glamsterdam 업그레이드(시점
-  미확정).
+- **지지**: $62,684(붕괴 시 $60,000 위험) / $62,000~63,000(박스 하단) / 고$40,000대(Brandt 경계,
+  10/4 전후 저점 전망)
+- **저항**: $64,245(20일 EMA) / $64,925(50일 EMA) / $66,500(7월 고점) / $67,604(100일 EMA)
+- **촉매**: 9월 FOMC(9/15~16) 서프라이즈 인상 가능성(Cowen: 2년물 금리>기준금리 구조 근거로 경계
+  구체화). CLARITY Act 상원 표결(데드라인 8/7→8/10 재조정, 여전히 미확정). ETF 자금 반전 지속
+  여부(7/29 1일치, 7/30 미발표로 추세 판단 보류). Brandt의 브로드닝탑 패턴 신중론(7/30 신규:
+  "old school works" — 1977년 대두 거래와 유사, 2월 저점 수준 1차 하방목표는 달성했으나 이것이
+  바닥을 의미하진 않음, 10월 이전 거래 가능한 저점 없음 유지) vs KillaXBT 낙관론(7/30 신규:
+  "이번 사이클이 처음으로 핵심 블루 지지밴드 위에서 유지될 수 있다").
 
-### SOL — 중립, 약세 주의
-- 7월 내내 이어지던 "ETF 매일 순유입" 스트릭이 7/28 -$18.07M(런칭 이후 두 번째로 큰
-  유출)로 끊김. 투자심리 2026년 최저, 거래량도 연중 최저로 위축.
-- Morgan Stanley MSOL(0.14% 보수) 7/28~29 NYSE Arca 상장으로 기관 접근성은 확대됐으나
-  자금 흐름 반전에는 아직 힘 부족.
-- 지지: $72(1차 관찰선) / $68~70(6월 회복 기반).
-- 저항: $75.70(50일선) / $79.60(200일선).
-- 촉매: Alpenglow 업그레이드 활성화 시점 구체화, ETF 자금 이탈 지속 여부(추세 전환 확인
-  필요), MSOL 자금 유입 속도.
+### ETH — 중립
+가격은 7/30 $1,908→$1,923 완만한 회복. 다만 7/29 ETF 플로우 자체가 소스 간 정반대로 상충
+(+$14.53M 기록분 vs 신규 확인된 -$18.65M~-32.9M 보도)돼 자금 흐름 방향성 판단이 이례적으로
+불투명하다. Cowen의 '긴축 국면은 알트코인에 가장 타격이 클 것'이라는 경계론은 유지.
 
-## 출처
-- [cryptotimes.io — Bitcoin, Ethereum Fall After FOMC (2026-07-30)](https://www.cryptotimes.io/2026/07/30/bitcoin-ethereum-fall-after-fomc-meeting-keeps-rates-unchanged/)
-- [cryptotimes.io — Post-FOMC Relief Opens Path for Rebound (2026-07-30)](https://www.cryptotimes.io/2026/07/30/post-fomc-relief-opens-path-for-potential-rebound-in-bitcoin-price-and-crypto-market/)
-- [KuCoin — Bitcoin ETFs $32.1M Net Inflow on July 29](https://www.kucoin.com/news/flash/bitcoin-spot-etfs-see-32-1m-net-inflow-on-july-29-blackrock-s-ibit-leads-with-89-8m)
-- [CoinDesk — Bitcoin ETFs on track for smallest monthly inflows (2026-07-30)](https://www.coindesk.com/daybook-us/2026/07/30/bitcoin-etfs-on-track-for-the-smallest-monthly-inflows-ever)
-- [news.bitcoin.com — MSSE Debut, ETH ETFs Top Bitcoin With $14.5M Inflow](https://news.bitcoin.com/bitcoin-etf/morgan-stanleys-msse-pulls-in-5m-on-debut-as-ether-etfs-again-top-bitcoin-with-14-5m-inflow/)
-- [en.coinotag.com — Ethereum ETF Inflows Reach $14.53M](https://en.coinotag.com/ethereum-etf-inflows-14-53m)
-- [SolanaFloor — Bitcoin and Solana ETFs See Inflows Again](https://solanafloor.com/news/bitcoin-and-solana-etfs-see-inflows-again)
-- [u.today — SOL, ZEC, BTC Price Analysis for July 30th](https://u.today/solana-sol-zcash-zec-and-bitcoin-btc-price-analysis-for-july-30th-testing-local-support-thresholds)
-- [beincrypto — Rare 30% Hike Odds Shake Bitcoin (Cowen, 2026-07-28)](https://beincrypto.com/fed-rate-hike-odds-bitcoin/)
-- [crypto.news — CLARITY Act Faces Senate Vote Despite 60-Vote Gap](https://crypto.news/clarity-act-faces-senate-vote-despite-60-vote-gap/)
-- [finance.yahoo.com — Senate's August Deadline Puts CLARITY Act on a Knife-Edge](https://finance.yahoo.com/markets/crypto/articles/senate-august-deadline-puts-clarity-074823495.html)
+- **지지**: $1,850(주요 지지) / $1,800(슈퍼트렌드선 부근)
+- **저항**: $1,940(돌파 시 강세 재점화) / $2,000(심리적) / $2,300~2,400(다음 공급대)
+- **촉매**: ETF 자금 데이터 자체의 신뢰도 문제(7/29치 소스 간 부호 반전, 다음 회차 재확인 필요).
+  FOMC 매파적 이견 여파 알트코인 조정 리스크 지속 여부. $1,940~2,000 저항 돌파 시도. Morgan
+  Stanley MSSE 초기 자금 유입 속도.
+
+### SOL — 중립
+7/28 ETF -$18.07M 순유출(7월 '매일 순유입' 스트릭 종료)에도 가격은 7/30 +1.9%($76.42)로 반등.
+애널리스트 진영은 '전반적 시장심리는 약세'로 보면서도 기술적으로는 $77 지지 회복 시 랠리
+시나리오(Van de Poppe 등)를 동시에 제시하는 혼조 상태.
+
+- **지지**: $72(1차 관찰선) / $68~70(6월 회복 기반)
+- **저항**: $77(50일선, 회복 시 플립 트리거) / $79.60(200일선) / $90(단기 목표) / $100·$120(돌파
+  시나리오 목표)
+- **촉매**: Alpenglow 업그레이드 시점 구체화(2026 Q3 목표). ETF 자금 이탈 지속 여부(7/28 1일치,
+  7/29 확정치 미확보로 추세 판단 보류). Morgan Stanley MSOL 자금 유입 속도. $77 지지 회복이
+  다음 방향성 분기점(회복 시 Van de Poppe는 $125~130 시야 제시).
+
+---
+*주목 프로젝트/토큰은 KOL 워치(`kol-watch`)가 별도로 다룹니다.*
