@@ -1,181 +1,178 @@
-# 선물시장 스카우트 브리핑 — 2026-08-01 16:29 UTC (KST 2026-08-02 01:29)
+# 선물시장 스카우트 브리핑 — 2026-08-01 18:28 UTC (KST 2026-08-02 03:28)
 
 > CEX(바이낸스·바이빗·OKX)·DEX 퍼프(Hyperliquid·Aster·GMX·dYdX) 선물시장에서 지금 주목받는
 > **크립토 네이티브** 종목을 거래량·미결제약정(OI)·펀딩 기준으로 집계. **토큰화 주식·ETF·상품·
-> 프리IPO/합성 perp는 전부 제외.** 정보 요약이며 투자조언 아님. **직전 회차(2026-08-01T14:27:30Z)
-> 로부터 약 2시간2분 경과한 정규 슬롯 회차**다. 짧은 24분 간격이었던 직전 회차와 달리 이번엔
-> 표준 2시간 창이라 **방향 전환(reversal)이 다수 관측**됐다.
+> 프리IPO/합성 perp는 전부 제외.** 정보 요약이며 투자조언 아님. **직전 회차(2026-08-01T16:29:00Z)
+> 로부터 약 1시간59분 경과한 정규 슬롯**이다.
 >
-> 가장 눈에 띄는 변화는 **1000RATS의 급반전**이다 — 직전 회차 Binance +3.871%/Bybit +7.121%로
-> 안정화 되돌림 중이었고 Aster만 -10.951%로 역행했으나, 이번 회차는 Binance **-13.564%**·Bybit
-> **-13.134%**·Aster **-14.46%**로 **세 거래소 모두 급락으로 재전환**했다(거래량은 Binance+
-> Bybit 합산 약 $7.49억로 여전히 초대형). **AEON도 급격히 반전**했다 — 직전 -1.40%→+1.559%로
-> 플러스 전환에 성공했던 것이, 이번 회차 OKX **-10.475%**로 다시 마이너스로 크게 되돌아갔다.
-> **CASHCAT은 정반대 방향으로 반전**했다 — 직전 HL -5.20%·Aster -5.882%로 낙폭이 축소되던
-> 하락 흐름이, 이번 회차 HL **+1.517%**·Aster **+0.925%**로 완전히 플러스 전환됐다. 한편
-> **CAP은 반전 없이 하락이 더 깊어졌다** — 직전 회차 CEX·Aster가 -12%대로 수렴한 뒤, 이번엔
-> OKX **-19.113%**·Aster **-20.618%**로 낙폭이 오히려 확대됐다. **BEAT는 반대로 상승이 더
-> 강해졌다** — 직전 OKX +12.314%·Aster +12.957%였던 것이 이번 회차 OKX **+17.422%**·Aster
-> **+18.32%**로 랠리가 강화됐다. **ALLO는 방향이 플러스로 전환**됐다 — 직전 -0.60%대 근접
-> flat이었던 것이 이번 회차 Binance +2.159%·Bybit +2.208%·OKX +1.963%로 세 거래소 모두
-> +2%대로 나란히 전환됐다. **AKE는 3거래소 모두 +12~13%대 랠리를 재확인**하며 3회 연속
-> 지속됐고, **BANK는 funding이 계속 완화**되고 있다(Bybit -20.1%→**-12.6%**, Binance -5.2%대
-> →-3.9%, Aster -5.2%→-2.8%), 가격은 -4.8%~-6.5%대로 안정 유지 중이다. **MMT는 이번 회차 OKX
-> 직접 API로 재확인해 낙폭이 크게 좁혀졌다**(-16.9%→**-5.39%**, funding **-0.157%**로 첫
-> 확인) — 다만 거래량은 raw 단위 불명확으로 직전 CoinGecko 추정치를 참고용으로만 이월했다.
-> **AAVE는 -5%대 안정 하락을 유지**했으나, 이번 회차는 AAVEUSDT(선형) 티커만 조회돼 직전
-> 발견된 Bybit AAVEUSD(역방향) 이상치는 재확인하지 못했다(해소 여부 불명, 참고만). **GIGGLE은
-> 2회 연속 API 429(레이트리밋)로 재확인에 실패**해 직전 회차(14:27Z) 값을 이월했다(부재 아님,
-> 신선도 저하 유의). **BULLA는 낙폭이 다소 줄었으나**(-20.551%→**-14.685%**) 여전히 깊은
-> 마이너스이며, 외부검색으로 **온체인 조사관 zachxbt가 팀의 프리세일 투자자 사기 의혹(메시지
-> 삭제·불투명성)을 제기**했고 Hasbulla의 전작 BARSIK도 설명 없이 증발한 전력이 확인돼 스캠
-> 리스크가 재차 뒷받침됐다. **BTW는 여전히 강한 상승을 유지**하나 소폭 둔화됐다(+34.44%→
-> **+30.26%**), 외부검색으로도 여전히 프로젝트 촉매를 확인하지 못했고 거래량도 $1.26M로
-> 얇다. **LIT(Lighter)는 이번 회차 Hyperliquid 전체 티커(364개 페어) 정밀 스캔에서도 발견되지
-> 않아 3회 연속 미재확인** 상태다 — 직전까지는 '리스트 처리 한도'로 설명했으나 이번엔 전체
-> 리스트를 명시적으로 훑고도 부재해, 단순 처리 한도보다 API 페이지네이션 상한이나 일시적 목록
-> 누락 가능성도 배제할 수 없어 다음 회차에서 반드시 재확인이 필요하다(직전 확인값 $2.0433/OI
-> $75.37M 이월). **dYdX·GMX는 이번 회차도 둘 다 404를 반환**해 재조회 실패, 직전값을
-> 이월했다(직전 회차는 각각 429/404였던 것과 달리 이번엔 둘 다 404로 통일 — 지속적 접근
-> 이슈로 판단). **KAITO(HL)는 +4.28%→+4.71%, APEX(HL)는 +2.13%→+4.10%로 완만한 개선을
-> 이어갔고, HYPE는 -5.36%→-3.22%로 소폭 회복, FARTCOIN은 +8.29%→+7.13%로 대체로 안정**을
-> 유지했다. ASTER는 CEX 3곳(Binance +0.15%·Bybit +0.117%·OKX +0.15%)과 Aster 자체(+0.15%)
-> 모두 근접 flat을 지속했으나, Aster 자체 funding(+2.1%)이 CEX 평균(+0.5%대)보다 다소 높아
-> 미세한 베이시스가 새로 관측됐다. BTC/ETH는 HL 기준 각각 **+0.094%/+0.279%**로 거의 완전한
-> flat을 유지해 메이저 리스크 심리는 중립적이다.
+> 이번 회차 최우선 과제였던 세 가지 데이터 미스터리가 모두 해결됐다. **① LIT(Lighter) 미스터리
+> 해결**: 4회 연속 Hyperliquid 거래소 전용 엔드포인트(364페어 정밀 스캔 포함)에서 발견되지
+> 않았으나, CoinGecko **통합 엔드포인트**(`/derivatives?include_tickers=unexpired`)로 재시도한
+> 결과 **Hyperliquid(Futures) LIT-USD가 명확히 존재함을 확인**했다 — 거래대금 $8.33M, OI
+> $75.24M, funding +0.125%, 24h **-3.14%**(직전 이월값 $2.0433/OI$75.37M과 거의 일치). 즉
+> 거래소별 엔드포인트가 LIT을 누락시키는 CoinGecko 측 필터링/페이지네이션 버그였고, LIT 자체는
+> 정상 거래 중이었음이 확인됐다. **② dYdX·GMX 접속 오류 원인 규명**: CoinGecko 파생거래소
+> 목록을 조회한 결과 `dydx_v4`는 더 이상 유효한 ID가 아니며 **`dydx_chain`**으로, `gmx`는
+> **`gmx-perpetuals-v2-arbitrum`**으로 ID가 변경돼 있었다 — 올바른 ID로 두 프로토콜 모두 정상
+> 재확인 성공(향후 회차부터 이 ID 사용 권장). dYdX에서는 **LIT-USD가 극히 얇은 거래량($8.21)
+> 으로 실제 존재**함도 확인됐다(사실상 비활성). **③ GIGGLE 3회 연속 미재확인 뒤 마침내 재확인**
+> — XT.COM $91.13M/-8.51%·OrangeX $325.68M/-8.87%로, 직전 이월값(+17.68%)과 달리 **뚜렷한
+> 하락 반전**이 확인됐다.
+>
+> 종목별로는 **BEAT의 랠리가 급격히 냉각**됐다 — 직전 OKX +12.314%→+17.422%·Aster
+> +12.957%→+18.32%였던 상승이 이번 회차 OKX **+3.772%**·Aster **+2.175%**로 크게 둔화됐고,
+> 특히 **funding이 -4.6%(OKX)로 플러스에서 마이너스로 전환**돼 숏 우위로 바뀌었다(거래량은
+> 오히려 $155.75M→$216.59M로 증가, 언락 물량 소화 과정에서 대량 회전이 있었던 것으로 추정).
+> **AKE는 반대로 랠리가 더 가속**됐다 — Binance +18.929%·Bybit +21.854%·Aster +22.569%로
+> 상승폭이 확대됐고, 특히 **Bybit funding이 +18.9%라는 극단적 수치로 치솟아** 롱 포지션이 심하게
+> 쏠려있음을 시사한다(과열 경고 신호, 조정 리스크 유의). **1000RATS는 낙폭이 크게 완화**됐다 —
+> 직전 3거래소 -13~14.5% 급락에서 이번 Binance -7.575%·Bybit -7.644%로 되돌림(OKX는 이번
+> 조회 목록에서 발견 안 됨). **MMT는 OKX 공개 REST API를 재조회해 거래량 단위 문제를
+> 해결**했다 — `volCcy24h` 필드가 USD 환산 거래대금($408.12M)임을 확인했고, 가격도 -3.65%로
+> 낙폭이 계속 좁혀졌다. **CASHCAT과 APEX(HL)는 다시 마이너스로 재반전**했다(CASHCAT HL
+> -3.879%·Aster -4.784%, APEX -2.526%) — 두 종목 모두 여러 회차에 걸쳐 방향이 뒤집히는
+> 노이즈성 흐름을 보이고 있어 방향성 신뢰도가 낮다. **KAITO(HL)는 완만한 개선에서 급가속**했다
+> (+4.71%→**+12.10%**). **BTW는 마침내 프로젝트 정체가 확인**됐다 — 외부검색으로
+> **Bitway(BTW)**, 비트코인 네이티브 L1 인프라 프로토콜로 2026년 3월 TGE 완료(바이낸스 월렛
+> 부스터 프로그램 포함 시드+IDO로 $5M+ 조달)임이 밝혀졌으며, 가격은 +30.26%→**+17.169%**로
+> 상승폭이 줄었으나 여전히 강세. **BULLA는 낙폭이 추가로 완화**됐다(-14.685%→**-8.82%**)나
+> zachxbt 사기 의혹 등 스캠 리스크는 여전히 유효. **ALLO는 다시 근접 flat으로 되돌아갔다**
+> (+2.11%→+0.125%). **AAVE·AEON·CAP은 기존 추세를 유지**했다 — AAVE는 4개 거래소에서
+> -6%대로 소폭 심화 수렴(-5.14%→-6.10%), AEON은 OKX -11.392%로 완만히 추가 하락(funding
+> -8.3%로 더 깊어짐), CAP은 OKX -22.035%·Aster -23.085%로 낙폭이 더 확대됐다. **HYPE·
+> FARTCOIN(HL)은 소폭 되돌림 국면**(HYPE -3.22%→-2.951%로 완만한 회복 지속, FARTCOIN
+> +7.13%→+5.289%로 상승폭 축소). **BTC/ETH(HL)는 이번 회차 소폭 마이너스로 전환**됐다
+> (+0.094%/+0.279%→**-0.799%/-0.797%**) — 메이저 심리가 중립에서 약한 위험회피 쪽으로 살짝
+> 기운 정황.
 
 ## 시장 전반
 
-- **1000RATS, 급반전 — 세 거래소 모두 급락으로 재전환** — Binance **-13.564%**·Bybit
-  **-13.134%**·Aster **-14.46%**.
-- **AEON, 급격한 재반전 — 플러스 전환 뒤 다시 마이너스로** — OKX +1.559%→**-10.475%**.
-- **CASHCAT, 반전 — 낙폭 축소에서 완전 플러스 전환** — HL **+1.517%**·Aster **+0.925%**.
-- **CAP, 수렴 이후 낙폭이 오히려 확대** — OKX **-19.113%**·Aster **-20.618%**.
-- **BEAT, 언락 랠리 강화 — 상승폭 확대** — OKX **+17.422%**·Aster **+18.32%**.
-- **ALLO, 플러스 전환 — 3거래소 나란히** — Binance **+2.159%**·Bybit **+2.208%**·OKX
-  **+1.963%**.
-- **AKE, 3거래소 랠리 3회 연속 재확인** — Binance **+12.411%**·Bybit **+12.973%**·Aster
-  **+12.179%**.
-- **BANK, funding 계속 완화·가격 안정 지속** — Bybit funding **-20.1%→-12.6%**.
-- **MMT, OKX 직접 재확인으로 낙폭 크게 좁혀짐** — **-16.9%→-5.39%**, funding **-0.157%** 첫
-  확인.
-- **AAVE, 안정 하락 지속, Bybit 이상치는 이번 회차 재확인 불가**(선형 티커만 조회).
-- **GIGGLE, 2회 연속 API 429로 미재확인 — 이월.**
-- **BULLA, 낙폭 다소 축소되나 여전히 깊은 마이너스, zachxbt 사기 의혹 제기로 스캠 리스크
-  재확인** — **-20.551%→-14.685%**.
-- **BTW, 상승 유지·소폭 둔화, 촉매 여전히 미확인** — **+34.44%→+30.26%**, 거래량 $1.26M.
-- **KAITO·APEX(HL), 완만한 개선 지속** — KAITO +4.71%(직전+4.28%), APEX +4.10%(직전+2.13%).
-- **HYPE, 소폭 회복** — **-5.36%→-3.217%**.
-- **FARTCOIN, 대체로 안정 유지** — **+8.29%→+7.134%**.
-- **ASTER, 여전히 근접 flat, Aster 자체 funding이 CEX보다 다소 높아 미세 베이시스 관측.**
-- **LIT(Lighter), 3회 연속 미재확인 — 이번엔 HL 전체 티커 정밀 스캔에도 부재, 다음 회차 반드시
-  재확인 필요.**
-- **dYdX·GMX, 이번 회차 둘 다 404로 재조회 실패 — 직전값 이월.**
-- **BTC/ETH(HL), 거의 완전한 flat(+0.094%/+0.279%) — 메이저 리스크 심리 중립.**
-- **신규 급등 스캔**: TradFi 토큰화·레버리지ETF perp는 규약에 따라 전부 제외.
+- **LIT(Lighter) 미스터리 해결** — 원인은 CoinGecko 거래소별 엔드포인트 누락, 통합 엔드포인트
+  (`/derivatives?include_tickers=unexpired`)로 재확인 성공(HL LIT-USD $8.33M/OI$75.24M/
+  -3.14%).
+- **dYdX·GMX 접속 오류 원인 규명** — 거래소 ID 변경 발견(`dydx_v4`→**`dydx_chain`**,
+  `gmx`→**`gmx-perpetuals-v2-arbitrum`**), 향후 회차부터 이 ID 사용 권장.
+- **GIGGLE, 3회 연속 미재확인 뒤 마침내 재확인** — +17.68%(이월값)에서 **-8.5~-8.9%**로 반전.
+- **BEAT, 랠리 급격히 냉각** — OKX +17.422%→**+3.772%**, funding 플러스→마이너스 전환(-4.6%),
+  언락 물량 소화 추정.
+- **AKE, 랠리 가속·Bybit funding 극단(+18.9%)** — 과열/크라우디드 롱 경고.
+- **1000RATS, 낙폭 완화** — Binance/Bybit -13~14%대→**-7.6%대**.
+- **MMT, 거래량 단위 문제 해결(OKX volCcy24h=USD)** — **$408.12M** 확정, 낙폭도 -5.39%→-3.65%.
+- **CASHCAT·APEX(HL), 다시 마이너스로 재반전** — 여러 회차 연속 방향 뒤집힘, 신뢰도 낮은 노이즈.
+- **KAITO(HL), 완만한 개선에서 급가속** — +4.71%→**+12.10%**.
+- **BTW, 촉매 마침내 확인** — Bitway(BTW), 비트코인 L1 인프라, 2026년 3월 TGE.
+- **BULLA, 낙폭 추가 완화되나 zachxbt 사기 의혹 등 스캠 리스크는 여전** — -14.685%→**-8.82%**.
+- **ALLO, 플러스 반짝 후 재차 flat 복귀** — +2.11%→**+0.125%**.
+- **AAVE, 4개 거래소 -6%대로 타이트 수렴 지속.**
+- **AEON·CAP, 기존 하락 추세 지속·소폭 심화.**
+- **HYPE·FARTCOIN(HL), 완만한 되돌림 국면.**
+- **BTC/ETH(HL), 소폭 마이너스로 전환** — +0.094%/+0.279%→**-0.799%/-0.797%**, 메이저 심리
+  약한 위험회피로 살짝 이동.
+- **신규 급등 스캔**: TALUS 등 스팟 급등 종목은 추적 대상 CEX/DEX perp 어디서도 미상장 확인.
+  TradFi 토큰화·레버리지ETF perp는 규약에 따라 전부 제외.
 
 ## CEX 주목 종목 (메이저 제외, 크립토 네이티브만)
 
 | 종목 | 거래소 | 24h 거래량 | OI | 펀딩 | 24h 변동 | 왜 뜨는가 | 태그 |
 |---|---|---|---|---|---|---|---|
-| **1000RATS** [급반전 — 급락 재전환] | Binance/Bybit/Aster | $749.32M | $28.72M | +0.5% | -13.72% | 직전 CEX 안정화 되돌림(+3.9%/+7.1%) 중 Aster만 역행(-10.95%)했던 것이 이번엔 Binance -13.564%·Bybit -13.134%·Aster -14.46%로 3거래소 모두 급락으로 재전환. 거래량 여전히 초대형 | reversal-turns-into-renewed-decline-converges |
-| **AEON** [급격한 재반전 — 다시 마이너스] | OKX | $29.11M | $3.02M | -6.6% | -10.48% | 직전 -1.40%→+1.559%로 플러스 전환 성공했던 것이 이번 회차 -10.475%로 크게 되돌아감. 단기 방향성 신뢰 낮음 | flips-negative-again-sharp-reversal |
-| **CAP** [수렴 이후 낙폭 확대] | OKX/Aster | $54.01M | $2.83M | +0.3% | -19.87% | 직전 CEX·Aster가 -12%대로 수렴한 뒤 이번 회차 OKX -19.113%·Aster -20.618%로 낙폭이 오히려 더 깊어짐 | decline-deepens-after-convergence |
-| **BEAT (Audiera)** [랠리 강화] | OKX/Aster | $155.75M | $21.57M | +0.45% | +17.87% | 직전 OKX +12.314%·Aster +12.957%에서 이번 OKX +17.422%·Aster +18.32%로 상승폭 확대, 언락 통과 후 모멘텀 지속 | unlock-rally-strengthens-further |
-| **ALLO (Allora Network)** [플러스 전환] | Binance/Bybit/OKX | $29.16M | $18.84M | +0.5% | +2.11% | 직전 -0.60%대 근접 flat에서 Binance +2.159%·Bybit +2.208%·OKX +1.963%로 세 거래소 모두 +2%대로 전환 | flips-positive-tight-convergence |
-| **AKE (Akedo)** [3거래소 랠리 3회 연속] | Binance/Bybit/Aster | $160.16M | $63.92M | +3.1% | +12.52% | Binance +12.411%·Bybit +12.973%·Aster +12.179%로 여전히 +12~13%대 타이트 클러스터 유지 | rally-continues-triple-confirmed |
-| **BANK (Lorenzo Protocol)** [funding 계속 완화] | Binance/Bybit/Aster | $319.67M | $27.00M | -6.43% | -5.59% | Bybit funding -20.1%→-12.6%로 계속 축소, 가격은 -4.8%~-6.5%대 안정 유지 | funding-continues-easing-price-stable |
-| **MMT (Momentum)** [낙폭 크게 좁혀짐] | OKX(직접 API) | $523.82M(직전값, 미재확인) | 미확보 | -0.16% | -5.39% | OKX 직접조회 -5.39%(직전 -16.9%에서 대폭 개선), funding -0.157%로 첫 확인. 거래량은 raw 단위 불명확해 직전값 참고만 | decline-narrows-sharply-confirmed-direct |
-| AAVE [안정 하락, 이상치 재확인 불가] | Binance/Bybit/OKX/HL | $180.57M | $176.77M | +0.03% | -5.14% | -5%~-5.3%대 유지. 단, 이번 회차는 AAVEUSDT(선형) 티커만 조회돼 직전 Bybit AAVEUSD(역방향) 이상치는 재확인 못함 | stable-decline-anomaly-not-reconfirmed |
-| GIGGLE (Giggle Fund) [2회 연속 미재확인] | XT.COM/OrangeX/CG(직전값 이월) | $384.96M(직전값) | $276.60M(직전값) | +0.44%(직전값) | +17.68%(직전값) | 이번 회차도 CoinGecko 파생·simple/price 모두 429로 실패, 직전값 이월(부재 아님) | unrefreshed-second-consecutive-round |
-| ASTER [여전히 근접 flat] | Binance/Bybit/OKX | $13.29M | $122.39M | +0.5% | +0.14% | Binance +0.15%·Bybit +0.117%·OKX +0.15%로 매우 좁은 범위 지속. Aster 자체 funding(+2.1%)이 CEX 평균보다 다소 높음 | tight-convergence-flat-continues |
-| KAITO [HL 완만한 개선 지속] | Hyperliquid | $4.62M | $9.69M | -0.1% | +4.71% | 직전 +4.28%에서 +4.714%로 소폭 강화, 안정적 상승 흐름 유지 | hl-continues-improving |
+| **AKE (Akedo)** [랠리 가속·funding 극단] | Binance/Bybit/Aster | $344.49M | $83.77M | +10.9%(Bybit +18.9%) | +21.12% | Binance +18.929%·Bybit +21.854%·Aster +22.569%로 가속. Bybit funding +18.9%로 극단 — 롱 쏠림 과열 신호 | rally-accelerates-bybit-funding-extreme |
+| **1000RATS** [낙폭 완화] | Binance/Bybit | $772.68M | $29.24M | +1.45% | -7.61% | 직전 3거래소 -13~14.5% 급락에서 Binance -7.575%·Bybit -7.644%로 되돌림. OKX는 이번 조회 목록에서 미발견 | decline-moderates-partial-recovery |
+| **BEAT (Audiera)** [랠리 급격히 냉각] | OKX/Aster | $218.40M | $12.77M | -2.5% | +2.97% | 직전 OKX +17.422%·Aster +18.32%에서 OKX +3.772%·Aster +2.175%로 상승폭 크게 둔화. funding -4.6%로 숏 우위 전환, 거래량은 오히려 증가($155.75M→$216.59M) — 언락 소화 추정 | rally-cools-sharply-post-unlock-funding-flips-negative |
+| **CAP** [낙폭 추가 확대] | OKX/Aster | $49.83M | $2.74M | +0.55% | -22.56% | 직전 -19.87%에서 OKX -22.035%·Aster -23.085%로 낙폭 더 깊어짐, 반전 조짐 없이 하락 지속 | decline-continues-deepening |
+| **GIGGLE** [3회 만에 재확인 — 반전] | XT.COM/OrangeX | $416.81M | $286.09M | +0.47% | -8.69% | 통합 엔드포인트로 재조회 성공. 직전 이월값(+17.68%)과 달리 XT -8.51%·OrangeX -8.87%로 뚜렷한 하락 반전 확인 | reconfirmed-after-3-rounds-reverses-to-decline |
+| **BANK (Lorenzo Protocol)** [funding 완화, 가격 소폭 심화] | Binance/Bybit | $303.48M | $25.31M | -2.1% | -7.876% | Bybit funding -20.1%→-2.1%로 계속 축소되나 가격은 -5.59%→-7.876%로 다소 심화 | funding-continues-easing-price-slightly-deeper |
+| **AEON** [하락 지속, funding 심화] | OKX | $28.65M | $3.09M | -8.3% | -11.39% | 직전 -10.475%에서 -11.392%로 완만히 추가 하락, funding -6.6%→-8.3%로 심화 | decline-continues-funding-deepens |
+| **MMT (Momentum)** [낙폭 계속 좁혀짐, 단위 해결] | OKX(직접 API) | $408.12M | 미확보 | -0.12% | -3.65% | OKX volCcy24h 필드가 USD 환산임을 확인해 거래량 단위 문제 해소. 가격 -5.39%→-3.65%로 낙폭 지속 축소 | decline-narrows-further-volume-unit-resolved |
+| KAITO [급가속] | Hyperliquid | $4.43M | $10.88M | -0.2% | +12.10% | 직전 +4.714%에서 +12.101%로 크게 가속, 상승 모멘텀 뚜렷이 강화 | rally-accelerates-sharply |
+| AAVE [4거래소 타이트 수렴] | Binance/Bybit/OKX/HL | $180.66M | $173.72M | +0.3% | -6.10% | -5.14%→-6.10%로 소폭 심화되며 4개 거래소 모두 -6%대로 수렴. Bybit 역방향 이상치 재확인 불가 지속 | stable-decline-continues-all-venues-converge |
+| ALLO [플러스 반짝 후 flat 복귀] | Binance/Bybit/OKX | $27.56M | $18.47M | +0.33% | +0.13% | 직전 +2.11% 플러스 전환에서 다시 근접 flat으로 되돌아감 | reverts-to-flat-after-brief-spike |
+| ASTER [근접 flat, 소폭 마이너스] | Binance/Bybit/OKX | $12.08M | $122.18M | -0.27% | -0.47% | 직전 +0.14%에서 -0.466%로 미세하게 마이너스 쪽 이동, 여전히 매우 좁은 범위 | near-flat-slight-negative-tilt |
 
-## DEX 퍼프 주목 종목 (Hyperliquid·Aster; GMX·dYdX는 신뢰도/특이사항 별도 표기)
+## DEX 퍼프 주목 종목 (Hyperliquid·Aster; dYdX·GMX ID 변경 확인 후 재확인 성공)
 
 | 종목 | 프로토콜 | 24h 거래량 | OI | 펀딩 | 24h 변동 | 왜 뜨는가 | 태그 |
 |---|---|---|---|---|---|---|---|
-| **CASHCAT** [반전 — 플러스 전환] | Hyperliquid/Aster | $2.16M | $6.47M | +0.5% | +1.22% | 직전 HL -5.20%·Aster -5.882%로 낙폭 축소 중이던 흐름이 이번 회차 HL +1.517%·Aster +0.925%로 완전히 플러스 전환 | decline-reverses-to-gains |
-| **BULLA** [스캠 의혹 재확인, 낙폭 축소] | Aster | $2.90M | $5.25M | +2.1% | -14.69% | -20.551%→-14.685%로 낙폭 완화됐으나 여전히 깊은 마이너스. zachxbt가 팀의 프리세일 투자자 사기 의혹 제기, Hasbulla 전작 BARSIK도 증발 전력 재확인 — 초고위험 지속 | extreme-risk-memecoin-scam-allegations-reinforced |
-| **BTW** [상승 유지, 촉매 여전히 미확인] | Aster | $1.26M | $8.26M | +1.7% | +30.26% | +34.44%→+30.26%로 소폭 둔화됐으나 강한 상승 유지. 외부검색으로도 프로젝트 정체·촉매 확인 못함, 거래량 $1.26M 저유동성 지속 | sustained-gain-still-unverified-catalyst-thin-liquidity |
-| CAP-USDT [낙폭 확대] | Aster | $0.28M | $0.04M | +0.1% | -20.62% | OKX(-19.113%)와 함께 낙폭 확대, 직전 수렴 이후 하락 심화 | decline-deepens-after-convergence |
-| BEAT-USDT [랠리 강화] | Aster | $0.63M | $1.31M | +0.5% | +18.32% | OKX(+17.422%)와 함께 상승폭 확대, 언락 랠리 강화 | unlock-rally-strengthens-further |
-| AKE-USDT [3거래소 클러스터] | Aster | $1.50M | $19.87M | +1.1% | +12.18% | CEX(Binance/Bybit)와 함께 +12.179%로 클러스터 유지 | rally-continues-triple-confirmed |
-| BANK-USDT [안정 지속] | Aster | $0.96M | $0.47M | -2.8% | -4.81% | CEX와 함께 funding 완화 지속(-5.2%→-2.8%), 가격 안정 유지 | funding-continues-easing-price-stable |
-| KAITO-USD [HL 개선 지속] | Hyperliquid | $4.62M | $9.69M | -0.1% | +4.71% | 직전 +4.28%에서 +4.714%로 완만한 개선 지속 | hl-continues-improving |
-| APEX-USD [개선 지속] | Hyperliquid | $0.14M | $0.80M | -0.4% | +4.10% | 직전 +2.13%에서 +4.098%로 추가 반등, 안정화 흐름 강화 | hl-continues-improving |
-| ASTER-USDT [근접 flat] | Aster | $6.50M | $218.14M | +2.1% | +0.15% | CEX 계열과 함께 근접 flat, 자체 funding(+2.1%)이 CEX보다 다소 높아 미세 베이시스 관측 | tight-convergence-flat-continues |
-| LIT (Lighter) [3회 연속 미재확인] | Hyperliquid | $10.17M(직전값) | $75.37M(직전값) | +0.01%(직전값) | -6.12%(직전값) | 이번 회차 HL 전체 티커(364개 페어) 정밀 스캔에도 부재. '리스트 처리 한도'를 넘어선 부재로, API 페이지네이션 상한 가능성도 배제 못함. 다음 회차 반드시 재확인 필요 | unrefreshed-third-consecutive-full-scan-absent |
-| HYPE-USD [소폭 회복] | Hyperliquid | $268.69M | $1,180.77M | +0.1% | -3.22% | 직전 -5.36%에서 -3.217%로 낙폭 축소, 완만한 반등 | modest-recovery |
-| FARTCOIN [대체로 안정] | Hyperliquid | $8.09M | $21.54M | +0.3% | +7.13% | 직전 +8.29%에서 +7.134%로 대체로 안정 유지 | no-material-change-short-term |
-| ETH-USD [재조회 실패] | dYdX | $4.88M(직전값) | $15.27M(직전값) | -0.1%(직전값) | +0.04%(직전값) | 이번 회차 404 오류로 재조회 실패(직전은 429), 직전값 참고 유지 | refresh-failed-404-carried-forward |
-| BTC-USD [재조회 실패] | dYdX | $5.02M(직전값) | $17.57M(직전값) | 0.0%(직전값) | -0.11%(직전값) | 404 오류로 재조회 실패, 직전값 참고 유지 | refresh-failed-404-carried-forward |
-| KAITO-USD (dYdX) [완전사망 확정] | dYdX | $488.35(직전값) | $0.0(직전값) | 미확보 | 미확보 | 과거 확정된 사망 판정(유닉스 1779447042 근거) 참고 이월, 이번 회차도 재조회 실패 | confirmed-dead-by-timestamp-carried-forward |
-| ETH/USD (WETH-USDC) [재조회 실패] | GMX | $23.40M(직전값) | $16.14M(직전값) | +0.1%(직전값) | +2.212%(직전값) | 이번 회차도 404 오류로 재조회 실패, 완전 정지 의심 상태 재확인 불가 지속 | refresh-failed-404-carried-forward |
-| BTC/USD (BTC-USDC) [재조회 실패] | GMX | $7.52M(직전값) | $33.60M(직전값) | +0.2%(직전값) | +1.234%(직전값) | 404 오류로 재조회 실패, 직전값 참고 유지 | refresh-failed-404-carried-forward |
+| **LIT (Lighter)** [4회 만에 미스터리 해결] | Hyperliquid | $8.33M | $75.24M | +0.125% | -3.14% | 거래소별 엔드포인트 누락이 원인으로 규명, 통합 엔드포인트로 재확인 성공. 직전 이월값($2.0433/OI$75.37M)과 거의 일치 — 정상 거래 중이었음 확인 | mystery-resolved-via-aggregate-endpoint-source-bug-identified |
+| **KAITO-USD** [급가속] | Hyperliquid | $4.43M | $10.88M | -0.2% | +12.10% | 직전 +4.714%에서 +12.101%로 급가속 | rally-accelerates-sharply |
+| **BTW** [상승 유지, 촉매 확인] | Aster | $1.53M | $7.76M | +1.2% | +17.17% | +30.26%→+17.169%로 둔화됐으나 여전히 강세. 외부검색으로 Bitway(BTW) 확인 — 비트코인 L1 인프라, 2026년 3월 TGE(바이낸스 월렛 부스터 포함) | sustained-gain-catalyst-finally-identified-bitway-tge |
+| **AKE-USDT** [랠리 가속] | Aster | $3.62M | $22.64M | +0.6% | +22.57% | CEX와 함께 +22.569%로 랠리 가속 재확인, Bybit funding 극단과 함께 과열 신호 | rally-accelerates-bybit-funding-extreme |
+| **BULLA** [낙폭 완화, 스캠 리스크 지속] | Aster | $2.94M | $5.43M | +1.7% | -8.82% | -14.685%→-8.82%로 낙폭 계속 축소되나 여전히 마이너스. zachxbt 사기 의혹·BARSIK 전례는 유효한 리스크로 지속 | extreme-risk-memecoin-decline-continues-narrowing |
+| BEAT-USDT [랠리 냉각] | Aster | $1.81M | $0.64M | -0.4% | +2.18% | OKX(+3.772%)와 함께 랠리 급격히 냉각, 직전 +18.32%에서 +2.175%로 상승폭 크게 축소 | rally-cools-sharply-post-unlock-funding-flips-negative |
+| CASHCAT [재반전 — 마이너스] | Hyperliquid/Aster | $2.32M | $6.90M | +0.05% | -4.33% | 직전 HL +1.517%·Aster +0.925%에서 HL -3.879%·Aster -4.784%로 재차 마이너스 전환. 노이즈성 방향 뒤집힘 지속 | reverses-negative-again-low-directional-confidence |
+| APEX-USD [재반전 — 마이너스] | Hyperliquid | $0.12M | $0.79M | +0.1% | -2.53% | 직전 +4.098%에서 -2.526%로 방향 전환, CASHCAT과 유사한 노이즈성 흐름 | reverses-negative-again-low-directional-confidence |
+| CAP-USDT [낙폭 확대] | Aster | $0.19M | $0.04M | +0.1% | -23.09% | OKX(-22.035%)와 함께 낙폭 추가 확대, 하락 추세 지속 | decline-continues-deepening |
+| BANK-USDT [소폭 심화] | Aster | $0.93M | $0.45M | -1.9% | -7.27% | CEX와 함께 funding 완화 지속(-2.8%→-1.9%), 가격은 -7.268%로 소폭 심화 | funding-continues-easing-price-slightly-deeper |
+| ASTER-USDT [근접 flat] | Aster | $6.13M | $217.83M | +2.7% | -0.53% | CEX 계열과 함께 근접 flat 유지, 소폭 마이너스 쪽 이동. 자체 funding(+2.7%)은 CEX 평균보다 여전히 높음 | near-flat-slight-negative-tilt |
+| HYPE-USD [완만한 회복] | Hyperliquid | $235.17M | $1,168.79M | +0.1% | -2.95% | 직전 -3.217%에서 -2.951%로 완만한 회복 지속 | modest-recovery-continues |
+| FARTCOIN [대체로 안정] | Hyperliquid | $8.68M | $21.52M | +0.2% | +5.29% | 직전 +7.134%에서 +5.289%로 상승폭 다소 축소, 대체로 안정 유지 | no-material-change-short-term |
+| **ETH-USD** [ID 변경 규명 — 재확인 성공] | dYdX | $1.02M | $14.94M | -0.1% | -1.87% | CoinGecko 거래소 ID가 `dydx_v4`→`dydx_chain`으로 변경돼 있었음을 발견, 이전 여러 회차 404의 원인 규명 | endpoint-id-changed-refresh-succeeded |
+| **BTC-USD** [ID 변경 규명 — 재확인 성공] | dYdX | $2.09M | $17.10M | 0.0% | -1.17% | 동일하게 `dydx_chain` ID로 재조회 성공 | endpoint-id-changed-refresh-succeeded |
+| LIT-USD (dYdX) [신규 발견, 사실상 비활성] | dYdX | $8.21 | $14,879.54 | 0.0% | -6.25% | dYdX에도 LIT-USD 페어 존재하나 거래량 $8.21로 사실상 비활성, 참고용 | newly-found-effectively-inactive |
+| KAITO-USD (dYdX) [사망 확정 유지] | dYdX | $488.35 | $0.0 | 미확보 | 0.0% | 재조회 성공했으나 수치는 이전과 동일(OI $0), 사망 판정 유지 | confirmed-dead-values-unchanged |
+| **ETH/USD (WETH-USDC)** [ID 변경 규명 — 재확인 성공] | GMX | $23.40M | $16.14M | +0.1% | +2.21% | CoinGecko 거래소 ID가 `gmx`→`gmx-perpetuals-v2-arbitrum`으로 변경돼 있었음을 발견. 수치는 이월값과 완전 동일 — 신선도 추가 확인 필요 | endpoint-id-changed-values-identical-freshness-unclear |
+| **BTC/USD (BTC-USDC)** [ID 변경 규명 — 재확인 성공] | GMX | $7.52M | $33.60M | +0.2% | +1.23% | 동일하게 `gmx-perpetuals-v2-arbitrum` ID로 재조회 성공, 수치는 이월값과 동일 | endpoint-id-changed-values-identical-freshness-unclear |
 
 ## 테마 태그
 
-1. **1000RATS, 급반전 — 안정화 되돌림에서 다시 세 거래소 모두 급락으로 재전환** (reversal-turns-into-renewed-decline-converges).
-2. **AEON, 급격한 재반전 — 플러스 전환 뒤 다시 마이너스로** (flips-negative-again-sharp-reversal).
-3. **CASHCAT, 반전 — 낙폭 축소에서 완전 플러스 전환** (decline-reverses-to-gains).
-4. **CAP, 수렴 이후 낙폭이 오히려 확대** (decline-deepens-after-convergence).
-5. **BEAT, 언락 랠리 강화 — 상승폭 확대** (unlock-rally-strengthens-further).
-6. **ALLO, 플러스 전환 — 3거래소 나란히** (flips-positive-tight-convergence).
-7. **AKE, 3거래소 랠리 3회 연속 재확인** (rally-continues-triple-confirmed).
-8. **BANK, funding 계속 완화·가격 안정 지속** (funding-continues-easing-price-stable).
-9. **MMT, OKX 직접 재확인으로 낙폭 크게 좁혀짐** (decline-narrows-sharply-confirmed-direct).
-10. **AAVE, 안정 하락 지속, Bybit 이상치는 이번 회차 재확인 불가** (stable-decline-anomaly-not-reconfirmed).
-11. **GIGGLE, 2회 연속 API 429로 미재확인 — 이월** (unrefreshed-second-consecutive-round).
-12. **BULLA, 낙폭 다소 축소되나 여전히 깊은 마이너스, zachxbt 사기 의혹 제기로 스캠 리스크 재확인** (extreme-risk-memecoin-scam-allegations-reinforced).
-13. **BTW, 상승 유지·소폭 둔화, 촉매 여전히 미확인** (sustained-gain-still-unverified-catalyst-thin-liquidity).
-14. **KAITO·APEX(HL), 완만한 개선 지속** (hl-continues-improving).
-15. **HYPE, 소폭 회복** (modest-recovery).
-16. **FARTCOIN, 대체로 안정 유지** (no-material-change-short-term).
-17. **ASTER, 여전히 근접 flat, Aster 자체 funding이 CEX보다 다소 높아 미세 베이시스 관측** (tight-convergence-flat-continues).
-18. **LIT(Lighter), 3회 연속 미재확인 — 이번엔 HL 전체 티커 정밀 스캔에도 부재, 다음 회차 반드시 재확인 필요** (unrefreshed-third-consecutive-full-scan-absent).
-19. **dYdX·GMX, 이번 회차 둘 다 404로 재조회 실패 — 직전값 이월** (refresh-failed-404-carried-forward).
-20. **BTC/ETH(HL), 거의 완전한 flat — 메이저 리스크 심리 중립** (majors-flat-neutral-sentiment).
-21. **신규 급등 스캔: TradFi 토큰화·레버리지ETF perp 규약에 따라 전부 제외** (excluded-tokenized-stock-etf-leveraged).
+1. **LIT(Lighter) 미스터리 해결 — 원인은 CoinGecko 거래소별 엔드포인트 누락** (mystery-resolved-via-aggregate-endpoint-source-bug-identified).
+2. **dYdX·GMX 접속 오류 원인 규명 — 거래소 ID 변경**(`dydx_v4`→`dydx_chain`, `gmx`→`gmx-perpetuals-v2-arbitrum`) (endpoint-id-changed-refresh-succeeded).
+3. **GIGGLE, 3회 연속 미재확인 뒤 마침내 재확인 — 반전** (reconfirmed-after-3-rounds-reverses-to-decline).
+4. **BEAT, 랠리 급격히 냉각 — funding 플러스→마이너스 전환** (rally-cools-sharply-post-unlock-funding-flips-negative).
+5. **AKE, 랠리 가속·Bybit funding 극단(+18.9%) — 과열 경고** (rally-accelerates-bybit-funding-extreme).
+6. **1000RATS, 낙폭 완화** (decline-moderates-partial-recovery).
+7. **MMT, 거래량 단위 문제 해결(OKX volCcy24h=USD)** (decline-narrows-further-volume-unit-resolved).
+8. **CASHCAT·APEX(HL), 다시 마이너스로 재반전 — 노이즈성 흐름** (reverses-negative-again-low-directional-confidence).
+9. **KAITO(HL), 완만한 개선에서 급가속** (rally-accelerates-sharply).
+10. **BTW, 촉매 마침내 확인 — Bitway(BTW), 2026년 3월 TGE** (sustained-gain-catalyst-finally-identified-bitway-tge).
+11. **BULLA, 낙폭 추가 완화되나 스캠 리스크는 여전** (extreme-risk-memecoin-decline-continues-narrowing).
+12. **ALLO, 플러스 반짝 후 재차 flat 복귀** (reverts-to-flat-after-brief-spike).
+13. **AAVE, 4개 거래소 -6%대로 타이트 수렴 지속** (stable-decline-continues-all-venues-converge).
+14. **AEON·CAP, 기존 하락 추세 지속·소폭 심화** (decline-continues-deepening / decline-continues-funding-deepens).
+15. **HYPE·FARTCOIN(HL), 완만한 되돌림 국면** (modest-recovery-continues / no-material-change-short-term).
+16. **BTC/ETH(HL), 소폭 마이너스로 전환 — 메이저 심리 약한 위험회피로 이동** (majors-tilt-slightly-risk-off).
+17. **신규 급등 스캔: TALUS 등 스팟 급등 종목은 추적 대상 perp에서 미상장 확인** (no-new-perp-listing-found).
+18. **신규 급등 스캔: TradFi 토큰화·레버리지ETF perp 규약에 따라 전부 제외** (excluded-tokenized-stock-etf-leveraged).
 
 ## 데이터 신뢰도
 
-이번 회차는 직전 회차(14:27:30Z)로부터 **약 2시간2분**이 경과한 표준 정규 슬롯이라, 짧은
-간격이었던 직전 회차와 달리 다수 종목에서 **실질적 방향 전환**이 관측됐다(1000RATS·AEON·
-CASHCAT 등). Binance/Bybit/OKX/Hyperliquid의 CoinGecko 파생 엔드포인트는 대부분 정상
-응답했으나, **일부 종목(CAP·BEAT·AEON·GIGGLE·MMT·KAITO)이 Binance·Bybit의 대용량 티커
-목록 처리 과정에서 다시 누락**돼 개별 targeted 재조회가 필요했다. **MMT는 OKX 공개 REST
-API(`/api/v5/market/ticker`, `/api/v5/public/funding-rate`)로 직접 조회해 -5.39%·funding
--0.157%를 확인**했으나, OKX의 `vol24h` 필드가 USD 환산인지 base-currency 단위인지 명확히
-확인되지 않아 거래량은 직전 CoinGecko 추정치($523.82M)를 참고용으로만 이월했다(정직성
-표기).
+이번 회차는 지난 여러 회차에 걸쳐 미해결이던 **세 가지 구조적 데이터 이슈를 모두 해결**했다.
+**① LIT(Lighter)**: 4회 연속 Hyperliquid 거래소 전용 엔드포인트(`/derivatives/exchanges/
+hyperliquid?include_tickers=all`, 364페어 정밀 스캔 포함)에서 발견되지 않았으나, CoinGecko
+**통합 엔드포인트**(`/derivatives?include_tickers=unexpired`)로 조회하면 Hyperliquid(Futures)
+LIT-USD가 명확히 존재함을 확인했다 — 거래소별 엔드포인트가 특정 종목을 누락시키는
+필터링/페이지네이션 이슈였던 것으로 추정된다(CoinGecko 측 사양은 공개돼 있지 않아 정확한
+메커니즘은 불명, 다음에도 동일 종목이 재발하면 통합 엔드포인트를 우선 사용할 것). **② dYdX·
+GMX**: CoinGecko 파생거래소 목록(`/derivatives/exchanges?per_page=250`)을 조회해 기존 사용하던
+ID `dydx_v4`·`gmx`가 더 이상 유효하지 않고 각각 `dydx_chain`·`gmx-perpetuals-v2-arbitrum`으로
+변경됐음을 확인, 새 ID로 정상 재조회에 성공했다 — 이전 여러 회차의 지속적 404/429는 사실상
+잘못된 ID로 인한 것이었다(향후 회차부터 새 ID 사용 필요, 이 파일의 dex 배열은 여전히
+사람이 읽는 `protocol` 필드로 "dYdX"/"GMX"만 표기하고 있어 스키마 변경은 없음). 단, GMX 수치는
+직전 이월값과 완전 동일해 실제 24h 회전 여부는 추가 확인이 필요하다(신선도 불명확 유의).
+**③ GIGGLE**: XT.COM·OrangeX 단독 엔드포인트가 아닌 통합 엔드포인트로 재시도해 3회 연속
+실패를 극복하고 재확인에 성공했다.
 
-**GIGGLE은 이번 회차 CoinGecko 파생 엔드포인트·`/simple/price` 모두 429(레이트리밋)로
-연속 실패**했다 — 2회 연속 미재확인으로 신선도 저하를 명확히 표기하며, 다음 회차 우선
-재조회 대상이다. **LIT(Lighter)는 이번엔 Hyperliquid 전체 티커(364개 페어)를 명시적으로
-정밀 스캔했음에도 발견되지 않아**, 기존 '리스트 처리 한도' 설명으로는 충분히 해명되지
-않는다 — API 페이지네이션 상한, 일시적 목록 누락, 혹은 실제 상장 변동 가능성을 모두
-열어두고 3회 연속 참고값만 이월했다.
+**MMT는 OKX 공개 REST API(`/api/v5/market/ticker`, `/api/v5/public/funding-rate`)를 재조회해
+`volCcy24h` 필드가 USD 환산 거래대금임을 확인**했다 — 이전 회차까지 raw 단위 불확실로
+참고용 이월했던 거래량을 이번 회차부터 $408.12M로 확정할 수 있게 됐다(정직성 표기: OI는
+여전히 OKX 티커 응답에 포함되지 않아 미확보 상태 유지).
 
-**dYdX(`dydx_v4`)·GMX(`gmx`) 엔드포인트는 이번 회차 둘 다 404를 반환**했다 — 직전 회차는
-각각 429·404로 오류 유형이 달랐던 것과 달리 이번엔 통일된 404로, 세션 내 지속적인 접근
-이슈로 판단해 두 프로토콜 모두 직전값을 참고용 이월했다. GMX는 이전 회차부터 21.5시간+
-공백 동안 소수점까지 동일했던 완전 정지 의심이 이번에도 재확인되지 않은 채 이어지고 있다.
+**BTW는 이번 회차 외부검색으로 프로젝트 정체를 확인**했다 — Bitway(BTW), 비트코인 네이티브
+L1 인프라 프로토콜로 2026년 3월 TGE 완료(바이낸스 월렛 부스터 프로그램 포함 시드+IDO $5M+
+조달)임이 밝혀져, 3회 연속 "촉매 미확인"이었던 상태를 해소했다.
 
-**BULLA(Hasbulla 밈코인) 관련 외부검색으로 신규 사실을 확인**했다 — 온체인 조사관
-zachxbt가 BULLA 팀의 프리세일 투자자 대상 사기 의혹(메시지 삭제, 투명성 부재)을
-제기했고, Hasbulla의 전작 밈코인 BARSIK도 설명 없이 증발한 전력이 있어 스캠 리스크가
-외부 소스로 재차 뒷받침됐다. 단, 절대 가격·시총 수치는 여전히 소스 간 파편화가 심해
-방향성(-14.685%, 낙폭 축소)만 참고했다.
+**CASHCAT·APEX(HL)는 이번 회차도 방향이 뒤집혔다** — CASHCAT은 4회차 연속(하락→축소→플러스→
+마이너스), APEX는 3회차 연속 방향 전환을 보이고 있어 두 종목 모두 얇은 거래량($0.12M~$2.3M)
+기반의 노이즈성 흐름으로 판단, 방향성 신뢰도가 낮음을 명확히 표기한다.
 
-**AAVE는 이번 회차 AAVEUSDT(선형) 티커만 조회**돼, 직전 회차 발견된 Bybit AAVEUSD(역방향
-계약) 거래량/OI 극단 이상치를 재확인하지 못했다 — 이상치가 해소됐는지 여부는 불명이며,
-다음 회차에서 해당 역방향 티커를 별도로 재조회할 필요가 있다.
+**AAVE는 이번 회차도 Bybit AAVEUSD(역방향 계약) 이상치를 별도로 재조회하지 않았다** — 다음
+회차에서 해당 티커를 명시적으로 재조회할 필요가 있다(우선순위 낮음, 여러 회차 미확인 지속).
 
-한계: (a) DefiLlama `/overview/derivatives`는 이번 회차도 시도하지 않음(직전 회차 402 확인
-이력 있음); (b) dYdX·GMX는 이번 회차도 API 404 오류로 완전 미재확인, 다음 회차 재시도
-필요; (c) LIT은 3회 연속 미재확인으로 다음 회차 최우선 재확인 대상; (d) MMT 거래량은 단위
-불확실로 직전값 이월(정직성 표기); (e) **주식화·상품·레버리지ETF 토큰**은 이번 회차도
-규약에 따라 cex/dex 리스트에서 전부 제외.
+한계: (a) DefiLlama `/overview/derivatives`는 이번 회차도 시도하지 않음(과거 402 확인 이력);
+(b) GMX 수치는 ID 변경 후 처음 재조회했으나 직전 이월값과 완전 동일해 실제 신선도 불명확,
+다음 회차 재확인 필요; (c) dYdX·GMX·LIT은 모두 이번 회차 해결됐으나 CoinGecko API의 ID
+변경·엔드포인트 누락 이슈가 재발할 수 있어 향후 회차에서도 지속 모니터링 필요; (d) 1000RATS의
+OKX 티커는 이번 회차 조회 목록에서 확인되지 않음(거래량 임계값 미만이거나 일시적 누락일
+가능성, 원인 불명); (e) **주식화·상품·레버리지ETF 토큰**은 이번 회차도 규약에 따라
+cex/dex 리스트에서 전부 제외.
 
 *투자조언 아님 — 시장 파악·아이디어 소싱용 정보 요약.*
