@@ -1,126 +1,130 @@
-# 시장 브리핑 — 2026-08-02 12:04 UTC (KST 2026-08-02 21:04)
+# 시장 브리핑 — 2026-08-03 00:04 UTC (KST 2026-08-03 09:04)
 
 > 정보 요약이며 투자조언이 아닙니다. 상반된 뷰가 있는 경우 양쪽을 병기했습니다. 직전 브리핑:
-> 2026-08-02 00:03 UTC.
+> 2026-08-02 12:04 UTC.
 
 ## 전체 시장 심리
 
-일요일이라 미국 ETF·증시 시장은 여전히 휴장 상태이며, 마지막 확정 ETF 자금흐름은 직전 회차와
-동일하게 7/31(BTC ETF -$265.4M, ETH ETF +$9.03M, 7월 최종 월간 순유입 BTC $172.4M·ETH
-$365.17M)로 유지된다(SOL·XRP도 새로 확정할 수 있는 이슈어 수준 근거를 확보하지 못해
-`flows.json`은 이번 회차 갱신하지 않았다 — 상세는 SOL 절 참조).
+월요일 아시아 세션 초입, 미국 ETF·증시는 아직 개장 전이라 신규 확정 ETF 자금흐름 데이터는 없다
+(마지막 확정치 여전히 7/31: BTC ETF -$265.4M, ETH ETF +$9.03M — 상세는 `research/etf/flows.json`
+참조, 이번 회차 갱신 실패). BTC는 7/27~8/2 주간을 **$63,153**으로 마감(주간 약 -2%)해 200주
+이동평균선(약 $63,300) 바로 아래에 머물러 있다(weex.com·cryptoticker.io 8/2~3). 전체 시가총액은
+약 **$2.26T**, BTC 도미넌스는 **약 55.8~56.3%**(coingecko·tv-hub.org 참조치, 1년째
+53~64% 밴드 내 등락)로 특별한 방향성 전환은 없다. 공포탐욕지수는 소스별 편차가 이번 회차에도
+크다(CFGI 44 중립, milkroad 8/2 08:18 UTC 49 중립, 타 소스 35 공포) — 단일 확정치 제시 불가
+(미확인), 다만 지난 며칠 극도의 공포(25) 구간보다는 소폭 개선된 쪽으로 무게가 실린다.
 
-**미-이란 지정학 — 이번 회차 가장 중요한 변화**: WSJ·Bloomberg(2026-07-31 보도)에 따르면
-Trump가 "이번 주말 중" 이란 공격을 명령했다는 소식이 전해지며 BTC가 18일 최저치인 약
-$62,100~62,200까지 밀렸으나, 토요일(8/1) 밤 Trump가 Truth Social을 통해 "이란과 주변
-중동국가들의 요청으로" 계획된 공격을 취소한다고 발표했다. 다만 이는 "합의 골자(perimeters of
-a deal)"가 신속히(rapidly) 확정되는 것을 전제조건으로 명시한 **조건부** 취소다(호르무즈 해협의
-즉각·완전 개방과 이란 핵위협 종식이 핵심 조건, 11개 지역·동맹국이 지지한다고 주장,
-cnbc.com·bloomberg.com·irishtimes.com·cbsnews.com 2026-08-02 교차확인). 이란 국영매체는 이
-시점까지 해당 조건을 수용했다는 신호를 보이지 않고 있고, 사우디 왕세자 무함마드 빈 살만이
-Trump에게 추가 공습 자제를 요청했다는 보도도 나와 휴전이 완전히 확정된 상태는 아니다. 이 소식에
-BTC는 일요일(8/2) 오전 기준 저점 $62,100에서 $63,500까지 반등했고, ADA가 +9%(~$0.185)로 최대
-상승폭을 기록했으며 SOL·ETH도 소폭 상승했다(cryptopotato.com 8/2 "Cardano Rockets by 9%,
-Bitcoin Reclaims $63K After War De-Escalation: Weekend Watch"). 공포탐욕지수는 27(공포,
-feargreedmeter.com 기준)로 직전 회차(25) 대비 소폭 개선됐으나 타 소스 교차확인은 확보하지
-못했다(미확인 소지).
+**미-이란 지정학 — 조건부 휴전이 하루 만에 이란 측 정면 부인으로 재차 흔들림**: 토요일(8/1) 밤
+Trump가 "이란 등의 요청으로" 계획된 공격을 취소한다며 "합의 골자"가 도출됐다고 발표한 것에
+대해, 일요일(8/2) 이란 반관영 매체·군 당국이 이를 "완전한 거짓말(complete lie)"·"시장을
+조작하려는 필사적 시도"라며 정면으로 부인했다(호르무즈 해협 개방·핵프로그램 종료에 합의한 바
+없다고 명시, "공격 자제를 요청한 적도 없으며 공격을 멈춘 건 순전히 트럼프의 선택"이라고 반박,
+이란군은 "고도 경계 태세"라고 강조 — timesofisrael.com·ynetnews.com·dailypost.ng·x.com/HormuzLetter
+2026-08-02 교차확인). 이로써 직전 회차의 "조건부 취소, 이란 수용 여부 미확인" 상태가 "이란이
+명시적으로 거부"라는 한 단계 더 불확실한 국면으로 넘어갔다 — 다만 실제 무력 충돌 재개 보도는
+이번 회차에도 확인되지 않았고(coingape.com 8/2, "양측이 3일 연속 휴전을 유지 중"이라는 별도
+서술도 존재해 군사적 정전 자체는 지속 중인 것으로 보이나, "합의(deal)" 성립 여부와는 별개 사안),
+BTC 가격은 이 발표 전후로 $63,000선 위아래에서 등락하는 데 그쳤다(captainaltcoin.com 8/2).
+지정학 헤드라인 리스크는 여전히 살아있는 변수다.
 
-**CLARITY Act**: 직전 회차에 이어 상원 표결이 사실상 가을로 이연된 상태가 유지되며 이번 주말
-신규 진전은 확인되지 않았다(2026년 내 통과 확률 Polymarket 기준 약 30~33%).
+**FOMC(7/29) 결과 — 매파적 서프라이즈로 재평가**: Fed는 3.50~3.75% 동결을 결정했으나 표결이
+9-3으로 나뉘어 위원 3명이 0.25%p 인상 소수의견을 냈다(2016년 9월 이후 가장 큰 이견 폭,
+cryptoticker.io 8/2~3). Warsh 의장은 "위원회가 지켜보는 물렁한 인플레이션 목표치란 없다"고
+발언, 이를 반영해 CME FedWatch 9월 인상 확률이 이번 회차 기준 **61.4%**까지 상승했다(직전
+회차까지 언급된 35~38% 수준에서 크게 뛴 수치 — 매파적 재평가로 해석되며 위험자산 전반에
+하방 압력 요인). 다음 주요 매크로 이벤트는 Warsh의 잭슨홀 연설(8/27~29)이다.
 
-**8월 계절성 vs 온체인 축적 신호(상반)**: KuCoin("Bitcoin Enters August 2026 with Seasonal
-Weakness and Projected $58K-$62K Bottom")은 BTC가 4년 연속 8월 하락 패턴(15년 평균 -0.64%)을
-지목하며 $58,000~62,000 저점 시나리오를 제시했는데, 이는 Cowen의 중간선거 연도 8~9월 -15~18%
-경고와 방향이 일치한다. 반대 신호로는 온체인 축적 지표가 있다 — 최근 한 달간 고래들이 약 27만
-BTC(약 $23B, 유통량의 1.3%, 13년래 최대 순매수)를 축적했다는 다수 보도가 있으나, 이번 회차
-재탐색에서 이 통계의 정확한 발표 시점을 특정하지 못해(여러 매체가 서로 다른 시점 기사를
-재유통하는 정황) 참고 수준으로만 반영한다.
+**Coldcard 하드웨어 지갑 해킹(7/30)**: 2021년 3월 시드 생성 로직 오류(하드웨어 난수 생성기 대신
+소프트웨어 의사난수 생성기로 라우팅된 결함)를 악용해 41분 만에 1,196개 주소에서 총
+1,082.65 BTC(약 $70.2M)가 탈취됐다(cryptoticker.io 8/2~3). 개별 보안 이벤트로 시장 전체
+방향성에 미치는 영향은 제한적이나 하드웨어 지갑 신뢰도 관련 담론이 부상 중이다.
 
-**애널리스트**: Brandt·Cowen·Rekt Capital 3인 신중론("아직 바닥 아님") vs KillaXBT 골든크로스
-강세론 vs Doctor Profit 조심스러운 긍정이라는 직전 회차 구도가, 이번 회차 재탐색에서도 6인 전원
-순수 신규 공개 코멘트가 확인되지 않아 그대로 유지된다(상세는 `research/kol/chartist_views.json`
+**CLARITY Act**: Thune 원내대표가 8/7 휴회 전 본회의 표결이 사실상 물리적으로 불가능하다고
+인정했다(토론·수정안 처리·클로처 표결에 필요한 시간 부족, coindesk.com 7/23·crypto.news 재확인
+8월초). 2026년 내 통과 확률은 Polymarket 기준 약 28~33%(2월 고점 82%에서 큰 폭 하락), Galaxy
+Research 추정치는 30%로 하향 조정됐다.
+
+**8월 계절성 vs 온체인 축적(상반, 유지)**: KuCoin·Cowen의 8월 계절성 경고($58K~62K 하단
+시나리오, 중간선거 연도 8~9월 -15~18%)는 유지된다. 반대 신호인 "고래 약 27만 BTC(약 $23B)
+축적" 서사는 이번 회차 재탐색 결과 실제로는 2026년 4월·5월·7월 등 여러 시점에 걸쳐 반복적으로
+보도된 동일 규모의 서사임이 확인돼(coindcx.com 4월판·247wallst.com 5월판·coindesk.com 7월판 등),
+단일 시점의 새로운 신호라기보다 재유통되는 정형화된 스토리에 가깝다는 점이 이번 회차에 추가로
+드러났다(신뢰도 하향 조정, 여전히 참고 수준).
+
+**애널리스트**: Brandt·Cowen·Rekt Capital 신중론(10월 전후 최종 바닥, $44K~고$40K대 하락 경고) vs
+KillaXBT 골든크로스 강세론 vs Doctor Profit 조심스러운 긍정 구도는 이번 회차 재탐색에서도 6인
+전원 순수 신규 공개 코멘트가 확인되지 않아 유지된다(상세는 `research/kol/chartist_views.json`
 참조).
 
-**다음 촉매**: 7월 고용보고서(비농업고용, NFP)가 8/7(금) 발표되는데 공교롭게도 상원의 CLARITY
-Act 8월 휴회 데드라인(8/7)과 같은 날이라는 점이 주목된다. 9월 FOMC는 9/16~17로 확인된다(직전
-회차 표기 9/15~16과 소폭 차이 — 출처 간 날짜 표기 불일치 가능성 있어 100% 확정 아님).
-
-종합하면 이번 주말은 미-이란 조건부 휴전 발표로 위험선호가 소폭 회복됐으나, 이란의 조건 수용
-여부가 불투명해 지정학 리스크가 여전히 살아있고 8월 계절성 경고와 CLARITY Act 지연이 겹쳐
-위험회피 우위 심리의 근본 구도는 유지되고 있다.
+종합하면, 이번 회차는 (1) 이란의 명시적 거부로 지정학 리스크 프리미엄이 재부각되고, (2) FOMC
+매파적 서프라이즈(9월 인상 확률 급등)로 유동성 우호 시나리오가 후퇴하며, (3) CLARITY Act
+불발이 사실상 확정되는 등 세 가지 악재가 동시에 확인된 회차다. 다만 실제 가격 반응은 제한적($63K
+부근 박스권 유지)이라 시장이 이미 상당 부분을 선반영했거나, 아직 월요일 아시아 세션 초입이라
+반응이 지연되고 있을 가능성이 있다(미확인, 다음 회차 재확인 필요).
 
 ## 자산별 뷰
 
-### BTC — 약세 경계, 단기 반등
+### BTC — 약세 경계 (하방 압력 요인 누적)
 
-주말 지정학 리스크 완화로 저점 $62,100대에서 $63,500까지 반등했으나 조건부 휴전이라 확정된
-안도랠리로 보기는 어렵다. WSJ·Bloomberg 보도(7/31)로 Trump의 "주말 중 이란 공격" 명령 소식이
-전해지며 BTC가 18일 최저치 약 $62,100~62,200까지 밀렸으나, 토요일(8/1) 밤 Trump가 "이란 등의
-요청으로" 계획된 공격을 취소한다고 발표(단, 합의 골자가 신속히 확정되는 것이 전제조건 — 호르무즈
-해협 개방·핵위협 종식, 이란 국영매체는 아직 수용 신호 없음)해 일요일(8/2) 오전 기준 $63,500까지
-반등했다. ETF는 마지막 확정치가 여전히 7/31 -$265.4M(7월 최종 월간 $172.4M)로 신규 거래일
-데이터 없음(주말 휴장).
+7/27~8/2 주간을 $63,153으로 마감(주간 약 -2%), 200주 이동평균선(약 $63,300) 바로 아래에서
+저항받고 있다. 이번 회차 새로 확인된 세 가지 변수(이란의 합의 부인, FOMC 매파적 서프라이즈로 9월
+인상 확률 61.4%까지 상승, CLARITY Act 8/7 이전 표결 불가 공식화)가 모두 하방 요인 쪽에
+가깝다. ETF는 마지막 확정치 여전히 7/31 -$265.4M(월요일 개장 전이라 신규 거래일 데이터 없음).
 
-- **지지**: $62,100~62,900(이번 주말 저점, 신규 형성) / $63,000~63,800(1차) /
-  $61,300~62,000·$60,000~62,000 밴드(2차, 6월 저점 이후 반복 방어) / $60,345(붕괴 시 기술적
-  목표) / $58,000~62,000(KuCoin, 8월 계절성 하단 시나리오) / 고$40,000대(Brandt, 10월 전후
-  저점) / $44,000(Cowen, Q4 시즌 예시치, 목표가 아님)
-- **저항**: $65,300~65,500(즉각) / $65,000~70,000(돌파 필요 구간) / $65,500~65,900(Rekt
-  Capital, 50개월 EMA 반복 거부) / $66,700 돌파 시 $67,000+
-- **촉매**: 미-이란 조건부 공격 취소 이행 여부(이란의 호르무즈 개방·핵위협 종식 조건 수용
-  불투명, 미확인 상태 지속되면 재차 리스크오프 가능). CLARITY Act 상원 표결 가을 이연(2026년 내
-  통과 확률 Polymarket 기준 약 30~33%). 8월 계절성(15년 평균 -0.64%, 4년 연속 하락 패턴,
-  중간선거 연도 8~9월 -15~18% 경고[Cowen]). 7월 고용보고서(NFP) 8/7 발표(상원 휴회 데드라인과
-  동일자). 9월 FOMC(9/16~17, 날짜 표기 소폭 유동적). ETF 자금 반전 지속 여부. 온체인 고래 축적
-  (약 27만 BTC, 시점 미확인) 반대 신호.
+- **지지**: $62,500(직전 저점, 붕괴 시 $60,000 목표) / $62,100~62,900(7/31~8/2 저점대) /
+  $60,345(기술적 붕괴 목표) / $58,000~62,000(KuCoin, 8월 계절성 하단) / 고$40,000대(Brandt,
+  10월 전후 저점) / $44,000(Cowen, Q4 예시치)
+- **저항**: $63,300(200주 EMA) / $64,288(20일 EMA) / $64,891(50일 EMA) / $65,300~65,900
+  (Rekt Capital, 50개월 EMA 반복 거부) / $65,000~70,000(돌파 필요 구간)
+- **촉매**: 미-이란 지정학(이란의 명시적 부인으로 리스크 재부각, 군사적 정전 자체는 지속 중이나
+  "합의" 성립은 미확정). FOMC 매파적 서프라이즈 여파(9월 인상 확률 61.4%, Warsh 잭슨홀 연설
+  8/27~29). CLARITY Act 8/7 휴회 전 표결 사실상 불발 공식화(2026년 내 통과 확률 28~33%로
+  하향). 8월 계절성 경고(중간선거 연도 8~9월 -15~18%[Cowen]). NFP 7월 고용보고서(8/7). Coldcard
+  해킹 등 보안 이슈. ETF 자금 반전 지속 여부. 고래 축적 서사(반복 재유통 확인, 신뢰도 하향
+  — 참고 수준).
 
-### ETH — 중립 (BTC 대비 상대적 견조)
+### ETH — 중립 (상대적 견조, 절대 낙폭은 큼)
 
-이번 주말 미-이란 조건부 휴전 소식에 BTC와 함께 소폭 반등했다(구체적 수치는 소스별 편차로 확정
-어려움, 대략 $1,860~1,930 범위 지속). ETF 신규 거래일 데이터는 없음(휴장, 7/31 +$9.03M 유지) —
-이틀 연속 순유입, 7월 ETH ETF 월간 순유입 $365.17M(coingabbar)로 BTC($172.4M)·XRP($27.29M)
-대비 최대치를 유지하며 BTC 자금 이탈과 대비되는 디커플링이 지속된다. CLARITY Act 가을 이연은
-알트코인 전반의 규제 불확실성 지속 요인이라는 정성적 우려가 있으나 ETH 개별 촉매로 구체화된
-코멘트는 확인되지 않았다.
+주간 $1,867.56(-0.70%, YTD -37.06%)로 BTC 대비 낙폭이 작다. ETH ETF는 주간 +$27.42M
+순유입으로 4주 연속 순유입을 이어갔다(cryptoticker.io 8/2~3) — 7월 월간 순유입도
+$365.17M로 3대 자산 중 최대치를 기록해 BTC 자금 이탈과 대비되는 디커플링이 지속된다. ETF 신규
+일별 확정치는 없음(휴장 이후 개장 전).
 
 - **지지**: $1,850(주요) / $1,830~1,850(8월 예상 저점권) / $1,800(슈퍼트렌드선 부근)
-- **저항**: $1,940 / $2,000(심리적) / $2,020(TechDev, 3일봉 슈퍼트렌드 그린플립 레벨) /
+- **저항**: $1,940 / $2,000(심리적) / $2,020(TechDev, 3일봉 슈퍼트렌드 그린 플립 레벨) /
   $2,300~2,400
-- **촉매**: ETF 자금 디커플링 지속 여부. 미-이란 조건부 휴전 이행 여부. CLARITY Act 가을 이연에
-  따른 알트 규제 불확실성 지속. 7월 고용보고서(8/7)·9월 FOMC(9/16~17) 여파 알트 조정 리스크.
-  $1,940~2,000 저항 돌파 시도. Morgan Stanley MSSE 자금 유입 속도.
+- **촉매**: ETF 자금 디커플링 지속 여부(4주 연속 순유입). 미-이란·FOMC·CLARITY Act 등 BTC
+  공통 매크로 변수의 알트 파급. $1,940~2,000 저항 돌파 시도. Morgan Stanley MSSE 자금 유입
+  속도.
 
 ### SOL — 약세
 
-20·50일 EMA 아래 유지, 100일 EMA($79.72)·200일 EMA($92.45) 대비로도 크게 하회한다. 이번 주말
-리스크온 반등 국면에서도 ADA(+9%) 대비 SOL은 +1% 안팎으로 상대적으로 부진해(cryptopotato.com
-8/2) 단기 상대강도가 약한 모습이다. ETF는 7/28 -$18.07M 순유출 이후 Morgan Stanley MSOL
-관련 유입 보도가 다수 있었으나, 이번 회차 재탐색에서 "상장 2일차 $19.03M" 보도(7/29 혹은 7/30
-여부 불명확)를 공식 주간 SOL ETF 순유입 총계(7/27~31 약 $2.82M, cryptotimes.io 8/1)와 산술
-대조한 결과 정합하지 않는 것으로 나타나(단순 합산 시 주간 총계보다 훨씬 커짐) 신뢰도 문제로
-`flows.json` 반영을 보류했다 — 과거 이력은 그대로 보존되며 SOL 마지막 확정일은 7/28로 유지된다.
+주간 $73.18(-2.35%, YTD -41.21%)로 20·50일 EMA 아래 유지, 직전 회차 제시된 1차 지지 $72와
+근접한 수준까지 내려온 상태다. ETF는 이번 회차에도 7/28(-$18.07M) 이후 확정치를 이슈어 수준
+근거로 확보하지 못해(Morgan Stanley MSOL 관련 일부 보도의 날짜 불일치 문제 지속) `flows.json`
+갱신 없음 — 과거 이력 보존, 마지막 확정일 7/28 유지.
 
-- **지지**: $72(1차) / $68~70(6월 회복 기반)
+- **지지**: $72(1차, 근접 중) / $68~70(6월 회복 기반)
 - **저항**: $78(단기, 회복 시 플립 트리거) / $79.72(100일 EMA) / $92.45(200일 EMA) /
   $97·$125~130(중장기 돌파 시나리오)
-- **촉매**: Alpenglow 업그레이드 시점 구체화(2026 Q3 목표). Morgan Stanley MSOL 초기 자금 유입
-  지속 여부(일자별 확정치는 여전히 미해결, 다음 회차 재확인 필요). ETF 자금 흐름 데이터 공백
-  해소(7/29~31 확정치 미확보, 주간 집계와의 불일치 원인 규명 필요). $78 저항 회복 여부. 미-이란
-  리스크온 국면에서의 상대강도 회복 여부.
+- **촉매**: $72 지지 유지 여부(근접 국면). Alpenglow 업그레이드 시점 구체화(2026 Q3 목표).
+  Morgan Stanley MSOL 초기 자금 유입 지속 여부(일자별 확정치 미해결, 다음 회차 재확인 필요).
+  ETF 자금 흐름 데이터 공백 해소. BTC·ETH 공통 매크로 변수의 알트 파급(YTD 낙폭이 가장 커
+  민감도 높음).
 
 ---
 *주목 프로젝트/토큰은 KOL 워치(`kol-watch`)가 별도로 다룹니다. ETF 일별 순유입 상세 이력·출처는
-`research/etf/flows.json`(이번 회차 신규 확정 거래일 없음 — BTC·ETH는 주말 휴장 대기, SOL·XRP는
-데이터 정합성 문제로 갱신 보류, 과거 이력은 그대로 보존), 상위 차티스트 개별 뷰는
+`research/etf/flows.json`(이번 회차 신규 확정 거래일 없음 — 월요일 개장 전 대기, SOL·XRP는
+데이터 정합성 문제로 갱신 보류 지속, 과거 이력은 그대로 보존), 상위 차티스트 개별 뷰는
 `research/kol/chartist_views.json` 참조.*
 
-Sources: [cnbc.com — Trump says he has canceled a planned attack on Iran after reaching an agreement over the 'perimeters of a deal'](https://www.cnbc.com/2026/08/02/trump-planned-attack-on-iran-canceled-after-reaching-outline-of-deal.html) ·
-[bloomberg.com — Trump Says US to Cancel Iran Attack Subject to a Rapid Deal](https://www.bloomberg.com/news/articles/2026-08-02/trump-says-us-to-cancel-iran-attack-subject-to-a-rapid-deal) ·
-[irishtimes.com — Trump calls off threatened new Iran strikes as long as deal is agreed 'rapidly'](https://www.irishtimes.com/world/middle-east/2026/08/02/trump-says-strikes-on-iran-called-off-so-long-as-deal-agreed-rapidly/) ·
-[cbsnews.com — Live Updates: Trump calls off strikes on Iran subject to peace deal being "rapidly" reached](https://www.cbsnews.com/live-updates/iran-war-us-trump-strait-of-hormuz-kuwait-jordan-air-base/) ·
-[fortune.com — Trump orders Iran attack as soon as this weekend, WSJ says](https://fortune.com/2026/07/31/trump-iran-attack-weekend-energy-infrastructure/) ·
-[cryptopotato.com — Cardano Rockets by 9%, Bitcoin Reclaims $63K After War De-Escalation: Weekend Watch](https://cryptopotato.com/cardano-rockets-by-9-bitcoin-reclaims-63k-after-war-de-escalation-weekend-watch/) ·
-[feargreedmeter.com — Crypto Fear and Greed Index](https://feargreedmeter.com/crypto-fear-and-greed-index) ·
-[kucoin.com — Bitcoin Enters August 2026 with Seasonal Weakness and Projected $58K–$62K Bottom](https://www.kucoin.com/news/flash/bitcoin-enters-august-2026-with-seasonal-weakness-and-projected-58k-62k-bottom) ·
-[cryptotimes.io — Bitcoin ETFs See Weekly Outflows as Ethereum Funds Extend Winning Streak](https://www.cryptotimes.io/2026/08/01/bitcoin-etfs-see-weekly-outflows-as-ethereum-funds-extend-winning-streak/) ·
-[bls.gov — Employment Situation News Release](https://www.bls.gov/news.release/empsit.nr0.htm)
+Sources: [timesofisrael.com — Iran denies it asked Trump not to strike or agreed to deal to split control of Hormuz](https://www.timesofisrael.com/iran-denies-it-asked-trump-not-to-strike-or-agreed-to-deal-to-split-control-of-hormuz/) ·
+[ynetnews.com — Iran denies Trump's claim of Hormuz deal: 'There is no agreement'](https://www.ynetnews.com/article/h18oo52rfl) ·
+[dailypost.ng — Strait of Hormuz: 'No new deal' - Iran rubbishes Trump's claim](https://dailypost.ng/2026/08/02/strait-of-hormuz-no-new-deal-iran-rubbishes-trumps-claim/) ·
+[captainaltcoin.com — Bitcoin Network Hits Record Activity as Iran Rejects Trump's Strait of Hormuz Claim](https://captainaltcoin.com/crypto-news-today-bitcoin-network-hits-record-activity-as-iran-rejects-trumps-strait-of-hormuz-claim/) ·
+[coingape.com — Crypto Market This Week: US-Iran Truce, CLARITY Act Vote, FOMC Meeting, PCE Inflation In Focus](https://coingape.com/crypto-market-this-week-us-iran-truce-clarity-act-vote-fomc-meeting-pce-inflation-in-focus/) ·
+[cryptoticker.io — Crypto News Today: Hawkish Fed, a $70M Wallet Hack and Bitcoin's Shaky Start to August](https://cryptoticker.io/en/crypto-news-today-weekly-wrap-august-2026/) ·
+[cryptonews.com — CLARITY Act Senate Delay Drops 2026 Odds to 35%](https://cryptonews.com/news/clarity-act-senate-recess-polymarket-odds-2026/) ·
+[coindesk.com — Clarity Act expected to miss its window before Congress' summer break, leadership says](https://www.coindesk.com/policy/2026/07/23/clarity-act-expected-to-miss-its-window-before-congress-summer-break-leadership-says) ·
+[weex.com — Bitcoin Stalls at $64,200, Asian Markets Surge](https://www.weex.com/news/detail/bitcoin-stalls-at-64200-asian-markets-surge-ztk3b5oizjgq5j8bvpjwd4x6) ·
+[coingecko.com — Bitcoin Dominance (BTC.D)](https://www.coingecko.com/en/charts/bitcoin-dominance)
