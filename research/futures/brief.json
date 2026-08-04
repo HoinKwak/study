@@ -1,428 +1,398 @@
 {
-  "ts": "2026-08-04T12:58:00Z",
-  "market": "직전 회차(2026-08-04T10:58:00Z)로부터 약 2시간 경과. CoinGecko `/global`이 이번 회차도 429로 실패해 WebSearch 근사치 사용 — 총 시총 **약 $2.27T**(직전 대비 24h +1.1%), BTC 도미넌스 **약 56%**로 직전(≈$2.23T/56.42%)과 거의 동일하며, 신규로 확인된 **Fear&Greed 지수 25(Extreme Fear)**는 가격 랠리에도 불구하고 심리는 여전히 위축돼 있음을 시사한다(단, 동일 웹서치의 BTC 현물가 $63,565 언급은 세션 맥락상 낮아 보여 신뢰도 낮음 — 인용하지 않음). **⚠️ BANK는 랠리가 더 확대**됐다 — CEX 평균 +10.20%→**+25.68%**(Binance+25.571%·Bybit+25.789%), DEX(Aster +26.033%)도 동조. CoinGlass 교차검증 결과 BANK 24h 전체거래소 선물거래량이 **약 $2.93B**로 스팟($148M) 대비 20배에 달하고, OI(약 $72.5M)가 시가총액(약 $53.5M)을 초과해 극단적 레버리지 구도가 재확인됐다. 웹서치로 BANK Foundation 추정 지갑의 8,400만 토큰($13.7M) Aster 이체는 여전히 미해명 상태로 잠재 매도압력 리스크가 지속된다. **1000RATS는 강하게 반등**했다 — 라운드 최저치(-35.61%)에서 CEX 평균 **-20.71%**(Binance-19.968%·Bybit-21.449%)로 반등, DEX(Aster -20.757%)도 동조. 웹서치로 8/1 Aster 상장(5x 레버리지+포인트 부스트) 발 펌프·크래시 이후 저항선 재테스트 중인 회복 국면임이 확인됐다. **⚠️ BICO는 완전히 반전**됐다 — +6.39%→**-2.28%**로 지난 5연속 상승 랠리가 완전히 되돌려졌다(OKX). **⚠️ 신규 발견 — GIGGLE(OKX) 재확인**: 직전 회차에 XT.com 데이터 기준 상장폐지로 추정해 제외했던 GIGGLE이 **OKX에서는 활성 상태(code 0, 실거래)**로 재확인됐다 — 24h -23.85%(open24h $44.27→last $33.71), 거래량 $92.24M. 단 별도 웹서치는 'GIGGLE unavailable on OKX'라는 상충 정보를 보여 소스 간 불일치가 존재해 유의가 필요하다. **⚠️ 신규 종목 PIPPIN(OKX)** — Solana AI 밈코인, +11.34%(open24h $0.01588→$0.01768), 거래량 $36.0M. 웹서치로 인사이더가 공급량 절반(~$120M 상당)을 보유한 고위험 자산으로 플래그됐고, 별도 보도에서 OKX가 PIPPIN 등 일부 페어의 퍼프 상장폐지를 예고한 정황(정확한 일자 미확인)도 발견돼 후속 확인이 필요하다. **⚠️ 신규 종목 ALLO(Allora Network, Binance/Bybit)** — AI 인프라 토큰, CEX 평균 **-10.84%**(Binance-11.259%·Bybit-10.423%), 7/24 ATH($0.546) 대비 -28%. 유통량 20%에 불과하고 백커(31.05%)·팀(17.50%) 언락이 1~3년에 걸쳐 예정돼 매도압력 우려가 있으며, funding이 음수(-0.0325% 평균)로 숏 쏠림이 관측돼 스퀴즈 리스크도 병존한다. **⚠️ CASHCAT은 재가속**했다 — +43.87%→**+53.3%**(HL+53.895%·Aster+52.737%) — 로빈후드체인 플래그십 밈코인 지위가 지속되며 둔화 흐름이 재차 꺾였다. **AEON은 재차 심화**됐다(-4.29%→**-9.19%**, OKX), **CORE는 플러스→마이너스 반전**됐다(+0.82%→**-1.63%**). AKE(-7.96%)·KAITO CEX(-8.07%)·BEAT(-20.28%)는 대체로 낙폭이 유지되거나 소폭 심화됐다. **⚠️ 데이터 인프라 정정(신규)**: OrangeX의 CoinGecko 거래소 ID가 옛 `orangex`(연속 429/실패)가 아니라 **`orangex_futures`**인 것으로 확인돼, 다회 만에 BLESS-USDT-PERPETUAL 데이터가 재확인됐다(vol $231.98M·OI $63.36M·chg -46.28%, Aster 레그 -46.23%와 정합). Hyperliquid의 HYPER-USD·APEX-USD도 이번 회차 개별 조회로 다회 만에 재포착됐다. 반면 **GMX(`gmx-perpetuals-v2-arbitrum`) 데이터는 API 호출 자체는 성공했으나 3회 연속 완전히 동일한 수치**(ETH/USD·BTC/USD 거래량·OI·펀딩·변동률 모두 일치)를 반환해 **소스 자체의 데이터 갱신 정체(staleness) 가능성**이 있어 신뢰도에 유의해야 한다. dYdX(`dydx_chain`)의 ETH-USD(+1.42%)·BTC-USD(+1.92%)는 정상 재확인됐다.",
+  "ts": "2026-08-04T14:58:00Z",
+  "market": "직전 회차(2026-08-04T12:58:00Z)로부터 약 2시간 경과. 이번 회차엔 CoinGecko `/global`이 정상 응답해 정확치를 확보했다 — 총 시총 **$2.267T**(24h -0.03%로 거의 변화 없음), BTC 도미넌스 **56.50%**(직전 근사치 56%와 정합). Fear&Greed는 소스 간 편차가 있다(feargreedmeter 28[Fear] vs 다른 소스 25[Extreme Fear]) — 방향은 여전히 공포 구간에서 큰 변화 없음. **⚠️ BANK는 랠리가 한층 더 확대**됐다 — CEX 평균 +25.68%→**+37.22%**(Binance+36.644%·Bybit+37.791%), DEX(Aster +35.375%)도 동조. 웹서치로 BTC $0.03→ATH 근접 $0.27 랠리, 청산액 $1.01M 중 70%가 숏 청산(숏스퀴즈), BTCFi 내러티브 재부각이 확인됐다. 다만 CEX 평균 funding은 -0.048%→**-0.0035%**로 거의 중립화됐다 — 지속 랠리에도 숏 프리미엄이 크게 완화된 점이 특기할 만하다(BANK Foundation 지갑 이체건은 이번 회차 재검증 미실시, 미해명 상태로 carryover). **1000RATS는 완만한 회복 지속**이다 — CEX 평균 -20.71%→**-18.57%**(Binance-18.973%·Bybit-18.164%), DEX(Aster -18.62%)도 동조 — 저항선 재테스트 국면이 이어지는 모습. **⚠️ ALLO는 극적으로 반등**했다 — CEX 평균 -10.84%→**-1.59%**(Binance-1.919%·Bybit-1.255%)로 낙폭이 거의 해소됐다. 웹서치로 Kalshi 예측시장에 Allora AI 추론 기능이 실제 연동된 유틸리티 내러티브와 네트워크 확장성·보안 개선이 반등 배경으로 확인됐다 — 언락 오버행 리스크 자체는 구조적으로 여전하나 단기 촉매가 우세했던 것으로 판단된다. **⚠️ BICO는 하락이 재차 심화**됐다 — 지난 회차 '5연속 랠리 완전 반전(-2.28%)'에서 이번엔 **-8.93%**(OKX)로 낙폭이 더 깊어져 반전 이후 하락 추세가 이어지고 있다. **GIGGLE(OKX)은 여전히 활성 상태로 재확인**(-21.57%, 직전 -23.85%에서 소폭 완화)됐다 — OKX 직접 API로 이번 회차도 정상 거래 데이터 반환. **⚠️ 신규 사실확인 — PIPPIN 상장폐지 루머 정정**: 이전 회차 웹서치로 발견한 'OKX가 PIPPIN 퍼프 상장폐지를 예고했다'는 정황을 재조사한 결과, 해당 공지는 **2025년 7월 18일자(1년 이상 전)**의 과거 상장폐지였고 PIPPIN은 이후 재상장돼 현재(2026-08-04) OKX에서 정상 거래 중임(이번 회차도 vol $37.3M로 실거래 확인)이 확인됐다 — 직전 회차의 '상장폐지 예고 후속확인 필요' 플래그는 오인이었음을 정정한다. PIPPIN 변동률은 +11.34%→**+7.70%**로 둔화됐다. **⚠️ CASHCAT은 정점에서 냉각** — HL +53.895%→**+44.511%**, Aster +52.737%→**+45.161%**로 양쪽 모두 상승폭이 줄었다(다만 여전히 매우 높은 수준). AEON(-9.19%→-9.48%, 거의 유지), **CORE(-1.63%→-5.71%, 낙폭 재확대)**, **MMT(+2.36%→-2.91%, 플러스→마이너스 반전)**, **CAP(-2.34%→-7.79%, 낙폭 재확대)**, **AKE(-7.96%→-11.24%, 8/21 언락 부담 속 낙폭 확대)**, KAITO(CEX -8.07%→-9.84%·HL -8.21%→-9.84%, 소폭 심화), BEAT(-20.28%→-16.60%, 소폭 회복)가 관측됐다. 시장 전반 신호는 혼재 — ADA(+3.63%→+0.18%)·ATOM(+7.00%→+5.56%)·ALGO(+3.62%→+2.82%)·HYPE(+5.24%→+2.93%)·FARTCOIN(+3.69%→+0.40%) 등 다수 알트가 상승폭을 반납하며 냉각, AAVE(-0.27%→-2.24%)는 마이너스 심화, dYdX ETH/BTC(+1.42%/+1.92%→-0.29%/-0.09%)도 반전. **⚠️ GMX 데이터는 이번 회차도 완전 동일 수치** — ETH/USD(WETH-USDC)·BTC/USD(BTC-USDC) 거래량·OI·펀딩·변동률이 **4회 연속** 소수점까지 일치, 사실상 갱신 정지된 소스로 판단해 신뢰도를 더욱 낮춰야 한다. BLESS는 Aster(-46.23%→-41.04%)·OrangeX(-46.28%→-41.80%) 양쪽 모두 완만히 회복 중이다. HL의 AAVE-USD 레그가 이번 회차 큰 OI($64.63M)로 재포착돼 기존 Aster 레그(소액)보다 더 대표성 있는 수치를 제공한다.",
   "cex": [
     {
       "symbol": "BANK (Lorenzo Protocol)",
       "venue": "Binance/Bybit",
-      "vol24_usd": 292635609,
-      "oi_usd": 26655153,
-      "funding": -0.048,
-      "chg24": 25.68,
-      "why": "[⚠️ 랠리 확대 지속] +10.20%→+25.68%(Binance+25.571%·Bybit+25.789%)로 반등이 더 커짐. CoinGlass 교차검증: 전체거래소 24h 선물거래량 ≈$2.93B(스팟의 20배), OI(≈$72.5M)가 시총(≈$53.5M) 초과 — 극단적 레버리지. BANK Foundation 추정 지갑의 8,400만 토큰($13.7M) Aster 이체는 여전히 미해명, 잠재 매도압력 지속.",
-      "tag": "rally-extends-further-extreme-leverage-whale-transfer-unresolved"
+      "vol24_usd": 383740933.4,
+      "oi_usd": 27797726.49,
+      "funding": -0.0035,
+      "chg24": 37.2175,
+      "why": "[⚠️ 랠리 재확대] +25.68%→+37.22%(Binance+36.644%·Bybit+37.791%). 웹서치: $0.03→ATH근접$0.27 랠리, 청산 $1.01M 중 70%가 숏 청산(숏스퀴즈), BTCFi 내러티브 재부각. funding은 -0.048%→-0.0035%로 거의 중립화(숏 프리미엄 크게 완화) — 재단 지갑 이체건은 이번 회차 재검증 미실시(미해명 carryover).",
+      "tag": "rally-extends-again-short-squeeze-btcfi-narrative-funding-normalizes"
     },
     {
       "symbol": "1000RATS",
       "venue": "Binance/Bybit",
-      "vol24_usd": 270853185,
-      "oi_usd": 27166769,
-      "funding": 0.045,
-      "chg24": -20.7085,
-      "why": "[⚠️ 강한 반등] 라운드 최저치 -35.61%→-20.71%(Binance-19.968%·Bybit-21.449%)로 반등. 웹서치로 8/1 Aster 상장(5x+포인트부스트) 발 펌프·크래시 이후 저항선 재테스트 중인 회복 국면 확인.",
-      "tag": "strong-rebound-from-round-low-retesting-resistance"
-    },
-    {
-      "symbol": "BICO (Biconomy)",
-      "venue": "OKX(직접API)",
-      "vol24_usd": 77671701,
-      "oi_usd": 2185075.24,
-      "funding": -0.0725,
-      "chg24": -2.28,
-      "why": "[⚠️ 완전 반전] +6.39%→-2.28%로 5연속 상승 랠리가 완전히 되돌려짐. OI도 $2.34M→$2.19M로 추가 감소. Bitkub 상장은 8/22 예정(여전히 미반영).",
-      "tag": "fully-reverses-rally-completely-round-tripped"
-    },
-    {
-      "symbol": "GIGGLE (Giggle Fund)",
-      "venue": "OKX(직접API)",
-      "vol24_usd": 92238469,
-      "oi_usd": 4120588.19,
+      "vol24_usd": 250291926.83,
+      "oi_usd": 26673999.89,
       "funding": 0.005,
-      "chg24": -23.85,
-      "why": "[⚠️ 신규 — 재확인, 상장폐지 추정 정정] 직전 회차 XT.com 데이터 기준 상장폐지로 판단해 제외했으나, OKX에서는 활성(code 0, 실거래) 확인됨 — 24h -23.85%(open $44.27→$33.71). 단 별도 웹서치는 'OKX 미상장'이라는 상충 정보를 보여 소스 간 불일치 유의.",
-      "tag": "new-reconfirmed-active-on-okx-contradicts-delisting-assumption"
-    },
-    {
-      "symbol": "PIPPIN",
-      "venue": "OKX(직접API)",
-      "vol24_usd": 35997748,
-      "oi_usd": 2179565.17,
-      "funding": 0.0253,
-      "chg24": 11.34,
-      "why": "[신규] Solana AI 밈코인, +11.34%(open $0.01588→$0.01768). 웹서치로 인사이더가 공급량 절반(~$120M 상당) 보유한 고위험 자산으로 플래그됨. 별도 보도에 OKX가 PIPPIN 등 일부 퍼프 상장폐지를 예고한 정황(정확 일자 미확인) — 후속 확인 필요.",
-      "tag": "new-solana-ai-meme-insider-concentration-risk-possible-delisting"
+      "chg24": -18.5685,
+      "why": "[완만한 회복 지속] -20.71%→-18.57%(Binance-18.973%·Bybit-18.164%)로 저항선 재테스트 국면 지속.",
+      "tag": "continues-gradual-recovery-retesting-resistance"
     },
     {
       "symbol": "ALLO (Allora Network)",
       "venue": "Binance/Bybit",
-      "vol24_usd": 37717145,
-      "oi_usd": 17201382,
-      "funding": -0.0325,
-      "chg24": -10.841,
-      "why": "[신규] AI 인프라 토큰, CEX 평균 -10.84%(Binance-11.259%·Bybit-10.423%), 7/24 ATH($0.546) 대비 -28%. 유통량 20% 불과, 백커·팀 언락이 1~3년 예정돼 매도압력 우려. funding 음수로 숏 쏠림 — 스퀴즈 리스크도 병존.",
-      "tag": "new-ai-infra-pullback-unlock-overhead-crowded-shorts"
+      "vol24_usd": 26286035.01,
+      "oi_usd": 17161339.46,
+      "funding": -0.0475,
+      "chg24": -1.587,
+      "why": "[⚠️ 극적 반등] -10.84%→-1.59%(Binance-1.919%·Bybit-1.255%)로 낙폭 거의 해소. 웹서치: Kalshi 예측시장에 Allora AI 추론 실연동 유틸리티 내러티브+네트워크 확장성·보안 개선이 배경. 언락 오버행 구조적 리스크는 여전.",
+      "tag": "sharp-rebound-kalshi-utility-catalyst-unlock-risk-remains-structural"
+    },
+    {
+      "symbol": "BICO (Biconomy)",
+      "venue": "OKX(직접API)",
+      "vol24_usd": 60974715.5,
+      "oi_usd": 2144011.33,
+      "funding": -0.0273,
+      "chg24": -8.929,
+      "why": "[⚠️ 하락 재심화] 직전 '5연속 랠리 완전 반전(-2.28%)' 이후 이번 -8.93%로 낙폭이 더 깊어져 반전 후 하락추세 지속. Bitkub 상장은 8/22 예정(미반영).",
+      "tag": "decline-deepens-after-reversal-downtrend-continues"
+    },
+    {
+      "symbol": "GIGGLE (Giggle Fund)",
+      "venue": "OKX(직접API)",
+      "vol24_usd": 85547244.6,
+      "oi_usd": 3981131.61,
+      "funding": 0.005,
+      "chg24": -21.567,
+      "why": "[재확인, 소폭 완화] -23.85%→-21.57%, OKX 직접 API로 이번 회차도 정상 거래 데이터(code 0) 반환 — 활성 상태 재확인 지속.",
+      "tag": "reconfirmed-active-mild-easing"
+    },
+    {
+      "symbol": "PIPPIN",
+      "venue": "OKX(직접API)",
+      "vol24_usd": 37335872.63,
+      "oi_usd": 2103461.33,
+      "funding": 0.0202,
+      "chg24": 7.702,
+      "why": "[⚠️ 상장폐지 루머 정정] +11.34%→+7.70%로 둔화. 웹서치 재조사 결과 직전 회차 발견한 'OKX 상장폐지 예고'는 2025년 7월(1년 이상 전) 과거 공지였고 이후 재상장돼 현재 정상 거래 중임을 확인 — 오인 정정.",
+      "tag": "delisting-rumor-debunked-stale-2025-notice-currently-active"
     },
     {
       "symbol": "AKE (Akedo)",
       "venue": "Binance/Bybit",
-      "vol24_usd": 132939114.74,
-      "oi_usd": 52059937.48,
-      "funding": 0.0135,
-      "chg24": -7.9585,
-      "why": "[거의 유지] -7.30%→-7.96%로 낙폭 소폭 확대, DEX(-7.187%)도 유사 — 8/21 언락 부담 지속.",
-      "tag": "roughly-steady-unlock-pressure-persists"
+      "vol24_usd": 131202179.18,
+      "oi_usd": 48334032.45,
+      "funding": 0.005,
+      "chg24": -11.238,
+      "why": "[⚠️ 낙폭 확대] -7.96%→-11.24%(Binance-11.263%·Bybit-11.213%). 8/21 언락(공급량 2.1%, 시총의 4.9%) 부담이 선반영되는 흐름으로 추정.",
+      "tag": "worsens-unlock-pressure-front-running"
     },
     {
       "symbol": "BEAT (Audiera)",
       "venue": "OKX(직접API)",
-      "vol24_usd": 204048809,
-      "oi_usd": 8640781.96,
+      "vol24_usd": 187974908,
+      "oi_usd": 8995397.36,
       "funding": 0.005,
-      "chg24": -20.278,
-      "why": "[⚠️ 심화] -16.01%→-20.28%로 낙폭 확대, DEX(-19.301%)도 유사 — 8월 언락 부담 지속.",
-      "tag": "worsens-still-deep-unlock-pressure-persists"
+      "chg24": -16.601,
+      "why": "[소폭 회복] -20.28%→-16.60%로 낙폭 다소 축소, DEX(-18.18%)와 유사 수준. 8월 언락 부담은 구조적으로 지속.",
+      "tag": "mild-recovery-unlock-pressure-persists"
     },
     {
       "symbol": "KAITO (CEX)",
       "venue": "OKX(직접API)",
-      "vol24_usd": 56441634,
-      "oi_usd": 7547580.76,
+      "vol24_usd": 49966244,
+      "oi_usd": 7099970.8,
       "funding": 0.005,
-      "chg24": -8.069,
-      "why": "[거의 유지] -7.83%→-8.07%로 큰 변화 없음, HL(-9.028%→-8.211%)은 소폭 개선 — $323M 언락 부담 지속.",
-      "tag": "roughly-steady-unlock-pressure-still-present"
+      "chg24": -9.842,
+      "why": "[소폭 심화] -8.07%→-9.84%, HL(-8.21%→-9.84%)도 동조 심화 — $323M 언락 부담 지속.",
+      "tag": "mild-worsening-unlock-pressure-still-present"
     },
     {
       "symbol": "ADA",
       "venue": "Binance/Bybit",
-      "vol24_usd": 410397968,
-      "oi_usd": 186702128,
-      "funding": 0.009,
-      "chg24": 3.625,
-      "why": "[거의 유지] +3.82%→+3.63%로 큰 변화 없음, 시장 반등과 궤를 같이함.",
-      "tag": "roughly-steady-tracks-market"
+      "vol24_usd": 371795484.09,
+      "oi_usd": 182666533.43,
+      "funding": 0.0075,
+      "chg24": 0.184,
+      "why": "[상승폭 대폭 반납] +3.63%→+0.18%로 거의 flat, 시장 전반 알트 냉각과 궤를 같이함.",
+      "tag": "sharp-cooling-tracks-broad-alt-pullback"
     },
     {
       "symbol": "AAVE",
       "venue": "Binance/Bybit",
-      "vol24_usd": 84233955,
-      "oi_usd": 93009955,
-      "funding": -0.0045,
-      "chg24": -0.2665,
-      "why": "[거의 유지] -0.29%→-0.27%로 마이너스권 유지, DEX(-0.218%)도 유사.",
-      "tag": "roughly-steady-mild-negative"
+      "vol24_usd": 82209353.47,
+      "oi_usd": 93181295.24,
+      "funding": -0.006,
+      "chg24": -2.236,
+      "why": "[⚠️ 마이너스 심화] -0.27%→-2.24%로 하락 전환 확대, HL 레그(-1.87%, OI $64.6M 대형)도 동조 하락.",
+      "tag": "worsens-negative-deepens-hl-leg-confirms"
     },
     {
       "symbol": "ATOM",
       "venue": "Binance/Bybit",
-      "vol24_usd": 47474769,
-      "oi_usd": 32582132,
-      "funding": -0.0175,
-      "chg24": 7.0,
-      "why": "[소폭 둔화] +8.15%→+7.00%로 큰 변화 없음, 촉매 여전 미확인.",
+      "vol24_usd": 49299251.01,
+      "oi_usd": 32592107.57,
+      "funding": -0.0145,
+      "chg24": 5.5635,
+      "why": "[소폭 둔화] +7.00%→+5.56%, 촉매 여전 미확인.",
       "tag": "mild-deceleration-no-catalyst"
     },
     {
       "symbol": "ASTER (CEX)",
       "venue": "Binance/Bybit",
-      "vol24_usd": 15568229,
-      "oi_usd": 113267823,
+      "vol24_usd": 15656778.94,
+      "oi_usd": 112486681.62,
       "funding": 0.005,
-      "chg24": 1.016,
-      "why": "[flat 유지 지속] +1.131%→+1.016%로 큰 변화 없음, Bybit 레그 이번 회차 재확인됨.",
-      "tag": "flat-continues-bybit-leg-reconfirmed"
+      "chg24": 0.291,
+      "why": "[flat 지속] +1.02%→+0.29%로 계속 큰 변화 없음, DEX(ASTER-USDT +0.22%)와 정합.",
+      "tag": "flat-continues-tracks-dex"
     },
     {
       "symbol": "ALGO",
       "venue": "Binance/Bybit",
-      "vol24_usd": 34630720,
-      "oi_usd": 17307779,
-      "funding": 0.004,
-      "chg24": 3.618,
-      "why": "[거의 유지] +4.555%→+3.618%로 큰 변화 없음, Bybit 레그 이번 회차 재확인됨.",
-      "tag": "roughly-steady-bybit-leg-reconfirmed"
+      "vol24_usd": 33420288.3,
+      "oi_usd": 17171610.59,
+      "funding": -0.004,
+      "chg24": 2.82,
+      "why": "[소폭 둔화] +3.62%→+2.82%로 큰 변화 없음.",
+      "tag": "mild-deceleration"
     },
     {
       "symbol": "AEON (AEON Payment Protocol)",
       "venue": "OKX(직접API)",
-      "vol24_usd": 11026143,
-      "oi_usd": 2134160.78,
-      "funding": -0.0563,
-      "chg24": -9.19,
-      "why": "[⚠️ 재차 심화] -4.29%→-9.19%로 저활동 오실레이션 속 낙폭 재확대.",
-      "tag": "worsens-again-low-activity-oscillation"
+      "vol24_usd": 11967633,
+      "oi_usd": 2138386.83,
+      "funding": -0.0626,
+      "chg24": -9.482,
+      "why": "[거의 유지] -9.19%→-9.48%로 저활동 오실레이션 속 큰 변화 없음.",
+      "tag": "roughly-steady-low-activity-oscillation"
     },
     {
       "symbol": "CORE",
       "venue": "OKX(직접API)",
-      "vol24_usd": 11037345,
-      "oi_usd": 1123093.54,
-      "funding": -0.04,
-      "chg24": -1.626,
-      "why": "[⚠️ 반전 — 플러스→마이너스] +0.82%→-1.63%로 저활동 오실레이션 속 방향 전환.",
-      "tag": "flips-negative-low-activity-oscillation"
+      "vol24_usd": 10165426.7,
+      "oi_usd": 1114777.92,
+      "funding": -0.0213,
+      "chg24": -5.708,
+      "why": "[⚠️ 낙폭 재확대] -1.63%→-5.71%로 저활동 오실레이션 속 하락 재심화.",
+      "tag": "worsens-further-low-activity-oscillation"
     },
     {
       "symbol": "MMT (Momentum)",
       "venue": "OKX(직접API)",
-      "vol24_usd": 16918143,
-      "oi_usd": 2928659.76,
-      "funding": -0.0425,
-      "chg24": 2.36,
-      "why": "[거의 유지] +1.62%→+2.36%로 큰 변화 없음.",
-      "tag": "roughly-steady"
+      "vol24_usd": 16387860.3,
+      "oi_usd": 2805622.07,
+      "funding": -0.0356,
+      "chg24": -2.913,
+      "why": "[⚠️ 반전 — 플러스→마이너스] +2.36%→-2.91%로 방향 전환.",
+      "tag": "flips-negative"
     },
     {
       "symbol": "CAP",
       "venue": "OKX(직접API)",
-      "vol24_usd": 11577196,
-      "oi_usd": 1243139.49,
-      "funding": 0.005,
-      "chg24": -2.34,
-      "why": "[개선] -6.38%→-2.34%로 낙폭 축소, DEX(Aster -0.258%)는 더 큰 폭 개선.",
-      "tag": "improves-further-tracks-dex"
+      "vol24_usd": 10750433.8,
+      "oi_usd": 1228483.58,
+      "funding": 0.0149,
+      "chg24": -7.789,
+      "why": "[⚠️ 낙폭 재확대] -2.34%→-7.79%로 반전, DEX(Aster -5.14%)도 유사하게 재악화.",
+      "tag": "worsens-again-tracks-dex"
     }
   ],
   "dex": [
     {
       "symbol": "BANK-USDT",
       "protocol": "Aster",
-      "vol24_usd": 930672.10,
-      "oi_usd": 487419.60,
-      "funding": -0.026,
-      "chg24": 26.033,
-      "why": "[⚠️ CEX와 함께 랠리 확대] +10.098%→+26.033%로 CEX(+25.68%)와 동조 — 랠리 확대 이면에 BANK Foundation 대량 이체 미해명 리스크 지속.",
-      "tag": "tracks-cex-rally-extends-whale-transfer-unresolved"
+      "vol24_usd": 1111444.37,
+      "oi_usd": 530559.53,
+      "funding": -0.008,
+      "chg24": 35.375,
+      "why": "[⚠️ CEX와 함께 랠리 재확대] +26.03%→+35.38%로 CEX(+37.22%)와 동조 확대 지속.",
+      "tag": "tracks-cex-rally-extends-again"
     },
     {
       "symbol": "1000RATS-USDT",
       "protocol": "Aster",
-      "vol24_usd": 698033.73,
-      "oi_usd": 41878.52,
-      "funding": 0.002,
-      "chg24": -20.757,
-      "why": "[⚠️ CEX와 함께 강한 반등] -35.402%→-20.757%로 CEX(-20.71%)와 동조 반등, 라운드 최저치에서 회복.",
-      "tag": "tracks-cex-strong-rebound"
+      "vol24_usd": 613935.24,
+      "oi_usd": 40809.06,
+      "funding": 0.001,
+      "chg24": -18.62,
+      "why": "[CEX와 함께 완만한 회복] -20.76%→-18.62%로 CEX(-18.57%)와 동조 회복 지속.",
+      "tag": "tracks-cex-gradual-recovery"
     },
     {
       "symbol": "GRAM",
       "protocol": "Hyperliquid",
-      "vol24_usd": 12554621.12,
-      "oi_usd": 12923798.99,
+      "vol24_usd": 12506888,
+      "oi_usd": 12844840,
       "funding": 0.001,
-      "chg24": -1.424,
-      "why": "[거의 유지] TON 리브랜딩+Binance·HL 동시상장 촉매 확인 상태 유지, 변동은 -1.12%→-1.42%로 계속 flat.",
+      "chg24": -2.001,
+      "why": "[거의 유지] -1.42%→-2.00%로 TON 리브랜딩+Binance·HL 동시상장 촉매 유지 상태에서 계속 flat.",
       "tag": "steady-catalyst-confirmed-flat"
     },
     {
       "symbol": "BTW",
       "protocol": "Aster",
-      "vol24_usd": 1033475.96,
-      "oi_usd": 8335382.04,
-      "funding": 0.012,
-      "chg24": 22.623,
-      "why": "[소폭 둔화, OI는 여전히 큰 규모 유지] +24.25%→+22.62%로 소폭 둔화되나 OI $8.27M→$8.34M로 소폭 재증가 — 열기 완전히 식지 않음.",
-      "tag": "mild-deceleration-oi-still-elevated"
+      "vol24_usd": 1217964.54,
+      "oi_usd": 8562342.0,
+      "funding": 0.02,
+      "chg24": 21.209,
+      "why": "[소폭 둔화 지속] +22.62%→+21.21%로 완만히 식는 중, OI는 $8.34M→$8.56M로 유사 수준 유지.",
+      "tag": "mild-deceleration-continues-oi-steady"
     },
     {
       "symbol": "CASHCAT",
       "protocol": "Hyperliquid/Aster",
-      "vol24_usd": 17752391,
-      "oi_usd": 12367412,
-      "funding": 0.001,
-      "chg24": 53.316,
-      "why": "[⚠️ 재가속] +43.87%→+53.3%(HL+53.895%·Aster+52.737%) — 둔화 흐름이 재차 꺾이며 로빈후드체인 플래그십 밈코인 지위 재부각, HL 퍼프 고위험 디슬로케이션 이력 유의.",
-      "tag": "reaccelerates-high-derivatives-risk"
+      "vol24_usd": 17971255.65,
+      "oi_usd": 11987710.36,
+      "funding": -0.0155,
+      "chg24": 44.836,
+      "why": "[⚠️ 정점에서 냉각] HL +53.90%→+44.51%, Aster +52.74%→+45.16%로 양쪽 모두 상승폭 축소(여전히 높은 수준) — 로빈후드체인 밈코인 랠리의 모멘텀 둔화 조짐.",
+      "tag": "cools-from-peak-still-elevated"
     },
     {
       "symbol": "BEAT-USDT",
       "protocol": "Aster",
-      "vol24_usd": 1396356.03,
-      "oi_usd": 478149.27,
+      "vol24_usd": 1294503.09,
+      "oi_usd": 450219.78,
       "funding": 0.001,
-      "chg24": -19.301,
-      "why": "[⚠️ 심화, CEX와 동조] -15.171%→-19.301%로 낙폭 확대, CEX(-20.28%)와 유사 — 여전히 깊은 하락권.",
-      "tag": "worsens-tracks-cex-still-deep"
+      "chg24": -18.176,
+      "why": "[소폭 회복, CEX와 동조] -19.30%→-18.18%로 CEX(-16.60%)와 유사하게 낙폭 소폭 축소.",
+      "tag": "mild-recovery-tracks-cex"
     },
     {
       "symbol": "AKE-USDT",
       "protocol": "Aster",
-      "vol24_usd": 748440.69,
-      "oi_usd": 11951414.63,
-      "funding": 0.01,
-      "chg24": -7.187,
-      "why": "[거의 유지, CEX와 동조] -7.615%→-7.187%로 CEX(-7.96%)와 유사하게 낙폭 유지.",
-      "tag": "roughly-steady-tracks-cex"
+      "vol24_usd": 727349.05,
+      "oi_usd": 11320317.12,
+      "funding": 0.004,
+      "chg24": -11.73,
+      "why": "[⚠️ 낙폭 확대, CEX와 동조] -7.19%→-11.73%로 CEX(-11.24%)와 유사하게 심화.",
+      "tag": "worsens-tracks-cex"
     },
     {
       "symbol": "CAP-USDT",
       "protocol": "Aster",
-      "vol24_usd": 26788.09,
-      "oi_usd": 28102.64,
+      "vol24_usd": 23959.92,
+      "oi_usd": 27578.83,
       "funding": 0.001,
-      "chg24": -0.258,
-      "why": "[개선] -4.637%→-0.258%로 낙폭 대폭 축소, CEX(-2.34%)보다 더 큰 개선폭.",
-      "tag": "improves-more-than-cex"
+      "chg24": -5.139,
+      "why": "[⚠️ 재악화, CEX와 동조] -0.26%→-5.14%로 CEX(-7.79%)와 유사하게 낙폭 재확대.",
+      "tag": "worsens-again-tracks-cex"
     },
     {
       "symbol": "BLESS-USDT",
       "protocol": "Aster",
-      "vol24_usd": 2047795.23,
-      "oi_usd": 212325.35,
-      "funding": 0.013,
-      "chg24": -46.225,
-      "why": "[거의 유지, 여전히 깊은 하락권] -46.234%→-46.225%로 큰 변화 없음. OrangeX 레그는 이번 회차 데이터소스 ID 정정 후 재확인됨(하단 참조).",
-      "tag": "roughly-steady-still-deep-orangex-recaptured"
+      "vol24_usd": 1771484.04,
+      "oi_usd": 220896.06,
+      "funding": 0.015,
+      "chg24": -41.038,
+      "why": "[완만한 회복] -46.23%→-41.04%로 여전히 깊은 하락권이나 낙폭 다소 축소, OrangeX 레그(-41.80%)와 정합.",
+      "tag": "mild-recovery-still-deep-orangex-aligned"
     },
     {
       "symbol": "BLESS-USDT-PERPETUAL",
       "protocol": "OrangeX",
-      "vol24_usd": 231977804.73,
-      "oi_usd": 63363740.21,
-      "funding": 0.017,
-      "chg24": -46.278,
-      "why": "[⚠️ 데이터소스 정정 후 재확인] CoinGecko 거래소ID가 옛 `orangex`(연속 429/실패)에서 **`orangex_futures`**(정확)로 확인되며 다회 만에 재확인됨. Aster 레그(-46.225%)와 거의 정합.",
-      "tag": "data-source-id-corrected-recaptured"
+      "vol24_usd": 227223517.91,
+      "oi_usd": 70060624.6,
+      "funding": 0.021,
+      "chg24": -41.799,
+      "why": "[완만한 회복, Aster와 정합] -46.28%→-41.80%로 Aster 레그(-41.04%)와 거의 일치하며 함께 회복.",
+      "tag": "mild-recovery-aligned-with-aster"
     },
     {
       "symbol": "ASTER-USDT",
       "protocol": "Aster",
-      "vol24_usd": 9927564.24,
-      "oi_usd": 221021619.96,
-      "funding": 0.004,
-      "chg24": 0.981,
-      "why": "[flat 지속] +1.28%→+0.98%로 거의 변화 없음, OI $221.5M→$221.0M 대규모 유지.",
+      "vol24_usd": 10036911.93,
+      "oi_usd": 220322163.09,
+      "funding": 0.006,
+      "chg24": 0.215,
+      "why": "[flat 지속] +0.98%→+0.22%로 계속 거의 변화 없음, OI $221M 대규모 유지, CEX(+0.29%)와 정합.",
       "tag": "flat-continues-large-oi-maintained"
-    },
-    {
-      "symbol": "ATOM-USD",
-      "protocol": "Aster",
-      "vol24_usd": 18990.58,
-      "oi_usd": 1587101.99,
-      "funding": 0.003,
-      "chg24": 7.188,
-      "why": "[CEX와 함께 거의 유지] +6.94%→+7.19%로 CEX(+7.00%)와 유사.",
-      "tag": "roughly-steady-tracks-cex"
-    },
-    {
-      "symbol": "ALGO-USD",
-      "protocol": "Aster",
-      "vol24_usd": 48818.04,
-      "oi_usd": 25920.70,
-      "funding": -0.005,
-      "chg24": 4.236,
-      "why": "[CEX와 함께 거의 유지] +5.123%→+4.236%로 CEX(+3.618%)와 유사.",
-      "tag": "roughly-steady-tracks-cex"
-    },
-    {
-      "symbol": "HYPE-USD",
-      "protocol": "Hyperliquid",
-      "vol24_usd": 227632563,
-      "oi_usd": 1258628545,
-      "funding": 0.001,
-      "chg24": 5.242,
-      "why": "[소폭 재가속] +4.427%→+5.242%로 확대세 소폭 재가속, OI $1.237B→$1.259B로 증가.",
-      "tag": "mild-reacceleration-oi-grows"
-    },
-    {
-      "symbol": "HYPER-USD",
-      "protocol": "Hyperliquid",
-      "vol24_usd": 339548.36,
-      "oi_usd": 360360.09,
-      "funding": -0.015,
-      "chg24": -4.916,
-      "why": "[⚠️ 다회 만에 재포착] 개별 조회로 -5.855%→-4.916% 재확인, HL $3M+ 스캔 임계값과 무관하게 이번엔 직접 조회 성공.",
-      "tag": "recaptured-after-multiple-rounds"
-    },
-    {
-      "symbol": "KAITO-USD",
-      "protocol": "Hyperliquid",
-      "vol24_usd": 5570224,
-      "oi_usd": 24476110,
-      "funding": 0.001,
-      "chg24": -8.211,
-      "why": "[소폭 개선] -9.028%→-8.211%로 CEX(-8.07%)와 함께 완만한 회복 조짐.",
-      "tag": "mild-improvement-tracks-cex"
-    },
-    {
-      "symbol": "APEX-USD",
-      "protocol": "Hyperliquid",
-      "vol24_usd": 162271.95,
-      "oi_usd": 784561.44,
-      "funding": 0.0,
-      "chg24": -0.784,
-      "why": "[⚠️ 다회 만에 재포착] 개별 조회로 -0.666%→-0.784% 재확인.",
-      "tag": "recaptured-after-multiple-rounds"
-    },
-    {
-      "symbol": "FARTCOIN",
-      "protocol": "Hyperliquid",
-      "vol24_usd": 6141213,
-      "oi_usd": 22615687,
-      "funding": 0.001,
-      "chg24": 3.689,
-      "why": "[소폭 재가속] +2.506%→+3.689%로 소폭 반등.",
-      "tag": "mild-reacceleration"
-    },
-    {
-      "symbol": "ADA-USD",
-      "protocol": "Hyperliquid/Aster",
-      "vol24_usd": 10964272.79,
-      "oi_usd": 34058794.89,
-      "funding": 0.0055,
-      "chg24": 3.574,
-      "why": "[CEX와 함께 소폭 둔화] +4.47%→+3.57%로 CEX(+3.63%)와 유사.",
-      "tag": "mild-deceleration-tracks-cex"
-    },
-    {
-      "symbol": "AAVE-USD",
-      "protocol": "Aster",
-      "vol24_usd": 230216.61,
-      "oi_usd": 4714369.95,
-      "funding": 0.008,
-      "chg24": -0.218,
-      "why": "[거의 유지, CEX와 동조] -0.094%→-0.218%로 CEX(-0.27%)와 유사한 소폭 마이너스. HL 레그는 이번 회차 임계값 내 미포착.",
-      "tag": "roughly-steady-tracks-cex-hl-leg-not-recaptured"
-    },
-    {
-      "symbol": "BULLA",
-      "protocol": "Aster",
-      "vol24_usd": 686008.55,
-      "oi_usd": 7334484.51,
-      "funding": 0.008,
-      "chg24": -3.239,
-      "why": "[개선] -5.846%→-3.239%로 낙폭 축소.",
-      "tag": "improves"
     },
     {
       "symbol": "ANSEM",
       "protocol": "Aster",
-      "vol24_usd": 376675.98,
-      "oi_usd": 1206490.54,
+      "vol24_usd": 361294.58,
+      "oi_usd": 1178908.72,
       "funding": 0.001,
-      "chg24": 1.517,
-      "why": "[⚠️ 플러스 전환] -4.608%→+1.517%로 신규상장 초기 안정화가 완료되며 플러스 전환.",
-      "tag": "flips-positive-new-listing-stabilization-complete"
+      "chg24": -3.529,
+      "why": "[⚠️ 재반전 — 플러스→마이너스] +1.52%→-3.53%로 직전 회차 '안정화 완료'가 다시 뒤집힘, 저유동 신규상장 특유의 변동성 지속.",
+      "tag": "re-flips-negative-low-liquidity-volatility"
+    },
+    {
+      "symbol": "HYPE-USD",
+      "protocol": "Hyperliquid",
+      "vol24_usd": 230382294,
+      "oi_usd": 1239268493,
+      "funding": 0.001,
+      "chg24": 2.934,
+      "why": "[상승폭 반납] +5.24%→+2.93%로 확대세 냉각, OI도 $1.259B→$1.239B로 소폭 감소.",
+      "tag": "cools-oi-eases"
+    },
+    {
+      "symbol": "HYPER-USD",
+      "protocol": "Hyperliquid",
+      "vol24_usd": 340425,
+      "oi_usd": 359989,
+      "funding": -0.015,
+      "chg24": -7.2,
+      "why": "[⚠️ 낙폭 확대] -4.92%→-7.20%로 저유동 소형종목 변동성 지속.",
+      "tag": "worsens-low-liquidity-volatility"
+    },
+    {
+      "symbol": "KAITO-USD",
+      "protocol": "Hyperliquid",
+      "vol24_usd": 5515412,
+      "oi_usd": 23666951,
+      "funding": 0.001,
+      "chg24": -9.843,
+      "why": "[소폭 심화, CEX와 동조] -8.21%→-9.84%로 CEX(-9.84%)와 거의 일치.",
+      "tag": "mild-worsening-tracks-cex"
+    },
+    {
+      "symbol": "APEX-USD",
+      "protocol": "Hyperliquid",
+      "vol24_usd": 164984,
+      "oi_usd": 764261,
+      "funding": 0.0,
+      "chg24": -3.733,
+      "why": "[⚠️ 낙폭 확대] -0.78%→-3.73%로 저유동 소형종목 변동성 지속.",
+      "tag": "worsens-low-liquidity-volatility"
+    },
+    {
+      "symbol": "FARTCOIN",
+      "protocol": "Hyperliquid",
+      "vol24_usd": 6321913,
+      "oi_usd": 21972587,
+      "funding": 0.001,
+      "chg24": 0.402,
+      "why": "[상승폭 대폭 반납] +3.69%→+0.40%로 거의 flat 전환, 시장 전반 알트 냉각과 궤를 같이함.",
+      "tag": "sharp-cooling-tracks-broad-pullback"
+    },
+    {
+      "symbol": "ADA-USD",
+      "protocol": "Hyperliquid",
+      "vol24_usd": 7370668,
+      "oi_usd": 31997368,
+      "funding": -0.001,
+      "chg24": 0.461,
+      "why": "[상승폭 대폭 반납, CEX와 동조] +3.57%→+0.46%로 CEX(+0.18%)와 함께 냉각.",
+      "tag": "sharp-cooling-tracks-cex"
+    },
+    {
+      "symbol": "AAVE-USD",
+      "protocol": "Hyperliquid",
+      "vol24_usd": 5364531,
+      "oi_usd": 64629178,
+      "funding": 0.001,
+      "chg24": -1.867,
+      "why": "[⚠️ 대형 OI로 재포착] 이번 회차 HL 레그가 OI $64.6M(대형)로 재포착돼 기존 소액 Aster 레그(-0.22%)보다 대표성 높은 수치 확보 — CEX(-2.24%)와 함께 마이너스 심화 확인.",
+      "tag": "recaptured-large-oi-confirms-cex-negative"
     },
     {
       "symbol": "ETH-USD",
       "protocol": "dYdX",
-      "vol24_usd": 13306898.71,
-      "oi_usd": 19738432.48,
-      "funding": -0.005,
-      "chg24": 1.42,
-      "why": "[상승폭 확대] +0.428%→+1.42%로 `dydx_chain` ID로 계속 정상 재확인.",
-      "tag": "continues-reconfirmed-strengthens"
+      "vol24_usd": 13056839.6,
+      "oi_usd": 20484545.41,
+      "funding": -0.008,
+      "chg24": -0.29,
+      "why": "[⚠️ 반전] +1.42%→-0.29%로 플러스에서 소폭 마이너스로 전환, `dydx_chain` ID로 계속 정상 재확인.",
+      "tag": "flips-negative-reconfirmed"
     },
     {
       "symbol": "BTC-USD",
       "protocol": "dYdX",
-      "vol24_usd": 7191622.75,
-      "oi_usd": 17523733.96,
+      "vol24_usd": 6795547.63,
+      "oi_usd": 17478507.88,
       "funding": 0.0,
-      "chg24": 1.92,
-      "why": "[상승폭 확대] +1.271%→+1.92%로 ETH-USD와 동일 현상.",
-      "tag": "continues-reconfirmed-strengthens"
+      "chg24": -0.094,
+      "why": "[⚠️ 반전] +1.92%→-0.09%로 거의 flat 전환, ETH-USD와 동일 현상.",
+      "tag": "flips-near-flat-reconfirmed"
     },
     {
       "symbol": "ETH/USD (WETH-USDC)",
@@ -431,8 +401,8 @@
       "oi_usd": 16137507.0,
       "funding": 0.001,
       "chg24": 2.212,
-      "why": "[⚠️ 데이터 정체 의심] API 호출은 성공(200)했으나 거래량·OI·펀딩·변동률이 직전·전전 회차와 완전히 동일 — CoinGecko GMX 소스의 데이터 갱신 정체 가능성, 신뢰도 유의.",
-      "tag": "fetch-succeeded-but-values-identical-possible-staleness"
+      "why": "[⚠️ 4회 연속 데이터 정체 확정] 이번 회차도 거래량·OI·펀딩·변동률이 직전 3회차와 완전히 동일 — CoinGecko GMX 소스가 사실상 갱신 정지된 것으로 판단, 신뢰도 매우 낮음.",
+      "tag": "confirmed-stale-4-consecutive-rounds-identical"
     },
     {
       "symbol": "BTC/USD (BTC-USDC)",
@@ -441,24 +411,22 @@
       "oi_usd": 33603659.0,
       "funding": 0.002,
       "chg24": 1.234,
-      "why": "[⚠️ 데이터 정체 의심] ETH/USD와 동일 현상 — 값이 다회 연속 완전히 동일.",
-      "tag": "fetch-succeeded-but-values-identical-possible-staleness"
+      "why": "[⚠️ 4회 연속 데이터 정체 확정] ETH/USD와 동일 현상 — 4회 연속 완전 동일 수치.",
+      "tag": "confirmed-stale-4-consecutive-rounds-identical"
     }
   ],
   "themes": [
-    "**시장 전반 안정적 유지, 총시총 약 $2.27T·BTC도미넌스 약 56%(WebSearch 근사)** — CoinGecko `/global` 재차 429. 신규로 Fear&Greed 25(Extreme Fear) 확인 — 개별 종목 랠리에도 전반 심리는 위축 (market-stable-fear-greed-extreme-fear).",
-    "**⚠️ BANK 랠리 확대(+10.20%→+25.68%)** — CoinGlass 교차검증: 24h 전체거래소 선물거래량 ≈$2.93B(스팟 20배), OI(≈$72.5M)가 시총(≈$53.5M) 초과하는 극단적 레버리지. BANK Foundation 추정 지갑 대량 이체 미해명 지속 (bank-rally-extends-extreme-leverage-whale-unresolved).",
-    "**⚠️ 1000RATS 강한 반등(-35.61%→-20.71%)** — 8/1 Aster 상장발 펌프·크래시 이후 저항선 재테스트 회복국면 (rats-strong-rebound-retesting-resistance).",
-    "**⚠️ BICO 완전 반전(+6.39%→-2.28%)** — 5연속 상승 랠리가 완전히 되돌려짐 (bico-fully-reverses).",
-    "**⚠️ GIGGLE 신규 재확인 — OKX 활성, 상장폐지 추정 정정** — XT.com 기준 판단은 오류로 판명, OKX에서 실거래 확인(-23.85%). 웹서치와 상충 정보 존재 유의 (giggle-reconfirmed-active-okx-source-conflict).",
-    "**신규 종목 PIPPIN(OKX, +11.34%)** — Solana AI 밈코인, 인사이더 공급집중 고위험 플래그, OKX 상장폐지 예고 정황(일자 미확인) 후속확인 필요 (new-pippin-insider-risk-possible-delisting).",
-    "**신규 종목 ALLO(Allora Network, -10.84%)** — AI 인프라 토큰, ATH 대비 -28%, 언락 오버행+숏 쏠림 병존 (new-allo-unlock-overhang-crowded-shorts).",
-    "**⚠️ CASHCAT 재가속(+43.87%→+53.3%)** — 둔화 흐름이 재차 꺾이며 로빈후드체인 플래그십 지위 재부각 (cashcat-reaccelerates).",
-    "**⚠️ AEON 재차 심화(-4.29%→-9.19%), CORE 반전(+0.82%→-1.63%)** — 저활동 오실레이션 지속 (aeon-worsens-core-flips-negative).",
-    "**⚠️ 데이터 인프라 정정: OrangeX ID 수정(`orangex`→`orangex_futures`)으로 BLESS-USDT-PERPETUAL 재확인** — 다회 연속 429 실패 해소, Aster 레그와 정합 확인 (data-infra-orangex-id-fixed-bless-recaptured).",
-    "**HYPER-USD·APEX-USD(HL) 개별조회로 다회 만에 재포착** — $3M+ 스캔 임계값 우회해 직접 조회 성공 (hl-hyper-apex-recaptured).",
-    "**⚠️ GMX 데이터 정체(staleness) 의심** — API 200 성공에도 ETH/USD·BTC/USD 수치가 3회 연속 완전 동일 — 소스 자체 갱신 지연 가능성, 신뢰도 유의 (gmx-data-possible-staleness).",
-    "**dYdX(`dydx_chain`) ETH-USD·BTC-USD 상승폭 확대(+0.43%→+1.42%, +1.27%→+1.92%)로 계속 정상 재확인** (dydx-eth-btc-continues-strengthening).",
-    "**⚠️ 토큰화 주식 퍼프 배제 규약 계속 준수** — 이번 회차 신규 종목(GIGGLE·PIPPIN·ALLO) 모두 크립토 네이티브임을 확인 후 추가, 토큰화 주식·ETF·상품 perp는 리스트에 없음 (tradfi-tokenized-stocks-excluded-new-additions-verified-native)."
+    "**시장 전반 거의 flat, 총시총 $2.267T(24h -0.03%)·BTC도미넌스 56.50%** — 이번 회차 CoinGecko `/global` 정상 응답으로 확정치 확보. Fear&Greed는 소스 간 편차(28 Fear vs 25 Extreme Fear) 있으나 방향은 여전히 공포 구간 (market-flat-global-confirmed-fear-persists).",
+    "**⚠️ BANK 랠리 재확대(+25.68%→+37.22%)** — 숏스퀴즈($1.01M 청산 중 70% 숏)·BTCFi 내러티브 재부각. funding -0.048%→-0.0035%로 거의 중립화, 지속 랠리에도 숏 프리미엄 크게 완화 (bank-rally-extends-short-squeeze-funding-normalizes).",
+    "**1000RATS 완만한 회복 지속(-20.71%→-18.57%)** — 저항선 재테스트 국면 유지 (rats-gradual-recovery-continues).",
+    "**⚠️ ALLO 극적 반등(-10.84%→-1.59%)** — Kalshi AI 추론 실연동 유틸리티 내러티브가 배경, 언락 오버행 구조적 리스크는 여전 (allo-sharp-rebound-kalshi-catalyst).",
+    "**⚠️ BICO 하락 재심화(-2.28%→-8.93%)** — 5연속 랠리 반전 이후 하락추세 지속 (bico-decline-deepens-after-reversal).",
+    "**⚠️ PIPPIN 상장폐지 루머 정정** — 웹서치 재조사로 직전 발견한 'OKX 상장폐지 예고'가 2025년 7월(1년 이상 전) 과거 공지였음을 확인, 현재 정상 거래 중 (pippin-delisting-rumor-debunked-stale-2025).",
+    "**⚠️ CASHCAT 정점에서 냉각(HL +53.9%→+44.5%, Aster +52.7%→+45.2%)** — 여전히 높은 수준이나 상승폭 둔화, 로빈후드체인 밈코인 모멘텀 조짐 변화 (cashcat-cools-from-peak).",
+    "**⚠️ MMT·CORE·CAP 재악화(각각 반전/낙폭확대)** — 저활동 오실레이션 지속 (mmt-core-cap-worsen).",
+    "**⚠️ 시장 전반 알트 냉각 — ADA·ATOM·ALGO·HYPE·FARTCOIN 상승폭 대거 반납, AAVE는 마이너스 심화, dYdX ETH·BTC 반전** — 개별 종목 스토리와 무관하게 광범위한 냉각 신호 (broad-alt-cooling-signal).",
+    "**⚠️ GMX 데이터 정체(staleness) 4회 연속 확정** — ETH/USD·BTC/USD 수치가 4회차 모두 소수점까지 완전 동일, 사실상 갱신 정지 소스로 판단해 이후 참고용에서도 배제 검토 필요 (gmx-staleness-confirmed-4-rounds).",
+    "**HL AAVE-USD 레그 대형 OI($64.6M)로 재포착** — 기존 소액 Aster 레그보다 대표성 있는 수치 확보, CEX와 함께 마이너스 심화 확인 (hl-aave-recaptured-large-oi).",
+    "**⚠️ 토큰화 주식 퍼프 배제 규약 계속 준수** — 이번 회차 Bybit 원시 데이터에서 AMZNUSDT·AAPLUSDT·AAOI(AMOIUSDT) 등 주식화 토큰 확인, 규약대로 리스트에서 전부 제외 (tradfi-tokenized-stocks-excluded-bybit-raw-data-scanned)."
   ]
 }
