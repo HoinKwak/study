@@ -1,16 +1,16 @@
 토큰,체인,단계,KOL코로보,서사,신규여부,시점,출처
-MEMOLUTION,Solana(pump.fun/PumpSwap),확산,,"조기→확산하향. h1+18.49%→+1.49%(대폭둔화),h6+31.59%→+26.23%(둔화),h24+636%→+625%(보합). 유동성$34,811→$34,878(보합,가속종료)",지속(3회차·단계하향),2026-08-06T12:11Z,DexScreener/GeckoTerminal API
-swappy,Robinhood Chain(Uniswap),확산,,"신규편입,풀연령약2~3일. h1-14.86~-15.11%(이미음전),h6+145~147%,h24+750~752%. 유동성$52,138~52,190,FDV$163,733",신규,2026-08-06T12:11Z,DexScreener API/GeckoTerminal API
-NEEGY,Solana(pump.fun/PumpSwap),확산,Bitrue블로그/MEXC뉴스(뉴스매체,KOL원문아님),"뒷북→확산상향,2회연속전지표동반개선. h1-5.57%→+7.63%(재양전),h6+17.37%→+24.29%(가속),h24+45.6%→+56.36%(가속). 유동성+5.4%유입",지속(34회차·단계상향),2026-08-06T12:11Z,DexScreener/GeckoTerminal API+WebSearch
-WOOF,Robinhood Chain(Uniswap V3),확산,뉴스/블로그3건(carryover),"뒷북→확산상향,46회만의첫h24양전(2소스교차확인). h1+16.59%→+0.24%(둔화),h6-4.23%→+17.24%(재양전),h24-3.72%→+6.05%(첫양전)",지속(48회차·단계상향),2026-08-06T12:11Z,DexScreener/GeckoTerminal API
-POOLS,Robinhood Chain(Uniswap V4),확산,,"h1·h6재양전이나h24성장률급둔화(477%→33~53%). 유동성$303,429→$309,594(+2%,소스간괴리)",지속(8회차),2026-08-06T12:11Z,DexScreener/GeckoTerminal API
-PAWSINU,Robinhood Chain(Uniswap V4),확산,,"지표혼조지속. h1+23.89%→-7.8%(재음전),h6+19.12%→+26.52%(가속). 유동성$44,257→$42,088(-4.9%,3회연속유출)",지속(3회차),2026-08-06T12:11Z,DexScreener API
-FROGE,Robinhood Chain(Uniswap),확산,,"h1·h6재차뒤바뀜,극심한변동성지속. h1+16.51%→-17.51%(재음전),h6-49.14%→+5.4%(반등)",지속(5회차),2026-08-06T12:11Z,DexScreener/GeckoTerminal API
-OMOJI,Solana(pump.fun/PumpSwap),뒷북,,"확산→뒷북하향,전지표동반붕괴(2소스교차확인). h1+30.11%→-34.62%,h6+59.87%→-31%,h24+236%→-2.47%. 유동성-35.8%대량유출",지속(10회차·단계하향),2026-08-06T12:11Z,DexScreener/GeckoTerminal API
-UNIPEG,Robinhood Chain(Uniswap V4),뒷북,,"직전회차경고한'재점화후보번복'이정확히실현. h1+29.72%→-9.44%(재음전,교차확인)",지속(9회차),2026-08-06T12:11Z,DexScreener/GeckoTerminal API
-BOYZ,Robinhood Chain(Uniswap V4),뒷북,The Arena CEO Jason Desimone·트레이더EddyXBT(cabalgems.com,원문미검증,carryover),"소폭개선조짐(2소스교차확인). h6-18.99%→+6.65%(재양전),h24-30.06%→-6.01%(낙폭축소),유동성+12~28%유입",지속(7회차),2026-08-06T12:11Z,DexScreener/GeckoTerminal API
-LOXI,Robinhood Chain(Uniswap V3),뒷북,,"박스권이탈붕괴이후소폭안정화조짐. h1-17.95%→+3.53%(재양전),유동성+5.4%유입,h6·h24는여전히깊은음전",지속(30회차),2026-08-06T12:11Z,DexScreener API
-TURBO,Robinhood Chain(Uniswap V3),뒷북,,"h6악화가속으로롤오버지속확정적. h6-14.91%→-27.05%(악화가속,교차확인)",지속(20회차),2026-08-06T12:11Z,DexScreener/GeckoTerminal API
-FRONG,Robinhood Chain(Uniswap V4),뒷북,,"전지표악화지속. h24-13.38%→-18.96%(악화가속,교차확인)",지속(59회차),2026-08-06T12:11Z,DexScreener/GeckoTerminal API
-PRETT,Robinhood Chain(Uniswap V3),뒷북,,"전지표악화지속. h6-9.5%→-22.45%,h24-5.26%→-11.85%,유동성-12.1%유출가속",지속(15회차),2026-08-06T12:11Z,DexScreener API
-WINK,Robinhood Chain(Uniswap V4),뒷북,,"4연속번복재확인. h1+44.96%→-2.94%(재음전,4번째번복)",지속(18회차),2026-08-06T12:11Z,DexScreener API
+MEMOLUTION,Solana(pump.fun/PumpSwap),확산,,"확산4회차,h6재가속(31.59%→70%DS/59.56%GT)+유동성재유입(+13%,직전보합에서전환),h1은거의보합(+1.02%DS/-2.93%GT)",지속,2026-08-06T14:06Z,https://dexscreener.com/solana/GzDaX3zHxDd5KUGKo5fHHg93arcPArrseAoEfP685JGQ
+SWOGE,Robinhood Chain(Uniswap),확산,,"신규편입,풀연령약3개월(2026-05-17생성)노후토큰급반등,h1-19.98~-20.86%(이미음전),h6+122~134%,h24+113~124%,유동성$62,711~64,701",신규,2026-08-06T14:06Z,https://dexscreener.com/robinhood/0xcaa4f109e55bdf516fe9215ad4f0ef9cd2b27555
+UNIPEG,Robinhood Chain(Uniswap V4),뒷북,,"10회차,재점화→재반전→재재점화3중번복. h1-9.44%→+35.42~49.97%,h6+88.27%→+41.82~41.99%,h24+1402%→+4216~5889%,유동성+5.2~5.9%유입. 2회연속확인전까지단계상향보류",지속,2026-08-06T14:06Z,https://dexscreener.com/robinhood/0x41892e3a17ac9adf7dcac52438bfb0a7b0bd4d31d242610b172d1886116d07f7
+WINK,Robinhood Chain(Uniswap V4),뒷북,,"19회차,5번째반전이나이번엔전지표+유동성동반붕괴. h1-2.94%→-32.85%,h6+4.19%→-23.33%,h24+44.68%→-29.56%,유동성-23.5%대량유출",지속,2026-08-06T14:06Z,https://dexscreener.com/robinhood/0x47cfb6aec70b6f8875ddf0820cce4f2171853f219a7fc06b45b79c8a33ccdadc
+FROGE,Robinhood Chain(Uniswap),뒷북,,"확산→뒷북하향(6회차),3회전경고한지연된블로우오프본격화. h1-17.51%→-29.41%,h6+5.4%→-54.22%,h24+209%→+53.76%,유동성-29%대량유출",지속(단계하향),2026-08-06T14:06Z,https://dexscreener.com/robinhood/0xf5eecbfa6aaad42fc1db776221e88a7da12a5895d9404424f8e419eda9aba56d
+swappy,Robinhood Chain(Uniswap),뒷북,,"확산→뒷북하향(2회차),직전경고한블로우오프초입실현. h1-14.86~-15.11%→-26.03~-46.62%,h6+145~147%→+25.01~59.99%,유동성-11~17%유출전환",지속(단계하향),2026-08-06T14:06Z,https://dexscreener.com/robinhood/0xaff8e2d7015c76fa6d9b2bedb72da7d6b305fd7b2140df3fca5c3c57e877ecfa
+NEEGY,Solana(pump.fun/PumpSwap),뒷북,"Bitrue블로그·MEXC뉴스(2차보도, carryover)","확산→뒷북재하향(35회차),직전재반전우려경고실현. h1+7.63~13.27%→-8.79~-9.83%,h6정체,h24+56.36~68.51%→+27.69~30.34%로급둔화,유동성-2.8~5.9%",지속(단계하향),2026-08-06T14:06Z,https://dexscreener.com/solana/6HSBtfqrKz4zxpVLyVTp7jbiY88BVYs61g2PNP4sJmMF
+WOOF,Robinhood Chain(Uniswap V3),뒷북,뉴스/블로그3건(carryover),"확산→뒷북재하향(49회차),46회만첫h24양전이1회차만에재반전. h1재음전,h6대폭둔화,유동성-6~7%유출전환",지속(단계하향),2026-08-06T14:06Z,https://dexscreener.com/robinhood/0x2a004148BE6eFeE250420d93a1AC6393E32D2D60
+POOLS,Robinhood Chain(Uniswap V4),뒷북,,"확산→뒷북하향(9회차),직전경고한펌프정점통과실현. h1·h6동반재음전,유동성-5.9~7.9%유출전환",지속(단계하향),2026-08-06T14:06Z,https://dexscreener.com/robinhood/0x88fbd9768ccf1bf77d6946afa1b2f3ce79e02a4566ca8a3d5ba78ab04e8ef27f
+PAWSINU,Robinhood Chain(Uniswap V4),뒷북,,"확산→뒷북하향(4회차),h6+26.52%→-39.24%급반전,유동성3회연속유출가속(-4.9%→-20.4%)",지속(단계하향),2026-08-06T14:06Z,https://dexscreener.com/robinhood/0x512d5c4b47596ebbfee2fa7ec399a9c6597e9d98986d64d163641f2fcc2156f5
+OMOJI,Solana(pump.fun/PumpSwap),뒷북,,"뒷북11회차,붕괴지속. h1·h6추가악화,h24-59.55%전면붕괴,유동성-35%추가대량유출",지속,2026-08-06T14:06Z,https://dexscreener.com/solana/HZaULNfaNA1tMCj62t7FoJWmTc4SdbekeHcxsBC6Qy1J
+BOYZ,"Robinhood Chain(Uniswap V4, BOYZ N The Hood)",뒷북,"The Arena CEO Jason Desimone·트레이더 EddyXBT(cabalgems.com, 원문미검증, carryover)","뒷북8회차,직전소폭개선1회차만에재악화. h6+6.65%→-19.13%,h24낙폭재확대,유동성유입후재유출",지속,2026-08-06T14:06Z,https://dexscreener.com/robinhood/0x4c6a3ce1be8b458b57a557a97c6639132ef0cfc8f43e1bc727fff7d828790513
+LOXI,Robinhood Chain(Uniswap V3),뒷북,,"뒷북31회차,반등조짐재차소멸. h1재음전,h6·h24깊은음전지속,유동성유입이재유출로전환",지속,2026-08-06T14:06Z,https://dexscreener.com/robinhood/0x67B43c90c123e71AEc92FA1E33E44073684b44E7
+TURBO,Robinhood Chain(Uniswap V3),뒷북,,"뒷북21회차,악화가속지속. h1·h6전지표악화가속,유동성유출도가속(-10.3%)",지속,2026-08-06T14:06Z,https://dexscreener.com/robinhood/0xc75E2C1f6E1CfE329C3807757123DF2Cd7Dba924
+FRONG,Robinhood Chain(Uniswap V4),뒷북,,"뒷북60회차,h6재음전악화. 유동성유출지속(-6~11%). 참고:Pools.trade론칭기사(8/5)는FRONG+31.9%보도-우리추적페어(-26.59%)와상충,소스간불일치",지속,2026-08-06T14:06Z,https://dexscreener.com/robinhood/0xacea8920877840033f0275c37f9b61550b5326917e948bcf8339714d96f9521a
