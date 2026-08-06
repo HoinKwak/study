@@ -1,106 +1,106 @@
-# 선물시장 스카우트 브리핑 — 2026-08-06 08:29 UTC (KST 2026-08-06 17:29)
+# 선물시장 스카우트 브리핑 — 2026-08-06 10:29 UTC (KST 2026-08-06 19:29)
 
 > CEX(바이낸스·바이빗·OKX)·DEX 퍼프(Hyperliquid·Aster·dYdX·OrangeX) 선물시장에서 지금
 > 주목받는 **크립토 네이티브** 종목을 거래량·미결제약정(OI)·펀딩 기준으로 집계. **토큰화 주식·ETF·
-> 상품·프리IPO/합성 perp는 전부 제외.** 정보 요약이며 투자조언 아님. **직전 회차(2026-08-06T06:28:00Z)
-> 로부터 약 2시간 1분 경과.**
+> 상품·프리IPO/합성 perp는 전부 제외.** 정보 요약이며 투자조언 아님. **직전 회차(2026-08-06T08:29:00Z)
+> 로부터 정확히 2시간 경과.**
 
 ## 이번 회차 핵심 요약
 
-CoinGecko `/global`은 정상 응답 — 총시총 **약 $2.2905T**(직전 $2.2909T와 거의 동일),
-BTC도미넌스 **56.72%**(직전 56.69%, 거의 동일), ETH도미넌스 **10.06%**(직전과 동일),
-24h 시총 변동 **+0.72%**(직전 +0.61%, 거의 동일). Fear&Greed는 alternative.me에서
-**25(Extreme Fear)로 5회 연속 동일** 유지 — 방향성 없는 정체 국면이 계속되고 있다.
+CoinGecko `/global`은 정상 응답 — 총시총 **약 $2.2855T**(직전 $2.2905T에서 소폭 감소),
+BTC도미넌스 **56.72%**(직전과 거의 동일), ETH도미넌스 **10.05%**(직전 10.06%에서 소폭 감소),
+24h 시총 변동 **+0.52%**(직전 +0.72%에서 둔화). Fear&Greed는 alternative.me에서
+**25(Extreme Fear)로 6회 연속 동일** 유지 — 방향성 없는 정체 국면이 계속되고 있다.
 
-- **⚠️ CASHCAT**: 재가속이 크게 꺾이며 funding이 큰 폭 압축됐다 — HL +36.376%→
-  **+24.391%**(funding 0.057%→**0.007%**로 8배 압축), Aster +38.225%→**+25.885%**
-  (funding 0.038%→**0.019%**로 절반 압축) — 가격은 여전히 강한 플러스(20%대)를
-  유지하지만 파생 과열은 크게 식었다. 웹서치 확인상 여전히 Robinhood Chain TVL $774M
-  돌파를 배경으로 주간 +120% 랠리 연장선(견조)이나, 단기 파생 모멘텀은 정상화되는 국면.
-- **⚠️ BICO**: OrangeX·Aster에서 부분적으로 재반전(재가속)했다 — OKX +12.673%→
-  **+12.651%**(거의 완전 동일), Aster +8.812%→**+15.024%**, OrangeX +9.818%→
-  **+14.902%**(funding -0.403%→**-0.182%**로 큰 폭 압축)로 직전 회차의 큰 폭 냉각이
-  Aster·OrangeX에서 다시 반전됐다 — OKX만 정체돼 3거래소 흐름이 갈렸다.
-- **⚠️ BTW**: 6연속 재가속 끝에 처음으로 감속했다 — Aster +35.562%→**+26.887%**
-  (funding 0.024%→0.018%로 압축)로 6회 연속 이어지던 재가속 랠리가 이번 회차 처음
-  꺾였다(여전히 20%대 후반 고변동 유지).
-- **⚠️ CAP**: OKX에서 냉각이 더욱 뚜렷해졌으나 funding은 거의 그대로 극단 음수를
-  유지했다 — OKX +15.912%→**+5.282%**(funding -0.542%→**-0.529%**로 거의 변화 없음),
-  Aster +15.006%→**+6.647%**(funding -0.168%→**-0.117%**), OrangeX +12.972%→
-  **+5.801%**(funding -0.429%→**-0.429%**로 완전 동일) — 가격은 계속 식지만 숏
-  프리미엄은 3거래소 모두 여전히 사상 최대 수준 근처에서 버티는 괴리가 지속된다.
-- **⚠️ BEAT(Audiera)**: 낙폭이 더욱 깊어져 -30%대에 진입했다 — OKX -20.159%→
-  **-29.786%**, Aster -22.091%→**-29.896%**(funding -0.003%→+0.001%로 재차 양전환),
-  OrangeX도 **-30.338%**로 3거래소 모두 -30%대 수렴 — 웹서치로 새로 확인:
-  **8/1 21.25M BEAT(유통량 6.9%) 언락**이 이번 하락의 직접 촉매로 보도됨(CoinMarketCap).
-- **⚠️ BANK(Lorenzo)**: 4거래소 전부 크래시가 뚜렷하게 진정됐다 — CEX(가중평균)
-  -16.426%→**-11.62%**, OrangeX -16.847%→**-12.628%**(funding -0.088%→-0.213%로
-  오히려 심화), Aster -16.82%→**-12.607%**(funding -0.053%→-0.11%로 심화) — 가격
-  낙폭은 축소됐으나 funding은 오히려 더 깊어져 숏 프리미엄은 확대, 8/17 예정 대형
-  언락은 여전히 유효.
-- **⚠️ AKE(Akedo)**: 지난 회차의 회복이 다시 되돌려지며 악화로 전환됐다 — CEX
-  (가중평균) -4.142%→**-6.18%**, OrangeX -3.857%→**-6.21%**, Aster -4.747%→
-  **-6.065%**로 3거래소 모두 다시 -6%대로 후퇴 — 8/21 대형 언락(시총 4.9%)은
-  여전히 예정.
+- **⚠️ CASHCAT**: 재가속이 극적으로 되살아나며 funding도 함께 급등했다 — HL +24.391%→
+  **+45.147%**(funding 0.007%→**0.02%**로 약 3배 확대), Aster +25.885%→**+42.678%**
+  (funding은 오히려 0.019%→**0.001%**로 압축, 두 거래소 funding 방향이 갈렸다) — 웹서치
+  확인: CryptoTimes 보도로 **고래 주도 리바운드(+35%)**와 **8/4 BTSE 거래소 CASHCAT/USDT
+  신규 상장**이 유동성 확대의 직접 촉매로 확인됐고, CoinDesk는 Robinhood Chain TVL $774M·
+  주간+120% 배경을 재확인했다.
+- **⚠️ BICO**: 이번 회차 3거래소 전부에서 동시에 재가속하며 지난 회차의 'OKX만 정체'
+  분화가 완전히 해소됐다 — OKX +12.651%→**+23.134%**(funding -0.104%→**-0.086%**),
+  Aster +15.024%→**+23.306%**, OrangeX +14.902%→**+22.65%**(funding -0.182%→
+  **-0.126%**) — 웹서치 확인: CoinMarketCap·Bitget 등 보도로 **상위 100개 지갑이 유통량
+  96.58% 보유하는 고래 집중 축적**과 **8/22 Bitkub 거래소 신규 상장 예정**이 이번 랠리의
+  배경으로 확인됐다.
+- **⚠️ CAP**: 3거래소 모두에서 funding이 큰 폭으로 압축됐다 — OKX -0.529%→**-0.369%**,
+  Aster -0.117%→**-0.062%**, OrangeX -0.429%→**-0.165%**(가장 큰 압축) — 여러 회차에
+  걸쳐 거의 변하지 않던 극단 숏 프리미엄이 이번 회차 처음 뚜렷하게 완화됐다, 가격도
+  OKX +5.282%→**+0.282%**로 추가 냉각.
+- **⚠️ AKE(Akedo)**: OrangeX에서 큰 폭 반전 개선됐다 — OrangeX -6.21%→**+0.887%**
+  (funding 0.021%→0.01%), Aster -6.065%→**-0.274%**(funding 0.016%로 유지)로 두 DEX
+  모두 -6%대에서 거의 보합권까지 회복했다 — **다만 이번 회차 Binance/Bybit CEX 데이터는
+  확보 실패(응답 절단)로 CEX 측 재확인은 불가**, 8/21 대형 언락은 여전히 예정.
+- **⚠️ 1000RATS**: CEX·Aster 모두 플러스에서 마이너스로 완전 반전됐다 — CEX(가중평균)
+  +2.91%→**-4.940%**(funding 0.0108%→0.01864%), Aster +3.102%→**-5.697%**로 지난
+  두 회차의 재가속·둔화 흐름이 이번엔 완전한 방향 전환으로 이어졌다.
+- **⚠️ BANK(Lorenzo)**: 4거래소 전부 크래시 진정이 계속되며 이번엔 funding도 함께
+  완화됐다(지난 회차와 다른 패턴) — Binance -11.62%→**-6.894%**(funding -0.403%→
+  -0.284%), OrangeX -12.628%→**-5.843%**(funding -0.213%→-0.173%), Aster -12.607%→
+  **-5.9%**(funding -0.11%→-0.027%) — 8/17 예정 언락은 여전히 유효하나 가격·funding
+  모두 완화되는 국면.
 
 ## 이번 회차 방향 전환·반전(⚠️) 요약
 
-- **MMT**: OKX에서 재가속이 이어지며 funding이 4배 더 깊은 음수로 심화됐다
-  (+9.409%→**+10.938%**, funding -0.00919%→**-0.0383%**) — 가격 상승에도 숏
-  프리미엄이 오히려 확대되는 롱스퀴즈성 패턴이 이어진다.
-- **ETHFI-USD**: 지난 회차 첫 마이너스 전환 이후 낙폭이 더 깊어졌다(-0.148%→
-  **-1.85%**, OI $7,757,418→$7,696,028로 소폭 감소).
-- **HYPE-USD**: OI가 계속 소폭 감소하며($1,212.77M→**$1,203.11M**) 가격도 더
-  악화됐다(-1.275%→**-3.043%**).
-- **APEX-USD(HL)**: 6연속 마이너스지만 낙폭이 크게 좁혀져 거의 보합권에 근접했다
-  (-1.539%→**-0.199%**).
-- **ALGO**: 지난 회차의 소폭 개선이 이번 회차 다시 되돌려지며 재악화(CEX -2.642%→
-  -3.977%, HL -2.704%→-3.624%).
-- **ANSEM(Aster)**: 소폭 개선에서 다시 재악화로 전환(-0.516%→-3.1%).
-- **1000RATS**: CEX·Aster 모두 재가속이 다시 꺾이며 둔화됐다(CEX 가중평균
-  +8.554%→**+2.91%**, Aster +8.086%→**+3.102%**).
+- **ALLO(Allora)**: 마이너스에서 플러스로 반전됐다(Binance -1.467%→**+0.955%**, funding
+  -0.003%로 유지) — OKX도 신규 확인 -0.148%(funding -0.007%).
+- **BLESS**: OrangeX·Aster 모두 냉각으로 수렴했다 — OrangeX +66.47%→**+43.056%**
+  (funding -0.19%→-0.151%), Aster +60.706%→**+41.737%**(funding 0.048%→0.034%)로
+  지난 회차의 방향 엇갈림이 이번엔 동조 냉각으로 바뀌었다, 여전히 40%대 초고변동 유지.
+- **GRAM**: CEX·HL 모두 장기 보합에서 마이너스로 반전됐다 — OKX +0.288%→**-0.7205%**
+  (funding 0.005%→0.00138%), HL +0.454%→**-0.914%**로 여러 회차 이어지던 오실레이션
+  안정화가 이번 회차 처음 깨졌다.
+- **ETHFI-USD**: 낙폭이 더 깊어졌다(-1.85%→**-2.918%**, OI $7.696M→$7.494M로 3연속
+  감소).
 
-한편 ADA·AAVE는 CEX·HL 양쪽 모두 완만하게 더 악화됐고(ADA -0.998%→-2.346%, AAVE
--3.444%→-3.467%), ATOM은 거의 변화 없이 진정 국면을 유지했다(-1.634%→-1.385%).
-ASTER(CEX·DEX 자체 토큰)는 대형 OI(CEX ~$113M·Aster ~$221M) 유지한 채 계속 거의
-완전 보합. AIO는 소폭 개선을 이어갔다(-13.553%→-12.56%). PIPPIN·KAITO(CEX·HL)·
-GIGGLE은 대체로 소폭 마이너스권에서 등락(PIPPIN -3.110%→-2.921% 소폭 개선, KAITO
-CEX -2.805%→-3.539%·HL -2.435%→-3.657% 소폭 악화, GIGGLE -0.885%→-2.383% 소폭
-악화). GRAM(CEX·HL)은 거의 완전 보합을 유지하며 오실레이션 안정화 조짐이 계속
-이어진다(OKX +0.431%→+0.288%, HL +0.461%→+0.454%). CORE는 9연속 플러스를 이어가며
-여전히 5M 문턱 아래에 머문다(+0.81%→+0.91%). HYPER-USD(HL)는 소폭 재가속했다
-(+3.847%→+5.556%). BLESS는 OrangeX가 3연속 냉각 끝에 소폭 재가속(+65.077%→
-+66.47%, funding -0.221%→-0.19%)한 반면 Aster는 계속 냉각(+63.76%→+60.706%)해
-방향이 엇갈렸다 — 여전히 60%대 초고변동 유지. ETH/BTC(dYdX)는 거의 변화 없이
-유지됐다. HYNA:PUMP-USD(HL)는 이번 회차도 같은 소규모 구간에서 안정 유지(OI
-$149,083→$150,066). **완전히 새로운 크립토 네이티브 대형 종목은 이번 회차도
-발견되지 않았다.** 바이낸스 fapi는 이번 회차도 451(지역차단)로 CoinGecko
-binance_futures로 대체 조회했다. GMX는 이번 회차도 재조회하지 않고 계속 제외했다.
+한편 MMT는 OKX에서 가격 재가속이 소폭 둔화됐으나(+10.938%→**+9.310%**) funding은
+-0.0383%→**-0.0682%**로 약 1.8배 추가 심화되며 롱스퀴즈성 괴리 패턴이 계속된다. KAITO
+(CEX·HL)는 소폭 추가 악화(-3.539%→-4.233%, HL -3.657%→-3.906%). GIGGLE(OKX)은 개선을
+이어갔다(-2.383%→-1.197%). BEAT는 OKX -29.786%→**-30.641%**·Aster -29.896%→
+**-30.354%**로 -30%대에서 거의 정체돼 8/1 언락 촉매 이후 안정화되는 모습이다. BTW는
++26.887%→+25.963%로 완만한 추가 냉각(여전히 20%대 후반 고변동). HYPE-USD는 OI가 계속
+소폭 감소하며($1,203.11M→**$1,197.24M**) 가격은 -3.043%→**-2.722%**로 소폭 개선됐다.
+FARTCOIN은 -2.636%→-4.121%로 악화. APEX-USD(HL)는 낙폭이 더 좁혀지며 사실상 완전
+보합권에 진입했다(-0.199%→**-0.078%**). HYPER-USD(HL)는 재가속을 이어갔다(+5.556%→
++8.588%). CORE는 10연속 플러스를 이어가며 여전히 5M 문턱 아래에 머문다(+0.91%→
++1.11%). ADA·AAVE·ATOM·ALGO는 CEX·HL 양쪽 모두 직전 수준과 유사하게 완만히 등락했다
+(ADA 가중평균 -2.346%→-2.640%, AAVE -3.467%→-3.380%, ATOM -1.385%→-1.483%, ALGO
+-3.977%→-3.404%). ASTER(CEX·DEX 자체 토큰)는 Aster-DEX에서 계속 대형 OI(~$220M)
+유지한 채 거의 완전 보합(-0.165%→-0.264%); CEX는 이번 회차 Bybit 데이터 미확보로
+Binance 단독값(OI $71.42M·chg -0.248%, 직전 회차 결합 OI $113.00M과 직접 비교 불가);
+HL에서도 신규로 ASTER-USD를 별도 확인했다(OI $13.94M, chg -0.24%). HYNA:PUMP-USD(HL)
+는 이번 회차도 같은 소규모 구간에서 안정 유지(OI $150,066→$149,961). **완전히 새로운
+크립토 네이티브 대형 종목은 이번 회차도 발견되지 않았다.** 바이낸스 fapi는 이번 회차도
+451(지역차단)로 CoinGecko binance_futures로 대체 조회했다. GMX는 이번 회차도 재조회하지
+않고 계속 제외했다.
+
+**⚠️ 이번 회차 데이터 갭**: Bybit 응답이 도중에 절단돼 BANK·AKE·ALGO·ALLO·ASTER(CEX)의
+Bybit 측 값을 확보하지 못했다(1000RATS·ADA·AAVE·ATOM은 확보됨). AIO는 이번 회차 목록에서
+확인되지 않아 값을 유지하지 않고 정직하게 생략했다.
 
 ## CEX 주목 종목 (메이저 제외, 크립토 네이티브만)
 
 | 종목 | 거래소 | 24h 거래량 | OI | 펀딩 | 24h 변동 | 왜 뜨는가 | 태그 |
 |---|---|---|---|---|---|---|---|
-| BICO (Biconomy) [OKX 정체, Aster·OrangeX 재반전] | OKX(CoinGecko 정상) | $141.49M | $6.08M | -0.104% | +12.651% | +12.673%→+12.651% 거의 완전 동일 정체, Aster(+8.812%→+15.024%)·OrangeX(+9.818%→+14.902%, funding 큰 폭 압축)는 재가속 — 3거래소 흐름 분화 | okx-flat-while-aster-orangex-reaccelerate-diverge |
-| **⚠️ BANK (Lorenzo)** [크래시 뚜렷하게 진정, funding은 심화] | Binance/Bybit | $189.69M | $21.99M | -0.403% | -11.62% | -16.426%→-11.62% 낙폭 축소, OrangeX(-16.847%→-12.628%)·Aster(-16.82%→-12.607%)도 진정 — funding은 오히려 심화(OrangeX -0.088%→-0.213%), 8/17 언락 유효 | crash-eases-but-funding-deepens-unlock-still-pending |
-| **⚠️ AKE (Akedo)** [회복 되돌려지며 재악화] | Binance/Bybit | $71.84M | $41.70M | +0.0252% | -6.18% | -4.142%→-6.18% 재악화, OrangeX(-3.857%→-6.21%)·Aster(-4.747%→-6.065%)도 -6%대로 후퇴 — 8/21 언락 여전히 예정 | recovery-reverses-worsens-again-unlock-still-pending |
-| **⚠️ BEAT (Audiera)** [낙폭 -30%대 진입, 신규 촉매 확인] | OKX(CoinGecko 정상) | $79.03M | $7.68M | +0.005% | -29.786% | -20.159%→-29.786% 크게 악화, Aster(-29.896%, funding 양전환)·OrangeX(-30.338%)도 수렴 — 8/1 21.25M BEAT(유통량 6.9%) 언락이 직접 촉매로 확인(CoinMarketCap) | decline-deepens-to-minus30-new-catalyst-aug1-unlock-confirmed |
-| CAP [냉각 뚜렷, funding 극단 유지] | OKX(CoinGecko 정상) | $50.73M | $1.98M | -0.529% | +5.282% | +15.912%→+5.282% 큰 폭 냉각, Aster(+6.647%)·OrangeX(+5.801%)도 함께 — funding은 거의 변화 없이 극단 유지(OrangeX -0.429%→-0.429% 완전 동일), 가격-funding 괴리 지속 | cooling-sharpens-but-extreme-negative-funding-persists |
-| **⚠️ MMT (Momentum)** [재가속 지속, funding 4배 심화] | OKX(직접API) | $15.60M(추정) | $2.70M | -0.0383% | +10.938% | +9.409%→+10.938% 재가속, funding -0.00919%→-0.0383% 4배 심화 — 가격 상승에도 숏 프리미엄 확대 패턴 | reacceleration-continues-funding-deepens-fourfold |
-| KAITO (CEX) [마이너스 소폭 악화] | OKX(직접API) | $34.24M(추정) | $7.03M | -0.0062% | -3.539% | -2.805%→-3.539% 소폭 악화, HL(-2.435%→-3.657%)도 함께 — funding은 압축 | stays-negative-mild-worsening-with-hl |
-| GIGGLE (Giggle Fund) [마이너스 심화] | OKX(직접API) | $37.06M(추정) | $2.89M | +0.005% | -2.383% | -0.885%→-2.383% 마이너스권 더 깊어짐 | negative-territory-deepens-mildly |
-| AEON [마이너스 심화 지속] | OKX(CoinGecko 정상) | $11.20M | $3.55M | +0.005% | -4.321% | -2.693%→-4.321% 더 악화, Aster(-2.727%→-4.966%)도 함께 | negative-deepens-further-with-aster |
-| ALLO (Allora) [마이너스 소폭 심화] | Binance/Bybit/OKX | $32.96M | $17.39M | -0.00796% | -1.467% | -1.131%→-1.467% 더 악화, Aster(-0.63%→-1.621%)도 함께 | negative-widens-slightly-with-aster |
-| **⚠️ 1000RATS** [재가속 꺾이며 둔화] | Binance/Bybit | $95.80M | $21.54M | +0.0108% | +2.91% | +8.554%→+2.91% 크게 둔화, Aster(+8.086%→+3.102%)도 함께 | reacceleration-fades-with-aster |
-| AIO (OlaXBT) [소폭 개선 지속] | Binance/Bybit | $7.55M | $3.99M | +0.0139% | -12.56% | -13.553%→-12.56% 소폭 개선 — 여전히 깊은 마이너스권 | mild-improvement-continues-still-deep-negative |
-| PIPPIN [소폭 개선] | OKX(직접API) | $4.02M(추정) | $1.84M | +0.00718% | -2.921% | -3.110%→-2.921% 소폭 개선 | mild-improvement-stays-negative |
-| ADA [소폭 악화] | Binance/Bybit | $256.11M | $168.26M | +0.004% | -2.346% | -0.998%→-2.346% 더 악화, HL(-1.035%→-2.266%)도 함께 | mild-worsening-with-hl |
-| AAVE [거의 동일, 소폭 악화] | Binance/Bybit | $96.03M | $91.93M | +0.0024% | -3.467% | -3.444%→-3.467% 거의 동일 — 완만한 악화 지속 | roughly-flat-continued-mild-worsening |
-| **⚠️ ALGO** [개선에서 재악화로 전환] | Binance/Bybit | $13.82M | $15.72M | +0.0063% | -3.977% | -2.642%→-3.977% 다시 악화, HL(-2.704%→-3.624%)도 함께 | improvement-reverses-worsens-with-hl |
-| ATOM [거의 동일, 소폭 개선] | Binance/Bybit | $14.61M | $29.66M | -0.00201% | -1.385% | -1.634%→-1.385% 소폭 개선 — 진정 국면 지속 | roughly-flat-continuation |
-| ASTER (CEX) [대형 OI, 거의 완전 보합] | Binance/Bybit | $14.29M | $113.00M | +0.005% | -0.209% | +0.208%→-0.209% 계속 정체, DEX(Aster)도 유사 — 대형 OI 유지 횡보 | large-oi-holds-continued-flatline |
-| GRAM [거의 완전 보합 유지] | OKX(직접API) | $3.52M(추정) | $6.53M | +0.005% | +0.288% | +0.431%→+0.288% 거의 동일, HL(+0.461%→+0.454%)도 — 안정화 조짐 지속 | roughly-flat-oscillation-remains-stable |
-| CORE [9연속 플러스] | OKX(CoinGecko, 5M 아래) | $2.42M | $0.98M | +0.01% | +0.91% | +0.81%→+0.91% 거의 동일, 거래량 여전히 5M 아래 | ninth-consecutive-positive-roughly-flat |
+| **⚠️ BICO (Biconomy)** [3거래소 동시 재가속, 상장·고래축적 촉매] | OKX(CoinGecko 정상) | $138.69M | $5.82M | -0.086% | +23.134% | +12.651%→+23.134%로 큰 폭 재가속, Aster(+23.306%)·OrangeX(+22.65%, funding 압축)도 동조 — 상위100지갑 96.58% 고래축적+8/22 Bitkub 신규상장 확인 | listing-catalyst-whale-accumulation-all-venues-reaccelerate |
+| **⚠️ BANK (Lorenzo)** [크래시 진정 지속, funding도 완화] | Binance | $166.65M | $16.29M | -0.284% | -6.894% | -11.62%→-6.894%로 추가 진정, OrangeX(-12.628%→-5.843%)·Aster(-12.607%→-5.9%)도 완화 — 지난 회차와 달리 funding도 같이 풀림, 8/17 언락 유효(Bybit 미확보) | crash-continues-easing-funding-also-eases-this-round |
+| BEAT (Audiera) [-30%대 정체] | OKX(CoinGecko 정상) | $107.20M | $7.27M | +0.005% | -30.641% | -29.786%→-30.641%로 거의 동일, Aster(-30.354%)도 함께 — 8/1 언락 촉매 이후 -30%대 안정화 | stabilizes-around-minus30-post-unlock |
+| **⚠️ CAP** [funding 처음 큰 폭 압축] | OKX(CoinGecko 정상) | $52.02M | $1.91M | -0.369% | +0.282% | +5.282%→+0.282% 추가 냉각, funding -0.529%→-0.369% 압축 — Aster·OrangeX(-0.429%→-0.165% 최대압축)도 동조, 장기 불변이던 극단 숏프리미엄 첫 완화 | extreme-funding-finally-compresses-after-long-persistence |
+| **⚠️ MMT (Momentum)** [가격 둔화, funding 추가 심화] | OKX(직접API) | $17.68M(추정) | $2.77M | -0.0682% | +9.310% | +10.938%→+9.310% 소폭 둔화, funding -0.0383%→-0.0682% 약1.8배 추가 심화 — 롱스퀴즈성 괴리 패턴 지속 | price-cools-slightly-funding-deepens-further |
+| KAITO (CEX) [소폭 추가 악화] | OKX(직접API) | $33.02M(추정) | $6.81M | -0.01263% | -4.233% | -3.539%→-4.233% 더 악화, HL(-3.657%→-3.906%)도 함께 | stays-negative-mild-worsening-with-hl |
+| GIGGLE (Giggle Fund) [개선 지속] | OKX(직접API) | $36.54M(추정) | $2.91M | +0.005% | -1.197% | -2.383%→-1.197% 낙폭 축소 — 마이너스권이나 완만한 회복 | improvement-continues-still-negative |
+| **⚠️ GRAM** [장기 보합에서 마이너스로 첫 반전] | OKX(직접API) | $4.28M(추정) | $6.78M | +0.00138% | -0.7205% | +0.288%→-0.7205% 반전, HL(+0.454%→-0.914%)도 함께 — 오실레이션 안정화가 이번 처음 깨짐 | long-flat-oscillation-breaks-negative-first-time |
+| PIPPIN [소폭 악화] | OKX(직접API) | $3.90M(추정) | $1.82M | +0.02761% | -3.164% | -2.921%→-3.164% 소폭 더 악화 | mild-worsening-stays-negative |
+| AEON [마이너스 심화 지속] | OKX(CoinGecko 정상) | $12.11M | $3.65M | +0.005% | -5.082% | -4.321%→-5.082% 더 악화, Aster(-4.966%→-4.893%)는 거의 동일 | negative-deepens-further |
+| **⚠️ ALLO (Allora)** [마이너스에서 플러스로 반전] | Binance | $13.85M | $12.63M | -0.003% | +0.955% | -1.467%→+0.955% 반전 — OKX도 신규 확인(-0.148%), 악화 흐름이 끊겼다 | reverses-negative-to-positive |
+| **⚠️ 1000RATS** [플러스에서 마이너스로 완전 반전] | Binance/Bybit(가중) | $89.53M | $21.43M | +0.01864% | -4.940% | +2.91%→-4.940% 반전, Aster(+3.102%→-5.697%)도 함께 — 방향 자체가 뒤집혔다 | reverses-positive-to-negative |
+| ADA [완만한 악화 지속] | Binance/Bybit(가중) | $233.70M | $168.41M | -0.00757% | -2.640% | -2.346%→-2.640% 소폭 더 악화, HL(-2.266%→-2.822%)도 함께 | mild-worsening-continues-with-hl |
+| AAVE [거의 동일 수준] | Binance/Bybit(가중) | $101.39M | $134.88M | +0.00041% | -3.380% | -3.467%→-3.380% 거의 동일, HL(-3.652%→-3.306%)도 유사 | roughly-flat-continuation |
+| ALGO [거의 동일, 소폭 개선] | Binance | $9.42M | $8.05M | +0.009% | -3.404% | -3.977%→-3.404% 소폭 개선, HL(-3.624%→-3.5%)·OKX(-3.51%)도 유사 | roughly-flat-mild-improvement |
+| ATOM [거의 동일 수준] | Binance/Bybit(가중) | $14.06M | $29.47M | +0.004034% | -1.483% | -1.385%→-1.483% 거의 동일 — 진정 국면 계속 | roughly-flat-continuation |
+| ASTER (CEX) [대형 OI, 거의 완전 보합] | Binance | $11.81M | $71.42M | +0.005% | -0.248% | -0.209%→-0.248% 계속 정체, DEX(Aster)도 유사 — 이번 회차 Bybit 미확보로 Binance 단독값(직전 결합 OI $113.00M과 직접 비교 불가) | large-oi-holds-continued-flatline-bybit-gap-this-round |
+| CORE [10연속 플러스] | OKX(직접API, 5M 아래) | $2.36M | $0.98M | +0.01% | +1.11% | +0.91%→+1.11% 거의 동일, 거래량 여전히 5M 아래 | tenth-consecutive-positive-roughly-flat |
 
 ## DEX 퍼프 주목 종목 (Hyperliquid·Aster·dYdX·OrangeX)
 
@@ -108,117 +108,132 @@ binance_futures로 대체 조회했다. GMX는 이번 회차도 재조회하지 
 
 | 종목 | 프로토콜 | 24h 거래량 | OI | 펀딩 | 24h 변동 | 왜 뜨는가 | 태그 |
 |---|---|---|---|---|---|---|---|
-| HYNA:PUMP-USD [안정 유지 계속] | Hyperliquid | $71,763 | $150,066 | +0.001% | -6.122% | 같은 소규모 구간 유지 지속 | remains-stable-small-market |
-| **⚠️ BICO-USDT-PERPETUAL** [재반전 재가속, funding 압축] | OrangeX | $87.92M | $35.78M | -0.182% | +14.902% | +9.818%→+14.902% 재가속, funding 큰 폭 압축 — Aster와 동조, OKX만 정체 | reaccelerates-with-aster-funding-compresses-okx-diverges |
-| **⚠️ BICO-USDT** [OrangeX와 재반전 재가속] | Aster | $0.50M | $0.19M | +0.001% | +15.024% | +8.812%→+15.024% 재가속, OrangeX와 동조 — OKX만 정체 | reaccelerates-with-orangex-okx-diverges |
-| **⚠️ BANK-USDT-PERPETUAL** [크래시 진정, funding 심화] | OrangeX | $10.43M | $3.49M | -0.213% | -12.628% | -16.847%→-12.628% 낙폭 축소, funding은 오히려 심화 | crash-eases-with-venues-funding-deepens |
-| **⚠️ BANK-USDT** [크래시 진정, funding 심화] | Aster | $0.63M | $0.34M | -0.11% | -12.607% | -16.82%→-12.607% 낙폭 축소, funding -0.053%→-0.11% 심화 | crash-eases-with-venues-funding-deepens |
-| **⚠️ AKE-USDT-PERPETUAL** [회복 되돌려짐, 재악화] | OrangeX | $12.98M | $4.65M | +0.021% | -6.21% | -3.857%→-6.21% 다시 악화 — 8/21 언락 여전히 예정 | recovery-reverses-with-venues-unlock-pending |
-| **⚠️ AKE-USDT** [재악화] | Aster | $0.60M | $10.82M | +0.016% | -6.065% | -4.747%→-6.065% 다시 악화 | recovery-reverses-with-venues |
-| BLESS-USDT-PERPETUAL [3연속 냉각 끝, 소폭 재가속] | OrangeX | $530.74M | $228.56M | -0.19% | +66.47% | +65.077%→+66.47% 3연속 냉각 끝, funding 완화 — 60%대 초고변동 유지 | third-round-cooling-ends-mild-reacceleration |
-| BLESS-USDT [OrangeX와 달리 계속 냉각] | Aster | $2.89M | $0.49M | +0.048% | +60.706% | +63.76%→+60.706% 추가 냉각, funding 확대 — OrangeX와 방향 엇갈림 | continues-cooling-diverges-from-orangex |
-| **⚠️ CASHCAT** [재가속 꺾임, funding 8배 압축, 가격 견조] | Hyperliquid | $46.73M | $14.50M | +0.007% | +24.391% | +36.376%→+24.391% 크게 둔화, funding 0.057%→0.007% 8배 압축 — Robinhood Chain TVL $774M 배경 주간+120% 랠리는 견조, 파생 과열만 정상화 | reacceleration-fades-funding-compresses-8x-price-still-firm |
-| CASHCAT-USDT [HL과 함께 재가속 꺾임] | Aster | $4.51M | $1.26M | +0.019% | +25.885% | +38.225%→+25.885% 둔화, funding 절반 압축 — HL과 동조 | fades-with-hl-funding-compresses |
-| **⚠️ 1000RATS-USDT** [재가속 꺾임] | Aster | $0.30M | $0.05M | +0.006% | +3.102% | +8.086%→+3.102% 크게 둔화, CEX와 동조 | reacceleration-fades-with-cex |
-| **⚠️ BTW** [6연속 재가속 끝, 첫 감속] | Aster | $2.13M | $11.83M | +0.018% | +26.887% | +35.562%→+26.887% 6연속 재가속 스트릭 처음 꺾임 — 20%대 후반 고변동 유지 | sixth-round-streak-ends-first-deceleration |
-| ASTER-USDT [대형 OI, 거의 완전 보합] | Aster | $8.66M | $220.76M | +0.006% | -0.165% | OI $221.59M→$220.76M 대형 유지, CEX와 유사한 수준 정체 | large-oi-holds-continued-flatline |
-| CAP-USDT [냉각 지속, funding 완화] | Aster | $0.15M | $0.04M | -0.117% | +6.647% | +15.006%→+6.647% 냉각, funding -0.168%→-0.117% 완화 | continued-cooling-with-venues-funding-eases |
-| **⚠️ CAP-USDT-PERPETUAL** [냉각, funding 완전 동일 극단 유지] | OrangeX | $0.56M | $0.20M | -0.429% | +5.801% | +12.972%→+5.801% 냉각, funding -0.429%→-0.429% 완전 동일 — 가격-funding 괴리 지속 | continued-cooling-funding-unchanged-extreme |
-| **⚠️ ANSEM** [개선에서 재악화로 전환] | Aster | $0.39M | $1.06M | +0.001% | -3.1% | -0.516%→-3.1% 다시 악화 | improvement-reverses-worsens |
-| AEON-USDT [CEX와 함께 마이너스 심화] | Aster | $0.02M | $0.21M | +0.001% | -4.966% | -2.727%→-4.966% 더 악화, CEX와 함께 | negative-deepens-with-cex |
-| ALLO-USDT [마이너스 소폭 심화] | Aster | $0.09M | $0.04M | -0.003% | -1.621% | -0.63%→-1.621% 더 악화, CEX와 함께 | negative-widens-with-cex |
-| **⚠️ BEAT** [CEX와 함께 -30%대 진입, funding 양전환] | Aster | $1.25M | $0.61M | +0.001% | -29.896% | -22.091%→-29.896% 크게 악화, CEX·OrangeX와 -30%대 수렴 — funding 재차 양전환, 8/1 언락 촉매 확인 | decline-deepens-to-minus30-with-cex-orangex |
-| GRAM [CEX와 함께 거의 완전 보합] | Hyperliquid | $1.14M | $12.62M | +0.001% | +0.454% | +0.461%→+0.454% 거의 동일, CEX와 동조 — 안정화 조짐 지속 | roughly-flat-with-cex-remains-stable |
-| **⚠️ HYPE-USD** [OI 계속 감소, 가격 더 악화] | Hyperliquid | $239.29M | $1,203.11M | +0.001% | -3.043% | OI $1,212.77M→$1,203.11M 계속 감소, 가격 -1.275%→-3.043% 더 악화 | oi-continues-declining-price-worsens-further |
-| HYPER-USD [소폭 재가속] | Hyperliquid | $0.25M | $0.31M | -0.006% | +5.556% | +3.847%→+5.556% 소폭 재가속, 여전히 플러스 | mild-reacceleration-stays-positive |
-| KAITO-USD [CEX와 함께 마이너스 소폭 심화] | Hyperliquid | $4.69M | $24.68M | +0.001% | -3.657% | -2.435%→-3.657% 소폭 악화, CEX와 함께 | negative-widens-mildly-with-cex |
-| **⚠️ APEX-USD** [6연속 마이너스, 낙폭 크게 축소] | Hyperliquid | $0.09M | $0.80M | +0.001% | -0.199% | -1.539%→-0.199% 낙폭 크게 좁혀짐 — 거의 보합권 근접 | sixth-round-negative-but-narrows-sharply |
-| FARTCOIN [소폭 추가 악화] | Hyperliquid | $5.33M | $22.18M | +0.003% | -2.636% | -2.39%→-2.636% 소폭 더 악화 | mild-worsening-continues |
-| ADA-USD [CEX와 함께 소폭 악화] | Hyperliquid | $5.31M | $31.57M | -0.001% | -2.266% | -1.035%→-2.266% 더 악화, CEX와 함께 | mild-worsening-with-cex |
-| AAVE-USD [CEX와 함께 거의 동일] | Hyperliquid | $7.76M | $59.05M | +0.001% | -3.652% | -3.146%→-3.652% 소폭 더 악화, CEX와 함께 | roughly-flat-with-cex-mild-worsening |
-| ATOM-USD [CEX와 함께 거의 동일] | Hyperliquid | $0.42M | $2.02M | +0.001% | -1.533% | -1.631%→-1.533% 소폭 개선, CEX와 함께 | roughly-flat-with-cex |
-| **⚠️ ALGO-USD** [개선에서 재악화로 전환] | Hyperliquid | $0.53M | $2.18M | +0.001% | -3.624% | -2.704%→-3.624% 다시 악화, CEX와 함께 | improvement-reverses-worsens-with-cex |
-| ETH-USD [거의 동일 수준 유지] | dYdX | $64.65M | $27.60M | +0.003% | +2.204% | +2.371%→+2.204% 거의 동일, funding 소폭 압축 | roughly-flat-continuation |
-| BTC-USD [funding 중립, 가격 거의 동일] | dYdX | $4.81M | $18.14M | 0.0% | +0.88% | 0.0%→0.0% 완전 중립 유지, 가격 거의 동일 | funding-neutral-price-flat |
-| **⚠️ ETHFI-USD** [첫 마이너스 전환 이후 낙폭 심화] | Hyperliquid | $1.79M | $7.70M | +0.001% | -1.85% | -0.148%→-1.85% 2연속 마이너스 심화 — 7연속 플러스 기록 종료 이후 하락세 지속 | negative-deepens-second-round-after-streak-ended |
+| HYNA:PUMP-USD [안정 유지 계속] | Hyperliquid | $87,306 | $149,961 | +0.001% | -7.005% | 같은 소규모 구간 유지 지속 | remains-stable-small-market |
+| **⚠️ CASHCAT** [재가속 극적 부활, 상장·고래 촉매] | Hyperliquid | $50.48M | $17.17M | +0.02% | +45.147% | +24.391%→+45.147% 큰 폭 재가속, funding 0.007%→0.02% 약3배 확대 — 고래 리바운드(+35%)+8/4 BTSE 상장, Robinhood Chain TVL $774M 배경 | reacceleration-revives-dramatically-listing-whale-catalyst |
+| CASHCAT-USDT [HL과 재가속, funding은 압축] | Aster | $5.08M | $1.39M | +0.001% | +42.678% | +25.885%→+42.678% 재가속, funding 0.019%→0.001% 압축(HL과 반대) | reaccelerates-with-hl-funding-diverges |
+| **⚠️ BICO-USDT-PERPETUAL** [3거래소 동시 재가속] | OrangeX | $85.85M | $32.50M | -0.126% | +22.65% | +14.902%→+22.65% 재가속, funding -0.182%→-0.126% — OKX·Aster와 동조, 고래축적+Bitkub 상장 배경 | reaccelerates-with-all-venues-listing-whale-catalyst |
+| **⚠️ BICO-USDT** [3거래소 동시 재가속] | Aster | $0.49M | $0.18M | +0.001% | +23.306% | +15.024%→+23.306% 재가속, OKX·OrangeX와 완전 동조 | reaccelerates-with-all-venues |
+| **⚠️ BANK-USDT-PERPETUAL** [크래시 진정+funding 완화] | OrangeX | $9.80M | $3.31M | -0.173% | -5.843% | -12.628%→-5.843% 추가 진정, funding -0.213%→-0.173% 완화 | crash-continues-easing-funding-eases-too |
+| **⚠️ BANK-USDT** [크래시 진정+funding 완화] | Aster | $0.61M | $0.37M | -0.027% | -5.9% | -12.607%→-5.9% 추가 진정, funding -0.11%→-0.027% 완화 | crash-continues-easing-funding-eases-too |
+| **⚠️ AKE-USDT-PERPETUAL** [큰 폭 반전 개선] | OrangeX | $12.45M | $4.21M | +0.01% | +0.887% | -6.21%→+0.887% 반전 — Aster도 급개선, 8/21 언락 여전히 예정(CEX 데이터 이번 미확보) | sharp-reversal-improvement-unlock-still-pending |
+| **⚠️ AKE-USDT** [OrangeX와 함께 큰 폭 개선] | Aster | $0.77M | $11.16M | +0.016% | -0.274% | -6.065%→-0.274% 개선, OrangeX와 동조 — 거의 보합권까지 회복 | sharp-improvement-with-orangex |
+| BLESS-USDT-PERPETUAL [냉각으로 수렴] | OrangeX | $483.18M | $204.27M | -0.151% | +43.056% | +66.47%→+43.056% 냉각, funding -0.19%→-0.151% — 지난 회차 엇갈림이 동조 냉각으로 전환, 여전히 40%대 초고변동 | cools-converges-with-aster-still-high-volatility |
+| BLESS-USDT [OrangeX와 냉각으로 수렴] | Aster | $2.90M | $0.47M | +0.034% | +41.737% | +60.706%→+41.737% 냉각, funding 0.048%→0.034% | cools-converges-with-orangex |
+| **⚠️ 1000RATS-USDT** [CEX와 함께 완전 반전] | Aster | $0.29M | $0.06M | +0.011% | -5.697% | +3.102%→-5.697% 반전, CEX(+2.91%→-4.940%)와 동조 | reverses-positive-to-negative-with-cex |
+| BTW [완만한 추가 냉각] | Aster | $2.23M | $12.22M | +0.018% | +25.963% | +26.887%→+25.963% 거의 동일 — 여전히 20%대 후반 고변동 | mild-cooling-continues-still-high-volatility |
+| ASTER-USDT [대형 OI, 거의 완전 보합] | Aster | $8.57M | $220.37M | +0.007% | -0.264% | OI $220.76M→$220.37M 대형 유지, CEX(-0.248%)와 유사한 수준 정체 | large-oi-holds-continued-flatline |
+| **⚠️ CAP-USDT** [funding 큰 폭 압축] | Aster | $0.16M | $0.04M | -0.062% | +6.669% | +6.647%→+6.669% 가격 거의 동일, funding -0.117%→-0.062% 큰 폭 압축 | funding-finally-compresses-with-venues |
+| **⚠️ CAP-USDT-PERPETUAL** [funding 최대폭 압축] | OrangeX | $0.57M | $0.21M | -0.165% | +1.199% | +5.801%→+1.199% 냉각, funding -0.429%→-0.165% 가장 큰 압축 — 장기 불변이던 극단 funding 첫 큰 완화 | extreme-funding-largest-compression-this-round |
+| ANSEM [소폭 개선] | Aster | $0.43M | $1.05M | +0.001% | -1.446% | -3.1%→-1.446% 소폭 개선 — 마이너스권 등락 지속 | mild-improvement-stays-negative |
+| AEON-USDT [CEX와 함께 마이너스권 지속] | Aster | $0.02M | $0.21M | +0.01% | -4.893% | -4.966%→-4.893% 거의 동일, CEX와 유사 수준 | negative-continues-with-cex |
+| ALLO-USDT [CEX 반전과 엇갈림] | Aster | $0.09M | $0.03M | -0.004% | -1.21% | -1.621%→-1.21% 소폭 개선 — CEX(Binance, +0.955%로 반전)와 방향 엇갈림 | mild-improvement-diverges-from-cex-reversal |
+| BEAT [-30%대 정체] | Aster | $1.91M | $0.60M | +0.007% | -30.354% | -29.896%→-30.354% 거의 동일, OKX(-30.641%)와 수렴 | stabilizes-around-minus30-with-cex |
+| **⚠️ GRAM** [CEX와 함께 첫 마이너스 반전] | Hyperliquid | $1.13M | $12.50M | +0.001% | -0.914% | +0.454%→-0.914% 반전, CEX(OKX, +0.288%→-0.7205%)와 동조 — 오실레이션 안정화 첫 붕괴 | long-flat-oscillation-breaks-negative-with-cex |
+| HYPE-USD [OI 계속 감소, 가격은 개선] | Hyperliquid | $226.31M | $1,197.24M | +0.001% | -2.722% | OI $1,203.11M→$1,197.24M 계속 감소, 가격 -3.043%→-2.722% 소폭 개선 | oi-continues-declining-price-mildly-improves |
+| HYPER-USD [재가속 지속] | Hyperliquid | $0.26M | $0.32M | -0.002% | +8.588% | +5.556%→+8.588% 재가속, 여전히 플러스 | reacceleration-continues-stays-positive |
+| KAITO-USD [CEX와 함께 소폭 악화] | Hyperliquid | $4.53M | $24.10M | +0.001% | -3.906% | -3.657%→-3.906% 소폭 악화, CEX와 함께 | negative-widens-mildly-with-cex |
+| **⚠️ APEX-USD** [사실상 완전 보합 진입] | Hyperliquid | $0.09M | $0.79M | +0.001% | -0.078% | -0.199%→-0.078% 낙폭이 더 좁혀짐 — 7연속 마이너스지만 보합권 근접 | seventh-round-negative-nearly-flat |
+| FARTCOIN [추가 악화] | Hyperliquid | $6.82M | $21.57M | +0.001% | -4.121% | -2.636%→-4.121% 더 악화 | worsening-continues |
+| ADA-USD [CEX와 함께 소폭 악화] | Hyperliquid | $5.07M | $31.50M | -0.002% | -2.822% | -2.266%→-2.822% 더 악화, CEX와 함께 | mild-worsening-with-cex |
+| AAVE-USD [CEX와 함께 거의 동일] | Hyperliquid | $8.21M | $59.01M | +0.001% | -3.306% | -3.652%→-3.306% 소폭 개선, CEX와 유사 | roughly-flat-with-cex |
+| ATOM-USD [CEX와 함께 거의 동일] | Hyperliquid | $0.41M | $2.01M | +0.0% | -1.852% | -1.533%→-1.852% 소폭 악화, CEX와 유사 | roughly-flat-with-cex |
+| ALGO-USD [CEX와 함께 거의 동일] | Hyperliquid | $0.53M | $2.13M | +0.001% | -3.5% | -3.624%→-3.5% 소폭 개선, CEX와 함께 | roughly-flat-mild-improvement-with-cex |
+| ETH-USD [거의 동일 수준 유지] | dYdX | $64.75M | $27.56M | +0.001% | +1.753% | +2.204%→+1.753% 거의 동일, funding 소폭 압축 | roughly-flat-continuation |
+| BTC-USD [funding 중립, 가격 거의 동일] | dYdX | $4.73M | $18.10M | 0.0% | +0.709% | 0.0%→0.0% 완전 중립 유지, 가격 거의 동일 | funding-neutral-price-flat |
+| **⚠️ ETHFI-USD** [3연속 낙폭 심화] | Hyperliquid | $1.71M | $7.49M | -0.001% | -2.918% | -1.85%→-2.918% 3연속 마이너스 심화, OI도 추가 감소 | negative-deepens-third-round-oi-declines-further |
+| ASTER-USD [신규 확인, 거의 완전 보합] | Hyperliquid | $1.14M | $13.94M | +0.001% | -0.24% | HL에서 이번 회차 처음 별도 확인 — CEX·Aster-DEX와 유사한 수준 | newly-tracked-roughly-flat-with-other-venues |
 
 ## 테마 태그
 
-1. **시장 전반: 총시총 약 $2.2905T(직전 $2.2909T와 거의 동일), BTC도미넌스 56.72%, ETH 10.06%, 24h 시총 변동 +0.72%(직전 +0.61%, 거의 동일). Fear&Greed는 25(Extreme Fear)로 5회 연속 동일 — 방향성 없이 정체된 안정 국면 지속** (market-flat-fear-greed-fifth-round-same).
-2. **⚠️ CASHCAT: 재가속이 크게 꺾이며 funding 8배(HL)·2배(Aster) 압축 — 가격은 여전히 20%대 플러스로 견조(Robinhood Chain TVL $774M·주간 +120% 배경), 파생 과열만 정상화** (cashcat-momentum-fades-funding-compresses-price-still-firm).
-3. **⚠️ BICO: OrangeX·Aster에서 재반전 재가속(+9~15%대), OKX만 정체 — 3거래소 흐름이 갈리는 분화 국면** (bico-partial-reacceleration-okx-diverges).
-4. **⚠️ BTW: 6연속 재가속 스트릭이 이번 회차 처음 꺾임(+35.562%→+26.887%)** (btw-sixth-round-streak-ends).
-5. **⚠️ CAP: 냉각 뚜렷하나 funding은 3거래소 모두 거의 변화 없이 극단 음수 유지 — 가격-funding 괴리 지속(OrangeX -0.429%→-0.429% 완전 동일)** (cap-cooling-sharpens-funding-unchanged-extreme).
-6. **⚠️ BEAT: 낙폭이 더 깊어져 3거래소 모두 -30%대 진입 — 웹서치로 8/1 21.25M BEAT(유통량 6.9%) 언락이 직접 촉매로 확인(CoinMarketCap)** (beat-decline-deepens-minus30-aug1-unlock-confirmed).
-7. **⚠️ BANK: 4거래소 전부 크래시 뚜렷하게 진정(-16%대→-11~12%대)되나 funding은 오히려 더 깊은 음수로 심화 — 8/17 예정 언락 여전히 유효** (bank-crash-eases-funding-deepens-unlock-pending).
-8. **⚠️ AKE: 지난 회차 회복이 되돌려지며 3거래소 모두 -6%대로 재악화 — 8/21 대형 언락 여전히 예정** (ake-recovery-reverses-worsens-unlock-pending).
-9. **⚠️ MMT: OKX에서 재가속 지속, funding 4배 심화(-0.00919%→-0.0383%) — 가격 상승에도 숏 프리미엄 확대되는 패턴** (mmt-reacceleration-continues-funding-deepens-fourfold).
-10. **⚠️ ETHFI: 첫 마이너스 전환 이후 2연속 낙폭 심화(-0.148%→-1.85%)** (ethfi-negative-deepens-second-round).
-11. **⚠️ HYPE-USD: OI 계속 소폭 감소($1,212.77M→$1,203.11M), 가격도 더 악화(-1.275%→-3.043%) — 약세 흐름 지속** (hype-oi-continues-declining-price-worsens).
-12. **⚠️ APEX-USD(HL): 6연속 마이너스지만 낙폭이 크게 좁혀져 거의 보합권 근접(-1.539%→-0.199%)** (apex-negative-narrows-sharply).
-13. **ADA·AAVE·ALGO: CEX·HL 양쪽 모두 완만하게 더 악화, ATOM은 거의 변화 없이 진정 국면 유지** (ada-aave-algo-mild-worsening-atom-flat).
-14. **GRAM(CEX·HL): 거의 완전 보합 유지로 오실레이션 안정화 조짐 계속 이어짐** (gram-remains-roughly-flat-stable).
-15. **1000RATS: CEX·Aster 모두 재가속이 다시 꺾이며 둔화(+8.554%→+2.91%)** (1000rats-reacceleration-fades-again).
-16. **PIPPIN·KAITO·GIGGLE·AIO는 대체로 소폭 마이너스권에서 등락, AIO는 완만한 개선 지속** (pippin-kaito-giggle-aio-roundup).
-17. **BLESS: OrangeX는 3연속 냉각 끝에 소폭 재가속, Aster는 계속 냉각 — 여전히 60%대 초고변동 지속, 방향 엇갈림 지속** (bless-orangex-reaccelerates-aster-cools-diverges).
-18. **ASTER(CEX·DEX 자체 토큰): 대형 OI 유지한 채 계속 거의 완전 보합** (aster-large-oi-continued-flatline).
-19. **HYNA:PUMP-USD(HL): 이번 회차도 같은 소규모 구간에서 안정 유지** (hyna-remains-stable).
-20. **완전 신규 크립토 네이티브 대형 종목은 이번 회차도 발견되지 않음** (no-new-token-found).
-21. **⚠️ 바이낸스 fapi는 이번 회차도 451(지역차단) — CoinGecko binance_futures로 전량 대체 조회** (fapi-still-blocked-coingecko-fallback).
-22. **⚠️ GMX 이번 회차도 재조회 없이 계속 제외** (gmx-still-excluded-no-recheck).
-23. **데이터 신뢰도 특기사항: OrangeX·dYdX·global 엔드포인트에서 CoinGecko 429 발생, 재시도로 확보. KAITO·GRAM·GIGGLE·PIPPIN·MMT는 여전히 okex_swap 미등재라 OKX 직접 API로 조회. ALGO·ATOM은 바이낸스 top-40 밖이라 심볼 지정 재조회로 raw 값 확보** (data-sources-verified-this-round).
-24. **웹서치 신규 확인 촉매: (a) BEAT — 8/1 21.25M BEAT(유통량 6.9%) 언락이 이번 급락의 직접 촉매(CoinMarketCap 보도); (b) CASHCAT — 여전히 Robinhood Chain TVL $774M 배경 주간 +120%, 파생 과열만 정상화 중(CoinDesk 등 보도)** (websearch-confirmed-catalysts-beat-cashcat).
+1. **시장 전반: 총시총 약 $2.2855T(직전 $2.2905T에서 소폭 감소), BTC도미넌스 56.72%(거의 동일), ETH도미넌스 10.05%, 24h 시총 변동 +0.52%(직전 +0.72%에서 둔화). Fear&Greed는 25(Extreme Fear)로 6회 연속 동일 — 방향성 없이 정체된 안정 국면 지속** (market-flat-fear-greed-sixth-round-same).
+2. **⚠️ CASHCAT: 재가속이 극적으로 되살아나며 HL funding 약 3배 확대 — 고래 주도 리바운드(+35%)+8/4 BTSE 신규 상장이 촉매로 확인, Robinhood Chain TVL $774M 배경도 유효** (cashcat-reacceleration-revives-listing-whale-catalyst-confirmed).
+3. **⚠️ BICO: 3거래소(OKX·Aster·OrangeX) 전부 동시 재가속, 지난 회차 'OKX만 정체' 분화 완전 해소 — 상위100지갑 96.58% 고래 집중 축적+8/22 Bitkub 신규상장 예정 확인** (bico-all-venues-reaccelerate-listing-whale-catalyst-confirmed).
+4. **⚠️ CAP: 3거래소 모두 funding이 처음으로 뚜렷하게 압축 — 여러 회차 이어지던 극단 숏 프리미엄 정체가 이번 회차 풀리기 시작** (cap-extreme-funding-finally-compresses).
+5. **⚠️ AKE: OrangeX·Aster 모두 큰 폭 반전 개선(-6%대→거의 보합권) — 다만 이번 회차 CEX 데이터 미확보로 재확인 불가, 8/21 언락 여전히 예정** (ake-sharp-reversal-improvement-cex-data-gap).
+6. **⚠️ 1000RATS: CEX·Aster 모두 플러스에서 마이너스로 완전 반전(+2.91%→-4.940%)** (1000rats-reverses-positive-to-negative).
+7. **⚠️ BANK: 크래시 진정 지속, 이번엔 funding도 함께 완화(지난 회차와 다른 패턴) — 8/17 언락 여전히 유효하나 가격·funding 모두 개선** (bank-crash-eases-funding-eases-too-this-round).
+8. **⚠️ ALLO: 마이너스에서 플러스로 반전(Binance -1.467%→+0.955%)** (allo-reverses-negative-to-positive).
+9. **⚠️ BLESS: OrangeX·Aster 모두 냉각으로 수렴(지난 회차 방향 엇갈림 해소) — 여전히 40%대 초고변동 유지** (bless-cools-converges-still-high-volatility).
+10. **⚠️ GRAM: CEX·HL 모두 장기 보합에서 마이너스로 첫 반전** (gram-long-flat-breaks-negative-first-time).
+11. **MMT: 가격은 소폭 둔화하나 funding은 약 1.8배 추가 심화 — 롱스퀴즈성 괴리 패턴 지속** (mmt-price-cools-funding-deepens-further).
+12. **⚠️ ETHFI: 3연속 낙폭 심화, OI도 추가 감소 지속** (ethfi-negative-deepens-third-round-oi-declines).
+13. **HYPE-USD: OI 계속 소폭 감소하나 가격 낙폭은 소폭 좁혀짐** (hype-oi-declines-price-mildly-improves).
+14. **APEX-USD(HL): 7연속 마이너스지만 사실상 완전 보합권 진입(-0.078%)** (apex-seventh-round-nearly-flat).
+15. **ADA·AAVE·ATOM·ALGO: 대체로 직전 수준과 유사하게 완만히 등락, 뚜렷한 방향 전환 없음** (ada-aave-atom-algo-roughly-similar-no-clear-shift).
+16. **BEAT: -30%대에서 거의 정체, 8/1 언락 촉매 이후 안정화되는 모습** (beat-stabilizes-around-minus30).
+17. **BTW: 완만한 추가 냉각 지속, 여전히 20%대 후반 고변동** (btw-mild-cooling-continues).
+18. **HYPER-USD(HL): 재가속 지속(+5.556%→+8.588%)** (hyper-reacceleration-continues).
+19. **ASTER(CEX·DEX 자체 토큰): Aster-DEX는 대형 OI 유지한 채 계속 거의 완전 보합, CEX는 이번 회차 Bybit 데이터 미확보로 Binance 단독값, HL에서 신규로 ASTER-USD 별도 확인** (aster-large-oi-flatline-cex-bybit-gap-hl-newly-tracked).
+20. **HYNA:PUMP-USD(HL): 이번 회차도 같은 소규모 구간에서 안정 유지** (hyna-remains-stable).
+21. **완전 신규 크립토 네이티브 대형 종목은 이번 회차도 발견되지 않음** (no-new-token-found).
+22. **⚠️ 바이낸스 fapi는 이번 회차도 451(지역차단) — CoinGecko binance_futures로 전량 대체 조회** (fapi-still-blocked-coingecko-fallback).
+23. **⚠️ GMX 이번 회차도 재조회 없이 계속 제외** (gmx-still-excluded-no-recheck).
+24. **⚠️ 데이터 갭: 이번 회차 Bybit 응답이 도중에 절단돼 BANK·AKE·ALGO·ALLO·ASTER(CEX)의 Bybit 측 값을 확보하지 못함(1000RATS·ADA·AAVE·ATOM은 확보). AIO는 이번 회차 목록에서 확인되지 않아 값을 유지하지 않고 정직하게 생략함** (data-gap-bybit-truncated-aio-omitted).
+25. **데이터 신뢰도: KAITO·GRAM·GIGGLE·PIPPIN·MMT는 여전히 okex_swap 미등재라 OKX 직접 API(ticker+open-interest+funding-rate, open24h 대비 chg 재계산, volCcy24h×last 거래량)로 조회** (data-sources-verified-this-round).
+26. **웹서치 신규 확인 촉매: (a) CASHCAT — CryptoTimes 보도로 고래 주도 리바운드(+35%)와 8/4 BTSE 거래소 CASHCAT/USDT 신규 상장이 유동성 확대 직접 촉매로 확인, CoinDesk가 Robinhood Chain TVL $774M 배경 재확인; (b) BICO — CoinMarketCap·Bitget 보도로 상위 100지갑 유통량 96.58% 고래 집중 축적과 8/22 Bitkub 거래소 신규 상장 예정이 이번 랠리 배경으로 확인** (websearch-confirmed-catalysts-cashcat-bico).
 
 ## 데이터 신뢰도
 
-**CoinGecko binance_futures/bybit**: 이번 회차 정상 응답, BANK·AKE·1000RATS·ADA·AAVE·
-ASTER·ALLO·AIO 등 raw 정밀값 확보. ALGO·ATOM은 바이낸스 top-40 거래량 목록 밖에
-있어 심볼 지정(`ALGOUSDT`/`ATOMUSDT`) 재조회로 raw 값을 확보했다. Binance/Bybit
-가중평균은 거래량가중 방식으로 chg24·funding을 재계산했다(단순평균이 아님, `why`
-필드에 개별 거래소 값 표기).
+**CoinGecko binance_futures**: 이번 회차 정상 응답, BANK·ADA·AAVE·AAVE·ALGO·ASTER·ALLO·
+1000RATS 등 raw 정밀값 확보. **Bybit는 이번 회차 응답이 도중에 절단**돼 1000RATS·ADA·
+AAVE·ATOM·ARB·AVAX 등 일부만 확보하고 BANK·ALGO·ALLO·ASTER·AKE는 확보하지 못했다 —
+해당 종목은 Binance 단독값(venue에 명시) 또는 DEX(Aster/OrangeX)로만 이번 회차를
+집계했다. Binance/Bybit 가중평균은 거래량가중 방식으로 chg24·funding을 재계산했다
+(단순평균이 아님).
 
-**CoinGecko okex_swap**: BICO·CORE·BEAT·AEON·CAP·ALLO 6종목 정상 응답. **KAITO·
-GRAM·GIGGLE·PIPPIN·MMT 5종목은 이번 회차도 okex_swap 티커 배열에서 미발견**돼
-OKX 직접 API(`market/ticker`+`public/open-interest`+`public/funding-rate`)로
-조회했다 — 거래량은 `volCcy24h×last` 방법론(전 회차와 동일), chg24는 `(last-
-open24h)/open24h×100`으로 직접 계산했다(전 회차는 별도 raw chg24를 사용했으나
-이번 회차는 open24h 대비 직접 계산 — 방법론 전환을 여기 명시): KAITO
-$37,955,241×$0.9021≈$34.24M(open24h $0.9352→last $0.9021), GIGGLE $1,144,972.92×
-$32.36≈$37.06M(open24h $33.15→last $32.36), PIPPIN $241,995,580×$0.01662≈$4.02M
-(open24h $0.01712→last $0.01662), MMT $94,941,010×$0.1643≈$15.60M(open24h $0.1481→
-last $0.1643), GRAM $2,526,980×$1.392≈$3.52M(open24h $1.388→last $1.392) — OI는
-`oiUsd` 직접값, funding은 `public/funding-rate`의 raw fundingRate×100으로 재계산.
+**CoinGecko okex_swap**: BICO·CORE(직접API 병행)·BEAT·AEON·CAP·ALLO 정상 응답.
+**KAITO·GRAM·GIGGLE·PIPPIN·MMT 5종목은 이번 회차도 okex_swap 티커 배열에서 미발견**돼
+OKX 직접 API(`market/ticker`+`public/open-interest`+`public/funding-rate`)로 조회했다
+— 거래량은 `volCcy24h×last` 방법론(전 회차와 동일), chg24는 `(last-open24h)/open24h×100`
+으로 직접 계산: KAITO $37,518,651×$0.8801≈$33.02M(open24h $0.919→last $0.8801),
+GIGGLE $1,135,205.68×$32.19≈$36.54M(open24h $32.58→last $32.19), PIPPIN
+$236,131,310×$0.01653≈$3.90M(open24h $0.01707→last $0.01653), MMT $108,363,250×
+$0.1632≈$17.68M(open24h $0.1493→last $0.1632), GRAM $3,109,291×$1.378≈$4.28M
+(open24h $1.388→last $1.378), CORE $117,707,401×$0.02002≈$2.36M(open24h $0.0198→
+last $0.02002) — OI는 `oiUsd` 직접값, funding은 `public/funding-rate`의 raw
+fundingRate×100으로 재계산.
 
-**Aster(CoinGecko `derivatives/exchanges/aster`)**: 이번 회차 정상 응답, raw
-정밀 숫자(K/M 약어 없음)로 직접 확보. AKE-USDT·CAP-USDT는 최초 top-40 목록에서
-누락돼 별도 추가 조회로 확보했다(AKE $601,742.38/OI $10,815,607.45, CAP
-$153,645.94/OI $43,618.18).
+**Aster(CoinGecko `derivatives/exchanges/aster`)**: 이번 회차 정상 응답, raw 정밀
+숫자(K/M 약어 없음)로 직접 확보. BICO·BANK·AKE·CASHCAT·1000RATS·BTW·ASTER·CAP·ANSEM·
+AEON·ALLO·BEAT·BLESS 전량 확보.
 
-**OrangeX(`orangex_futures`)·dYdX(`dydx_chain`)**: 이번 회차 초반 CoinGecko 429가
-발생했으나 재시도로 정상 응답 확보, raw 정밀값 확인.
+**OrangeX(`orangex_futures`)**: 이번 회차 정상 응답, BICO·BANK·AKE·CAP·BLESS raw
+정밀값 확인.
 
-**CoinGecko `/global`**: 초반 429 발생 후 재시도로 정상 응답 — 총시총
-$2,290,474,337,059.44, BTC도미넌스 56.72%, ETH도미넌스 10.06%, 24h 시총 변동
-+0.717%.
+**Hyperliquid(`derivatives/exchanges/hyperliquid`)**: 이번 회차 정상 응답, 500K
+이상 거래량 티커 다수 확보(CASHCAT·HYPE·GRAM·KAITO·APEX·FARTCOIN·ADA·AAVE·ATOM·
+ALGO·ETHFI·ASTER·HYPER·HYNA:PUMP 등). ASTER-USD를 이번 회차 처음 별도로 CEX·
+Aster-DEX 외에 HL에서도 추가 확인했다(OI $13.94M).
+
+**dYdX(`dydx_chain`)**: CoinGecko 엔드포인트가 첫 시도에서 429를 반환했으나 이후
+직접 dYdX 데이터 재확인으로 raw 정밀값(BTC-USD·ETH-USD 등) 확보.
+
+**CoinGecko `/global`**: 정상 응답 — 총시총 $2,285,488,439,153.59, BTC도미넌스
+56.72%, ETH도미넌스 10.048%, 24h 시총 변동 +0.522%.
 
 **Fear&Greed**: alternative.me API로 **25(Extreme Fear)** 확인 — 직전 회차와
-동일한 값으로 5회 연속 유지.
+동일한 값으로 6회 연속 유지.
 
-**웹서치로 신규 확인된 촉매**: (a) BEAT — CoinMarketCap 보도로 **8/1 21.25M
-BEAT(유통량 6.9%) 언락**이 이번 회차 낙폭 심화(-20%→-30%대)의 직접 촉매로 확인,
-6월 88% 붕괴에 비하면 이번 하락은 상대적으로 완만한 수준; (b) CASHCAT — CoinDesk
-등 보도로 Robinhood Chain TVL $774M 돌파 배경 주간 +120% 랠리가 여전히 유효함을
-재확인, 다만 파생 펀딩은 과열에서 정상화되는 국면.
+**웹서치로 신규 확인된 촉매**: (a) CASHCAT — CryptoTimes 보도로 고래 주도 리바운드
+(+35%, whale accumulation on Robinhood Chain)와 **8/4 BTSE 거래소 CASHCAT/USDT
+신규 상장**이 유동성 확대 직접 촉매로 확인, CoinDesk가 Robinhood Chain TVL $774M·
+주간+120% 배경을 재확인; (b) BICO — CoinMarketCap·Bitget 등 보도로 **상위 100개
+지갑이 유통량 96.58% 보유**하는 고래 집중 축적과 **8/22 Bitkub 거래소 신규 상장
+예정**이 이번 랠리의 배경으로 확인됐다.
 
 **신규 발견**: 완전히 새로운 토큰은 이번 회차도 발견되지 않았다.
 
 한계: (a) CEX 신규 대형 급등 스캔은 기존 감시 종목·상위 리스트 범위 내에서
 수행했으며 완전한 전체 시장 스캔은 아니다; (b) **주식화·상품·프리IPO 합성 perp
 토큰**은 이번 회차도 규약에 따라 cex/dex 리스트에서 전부 제외했다; (c) KAITO·
-GRAM·GIGGLE·PIPPIN·MMT 5종목의 CEX 거래량·chg24는 OKX 직접 API 기반 추정치·
-재계산값이다; (d) BANK·AKE·AIO·1000RATS·ALLO·AAVE·ADA·ATOM·ASTER(CEX)·ALGO 등
-복수 거래소 종목의 `chg24`·`funding`은 거래량가중평균 계산값이며, 개별 거래소
-값은 `why` 필드에 별도 표기했다; (e) BTW·CASHCAT은 DEX에서만, GIGGLE 등은
-CEX에서만 상장이 확인돼 해당 섹션에서만 집계했다.
+GRAM·GIGGLE·PIPPIN·MMT·CORE 6종목의 CEX 거래량·chg24는 OKX 직접 API 기반
+추정치·재계산값이다; (d) 1000RATS·ADA·AAVE·ATOM 등 복수 거래소 종목의 `chg24`·
+`funding`은 거래량가중평균 계산값이며, 개별 거래소 값은 `why` 필드에 별도
+표기했다; (e) **이번 회차 Bybit 응답이 도중에 절단돼 BANK·AKE·ALGO·ALLO·
+ASTER(CEX)의 Bybit 측 값을 확보하지 못했다** — 해당 종목은 Binance 단독값 또는
+DEX 값으로만 집계했으며 직전 회차의 결합값과 직접 비교는 어렵다; (f) AIO는 이번
+회차 목록에서 확인되지 않아 값을 유지하지 않고 생략했다(결측을 정직하게 표기);
+(g) BTW·CASHCAT은 DEX에서만, GIGGLE 등은 CEX에서만 상장이 확인돼 해당 섹션에서만
+집계했다.
 
 *투자조언 아님 — 시장 파악·아이디어 소싱용 정보 요약.*
