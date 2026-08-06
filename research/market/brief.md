@@ -1,125 +1,67 @@
-# 시장 브리핑 — 2026-08-05 12:07 UTC (KST 2026-08-05 21:07)
+# 시장 브리핑 — 2026-08-06 00:10 UTC
 
-> 정보 요약이며 투자조언이 아닙니다. 상반된 뷰가 있는 경우 양쪽을 병기했습니다. 직전 브리핑:
-> 2026-08-05 00:22 UTC.
+> 정보 요약이며 투자조언 아님. 직전 회차: 2026-08-05 12:07 UTC(약 12시간 전).
 
 ## 전체 시장 심리
 
-미국 화요일(8/4) 정규장 마감 후~수요일(8/5) 정규장 진행 중 기준, BTC는 **$64,000~64,300**대로
-직전 회차($63,600~64,300)보다 소폭 반등해 20일 EMA($63,943)를 회복했으나 50일 EMA($64,587)
-아래에서 정체됐고, 100일 EMA($67,025)·200일 EMA($72,569)는 여전히 큰 폭으로 하회해 중기 추세는
-조정 국면이 유지된다. ETH는 **$1,864~1,872**대(20·50일 EMA 위, 200일 EMA $1,880 아래), SOL은
-**$73~76**대(현재 약 $74.13, 20일 EMA $75.81·50일 EMA $76.27 아래)로 각 자산 모두 직전 회차와
-유사한 좁은 박스권을 유지했다. 전체 시가총액은 **$2.27조**로 24시간 대체로 보합, BTC 도미넌스는
-**56.5%**(coingabbar.com 8/5)로 거의 변화가 없다. 공포탐욕지수는 milkroad 기준 **27**(공포)로
-전일 25(극도의 공포)에서 소폭 개선됐다(coingabbar·milkroad 8/5) — 다만 최근 며칠간 소스별 편차가
-컸던 점을 감안하면 단일 확정치로 단정하긴 어렵다.
+BTC는 $64,000~64,800대로 직전 회차와 거의 동일한 박스권을 유지했다. 20일 EMA($63,943)는
+회복한 채 유지되고 있으나 50일 EMA($64,587)가 3주 넘게 모든 반등 시도를 막아온 저항으로
+재확인됐다(captainaltcoin.com 8/6). ETH는 $1,854~1,900대로 100일 EMA($1,927) 돌파를 시도
+중이고, SOL은 $72.27~74.51대로 20·50일 EMA 아래 정체가 이어졌다. 전체 시가총액은 약
+$2.26~2.28조, BTC 도미넌스 56.2~56.5%로 대체로 보합. 공포탐욕지수는 소스별 편차가 지속돼
+milkroad(8/5)는 27(공포), cryptonomist.ch(8/4)는 25(극도의 공포)로 다소 엇갈렸다(미확인
+폭 존재). ETF 자금흐름은 이 시점(00:10 UTC, 미 동부시각 8/5 20:10)까지 8/5 세션 확정치가
+아직 보고되지 않아, BTC·ETH 모두 8/4 수치(+$211.5M·+$53.1M)가 최신으로 유지된다(검색 중
+발견된 '8/5 $211.5M' 재인용 기사들은 원문 대조 결과 모두 8/4 데이터의 오기/재인용으로
+확인돼 미채택). CLARITY Act는 8/5(수) 클로처 청원 제출 여부가 이번 회차 시점까지 확인되지
+않았고, 민주당 협상파가 지목한 3대 쟁점(윤리조항·소액투자자 집단소송권·DeFi AML 의무)이
+구체화됐다 — 8/7(금) 표결이 성사되더라도 이는 본법 통과가 아닌 절차적 클로처에 불과하며
+60표 확보는 불투명하다. 8/10 상원 휴회 전 시한은 그대로 유지된다. 미-이란 지정학 긴장
+완화·유가 하락이 리스크자산에 약간 우호적인 배경으로 지목됐다(captainaltcoin.com 8/6).
+종합하면 방향성 자체의 유의미한 변화 없이 박스권이 지속되는 가운데, ETF 순유입 개선 신호와
+CLARITY Act 불확실성·8/14 계절성 경고(KillaXBT)라는 리스크 요인이 팽팽히 병존한다.
 
-**ETF 자금흐름 — BTC·ETH 2거래일 연속 순유입 전환**: BTC는 8/3 +$170.1M에 이어 8/4
-**+$211.5M**(IBIT $170.35M 주도·FBTC $19.58M·ARKB $9.17M·BITB $8.72M·MSBT $3.68M, 이슈어별
-합산이 총액과 정확히 일치)로 2거래일 연속 순유입(이틀 합산 약 $381.6M, cryptonews.net·
-en.bloomingbit.io 8/5 교차확인)을 기록했다. ETH도 8/3 -$11.9M 유출을 하루 만에 되돌려 8/4
-**+$53.1M**(ETHA $42.5M·FETH $9.3M 주도) 순유입으로 전환됐다(cryptonews.net·bitcoinworld.co.in
-8/5). 다만 KuCoin 플래시(AiCoin/Lookonchain 온체인 추정 인용, 8/4 15:43 UTC 발행)는 동일자
-BTC를 약 $102.33M으로 훨씬 작게 보도해 소스 간 괴리가 있었는데, 발행 시각이 미 정규장 마감 전
-인트라데이 스냅샷으로 추정되고 이슈어별 breakdown 정합성이 높은 SoSoValue/Farside 계열 수치를
-이번 회차에도 우선 채택했다(상세는 `research/etf/flows.json` 참조). SOL·XRP는 이번 회차에도
-확정치를 확보하지 못해 갱신 실패(SOL 7/30, XRP 7/27 유지).
+## BTC
 
-**CLARITY Act — 클로처 청원 아직 미제출, 표결은 금요일(8/7) 예상**: 직전 회차에서 확인된
-"8/6 클로처 청원 시 8/8 표결" 시나리오 대신, 8/5(수) 기준 클로처 청원이 아직 제출되지 않은
-상태로 Thune 원내대표가 절차를 진행하면 클로처 표결은 금요일(8/7)로 예상된다(coingape.com 8/5).
-기존 윤리조항 합의 부재("not quite there", Tillis)에 더해 스테이블코인 수익조항(BRCA 관련)
-이견도 새로 부각됐으며, 8/10 상원 휴회 전 시한은 그대로 유지된다.
+- **편향**: 중립(경계 지속). 8/3·8/4 이틀 연속 ETF 순유입(합산 약 $381.6M)과 20일 EMA
+  회복이라는 단기 개선 신호는 유지되나, 50일 EMA 저항 재확인과 100/200일 EMA 대폭 하회라는
+  중기 조정 구도는 바뀌지 않았다.
+- **상반된 뷰**: Cowen(중간선거 연도 8~9월 약세, Q4 저점 ~$44,000)·Brandt(50주 MA·이치모쿠
+  구름 하회, 10월 전후 저점, 고$40,000대 가능) 등 경계론 vs TechDev(구리/금 MACD 6년 만에
+  양전환·글로벌 유동성 신고점 기반 조심스러운 강세) 병존. KillaXBT는 8/14를 계절성 변곡점으로
+  지목하며 $60,000 재시험 가능성도 언급.
+- **레벨**: 지지 $62,500~63,000(반복 방어) / $60,000~61,000 / 저항 $64,587(50일 EMA) /
+  $65,500~65,900(Rekt Capital, 50개월 EMA) / $67,000.
+- **촉매**: CLARITY Act 8/5 클로처 청원 및 8/7 표결(성사돼도 절차적 클로처에 불과) · 8/10
+  휴회 시한 · KillaXBT 8/14 계절성 변곡점 · ETF 8/5 확정치 확인.
 
-**Strategy(MSTR) — 8/3 확인된 $8.22B 분기 손실, 이번 회차 추가 반응 없음**: 배경 요인으로
-유지되며 가격 반응은 여전히 제한적이다.
+## ETH
 
-**애널리스트 — 이번 회차 신규 공개 코멘트 없음**: Brandt·KillaXBT·Cowen·Rekt Capital·
-TechDev·Doctor Profit 6인 전원 순수 신규 코멘트가 확인되지 않아 기존 뷰를 그대로 유지한다
-(TechDev Issue #100은 아직 발행되지 않음, 상세는 `research/kol/chartist_views.json` 참조).
+- **편향**: 중립(회복 시도, 확증 부족). ETF 8/4 순유입 유지·100일 EMA 돌파 시도가 관찰되나,
+  파생시장 Net Taker Volume이 약 한 달 만에 순매도로 전환(fxstreet.com 8/5)돼 현물 개선과
+  파생 포지셔닝이 엇갈린다. TechDev의 '하락추세선 반복 저항'(8/1) 진단도 유효.
+- **레벨**: 지지 $1,854 / $1,800. 저항 $1,927(100일 EMA) / $1,961 / $2,000 / $2,020(TechDev
+  슈퍼트렌드 그린 플립 레벨).
+- **촉매**: ETF 8/5 확정치 확인 · 100일 EMA·$2,000 회복 여부 · 파생 순매도 전환 지속성 ·
+  BTC 공통 매크로.
 
-**참고 — 개별 알트 급등락과 메이저 코인 심리**: 이 세션의 선물시장 리서치 루틴에서 관측된
-BANK·BICO·BLESS 등 개별 알트 급등락과 공포탐욕지수 소폭 개선(27, 최근 며칠 25~29권 정체)은
-메이저 3자산(BTC/ETH/SOL)의 방향성 자체를 바꾸기보다 여전히 "개별 종목 로테이션" 수준에
-머무는 것으로 판단된다 — BTC/ETH/SOL 모두 직전 회차 대비 큰 폭의 가격 변화 없이 박스권을
-유지했고, ETF 자금흐름의 2거래일 연속 순유입(BTC·ETH 동반)이 그나마 가장 뚜렷한 개선 신호다.
+## SOL
 
-## 자산별 뷰
+- **편향**: 구조적 약세 지속. 20·50·100·200일 EMA 모두 하회, $72.27 지지 방어가 관건.
+  RSI14 약 43으로 약세 쪽 모멘텀.
+- **레벨**: 지지 $72.27(핵심) / $71.18 / $70.30. 저항 $74.36 / $75.24 / $75.81(20일 EMA) /
+  $76.27(50일 EMA) / $76.39.
+- **촉매**: $72.27 지지 방어 · SOL ETF 자금흐름 소스 충돌 해소(이번 회차 갱신 보류, 아래
+  참조) · Alpenglow 업그레이드 · Morgan Stanley MSOL 등 신규상품 유입 지속성.
 
-### BTC — 중립(약세 경계 다소 완화)
+## 데이터 이슈 메모
 
-BTC ETF가 8/3·8/4 이틀 연속 순유입(합산 약 $381.6M)을 기록하고 20일 EMA를 회복하는 등 단기
-개선 신호가 나타났으나, 50일 EMA 아래 정체·100/200일 EMA 대폭 하회라는 중기 조정 구도 자체는
-바뀌지 않았다. Cowen의 "중간선거 연도 8~9월 약세" 계량 프레임과 Brandt의 50주 MA·이치모쿠
-구름 하회 경계론이 여전히 유효한 반면, KillaXBT의 8/14 계절성 경고와 TechDev의 매크로
-(구리/금 MACD·글로벌 유동성) 개선 논지도 병존한다.
-
-8/5 12:07 UTC 기준 BTC $64,000~64,300대(20일 EMA $63,943 회복, 50일 EMA $64,587 아래서
-정체, 100일 EMA $67,025·200일 EMA $72,569 여전히 하회)다. ETF는 8/3 +$170.1M에 이어 8/4
-+$211.5M(IBIT $170.35M·FBTC $19.58M·ARKB $9.17M·BITB $8.72M·MSBT $3.68M)로 2거래일 연속
-순유입(합산 약 $381.6M)이 확인됐다. CLARITY Act는 8/5 기준 클로처 청원 미제출 — Thune가
-절차 진행 시 표결은 금요일(8/7) 예상되나 윤리조항·스테이블코인 수익조항 이견이 지속되며
-8/10 휴회 전 시한이 임박했다. 공포탐욕지수는 27(전일 25에서 개선).
-
-- **지지**: $62,600(주요) / $63,000(직전 회차 배틀그라운드) / $63,898(이탈 시 $62,662 재오픈) /
-  $60,000~61,000(KillaXBT, 8/14 계절성 경고와 결부) / 고$40,000대(Brandt, 10월 전후 저점)
-- **저항**: $64,500~65,000(1차) / $64,587(50일 EMA) / $65,500~65,900(Rekt Capital, 50개월 EMA) /
-  $66,700(주요 돌파 목표) / $67,025(100일 EMA)
-- **촉매**: CLARITY Act 8/7(금) 클로처 표결 예상·윤리조항 및 스테이블코인 수익조항 타결 여부
-  (8/10 휴회 전 시한). KillaXBT 지목 8/14 계절성 변곡점. Cowen의 8~9월 중간선거연도 약세
-  시즌성 경고. ETF 순유입 2거래일 연속 지속 여부. Strategy 등 상장기업 비트코인 트레저리
-  취약성 후속 반응.
-
-### ETH — 중립 유지
-
-ETF가 8/3 유출을 하루 만에 되돌려 8/4 순유입 전환됐고 20·50일 EMA 위에서 유지되고 있으나
-200일 EMA 아래 정체가 이어져 뚜렷한 방향성 전환으로 보기는 이르다. TechDev의 "하락추세선
-반복 저항" 진단(8/1)이 여전히 유효하다.
-
-8/5 ETH $1,864~1,872대(20일 EMA $1,869·50일 EMA $1,867 위, 200일 EMA $1,880 아래)다. ETF는
-8/3 -$11.9M 유출 이후 8/4 +$53.1M(ETHA $42.5M·FETH $9.3M 주도)로 하루 만에 순유입 전환됐다.
-일봉 R1 $1,886.84 상향 돌파 여부가 단기 관건이다.
-
-- **지지**: $1,850~1,870 / $1,849(50일 EMA) / $1,800
-- **저항**: $1,886.84(일봉 R1) / $1,930~1,950 / $2,000(심리적) / $2,020(TechDev, 3일봉
-  슈퍼트렌드 그린 플립 레벨) / $2,159.8(200일 EMA 근사)
-- **촉매**: ETF 순유입 전환 지속 여부(8/4 반등이 일회성인지). $1,886.84 일봉 R1·200일 EMA
-  회복 여부. 하락추세선 돌파(TechDev). BTC 공통 매크로(CLARITY Act·9월 FOMC).
-
-### SOL — 구조적 약세 지속
-
-20·50·100·200일 EMA 모두 아래에서 정체가 이어지고 있으며 $72.27 지지 방어가 여전히 관건이다.
-ETF는 7/30 이후 확정치 공백이 지속돼 SOL만 자금흐름 검증이 BTC·ETH 대비 뒤처져 있다.
-
-8/5 SOL $73~76대(약 $74.13)로 20일 EMA $75.81·50일 EMA $76.27·100일 EMA $79.89·200일 EMA
-$92.66 모두 하회한다. $72.27 지지 유지 시 $75.81 재시험, $72.80 이탈 시 $71.70 하방 노출
-시나리오가 병기된다. ETF는 SOL 7/30(플로우 $0.00) 이후 이슈어 수준 확정치를 이번 회차에도
-확보하지 못해 갱신 실패(다음 회차 재확인 필요).
-
-- **지지**: $72.27(핵심) / $71.70 / $70.85 / $60(붕괴 시 하방)
-- **저항**: $73.10 / $74.26 / $75.81(20일 EMA) / $76.27(50일 EMA) / $79.89(100일 EMA) /
-  $92.66(200일 EMA)
-- **촉매**: $72.27 지지 방어 여부. SOL ETF 확정 자금흐름 공백 해소(7/30 이후 미확인).
-  Alpenglow 업그레이드 진행상황. Morgan Stanley MSOL 등 신규상품 유입 지속성. BTC·ETH
-  공통 매크로 파급.
-
----
-*주목 프로젝트/토큰은 KOL 워치(`kol-watch`)가 별도로 다룹니다. ETF 일별 순유입 상세 이력·출처는
-`research/etf/flows.json`(이번 회차 BTC·ETH 8/4 신규 append, SOL·XRP는 확정치 미확보로 유지),
-상위 차티스트 개별 뷰는 `research/kol/chartist_views.json`(이번 회차 6인 전원 신규 공개 코멘트
-미확인, 기존 뷰 유지) 참조.*
-
-Sources: [Fortune — Current price of Bitcoin for Aug. 5, 2026](https://fortune.com/article/price-of-bitcoin-08-05-2026/) ·
-[CaptainAltcoin — Bitcoin Price Prediction for Today (August 5, 2026)](https://captainaltcoin.com/bitcoin-price-prediction-for-today-august-5-2026/) ·
-[coingabbar.com — Crypto News Today August 5: Bitcoin Holds $64K, Cysic Token Soars 93%](https://www.coingabbar.com/en/crypto-currency-news/crypto-news-today-august-5-bitcoin-eth-cysic-defi-market-rises) ·
-[milkroad.com — Crypto Fear & Greed Index for August 5th, 2026](https://milkroad.com/fear-greed/) ·
-[cryptonews.net — U.S. Spot Bitcoin ETFs See Second Straight Day of Inflows, Adding $211.5M](https://cryptonews.net/news/bitcoin/33249391/) ·
-[en.bloomingbit.io — US Spot-Bitcoin ETFs Draw $211.5 Million for Second Straight Day of Inflows](https://en.bloomingbit.io/feed/news/117710) ·
-[cryptonews.net — U.S. Spot Ethereum ETFs See $53.1M Net Inflow After One-Day Outflow](https://cryptonews.net/news/ethereum/33249388/) ·
-[bitcoinworld.co.in — U.S. Spot Ethereum ETFs $53.1M Net Inflow](https://bitcoinworld.co.in/us-spot-ethereum-etfs-53-1m-net-inflow/) ·
-[KuCoin flash — Bitcoin ETF sees $10.2M(1,600 BTC/$102.33M) net inflow on August 4; Ethereum ETF records $12.2M net outflow](https://www.kucoin.com/news/flash/bitcoin-etf-sees-10-2m-net-inflow-on-august-4-ethereum-etf-records-12-2m-net-outflow) ·
-[CoinGape — CLARITY Act LIVE Updates, Aug. 5: US Senate Vote Filing Expected Today](https://coingape.com/clarity-act-live-updates-aug-5-us-senate-vote-filing-expected-today/) ·
-[cryptonews — CLARITY Act Senate Vote Locked In, But 60-Vote Hurdle Looms Large](https://cryptonews.com/news/clarity-act-senate-vote-60-vote-threshold/) ·
-[en.cryptonomist.ch — Ethereum Crypto Analysis: What Changes at $1,872 in August 2026](https://en.cryptonomist.ch/2026/08/05/ethereum-crypto-analysis-1872-aug2026/) ·
-[coindcx.com — Solana (SOL) Price Prediction: Daily & Weekly 2026-2040](https://coindcx.com/blog/price-predictions/solana-price-weekly/)
+- **ETF flow — SOL**: cryptoslate.com·coinsbit.io(둘 다 Farside 인용)가 "7/29~8/3(또는
+  8/4) 전 종목 제로플로우"를 보도했으나, 이는 이미 교차검증돼 기록된 SOL 7/29 +$19.03M
+  (Morgan Stanley MSOL 신규 상장분)과 정면 충돌한다. 신뢰도 있는 재확인 전까지 이번 회차엔
+  append하지 않았다(갱신 실패, 다음 회차 재확인 필요).
+- **ETF flow — XRP**: 7/28 결측 공백을 월간 총액($27.29M, coingabbar 7월 총괄기사)과의
+  산술 정합으로 재구성해 7/28($0.00)~8/4($0.00)까지 순차 append했다(상세는
+  `research/etf/flows.json` source 참조).
+- **애널리스트**: 6인(Brandt·KillaXBT·Cowen·Rekt Capital·TechDev·Doctor Profit) 전원
+  이번 회차 재탐색에서도 순수 신규 공개 코멘트가 확인되지 않아 기존 뷰를 유지한다.
