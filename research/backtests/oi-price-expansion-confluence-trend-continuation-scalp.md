@@ -321,5 +321,3 @@ gross-real/net-negative 구조는 t-검정으로 재확인했으며, OI 데이�
 결론에 영향 없음을 실측 확인**했다. 리포트 서술 중 "OI를 봉 종가 시각에 정렬"·"결측은 초기
 데이터 갭"·"다이버전스 gross부터 무엣지" 세 문장은 부정확/과잉확신이라 정정을 권고하나,
 수치·최종 판정 자체는 그대로 신뢰 가능하다.
-
-Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
