@@ -1,12 +1,12 @@
 토큰,체인,단계,KOL코로보,서사,신규여부,시점,출처
-DERP,Robinhood Chain,조기,"The Bored Ape Gazette(런칭보도,신규)","신규편입1회차,StonkPit브라우저PoW마이닝게임토큰,h1+13.5%·h6+12.47%·h24+33.34%전구간동반양전,vol/liq비율약2.55배,유동성$96,618",신규,2026-08-08T06:06Z,DexScreener API·GeckoTerminal API·TheBoredApeGazette
-BOYZ,Robinhood Chain,확산,"CryptoKaleo(carryover)·Jason Desimone·EddyXBT(carryover)","28회차,h1 4회째flip(+12.16%),h24스트릭첫정체(+892%),유동성·거래량성장률급둔화(+18.3%→+1.6%,+42.7%→+6.5%)-신규경고",지속28회차,2026-08-08T06:06Z,DexScreener API
-JIMOTHY,Solana,확산,뉴스매체5건(carryover),"7회차,h1급둔화(+106%→+8.84%,4회차붕괴전조패턴재현조짐)하나h6·h24는추가가속(+118%·+333%),유동성+5.6%·거래량+30.6%",지속7회차,2026-08-08T06:06Z,DexScreener API
-HOOKR,Robinhood Chain,뒷북,미확인(코로보없음),"15회차,유동성3연속증가스트릭붕괴(-4.9%),h6대폭둔화(+15.14%),h24보합(+128%)",지속15회차,2026-08-08T06:06Z,DexScreener API
-FRONG,Robinhood Chain,뒷북,미확인(코로보없음),"80회차,h24 4연속개선스트릭붕괴(-13.32%),h6재역전음전(-6.3%)",지속80회차,2026-08-08T06:06Z,DexScreener API
-POOLS,Robinhood Chain,뒷북,미확인(코로보없음),"30회차,h24 5연속완만개선지속(-8.9%),h6재역전음전(-21.52%),유동성계속감소",지속30회차,2026-08-08T06:06Z,DexScreener API
-MANCER,Robinhood Chain,뒷북,뉴스매체2건(carryover),"13회차,h6재가속(+21.53%)이나h24추가둔화(+6.19%),거래량3연속감소(-20.0%)",지속13회차,2026-08-08T06:06Z,DexScreener API
-TURBO,Robinhood Chain,뒷북,미확인(코로보없음),"41회차,h1·h6·h24전구간동반개선-40회이상flip-flop이력사상드문정렬",지속41회차,2026-08-08T06:06Z,DexScreener API
-swappy,Robinhood Chain,뒷북,미확인(코로보없음),"22회차,전구간급반전양전(h24+7.67%→+131%),유동성+34.4%급증-22회이상flip-flop이력상단1회성경계",지속22회차,2026-08-08T06:06Z,DexScreener API
-PosM,Robinhood Chain,뒷북,미확인(코로보없음),"20회차,직전반등이재악화,h6·h24모두역대최악치근접재접근,유동성유출재개",지속20회차,2026-08-08T06:06Z,DexScreener API
-WINK,Robinhood Chain,뒷북,미확인(코로보없음),"39회차,예측대로반전→붕괴3번째사이클진입,h1재역전음전·h6거의보합",지속39회차,2026-08-08T06:06Z,DexScreener API
+DERP,Robinhood Chain(Uniswap V3/V4),조기,The Bored Ape Gazette(carryover),"2회차,h1첫음전전환(-11.15%)이나h6가속(+22.47%)·h24강세유지(+22.55%),유동성+5.4%·거래량+6.1%로계속증가",지속(2회차),2026-08-08T08:03Z,https://dexscreener.com/robinhood/0x6543B7746ca744C4bb2198191E71f40FF04C41b9
+BOYZ,Robinhood Chain(Uniswap V4),뒷북,"CryptoKaleo·Jason Desimone·EddyXBT(carryover)","29회차,유동성첫역성장(-0.9%)+거래량성장률2연속둔화+h1·h6·h24전구간동반반전-확산에서뒷북으로하향",지속(29회차),2026-08-08T08:03Z,https://dexscreener.com/robinhood/0x49d8022cfa113dadb8cb1a5b22250524cf24b926
+JIMOTHY,Solana(PumpSwap/Meteora),뒷북,"일론머스크X게시물(신규)·백악관SNS언급(carryover)","8회차,h1·h6·h24·유동성전부동시반전,4회차붕괴패턴재현확정-확산에서뒷북으로하향",지속(8회차),2026-08-08T08:03Z,https://dexscreener.com/solana/5PGhKctym6odbHGo2tKMST2AjmJsb2uZBQrKkn4ZuFT5
+MANCER,Robinhood Chain(Uniswap V3/V4),뒷북,"뉴스매체2건(carryover)","14회차,유동성+13.4%·h24+34.95%급반등으로관심약화추세반전,거래량만4연속감소",지속(14회차),2026-08-08T08:03Z,https://dexscreener.com/robinhood/0xc72F232a6869e6CF34dC06129AfFD07F8a2a246A
+swappy,Robinhood Chain(Uniswap),뒷북,미확인(코로보없음),"23회차,h6·h24 2회연속가속(급반전이2회확인),h1은둔화",지속(23회차),2026-08-08T08:03Z,https://dexscreener.com/robinhood/0x298348d5b2e45C774E3ee4f1a0924071DfbDC8C7
+POOLS,Robinhood Chain(Uniswap V4),뒷북,미확인(코로보없음),"31회차,h24 6연속개선+유동성반전증가(+4.6%),h1은재역전음전",지속(31회차),2026-08-08T08:03Z,https://dexscreener.com/robinhood/0x385b36Ff682Ab4C76E7c37A66b96aABC466471d5
+FRONG,Robinhood Chain(Uniswap V4),뒷북,미확인(코로보없음),"81회차,h1·h6전구간양전반전,h24개선,유동성+7.0%반전증가",지속(81회차),2026-08-08T08:03Z,https://dexscreener.com/robinhood/0x6245e67affA44a23077f0Ea7f981a8DC743a0c47
+PosM,Robinhood Chain(Uniswap),뒷북,미확인(코로보없음),"21회차,역대최악치근접이후h6양전반전·h24개선·유동성반전증가",지속(21회차),2026-08-08T08:03Z,https://dexscreener.com/robinhood/0x658bF542C9384dC000A07540B0b29Ef7E79fe126
+HOOKR,Robinhood Chain(Uniswap V4),뒷북,미확인(코로보없음),"16회차,h1반전양전하나h6재역전음전,h24계속둔화,유동성2연속감소",지속(16회차),2026-08-08T08:03Z,https://dexscreener.com/robinhood/0x18E674231A58c239Dc7DaeDcffE15Ec3A24cff5c
+TURBO,Robinhood Chain(Uniswap V3),뒷북,미확인(코로보없음),"42회차,드문전구간동반개선정렬이붕괴-h6재역전음전,유동성2연속감소",지속(42회차),2026-08-08T08:03Z,https://dexscreener.com/robinhood/0x808a9D5071E7d5f58490cB7385027536BbE43eF0
+WINK,Robinhood Chain(Uniswap V4),뒷북,미확인(코로보없음),"40회차,3번째붕괴사이클심화-전구간동반악화,유동성·거래량동반급감",지속(40회차),2026-08-08T08:03Z,https://dexscreener.com/robinhood/0x8ad5a580c4215086dec828d8626b95a06d7d00cc
