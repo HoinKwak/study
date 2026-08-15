@@ -1,16 +1,16 @@
 토큰,체인,단계,KOL코로보,서사,신규여부,시점,출처
-PRINTER,Robinhood Chain(Uniswap V4 0.3%),확산,,"신규편입2회차. 유동성2연속증가(DS+2.675%/GT+1.833%,격차0.572%)로안정화지속. h24+1104%DS(여전히h6=h24,생성후6~7시간추정)",지속(편입2회차),2026-08-15T09:00:00Z,DexScreener+GeckoTerminal
-TOAD,Solana(PumpSwap/Meteora),뒷북,,"71회차. 2연속감소이후유동성재차증가(+1.120%DS/+1.047%GT)로반전,하락감속확인. h1·h6뚜렷개선,h24소폭악화",지속(71회차),2026-08-15T09:00:00Z,DexScreener+GeckoTerminal
-lickingcat,Solana(PumpSwap/Meteora),뒷북,,"62회차. 직전최대낙폭+h24극단반전경고이후유동성뚜렷회복(+7.703%DS/+12.583%GT),h1·h6대폭개선",지속(62회차),2026-08-15T09:00:00Z,DexScreener+GeckoTerminal
-BLINK,Robinhood Chain(Uniswap V3),뒷북,,"71회차. 크래시-반등-하락교대패턴에서재차반등(+4.878%DS/+4.694%GT),h1·h6대폭양전",지속(재반등),2026-08-15T09:00:00Z,DexScreener+GeckoTerminal
-DPG,Solana(PumpSwap),뒷북,,"편입22회차. 유동성4연속증가(+8.454%DS/+8.402%GT)로회복지속,h24뚜렷개선",지속(편입22회차),2026-08-15T09:00:00Z,DexScreener+GeckoTerminal
-BABYSHIB,Solana(PumpSwap),뒷북,,"편입20회차. 유동성재증가전환(+8.017%DS/+7.955%GT)이나h24는재악화,방향엇갈림",지속(편입20회차),2026-08-15T09:00:00Z,DexScreener+GeckoTerminal
-PITCOIN,Solana(PumpSwap),뒷북,,편입23회차. 유동성재증가(+4.272%DS/+4.032%GT)+전지표양전전환,지속(편입23회차),2026-08-15T09:00:00Z,DexScreener+GeckoTerminal
-CALLOOOR,Solana(PumpSwap),뒷북,,"편입21회차. 2연속강한증가이후첫반전감소(-3.433%DS/-4.917%GT,완만),h24는음전→양전전환",지속(편입21회차),2026-08-15T09:00:00Z,DexScreener+GeckoTerminal
-Remus,Solana(PumpSwap/Meteora),뒷북,,"67회차. 유동성2연속소폭증가(+0.481%DS/+0.604%GT)지속,h24소폭재악화",지속(67회차),2026-08-15T09:00:00Z,DexScreener+GeckoTerminal
-JUGGERNAUT,Robinhood Chain(Uniswap V3 1%),뒷북,"Drallio(X,CoinGape인용,약한코로보,carryover)","58회차. 유동성2연속소폭재감소(-2.111%DS/-2.129%GT),h24는개선",지속(58회차),2026-08-15T09:00:00Z,DexScreener+GeckoTerminal
-Dealer,Solana(PumpSwap/Meteora),뒷북,,"63회차. 첫반전감소(-0.930%DS/-1.914%GT),전지표동반재악화",지속(63회차),2026-08-15T09:00:00Z,DexScreener+GeckoTerminal
-MANCER,Robinhood Chain(Uniswap V3 1%),뒷북,,"49회차. 유동성2연속소폭재감소(-2.702%DS/-1.754%GT),h24둔화되나여전히최고양전권",지속(49회차),2026-08-15T09:00:00Z,DexScreener+GeckoTerminal
-BRODIE,Robinhood Chain(Uniswap V3),뒷북,,"편입34회차. 첫반전감소(-1.500%DS/-1.430%GT,완만),모멘텀혼조",지속(편입34회차),2026-08-15T09:00:00Z,DexScreener+GeckoTerminal
-Momota,Solana(PumpSwap/Meteora/Raydium),뒷북,,"편입18회차. 유동성2연속소폭재감소(-0.579%DS/-1.923%GT)지속,모멘텀전반약세",지속(편입18회차),2026-08-15T09:00:00Z,DexScreener+GeckoTerminal
-FWA,Ethereum(Uniswap V4),뒷북,Cointelegraph등(carryover)+CoinGecko7일+352.90%(신규참고),"75회차. 유동성사실상보합(-0.121%DS/-1.378%GT),h24뚜렷개선지속",지속(75회차),2026-08-15T09:00:00Z,DexScreener+GeckoTerminal+CoinGecko
+PRINTER,Robinhood Chain(Uniswap V4 0.3%),확산,,"편입3회차. 첫반전감소(DS-4.472%/GT-3.499%)로2연속증가끝. h6과h24가처음분리(생성후7시간47분경과, 6시간창이풀생성시점밖으로벗어남): h6+0.21%DS/-0.402%GT vs h24+1027%DS/+1021.939%GT(데이터오류아님)",지속(편입3회차),2026-08-15T11:00:00Z,DexScreener+GeckoTerminal
+TOAD,Solana(PumpSwap/Meteora),뒷북,,"72회차. 직전1회반전증가가2연속으로못이어지고재차감소(-0.814%DS/-0.882%GT). h1·h6소폭개선이나h24뚜렷악화(-25.1%DS/-25.048%GT)",지속(72회차),2026-08-15T11:00:00Z,DexScreener+GeckoTerminal
+lickingcat,Solana(PumpSwap/Meteora),뒷북,,"63회차. 직전완화판정이번회차무효화-유동성-12.6~16%+h1·h6·h24전지표급격재악화(h24-48.71%DS/-52.481%GT), 위험도🟡→🟠재상향",지속(63회차),2026-08-15T11:00:00Z,DexScreener+GeckoTerminal
+BLINK,Robinhood Chain(Uniswap V3),뒷북,,"72회차. 크래시-반등-하락교대패턴에서재차하락구간(-10.594%DS/-10.902%GT), h1·h6급반전음전",지속(재하락),2026-08-15T11:00:00Z,DexScreener+GeckoTerminal
+DPG,Solana(PumpSwap),뒷북,,"편입23회차. 4연속증가끝나고첫반전감소(-3.794%DS/-5.317%GT), h1급반전음전+h24악화로회복추세정지",지속(편입23회차),2026-08-15T11:00:00Z,DexScreener+GeckoTerminal
+BABYSHIB,Solana(PumpSwap),뒷북,,"편입21회차. 재증가전환이재차반전, 전지표동반큰폭악화(유동성-6.844%DS/-7.406%GT, h24-62.42%DS/-62.412%GT), 버퍼72%대로14종중최얇음",지속(편입21회차),2026-08-15T11:00:00Z,DexScreener+GeckoTerminal
+PITCOIN,Solana(PumpSwap),뒷북,,"편입24회차. 유동성3연속증가(+0.980%DS/+2.167%GT)+h1·h6·h24전부양전유지, 14종중이번회차유일한전지표양전",지속(편입24회차),2026-08-15T11:00:00Z,DexScreener+GeckoTerminal
+CALLOOOR,Solana(PumpSwap),뒷북,,"편입22회차. 첫반전감소이후재차증가전환(+0.861%DS/+1.595%GT). h1·h24방향이DS·GT소스간불일치(GT만음전전환)로재확인필요",지속(편입22회차),2026-08-15T11:00:00Z,DexScreener+GeckoTerminal
+Remus,Solana(PumpSwap/Meteora),뒷북,,"68회차. 유동성3연속증가(+0.977%DS/+1.022%GT)지속, h6·h24개선(h1만반전음전)",지속(68회차),2026-08-15T11:00:00Z,DexScreener+GeckoTerminal
+JUGGERNAUT,Robinhood Chain(Uniswap V3 1%),뒷북,"Drallio(X,CoinGape인용,약한코로보,carryover)","59회차. 2연속소폭재감소끝나고반전증가(+0.405%DS/+0.385%GT), h1·h6개선이나h24는악화",지속(59회차),2026-08-15T11:00:00Z,DexScreener+GeckoTerminal
+Dealer,Solana(PumpSwap/Meteora),뒷북,,"64회차. 2연속감소로가속악화(-8.900%DS/-9.097%GT), 전지표큰폭악화로위험도상향",지속(64회차),2026-08-15T11:00:00Z,DexScreener+GeckoTerminal
+MANCER,Robinhood Chain(Uniswap V3 1%),뒷북,,"50회차. 2연속소폭재감소끝나고반전증가(+0.682%DS/+0.566%GT), h6개선+h24양전지속(14종중최고수준)",지속(50회차),2026-08-15T11:00:00Z,DexScreener+GeckoTerminal
+BRODIE,Robinhood Chain(Uniswap V3),뒷북,,"편입35회차. 2연속감소(-3.456%DS/-3.630%GT), 전지표동반악화로위험도상향(DS·GT편차확대)",지속(편입35회차),2026-08-15T11:00:00Z,DexScreener+GeckoTerminal
+Momota,Solana(PumpSwap/Meteora/Raydium),뒷북,,"편입19회차. 2연속소폭재감소끝나고반전증가(+4.141%DS/+5.554%GT)+h1·h6·h24전부뚜렷개선, 이번회차가장뚜렷한회복사례",지속(편입19회차),2026-08-15T11:00:00Z,DexScreener+GeckoTerminal
+FWA,Ethereum(Uniswap V4),뒷북,"Cointelegraph등(carryover)","76회차. 보합끝나고첫반전소폭감소(-2.207%DS/-1.083%GT), h6개선h1은반전음전으로혼조. ATH대비21.8%하락·시총$26,040,658·CoinGecko#668(WebSearch확인)",지속(76회차),2026-08-15T11:00:00Z,DexScreener+GeckoTerminal+CoinGecko
