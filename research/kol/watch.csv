@@ -1,16 +1,16 @@
 토큰,체인,단계,KOL코로보,서사,신규여부,시점,출처
-ROBBIE,Robinhood Chain(Uniswap),확산,,"h24가+10.82%→+44.92%로큰폭가속(약4배), 유동성은+7.62%증가·거래량/유동성비율은오히려완화. WebSearch로'공식로빈후드체인토큰아님/사기가능성'경고신규확인",지속(2회차),2026-08-16T21:00:00Z,DexScreener/GeckoTerminal/WebSearch
-PRINTER,Robinhood Chain(Uniswap V4 0.3%),뒷북,,"직전회차첫h24감소가반박, h24+372%→+553%DS로재가속. h1대폭반전음전(-23.73%), 매수매도비율1.10→1.87로재확대",지속(20회차),2026-08-16T21:00:00Z,DexScreener/GeckoTerminal
-Remus,Solana(PumpSwap),뒷북,,"h24대폭반전음전(+14.72%→-25.18%)으로전지표약세전환",지속(85회차),2026-08-16T21:00:00Z,DexScreener
-CALLOOOR,Solana(PumpSwap),뒷북,,"직전동반급락에서전지표동반반전양전(h24-18.28%→+4.99%)으로큰폭전환",지속(39회차),2026-08-16T21:00:00Z,DexScreener
-CATE,Solana(PumpSwap),뒷북,,"3연속음전심화스트릭이중단, h24-5.52%→-4.09%로개선",지속(12회차),2026-08-16T21:00:00Z,DexScreener
-DPG,Solana(PumpSwap),뒷북,,"첫냉각조짐이1회차만에반전, h6+1.86%→+17.95%로재가속",지속(40회차),2026-08-16T21:00:00Z,DexScreener
-JUGGERNAUT,Robinhood Chain(Uniswap V3 1%),뒷북,"Drallio(약한코로보, carryover)","직전첫반전음전이1회차만에재반전, h24-1.01%→+1.22%로양전복귀",지속(76회차),2026-08-16T21:00:00Z,DexScreener/GeckoTerminal
-TOAD,Solana(PumpSwap/Meteora),뒷북,,"유동성+21.82%큰폭증가, h24는7연속음전이나낙폭축소",지속(89회차),2026-08-16T21:00:00Z,DexScreener
-PITCOIN,Solana(PumpSwap),뒷북,,"h24 8연속음전(7연속에서연장)이나낙폭은축소",지속(41회차),2026-08-16T21:00:00Z,DexScreener
-FWA,Ethereum(Uniswap V4),뒷북,"Cointelegraph·CryptoBriefing·KuCoin·PANews(carryover)+CG트렌딩12위","h24 4연속양전재가속(+17.18%→+27.36%), h1도반전양전",지속(93회차),2026-08-16T21:00:00Z,DexScreener
-BRODIE,Robinhood Chain(Uniswap V3),뒷북,,"h24재가속(+10.97%→+13.74%), h6는반전음전으로혼재",지속(52회차),2026-08-16T21:00:00Z,DexScreener
-BLINK,Robinhood Chain(Uniswap V3),뒷북,,"h24낙폭추가축소(-10.11%→-5.03%)개선지속, h1은반전음전",지속(89회차),2026-08-16T21:00:00Z,DexScreener
-lickingcat,Solana(PumpSwap/Meteora),뒷북,,"전지표동반악화(h24-18.2%→-21.4%, h6대폭악화)",지속(80회차),2026-08-16T21:00:00Z,DexScreener
-Dealer,Solana(PumpSwap/Meteora),뒷북,,"h1h6동반반전음전, h24-6.37%→-10.02%로악화",지속(81회차),2026-08-16T21:00:00Z,DexScreener
-Momota,Solana(PumpSwap/Meteora/Raydium),뒷북,,"전지표개선이나h24는-32.59%로여전히깊은음전권",지속(36회차),2026-08-16T21:00:00Z,DexScreener
+ROBBIE,"Robinhood Chain(Uniswap, WETH페어)",뒷북,,"편입3회차. h1+2.56%→-13.39%DS·h6+27.89%→-3.54%DS 동반반전음전, h24+44.92%→+23.07%DS 대폭감속으로 단계를 확산→뒷북 재분류. 거래량/유동성비율 5.04배 재상승. Robinhood Chain 허니팟/토큰소멸 경고 7개매체로확대",지속(3회차),2026-08-16T23:00:00Z,DexScreener API
+PRINTER,"Robinhood Chain(Uniswap V4 0.3%, USDG페어)",뒷북,,"편입21회차. h24+553%→+372%DS 감속(2회재조회로확인), h1-23.73%→-18.69%DS, 매수/매도비율1.87→1.28로축소. 거래량/유동성비율3.73배로재상승",지속(21회차),2026-08-16T23:00:00Z,DexScreener API
+Remus,Solana(PumpSwap),뒷북,,"85→86회차. h24-25.18%→-33.21%DS 악화심화, h6+2.2%→-12.17%DS 재반전음전, 유동성-10.32%이탈",지속(86회차),2026-08-16T23:00:00Z,DexScreener API
+CALLOOOR,Solana(PumpSwap),뒷북,,"39→40회차. h1·h6은가속개선(+18.84%·+18.45%)이나 h24+4.99%→-3.79%DS로반전음전, 혼재신호",지속(40회차),2026-08-16T23:00:00Z,DexScreener API
+CATE,Solana(PumpSwap),뒷북,,"12→13회차. 직전개선스트릭이1회차만에반전, h24-4.09%→-20.06%DS로대폭악화, 전지표동반악화",지속(13회차),2026-08-16T23:00:00Z,DexScreener API
+DPG,Solana(PumpSwap),뒷북,,"40→41회차. 직전h6재가속이감속, h6+17.95%→+13.92%DS, h24+50.17%→+47.98%DS 거의보합",지속(41회차),2026-08-16T23:00:00Z,DexScreener API
+JUGGERNAUT,Robinhood Chain(Uniswap V3 1%),뒷북,"Drallio(약한코로보, carryover)","76→77회차. 직전재반전양전이다시반전, h24+1.22%→-3.18%DS, h1도반전음전",지속(77회차),2026-08-16T23:00:00Z,DexScreener API
+TOAD,Solana(PumpSwap/Meteora),뒷북,,"89→90회차. 직전유동성유입+개선이반전, h24-23.29%→-32.69%DS로8연속음전낙폭재확대, 유동성-4.81%",지속(90회차),2026-08-16T23:00:00Z,DexScreener API
+PITCOIN,Solana(PumpSwap),뒷북,,"41→42회차. h24-17.65%→-13.68%DS로9연속음전이나낙폭축소지속, h1·h6은반전음전",지속(42회차),2026-08-16T23:00:00Z,DexScreener API
+FWA,"Ethereum(Uniswap V4, WETH페어)","뒷북","Cointelegraph·CryptoBriefing·KuCoin·PANews(carryover)+CG트렌딩12위(carryover)","93→94회차. 4연속양전재가속이대폭감속, h24+27.36%→+7.51%DS(5연속양전유지), h1·h6반전음전",지속(94회차),2026-08-16T23:00:00Z,DexScreener API
+BRODIE,"Robinhood Chain(Uniswap V3, Robinhood Dog)",뒷북,,"52→53회차. h24+13.74%→+0.08%DS로거의손익분기, h1반전양전·h6악화로혼재",지속(53회차),2026-08-16T23:00:00Z,DexScreener API
+BLINK,"Robinhood Chain(Uniswap V3, pools.trade)",뒷북,,"89→90회차. h24-5.03%→-1.45%DS로낙폭추가축소, 손익분기근접개선지속, h6는반전음전",지속(90회차),2026-08-16T23:00:00Z,DexScreener API
+lickingcat,Solana(PumpSwap/Meteora),뒷북,,"80→81회차. h24-21.4%→-20.22%DS 거의보합, h6-26.69%→-28.62%DS 여전히깊은악화, 유동성-7.67%이탈",지속(81회차),2026-08-16T23:00:00Z,DexScreener API
+Dealer,Solana(PumpSwap/Meteora),뒷북,,"81→82회차. 전지표동반대폭악화, h24-10.02%→-30.41%DS, 유동성-10.43%이탈",지속(82회차),2026-08-16T23:00:00Z,DexScreener API
+Momota,Solana(PumpSwap/Meteora/Raydium),뒷북,,"36→37회차. 전지표동반악화, h24-32.59%→-42.23%DS로역대최악치권근접",지속(37회차),2026-08-16T23:00:00Z,DexScreener API
