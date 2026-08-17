@@ -26,7 +26,7 @@ _(현재 공지 없음)_
 - **기타(8/1)**: 주간 API 한도 도달로 7/31 18:03Z~8/1 14:00Z 약 22h 루틴 중단 → 리셋 후 루틴별 1회 캐치업으로 복구(중복 재생 안 함). 사장님이 LIT(Lighter) 수동 트레이딩 중 — 차트 해석·미시구조 Q&A 진행(정보 제공만, 매매 판단 개입 없음). LIT 심층 리서치 노트 `research/notes/lit-research-2026-07-30.md` 커밋됨(토큰 정체·RH 파트너십 사실검증·HYPE 비교 밸류·12월 클리프 리스크). market-brief 검증 중 ETH ETF 과거이력 임의수정 발견→백업본 복원 사례 있음(append-only 검증 계속 철저히).
 - **미조치 대기**: #45 Lighter 리더보드 커넥터, #46 폴리마켓 롱샷편향 실측 — 요청 없으면 착수 안 함.
 - **사장님 결정 대기**: `research/etf/flows.json`의 `source` 필드가 **32,845자**로 실용 한계에 도달. 선택지 ①출처 이력을 별도 파일(`research/etf/flows_sources.md`)로 분리 ②최근 N개월만 남기고 나머지는 git 이력에 위임. **임의로 줄이지 않고 그대로 유지 중**(append-only 규약 준수).
-- **정기 루틴 인프라 상태(8/17)**: OrangeX API 전면 중단 16회차 이상(코드1000 "No service found", 항목 전부 `chg24: None` 표기) · Aster 직접 API 403 지속(CoinGecko id `aster`로 대체, 구 `aster_dex`는 404) · Hyperliquid CoinGecko 요약값이 5종목 거래량을 1000배 부풀린 사례 있어 **raw 필드 직접 확인 필수** · OKX는 ctVal 반영 + open-interest 엔드포인트 개별 재조회 필요 · BTW는 티커 충돌(Bitway/Banana Tape Wall/BitWhite)로 Bitway 기준 집계 · BANK '언락 D-N' 프레임은 CryptoRank 정적캐시 오류 반복으로 **폐기**(일정 미확인 표기 고정).
+- **정기 루틴 인프라 상태(8/17)**: OrangeX API 전면 중단 **14회차·약 29시간**(8/17 13:45Z 기준, 코드1000 "No service found", 16개 항목 전부 `chg24: None` 표기) · Aster 직접 API 403 지속(CoinGecko id `aster`로 대체, 구 `aster_dex`는 404) · Hyperliquid CoinGecko 요약값이 5종목 거래량을 1000배 부풀린 사례 있어 **raw 필드 직접 확인 필수** · OKX는 ctVal 반영 + open-interest 엔드포인트 개별 재조회 필요 · BTW는 티커 충돌(Bitway/Banana Tape Wall/BitWhite)로 Bitway 기준 집계 · BANK '언락 D-N' 프레임은 CryptoRank 정적캐시 오류 반복으로 **폐기**(일정 미확인 표기 고정).
 - **다음 할 일**: 도착하는 정기 루틴 프롬프트를 계속 위 절차대로 처리. 새 지시가 없으면 라이브 전략·리스크 파라미터는 임의로 바꾸지 않는다.
 
 ### 🔁 봇 재시작 코드 (항상 여기 비치)
