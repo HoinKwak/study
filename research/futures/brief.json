@@ -1,56 +1,56 @@
 {
-  "ts": "2026-08-17T13:45:00Z",
-  "market": "직전 회차(2026-08-17T10:30:00Z)로부터 약 3.25시간 경과. ⭐⭐⭐ 이번 회차 최대 발견은 ACE가 4소스 전부 +29~31%대로 상승을 이어갔는데, 지난 회차와 정반대로 펀딩(숏 프리미엄)이 큰 폭으로 완화됐다는 점이다 — Binance funding -0.813→-0.394, Bybit -1.106→-0.261, Hyperliquid -0.239→-0.095, Aster -0.149→-0.071, B+B가중 -0.854→-0.375. 가격은 계속 오르는데 숏 프리미엄이 급격히 줄어드는 것은 지난 회차 시사됐던 숏스퀴즈가 실제로 진행되며 숏 포지션이 청산·커버되고 있음을 강하게 뒷받침한다. WebSearch로 확인한 최신 언락 정보: Fusionist(ACE)의 다음 언락은 8/18(현재 시점 기준 약 10시간 이내로 임박), 296만 4,040개(유통량의 2%, 현재 시총의 약 2.9%)가 해제된다. **⚠️⚠️⚠️⚠️⚠️ HYNA:SOL-USD stale 2회 연속 확인**: vol24_usd·oi_usd·chg24가 직전 회차(18,180.71 / 533,133.23 / 0.166%)와 이번 회차도 소수점까지 완전히 동일해, 정지 상태가 1회성 재발이 아니라 최소 2회 연속 지속되고 있음이 확인됐다 — 데이터 파이프라인 문제로 재평가 필요. **BEAT는 지난 회차의 낙폭 완화가 1회차 만에 반전되며 다시 -30%대에 근접했다** — OKX -24.582%→**-29.696%**, Aster -25.310%→**-30.769%**로 두 소스 모두 원위치. **AIO·APR은 지난 회차의 재수렴이 무너지고 다시 정반대로 갈라졌다** — AIO는 B+B +2.306%→**+8.923%**, Aster +2.620%→**+9.679%**로 재가속한 반면, APR은 B+B +2.078%→**-8.914%**, OKX +1.481%→**-6.732%**, Aster +2.580%→**-8.3%**로 플러스에서 마이너스로 급반전했다 — 두 종목이 완전히 반대 방향으로 벌어졌다. **BSB는 급확대 후 소진을 넘어 완전히 방향이 뒤집혔다** — OKX +7.299%→**-4.341%**, Aster +6.849%→**-4.766%**로 플러스에서 마이너스로 전환. **AEON은 3소스 전부 상승폭을 계속 확대**했다 — OKX +4.536%→**+11.720%**, Bybit +4.66%→**+10.51%**, Aster +5.014%→**+12.31%**. **KAITO는 낙폭이 거의 완전히 해소**됐다 — OKX -5.233%→**-0.226%**, HL -5.63%→**-0.533%**로 두 소스 모두 평탄권에 수렴. **BICO는 다시 크게 악화**됐다 — OKX -3.037%→**-11.664%**, 지난 회차 미확인이던 Aster도 이번엔 확인돼 **-11.559%**로 OKX와 거의 일치. **CASHCAT은 온체인과의 격차가 크게 좁혀졌다** — 온체인(CoinGecko `cash-cat`) -18.59%→**-9.497%**, HL -16.37%→**-8.491%**로 두 소스 모두 낙폭이 절반가량 줄며 격차가 약 2.22%p에서 **약 1.01%p**로 좁아졌다. **AAVE·ADA·ALGO는 광범위하게 플러스 쪽으로 이동**했다 — AAVE는 B+B +0.162%→**+1.377%**, HL +0.192%→**+1.206%**, Aster +0.292%→**+1.408%**로 전 소스 확대. ADA는 B+B -1.7305%→**-0.891%**, HL -1.781%→**-0.716%**, Aster -1.877%→**-0.854%**로 전 소스 마이너스 폭 축소. ALGO는 B+B -0.695%→**+0.708%**, HL -0.68%→**+0.583%**로 플러스 반전했고 Aster만 -0.303%→**-0.127%**로 마이너스를 유지하되 폭은 축소. **CORE는 강한 플러스를 유지하되 상승폭이 둔화**됐다(OKX +13.548%→**+9.632%**). **FARTCOIN은 마이너스에서 다시 플러스로 재반전**(-0.483%→**+0.701%**), **PIPPIN은 플러스에서 마이너스로 전환**(+1.108%→**-2.058%**), **MMT는 낙폭이 확대**(-2.938%→**-5.692%**), **GIGGLE은 상승폭이 계속 확대**(+5.251%→**+6.546%**), **ALLO는 플러스에서 마이너스로 전환**(+0.458%→**-0.129%**)됐다. **⚠️⚠️⚠️ OrangeX는** 이번 회차도 코드1000(No service found) 오류가 재현돼 서비스 중단이 **14회차·약 29시간**으로 확대됐다. **dYdX는 BTC(+0.760%→+0.927%)·ETH(+1.106%→+1.238%)·SOL(+0.478%→+0.359%)** 3종목 모두 플러스를 유지하며 대체로 완만한 상승 기조가 이어졌다. Hyperliquid BTC(+0.524%→+1.077%)·ETH(+0.697%→+1.35%), Aster BTC(+0.510%→+1.032%)도 상승폭이 소폭 확대됐다. **CoinGecko `/global`은 이번 회차 재확인에 성공**했다 — 총시가총액 $2,262.30B→**$2,269.64B**, BTC 도미넌스 56.21%→**56.29%**.",
+  "ts": "2026-08-17T14:30:00Z",
+  "market": "직전 회차(2026-08-17T13:45:00Z)로부터 약 45분 경과 — 통상 대비 짧은 간격이라 대부분 지표는 소폭 변동에 그쳤고 이를 억지로 유의미하게 해석하지 않았다. 다만 몇 가지는 45분 만에도 뚜렷한 연속·전환 패턴을 보였다. **ACE는 4소스 전부 상승을 이어가며(33.3~34.6%) 펀딩(숏 프리미엄)이 계속 압축**됐다 — Binance -0.331(직전 -0.394), Bybit -0.223(직전 -0.261), B+B가중 -0.3155(직전 -0.375), Hyperliquid -0.059(직전 -0.095), Aster -0.048(직전 -0.071). 직전 회차에 확인된 숏스퀴즈 진행 정황이 이번 회차도 같은 방향으로 이어졌다. WebSearch 재확인: Fusionist(ACE) 언락은 8/18(현재 14:30Z 기준 약 9시간 이내로 더 임박), 296만 4,040개(유통량 2%, 시총 약 2.9%). **⚠️ APR은 4소스 전부(Binance·Bybit·OKX·Aster) 마이너스에서 플러스로 급반전**했다 — B+B -8.914%→**+2.154%**, OKX -6.732%→**+3.560%**, Aster -8.3%→**+2.180%**. 45분 만의 실제 가격반전이라기보다 24시간 앵커가 하루 전 특정 급변 구간을 지나며 생기는 롤링윈도우 아티팩트일 가능성이 있으나, 4개 독립 소스가 일관되게 같은 방향으로 이동해 단일 소스 오류로 보기는 어렵다 — 원인 불명확, 정직하게 병기한다. **HYNA:SOL-USD는 stale이 해소**됐다 — vol24_usd 18,180.71→**18,209.41**, oi_usd 533,133.23→**532,561.99**, chg24 0.166%→**0.058%**로 세 필드 모두 직전 회차와 다른 값을 보여 2회 연속 정지 후 이번 회차 정상 갱신으로 복귀했다. **AEON은 3소스 전부 상승폭을 추가로 확대**했다 — OKX +11.720%→**+13.874%**, Bybit +10.51%→**+14.411%**, Aster +12.31%→**+15.705%**. **BICO는 낙폭이 추가로 확대**됐다 — OKX -11.664%→**-15.858%**, Aster -11.559%→**-13.932%**. **KAITO는 평탄권에서 뚜렷한 플러스로 전환**됐다 — OKX -0.226%→**+3.014%**대 부근(직접 재계산 3.014%), HL -0.533%→**+2.426%**. **CASHCAT은 낙폭이 재확대**됐다 — HL -8.491%→**-11.511%**, 온체인(CoinGecko cash-cat) -9.497%→**-10.33%**로 격차는 약 1.01%p에서 **약 1.18%p**로 소폭 확대. **GIGGLE(OKX)은 플러스에서 거의 완전한 평탄으로 급감**했다(+6.546%→**-0.178%**, 단일소스). **CAP(OKX)은 마이너스 폭이 확대**됐다(-2.996%→**-5.994%**). **CORE(OKX)은 강한 플러스를 유지하되 상승폭이 추가로 둔화**됐다(+9.632%→**+5.874%**). **BSB는 OKX·Aster 모두 -3%대 부근으로 수렴하며 안정화**됐다(OKX -4.341%→**-3.076%**, Aster -4.766%→**-3.068%**) — 직전 회차의 완전 반전 이후 낙폭이 다소 완화. **AAVE는 플러스 폭이 크게 축소**돼 평탄권에 근접(B+B +1.377%→**+0.334%**, HL +1.206%→**+0.251%**, Aster +1.408%→**+0.358%**), **ADA는 마이너스 폭이 재확대**(B+B -0.891%→**-1.682%**, HL -0.716%→**-1.615%**, Aster -0.854%→**-1.643%**), **ALGO는 플러스를 유지하되 폭이 크게 축소**(B+B +0.708%→**+0.032%**, HL +0.583%→**+0.218%**). BEAT는 OKX -29.696%→**-29.307%**, Aster -30.769%→**-28.894%**로 -29%대 부근에서 큰 변화 없이 안정화됐다. AIO는 B+B +8.923%→**+8.023%**, Aster +9.679%→**+8.403%**로 강한 플러스를 유지하되 폭이 소폭 둔화됐다(APR과의 극단적 재분리는 APR 반전으로 사실상 해소). **⚠️⚠️⚠️ OrangeX는 이번 회차도 코드1000(No service found) 오류가 재현**돼 서비스 중단이 **15회차·약 29.75시간(약 30시간)**으로 확대됐다. dYdX BTC(+0.849%)·ETH(+0.933%)·SOL(+0.385%), Hyperliquid BTC(+0.891%)·ETH(+0.887%), Aster BTC(+0.929%)는 전부 직전 회차 대비 유의한 변화 없이 완만한 상승 기조를 유지했다. CoinGecko `/global`은 총시가총액 $2,269.64B→**$2,267.96B**, BTC 도미넌스 56.29%→**56.27%**로 직전 회차 대비 유의한 변화 없음.",
   "cex": [
     {
       "symbol": "ACE",
       "venue": "Binance+Bybit(가중평균)",
-      "vol24_usd": 432744664.02,
-      "oi_usd": 20227658.91,
-      "funding": -0.3746,
-      "chg24": 29.977,
-      "why": "⭐⭐⭐ 4소스 전부 +29~31%대 상승 지속했으나 펀딩은 정반대로 큰 폭 완화(-0.548→-0.375) — 숏스퀴즈 진행이 실제 지지되는 정황. 언락은 8/18, 약 10시간 이내 임박(296만개=유통량 2%, 시총 2.9%)",
+      "vol24_usd": 457825325.56,
+      "oi_usd": 20638805.4,
+      "funding": -0.3155,
+      "chg24": 34.588,
+      "why": "⭐⭐⭐ 상승 지속(29.98%→34.59%), 펀딩 추가 압축(-0.3746→-0.3155) — 숏스퀴즈 지속. 언락 8/18, 약 9시간 이내로 더 임박",
       "tag": "surges-funding-compresses-short-squeeze-confirmed"
     },
     {
       "symbol": "BANK",
       "venue": "Binance+Bybit(가중평균)",
-      "vol24_usd": 21326852.38,
-      "oi_usd": 14906345.32,
+      "vol24_usd": 21032596.87,
+      "oi_usd": 14954397.95,
       "funding": 0.005,
-      "chg24": -3.253,
-      "why": "대체로 정체 유지",
+      "chg24": -3.462,
+      "why": "직전 회차 대비 유의한 변화 없음(간격 45분)",
       "tag": "stays-roughly-flat"
     },
     {
       "symbol": "APR",
       "venue": "Binance+Bybit(가중평균)",
-      "vol24_usd": 153650227.16,
-      "oi_usd": 15944062.35,
+      "vol24_usd": 153272265.97,
+      "oi_usd": 16397366.98,
       "funding": 0.005,
-      "chg24": -8.914,
-      "why": "⚠️⚠️⚠️ AIO와의 재수렴이 무너지며 플러스에서 마이너스로 급반전(+2.078%→-8.914%)",
-      "tag": "diverges-sharply-from-aio-flips-negative"
+      "chg24": 2.154,
+      "why": "⚠️ 마이너스에서 플러스로 급반전(-8.914%→+2.154%) — 4소스 전부 동일 방향, 24h 앵커 롤링 아티팩트 가능성 병기",
+      "tag": "reverses-sharply-to-positive-anchor-window-suspected"
     },
     {
       "symbol": "APR",
       "venue": "OKX(직접API, ctVal 반영 재계산)",
-      "vol24_usd": 134415974.0,
-      "oi_usd": 4131993.6,
+      "vol24_usd": 132418377.45,
+      "oi_usd": 4164919.29,
       "funding": null,
-      "chg24": -6.732,
-      "why": "AIO와 반대 방향으로 급반전",
-      "tag": "diverges-sharply-from-aio-flips-negative"
+      "chg24": 3.56,
+      "why": "마이너스에서 플러스로 급반전, B+B·Aster와 동일 방향",
+      "tag": "reverses-sharply-to-positive-anchor-window-suspected"
     },
     {
       "symbol": "BEAT",
       "venue": "OKX(직접API, ctVal 반영 재계산)",
-      "vol24_usd": 138668343.0,
-      "oi_usd": 5888606.8,
+      "vol24_usd": 138334139.4,
+      "oi_usd": 5597373.08,
       "funding": null,
-      "chg24": -29.696,
-      "why": "⚠️⚠️⚠️ 지난 회차 완화가 1회차 만에 반전, 다시 -30%대 근접(-24.582%→-29.696%)",
-      "tag": "relief-reverses-nears-30pct-again"
+      "chg24": -29.307,
+      "why": "-29%대 부근에서 안정화, 직전 회차 대비 유의한 변화 없음",
+      "tag": "stabilizes-near-30pct"
     },
     {
       "symbol": "BEAT",
@@ -65,12 +65,12 @@
     {
       "symbol": "KAITO",
       "venue": "OKX(직접API, ctVal 반영 재계산)",
-      "vol24_usd": 25287353.0,
-      "oi_usd": 5054129.6,
+      "vol24_usd": 27033600.68,
+      "oi_usd": 5152271.09,
       "funding": null,
-      "chg24": -0.226,
-      "why": "⚠️⚠️⚠️ 낙폭 거의 완전 해소, 평탄권 수렴(-5.233%→-0.226%)",
-      "tag": "negative-nearly-fully-resolved"
+      "chg24": 3.014,
+      "why": "평탄권에서 뚜렷한 플러스로 전환(-0.226%→+3.014%)",
+      "tag": "flips-clearly-positive"
     },
     {
       "symbol": "KAITO",
@@ -85,52 +85,52 @@
     {
       "symbol": "ALGO",
       "venue": "Binance+Bybit(가중평균)",
-      "vol24_usd": 7895455.53,
-      "oi_usd": 13433213.99,
-      "funding": -0.0179,
-      "chg24": 0.708,
-      "why": "⚠️ 마이너스에서 플러스로 재반전(-0.695%→+0.708%)",
-      "tag": "flips-positive"
+      "vol24_usd": 8027905.62,
+      "oi_usd": 13411850.23,
+      "funding": -0.0162,
+      "chg24": 0.032,
+      "why": "플러스 유지하되 폭 크게 축소(+0.708%→+0.032%), 평탄권 근접",
+      "tag": "extends-positive-but-decelerates-sharply"
     },
     {
       "symbol": "MMT",
       "venue": "OKX(직접API, ctVal 반영 재계산)",
-      "vol24_usd": 6682796.0,
-      "oi_usd": 2379137.2,
+      "vol24_usd": 6592159.6,
+      "oi_usd": 2363669.51,
       "funding": null,
-      "chg24": -5.692,
-      "why": "낙폭 확대(-2.938%→-5.692%)",
-      "tag": "worsens-mildly"
+      "chg24": -5.937,
+      "why": "직전 회차 대비 유의한 변화 없음(간격 45분)",
+      "tag": "stays-mildly-negative"
     },
     {
       "symbol": "AEON",
       "venue": "OKX(직접API, ctVal 반영 재계산)",
-      "vol24_usd": 63631416.0,
-      "oi_usd": 3596727.7,
+      "vol24_usd": 62325919.9,
+      "oi_usd": 3695181.18,
       "funding": null,
-      "chg24": 11.72,
-      "why": "⚠️⚠️⚠️ 상승폭 대폭 확대(+4.536%→+11.720%) — Bybit·Aster도 동조 확대",
-      "tag": "accelerates-strongly-positive"
+      "chg24": 13.874,
+      "why": "⚠️⚠️⚠️ 상승폭 추가 확대(+11.720%→+13.874%) — Bybit·Aster도 동조 확대",
+      "tag": "accelerates-strongly-positive-again"
     },
     {
       "symbol": "AEON",
       "venue": "Bybit(CoinGecko 경유)",
-      "vol24_usd": 4491635.77,
-      "oi_usd": 960200.94,
+      "vol24_usd": 4198846.72,
+      "oi_usd": 1004742.19,
       "funding": 0.005,
-      "chg24": 10.51,
-      "why": "상승폭 대폭 확대",
-      "tag": "accelerates-strongly-positive"
+      "chg24": 14.411,
+      "why": "상승폭 추가 확대",
+      "tag": "accelerates-strongly-positive-again"
     },
     {
       "symbol": "BICO",
       "venue": "OKX(직접API, ctVal 반영 재계산)",
-      "vol24_usd": 47483593.0,
-      "oi_usd": 2869965.2,
+      "vol24_usd": 45924940.5,
+      "oi_usd": 2911527.06,
       "funding": null,
-      "chg24": -11.664,
-      "why": "⚠️⚠️⚠️ 낙폭 재확대(-3.037%→-11.664%) — Aster도 이번 회차 재확인돼 거의 동일 수준",
-      "tag": "worsens-sharply-again"
+      "chg24": -15.858,
+      "why": "⚠️⚠️⚠️ 낙폭 추가 확대(-11.664%→-15.858%) — Aster도 동조 확대",
+      "tag": "worsens-further-again"
     },
     {
       "symbol": "BICO",
@@ -145,143 +145,143 @@
     {
       "symbol": "CAP",
       "venue": "OKX(직접API, ctVal 반영 재계산)",
-      "vol24_usd": 109887984.0,
-      "oi_usd": 10446081.4,
+      "vol24_usd": 104828996.8,
+      "oi_usd": 10131752.54,
       "funding": null,
-      "chg24": -2.996,
-      "why": "마이너스 지속, 폭 거의 유지",
-      "tag": "stays-negative-continues"
+      "chg24": -5.994,
+      "why": "⚠️ 마이너스 폭 확대(-2.996%→-5.994%)",
+      "tag": "worsens-notably"
     },
     {
       "symbol": "ATOM",
       "venue": "Binance+Bybit(가중평균)",
-      "vol24_usd": 14635648.43,
-      "oi_usd": 30126053.97,
-      "funding": -0.0154,
-      "chg24": -3.763,
-      "why": "낙폭 소폭 완화",
-      "tag": "improves-mildly-still-negative"
+      "vol24_usd": 14793489.29,
+      "oi_usd": 30063469.44,
+      "funding": -0.0138,
+      "chg24": -3.687,
+      "why": "직전 회차 대비 유의한 변화 없음(간격 45분)",
+      "tag": "stays-roughly-flat"
     },
     {
       "symbol": "ATOM",
       "venue": "OKX(직접API, ctVal 반영 재계산)",
-      "vol24_usd": 3234392.0,
-      "oi_usd": 3923718.3,
+      "vol24_usd": 3395949.9,
+      "oi_usd": 3888887.26,
       "funding": null,
-      "chg24": -3.93,
-      "why": "낙폭 소폭 확대",
-      "tag": "worsens-mildly-continues"
+      "chg24": -3.663,
+      "why": "직전 회차 대비 유의한 변화 없음(간격 45분)",
+      "tag": "stays-roughly-flat"
     },
     {
       "symbol": "ASTER",
       "venue": "Binance+Bybit(가중평균)",
-      "vol24_usd": 10965199.67,
-      "oi_usd": 110659990.41,
+      "vol24_usd": 11133434.04,
+      "oi_usd": 110667028.24,
       "funding": 0.005,
-      "chg24": -0.009,
+      "chg24": -0.002,
       "why": "거의 완전 평탄 지속",
       "tag": "stays-roughly-flat"
     },
     {
       "symbol": "AAVE",
       "venue": "Binance+Bybit(가중평균)",
-      "vol24_usd": 43218678.32,
-      "oi_usd": 84236051.6,
-      "funding": -0.0001,
-      "chg24": 1.377,
-      "why": "⚠️ 플러스 폭 확대(+0.162%→+1.377%) — HL·Aster도 동조 확대",
-      "tag": "extends-positive"
+      "vol24_usd": 43109303.9,
+      "oi_usd": 84005656.62,
+      "funding": 0.0003,
+      "chg24": 0.334,
+      "why": "⚠️ 플러스 폭 크게 축소(+1.377%→+0.334%), 평탄권 근접 — HL·Aster도 동조",
+      "tag": "decelerates-toward-flat"
     },
     {
       "symbol": "AIO",
       "venue": "Binance+Bybit(가중평균)",
-      "vol24_usd": 178580951.49,
-      "oi_usd": 8695244.99,
-      "funding": 0.0251,
-      "chg24": 8.923,
-      "why": "⚠️⚠️⚠️ APR과 재분리, 재가속(+2.306%→+8.923%)",
-      "tag": "reaccelerates-diverges-from-apr"
+      "vol24_usd": 165737864.44,
+      "oi_usd": 8595242.71,
+      "funding": 0.02,
+      "chg24": 8.023,
+      "why": "강한 플러스 유지, 상승폭 소폭 둔화(+8.923%→+8.023%)",
+      "tag": "stays-strongly-positive-decelerates-mildly"
     },
     {
       "symbol": "GRAM",
       "venue": "OKX(직접API, ctVal 반영 재계산)",
-      "vol24_usd": 1813973.0,
-      "oi_usd": 6115279.9,
+      "vol24_usd": 1774344.8,
+      "oi_usd": 6106926.19,
       "funding": null,
-      "chg24": -0.745,
-      "why": "거의 평탄, 소폭 마이너스",
+      "chg24": -1.484,
+      "why": "직전 회차 대비 유의한 변화 없음(간격 45분)",
       "tag": "stays-roughly-flat"
     },
     {
       "symbol": "GIGGLE",
       "venue": "OKX(직접API, ctVal 반영 재계산)",
-      "vol24_usd": 26723392.0,
-      "oi_usd": 2155376.9,
+      "vol24_usd": 20749850.7,
+      "oi_usd": 2138573.85,
       "funding": null,
-      "chg24": 6.546,
-      "why": "상승폭 계속 확대",
-      "tag": "stays-positive-accelerates-mildly"
+      "chg24": -0.178,
+      "why": "⚠️ 플러스에서 거의 완전 평탄으로 급감(+6.546%→-0.178%), 단일소스",
+      "tag": "collapses-to-flat-from-positive"
     },
     {
       "symbol": "PIPPIN",
       "venue": "OKX(직접API, ctVal 반영 재계산)",
-      "vol24_usd": 1931754.0,
-      "oi_usd": 1669190.4,
+      "vol24_usd": 1879140.85,
+      "oi_usd": 1673226.11,
       "funding": null,
-      "chg24": -2.058,
-      "why": "⚠️ 플러스에서 마이너스로 전환",
-      "tag": "flips-negative"
+      "chg24": -2.786,
+      "why": "마이너스 지속, 폭 소폭 확대",
+      "tag": "stays-negative-mildly-worsens"
     },
     {
       "symbol": "ADA",
       "venue": "Binance+Bybit(가중평균)",
-      "vol24_usd": 144062182.04,
-      "oi_usd": 138932554.35,
-      "funding": 0.0047,
-      "chg24": -0.891,
-      "why": "마이너스 폭 크게 축소 — HL·Aster도 동조 축소",
-      "tag": "improves-notably-still-negative"
+      "vol24_usd": 145529114.05,
+      "oi_usd": 138150758.31,
+      "funding": 0.0053,
+      "chg24": -1.682,
+      "why": "⚠️ 마이너스 폭 재확대(-0.891%→-1.682%) — HL·Aster도 동조",
+      "tag": "worsens-again"
     },
     {
       "symbol": "1000RATS",
       "venue": "Binance+Bybit(가중평균)",
-      "vol24_usd": 4946384.48,
-      "oi_usd": 15518917.57,
-      "funding": 0.0206,
-      "chg24": 3.383,
-      "why": "상승폭 유지",
+      "vol24_usd": 4884861.89,
+      "oi_usd": 15463768.92,
+      "funding": 0.0121,
+      "chg24": 2.003,
+      "why": "직전 회차 대비 유의한 변화 없음(간격 45분)",
       "tag": "stays-positive"
     },
     {
       "symbol": "CORE",
       "venue": "OKX(직접API, ctVal 반영 재계산)",
-      "vol24_usd": 4369448.0,
-      "oi_usd": 1199105.0,
+      "vol24_usd": 4495643.6,
+      "oi_usd": 1126348.11,
       "funding": null,
-      "chg24": 9.632,
-      "why": "강한 플러스 유지, 상승폭은 둔화(+13.548%→+9.632%)",
-      "tag": "stays-strongly-positive-decelerates"
+      "chg24": 5.874,
+      "why": "강한 플러스 유지, 상승폭 추가 둔화(+9.632%→+5.874%)",
+      "tag": "stays-strongly-positive-decelerates-again"
     },
     {
       "symbol": "BSB",
       "venue": "OKX(직접API, ctVal 반영 재계산)",
-      "vol24_usd": 16385399.0,
-      "oi_usd": 2226477.8,
+      "vol24_usd": 15800218.2,
+      "oi_usd": 2238631.36,
       "funding": null,
-      "chg24": -4.341,
-      "why": "⚠️⚠️⚠️ 플러스에서 마이너스로 완전 반전(+7.299%→-4.341%) — Aster도 동조 반전",
-      "tag": "flips-negative-from-positive-spike"
+      "chg24": -3.076,
+      "why": "-3%대 부근으로 수렴하며 안정화(-4.341%→-3.076%) — Aster도 동조(-3.068%)",
+      "tag": "stabilizes-near-negative-3pct"
     }
   ],
   "dex": [
     {
       "symbol": "ACE",
       "protocol": "Hyperliquid",
-      "vol24_usd": 3948385.09,
-      "oi_usd": 1889419.21,
-      "funding": -0.095,
-      "chg24": 29.274,
-      "why": "⭐⭐⭐ 상승 지속, 펀딩은 큰 폭 완화(-0.239→-0.095) — 숏스퀴즈 정황 강화",
+      "vol24_usd": 4062621.29,
+      "oi_usd": 1947262.71,
+      "funding": -0.059,
+      "chg24": 34.416,
+      "why": "⭐⭐⭐ 상승 지속, 펀딩 추가 압축(-0.095→-0.059) — 숏스퀴즈 지속",
       "tag": "surges-funding-compresses-short-squeeze-confirmed"
     },
     {
@@ -297,11 +297,11 @@
     {
       "symbol": "ACE",
       "protocol": "Aster",
-      "vol24_usd": 1135656.5,
-      "oi_usd": 260018.67,
-      "funding": -0.071,
-      "chg24": 30.171,
-      "why": "HL과 동조 상승, 펀딩도 동반 완화(-0.149→-0.071)",
+      "vol24_usd": 1110403.08,
+      "oi_usd": 293029.86,
+      "funding": -0.048,
+      "chg24": 34.628,
+      "why": "HL과 동조 상승, 펀딩도 동반 추가 압축(-0.071→-0.048)",
       "tag": "surges-funding-compresses-short-squeeze-confirmed"
     },
     {
@@ -311,28 +311,28 @@
       "oi_usd": null,
       "funding": null,
       "chg24": null,
-      "why": "⚠️⚠️⚠️ OrangeX 서비스 중단 지속, 14회차·약 29시간",
+      "why": "⚠️⚠️⚠️ OrangeX 서비스 중단 지속, 15회차·약 29.75시간",
       "tag": "orangex-service-outage-continues"
     },
     {
       "symbol": "BANK",
       "protocol": "Aster",
-      "vol24_usd": 112351.69,
-      "oi_usd": 232147.23,
+      "vol24_usd": 112339.01,
+      "oi_usd": 232760.5,
       "funding": 0.001,
-      "chg24": -2.989,
-      "why": "대체로 정체",
+      "chg24": -4.596,
+      "why": "직전 회차 대비 유의한 변화 없음(간격 45분)",
       "tag": "stays-roughly-flat"
     },
     {
       "symbol": "KAITO",
       "protocol": "Hyperliquid",
-      "vol24_usd": 7354592.44,
-      "oi_usd": 6210224.32,
-      "funding": 0.001,
-      "chg24": -0.533,
-      "why": "낙폭 거의 완전 해소 — OKX(-0.226%)와 함께 평탄권 수렴",
-      "tag": "negative-nearly-fully-resolved"
+      "vol24_usd": 7376870.27,
+      "oi_usd": 6312002.59,
+      "funding": 0.0,
+      "chg24": 2.426,
+      "why": "평탄권에서 뚜렷한 플러스로 전환 — OKX(+3.014%)와 동조",
+      "tag": "flips-clearly-positive"
     },
     {
       "symbol": "KAITO",
@@ -357,12 +357,12 @@
     {
       "symbol": "CAP",
       "protocol": "Aster",
-      "vol24_usd": 205266.46,
-      "oi_usd": 191124.56,
-      "funding": -0.074,
-      "chg24": -3.418,
-      "why": "마이너스 지속, OKX(-2.996%)와 유사",
-      "tag": "stays-negative-continues"
+      "vol24_usd": 207612.66,
+      "oi_usd": 188552.3,
+      "funding": -0.084,
+      "chg24": -5.547,
+      "why": "마이너스 폭 확대, OKX(-5.994%)와 동조",
+      "tag": "worsens-notably"
     },
     {
       "symbol": "BICO",
@@ -377,12 +377,12 @@
     {
       "symbol": "BICO",
       "protocol": "Aster",
-      "vol24_usd": 401611.69,
-      "oi_usd": 70142.27,
-      "funding": -0.264,
-      "chg24": -11.559,
-      "why": "⚠️⚠️⚠️ 이번 회차 재확인 성공 — 낙폭 재확대, OKX(-11.664%)와 거의 일치",
-      "tag": "reconfirmed-worsens-sharply-again"
+      "vol24_usd": 389836.49,
+      "oi_usd": 72888.72,
+      "funding": -0.229,
+      "chg24": -13.932,
+      "why": "⚠️⚠️⚠️ 낙폭 추가 확대 — OKX(-15.858%)와 동조",
+      "tag": "worsens-further-again"
     },
     {
       "symbol": "BSB",
@@ -397,12 +397,12 @@
     {
       "symbol": "BSB",
       "protocol": "Aster",
-      "vol24_usd": 342244.82,
-      "oi_usd": 115731.55,
-      "funding": 0.001,
-      "chg24": -4.766,
-      "why": "⚠️⚠️⚠️ 플러스에서 마이너스로 완전 반전, OKX와 동조",
-      "tag": "flips-negative-from-positive-spike"
+      "vol24_usd": 326950.62,
+      "oi_usd": 121933.04,
+      "funding": 0.002,
+      "chg24": -3.068,
+      "why": "-3%대로 수렴하며 안정화, OKX(-3.076%)와 거의 일치",
+      "tag": "stabilizes-near-negative-3pct"
     },
     {
       "symbol": "BLESS",
@@ -417,22 +417,22 @@
     {
       "symbol": "BLESS",
       "protocol": "Aster",
-      "vol24_usd": 53460.55,
-      "oi_usd": 100368.07,
+      "vol24_usd": 52698.12,
+      "oi_usd": 99499.29,
       "funding": 0.005,
-      "chg24": -9.17,
-      "why": "마이너스 폭 소폭 확대",
-      "tag": "worsens-mildly-still-negative"
+      "chg24": -9.237,
+      "why": "직전 회차 대비 유의한 변화 없음(간격 45분)",
+      "tag": "stays-roughly-flat-negative"
     },
     {
       "symbol": "CASHCAT",
       "protocol": "Hyperliquid",
-      "vol24_usd": 11698099.88,
-      "oi_usd": 14864507.66,
+      "vol24_usd": 11851392.9,
+      "oi_usd": 14130041.01,
       "funding": 0.001,
-      "chg24": -8.491,
-      "why": "⚠️⚠️⚠️ 온체인과 격차 크게 좁혀짐 — 온체인(-9.497%)과 격차 약 1.01%p로 축소(직전 2.22%p)",
-      "tag": "gap-narrows-significantly"
+      "chg24": -11.511,
+      "why": "낙폭 재확대 — 온체인(-10.33%)과 격차 약 1.01%p→약 1.18%p로 소폭 확대",
+      "tag": "worsens-again-gap-widens-slightly"
     },
     {
       "symbol": "CASHCAT",
@@ -457,12 +457,12 @@
     {
       "symbol": "AEON",
       "protocol": "Aster",
-      "vol24_usd": 84849.05,
-      "oi_usd": 296388.34,
+      "vol24_usd": 80435.56,
+      "oi_usd": 298393.98,
       "funding": 0.001,
-      "chg24": 12.31,
-      "why": "상승폭 대폭 확대, OKX·Bybit와 동조",
-      "tag": "accelerates-strongly-positive"
+      "chg24": 15.705,
+      "why": "상승폭 추가 확대, OKX·Bybit와 동조",
+      "tag": "accelerates-strongly-positive-again"
     },
     {
       "symbol": "AEON",
@@ -477,12 +477,12 @@
     {
       "symbol": "BEAT",
       "protocol": "Aster",
-      "vol24_usd": 901581.92,
-      "oi_usd": 387455.07,
+      "vol24_usd": 996242.02,
+      "oi_usd": 376290.85,
       "funding": 0.001,
-      "chg24": -30.769,
-      "why": "⚠️⚠️⚠️ 지난 회차 완화가 반전, 다시 -30%대 근접 — 촉매는 8/1 대형 언락발 연쇄급락 지속",
-      "tag": "relief-reverses-nears-30pct-again"
+      "chg24": -28.894,
+      "why": "-29%대 부근에서 안정화, 직전 회차 대비 유의한 변화 없음",
+      "tag": "stabilizes-near-30pct"
     },
     {
       "symbol": "BEAT",
@@ -497,32 +497,32 @@
     {
       "symbol": "HYPE",
       "protocol": "Hyperliquid",
-      "vol24_usd": 234894232.29,
-      "oi_usd": 1344350706.8,
+      "vol24_usd": 240451330.36,
+      "oi_usd": 1337008954.17,
       "funding": 0.001,
-      "chg24": 3.729,
-      "why": "강한 플러스 유지, 소폭 확대",
-      "tag": "stays-positive-extends"
+      "chg24": 3.304,
+      "why": "직전 회차 대비 유의한 변화 없음(간격 45분)",
+      "tag": "stays-positive"
     },
     {
       "symbol": "GRAM",
       "protocol": "Hyperliquid",
-      "vol24_usd": 327131.45,
-      "oi_usd": 13375450.15,
+      "vol24_usd": 331888.05,
+      "oi_usd": 13340739.3,
       "funding": 0.001,
-      "chg24": -0.818,
-      "why": "거의 평탄, OKX(-0.745%)와 유사",
+      "chg24": -1.137,
+      "why": "직전 회차 대비 유의한 변화 없음(간격 45분)",
       "tag": "stays-roughly-flat"
     },
     {
       "symbol": "BTW",
       "protocol": "Aster",
-      "vol24_usd": 4891820.15,
-      "oi_usd": 9752024.85,
-      "funding": 0.002,
-      "chg24": 7.444,
-      "why": "상승폭 둔화 지속(+7.900%→+7.444%). Bitway(시총 약 $1.1B) 기준 집계 유지",
-      "tag": "decelerates-tracked-as-bitway-project"
+      "vol24_usd": 4890997.0,
+      "oi_usd": 9780613.34,
+      "funding": 0.005,
+      "chg24": 6.678,
+      "why": "직전 회차 대비 유의한 변화 없음(간격 45분). Bitway(시총 약 $1.1B) 기준 집계 유지",
+      "tag": "stays-positive-tracked-as-bitway-project"
     },
     {
       "symbol": "HYNA:PUMP",
@@ -530,49 +530,49 @@
       "vol24_usd": 27593.73,
       "oi_usd": 188555.54,
       "funding": 0.001,
-      "chg24": 6.708,
-      "why": "상승폭 소폭 확대",
-      "tag": "stays-positive-decelerates"
+      "chg24": 7.457,
+      "why": "직전 회차 대비 유의한 변화 없음(간격 45분)",
+      "tag": "stays-positive"
     },
     {
       "symbol": "HYNA:HYPE",
       "protocol": "Hyperliquid",
-      "vol24_usd": 110546.49,
-      "oi_usd": 639607.39,
-      "funding": 0.004,
-      "chg24": 3.036,
-      "why": "정상 변동 지속 — OI $612,225.80→$639,607.39로 계속 다른 값, stale 미재현",
+      "vol24_usd": 120540.62,
+      "oi_usd": 626436.11,
+      "funding": 0.002,
+      "chg24": 3.297,
+      "why": "정상 변동 지속 — OI $639,607.39→$626,436.11로 계속 다른 값, stale 미재현",
       "tag": "updates-normally-no-stale-recurrence"
     },
     {
       "symbol": "HYNA:SOL-USD",
       "protocol": "Hyperliquid",
-      "vol24_usd": 18180.71,
-      "oi_usd": 533133.23,
+      "vol24_usd": 18209.41,
+      "oi_usd": 532561.99,
       "funding": 0.001,
-      "chg24": 0.166,
-      "why": "⚠️⚠️⚠️⚠️⚠️ stale 2회 연속 확인 — vol24/oi/chg24 전부 직전 회차와 완전 동일값, 1회성 재발이 아니라 지속 정지",
-      "tag": "stale-confirmed-two-consecutive-rounds"
+      "chg24": 0.058,
+      "why": "⚠️⚠️⚠️ stale 해소 — vol24/oi/chg24 전부 직전 회차와 다른 값으로 2회 연속 정지 후 정상 갱신 복귀",
+      "tag": "stale-resolved-updates-normally"
     },
     {
       "symbol": "HYNA:BTC-USD",
       "protocol": "Hyperliquid",
-      "vol24_usd": 240712.51,
-      "oi_usd": 2145944.05,
+      "vol24_usd": 241615.76,
+      "oi_usd": 2149386.58,
       "funding": 0.001,
-      "chg24": 0.898,
-      "why": "플러스 유지, 확대",
-      "tag": "stays-positive-extends"
+      "chg24": 1.01,
+      "why": "직전 회차 대비 유의한 변화 없음(간격 45분)",
+      "tag": "stays-positive"
     },
     {
       "symbol": "HYNA:ETH-USD",
       "protocol": "Hyperliquid",
-      "vol24_usd": 144848.18,
-      "oi_usd": 1667245.05,
+      "vol24_usd": 143593.65,
+      "oi_usd": 1671065.05,
       "funding": 0.001,
-      "chg24": 0.909,
-      "why": "플러스 유지, 확대",
-      "tag": "stays-positive-extends"
+      "chg24": 1.217,
+      "why": "직전 회차 대비 유의한 변화 없음(간격 45분)",
+      "tag": "stays-positive"
     },
     {
       "symbol": "SOL",
@@ -587,22 +587,22 @@
     {
       "symbol": "1000RATS",
       "protocol": "Aster",
-      "vol24_usd": 20669.88,
-      "oi_usd": 39129.82,
-      "funding": 0.011,
+      "vol24_usd": 20646.37,
+      "oi_usd": 38934.83,
+      "funding": 0.008,
       "chg24": 3.753,
-      "why": "상승폭 유지, 소폭 확대",
+      "why": "직전 회차 대비 유의한 변화 없음(간격 45분)",
       "tag": "stays-positive"
     },
     {
       "symbol": "AIO",
       "protocol": "Aster",
-      "vol24_usd": 532641.74,
-      "oi_usd": 184274.93,
-      "funding": 0.006,
-      "chg24": 9.679,
-      "why": "⚠️⚠️⚠️ APR과 재분리, 재가속(+2.620%→+9.679%)",
-      "tag": "reaccelerates-diverges-from-apr"
+      "vol24_usd": 533991.11,
+      "oi_usd": 177864.17,
+      "funding": 0.01,
+      "chg24": 8.403,
+      "why": "강한 플러스 유지, 소폭 둔화 — APR 반전으로 극단적 재분리는 해소",
+      "tag": "stays-strongly-positive-decelerates-mildly"
     },
     {
       "symbol": "AIO",
@@ -627,22 +627,22 @@
     {
       "symbol": "AAVE",
       "protocol": "Aster",
-      "vol24_usd": 53834.96,
-      "oi_usd": 4438802.4,
+      "vol24_usd": 100169.86,
+      "oi_usd": 4460937.77,
       "funding": 0.01,
-      "chg24": 1.408,
-      "why": "⚠️ 플러스 폭 확대",
-      "tag": "extends-positive"
+      "chg24": 0.358,
+      "why": "⚠️ 플러스 폭 크게 축소, 평탄권 근접",
+      "tag": "decelerates-toward-flat"
     },
     {
       "symbol": "AAVE",
       "protocol": "Hyperliquid",
-      "vol24_usd": 2465832.74,
-      "oi_usd": 57418320.99,
+      "vol24_usd": 2382948.71,
+      "oi_usd": 57155343.03,
       "funding": 0.001,
-      "chg24": 1.206,
-      "why": "⚠️ 플러스 폭 확대",
-      "tag": "extends-positive"
+      "chg24": 0.251,
+      "why": "⚠️ 플러스 폭 크게 축소, 평탄권 근접",
+      "tag": "decelerates-toward-flat"
     },
     {
       "symbol": "ADA",
@@ -657,22 +657,22 @@
     {
       "symbol": "ADA",
       "protocol": "Aster",
-      "vol24_usd": 567774.81,
-      "oi_usd": 1269737.8,
+      "vol24_usd": 567050.21,
+      "oi_usd": 1263495.27,
       "funding": 0.01,
-      "chg24": -0.854,
-      "why": "마이너스 폭 크게 축소",
-      "tag": "improves-notably-still-negative"
+      "chg24": -1.643,
+      "why": "⚠️ 마이너스 폭 재확대",
+      "tag": "worsens-again"
     },
     {
       "symbol": "ADA",
       "protocol": "Hyperliquid",
-      "vol24_usd": 5114052.52,
-      "oi_usd": 29167391.74,
-      "funding": -0.001,
-      "chg24": -0.716,
-      "why": "마이너스 폭 크게 축소",
-      "tag": "improves-notably-still-negative"
+      "vol24_usd": 5364803.21,
+      "oi_usd": 29018750.13,
+      "funding": 0.001,
+      "chg24": -1.615,
+      "why": "⚠️ 마이너스 폭 재확대",
+      "tag": "worsens-again"
     },
     {
       "symbol": "ALGO",
@@ -687,22 +687,22 @@
     {
       "symbol": "ALGO",
       "protocol": "Aster",
-      "vol24_usd": 34245.75,
-      "oi_usd": 39161.82,
-      "funding": 0.001,
-      "chg24": -0.127,
-      "why": "마이너스 지속하나 폭 축소",
-      "tag": "improves-mildly-still-negative"
+      "vol24_usd": 30649.47,
+      "oi_usd": 39269.38,
+      "funding": 0.0,
+      "chg24": 0.393,
+      "why": "플러스 유지, 폭 소폭 확대",
+      "tag": "stays-positive"
     },
     {
       "symbol": "ALGO",
       "protocol": "Hyperliquid",
-      "vol24_usd": 438478.45,
-      "oi_usd": 1817464.85,
-      "funding": -0.005,
-      "chg24": 0.583,
-      "why": "⚠️ 마이너스에서 플러스로 재반전",
-      "tag": "flips-positive"
+      "vol24_usd": 446592.89,
+      "oi_usd": 1806010.04,
+      "funding": -0.002,
+      "chg24": 0.218,
+      "why": "플러스 유지하되 폭 축소, 평탄권 근접",
+      "tag": "extends-positive-but-decelerates-sharply"
     },
     {
       "symbol": "ASTER",
@@ -717,81 +717,81 @@
     {
       "symbol": "ASTER",
       "protocol": "Aster",
-      "vol24_usd": 8445381.91,
-      "oi_usd": 220927876.48,
+      "vol24_usd": 8522884.3,
+      "oi_usd": 221076519.39,
       "funding": 0.008,
-      "chg24": 0.067,
-      "why": "마이너스에서 플러스로 소폭 전환",
-      "tag": "flips-positive"
+      "chg24": 0.05,
+      "why": "직전 회차 대비 유의한 변화 없음(간격 45분)",
+      "tag": "stays-roughly-flat"
     },
     {
       "symbol": "ETH",
       "protocol": "dYdX",
-      "vol24_usd": 43990413.91,
-      "oi_usd": 25860100.1,
-      "funding": 0.00004417,
-      "chg24": 1.238,
-      "why": "상승폭 확대 — BTC와 동조",
+      "vol24_usd": 44090997.49,
+      "oi_usd": 25710400.7,
+      "funding": 0.0000654,
+      "chg24": 0.933,
+      "why": "직전 회차 대비 유의한 변화 없음(간격 45분) — BTC와 동조",
       "tag": "continues-mild-uptrend"
     },
     {
       "symbol": "BTC",
       "protocol": "dYdX",
-      "vol24_usd": 5261682.27,
-      "oi_usd": 17133225.9,
-      "funding": 0.00000026,
-      "chg24": 0.927,
-      "why": "상승폭 확대",
+      "vol24_usd": 5366421.06,
+      "oi_usd": 17155274.5,
+      "funding": 0.00000095,
+      "chg24": 0.849,
+      "why": "직전 회차 대비 유의한 변화 없음(간격 45분)",
       "tag": "continues-mild-uptrend"
     },
     {
       "symbol": "SOL",
       "protocol": "dYdX",
-      "vol24_usd": 4147087.12,
-      "oi_usd": 4966906.0,
-      "funding": -0.0000008,
-      "chg24": 0.359,
-      "why": "플러스 유지, BTC·ETH와 함께 3종목 모두 상승 지속",
+      "vol24_usd": 4148589.76,
+      "oi_usd": 4966857.7,
+      "funding": -0.00000025,
+      "chg24": 0.385,
+      "why": "직전 회차 대비 유의한 변화 없음(간격 45분) — 3종목 모두 상승 지속",
       "tag": "stays-positive-with-btc-eth"
     },
     {
       "symbol": "BTC",
       "protocol": "Hyperliquid",
-      "vol24_usd": 1443849791.73,
-      "oi_usd": 2859176385.99,
+      "vol24_usd": 1478405377.16,
+      "oi_usd": 2868620333.11,
       "funding": 0.0,
-      "chg24": 1.077,
-      "why": "완만한 상승 지속, 폭 확대",
+      "chg24": 0.891,
+      "why": "직전 회차 대비 유의한 변화 없음(간격 45분)",
       "tag": "continues-mild-uptrend"
     },
     {
       "symbol": "ETH",
       "protocol": "Hyperliquid",
-      "vol24_usd": 535961479.17,
-      "oi_usd": 1697807399.29,
+      "vol24_usd": 550676895.96,
+      "oi_usd": 1687603496.65,
       "funding": 0.001,
-      "chg24": 1.35,
-      "why": "상승폭 확대",
+      "chg24": 0.887,
+      "why": "직전 회차 대비 유의한 변화 없음(간격 45분)",
       "tag": "continues-mild-uptrend"
     },
     {
       "symbol": "ATOM",
       "protocol": "Hyperliquid",
-      "vol24_usd": 398787.56,
-      "oi_usd": 1738589.88,
+      "vol24_usd": 399890.27,
+      "oi_usd": 1729157.18,
       "funding": -0.003,
-      "chg24": -3.445,
-      "why": "낙폭 완화",
-      "tag": "improves-mildly-still-negative"
+      "chg24": -3.74,
+      "why": "직전 회차 대비 유의한 변화 없음(간격 45분)",
+      "tag": "stays-roughly-flat"
     },
     {
       "symbol": "BTC",
       "protocol": "Aster",
-      "vol24_usd": 510543438.01,
-      "oi_usd": 791541659.67,
-      "funding": 0.007,
-      "chg24": 1.032,
-      "why": "완만한 상승 지속, 폭 확대",
+      "vol24_usd": 524429240.44,
+      "oi_usd": 788535351.72,
+      "funding": 0.008,
+      "chg24": 0.929,
+      "why": "직전 회차 대비 유의한 변화 없음(간격 45분)",
       "tag": "continues-mild-uptrend"
     },
     {
@@ -807,42 +807,42 @@
     {
       "symbol": "ETHFI",
       "protocol": "Hyperliquid",
-      "vol24_usd": 4155280.41,
-      "oi_usd": 12340340.69,
+      "vol24_usd": 4444581.7,
+      "oi_usd": 12420496.91,
       "funding": 0.001,
-      "chg24": 2.163,
-      "why": "강한 플러스 유지, 소폭 둔화",
-      "tag": "stays-strongly-positive-decelerates"
+      "chg24": 1.389,
+      "why": "직전 회차 대비 유의한 변화 없음(간격 45분)",
+      "tag": "stays-positive"
     },
     {
       "symbol": "FARTCOIN",
       "protocol": "Hyperliquid",
-      "vol24_usd": 4618376.57,
-      "oi_usd": 30242426.16,
+      "vol24_usd": 4692530.08,
+      "oi_usd": 30041320.31,
       "funding": 0.001,
-      "chg24": 0.701,
-      "why": "⚠️ 마이너스에서 플러스로 재반전",
-      "tag": "flips-positive-again"
+      "chg24": 0.141,
+      "why": "플러스 유지하되 폭 축소, 평탄권 근접",
+      "tag": "stays-positive-decelerates"
     },
     {
       "symbol": "HYPER",
       "protocol": "Hyperliquid",
-      "vol24_usd": 79568.15,
-      "oi_usd": 200407.95,
+      "vol24_usd": 79315.39,
+      "oi_usd": 199823.45,
       "funding": 0.001,
-      "chg24": -0.232,
-      "why": "낙폭 완화",
-      "tag": "improves-mildly-still-negative"
+      "chg24": -0.488,
+      "why": "직전 회차 대비 유의한 변화 없음(간격 45분)",
+      "tag": "stays-roughly-flat-negative"
     },
     {
       "symbol": "APEX",
       "protocol": "Hyperliquid",
-      "vol24_usd": 197607.22,
-      "oi_usd": 594533.02,
+      "vol24_usd": 196239.02,
+      "oi_usd": 592584.17,
       "funding": 0.001,
-      "chg24": -3.462,
-      "why": "⚠️ 플러스에서 마이너스로 전환",
-      "tag": "flips-negative"
+      "chg24": -3.873,
+      "why": "마이너스 지속, 폭 소폭 확대",
+      "tag": "stays-negative-mildly-worsens"
     },
     {
       "symbol": "ALLO",
@@ -857,32 +857,32 @@
     {
       "symbol": "ALLO",
       "protocol": "Aster",
-      "vol24_usd": 45538.0,
-      "oi_usd": 54572.75,
+      "vol24_usd": 32311.26,
+      "oi_usd": 55580.56,
       "funding": 0.001,
-      "chg24": -0.129,
-      "why": "⚠️ 플러스에서 마이너스로 전환",
-      "tag": "flips-negative"
+      "chg24": 4.873,
+      "why": "⚠️ 마이너스에서 플러스로 재반전, 다만 거래량 소규모",
+      "tag": "flips-positive-again-small-volume"
     },
     {
       "symbol": "ATOM",
       "protocol": "Aster",
-      "vol24_usd": 7992.65,
-      "oi_usd": 1682735.3,
+      "vol24_usd": 7980.74,
+      "oi_usd": 1685276.23,
       "funding": 0.01,
-      "chg24": -3.189,
-      "why": "거의 평탄, 소폭 변동",
-      "tag": "worsens-mildly-continues"
+      "chg24": -3.731,
+      "why": "직전 회차 대비 유의한 변화 없음(간격 45분)",
+      "tag": "stays-roughly-flat-negative"
     },
     {
       "symbol": "APR",
       "protocol": "Aster",
-      "vol24_usd": 252477.45,
-      "oi_usd": 354805.5,
-      "funding": 0.0,
-      "chg24": -8.3,
-      "why": "AIO와 분리, 마이너스로 급반전",
-      "tag": "diverges-sharply-from-aio-flips-negative"
+      "vol24_usd": 245641.61,
+      "oi_usd": 364490.7,
+      "funding": 0.001,
+      "chg24": 2.18,
+      "why": "⚠️ 마이너스에서 플러스로 급반전, B+B·OKX와 동일 방향",
+      "tag": "reverses-sharply-to-positive-anchor-window-suspected"
     },
     {
       "symbol": "APR",
@@ -896,28 +896,28 @@
     }
   ],
   "themes": [
-    "⭐⭐⭐ ACE: 4소스 전부 +29~31%대 상승 지속하는데 펀딩(숏 프리미엄)은 정반대로 큰 폭 완화(B+B -0.854→-0.375) — 지난 회차 시사된 숏스퀴즈 진행이 실제로 지지되는 정황. 언락은 8/18, 약 10시간 이내 임박(WebSearch: 296만 4,040개=유통량 2%, 시총 2.9%) (ace-funding-compresses-short-squeeze-confirmed).",
-    "⚠️⚠️⚠️⚠️⚠️ HYNA:SOL-USD: stale 2회 연속 확인 — vol24_usd·oi_usd·chg24가 직전 회차와 이번 회차도 완전 동일값(18,180.71 / 533,133.23 / 0.166%). 1회성 재발이 아니라 지속 정지로 재평가. HYNA:HYPE-USD는 계속 정상 갱신 (hyna-sol-stale-two-consecutive-rounds).",
-    "⚠️⚠️⚠️ BEAT: 지난 회차의 낙폭 완화가 1회차 만에 반전, 다시 -30%대 근접(OKX -24.582%→-29.696%, Aster -25.310%→-30.769%). 촉매는 8/1 대형 언락발 연쇄급락 지속 해석 유지 (beat-relief-reverses-nears-30pct-again).",
-    "⚠️⚠️⚠️ AIO·APR 재분리: 지난 회차 재수렴이 무너지며 AIO는 재가속(+8.9~9.7%), APR은 플러스에서 마이너스로 급반전(-6.7~-8.9%)해 완전히 반대 방향으로 벌어짐 (aio-apr-diverge-sharply-again).",
-    "⚠️⚠️⚠️ BSB: 급확대 후 소진을 넘어 플러스에서 마이너스로 완전 반전(OKX +7.299%→-4.341%, Aster +6.849%→-4.766%) (bsb-flips-negative-from-positive-spike).",
-    "⚠️⚠️⚠️ AEON: 3소스(OKX·Bybit·Aster) 전부 상승폭 대폭 확대(+10.5~12.3%대) (aeon-accelerates-strongly-positive).",
-    "⚠️⚠️⚠️ KAITO: 낙폭이 거의 완전히 해소되며 OKX·HL 모두 평탄권 수렴(-5%대→-0.2~-0.5%대) (kaito-negative-nearly-fully-resolved).",
-    "⚠️⚠️⚠️ BICO: 낙폭 재확대(OKX -3.037%→-11.664%), Aster도 이번 회차 재확인돼 거의 동일 수준(-11.559%) (bico-worsens-sharply-reconfirmed).",
-    "⚠️⚠️⚠️ CASHCAT: 온체인과의 격차가 크게 좁혀짐 — 온체인 -9.497%, HL -8.491%로 두 소스 낙폭이 절반가량 줄며 격차 약 2.22%p→약 1.01%p (cashcat-gap-narrows-significantly).",
-    "⚠️ AAVE·ADA·ALGO 광범위 플러스 전환: AAVE 전 소스 플러스 폭 확대, ADA 전 소스 마이너스 폭 크게 축소, ALGO는 B+B·HL 플러스 반전(Aster만 마이너스 유지, 폭은 축소) (aave-ada-algo-broad-positive-shift).",
-    "CORE: 강한 플러스 유지하되 상승폭 둔화(+13.548%→+9.632%) (core-stays-strongly-positive-decelerates).",
-    "⚠️ FARTCOIN 마이너스에서 플러스로 재반전, ⚠️ PIPPIN 플러스에서 마이너스로 전환, ⚠️ ALLO 플러스에서 마이너스로 전환 (fartcoin-pippin-allo-flip-various-directions).",
-    "MMT 낙폭 확대(-2.938%→-5.692%), GIGGLE 상승폭 계속 확대(+5.251%→+6.546%) (mmt-worsens-giggle-extends-positive).",
-    "⭐ BTW: Aster 기준 상승폭 둔화 지속(+7.900%→+7.444%), Bitway(시총 약 $1.1B) 프로젝트 기준 집계 유지 (btw-tracked-as-bitway-project-decelerates).",
-    "⚠️⚠️⚠️ 데이터: OrangeX 서비스 중단이 14회차(약 29시간)로 확대 — 코드1000(No service found) 오류 시그니처 재현 (orangex-service-outage-continues).",
-    "dYdX: BTC(+0.927%)·ETH(+1.238%)·SOL(+0.359%) 3종목 모두 플러스 유지, 상승폭 소폭 확대 — 대체로 완만한 상승 기조 지속 (dydx-all-three-stay-positive-extend).",
-    "시장 전반: Hyperliquid BTC(+1.077%)·ETH(+1.35%), Aster BTC(+1.032%)도 상승폭 소폭 확대 — 완만한 상승 기조 유지 (market-mild-uptrend-extends).",
+    "⭐⭐⭐ ACE: 4소스 전부 상승 지속(33.3~34.6%)하며 펀딩(숏 프리미엄)이 추가로 압축 — 숏스퀴즈 진행이 이번 회차도 이어짐. 언락은 8/18, 약 9시간 이내로 더 임박 (ace-funding-compresses-short-squeeze-confirmed).",
+    "⚠️ APR: Binance·Bybit·OKX·Aster 4소스 전부 마이너스에서 플러스로 급반전(-6.7~-8.9%→+2.0~+3.6%). 45분 내 실제 반전이라기보다 24h 앵커 롤링윈도우 아티팩트 가능성이 있으나 4소스 일관돼 단일소스 오류로 단정 안 함 — 원인 불명확 정직 병기 (apr-reverses-sharply-to-positive-anchor-suspected).",
+    "⚠️⚠️⚠️ HYNA:SOL-USD: stale 해소 — vol24/oi/chg24 전부 직전 회차와 다른 값으로 2회 연속 정지 후 정상 갱신 복귀 (hyna-sol-stale-resolved).",
+    "⚠️⚠️⚠️ AEON: 3소스(OKX·Bybit·Aster) 전부 상승폭 추가 확대(+13.9~15.7%대) (aeon-accelerates-further).",
+    "⚠️⚠️⚠️ BICO: OKX·Aster 모두 낙폭 추가 확대(-13.9~-15.9%대) (bico-worsens-further).",
+    "⚠️⚠️⚠️ KAITO: 평탄권에서 뚜렷한 플러스로 전환(OKX +3.0%, HL +2.4%) — 낙폭 해소 흐름의 연장 (kaito-flips-clearly-positive).",
+    "CASHCAT: 낙폭 재확대(HL -11.511%), 온체인과의 격차는 약 1.01%p→약 1.18%p로 소폭 확대 (cashcat-worsens-gap-widens-slightly).",
+    "⚠️ GIGGLE(OKX, 단일소스): 플러스(+6.546%)에서 거의 완전 평탄(-0.178%)으로 급감 (giggle-collapses-to-flat).",
+    "⚠️ CAP(OKX): 마이너스 폭 확대(-2.996%→-5.994%), Aster도 동조 (cap-worsens-notably).",
+    "CORE(OKX): 강한 플러스 유지하되 상승폭 추가 둔화(+9.632%→+5.874%) (core-decelerates-further).",
+    "BSB: OKX·Aster 모두 -3%대로 수렴하며 안정화(-4.3~-4.8%→-3.1%대) — 직전 회차 완전반전 이후 완화 (bsb-stabilizes-near-negative-3pct).",
+    "⚠️ AAVE·ADA·ALGO 방향 재조정: AAVE 플러스 폭 크게 축소해 평탄권 근접, ADA 마이너스 폭 재확대, ALGO 플러스 유지하되 폭 크게 축소 (aave-ada-algo-mixed-reversion).",
+    "AIO: 강한 플러스 유지, 상승폭 소폭 둔화 — APR 반전으로 극단적 재분리는 해소 (aio-decelerates-mildly-apr-realigns).",
+    "BEAT: OKX·Aster 모두 -29%대 부근에서 안정화, 직전 회차 대비 유의한 변화 없음 (beat-stabilizes-near-30pct).",
+    "⚠️⚠️⚠️ 데이터: OrangeX 서비스 중단이 15회차(약 29.75시간, 약 30시간)로 확대 — 코드1000(No service found) 오류 시그니처 재현 (orangex-service-outage-continues).",
+    "dYdX·Hyperliquid·Aster 메이저(BTC·ETH·SOL): 직전 회차 대비 유의한 변화 없음(간격 45분), 완만한 상승 기조 유지 (majors-no-significant-change-short-interval).",
+    "시장 전반: CoinGecko `/global` 총시가총액·BTC 도미넌스 모두 직전 회차 대비 유의한 변화 없음($2,269.64B→$2,267.96B, 56.29%→56.27%) (global-mcap-no-significant-change).",
     "⚠️⚠️⚠️ 데이터: OKX ctVal 기반 재계산 방법론 유지, open-interest 엔드포인트 개별 재조회로 OI 갱신(APR·BEAT·KAITO·CAP·BSB·CORE·ATOM·MMT·AEON·BICO·GRAM·GIGGLE·PIPPIN). ACE·BANK는 OKX 미상장 재확인 (okx-ctval-oi-individually-reconfirmed).",
-    "⚠️⚠️⚠️ 데이터: Aster 직접 API 이번 회차도 접근 실패(403), CoinGecko id 'aster'로 대부분 확보. ETH·CASHCAT은 여전히 부재, BICO는 이번 회차 재확인 성공 (aster-direct-api-blocked-coingecko-partial-this-round).",
+    "데이터: Aster 직접 API 이번 회차도 403 지속, CoinGecko id 'aster'로 대부분 확보. ETH·CASHCAT은 여전히 부재, ALLO·ATOM은 이번 회차 확인 성공 (aster-direct-api-blocked-coingecko-partial-this-round).",
     "데이터: KAITO·BICO Bybit 라인 이번 회차도 CoinGecko bybit 티커 목록에 부재 확인 — 구조적 미상장 재확인, AEON Bybit는 정상 확인 (kaito-bico-bybit-failure-structural-aeon-confirmed).",
-    "데이터: CoinGecko `/global` 이번 회차 재확인 성공 — 총시가총액 $2,262.30B→$2,269.64B, BTC 도미넌스 56.21%→56.29% (global-mcap-reconfirmed-this-round).",
-    "1000RATS: B+B·Aster 모두 상승폭 유지 (1000rats-stays-positive).",
+    "1000RATS: B+B·Aster 모두 직전 회차 대비 유의한 변화 없음 (1000rats-no-significant-change).",
+    "ALLO(Aster): 마이너스에서 플러스로 재반전했으나 거래량이 소규모($32,311)라 해석에 유의 (allo-flips-positive-small-volume).",
     "주식화·상품 토큰은 전부 제외. 리스트 전 종목 크립토 네이티브 확인 유지 (stock-commodity-tokens-excluded-crypto-native-confirmed).",
     "바이낸스 fapi 지역차단(451) 지속으로 CoinGecko binance_futures 대체 유지, Bybit·Hyperliquid 직접 API도 각각 403/POST전용으로 CoinGecko 대체 경로 유지, dYdX·OKX는 직접 GET 접근 성공 (fapi-bybit-hl-direct-blocked-dydx-okx-direct-ok)."
   ]
