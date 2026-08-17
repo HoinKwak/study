@@ -1,16 +1,16 @@
 토큰,체인,단계,KOL코로보,서사,신규여부,시점,출처
-ROBBIE,"Robinhood Chain(Uniswap, WETH페어)",뒷북,,"편입5회차. 편출판단회차였으나 h24가 -17.42%→-2.93%DS로 대폭개선·h1반전양전·유동성+3.93%로 반등 확인돼 유지(편출보류)",지속(5회차),2026-08-17T03:00:00Z,DexScreener API
-PRINTER,"Robinhood Chain(Uniswap V4 0.3%, USDG페어)",뒷북,,"편입23회차. h24 +401%→+284%DS로 감속(관측만, GT +282.1%와 교차검증). 매수우위는 오히려 확대돼 혼재",지속(23회차),2026-08-17T03:00:00Z,DexScreener API
-CATE,Solana(PumpSwap),뒷북,,"15회차. h24 -21.19%→-18.4%DS로 개선, 3회연속악화흐름이끊기고반등 확인",지속(15회차),2026-08-17T03:00:00Z,DexScreener API
-DPG,Solana(PumpSwap),뒷북,,"43회차. h24 +21.95%→+24.33%DS로 오히려 개선, h1도재반전양전해균열조짐진정",지속(43회차),2026-08-17T03:00:00Z,DexScreener API
-TOAD,Solana(PumpSwap/Meteora),뒷북,,"92회차. 유동성-24.9%대폭이탈+전지표동반악화, h24-38.68%DS로10연속음전악화심화",지속(92회차),2026-08-17T03:00:00Z,DexScreener API
-Momota,Solana(PumpSwap/Meteora/Raydium),뒷북,,"39회차. h24-50.86%DS로역대최악치재경신, 유동성-8.89%이탈",지속(39회차),2026-08-17T03:00:00Z,DexScreener API
-CALLOOOR,Solana(PumpSwap),뒷북,,"42회차. h24+8.87%→-19.23%DS로반전음전, 유동성-4.84%이탈로전반악화",지속(42회차),2026-08-17T03:00:00Z,DexScreener API
-lickingcat,Solana(PumpSwap/Meteora),뒷북,,"83회차. h6·h24재악화(-21.42%·-27.26%DS)로직전개선흐름단절, 유동성-4.50%이탈",지속(83회차),2026-08-17T03:00:00Z,DexScreener API
-FWA,"Ethereum(Uniswap V4, WETH페어)","뒷북","Cointelegraph·CryptoBriefing·KuCoin·PANews(carryover)+CG트렌딩12위","96회차. h24+30.75%DS로양전유지(7연속)하나 h1반전음전·h6대폭감속으로모멘텀식음",지속(96회차),2026-08-17T03:00:00Z,DexScreener API
-BLINK,"Robinhood Chain(Uniswap V3, pools.trade)",뒷북,,"92회차. h24+6.75%DS거의보합유지하나 h1반전음전(+19.75%→-8.12%)으로부분지속",지속(92회차),2026-08-17T03:00:00Z,DexScreener API
-Dealer,Solana(PumpSwap/Meteora),뒷북,,"84회차. 2회연속전지표개선지속(h24-20.25%DS), 유동성+1.44%유입지속",지속(84회차),2026-08-17T03:00:00Z,DexScreener API
-JUGGERNAUT,Robinhood Chain(Uniswap V3 1%),뒷북,"Drallio(약한코로보, carryover)","79회차. 드물게개선하던흐름이소폭반전(h24-4.39%DS), 낙폭자체는크지않음",지속(79회차),2026-08-17T03:00:00Z,DexScreener API
-PITCOIN,Solana(PumpSwap),뒷북,,"44회차. h24-5.47%DS로11연속음전이나낙폭축소흐름지속, 손익분기근접",지속(44회차),2026-08-17T03:00:00Z,DexScreener API
-BRODIE,"Robinhood Chain(Uniswap V3, Robinhood Dog)",뒷북,,"55회차. h1·h6반전음전하나h24개선(-3.77%DS)으로휘프소패턴지속",지속(55회차),2026-08-17T03:00:00Z,DexScreener API
-Remus,Solana(PumpSwap),뒷북,,"88회차. h1·h6소폭개선하나h24재악화(-31.16%DS)로여전히깊은음전권",지속(88회차),2026-08-17T03:00:00Z,DexScreener API
+ROBBIE,"Robinhood Chain(Uniswap, WETH페어)",뒷북,,"편입6회차. 2회연속반등확인(h24-17.42%→-2.93%→+37.29%DS)으로안정화판단, 유동성도2회연속유입(+3.93%→+7.87%)",지속(6회차),2026-08-17T05:00:00Z,DexScreener API
+TOAD,Solana(PumpSwap/Meteora),뒷북,,"93회차. 지시받은'추가악화시편출후보'점검결과추가악화가아니라반등(h24-38.68%→-31.43%DS), 유동성+16.63%로첫반등이나1회뿐이라편출보류판단은유보",지속(93회차),2026-08-17T05:00:00Z,DexScreener API
+Momota,Solana(PumpSwap/Meteora/Raydium),뒷북,,"40회차. 역대최악치(-50.86%DS)직후반등(-41.05%DS), 유동성+10.78%로첫반등이나1회뿐이라추세전환단정보류",지속(40회차),2026-08-17T05:00:00Z,DexScreener API
+PRINTER,"Robinhood Chain(Uniswap V4 0.3%, USDG페어)",뒷북,,"24회차. h24가401→284→235%DS로3회연속감속, 이번엔매수우위(2.13→3.13→2.385)도동반완화(관측만)",지속(24회차),2026-08-17T05:00:00Z,DexScreener API
+DPG,Solana(PumpSwap),뒷북,,"44회차. 균열진정에이어h24+24.33%→+73.35%DS로뚜렷재가속, 유동성+5.07%로3회연속유입",지속(44회차),2026-08-17T05:00:00Z,DexScreener API
+FWA,"Ethereum(Uniswap V4, WETH페어)",뒷북,"Cointelegraph·CryptoBriefing·KuCoin·PANews(carryover)+CG트렌딩12위","97회차. h24가35.83→30.75→9.82%DS로3회연속감속, h1도음전심화(-10.59%)로모멘텀식음추가확인",지속(97회차),2026-08-17T05:00:00Z,DexScreener API
+BLINK,"Robinhood Chain(Uniswap V3, pools.trade)",뒷북,,"93회차. 예상과달리뚜렷재가속 — h24+6.75%→+24.81%DS, h1강한반전양전(+17.22%), 유동성+4.71%회복",지속(93회차),2026-08-17T05:00:00Z,DexScreener API
+CATE,Solana(PumpSwap),뒷북,,"16회차. h24-18.4%→-17.05%DS로2회연속완만개선지속",지속(16회차),2026-08-17T05:00:00Z,DexScreener API
+CALLOOOR,Solana(PumpSwap),뒷북,,"43회차. h24-19.23%→-18.33%DS거의보합, h1반전양전하나h6반전음전으로혼재",지속(43회차),2026-08-17T05:00:00Z,DexScreener API
+lickingcat,Solana(PumpSwap/Meteora),뒷북,,"84회차. h24·h6모두소폭개선(-26.46%·-4.47%DS), 유동성+2.27%반등",지속(84회차),2026-08-17T05:00:00Z,DexScreener API
+Dealer,Solana(PumpSwap/Meteora),뒷북,,"85회차. 3회연속전지표개선지속(h24-15.13%DS), 유동성+2.88%유입지속",지속(85회차),2026-08-17T05:00:00Z,DexScreener API
+JUGGERNAUT,Robinhood Chain(Uniswap V3 1%),뒷북,"Drallio(약한코로보, carryover)","80회차. 소폭등락범위내횡보지속(h24-4.88%DS)",지속(80회차),2026-08-17T05:00:00Z,DexScreener API
+PITCOIN,Solana(PumpSwap),뒷북,,"45회차. 11회연속낙폭축소흐름이이번회차반전(h24-5.47%→-13.75%DS로재확대)",지속(45회차),2026-08-17T05:00:00Z,DexScreener API
+BRODIE,"Robinhood Chain(Uniswap V3, Robinhood Dog)",뒷북,,"56회차. h1·h6음전완화하나h24재악화(-13.6%DS)로휘프소패턴지속",지속(56회차),2026-08-17T05:00:00Z,DexScreener API
+Remus,Solana(PumpSwap),뒷북,,"89회차. h1·h6소폭개선하나h24거의보합(-30.63%DS)으로여전히깊은음전권",지속(89회차),2026-08-17T05:00:00Z,DexScreener API
