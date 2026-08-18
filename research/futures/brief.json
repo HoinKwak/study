@@ -1,15 +1,15 @@
 {
   "ts": "2026-08-18T20:30:00Z",
-  "market": "직전 회차(2026-08-18T18:30:00Z)로부터 2시간 경과(정상 간격). **이번 회차 최대 헤드라인은 ACE의 추가 가속과 CASHCAT의 3소스 수렴이다.**\n\n**ACE는 또 한 번 크게 가속했다** — B+B(가중평균) +32.06%→**+41.66%**, HL +32.15%→**+42.22%**, Aster +31.91%→**+41.42%**로 3소스 모두 40%대 초반까지 확대됐다. tokenomist.ai로 언락설을 반증한 지난 회차 이후에도 가속이 이어져 WebSearch로 신규 촉매를 추가 확인했으나, 8/7·8/13 관련 보도(Bitget PoolX 상장)만 재확인됐을 뿐 이번 회차의 추가 급등을 설명할 뚜렷한 신규 재료는 확인되지 않았다 — **원인은 계속 미상으로 남겨둔다.** 거래량도 B+B 기준 $697.30M→**$717.23M**로 소폭 더 늘었다. OKX SWAP 티커는 이번 회차도 부재를 재확인했다.\n\n**CASHCAT은 소스 간 괴리가 완전히 해소되고 3소스 모두 뚜렷한 마이너스로 수렴했다.** 지난 회차 HL만 플러스(+1.19%)이고 온체인(-7.65%)·Aster(-8.38%)는 마이너스로 갈렸던 것과 달리, 이번 회차는 HL **-13.48%**, 온체인(CoinGecko cash-cat) **-13.97%**, Aster **-13.58%**로 세 소스가 거의 동일한 수준으로 수렴했다 — 이번엔 방향성 신뢰도가 높다. 다만 Aster의 거래량은 $1.05M→**$17.2K**로 급감(전회차 대비 약 1/60)해 유동성 자체는 매우 얇아진 상태다.\n\n**ATOM은 4벤뉴 동시 플러스를 2회차째 유지했다** — B+B +0.45%→**+0.85%**, OKX +2.12%→**+0.78%**(감속), HL +0.05%→**+0.90%**, Aster +0.71%→**+1.07%**. 방향은 유지되나 OKX는 오히려 폭이 줄었다.\n\n**CAP는 마이너스에서 거의 손익분기권까지 회복했다** — OKX -4.73%→**-0.54%**, Aster -2.39%→**+0.96%**(플러스 전환)로 지난 회차의 급반전이 다시 완화 방향으로 되돌아가는 모습이다.\n\n**BEAT는 재악화가 소폭 진정됐다** — OKX -20.02%→**-19.31%**, Binance -19.89%→**-18.81%**로 소폭 개선됐으나 Aster는 오히려 -19.07%→**-19.86%**로 더 악화돼 소스 간 온도차가 있다. 여전히 3소스 모두 -18~-20%대의 깊은 마이너스권이다.\n\n**BSB는 OKX·Aster 양쪽 모두 플러스로 수렴했다** — OKX -0.17%→**+0.67%**(플러스 재반전), Aster +0.23%→**+0.79%**로 지난 회차의 방향 혼조가 정리됐다.\n\n**BANK는 OI 안정 속에 가격 상승세가 추가로 확대됐다** — B+B +2.06%→**+3.97%**, Aster는 +0.48%→**+5.28%**로 더 크게 상승했다. Aster 자체 OI는 $274.6K→**$279.9K**로 여전히 거의 무변화라 OI 반등은 CEX(B+B) 쪽에 국한된 흐름이 이어지고 있다.\n\n**ALLO는 플러스에서 마이너스로 반전했다** — B+B +1.97%→**-1.92%**, Aster도 +2.59%→**-1.91%**로 동조 반전했다.\n\n**HYPE·HYNA:HYPE는 마이너스에서 다시 플러스로 반전했다** — HYPE(HL) -0.92%→**+0.56%**, HYNA:HYPE(HL) -0.82%→**+0.92%**. **FARTCOIN(HL)은 마이너스 반전 2회차째로 낙폭이 확대**됐다(-1.54%→**-2.17%**). **ETHFI(HL)도 재악화 2회차째**다(-2.91%→**-3.71%**).\n\n**KAITO·BICO는 개선을 이어갔다.** KAITO는 OKX -1.38%→**-0.80%**, Binance -1.41%→**-0.66%**, HL -1.98%→**-1.77%**로 손익분기권에 더 근접했다(OKX·Binance는 -1%미만까지 근접). BICO는 OKX -3.95%→**-3.83%**, Binance -3.57%→**-3.73%**, Aster -3.43%→**-3.20%**로 대체로 -3.5%대에서 플러토를 이루는 모습이다.\n\n**AIO는 개선 3회차째로 낙폭이 추가로 줄었다**(B+B -19.07%→**-13.99%**, Aster -18.46%→**-14.74%**). **1000RATS는 4회차째 플러스를 유지하나 폭이 더 줄었다**(B+B +14.32%→**+11.17%**, Aster +15.31%→**+10.80%**).\n\n**AAVE는 8회차째 플러토를 이어가며 폭이 더 축소됐다**(B+B +1.67%→**+0.58%**, 펀딩도 더 낮아짐).\n\n**ADA는 마이너스 방향을 유지했다** — B+B -0.33%→**-0.40%**, HL -0.26%→**-0.37%**, OKX -0.06%→**-0.40%**로 대체로 동조 마이너스인데, **Aster만 -0.40%→+0.12%로 근소 플러스로 이탈**해 소스 간 분기가 발생했다.\n\n**APR은 방향(플러스)을 4회차째 유지하며 소폭 재가속했다**(B+B +8.63%→**+9.38%**, OKX +9.12%→**+9.87%**, Aster +8.84%→**+10.39%**).\n\n**ASTER(자체토큰)는 지난 회차의 CEX(B+B) OI 급감이 이번 회차 안정화됐다** — $109.49M→**$109.61M**로 거의 무변화, Aster·HL 자체 OI도 여전히 안정적이다.\n\n**메이저(BTC·ETH)는 감속에서 안정화 국면으로 접어들었다** — dYdX BTC +0.53%→**+0.41%**, HL BTC +0.40%→**+0.44%**; dYdX ETH +0.36%→**+0.36%**, HL ETH +0.26%→**+0.28%**로 대체로 보합권에 머물렀다. **SOL(dYdX)도 이번엔 상승세가 멈추고 정체됐다**(+1.70%→**+1.69%**).\n\n**BTW(Aster)는 확장을 4회차째 이어갔다**(+12.79%→+14.89%→**+17.14%**). **GIGGLE(OKX, 단일소스)은 마이너스 확대가 3회차째다**(-4.39%→**-6.81%**). **CORE는 소폭 개선됐다**(-5.03%→**-3.17%**). **MMT는 손익분기권 플러토가 5회차째**(-0.71%→**-0.77%**). **GRAM은 손익분기권 플러토를 이어갔다**(-0.45%→**-0.53%**). **ALGO는 대체로 무변화 범위 내에서 소폭 더 악화됐다**(-0.64%→**-1.16%**). **PIPPIN(OKX, 단일소스)은 재가속 폭이 사실상 정체됐다**(+6.77%→**+6.79%**). **APEX는 방향(플러스)을 3회차째 유지했다**(Bybit +1.21%→**+1.92%**, HL +1.32%→**+1.62%**).\n\n**데이터 품질 — Bybit 직접 API가 이번 회차 다시 403으로 회귀했다.** 지난 회차 '대부분 심볼에서 복구'됐던 것과 반대로, ACEUSDT·AEONUSDT·APEXUSDT·KAITOUSDT·BEATUSDT·BICOUSDT 등 시도한 전 심볼에서 403이 재현됐다 — CoinGecko `derivatives/exchanges/bybit` 경유로 대체 확보했다(수치 자체는 정상 확보). **funding 스케일 스팟체크**: 이번 회차 OKX 14개 심볼(KAITO·BEAT·BICO·ATOM·CAP·BSB·ADA·APR·MMT·AEON·CORE·GRAM·GIGGLE·PIPPIN)의 `public/funding-rate`를 직접 재조회한 결과 전부 raw fraction 범위(|funding|<0.01)에 있어 신규 스케일 이상은 발견되지 않았다 — 지난 회차 발견된 KAITO·BICO·BEAT 오류는 재발하지 않았다.\n\n**BTC 도미넌스는 56.64%→56.62%, 총시총은 $2.294조→$2.289조**로 둘 다 대체로 무변화.\n\n**OrangeX는 이번 회차도 코드1000(No service found) 오류가 재현**돼 서비스 중단이 **29회차·약 59.75시간**으로 확대됐다. **Aster ETH truncation도 11회차 연속** 지속됐다(직접 API 403 재확인).",
+  "market": "직전 회차(2026-08-18T18:30:00Z)로부터 2시간 경과(정상 간격). **이번 회차 최대 헤드라인은 ACE의 추가 가속과 CASHCAT의 3소스 수렴이다.** (⚠️최초 게시 후 부모 세션 검증에서 funding 단위 오류를 추가로 발견해 정정함 — 하단 데이터 품질 문단 참조)\n\n**ACE는 또 한 번 크게 가속했다** — B+B(가중평균) +32.06%→**+41.66%**, HL +32.15%→**+42.22%**, Aster +31.91%→**+41.42%**로 3소스 모두 40%대 초반까지 확대됐다. tokenomist.ai로 언락설을 반증한 지난 회차 이후에도 가속이 이어져 WebSearch로 신규 촉매를 추가 확인했으나, 8/7·8/13 관련 보도(Bitget PoolX 상장)만 재확인됐을 뿐 이번 회차의 추가 급등을 설명할 뚜렷한 신규 재료는 확인되지 않았다 — **원인은 계속 미상으로 남겨둔다.** 거래량도 B+B 기준 $697.30M→**$717.23M**로 소폭 더 늘었다. OKX SWAP 티커는 이번 회차도 부재를 재확인했다.\n\n**CASHCAT은 소스 간 괴리가 완전히 해소되고 3소스 모두 뚜렷한 마이너스로 수렴했다.** 지난 회차 HL만 플러스(+1.19%)이고 온체인(-7.65%)·Aster(-8.38%)는 마이너스로 갈렸던 것과 달리, 이번 회차는 HL **-13.48%**, 온체인(CoinGecko cash-cat) **-13.97%**, Aster **-13.58%**로 세 소스가 거의 동일한 수준으로 수렴했다 — 이번엔 방향성 신뢰도가 높다. 다만 Aster의 거래량은 $1.05M→**$17.2K**로 급감(전회차 대비 약 1/60)해 유동성 자체는 매우 얇아진 상태다.\n\n**ATOM은 4벤뉴 동시 플러스를 2회차째 유지했다** — B+B +0.45%→**+0.85%**, OKX +2.12%→**+0.78%**(감속), HL +0.05%→**+0.90%**, Aster +0.71%→**+1.07%**. 방향은 유지되나 OKX는 오히려 폭이 줄었다.\n\n**CAP는 마이너스에서 거의 손익분기권까지 회복했다** — OKX -4.73%→**-0.54%**, Aster -2.39%→**+0.96%**(플러스 전환)로 지난 회차의 급반전이 다시 완화 방향으로 되돌아가는 모습이다.\n\n**BEAT는 재악화가 소폭 진정됐다** — OKX -20.02%→**-19.31%**, Binance -19.89%→**-18.81%**로 소폭 개선됐으나 Aster는 오히려 -19.07%→**-19.86%**로 더 악화돼 소스 간 온도차가 있다. 여전히 3소스 모두 -18~-20%대의 깊은 마이너스권이다.\n\n**BSB는 OKX·Aster 양쪽 모두 플러스로 수렴했다** — OKX -0.17%→**+0.67%**(플러스 재반전), Aster +0.23%→**+0.79%**로 지난 회차의 방향 혼조가 정리됐다.\n\n**BANK는 OI 안정 속에 가격 상승세가 추가로 확대됐다** — B+B +2.06%→**+3.97%**, Aster는 +0.48%→**+5.28%**로 더 크게 상승했다. Aster 자체 OI는 $274.6K→**$279.9K**로 여전히 거의 무변화라 OI 반등은 CEX(B+B) 쪽에 국한된 흐름이 이어지고 있다.\n\n**ALLO는 플러스에서 마이너스로 반전했다** — B+B +1.97%→**-1.92%**, Aster도 +2.59%→**-1.91%**로 동조 반전했다.\n\n**HYPE·HYNA:HYPE는 마이너스에서 다시 플러스로 반전했다** — HYPE(HL) -0.92%→**+0.56%**, HYNA:HYPE(HL) -0.82%→**+0.92%**. **FARTCOIN(HL)은 마이너스 반전 2회차째로 낙폭이 확대**됐다(-1.54%→**-2.17%**). **ETHFI(HL)도 재악화 2회차째**다(-2.91%→**-3.71%**).\n\n**KAITO·BICO는 개선을 이어갔다.** KAITO는 OKX -1.38%→**-0.80%**, Binance -1.41%→**-0.66%**, HL -1.98%→**-1.77%**로 손익분기권에 더 근접했다(OKX·Binance는 -1%미만까지 근접). BICO는 OKX -3.95%→**-3.83%**, Binance -3.57%→**-3.73%**, Aster -3.43%→**-3.20%**로 대체로 -3.5%대에서 플러토를 이루는 모습이다.\n\n**AIO는 개선 3회차째로 낙폭이 추가로 줄었다**(B+B -19.07%→**-13.99%**, Aster -18.46%→**-14.74%**). **1000RATS는 4회차째 플러스를 유지하나 폭이 더 줄었다**(B+B +14.32%→**+11.17%**, Aster +15.31%→**+10.80%**).\n\n**AAVE는 8회차째 플러토를 이어가며 폭이 더 축소됐다**(B+B +1.67%→**+0.58%**, 펀딩도 더 낮아짐).\n\n**ADA는 마이너스 방향을 유지했다** — B+B -0.33%→**-0.40%**, HL -0.26%→**-0.37%**, OKX -0.06%→**-0.40%**로 대체로 동조 마이너스인데, **Aster만 -0.40%→+0.12%로 근소 플러스로 이탈**해 소스 간 분기가 발생했다.\n\n**APR은 방향(플러스)을 4회차째 유지하며 소폭 재가속했다**(B+B +8.63%→**+9.38%**, OKX +9.12%→**+9.87%**, Aster +8.84%→**+10.39%**).\n\n**ASTER(자체토큰)는 지난 회차의 CEX(B+B) OI 급감이 이번 회차 안정화됐다** — $109.49M→**$109.61M**로 거의 무변화, Aster·HL 자체 OI도 여전히 안정적이다.\n\n**메이저(BTC·ETH)는 감속에서 안정화 국면으로 접어들었다** — dYdX BTC +0.53%→**+0.41%**, HL BTC +0.40%→**+0.44%**; dYdX ETH +0.36%→**+0.36%**, HL ETH +0.26%→**+0.28%**로 대체로 보합권에 머물렀다. **SOL(dYdX)도 이번엔 상승세가 멈추고 정체됐다**(+1.70%→**+1.69%**).\n\n**BTW(Aster)는 확장을 4회차째 이어갔다**(+12.79%→+14.89%→**+17.14%**). **GIGGLE(OKX, 단일소스)은 마이너스 확대가 3회차째다**(-4.39%→**-6.81%**). **CORE는 소폭 개선됐다**(-5.03%→**-3.17%**). **MMT는 손익분기권 플러토가 5회차째**(-0.71%→**-0.77%**). **GRAM은 손익분기권 플러토를 이어갔다**(-0.45%→**-0.53%**). **ALGO는 대체로 무변화 범위 내에서 소폭 더 악화됐다**(-0.64%→**-1.16%**). **PIPPIN(OKX, 단일소스)은 재가속 폭이 사실상 정체됐다**(+6.77%→**+6.79%**). **APEX는 방향(플러스)을 3회차째 유지했다**(Bybit +1.21%→**+1.92%**, HL +1.32%→**+1.62%**).\n\n**데이터 품질 — funding 단위 오류를 추가 발견해 정정했다(★ 이번 회차 최우선 수정사항).** 최초 게시본에서는 \"OKX 14개 심볼의 `public/funding-rate`를 직접 재조회해 전부 raw fraction 범위에 있어 신규 스케일 이상 없음\"이라고 기술했는데, 이는 **OKX에 한해서만 확인한 것**이었고 점검 범위를 넘어선 결론이었다. 부모 세션의 검증 요청으로 재점검한 결과, **CoinGecko `derivatives/exchanges/{hyperliquid,aster,bybit}` 및 `binance_futures` 경유로 확보한 funding_rate 필드가 실제로는 percent 단위**(예: \"0.005\"는 0.005%=0.00005 fraction)로 반환되고 있었는데, 이를 raw fraction으로 오인해 그대로 저장했음을 발견했다. 교차검증: APR의 OKX 직접조회값(0.00005, raw fraction)과 CoinGecko Binance값(0.005)을 percent로 해석하면 0.005%→0.00005로 **정확히 일치**한다. ATOM도 OKX 직접값(-0.0001691)과 CoinGecko값(-0.019%→-0.00019)이 근접 일치한다. 반면 fraction으로 해석하면 100배 이상 벌어져 모순된다. **직접 API(OKX public/funding-rate, Binance premiumIndex, dYdX nextFundingRate)는 원래부터 raw fraction이 맞고 오류가 없다** — 문제는 CoinGecko 경유 데이터에 한정된다. 이번 회차 cex·dex 배열의 funding 값 중 Hyperliquid 전체, Aster 전체(CASHCAT 포함), Bybit(CoinGecko대체) 전체, 그리고 Binance+Bybit 가중평균의 CoinGecko 유래 성분을 전부 /100 보정해 raw fraction으로 통일했다(과거 회차 기록은 소급수정하지 않음 — 이 클래스 오류가 이번 회차에 처음 발견됐다). **Bybit 직접 API도 이번 회차 403으로 회귀했다** — ACEUSDT·AEONUSDT·APEXUSDT·KAITOUSDT·BEATUSDT·BICOUSDT 등 시도한 전 심볼에서 403이 재현돼 CoinGecko `derivatives/exchanges/bybit` 경유로 대체 확보했다(수치는 위 percent→fraction 보정 적용됨).\n\n**BTC 도미넌스는 56.64%→56.62%, 총시총은 $2.294조→$2.289조**로 둘 다 대체로 무변화.\n\n**OrangeX는 이번 회차도 코드1000(No service found) 오류가 재현**돼 서비스 중단이 **29회차·약 59.75시간**으로 확대됐다. **Aster ETH truncation도 11회차 연속** 지속됐다(직접 API 403 재확인).",
   "cex": [
     {
       "symbol": "ACE",
       "venue": "Binance+Bybit(가중평균)",
       "vol24_usd": 717234102.32,
       "oi_usd": 27803688.97,
-      "funding": -0.15125,
+      "funding": -0.0015125,
       "chg24": 41.658,
-      "why": "추가 가속 지속(+32.1%→+41.7%) — WebSearch로도 신규 촉매 미확인, 원인 계속 미상. Bitget PoolX만 유효 촉매 유지",
+      "why": "추가 가속 지속(+32.1%→+41.7%) — WebSearch로도 신규 촉매 미확인, 원인 계속 미상. Bitget PoolX만 유효 촉매 유지. funding은 CoinGecko percent→fraction 보정 적용(-0.15125→-0.0015125)",
       "tag": "ace-accelerates-again-cause-still-unconfirmed"
     },
     {
@@ -47,9 +47,9 @@
       "venue": "Binance+Bybit(가중평균)",
       "vol24_usd": 55769776.88,
       "oi_usd": 84148984.54,
-      "funding": 0.003789,
+      "funding": 0.00003789,
       "chg24": 0.5842,
-      "why": "8회차째 플러토, 폭 추가 축소(+1.67%→+0.58%)",
+      "why": "8회차째 플러토, 폭 추가 축소(+1.67%→+0.58%). funding CoinGecko percent→fraction 보정 적용",
       "tag": "aave-plateau-decelerates-eighth-round"
     },
     {
@@ -107,9 +107,9 @@
       "venue": "Binance+Bybit(가중평균)",
       "vol24_usd": 20082145.87,
       "oi_usd": 30082777.55,
-      "funding": -0.02090,
+      "funding": -0.0002090,
       "chg24": 0.848,
-      "why": "4벤뉴 플러스 2회차째 유지",
+      "why": "4벤뉴 플러스 2회차째 유지. funding CoinGecko percent→fraction 보정 적용",
       "tag": "atom-holds-positive-second-round-four-venues"
     },
     {
@@ -127,9 +127,9 @@
       "venue": "Binance+Bybit(가중평균)",
       "vol24_usd": 17202548.67,
       "oi_usd": 109605501.71,
-      "funding": 0.002684,
+      "funding": 0.00002684,
       "chg24": 0.1162,
-      "why": "CEX OI 급감이 이번 회차 안정화(109.49M달러→109.61M달러로 거의 무변화)",
+      "why": "CEX OI 급감이 이번 회차 안정화(109.49M달러→109.61M달러로 거의 무변화). funding CoinGecko percent→fraction 보정 적용",
       "tag": "aster-cex-oi-stabilizes-after-halving"
     },
     {
@@ -137,9 +137,9 @@
       "venue": "Binance+Bybit(가중평균)",
       "vol24_usd": 52474138.00,
       "oi_usd": 5968855.13,
-      "funding": 0.005,
+      "funding": 0.00005,
       "chg24": -13.987,
-      "why": "극단적 마이너스권에서 개선 지속(-19.07%→-13.99%), 3회차째",
+      "why": "극단적 마이너스권에서 개선 지속(-19.07%→-13.99%), 3회차째. funding CoinGecko percent→fraction 보정 적용",
       "tag": "aio-continues-improving-third-round"
     },
     {
@@ -147,9 +147,9 @@
       "venue": "Binance+Bybit(가중평균)",
       "vol24_usd": 98830850.64,
       "oi_usd": 18136686.98,
-      "funding": 0.03408,
+      "funding": 0.0003408,
       "chg24": 11.171,
-      "why": "급등 폭 지속 축소(+14.32%→+11.17%), 4회차째 플러스",
+      "why": "급등 폭 지속 축소(+14.32%→+11.17%), 4회차째 플러스. funding CoinGecko percent→fraction 보정 적용(0.03408→0.0003408)",
       "tag": "1000rats-continues-decelerating-fourth-round"
     },
     {
@@ -157,9 +157,9 @@
       "venue": "Binance+Bybit(가중평균)",
       "vol24_usd": 7892938.27,
       "oi_usd": 13741663.66,
-      "funding": -0.01798,
+      "funding": -0.0001798,
       "chg24": -1.1622,
-      "why": "대체로 무변화 범위 내 소폭 악화",
+      "why": "대체로 무변화 범위 내 소폭 악화. funding CoinGecko percent→fraction 보정 적용",
       "tag": "algo-remains-roughly-flat-continues"
     },
     {
@@ -187,9 +187,9 @@
       "venue": "Bybit(CoinGecko대체)",
       "vol24_usd": 8421823.39,
       "oi_usd": 1215990.88,
-      "funding": 0.005,
+      "funding": 0.00005,
       "chg24": 4.918,
-      "why": "OKX·Aster와 동조 — 이번 회차 Bybit 직접API 403 회귀로 CoinGecko 경유",
+      "why": "OKX·Aster와 동조 — 이번 회차 Bybit 직접API 403 회귀로 CoinGecko 경유. funding CoinGecko percent→fraction 보정 적용",
       "tag": "aeon-moderation-continues-fourth-round"
     },
     {
@@ -247,9 +247,9 @@
       "venue": "Binance+Bybit(가중평균)",
       "vol24_usd": 124632105.74,
       "oi_usd": 137538209.02,
-      "funding": 0.004682,
+      "funding": 0.00004682,
       "chg24": -0.4007,
-      "why": "마이너스 방향 유지 — Aster만 근소 플러스로 이탈해 소스 간 분기",
+      "why": "마이너스 방향 유지 — Aster만 근소 플러스로 이탈해 소스 간 분기. funding CoinGecko percent→fraction 보정 적용",
       "tag": "ada-holds-negative-aster-diverges-positive"
     },
     {
@@ -277,9 +277,9 @@
       "venue": "Binance+Bybit(가중평균)",
       "vol24_usd": 46729468.43,
       "oi_usd": 16640376.53,
-      "funding": 0.000729,
+      "funding": 0.00005,
       "chg24": -1.9207,
-      "why": "플러스에서 마이너스로 반전(+1.97%→-1.92%)",
+      "why": "플러스에서 마이너스로 반전(+1.97%→-1.92%). funding: Binance직접(raw fraction)+Bybit(CoinGecko percent→fraction 보정) 가중평균",
       "tag": "allo-flips-negative"
     },
     {
@@ -287,9 +287,9 @@
       "venue": "Bybit(CoinGecko대체)",
       "vol24_usd": 953404.63,
       "oi_usd": 1566520.31,
-      "funding": 0.005,
+      "funding": 0.00005,
       "chg24": 1.918,
-      "why": "방향(플러스) 3회차째 유지 — 이번 회차 Bybit 직접API 403 회귀로 CoinGecko 경유",
+      "why": "방향(플러스) 3회차째 유지 — 이번 회차 Bybit 직접API 403 회귀로 CoinGecko 경유. funding CoinGecko percent→fraction 보정 적용",
       "tag": "apex-holds-positive-third-round"
     },
     {
@@ -297,9 +297,9 @@
       "venue": "Binance+Bybit(가중평균)",
       "vol24_usd": 23825505.65,
       "oi_usd": 15623093.90,
-      "funding": -0.00133,
+      "funding": -0.0000133,
       "chg24": 3.966,
-      "why": "OI 안정 속 가격 상승세 추가 확대(+2.06%→+3.97%)",
+      "why": "OI 안정 속 가격 상승세 추가 확대(+2.06%→+3.97%). funding CoinGecko percent→fraction 보정 적용",
       "tag": "bank-price-accelerates-oi-stable"
     },
     {
@@ -307,9 +307,9 @@
       "venue": "Binance+Bybit(가중평균)",
       "vol24_usd": 76270752.55,
       "oi_usd": 14342010.91,
-      "funding": 0.005,
+      "funding": 0.00005,
       "chg24": 9.383,
-      "why": "방향(플러스) 4회차째 유지, 소폭 재가속",
+      "why": "방향(플러스) 4회차째 유지, 소폭 재가속. funding CoinGecko percent→fraction 보정 적용",
       "tag": "apr-holds-positive-fourth-round"
     },
     {
@@ -329,9 +329,9 @@
       "protocol": "Hyperliquid",
       "vol24_usd": 3733467.90,
       "oi_usd": 2031981.12,
-      "funding": -0.034,
+      "funding": -0.00034,
       "chg24": 42.218,
-      "why": "B+B·Aster와 동조 추가 가속",
+      "why": "B+B·Aster와 동조 추가 가속. funding CoinGecko percent→fraction 보정 적용(-0.034→-0.00034)",
       "tag": "ace-accelerates-again-cause-still-unconfirmed"
     },
     {
@@ -349,9 +349,9 @@
       "protocol": "Aster",
       "vol24_usd": 795326.51,
       "oi_usd": 276333.75,
-      "funding": -0.026,
+      "funding": -0.00026,
       "chg24": 41.419,
-      "why": "HL·B+B와 동조 추가 가속",
+      "why": "HL·B+B와 동조 추가 가속. funding CoinGecko percent→fraction 보정 적용",
       "tag": "ace-accelerates-again-cause-still-unconfirmed"
     },
     {
@@ -369,9 +369,9 @@
       "protocol": "Aster",
       "vol24_usd": 30977.52,
       "oi_usd": 279911.71,
-      "funding": 0.001,
+      "funding": 0.00001,
       "chg24": 5.278,
-      "why": "자체 OI는 거의 무변화 유지 — 가격만 추가 상승",
+      "why": "자체 OI는 거의 무변화 유지 — 가격만 추가 상승. funding CoinGecko percent→fraction 보정 적용",
       "tag": "bank-price-accelerates-oi-stable"
     },
     {
@@ -379,9 +379,9 @@
       "protocol": "Hyperliquid",
       "vol24_usd": 3159208.99,
       "oi_usd": 5745867.91,
-      "funding": -0.001,
+      "funding": -0.00001,
       "chg24": -1.766,
-      "why": "OKX·Binance와 동조 개선 지속, 손익분기권 근접",
+      "why": "OKX·Binance와 동조 개선 지속, 손익분기권 근접. funding CoinGecko percent→fraction 보정 적용",
       "tag": "kaito-nears-breakeven-fourth-round"
     },
     {
@@ -409,9 +409,9 @@
       "protocol": "Aster",
       "vol24_usd": 71904.75,
       "oi_usd": 187512.78,
-      "funding": -0.002,
+      "funding": -0.00002,
       "chg24": 0.956,
-      "why": "OKX와 함께 플러스로 회복 반전",
+      "why": "OKX와 함께 플러스로 회복 반전. funding CoinGecko percent→fraction 보정 적용",
       "tag": "cap-recovers-toward-flat-after-reversal"
     },
     {
@@ -429,9 +429,9 @@
       "protocol": "Aster",
       "vol24_usd": 96262.07,
       "oi_usd": 89015.88,
-      "funding": -0.146,
+      "funding": -0.00146,
       "chg24": -3.201,
-      "why": "OKX·Binance와 동조 플러토",
+      "why": "OKX·Binance와 동조 플러토. funding CoinGecko percent→fraction 보정 적용(-0.146→-0.00146, 최초 게시본 오류 정정)",
       "tag": "bico-plateaus-near-breakeven-fourth-round"
     },
     {
@@ -449,9 +449,9 @@
       "protocol": "Aster",
       "vol24_usd": 110854.21,
       "oi_usd": 119486.87,
-      "funding": 0.001,
+      "funding": 0.00001,
       "chg24": 0.794,
-      "why": "OKX와 함께 플러스로 수렴",
+      "why": "OKX와 함께 플러스로 수렴. funding CoinGecko percent→fraction 보정 적용",
       "tag": "bsb-converges-positive-both-sources"
     },
     {
@@ -469,9 +469,9 @@
       "protocol": "Aster",
       "vol24_usd": 39029.79,
       "oi_usd": 95974.90,
-      "funding": 0.005,
+      "funding": 0.00005,
       "chg24": -7.039,
-      "why": "재악화 폭 더 커짐 지속",
+      "why": "재악화 폭 더 커짐 지속. funding CoinGecko percent→fraction 보정 적용",
       "tag": "bless-worsens-further-continues"
     },
     {
@@ -479,9 +479,9 @@
       "protocol": "Hyperliquid",
       "vol24_usd": 7197363.63,
       "oi_usd": 13377298.12,
-      "funding": 0.001,
+      "funding": 0.00001,
       "chg24": -13.476,
-      "why": "온체인·Aster와 함께 뚜렷한 마이너스로 수렴 — 지난 회차 소스 간 괴리 해소",
+      "why": "온체인·Aster와 함께 뚜렷한 마이너스로 수렴 — 지난 회차 소스 간 괴리 해소. funding CoinGecko percent→fraction 보정 적용",
       "tag": "cashcat-three-sources-converge-negative"
     },
     {
@@ -499,9 +499,9 @@
       "protocol": "Aster",
       "vol24_usd": 17219.27,
       "oi_usd": 711194.94,
-      "funding": -0.003,
+      "funding": -0.00003,
       "chg24": -13.579,
-      "why": "HL·온체인과 함께 뚜렷한 마이너스로 수렴 — 거래량은 급감(전회차 대비 약 1/60)",
+      "why": "HL·온체인과 함께 뚜렷한 마이너스로 수렴 — 거래량은 급감(전회차 대비 약 1/60). funding CoinGecko percent→fraction 보정 적용",
       "tag": "cashcat-three-sources-converge-negative"
     },
     {
@@ -509,9 +509,9 @@
       "protocol": "Aster",
       "vol24_usd": 67575.35,
       "oi_usd": 329163.41,
-      "funding": 0.001,
+      "funding": 0.00001,
       "chg24": 5.866,
-      "why": "OKX·Bybit와 함께 5%안팎 수렴 유지",
+      "why": "OKX·Bybit와 함께 5%안팎 수렴 유지. funding CoinGecko percent→fraction 보정 적용",
       "tag": "aeon-moderation-continues-fourth-round"
     },
     {
@@ -529,9 +529,9 @@
       "protocol": "Aster",
       "vol24_usd": 368608.13,
       "oi_usd": 169860.33,
-      "funding": 0.001,
+      "funding": 0.00001,
       "chg24": -19.858,
-      "why": "OKX·Binance와 달리 소폭 더 악화 — 소스간 온도차",
+      "why": "OKX·Binance와 달리 소폭 더 악화 — 소스간 온도차. funding CoinGecko percent→fraction 보정 적용",
       "tag": "beat-stabilizes-still-deeply-negative"
     },
     {
@@ -559,9 +559,9 @@
       "protocol": "Hyperliquid",
       "vol24_usd": 1830538.24,
       "oi_usd": 15380826.43,
-      "funding": 0.001,
+      "funding": 0.00001,
       "chg24": -0.52,
-      "why": "OKX와 함께 손익분기권 플러토",
+      "why": "OKX와 함께 손익분기권 플러토. funding CoinGecko percent→fraction 보정 적용",
       "tag": "gram-plateaus-near-flat"
     },
     {
@@ -569,9 +569,9 @@
       "protocol": "Aster",
       "vol24_usd": 1067543.50,
       "oi_usd": 11215042.81,
-      "funding": 0.01,
+      "funding": 0.0001,
       "chg24": 17.142,
-      "why": "확장 4회차째 지속",
+      "why": "확장 4회차째 지속. funding CoinGecko percent→fraction 보정 적용",
       "tag": "btw-continues-expanding-fourth-round"
     },
     {
@@ -579,9 +579,9 @@
       "protocol": "Hyperliquid",
       "vol24_usd": 44481.65,
       "oi_usd": 179939.77,
-      "funding": 0.006,
+      "funding": 0.00006,
       "chg24": -0.423,
-      "why": "낙폭 축소 지속",
+      "why": "낙폭 축소 지속. funding CoinGecko percent→fraction 보정 적용",
       "tag": "updates-normally-no-stale-recurrence"
     },
     {
@@ -589,9 +589,9 @@
       "protocol": "Hyperliquid",
       "vol24_usd": 92179.52,
       "oi_usd": 647555.40,
-      "funding": 0.001,
+      "funding": 0.00001,
       "chg24": 0.923,
-      "why": "HYPE(HL)와 동조 플러스 반전",
+      "why": "HYPE(HL)와 동조 플러스 반전. funding CoinGecko percent→fraction 보정 적용",
       "tag": "hype-flips-positive-again"
     },
     {
@@ -599,9 +599,9 @@
       "protocol": "Hyperliquid",
       "vol24_usd": 26072.36,
       "oi_usd": 535488.16,
-      "funding": 0.001,
+      "funding": 0.00001,
       "chg24": 1.483,
-      "why": "SOL(dYdX)과 함께 소폭 상승 지속",
+      "why": "SOL(dYdX)과 함께 소폭 상승 지속. funding CoinGecko percent→fraction 보정 적용",
       "tag": "majors-sol-decelerates-still-positive"
     },
     {
@@ -609,9 +609,9 @@
       "protocol": "Hyperliquid",
       "vol24_usd": 528187.30,
       "oi_usd": 2204837.98,
-      "funding": 0.001,
+      "funding": 0.00001,
       "chg24": 0.653,
-      "why": "BTC와 동조 대체로 안정",
+      "why": "BTC와 동조 대체로 안정. funding CoinGecko percent→fraction 보정 적용",
       "tag": "majors-btc-eth-stabilize-after-deceleration"
     },
     {
@@ -619,9 +619,9 @@
       "protocol": "Hyperliquid",
       "vol24_usd": 237544.70,
       "oi_usd": 1627397.70,
-      "funding": 0.001,
+      "funding": 0.00001,
       "chg24": 0.262,
-      "why": "ETH(HL)과 동조 안정",
+      "why": "ETH(HL)과 동조 안정. funding CoinGecko percent→fraction 보정 적용",
       "tag": "majors-btc-eth-stabilize-after-deceleration"
     },
     {
@@ -639,9 +639,9 @@
       "protocol": "Aster",
       "vol24_usd": 271511.96,
       "oi_usd": 49158.02,
-      "funding": 0.006,
+      "funding": 0.00006,
       "chg24": 10.795,
-      "why": "B+B와 함께 급등 폭 지속 축소, 4회차째 플러스",
+      "why": "B+B와 함께 급등 폭 지속 축소, 4회차째 플러스. funding CoinGecko percent→fraction 보정 적용",
       "tag": "1000rats-continues-decelerating-fourth-round"
     },
     {
@@ -649,9 +649,9 @@
       "protocol": "Aster",
       "vol24_usd": 169143.75,
       "oi_usd": 92437.77,
-      "funding": 0.005,
+      "funding": 0.00005,
       "chg24": -14.737,
-      "why": "B+B와 동조 개선 지속",
+      "why": "B+B와 동조 개선 지속. funding CoinGecko percent→fraction 보정 적용",
       "tag": "aio-continues-improving-third-round"
     },
     {
@@ -679,9 +679,9 @@
       "protocol": "Aster",
       "vol24_usd": 188382.14,
       "oi_usd": 4482392.85,
-      "funding": 0.01,
+      "funding": 0.0001,
       "chg24": 0.718,
-      "why": "8회차 플러토 지속, 폭 추가 축소",
+      "why": "8회차 플러토 지속, 폭 추가 축소. funding CoinGecko percent→fraction 보정 적용",
       "tag": "aave-plateau-decelerates-eighth-round"
     },
     {
@@ -689,9 +689,9 @@
       "protocol": "Hyperliquid",
       "vol24_usd": 3395971.77,
       "oi_usd": 57646307.22,
-      "funding": 0.001,
+      "funding": 0.00001,
       "chg24": 0.42,
-      "why": "B+B·Aster와 동조 추가 감속",
+      "why": "B+B·Aster와 동조 추가 감속. funding CoinGecko percent→fraction 보정 적용",
       "tag": "aave-plateau-decelerates-eighth-round"
     },
     {
@@ -709,9 +709,9 @@
       "protocol": "Aster",
       "vol24_usd": 170053.05,
       "oi_usd": 1196527.00,
-      "funding": 0.01,
+      "funding": 0.0001,
       "chg24": 0.116,
-      "why": "B+B·HL과 달리 근소 플러스로 이탈 — 소스 간 분기",
+      "why": "B+B·HL과 달리 근소 플러스로 이탈 — 소스 간 분기. funding CoinGecko percent→fraction 보정 적용",
       "tag": "ada-holds-negative-aster-diverges-positive"
     },
     {
@@ -719,9 +719,9 @@
       "protocol": "Hyperliquid",
       "vol24_usd": 5323943.62,
       "oi_usd": 29099300.88,
-      "funding": 0.001,
+      "funding": 0.00001,
       "chg24": -0.374,
-      "why": "B+B·OKX와 동조 마이너스 유지",
+      "why": "B+B·OKX와 동조 마이너스 유지. funding CoinGecko percent→fraction 보정 적용",
       "tag": "ada-holds-negative-aster-diverges-positive"
     },
     {
@@ -739,9 +739,9 @@
       "protocol": "Aster",
       "vol24_usd": 7129.88,
       "oi_usd": 37255.32,
-      "funding": 0.001,
+      "funding": 0.00001,
       "chg24": -0.599,
-      "why": "B+B·HL과 함께 대체로 무변화 — 초저활동 시장이라 값 변동 미미",
+      "why": "B+B·HL과 함께 대체로 무변화 — 초저활동 시장이라 값 변동 미미. funding CoinGecko percent→fraction 보정 적용",
       "tag": "algo-remains-roughly-flat-continues"
     },
     {
@@ -749,9 +749,9 @@
       "protocol": "Hyperliquid",
       "vol24_usd": 322000.73,
       "oi_usd": 1875763.39,
-      "funding": -0.002,
+      "funding": -0.00002,
       "chg24": -0.924,
-      "why": "B+B·Aster와 함께 대체로 무변화",
+      "why": "B+B·Aster와 함께 대체로 무변화. funding CoinGecko percent→fraction 보정 적용",
       "tag": "algo-remains-roughly-flat-continues"
     },
     {
@@ -769,9 +769,9 @@
       "protocol": "Aster",
       "vol24_usd": 11851303.56,
       "oi_usd": 221897118.08,
-      "funding": 0.006,
+      "funding": 0.00006,
       "chg24": 0.166,
-      "why": "자체 OI 안정 유지 — CEX(B+B) OI도 이번엔 안정화",
+      "why": "자체 OI 안정 유지 — CEX(B+B) OI도 이번엔 안정화. funding CoinGecko percent→fraction 보정 적용",
       "tag": "aster-cex-oi-stabilizes-after-halving"
     },
     {
@@ -779,9 +779,9 @@
       "protocol": "Hyperliquid",
       "vol24_usd": 577901.41,
       "oi_usd": 13552843.17,
-      "funding": 0.001,
+      "funding": 0.00001,
       "chg24": 0.108,
-      "why": "Aster프로토콜과 함께 OI 안정, 평탄권 유지",
+      "why": "Aster프로토콜과 함께 OI 안정, 평탄권 유지. funding CoinGecko percent→fraction 보정 적용",
       "tag": "aster-cex-oi-stabilizes-after-halving"
     },
     {
@@ -829,9 +829,9 @@
       "protocol": "Hyperliquid",
       "vol24_usd": 665379769.02,
       "oi_usd": 1764969230.91,
-      "funding": 0.001,
+      "funding": 0.00001,
       "chg24": 0.283,
-      "why": "dYdX와 함께 안정화",
+      "why": "dYdX와 함께 안정화. funding CoinGecko percent→fraction 보정 적용",
       "tag": "majors-btc-eth-stabilize-after-deceleration"
     },
     {
@@ -839,9 +839,9 @@
       "protocol": "Hyperliquid",
       "vol24_usd": 444977.65,
       "oi_usd": 1713129.82,
-      "funding": -0.004,
+      "funding": -0.00004,
       "chg24": 0.897,
-      "why": "B+B·OKX·Aster와 동조 4벤뉴 플러스 2회차째 유지",
+      "why": "B+B·OKX·Aster와 동조 4벤뉴 플러스 2회차째 유지. funding CoinGecko percent→fraction 보정 적용",
       "tag": "atom-holds-positive-second-round-four-venues"
     },
     {
@@ -849,9 +849,9 @@
       "protocol": "Aster",
       "vol24_usd": 578313091.73,
       "oi_usd": 809086835.67,
-      "funding": 0.001,
+      "funding": 0.00001,
       "chg24": 0.422,
-      "why": "메이저 전반 안정화",
+      "why": "메이저 전반 안정화. funding CoinGecko percent→fraction 보정 적용",
       "tag": "majors-btc-eth-stabilize-after-deceleration"
     },
     {
@@ -869,9 +869,9 @@
       "protocol": "Hyperliquid",
       "vol24_usd": 3243331.04,
       "oi_usd": 11502240.01,
-      "funding": 0.001,
+      "funding": 0.00001,
       "chg24": -3.705,
-      "why": "재악화 2회차째, 낙폭 확대",
+      "why": "재악화 2회차째, 낙폭 확대. funding CoinGecko percent→fraction 보정 적용",
       "tag": "ethfi-worsens-second-round"
     },
     {
@@ -879,9 +879,9 @@
       "protocol": "Hyperliquid",
       "vol24_usd": 4219242.36,
       "oi_usd": 29703564.66,
-      "funding": 0.001,
+      "funding": 0.00001,
       "chg24": -2.169,
-      "why": "마이너스 반전 2회차째, 낙폭 확대",
+      "why": "마이너스 반전 2회차째, 낙폭 확대. funding CoinGecko percent→fraction 보정 적용",
       "tag": "fartcoin-worsens-second-round"
     },
     {
@@ -889,9 +889,9 @@
       "protocol": "Hyperliquid",
       "vol24_usd": 63157.14,
       "oi_usd": 196103.27,
-      "funding": 0.001,
+      "funding": 0.00001,
       "chg24": -1.068,
-      "why": "대체로 무변화 유지 지속",
+      "why": "대체로 무변화 유지 지속. funding CoinGecko percent→fraction 보정 적용",
       "tag": "hyper-remains-roughly-flat"
     },
     {
@@ -899,9 +899,9 @@
       "protocol": "Hyperliquid",
       "vol24_usd": 217623.59,
       "oi_usd": 621959.14,
-      "funding": 0.001,
+      "funding": 0.00001,
       "chg24": 1.615,
-      "why": "Bybit와 함께 플러스 방향 3회차째 유지",
+      "why": "Bybit와 함께 플러스 방향 3회차째 유지. funding CoinGecko percent→fraction 보정 적용",
       "tag": "apex-holds-positive-third-round"
     },
     {
@@ -919,9 +919,9 @@
       "protocol": "Aster",
       "vol24_usd": 184713.88,
       "oi_usd": 72119.04,
-      "funding": 0.001,
+      "funding": 0.00001,
       "chg24": -1.911,
-      "why": "B+B와 함께 플러스에서 마이너스로 반전",
+      "why": "B+B와 함께 플러스에서 마이너스로 반전. funding CoinGecko percent→fraction 보정 적용",
       "tag": "allo-flips-negative"
     },
     {
@@ -929,9 +929,9 @@
       "protocol": "Aster",
       "vol24_usd": 9691.30,
       "oi_usd": 1691804.94,
-      "funding": 0.004,
+      "funding": 0.00004,
       "chg24": 1.067,
-      "why": "B+B·OKX·HL과 동조 4벤뉴 플러스 2회차째 유지",
+      "why": "B+B·OKX·HL과 동조 4벤뉴 플러스 2회차째 유지. funding CoinGecko percent→fraction 보정 적용",
       "tag": "atom-holds-positive-second-round-four-venues"
     },
     {
@@ -939,9 +939,9 @@
       "protocol": "Aster",
       "vol24_usd": 268923.32,
       "oi_usd": 336002.17,
-      "funding": 0.001,
+      "funding": 0.00001,
       "chg24": 10.385,
-      "why": "B+B·OKX와 동시 방향 유지·소폭 재가속",
+      "why": "B+B·OKX와 동시 방향 유지·소폭 재가속. funding CoinGecko percent→fraction 보정 적용",
       "tag": "apr-holds-positive-fourth-round"
     },
     {
@@ -996,7 +996,7 @@
     "PIPPIN(OKX, 단일소스): 재가속 폭이 정체(+6.77%→+6.79%) (pippin-plateaus-fourth-round).",
     "APEX: 방향(플러스) 3회차째 유지 (apex-holds-positive-third-round).",
     "데이터: Bybit 직접 API가 이번 회차 다시 403으로 회귀(직전 회차 '대부분 복구'와 반대) — CoinGecko bybit 경유로 대체 확보 (bybit-direct-api-regresses-to-403).",
-    "데이터: OKX·Binance funding raw fraction 스팟체크 — 이번 회차 조회한 14개 이상 종목에서 |funding|<0.01 범위 유지 확인, 신규 스케일 이상 없음 (funding-scale-spot-check-clean).",
+    "데이터(★정정): 최초 게시본의 'OKX 14건 스팟체크, 신규 스케일 이상 없음'은 OKX에 한정된 결론이었다. 부모 세션 검증으로 CoinGecko derivatives/exchanges(Hyperliquid·Aster·Bybit·Binance) 경유 funding_rate가 실제로는 percent 단위(raw fraction의 100배)였음을 발견 — 이번 회차 해당 값 전부를 /100 보정해 raw fraction으로 통일. 직접 API(OKX·Binance premiumIndex·dYdX)는 원래부터 정상 (funding-unit-error-coingecko-percent-vs-fraction-corrected).",
     "데이터: OrangeX 서비스 중단이 29회차(약 59.75시간)로 확대 (orangex-service-outage-continues).",
     "글로벌: BTC 도미넌스 56.64%→56.62%, 총시총 2.294조달러→2.289조달러로 대체로 무변화 (global-dominance-roughly-flat).",
     "ACE 언락: 지난 회차 tokenomist.ai 확인사항(8/18 언락 없음, 다음 언락 9/3) 유지 — 이번 회차 추가 재확인은 없음 (ace-unlock-rumor-refuted-by-tokenomist).",
