@@ -84,6 +84,38 @@ CM metrics 7종목 전부 2022-07·2024-01·2026-06 세 샘플에서 HTTP 200 �
 `sum_open_interest_value`(코인표시 OI)의 절대 유동성(달러 환산 규모)은 미확인**이므로, 1차 진단에서
 CM OI 달러 환산 규모가 UM 대비 지나치게 작은(예 1% 미만) 알트는 노이즈로 판단해 제외.
 
+## 라이브 실행 가능성
+**결론: 조건부 가능**(완전 연구용 전용은 아니나, CM 커넥터 신규 구축과 최소 90일 자체 이력 누적이
+선행돼야 실전 가동 가능). 2026-08-19 바이낸스 공식 API 문서를 WebFetch로 직접 확인.
+
+1. **CM·UM 양쪽 OI 실시간 조회 가능 여부**:
+   - **UM(USDT-마진)**: `GET /futures/data/openInterestHist`(베이스 `fapi.binance.com`) — 응답
+     `sumOpenInterest`(코인 단위)·`sumOpenInterestValue`(USD)·`timestamp`. `period`는 5m~1d 지원,
+     `limit` 최대 500(기본 30), **"최근 1개월(30일)치 데이터만 조회 가능"**(공식 문서 원문 확인:
+     https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Open-Interest-Statistics ).
+     현재 순간값만 필요하면 이력 제한이 없는 `GET /fapi/v1/openInterest`(스냅샷 전용, 히스토리 아님)도
+     별도 존재.
+   - **CM(코인마진)**: `GET /futures/data/openInterestHist`(COIN-M 전용 베이스, `dapi.binance.com`
+     라우팅) — 응답 `sumOpenInterest`(계약수)·`sumOpenInterestValue`(**기초자산=코인 단위**, 본
+     스펙의 출처 절에서 덤프로 실측 확인한 것과 동일 물리량)·`timestamp`. **"최근 30일 데이터만
+     이용 가능"**(공식 문서 원문 확인: https://developers.binance.com/docs/derivatives/coin-margined-futures/market-data/rest-api/Open-Interest ).
+     현재 순간값은 `GET /dapi/v1/openInterest`.
+   - **우리 인프라 현황**: `src/crypto_trader/connectors/binance_data.py`에 UM `open_interest_hist`/
+     `open_interest_value_series` 커넥터가 **이미 존재**(fapi 전용, 기존 라이브 스캐너에서 활용 중).
+     **CM(dapi) 전용 커넥터는 현재 미보유 — 라이브 반영 시 신규 구축이 필요**.
+2. **신호 산출에 필요한 롤백 확보 가능 여부**: 본 스펙은 두 개 롤링윈도를 쓴다(`growth_window=5일`,
+   `zscore_window=90일`). `growth_window=5일`은 REST 30일 제한 내에서 문제없이 확보 가능. 그러나
+   **`zscore_window=90일`은 REST 히스토리 엔드포인트의 30일 상한을 초과**해 단일 API 호출로는 확보
+   불가 — 과거 여러 스펙이 지적한 "REST 30일 제한" 표본 제약이 본 스펙에도 그대로 해당한다. 실전
+   운용 시엔 **봇이 가동되는 동안 자체적으로 OI 스냅샷을 주기적으로(예: 1일 1회) 폴링·저장해 90일치
+   이력을 누적**해야 하며(REST 자체는 문제없이 지속 조회 가능하므로 누적 자체는 가능), 배포 직후에는
+   90일 z-score 계산에 필요한 표본이 없는 **최소 90일의 웜업(warm-up) 기간**이 불가피하다.
+3. **제약 요약**: 완전한 '연구용 전용'은 아니다(실시간 조회 API가 UM·CM 양쪽 다 존재하고 UM은 이미
+   커넥터 보유). 다만 **①CM(dapi) 커넥터 신규 구축, ②최소 90일 자체 이력 누적(웜업)**이라는 두 전제
+   조건이 충족돼야 라이브 가동이 가능하다는 점을 정직하게 명시한다. 백테스트(과거 덤프 기반)는 즉시
+   가능하나, 백테스트에서 유의한 결과가 나오더라도 라이브 반영 전 이 두 전제조건의 실제 구현·검증이
+   선행돼야 한다.
+
 ## 사전 폐기 조건
 ①CM 블록셔플 대조군을 뚜렷이 이기지 못하면 폐기. ②UM 단독 OI 성장률 대조군보다 못하면 "CM 추가는
 부가가치 없음"으로 폐기. ③`g_cm`↔`g_um` 상관이 0.9 이상이면 다이버전스 자체가 거의 발생하지 않는다는
