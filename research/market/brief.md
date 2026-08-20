@@ -1,58 +1,58 @@
-# 시장 브리핑 — 2026-08-19 12:15 UTC (KST 2026-08-19 21:15)
+# 시장 브리핑 — 2026-08-20 00:15 UTC (KST 2026-08-20 09:15)
 
-정보 요약이며 매수/매도 추천이 아닙니다. 직전 회차: 2026-08-19 00:15 UTC (약 12시간 경과).
+정보 요약이며 매수/매도 추천이 아닙니다. 직전 회차: 2026-08-19 12:15 UTC (약 12시간 경과).
 
-## 전체 시장 심리
+## 전체 시장 심리 — 급격한 위험선호 전환
 
-BTC는 $64,157.3~64,730.1(24h 레인지, 복수 소스, 8/19 오전 조사)에서 등락하며 직전 회차와 마찬가지로 **$64,000선 위를 유지**하고 있습니다. [sundayguardianlive.com](https://sundayguardianlive.com/business/crypto-price-prediction-august-19-2026-bitcoin-eyes-64k-ethereum-tests-1900-and-xrp-defends-1-ahead-of-fed-minutes-263681/)의 8/19자 예측기사는 지지 $62,000~63,000·저항 $64,500~65,000을 제시하며, 오늘 저녁 FOMC 의사록 발표를 앞두고 관망세라고 진단했습니다(방향상 직전 회차와 일치, 변경 없음).
+**8/19(현지시각) 크립토 시장이 강하게 급반등했습니다.** 부모 세션 실측(8/20 00:09Z, OKX 기준): **BTC $69,644.7(+7.75%, 24h고 $70,064.2·저 $64,163.6)**, **ETH $2,257.61(+17.95%, 고 $2,335·저 $1,906.09)**, **SOL $85.56(+11.15%, 고 $87.33·저 $76.63)** — ETH가 BTC보다 뚜렷이 아웃퍼폼했습니다.
 
-**오늘(8/19) 14:00 EDT(18:00 UTC, 이 브리핑 시점 이후)에 7/28~29 FOMC 의사록이 발표 예정**입니다.
+### 이번 랠리의 촉매 (확인)
 
-ETH는 $1,900 안착에 계속 실패 중이며, XRP는 $1 심리선을 방어하는 국면입니다(sundayguardianlive.com 8/19). SOL은 $76.97~77.26(WEEX·Coinbase, 8/19 오전)로 직전 회차($75.4~76.6) 대비 소폭 상승했습니다.
+[The Block](https://www.theblock.co/news/markets/2026-08-19-bitcoin-69000-ether-jumps-treasury-buybacks-sec-crypto-proposal-fuel-market-rally-412248)(2026-08-19 15:05 EDT 발행, [Yahoo Finance](https://finance.yahoo.com/personal-finance/investing/article/bitcoin-and-ethereum-prices-today-wednesday-august-19-2026-crypto-prices-rise-after-sec-announces-proposed-regulation-161733939.html)·[geo.tv](https://www.geo.tv/latest/678352-bitcoin-surges-past-68000-as-treasury-doubles-bon-buybacks-sparking-crypto-rally)·[newstribune.com](https://www.newstribune.com/news/2026/aug/19/trump-to-host-crypto-executives-as-sec-considers-regulations/) 교차확인)에 따르면 다음 세 가지가 동시에 겹쳤습니다.
 
-Fear & Greed 지수는 **46('공포')**로 전일 41에서 소폭 개선됐습니다([milkroad.com](https://milkroad.com/fear-greed/) 8/19).
+1. **미 재무부 장기국채 바이백 규모 2배 확대** — 10~30년물 유동성 지원 바이백을 거래당 최대 $20억에서 최소 $40억으로 증액(9/9~11/4 시행).
+2. **SEC 'Regulation Crypto Assets' 통과** — 투자계약 연계 토큰의 공개모금 예외(4년간 $500만 또는 연 $7,500만 한도)를 허용하는 신규 규정.
+3. **트럼프 대통령 백악관 크립토 행사** — Coinbase·Ripple·Chainlink·Kraken·Gemini·a16z·Paradigm 등 참석, SEC 위원장 Paul Atkins·CFTC 위원장 Michael Selig 배석.
 
-### ETF — 신규 확정 데이터 다수 확보, 단 이번 회차엔 flows.json 미반영
+같은 날 14:00 EDT(18:00 UTC)에 발표된 **7/28~29 FOMC 의사록**(금리 3.50~3.75% 동결, 9-3 표결·Hammack·Kashkari·Logan 3인 지역총재가 인상 소수의견)도 촉매 후보로 거론되나, 그 해석(9월 금리인하 컨센서스 강화 vs 불확실성 지속)에 대해서는 검색 결과 간 상충이 있어 **미확인**으로 남깁니다. 일부 매체가 '9월 인하 100% 컨센서스'를 보도했으나, 유사한 과거 사이클(2024년 등) 기사와 혼동됐을 가능성을 배제할 수 없어 신뢰도를 낮게 취급했습니다.
 
-⚠️ **이번 회차의 중요 제약**: 아래 ETF 신규 데이터는 웹 조사로 확인·교차검증했으나, `research/etf/flows.json`이 6,300줄이 넘는 대용량 append-only 파일(과거 이력 삭제·재작성 절대 금지)이고 이 세션은 파일 전체를 안전하게 재작성할 도구적 여력이 이번 회차엔 부족해 **append를 완료하지 못했습니다**. 데이터 유실·오기 위험을 감수하기보다 기존 파일을 그대로 보존했습니다. 아래 수치는 참고용이며, 다음 회차에 flows.json 반영이 필요합니다.
+급등 과정에서 **숏스퀴즈가 동반**돼 1시간 만에 약 $11.4억, 24시간 누적 약 $19.1~19.2억의 청산이 발생했습니다([Decrypt](https://decrypt.co/375955/bitcoin-surges-70k-billion-crypto-shorts-rekt-hour), The Block).
 
-- **BTC**: 8/18(화) **+$189.3M**(IBIT $143.6M·FBTC $23.9M 등)로 8/17 최종 확정치(+$297.5M)에 이은 2거래일 연속 순유입. 8월 누적 순유입 약 **$951M**([cointelegraph.com](https://cointelegraph.com/markets/bitcoin-etf-august-net-inflows-approach-1b) 8/19, [crypto-economy.com](https://crypto-economy.com/bitcoin-etfs-august-inflows-bitwise-1615m/) 8/19, en.cryptonomist.ch 8/19 교차확인).
-- **ETH**: 8/18 **+$71.4M**(ETHA $64.7M 주도)로 4거래일 연속 순유입([bitcoinworld.co.in](https://bitcoinworld.co.in/spot-ether-etfs-inflows-fourth-session/) 8/19, en.cryptonomist.ch 교차확인).
-- **SOL**: 8/14·8/17 모두 6개 펀드(BSOL·VSOL·FSOL·TSOL·SOEZ·GSOL) 전원 **제로플로우($0.0)** 확인(techtimes.com·beincrypto.com이 8/14를, [financefeeds.com](https://financefeeds.com/bitcoin-etfs-rebound-with-137-3-million-inflow-on-august-17-as-fidelity-leads-buying/)·kucoin.com이 8/17을 교차확인). 다만 kucoin.com의 '8/10 이후 무유동 지속' 표현은 이미 기록된 8/11~13 양의 플로우와 상충 — 과거에 반복된 SOL 소스 간 불일치 패턴 재발로 판단(기존 기록 유지, 8/14·8/17 제로플로우만 신뢰).
-- **XRP**: 8/17 확정치는 이번 회차도 발행사 수준 근거를 갖춘 소스를 확보하지 못했습니다(미확인).
+### 도미넌스·심리 지표
 
-### CLARITY Act (기존 서술 재확인, 변경 없음)
-
-상원 9/15 절차적 표결 예약 상태가 그대로 유지됩니다.
-
-### 차티스트 갱신
-
-6인 재탐색 결과 Peter Brandt의 8/16 코멘트("Who cares about XRP?" 인용, XRP 대비 BTC 선호 재확인)가 여전히 최신으로 확인됐습니다. 나머지 5인도 asof 이후 신뢰할 수 있는 신규 1차 코멘트를 확보하지 못해 기존 뷰를 유지했습니다.
+BTC 도미넌스는 8/19 오전(랠리 본격화 이전 스냅샷) 기준 56.67%(전일대비 +1.68%p)로 보도됐으나([cryptonomist.ch](https://en.cryptonomist.ch/2026/08/19/bitcoin-today-analysis-key-momentum/) 8/19), ETH가 이후 BTC보다 훨씬 크게 상승해 랠리 이후 시점의 실제 도미넌스는 하락했을 가능성이 있습니다(정확한 사후 수치 미확인). Fear & Greed 지수는 소스마다 46(공포, milkroad.com)~53(탐욕, CoinStats)~57(중립, CFGI)로 갈리지만, 전일(41) 대비 뚜렷이 개선됐다는 방향성은 공통적입니다.
 
 ## 자산별 뷰
 
-### BTC — 중립~약한 긍정
-- **요지**: $64,000선 위 유지가 지속됐고, ETF 자금흐름은 8/17(+$297.5M)·8/18(+$189.3M 추정)로 이틀 연속 순유입해 우호적이나, 가격 자체는 오늘 저녁 FOMC 의사록 발표를 앞두고 좁은 레인지에서 관망 중입니다.
-- **레벨**: 지지 $64,000 / $62,648.58(8/18 저가대) / $62,000~63,000(sundayguardianlive 8/19) / $60,000(KillaXBT) / $58,000~59,000(Brandt) / $48,000~52,000(KillaXBT, 잠재 재시험). 저항 $64,462~64,652(EMA50) / $64,500~65,000(sundayguardianlive 8/19) / $65,827(50개월 EMA) / $66,000~68,000(돌파시 다음 구간) / $67,253~67,260(Brandt).
-- **촉매**: ①오늘(8/19) 14:00 EDT FOMC 의사록 발표(이 브리핑 시점 이후) ②BTC ETF 8/18 확정치의 flows.json 반영(다음 회차) ③8/19 이후 ETF 신규 거래일 확정치 ④Cowen "69~73일 후" 사이클 바닥 카운트다운 ⑤CLARITY Act 9/15 상원 클로처 표결.
+### BTC — 상승 전환(단기 급반등), 경계 병존
+- **요지**: 매크로 촉매 3종으로 2개월 만에 $69,000대를 회복했으나(실측 $69,644.7), Rekt Capital·Benjamin Cowen 등 일부 상위 차티스트는 여전히 저항·약세 논지를 유지해 컨센서스는 엇갈립니다. KillaXBT가 8/14 지목한 200일 이평선(약 $69,500)을 현재가가 근소하게 상회한 상태로, 구조 반전 확인의 시험대에 올랐습니다.
+- **레벨**: 지지 $69,500(200일 이평선, KillaXBT) / $65,827(50개월 EMA, 되돌림 지지 전환 시험대) / $64,163.6(24h 저) / $64,000. 저항 $70,000(심리적 대) / $70,064.2(24h 고) / $76,000(역헤드앤숄더 목표, 다수 매체) / $80,000~92,000(연장 목표권) / $126,200(2025-10-06 사이클 고점).
+- **촉매**: ①재무부 바이백 확대(9/9~11/4 시행) ②SEC 'Regulation Crypto Assets' 통과 ③백악관 크립토 행사 ④FOMC 7월 의사록(해석 상충·미확인) ⑤200일 이평선 안착 여부 ⑥ETF 8/19 거래일 확정치(다음 회차) ⑦Cowen "69~73일 후" 사이클 바닥 카운트다운.
 
-### ETH — 중립(관문 레인지 지속)
-- **요지**: $1,900 안착에 계속 실패 중이나 ETF 자금흐름은 4거래일 연속 순유입(8/18 +$71.4M 추정)으로 개선세입니다. 가격과 ETF 흐름 사이 디커플링이 이어지고 있습니다.
-- **레벨**: 지지 $1,865~1,885(sundayguardianlive 8/19) / $1,850(50일 EMA) / $1,800. 저항 $1,900(안착 관문) / $1,918~1,922(sundayguardianlive 8/19) / $2,000 / $2,020(TechDev 그린 플립).
-- **촉매**: $1,900 안착·$1,922 완전 돌파 여부(다음 회차 확인). ETH ETF 8/18 확정치의 flows.json 반영. Fidelity FETH 스테이킹 신청 SEC 심사. BTC 공통 매크로.
+### ETH — 상승(BTC 대비 뚜렷한 아웃퍼폼)
+- **요지**: 5월 이후 처음으로 $2,000 심리선을 넘어섰습니다(실측 $2,257.61, +17.95%). ETF 자금흐름도 8/18 확정치 기준 4거래일 연속 순유입으로 우호적입니다.
+- **레벨**: 지지 $2,140(일봉 EMA200) / $2,000(심리선, 안착 시험대) / $1,906.09(24h 저). 저항 $2,250~2,300(다수 매체 8/19) / $2,335(24h 고).
+- **촉매**: $2,000 안착 여부(다음 회차 확인). ETH ETF 8/19 거래일 확정치. Fidelity FETH 스테이킹 신청 SEC 심사(미확인). BTC 공통 매크로.
 
-### SOL — 중립
-- **요지**: 가격은 $76.97~77.26로 직전 회차 대비 소폭 상승했으나 큰 방향성 변화는 아닙니다. SOL ETF는 8/14·8/17 모두 제로플로우로 확인돼, 8/10~11 반짝 유입 이후 다시 정체 국면입니다.
-- **레벨**: 지지 $75.51(피벗) / $74.71 / $73~75(핵심) / $72.24~72.27. 저항 $77.36(현재가 근접) / $78~80(돌파시 $100·$113 목표 거론) / $84 / $89.78~90.62(200일 EMA).
-- **촉매**: SOL ETF 8/14·8/17 데이터의 flows.json 반영. $77.36~80 저항대 돌파 시도. Agave v4.2 메인넷 활성화 완료 여부(미확인). BTC·ETH 공통 매크로.
+### SOL — 상승
+- **요지**: $78 저항대를 돌파하며 24h +11.15%(실측 $85.56). SOL ETF는 마지막 확정치(8/17)가 제로플로우로, 가격 랠리와 기관 자금흐름 사이 디커플링이 이어지고 있습니다.
+- **레벨**: 지지 $78(구 저항, 되돌림 지지 전환 시험대) / $76.63(24h 저) / $74~75. 저항 $87.33(24h 고) / $90 / $100(중기 목표, 미확인).
+- **촉매**: SOL ETF 신규 확정 거래일 데이터. $87~90 저항대 돌파 시도. Agave v4.2 메인넷 진행상황(미확인). BTC·ETH 공통 매크로.
 
 ## 애널리스트 코멘트 갱신
 
-6인(Peter Brandt·KillaXBT·Benjamin Cowen·Rekt Capital·TechDev·Doctor Profit) 전원 재탐색했습니다. Peter Brandt의 8/16 코멘트가 최신 상태로 재확인됐고, 나머지 5인은 신규 1차 공개 코멘트를 확보하지 못해 기존 값을 그대로 유지했습니다. 상세는 `research/kol/chartist_views.json` 참조.
+6인 재탐색 결과 **Rekt Capital**과 **Benjamin Cowen** 2인이 8/19 랠리에 대한 신규 코멘트(둘 다 beincrypto.com 8/19 인용)를 냈습니다 — 둘 다 이번 랠리에도 불구하고 **경계·약세 기조를 재확인**했습니다(Rekt Capital: "역사가 시사하는 저항 구간 접근"·Cowen: "69~73일 후 바닥" 카운트다운 유지). 나머지 4인(Peter Brandt·KillaXBT·TechDev·Doctor Profit)은 이번 회차 재탐색에서도 신규 1차 공개 코멘트를 확보하지 못해 기존 값을 그대로 유지했습니다(asof 불변). 상세는 `research/kol/chartist_views.json` 참조.
 
-## ⚠️ 다음 회차 인계사항
+## ETF 자금흐름 — 이번 회차 신규 append 없음 (갱신 실패, 정직 표기)
 
-BTC·ETH·SOL의 8/14~8/18 신규 ETF flow 데이터(위 참조)는 확인됐으나 `research/etf/flows.json`에 아직 append되지 않았습니다. 다음 회차에서 (가능하면 파일 편집이 가능한 도구로) append 완료가 필요합니다.
+이번 회차엔 확정 신규 거래일 데이터를 확보하지 못해 `research/etf/flows.json`에 append할 항목이 없습니다.
+
+- **BTC**: 마지막 확정치 8/18 = **+$189.3M**(IBIT $143.6M·FBTC $23.9M 주도, 기존 파일에 이미 반영됨). 8/19 거래일분은 이 스냅샷(8/20 00:09Z = 8/19 20:09 ET) 시점에 **아직 미발표**로 확인됐습니다(Farside 8/19 행이 "$0.0·미확정"으로 표기, KuCoin·en.bloomingbit.io 8/19 교차확인).
+- **ETH**: 마지막 확정치 8/18 = **+$71.4M**(ETHA $64.7M 주도, 4거래일 연속 순유입, 기존 파일에 이미 반영됨). 8/19 거래일분 역시 미발표.
+- **SOL**: 마지막 확정치 8/17 = **$0.0**(6개 펀드 전원 제로플로우, 기존 파일에 이미 반영됨). 일부 매체가 "8/12 이후 무유입 지속"을 보도했으나 일자별 정확한 수치를 확정하지 못해 신규 append하지 않았습니다.
+- **XRP**: 마지막 확정치 8/14 = **$0.0**(기존 파일에 이미 반영됨). 이후 일자별 확정치는 확보하지 못했습니다(주간 집계만 확인, 예: 8/8마감 주 $1.01M — 일자별 분해 불가).
+
+⚠️ 위 네 자산 모두 **기존 파일 상태를 그대로 유지**하며(과거 이력 삭제·재작성 없음), 다음 회차에서 8/19 이후 거래일 확정치 확보 시 append 필요합니다.
 
 ---
 정보 요약이며 투자조언이 아닙니다.
