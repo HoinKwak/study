@@ -1,115 +1,110 @@
-# 온체인 트렌딩 조기경보 — 2026-08-22 21:00 UTC (KST 2026-08-23 06:00)
+# 온체인 트렌딩 조기경보 — 2026-08-22 23:00 UTC (KST 2026-08-23 08:00)
 
 > ⚠️ 아이디어 소싱·**개인 정보 모니터링/조기경보용**. **투자조언·매수추천 아님(Not financial advice).** 온체인 트렌딩은 봇·워시트레이딩·러그 편향이 매우 크다. 자체 검증 필수. (1차 신호=온체인 트렌딩, KOL 언급은 있으면 코로보로만 반영.)
 
-> **이번 회차는 직전(2026-08-22 19:00Z)로부터 정확히 2시간 경과**(정상 간격). 33개 활성종목 전부와 CASHCAT(notable)을 DexScreener 토큰-페어 API로 개별 재조회했다.
+> **이번 회차는 직전(2026-08-22 21:00Z)로부터 정확히 2시간 경과**(정상 간격). 33개 활성종목 전부와 CASHCAT(notable)을 DexScreener 토큰-페어 API로 개별 재조회했다. MOONCOIN은 직전 회차 완전소멸이 확정된 상태라 지시대로 개별 재조회를 생략하고 활성 재편입도 하지 않았다.
 
-> **🚨 MOONCOIN — 완전소멸/러그 확정, 활성목록에서 편출**
-> 직전 회차(19:00Z)에 1차 붕괴(유동성 $571,820→$64,446, h24 +110%→-99.07%)가 확인됐던 MOONCOIN을 본 회차 재조회한 결과, 유동성이 완전히 증발했다. **DexScreener liquidity.usd = $0.23**(원본 JSON 숫자 재확인), **GeckoTerminal 풀상세 reserve_in_usd = $0.2434**, **GeckoTerminal 트렌딩목록 reserve_in_usd = $0.49**로 세 소스가 모두 사실상 0에 수렴했다. h1·h6·h24 전부 -100%(DS·GT 동일). 거래량24h는 DS$691,201~GT$43.4M로 잔존 표기되나 이는 유동성 증발 직전까지의 패닉매도 잔여치로 해석된다. P400·HEREBRO와 동일한 '조기편입 후 급격소멸' 패턴이 8~9회차째까지 생존해온 토큰에서도 재현된 사례다. **활성목록(tokens)에서 notable로 편출한다.**
+> **신규 편입/편출: 이번 회차 없음.** 활성목록 **33종 유지**(전부 재확인). notable **24개 유지**.
 
-> **⭐ 신규 발굴 1건 — LIZARD (4회차 만의 첫 신규 편입)**
-> GeckoTerminal 트렌딩(Solana) 재스캔에서 LIZARD(Tom Lizard, Solana/PumpSwap)를 새로 포착했다. 풀 생성시각은 **GT `pool_created_at`=2026-08-21T23:03:50Z**와 **DS `pairCreatedAt` epoch 1787353430000ms(동일 시각으로 환산)**가 정확히 일치해 교차검증됐다(약 22시간 전 생성). 유동성 $56,513~$56,856(GT·DS 유사), 거래량24h ≈$2.42M, h1 +63~71%, h6 +20~25%, h24 **+612~1,208%**(GT·DS 간 표본시점 차이로 수치는 다르나 방향·규모는 일치). 회전율≈43배로 매우 높아 워시트레이딩 의심이 크고, 동일 티커의 무관한 별도 Raydium 풀(CA 347k5f1W...)도 존재해 티커 충돌 위험이 있다(이번 CA는 PumpSwap 풀 기준). **극초기·고위험, 신규진입 절대금지.**
->
-> ⚠️ 참고로 GT 트렌딩에서 함께 눈에 띈 "Truth Coin"(Solana, 풀생성 2026-08-22T15:23Z)은 DexScreener 원시 JSON 확인 결과 **liquidity.usd = 0(base 0.01649/quote 1e-9)**·h1 거래량 0으로 **이미 유동성이 완전히 빠진 사후 상태**였다(과거 24h 거래량 $18.1M은 잔존 표기일 뿐). 붕괴한 풀은 편입하지 않는다는 원칙에 따라 편입하지 않았다.
+## ⚠️ 부모 세션 최우선 확인 대상 후속 — LIZARD·40M·KIRK·PANTS·CYBERLEEK 등
 
-## 부모 세션 최우선 확인 대상 후속 — KIRK·PANTS·40M
-
-- **KIRK**: 회차 간 휩소가 또다시 반복됐다. h1 +18.46%→**-3.21%**(재음전전환), h6 -21.33%→**+3.19%**(재양전전환), h24 -39.49%→**-35.15%**(소폭개선). 9회차 연속 방향이 뒤집히는 패턴이며, 거래량도 -6.0%로 계속 감소해 관심이 식어가는 신호일 가능성이 있다.
-- **PANTS**: h24가 +92.67%→**+35.85%**(-56.82%p)로 대폭 감속해 **직전 회차 경고했던 단기 고점 통과가 이번 회차에 확인됐다**. 유동성도 -4.4%로 유출 지속. 다수 풀 중 Meteora1(유동성 $171,980)이 PumpSwap($129,502)보다 유동성은 크지만, 거래량은 PumpSwap($1,763,653)이 Meteora1($123,445)의 약 14배로 압도적이라 PumpSwap을 주풀로 유지했다.
-- **40M**: 소멸 경로가 더 심화됐다. 유동성 $17,988.74→**$15,529.63**(-13.7%, GT $16,250.45로 유사, 5단계 연속 감소 누적 -54.2%). h6 +26.77%→**-77.45%**, h24 +18.59%→**-86.29%**(GT -82.69%로 교차검증)로 두 지표가 동시에 극단 반전됐다. 거래량도 -70.7% 급감.
+- **LIZARD**(풀생성 후 약 24시간): 생존 확인. 유동성 $56,856.30→**$52,399.44**(-7.84%, 소폭유출). h6·h24는 추가 가속(h6 +49.43%, h24 **+1,015%**)했으나 **h1이 -11.18%로 매도우위 전환**(매수92/매도105건, 직전 회차엔 +63~71%로 강한 매수우위였음). 회전율은 약 47배로 전 회차(43배)보다 더 상승. **24시간 생존은 확인됐으나 h1 매도우위 전환은 단기 고점 가능성의 초기 신호일 수 있다.** 다음 회차 재검증 필요.
+- **40M**: ⭐**예상외 반전**. 5단계 연속 심화되던 소멸 경로가 이번 회차 정반대로 뒤집혔다. 유동성 $15,529.63→**$17,341.75**(+11.67%, 재유입), h1 -23.7%→**+7.8%**(재양전), h6 -77.45%→**-38.04%**(대폭개선), h24 -86.29%→**-9.07%**(+77.22%p, 극단개선, 손익분기근접). 단일회차 반등이라 지속성은 불확실하나, 이전 3회차 연속 소멸경로 심화 서술과 정면으로 배치되는 결과라 정직하게 기록한다.
+- **KIRK**: 10회차째 휩소 재발. h1 -3.21%→**+24.2%**(대폭재양전), h6 +3.19%→+4.38%(유사), h24 -35.15%→**-9.61%**(대폭개선, 손익분기근접). 유동성은 거의 변화 없음(+0.04%). 패턴상 다음 회차 재역전 가능성 경계.
+- **PANTS**: ⚠️**직전 회차 '단기 고점 통과 확인' 판단이 이번 회차 강한 재가속으로 번복됐다.** 유동성 $129,502.60→**$162,383.85**(+25.39%, 대폭유입), h1 -13.31%→**+68.39%**(강한재양전), h6 +10.77%→**+22%**(재가속), h24 +35.85%→**+43.16%**(재가속). 직전 판단을 정직하게 번복 기록한다. (일부 Meteora 소형풀은 h6 115,323% 같은 명백한 이상치를 보여 무시하고 거래량 기준 PumpSwap을 주풀로 유지)
+- **CYBERLEEK**: 7회차 연속 재반등. 직전 회차 경고했던 단기눌림이 강하게 해소됐다. 유동성 $845,386.88→**$1,129,528.8**(+33.61%, 대폭유입), h1 -6.48%→**+69.67%**(강한재양전), h6 +150%→**+328%**(대폭가속), h24 +244%→**+555%**(대폭가속). 거래량도 +43.5% 추가 증가. 다만 이미 대형·장기 랠리가 지속 중이라 '조기' 성격은 옅어지고 있다는 점은 유지한다.
 
 ## 나머지 종목 갱신 (28종)
 
-- **OBS**: 유동성 -14.5%, h1 -23.44%→**-6.54%**(개선), h6 -21.69%→**-46.19%**(대폭악화), h24 +535%→**+10.54%**(대폭감속,정상권근접). 🔴(유지).
-- **TIPANSEM**: 유동성 -1.0%, h6 개선, h24 -40.49%→**-55.61%**(재악화심화). 🔴(유지).
-- **1B**: 유동성 +7.2%, h1 -22.44%→**+43.68%**(대폭재양전), h24 +106%→**-3.59%**(극단반전). 🔴(유지, 극심한변동성).
-- **CLOCKIN**: 유동성 -2.2%, h1 +5.89%→**-0.93%**(재음전), h6 개선, h24 소폭악화. 🔴(유지).
-- **PEE**: 유동성 +2.5%, h24 +0.89%→**+2.70%**(개선). 🔴(유지, 거래극도로얇음).
-- **CLUG**: 유동성 -3.1%, h1 재양전, h24 유사(-43.80%). 🔴(유지).
-- **PEPECOIN**: ⚠️전지표 대폭 악화. 유동성 -14.8%, h1 재음전, h6 -1.22%→**-36.87%**, h24 -50.63%→**-62.14%**. 🔴(상향).
-- **swappy**: 유동성 +0.3%, h6 개선(-6.84%). 🟡(유지).
-- **CYBERLEEK**: 유동성 +14.1%(추가유입), h1 +66.05%→**-6.48%**(단기재음전), h6 감속(+150%), h24 +175%→**+244%**(추가가속). 거래량+50.2%. 🟡(하향, 단기눌림신호).
-- **CC**: 유동성 -4.8%, h1 재음전, h24 -38.75%→**-44.67%**(악화). 🔴(고위험).
-- **Z500**: 유동성 -3.8%, h6 개선, h24 +20.64%→**+7.43%**(감속,양전유지). 🟡(유지).
-- **HOOKR**: 유동성 +0.4%, h1·h6 악화, h24 -46.65%→**-28.07%**(대폭개선). 🟡(하향).
-- **CATE**: 유동성 +1.1%, h1 재음전, h24 유사(+53.56%,강세유지). 🟡(유지).
-- **GOOD**: ⭐전지표 동시개선. 유동성 +7.2%, h1·h6 재양전전환, h24 -21.02%→**-3.74%**(대폭개선). 🟢(하향).
-- **PRINTER**: 유동성 +0.3%, h24 -18.90%→**-16.33%**(개선). 🟡(유지).
-- **BULLSHIT**: ⭐h6·h24 모두 재양전전환. PumpSwap유동성 +6.7%, h24 -1.56%→**+8.93%**. 🟡(유지, 개선).
-- **TOAD**: 유동성 -1.6%, h1·h6 소폭악화, h24 유사. 🟡(유지).
-- **DPG**: ⭐h6 대폭 재양전전환(-36.85%→**+7.67%**, +44.52%p). 🟡(하향).
-- **FWA**: h24 3회차 연속 양전, 가속(+0.41%→**+5.32%**). 🟡(유지, 개선지속).
-- **CALLOOOR**: 유동성 -3.4%, h24 개선(-14.57%). 🟡(유지).
-- **JUGGERNAUT**: h1 재음전, h6 재양전, h24 개선(-16.3%). 🟡(유지).
-- **BRODIE**: h1 미세재양전, h24 +5.67%→**+13.75%**(가속, 4회차연속양전). 🟢(유지).
-- **Dealer**: h1 재음전, h24 +35.88%→**+22.66%**(감속,양전유지). 🟡(유지).
-- **lickingcat**: ⚠️직전 회차 첫 개선이 다시 1회성으로 판명, 재악화. h24 -23.36%→**-37.68%**. 🔴(재상향).
-- **PITCOIN**: h6 재음전, h1·h24는 양전유지(+7.91%). 🟡(유지).
-- **FLUSH**: h1 재양전, h6 대폭개선(-49.01%→**-22.54%**), h24 여전히 극단(+458%). 🔴(유지).
-- **CONK**: h1 재음전, h6 대폭가속(+38.58%), h24 여전히 극단(+2,178%). 🔴(유지, 극단수준).
-- **MAPLE**: h6 재음전(+6.82%→**-10.43%**), h24 소폭개선(-47.89%). 🔴(유지).
-- **Doge2**: ⚠️전지표 동시 대폭악화·감속. 유동성 -34.4%(대폭유출), h1 재음전, h6 악화, h24 +651%→**+231%**(-420%p). 🔴(상향).
+- **OBS**: ⭐전지표 동시 대폭개선, 유동성 급증. 유동성 -14.5%→**+40.79%**(반전), h1 -6.54%→**+66.75%**, h6 -46.19%→**+5.95%**, h24 +10.54%→**+90.59%**. 🔴(유지, 매우초기).
+- **TIPANSEM**: 전지표 동시 개선. 유동성 +4.82%, h1 -3.25%, h6 -1.34%, h24 -55.61%→**-42.45%**(개선). 🔴(유지, 개선).
+- **1B**: ⚠️전지표 동시 대폭악화 반전. 유동성 -19.70%(유출), h1 +43.68%→**-31.35%**(재음전), h6 -58.33%(유사), h24 -3.59%→**-74.28%**(극단재악화). 🔴(유지, 극심한변동성).
+- **CLOCKIN**: 유동성 -6.80%, h1·h6 개선, h24 소폭악화(-38.93%). 🔴(유지).
+- **PEE**: ⚠️47회차 연속 개선흐름이 이번 회차 전지표 동시반전으로 종료. 유동성 -7.25%, h1 +2.62%→**-2.45%**, h6 +6.23%→**-8.52%**, h24 +2.70%→**-13.57%**. 🔴(재상향).
+- **CLUG**: 유동성 -1.66%, h1 재음전(-11.27%), h6·h24 개선. 🔴(유지).
+- **PEPECOIN**: ⭐직전 회차 전지표 대폭악화가 부분회복. 유동성 +2.88%(유입전환), h1 -14.82%→**+32.46%**(대폭재양전), h6 -36.87%→**-23.79%**(개선), h24 -62.14%→**-58.62%**(개선). 🔴(유지, 부분회복).
+- **FLUSH**: 유동성 유사(-0.28%), h1·h6 개선, h24 극단수준 지속(+458%). 🔴(유지, 고위험).
+- **MAPLE**: 유동성 -16.22%(유출), h6 재악화(-39.86%), h24 개선(-31.88%). 🔴(유지).
+- **swappy**: 유동성 -2.98%, 전지표 소폭개선. 🟡(유지).
+- **CC**: ⚠️21회차째 방향번복 지속, 이번 회차 극단적 재양전 반전. 유동성 **+108.39%**(두 배 급증), h1 -3.69%→**+292%**, h6 -12.25%→**+309%**, h24 -44.67%→**+148%**. 🔴(고위험, 극단반전, 워시트레이딩의심강화).
+- **Z500**: h1 개선(+6.87%), h6·h24는 재음전 전환(양전상실, h24 -22.35%). 🟡(재상향).
+- **CONK**: 유동성 -10.04%, h1 거의 보합(개선), h6·h24는 대폭 감속하나 여전히 극단수준(h24 +2,178%→**+745%**). 🔴(유지, 극단수준지속).
+- **HOOKR**: ⭐2회차 연속 개선, 전지표 동시 개선. 유동성 +7.65%, h1 -6.91%→**+2.75%**, h6 -24.2%→**+1.8%**, h24 -28.07%→**-6.83%**(손익분기근접). 🟢(하향, 2회차연속개선).
+- **CATE**: h1 대폭 재양전(+17.72%), h6·h24 강한 양전유지·가속. 유동성 +8.60%. 🟡(유지).
+- **GOOD**: ⚠️직전 회차 전지표 동시개선이 부분반전, h24 재악화. 유동성 -1.26%, h1 +4.86%→**+0.02%**(보합수준둔화), h6 개선(+12.89%), h24 -3.74%→**-12.08%**(재악화). 🟡(재상향).
+- **PRINTER**: 유동성 -1.25%, h24 -16.33%→**-14.47%**(개선). 🟡(유지).
+- **BULLSHIT**: ⭐h6·h24 모두 추가가속, 유동성 유입 지속. PumpSwap유동성 +8.06%, h1 +1.56%→**+21.49%**, h6 +6.63%→**+23.69%**, h24 +8.93%→**+31.03%**. 🟡(유지, 개선지속).
+- **TOAD**: ⭐h1·h6 강한 재양전전환, h24는 손익분기 근접. 유동성 +8.15%, h1 -4.35%→**+16.67%**, h6 -12.11%→**+11.4%**, h24 -8.75%→**-0.35%**. 🟡(유지, 개선).
+- **DPG**: ⭐2회차 연속 개선, 전지표 동시가속. 유동성 +4.79%, h1 +9.8%, h6 +18.92%, h24 +31.88%. 🟢(하향, 2회차연속개선).
+- **FWA**: h24 4회차 연속 양전이나 대폭감속(손익분기근접). 유동성 -2.06%, h1 개선(-0.06%), h6 유사(+6.4%), h24 +5.32%→**+0.08%**(대폭감속). 🟡(유지, 감속).
+- **CALLOOOR**: 유동성 -1.64%, h1·h6 개선, h24 소폭악화(-17.34%). 🟡(유지).
+- **JUGGERNAUT**: 유동성 유사(-0.74%), h1 재양전(+1.57%), h6 개선(+4.6%), h24 재악화(-19.88%). 🟡(유지).
+- **BRODIE**: ⚠️4회차 연속 h24 양전 스트릭이 이번 회차 종료. 유동성 -1.02%, h1 -0.85%(재음전), h6 -2.98%, h24 +13.75%→**-11.48%**(재음전전환). 🟡(재상향).
+- **Dealer**: h1 재양전(+5.2%), h6 개선(+12.33%), h24 감속하나 양전유지(+17.56%). 유동성 +2.18%. 🟡(유지).
+- **lickingcat**: 유동성 유입(+10.27%), h6 대폭 재양전전환(-14.08%→**+19.01%**), h24 개선(-24.14%). 🔴(유지, 개선조짐).
+- **PITCOIN**: h6 재양전(+1.5%), h1·h24는 소폭악화(h24 -3.2%). 유동성 -0.86%. 🟡(유지).
+- **Doge2**: ⚠️유동성 유출 2회차 연속 지속(누적 -48.3%), h1 반등하나(+7.61%) h24는 추가감속(+231%→**+106%**). 🔴(유지, 대폭악화지속).
 
 ## 🔥 온체인 트렌딩 조기경보 (조기성 우선 정렬)
 
 | 토큰 | 체인/DEX | 단계 | KOL 코로보(있으면) | 서사(요지) | 온체인(거래량/유동성/홀더) | 신규? | 리스크 | 출처 |
 |---|---|---|---|---|---|---|---|---|
-| **LIZARD** | Solana(PumpSwap) | 조기 | 미확인(코로보없음) | ⭐신규(4회차만의첫발굴). 풀생성22시간전,GT·DS교차검증 | 유동성$56,856.30, h24+612~1,208%, 회전율≈43배 | **신규** | 🔴(신규,매우높은위험) | [DexScreener](https://dexscreener.com/solana/2hXHY3DnN7HUGySZEmBsLFKSqLB8nj3aE8wwq44wpump) |
-| **40M** | Solana(PumpSwap) | 조기 | 미확인(코로보없음) | 5회차. 소멸경로심화확정,h6·h24동시극단반전 | 유동성$15,529.63(누적-54.2%), h24-86.29%(GT-82.69%) | 지속(5회차)·소멸심화 | 🔴(소멸경로심화) | [DexScreener](https://dexscreener.com/solana/Ct6arp861CvmvsAZ4pse7ZyTS2dDexfz9Yv2G6ajeU5q) |
-| **TIPANSEM** | Solana(PumpSwap) | 조기 | 미확인(코로보없음) | 18회차. h24재악화심화 | 유동성$12,695.00(-1.0%), h24-55.61% | 지속(18회차)·재악화심화 | 🔴(고위험) | [DexScreener](https://dexscreener.com/solana/B5YTUMqSnwzztWHWmzAzHApeRy6cuGEx49Bidt4kuH8w) |
-| **MAPLE** | Solana(PumpSwap) | 조기 | 미확인(코로보없음) | 6회차. h6재음전,h24소폭개선 | 유동성$26,765.48(-14.5%), h24-47.89% | 지속(6회차)·혼조 | 🔴(고위험) | [DexScreener](https://dexscreener.com/solana/7XA6NCMKa8Vk5Y3gdaaNsvGhjAdkqUDsGHkUpYUZBwh3) |
-| **PEPECOIN** | Robinhood Chain(Uniswap V3) | 조기 | 미확인(코로보없음) | 20회차. 전지표대폭악화 | 유동성$19,860.56(-14.8%), h24-62.14% | 지속(20회차)·악화 | 🔴(상향) | [DexScreener](https://dexscreener.com/robinhood/0x29d2049bb2f92b17a5e75cb6ee6d6c1ba8a82dcd) |
-| **OBS** | Robinhood Chain(Uniswap) | 조기 | 미확인(코로보없음) | 12회차. h24대폭감속,정상권근접 | 유동성$44,461.35(-14.5%), h24+10.54% | 지속(12회차)·감속 | 🔴(매우초기) | [DexScreener](https://dexscreener.com/robinhood/0xfd7c2011444e8105249df4b1f2986d13304dfa2ade3ebed0b6e168f259f6c956) |
-| **FLUSH** | Robinhood Chain(Uniswap) | 조기 | 미확인(코로보없음) | 8회차. h6대폭개선,h24극단수준유지 | 유동성$50,335.67(-0.6%), h24+458% | 지속(8회차)·개선 | 🔴(고위험) | [DexScreener](https://dexscreener.com/robinhood/0xc3bf319b19376d6b348325b1e78f7de1f68b3fb10750f0d832a4bc1643a56eb8) |
-| **1B** | Robinhood Chain(Uniswap) | 조기 | 미확인(코로보없음) | 10회차. h1대폭재양전,h24극단반전 | 유동성$32,016.20(+7.2%), h24-3.59% | 지속(10회차)·극단반전 | 🔴(극심한변동성) | [DexScreener](https://dexscreener.com/robinhood/0x1c58f34088e33ff14bac3715986d40f296aec7da19f5ed14ad882bcc2a71d63d) |
-| **CLOCKIN** | Robinhood Chain | 조기 | 없음(자체서사만확인) | 30회차. 방향혼조 | 유동성$189,898.72(-2.2%), h24-35.66% | 지속(30회차)·혼조 | 🔴(유지) | [DexScreener](https://dexscreener.com/robinhood/0xcd2937592f73968ebaa916f37e5f6c1b27713469) |
-| **PEE** | Solana(PumpSwap) | 조기 | 미확인(코로보없음) | 47회차. h24개선지속 | 유동성$9,576.71(+2.5%), h24+2.70% | 지속(47회차)·개선 | 🔴(신규진입절대금지) | [DexScreener](https://dexscreener.com/solana/2mG7vDMrZYFyFS2bz3AsrJizFoiAYurY5kc4MPqfpump) |
-| **CLUG** | Solana(PumpSwap) | 조기 | 미확인(코로보없음) | 42회차. h1개선 | 유동성$38,054.74(-3.1%), h24-43.80% | 지속(42회차) | 🔴(고위험) | [DexScreener](https://dexscreener.com/solana/7g2xyrq9Fk1TvFiqqcmLJAQ9jAtfHobmrdzzM9Dp2SpV) |
-| **CONK** | Solana(Raydium) | 확산 | 미확인(코로보없음) | 7회차. h6대폭가속,h24극단수준유지 | 유동성$116,066.54(+0.5%), h24+2,178% | 지속(7회차)·극단 | 🔴(극단수준지속) | [DexScreener](https://dexscreener.com/solana/koZZXrKJctd7AtVHdx62iYLPv5PqvQ3RrFyUr3GMBfm) |
-| **CC** | Solana(PumpSwap) | 확산 | 미확인(코로보없음) | 20회차. 20회차째방향번복,h24악화전환 | 유동성$106,595.95(-4.8%), h24-44.67% | 지속(20회차)·악화 | 🔴(고위험,워시트레이딩의심) | [DexScreener](https://dexscreener.com/solana/E3i7sTY5QYEBh3itepnomZQt7Eh5kzmHFk1vkm2pump) |
-| **KIRK** | Solana(PumpSwap) | 확산 | 미확인(코로보없음) | 10회차. 회차간휩소재반복 | 유동성$75,331.79(-2.9%), h24-35.15% | 지속(10회차)·휩소재반복 | 🔴(거래량계속감소) | [DexScreener](https://dexscreener.com/solana/8du34ohgGj2ikZVTGZNwHbNbqX8b8AHGFANf6qmopump) |
-| **swappy** | Robinhood Chain(Uniswap V4) | 확산 | 미확인(코로보없음) | 23회차. 대체로보합 | 유동성$214,667.14(+0.3%), h24-19.42% | 지속(23회차) | 🟡(유지) | [DexScreener](https://dexscreener.com/robinhood/0x298348d5b2e45C774E3ee4f1a0924071DfbDC8C7) |
-| **CYBERLEEK** | Solana(Raydium CPMM) | 확산 | 미확인(코로보없음) | 22회차. 5회차연속재반등,h1단기재음전 | 유동성$845,386.88(+14.1%), h24+244% | 지속(22회차)·눌림신호 | 🟡(하향,단기눌림가능성) | [DexScreener](https://dexscreener.com/solana/ApZuxdpzMrbEYTGEzeY9afh5pj9d6qPRJCTgQYiipbKg) |
-| **Z500** | Solana(PumpSwap) | 확산 | 미확인(코로보없음) | 13회차. h6개선,h24감속 | 유동성$87,659.20(-3.8%), h24+7.43% | 지속(13회차)·감속 | 🟡(유지) | [DexScreener](https://dexscreener.com/solana/7fDdLy2rmQKsPCkqUXEd1mN7yDfEzArc4VrctWmfkJBK) |
-| **Doge2** | Solana(PumpSwap) | 뒷북 | 미확인(코로보없음) | 5회차. 전지표동시대폭악화·감속 | 유동성$33,091.40(-34.4%), h24+231% | 지속(5회차)·악화 | 🔴(상향,대폭악화) | [DexScreener](https://dexscreener.com/solana/GCbqindK6zYHdhyaiFdtXzqB2r2TqqWaBKnn4YR3KtLP) |
-| **CATE** | Solana(PumpSwap) | 뒷북 | 미확인(코로보없음) | 84회차. 강세유지 | 유동성$2,076,458(+1.1%), h24+53.56% | 지속(84회차) | 🟡(유지,회전율10배근접) | [DexScreener](https://dexscreener.com/solana/Ai66LHZG9MCzg1WKdawwqduVAXpNDUuV8M3uyq5ppump) |
-| **HOOKR** | Robinhood Chain(Uniswap) | 뒷북 | 미확인(코로보없음) | 25회차. h24대폭개선 | 유동성$195,087.87(+0.4%), h24-28.07% | 지속(25회차)·개선 | 🟡(하향) | [DexScreener](https://dexscreener.com/robinhood/0x590dcb6a87828bf688b48089a62239b693378f1fb64d2286e6a399ed8c005fdf) |
-| **GOOD** | Robinhood Chain(Uniswap V3) | 뒷북 | 미확인(코로보없음) | 26회차. 전지표동시개선 | 유동성$470,866.64(+7.2%), h24-3.74% | 지속(26회차)·개선 | 🟢(하향) | [DexScreener](https://dexscreener.com/robinhood/0x8ea7c66395fd7e25e9713edd0b297d4abe05c304) |
-| **PRINTER** | Robinhood Chain(Uniswap V4) | 뒷북 | 미확인(코로보없음) | 161회차. 개선지속 | 유동성$371,880.38(+0.3%), h24-16.33% | 지속(161회차)·개선 | 🟡(유지) | [DexScreener](https://dexscreener.com/robinhood/0xf6c9f0a8bf94ecda6751465a3097bc4c69914421126d2cbc3df723e36b8cf47b) |
-| **BULLSHIT** | Solana(Meteora 등 11개풀) | 뒷북 | 미확인(WebSearch로토큰명특정보도없음) | 41회차. h6·h24모두재양전전환 | 유동성(PumpSwap)$252,860.59, h24+8.93% | 지속(41회차)·개선 | 🟡(유지) | [DexScreener](https://dexscreener.com/solana/zj1jpp7QMveWHLs61vL9KMZf254KvW7j4AAmBF8ry2k) |
-| **TOAD** | Solana(PumpSwap) | 뒷북 | 미확인(코로보없음) | 160회차. 소폭악화 | 유동성$371,528(-1.6%), h24-8.75% | 지속(160회차) | 🟡(유지) | [DexScreener](https://dexscreener.com/solana/A13oRB9FFaiUjfi6LdCg6p9ka1u8SfGkUFs4SKvPpump) |
-| **DPG** | Solana(PumpSwap) | 뒷북 | 미확인(코로보없음) | 112회차. h6대폭재양전전환 | 유동성$93,951.74(+0.5%), h24+25.89% | 지속(112회차)·개선 | 🟡(하향) | [DexScreener](https://dexscreener.com/solana/LFEJTxJ9yi6ojGDFpjbGfABLbH55Fc3oEK8syJJpump) |
-| **FWA** | Ethereum(Uniswap V4) | 뒷북 | Cointelegraph·CryptoBriefing·KuCoin·PANews(carryover)+CG트렌딩12위(carryover) | 164회차. h24 3회차연속양전,가속 | 유동성$1,172,035.79(+6.6%), h24+5.32% | 지속(164회차)·가속 | 🟡(유지) | [DexScreener](https://dexscreener.com/ethereum/0x230ecd3c25b44af30db59c15f70df7794eb13f67a200f230b7400daa96fe804d) |
-| **CALLOOOR** | Solana(PumpSwap) | 뒷북 | 미확인(코로보없음) | 110회차. 소폭개선 | 유동성$55,770.51(-3.4%), h24-14.57% | 지속(110회차) | 🟡(유지) | [DexScreener](https://dexscreener.com/solana/A48KeWUuiDSdRQBqAFssgyYATDuBv7cer54V2JSDpump) |
-| **JUGGERNAUT** | Robinhood Chain(Uniswap V3 1%) | 뒷북 | Drallio(약한코로보,carryover) | 147회차. h24개선 | 유동성$246,581.50(유사), h24-16.3% | 지속(147회차)·개선 | 🟡(유지) | [DexScreener](https://dexscreener.com/robinhood/0x588b0785f50063260003B7790C42f1eF74902746) |
-| **BRODIE** | Robinhood Chain(Uniswap V3) | 뒷북 | 미확인(코로보없음) | 123회차. h24가속,4회차연속양전 | 유동성$168,954.69(-0.5%), h24+13.75% | 지속(123회차)·가속 | 🟢(유지) | [DexScreener](https://dexscreener.com/robinhood/0x9870C395bfA68C9F23D7c232fA5a37BF063aae35) |
-| **Dealer** | Solana(PumpSwap) | 뒷북 | 미확인(코로보없음) | 152회차. h24감속,양전유지 | 유동성$121,596.05(-2.0%), h24+22.66% | 지속(152회차)·감속 | 🟡(유지) | [DexScreener](https://dexscreener.com/solana/6f8ZQhxqfigdv7UszZ1rirbV7Sgv83s3rxv1N2Zopump) |
-| **lickingcat** | Solana(PumpSwap) | 뒷북 | 미확인(코로보없음) | 152회차. 첫개선이1회성으로판명,재악화 | 유동성$52,560.70(-4.8%), h24-37.68% | 지속(152회차)·재악화 | 🔴(재상향) | [DexScreener](https://dexscreener.com/solana/EjD5Y9NVhXmtEqU7wYvAyZvDWZFQeEuHXFatJmTbpump) |
-| **PITCOIN** | Solana(PumpSwap) | 뒷북 | 미확인(코로보없음) | 113회차. h6재음전,h1·h24양전유지 | 유동성$31,826.93(+0.4%), h24+7.91% | 지속(113회차) | 🟡(유지) | [DexScreener](https://dexscreener.com/solana/G1iBvjhZ9wpGUZdQcvhRSqjow3x6xetsnmEBBMm1pump) |
-| **PANTS** | Solana(PumpSwap) | 뒷북 | 미확인(코로보없음) | 12회차재확인(dogwifpants). 단기고점통과확인 | 유동성$129,502.60(-4.4%), h24+35.85%(-56.82%p) | 지속(12회차)·고점통과 | 🟡(유지) | [DexScreener](https://dexscreener.com/solana/6tMVLioTrzW65RWRAftNWPSf1JikYWRVsP87w9h9em2a) |
+| **LIZARD** | Solana(PumpSwap) | 조기 | 미확인(코로보없음) | 2회차(풀생성후약24h). h1매도우위전환,h6·h24추가가속 | 유동성$52,399.44(-7.84%), h24+1,015%, 회전율≈47배 | 지속(2회차)·매도우위전환 | 🔴(매우높은위험) | [DexScreener](https://dexscreener.com/solana/2hXHY3DnN7HUGySZEmBsLFKSqLB8nj3aE8wwq44wpump) |
+| **OBS** | Robinhood Chain(Uniswap) | 조기 | 미확인(코로보없음) | 13회차. 전지표동시대폭개선,유동성급증 | 유동성$62,591.68(+40.79%), h24+90.59% | 지속(13회차)·대폭개선 | 🔴(매우초기) | [DexScreener](https://dexscreener.com/robinhood/0xfd7c2011444e8105249df4b1f2986d13304dfa2ade3ebed0b6e168f259f6c956) |
+| **40M** | Solana(PumpSwap) | 조기 | 미확인(코로보없음) | 6회차. 예상외반전,5단계소멸경로심화가극적개선 | 유동성$17,341.75(+11.67%), h24-9.07%(+77.22%p) | 지속(6회차)·예상외반등 | 🟡(하향,예상외반등) | [DexScreener](https://dexscreener.com/solana/Ct6arp861CvmvsAZ4pse7ZyTS2dDexfz9Yv2G6ajeU5q) |
+| **TIPANSEM** | Solana(PumpSwap) | 조기 | 미확인(코로보없음) | 19회차. 전지표동시개선 | 유동성$13,306.33(+4.82%), h24-42.45% | 지속(19회차)·개선 | 🔴(고위험) | [DexScreener](https://dexscreener.com/solana/B5YTUMqSnwzztWHWmzAzHApeRy6cuGEx49Bidt4kuH8w) |
+| **PEPECOIN** | Robinhood Chain(Uniswap V3) | 조기 | 미확인(코로보없음) | 21회차. 전지표대폭악화부분회복 | 유동성$20,433.16(+2.88%), h24-58.62% | 지속(21회차)·부분회복 | 🔴(부분회복) | [DexScreener](https://dexscreener.com/robinhood/0x29d2049bb2f92b17a5e75cb6ee6d6c1ba8a82dcd) |
+| **MAPLE** | Solana(PumpSwap) | 조기 | 미확인(코로보없음) | 7회차. h6재악화,h24개선 | 유동성$22,425.41(-16.22%), h24-31.88% | 지속(7회차)·혼조 | 🔴(고위험) | [DexScreener](https://dexscreener.com/solana/7XA6NCMKa8Vk5Y3gdaaNsvGhjAdkqUDsGHkUpYUZBwh3) |
+| **CLUG** | Solana(PumpSwap) | 조기 | 미확인(코로보없음) | 43회차. h1재음전,h6·h24개선 | 유동성$37,423.28(-1.66%), h24-37.98% | 지속(43회차) | 🔴(고위험) | [DexScreener](https://dexscreener.com/solana/7g2xyrq9Fk1TvFiqqcmLJAQ9jAtfHobmrdzzM9Dp2SpV) |
+| **1B** | Robinhood Chain(Uniswap) | 조기 | 미확인(코로보없음) | 11회차. 전지표동시대폭악화반전 | 유동성$25,709.14(-19.70%), h24-74.28% | 지속(11회차)·극단반전 | 🔴(극심한변동성) | [DexScreener](https://dexscreener.com/robinhood/0x1c58f34088e33ff14bac3715986d40f296aec7da19f5ed14ad882bcc2a71d63d) |
+| **FLUSH** | Robinhood Chain(Uniswap) | 조기 | 미확인(코로보없음) | 9회차. 유동성유사,h1·h6개선,h24극단수준지속 | 유동성$50,194.77(-0.28%), h24+458% | 지속(9회차) | 🔴(고위험) | [DexScreener](https://dexscreener.com/robinhood/0xc3bf319b19376d6b348325b1e78f7de1f68b3fb10750f0d832a4bc1643a56eb8) |
+| **CLOCKIN** | Robinhood Chain | 조기 | 없음(자체서사만확인) | 31회차. 유동성유출지속,단기지표소폭개선 | 유동성$176,977.88(-6.80%), h24-38.93% | 지속(31회차) | 🔴(유지) | [DexScreener](https://dexscreener.com/robinhood/0xcd2937592f73968ebaa916f37e5f6c1b27713469) |
+| **PEE** | Solana(PumpSwap) | 조기 | 미확인(코로보없음) | 48회차. 47회차연속개선스트릭종료 | 유동성$8,882.53(-7.25%), h24-13.57% | 지속(48회차)·스트릭종료 | 🔴(재상향) | [DexScreener](https://dexscreener.com/solana/2mG7vDMrZYFyFS2bz3AsrJizFoiAYurY5kc4MPqfpump) |
+| **CONK** | Solana(Raydium) | 확산 | 미확인(코로보없음) | 8회차. h6·h24대폭감속하나극단수준유지 | 유동성$104,418.46(-10.04%), h24+745% | 지속(8회차)·극단감속 | 🔴(극단수준지속) | [DexScreener](https://dexscreener.com/solana/koZZXrKJctd7AtVHdx62iYLPv5PqvQ3RrFyUr3GMBfm) |
+| **CC** | Solana(PumpSwap) | 확산 | 미확인(코로보없음) | 21회차. 21회차째방향번복,극단재양전반전 | 유동성$222,108.12(+108.39%), h24+148% | 지속(21회차)·극단반전 | 🔴(고위험,워시트레이딩의심강화) | [DexScreener](https://dexscreener.com/solana/E3i7sTY5QYEBh3itepnomZQt7Eh5kzmHFk1vkm2pump) |
+| **KIRK** | Solana(PumpSwap) | 확산 | 미확인(코로보없음) | 11회차. 10회차째휩소재발,h24대폭개선 | 유동성$75,360.17(+0.04%), h24-9.61% | 지속(11회차)·휩소재발 | 🔴(극심한변동성지속) | [DexScreener](https://dexscreener.com/solana/8du34ohgGj2ikZVTGZNwHbNbqX8b8AHGFANf6qmopump) |
+| **swappy** | Robinhood Chain(Uniswap V4) | 확산 | 미확인(코로보없음) | 24회차. 소폭유출,전지표소폭개선 | 유동성$208,274.45(-2.98%), h24-17.36% | 지속(24회차) | 🟡(유지) | [DexScreener](https://dexscreener.com/robinhood/0x298348d5b2e45C774E3ee4f1a0924071DfbDC8C7) |
+| **CYBERLEEK** | Solana(Raydium CPMM) | 확산 | 미확인(코로보없음) | 23회차. 7회차연속재반등,단기눌림강하게해소 | 유동성$1,129,528.8(+33.61%), h24+555% | 지속(23회차)·강한재가속 | 🟡(강한재가속) | [DexScreener](https://dexscreener.com/solana/ApZuxdpzMrbEYTGEzeY9afh5pj9d6qPRJCTgQYiipbKg) |
+| **Z500** | Solana(PumpSwap) | 확산 | 미확인(코로보없음) | 14회차. h6·h24재음전전환,양전상실 | 유동성$89,124.33(+1.67%), h24-22.35% | 지속(14회차)·양전상실 | 🟡(재상향) | [DexScreener](https://dexscreener.com/solana/7fDdLy2rmQKsPCkqUXEd1mN7yDfEzArc4VrctWmfkJBK) |
+| **Doge2** | Solana(PumpSwap) | 뒷북 | 미확인(코로보없음) | 6회차. 유동성유출2회차연속(누적-48.3%),h24추가감속 | 유동성$26,104.87(-21.11%), h24+106% | 지속(6회차)·대폭악화지속 | 🔴(대폭악화지속) | [DexScreener](https://dexscreener.com/solana/GCbqindK6zYHdhyaiFdtXzqB2r2TqqWaBKnn4YR3KtLP) |
+| **CATE** | Solana(PumpSwap) | 뒷북 | 미확인(코로보없음) | 85회차. h1대폭재양전,전지표강세유지·가속 | 유동성$2,255,054.85(+8.60%), h24+50.94% | 지속(85회차) | 🟡(유지,회전율10배근접) | [DexScreener](https://dexscreener.com/solana/Ai66LHZG9MCzg1WKdawwqduVAXpNDUuV8M3uyq5ppump) |
+| **HOOKR** | Robinhood Chain(Uniswap) | 뒷북 | 미확인(코로보없음) | 26회차. 2회차연속개선,전지표동시개선 | 유동성$210,017.61(+7.65%), h24-6.83% | 지속(26회차)·개선 | 🟢(하향,2회차연속) | [DexScreener](https://dexscreener.com/robinhood/0x590dcb6a87828bf688b48089a62239b693378f1fb64d2286e6a399ed8c005fdf) |
+| **GOOD** | Robinhood Chain(Uniswap V3) | 뒷북 | 미확인(코로보없음) | 27회차. 전지표동시개선이부분반전,h24재악화 | 유동성$464,948.23(-1.26%), h24-12.08% | 지속(27회차)·재악화 | 🟡(재상향) | [DexScreener](https://dexscreener.com/robinhood/0x8ea7c66395fd7e25e9713edd0b297d4abe05c304) |
+| **PRINTER** | Robinhood Chain(Uniswap V4) | 뒷북 | 미확인(코로보없음) | 162회차. 개선지속 | 유동성$367,223.4(-1.25%), h24-14.47% | 지속(162회차)·개선 | 🟡(유지) | [DexScreener](https://dexscreener.com/robinhood/0xf6c9f0a8bf94ecda6751465a3097bc4c69914421126d2cbc3df723e36b8cf47b) |
+| **BULLSHIT** | Solana(Meteora 등 11개풀) | 뒷북 | 미확인(WebSearch로토큰명특정보도없음) | 42회차. h6·h24모두추가가속 | 유동성(PumpSwap)$273,237(+8.06%), h24+31.03% | 지속(42회차)·개선지속 | 🟡(유지) | [DexScreener](https://dexscreener.com/solana/zj1jpp7QMveWHLs61vL9KMZf254KvW7j4AAmBF8ry2k) |
+| **TOAD** | Solana(PumpSwap) | 뒷북 | 미확인(코로보없음) | 161회차. h1·h6강한재양전전환,h24손익분기근접 | 유동성$401,790.13(+8.15%), h24-0.35% | 지속(161회차)·개선 | 🟡(유지) | [DexScreener](https://dexscreener.com/solana/A13oRB9FFaiUjfi6LdCg6p9ka1u8SfGkUFs4SKvPpump) |
+| **DPG** | Solana(PumpSwap) | 뒷북 | 미확인(코로보없음) | 113회차. 2회차연속개선,전지표동시가속 | 유동성$98,448.82(+4.79%), h24+31.88% | 지속(113회차)·가속 | 🟢(하향,2회차연속) | [DexScreener](https://dexscreener.com/solana/LFEJTxJ9yi6ojGDFpjbGfABLbH55Fc3oEK8syJJpump) |
+| **FWA** | Ethereum(Uniswap V4) | 뒷북 | Cointelegraph·CryptoBriefing·KuCoin·PANews(carryover)+CG트렌딩12위(carryover) | 165회차. h24 4회차연속양전이나대폭감속 | 유동성$1,147,836.74(-2.06%), h24+0.08% | 지속(165회차)·감속 | 🟡(유지,감속) | [DexScreener](https://dexscreener.com/ethereum/0x230ecd3c25b44af30db59c15f70df7794eb13f67a200f230b7400daa96fe804d) |
+| **CALLOOOR** | Solana(PumpSwap) | 뒷북 | 미확인(코로보없음) | 111회차. h1·h6개선,h24소폭악화 | 유동성$54,858.57(-1.64%), h24-17.34% | 지속(111회차) | 🟡(유지) | [DexScreener](https://dexscreener.com/solana/A48KeWUuiDSdRQBqAFssgyYATDuBv7cer54V2JSDpump) |
+| **JUGGERNAUT** | Robinhood Chain(Uniswap V3 1%) | 뒷북 | Drallio(약한코로보,carryover) | 148회차. h1재양전,h6개선,h24재악화 | 유동성$244,766.54(유사), h24-19.88% | 지속(148회차) | 🟡(유지) | [DexScreener](https://dexscreener.com/robinhood/0x588b0785f50063260003B7790C42f1eF74902746) |
+| **BRODIE** | Robinhood Chain(Uniswap V3) | 뒷북 | 미확인(코로보없음) | 124회차. 4회차연속h24양전스트릭종료 | 유동성$167,224.73(-1.02%), h24-11.48% | 지속(124회차)·스트릭종료 | 🟡(재상향) | [DexScreener](https://dexscreener.com/robinhood/0x9870C395bfA68C9F23D7c232fA5a37BF063aae35) |
+| **Dealer** | Solana(PumpSwap) | 뒷북 | 미확인(코로보없음) | 153회차. h1재양전,h24감속하나양전유지 | 유동성$124,250.99(+2.18%), h24+17.56% | 지속(153회차) | 🟡(유지) | [DexScreener](https://dexscreener.com/solana/6f8ZQhxqfigdv7UszZ1rirbV7Sgv83s3rxv1N2Zopump) |
+| **lickingcat** | Solana(PumpSwap) | 뒷북 | 미확인(코로보없음) | 153회차. 유동성유입,h6대폭재양전전환 | 유동성$57,960.74(+10.27%), h24-24.14% | 지속(153회차)·개선조짐 | 🔴(개선조짐) | [DexScreener](https://dexscreener.com/solana/EjD5Y9NVhXmtEqU7wYvAyZvDWZFQeEuHXFatJmTbpump) |
+| **PITCOIN** | Solana(PumpSwap) | 뒷북 | 미확인(코로보없음) | 114회차. h6재양전,h1·h24소폭악화 | 유동성$31,552.28(-0.86%), h24-3.2% | 지속(114회차) | 🟡(유지) | [DexScreener](https://dexscreener.com/solana/G1iBvjhZ9wpGUZdQcvhRSqjow3x6xetsnmEBBMm1pump) |
+| **PANTS** | Solana(PumpSwap) | 뒷북 | 미확인(코로보없음) | 13회차(dogwifpants). 직전'고점통과'판단이재가속으로번복 | 유동성$162,383.85(+25.39%), h24+43.16% | 지속(13회차)·고점판단번복 | 🟡(재상향,판단번복) | [DexScreener](https://dexscreener.com/solana/6tMVLioTrzW65RWRAftNWPSf1JikYWRVsP87w9h9em2a) |
 
-> **편입/편출 내역(이번 회차)**: **신규 편입 1건**(LIZARD, 4회차 만의 첫 신규 발굴), **편출 1건**(MOONCOIN, 완전소멸/러그확정으로 notable 이관). 활성목록 **33종 유지**(32종 재확인 + LIZARD 신규). **급격 상향(위험 확대) 3건**: MOONCOIN(완전소멸,편출), PEPECOIN(전지표동시악화), Doge2(전지표동시대폭악화·감속). **재상향 1건**: lickingcat(첫개선이1회성으로판명,재악화). **하향(위험 완화) 3건**: HOOKR(h24대폭개선), GOOD(전지표동시개선), DPG(h6대폭재양전전환), CYBERLEEK(단기눌림신호로소폭하향).
+> **편입/편출 내역(이번 회차)**: **신규 편입/편출 없음.** 활성목록 **33종 그대로 유지**(전 종목 재확인). **급격 상향(위험 확대) 3건**: CC(극단반전,워시트레이딩의심강화), Z500(양전상실), PEE(47회차연속개선스트릭종료). **재상향 2건**: GOOD(전지표동시개선부분반전), BRODIE(4회차연속양전스트릭종료). **판단번복 1건**: PANTS(직전회차'단기고점통과확인'이강한재가속으로번복). **하향(위험완화) 4건**: 40M(예상외반등), HOOKR(2회차연속개선), DPG(2회차연속개선), CYBERLEEK(단기눌림강하게해소·강한재가속).
 
 ## 온체인 신호 상세
 
-- **MOONCOIN(편출)·LIZARD(신규) 상세**: MOONCOIN 유동성이 DS$0.23·GT풀$0.2434·GT트렌딩$0.49로세소스모두사실상0에수렴,h1·h6·h24전부-100%로완전소멸확정,notable로이관. LIZARD는GT트렌딩(Solana)재스캔에서포착,풀생성시각GT`2026-08-21T23:03:50Z`·DS epoch1787353430000ms가정확히일치(약22시간전),유동성$56,513~$56,856,h24+612~1,208%,회전율≈43배로매우높아워시트레이딩의심,무관한별도Raydium동명풀존재로티커충돌위험도기록 · 2026-08-22T21:00Z
-- **부모세션최우선확인대상(KIRK·PANTS·40M) 후속**: KIRK h1·h6모두재반전(**-3.21%/+3.19%**)하는9회차째휩소지속,거래량-6.0%감소. PANTS h24**+35.85%**로대폭감속,단기고점통과확인(유동성-4.4%유출). 40M유동성**$15,529.63**로5단계연속감소(누적-54.2%),h6·h24동시극단반전(**-77.45%/-86.29%**,GT-82.69%교차검증),거래량-70.7%급감 · 2026-08-22T21:00Z
-- **나머지 27건 상세**: OBS h24**+10.54%**로대폭감속(정상권근접)하나h6는**-46.19%**로대폭악화. TIPANSEM h24**-55.61%**로재악화심화. 1B h1**+43.68%**대폭재양전하나h24는**-3.59%**로극단반전. CLOCKIN방향혼조지속. PEE h24**+2.70%**개선. CLUG h1재양전,h24유사. PEPECOIN전지표대폭악화(h6**-36.87%**,h24**-62.14%**). swappy대체로보합. CYBERLEEK유동성+14.1%유입·h24**+244%**추가가속이나h1**-6.48%**단기재음전으로눌림가능성. CC h24**-44.67%**로악화. Z500h24**+7.43%**로감속하나양전유지. HOOKR h24**-28.07%**로대폭개선. CATE강세유지(h24**+53.56%**). GOOD전지표동시개선,h6재양전(**+9.32%**). PRINTER h24**-16.33%**로개선지속. BULLSHIT h6·h24모두재양전전환(**+6.63%/+8.93%**). TOAD소폭악화. DPG h6**+7.67%**로대폭재양전전환. FWA h24 3회차연속양전,가속(**+5.32%**). CALLOOOR소폭개선. JUGGERNAUT h24개선(**-16.3%**). BRODIE h24 4회차연속양전,가속(**+13.75%**). Dealer h24**+22.66%**로감속하나양전유지. lickingcat직전첫개선이1회성판명,h24**-37.68%**로재악화. PITCOIN h6재음전하나h1·h24양전유지. FLUSH h6대폭개선(**-22.54%**),h24여전히극단(**+458%**). CONK h6대폭가속(**+38.58%**),h24여전히극단(**+2,178%**). MAPLE h6재음전(**-10.43%**). Doge2전지표동시대폭악화(유동성-34.4%,h24**+231%**로-420%p대폭감속) · 2026-08-22T21:00Z
+- **LIZARD(2회차)·40M(예상외반전) 상세**: LIZARD는 풀생성 후 약 24시간 생존을 확인했다. 유동성 $56,856.30→**$52,399.44**(-7.84%), h1이 처음으로 **-11.18%로 매도우위 전환**(매수92/매도105건), h6·h24는 오히려 추가 가속(**+49.43%/+1,015%**)해 방향이 엇갈렸다. 회전율은 47배로 계속 상승 — 극도로 높은 회전율은 워시트레이딩 의심을 뒷받침한다. 40M은 5단계 연속 심화되던 소멸경로가 이번 회차 **정반대로 반전**됐다: 유동성 +11.67%(재유입), h6 -77.45%→**-38.04%**, h24 -86.29%→**-9.07%**(+77.22%p, 손익분기근접). 단일회차 반등이라 지속성은 불확실하나 정직하게 기록한다 · 2026-08-22T23:00Z
+- **부모세션최우선확인대상(KIRK·PANTS·CYBERLEEK) 후속**: KIRK 10회차째 휩소재발, h1 **+24.2%**로대폭재양전, h24 **-9.61%**로손익분기근접. PANTS ⚠️직전회차 '단기고점통과확인' 판단이 이번 회차 유동성 +25.39% 대폭유입과 h1 **+68.39%** 강한재양전으로 **번복**됐다(정직하게 판단번복 기록). CYBERLEEK 7회차연속재반등, 직전눌림경고가 h1 **+69.67%** 강한재양전으로해소, 유동성+33.61%·h24+555%로대폭가속 · 2026-08-22T23:00Z
+- **나머지 28건 상세**: OBS유동성**+40.79%**급증,h24**+90.59%**대폭개선. TIPANSEM전지표개선(h24-42.45%). 1B전지표동시대폭악화반전(h24**-74.28%**). CLOCKIN유동성유출(-6.80%)지속,단기지표소폭개선. PEE⚠️47회차연속개선스트릭이전지표동시반전(h24**-13.57%**)으로종료. CLUG h1재음전,h6·h24개선. PEPECOIN전지표대폭악화가부분회복(h1**+32.46%**). FLUSH h1·h6개선,h24극단수준지속(+458%). MAPLE유동성유출(-16.22%),h6재악화. swappy전지표소폭개선. CC⚠️유동성두배급증(+108.39%),전지표극단재양전반전(h1+292%/h6+309%/h24+148%). Z500 h6·h24재음전전환,양전상실. CONK유동성유출,h6·h24대폭감속하나여전히극단(+745%). HOOKR2회차연속개선,전지표동시개선(h24-6.83%,손익분기근접). CATE h1대폭재양전(+17.72%),강세유지·가속. GOOD⚠️전지표동시개선이부분반전,h24재악화(-12.08%). PRINTER개선지속(h24-14.47%). BULLSHIT h6·h24모두추가가속(h24+31.03%). TOAD h1·h6강한재양전전환,h24손익분기근접(-0.35%). DPG 2회차연속개선,전지표동시가속(h24+31.88%). FWA h24 4회차연속양전이나대폭감속(+0.08%,손익분기근접). CALLOOOR h1·h6개선,h24소폭악화. JUGGERNAUT h1재양전,h24재악화. BRODIE⚠️4회차연속h24양전스트릭종료(h24-11.48%). Dealer h1재양전,h24감속하나양전유지. lickingcat유동성유입(+10.27%),h6대폭재양전전환. PITCOIN h6재양전,h1·h24소폭악화. Doge2⚠️유동성유출2회차연속지속(누적-48.3%),h1반등하나h24추가감속(+106%) · 2026-08-22T23:00Z
 
 ## KOL 코로보 (확보된 것만)
 
 - **JUGGERNAUT — Drallio 코로보 carryover 유지, 신규 없음**.
 - **CLOCKIN — 프로젝트 자체 서사(제3자 KOL 코로보 아님) carryover 유지**.
 - **FWA — Cointelegraph·CryptoBriefing·KuCoin·PANews·CG트렌딩12위(전부 carryover 유지, 신규 없음)**.
-- **나머지 30종(신규 LIZARD 포함, 부모세션 최우선 확인대상 포함) — 코로보 미확인**: 이번 회차는 33개 활성종목 전부와 CASHCAT(notable)을 DexScreener 토큰-페어 API로 개별 재조회하고 GeckoTerminal 트렌딩 API(Solana·Robinhood)로 신규발굴을 재시도(LIZARD 1건 발견)하는 데 집중했다. 개별 KOL 검색·X 직접 조회는 로그인월 문제로 이번 회차도 생략했다 — 코로보 없음(정상 상태, 결함 아님).
+- **나머지 30종(부모세션 최우선 확인대상 포함) — 코로보 미확인**: 이번 회차는 33개 활성종목 전부와 CASHCAT(notable)을 DexScreener 토큰-페어 API로 개별 재조회하는 데 집중했다. 개별 KOL 검색·X 직접 조회는 로그인월 문제로 이번 회차도 생략했다 — 코로보 없음(정상 상태, 결함 아님).
 
 ## 메모
 
-- **⏱️ 이번 회차 간격**: 직전(2026-08-22 19:00Z)로부터 정확히 2시간 경과(정상 간격).
-- **🚨 MOONCOIN 완전소멸 확정**: DexScreener·GeckoTerminal 풀상세·GeckoTerminal 트렌딩 세 소스 모두 유동성이 $0.23~$0.49 수준으로 수렴해 완전한 소멸(러그 가능성 포함)을 확정하고 활성목록에서 notable로 편출했다. 8~9회차째까지 생존한 토큰도 급격 붕괴할 수 있음을 다시 보여준 사례.
-- **⭐신규 발굴 1건(LIZARD)**: 3회차 연속 신규 발굴 없음 상태를 깨고 GeckoTerminal 트렌딩(Solana) 재스캔에서 LIZARD를 포착했다. 풀 생성시각을 GT·DS 두 소스의 raw epoch 값으로 교차검증해 약 22시간 전 생성됨을 확인했다(극초기 관측이력없음 아님, 이미 24시간에 육박하는 실거래 이력 보유). 회전율 43배로 워시트레이딩 의심이 크고 동명 무관 Raydium 풀도 존재해 극도로 주의가 필요하다. 함께 발견된 "Truth Coin"은 DexScreener 원시 유동성 필드가 0으로 확인돼(이미 붕괴한 풀) 편입하지 않았다.
-- **⚠️부모세션 최우선 지시(KIRK·PANTS·40M) 후속확인 결과**: KIRK는 9회차째 방향이 계속 뒤집히는 휩소가 지속되고 거래량도 계속 감소해 관심이 식어가는 신호일 가능성이 있다. PANTS는 h24가 대폭 감속해 직전 회차 경고했던 단기 고점 통과가 확인됐다. 40M은 5단계 연속 유동성·h24 동시 감소로 소멸 경로가 더 심화됐다(GT로 재차 교차검증).
-- **데이터 신뢰도**: 이번 회차는 33개 활성종목 전부와 CASHCAT(notable)을 DexScreener 토큰-페어 API로 개별 재조회했다. WebFetch 소형모델 요약이 MOONCOIN·LIZARD 풀생성시각을 최초에 오독(각각 "2025-04-18"·부호반전 등)했으나, raw JSON 필드(pairCreatedAt epoch, liquidity 객체 세부값)를 직접 재확인하는 절차로 전부 정정·교차검증했다 — 소형모델 WebFetch 요약은 항상 원시 필드 재확인이 필요함을 재확인한 사례. PANTS·40M·KIRK는 부모 세션이 명시한 시장배경과는 별개로 DexScreener 다중 페어 전체를 재조회해 주풀(거래량 기준)을 재확인했다. X 직접 조회는 로그인월로 시도하지 않아 KOL 코로보는 전 종목 미확인(정상 상태).
+- **⏱️ 이번 회차 간격**: 직전(2026-08-22 21:00Z)로부터 정확히 2시간 경과(정상 간격).
+- **신규 편입/편출 없음**: 이번 회차는 33개 활성종목 전부를 재조회했으나 신규 발굴이나 편출 대상은 없었다. MOONCOIN은 직전 회차 완전소멸이 확정된 상태이므로 지시대로 재조회를 생략하고 notable 기록만 유지했다(활성 재편입하지 않음).
+- **⚠️정직한 판단번복 기록**: 직전 회차(21:00Z) PANTS를 "단기 고점 통과 확인"으로 판단했으나, 이번 회차 유동성 +25.39% 대폭유입과 전지표 강한 재가속(h1 +68.39%)으로 그 판단이 번복됐다. 조기경보 워치의 성격상 방향 판단이 자주 뒤집힐 수 있음을 있는 그대로 기록한다. 유사하게 40M도 "5단계 연속 소멸경로 심화"에서 이번 회차 예상외 대폭반등으로 반전됐다.
+- **⚠️CC 극단반전 주의**: CC는 유동성이 한 회차 만에 두 배(+108.39%)로 급증하고 h1/h6/h24가 각각 +292%/+309%/+148%라는 극단적 수치로 재양전 전환됐다. 21회차째 방향번복이 지속되는 종목이라 워시트레이딩 의심이 이전보다 더 강하게 뒷받침된다.
+- **데이터 신뢰도**: 이번 회차는 33개 활성종목 전부와 CASHCAT(notable)을 DexScreener 토큰-페어 API로 개별 재조회했다. WebFetch 소형모델 요약을 사용했으며, 다수 페어 중 유동성·거래량이 가장 큰 풀을 주풀로 선별하는 절차를 각 종목마다 반복했다(다수풀 토큰은 최대유동성이 아니라 거래량 기준으로 주풀 선정 — 과거 PANTS 사례의 교훈 반영). 일부 극소형 페어(예: PANTS Meteora#4의 h6 115,323%, KIRK ERIKA/KIRK 소형풀)는 유동성이 사실상 0에 가까워 극단적 % 변화가 나타나는 명백한 이상치로 판단, 무시하고 주풀 값만 채택했다. X 직접 조회는 로그인월로 시도하지 않아 KOL 코로보는 전 종목 미확인(정상 상태). CASHCAT은 이번 회차도 최신 HL 스냅샷을 확보하지 못해(재확인 실패) 선물-온체인 방향 대조는 20회차째 보류.
 
 ---
 *Not financial advice. 본 문서는 공개 2차 자료·GeckoTerminal(API)/DexScreener(API)/CoinGecko(API)/WebSearch 기반 개인 정보 모니터링·조기경보용이며 매수 추천이 아님. 재실행 시 갱신.*
