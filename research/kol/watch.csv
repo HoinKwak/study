@@ -1,29 +1,30 @@
 토큰,체인,단계,KOL코로보,서사,신규여부,시점,출처
-OBS,"Robinhood Chain(Uniswap)",조기,,"4회차. 풀연령8.7시간생존,전지표감속(유동성-3.07%,h1+4.45%,h24+678%)",지속(4회차),2026-08-22T05:00:00Z,DexScreener
-TIPANSEM,"Solana(PumpSwap)",조기,,"10회차. h1스트릭종료·재양전,h24신규음전전환(유동성+8.57%,h1+10.47%,h24-5.61%)",지속(10회차),2026-08-22T05:00:00Z,DexScreener
-1B,"Robinhood Chain(Uniswap)",조기,,"2회차. 냉각가속,유동성-27.0%유출,h1-34.49%추가악화,회전율31.4배",지속(2회차),2026-08-22T05:00:00Z,DexScreener
-CLOCKIN,"Robinhood Chain",조기,없음(자체서사만확인),"22회차. 직전반전1회성으로끝남,h1재음전(-7.79%)",지속(22회차),2026-08-22T05:00:00Z,DexScreener
-PEE,"Solana(PumpSwap)",조기,,"39회차. 거래거의실종,유동성+2.77%,h24-24.32%",지속(39회차),2026-08-22T05:00:00Z,DexScreener
-CLUG,"Solana(PumpSwap)",조기,,"34회차. 직전대폭악화에서뚜렷한회복(유동성+7.62%,h1재양전+8.52%)",지속(34회차),2026-08-22T05:00:00Z,DexScreener
-PEPECOIN,"Robinhood Chain(Uniswap V3)",조기,,"12회차. 전지표개선,h24거의보합권복귀(-0.94%)",지속(12회차),2026-08-22T05:00:00Z,DexScreener
-swappy,"Robinhood Chain(Uniswap V4)",확산,,"15회차. 재악화흐름지속(유동성-2.02%,h1-6.31%)",지속(15회차),2026-08-22T05:00:00Z,DexScreener
-CYBERLEEK,"Solana(Raydium CPMM)",확산,,"14회차. h1스트릭종료·재음전(-10.1%),혼조지속",지속(14회차),2026-08-22T05:00:00Z,DexScreener
-CC,"Solana(PumpSwap)",확산,,"11회차. 10회차째방향번복,이번회차전지표재음전(유동성-15.7%)",지속(11회차),2026-08-22T05:00:00Z,DexScreener
-Z500,"Solana(PumpSwap)",확산,,"4회차. h24재가속(+92%p,유동성+18.2%)",지속(4회차),2026-08-22T05:00:00Z,DexScreener
-HOOKR,"Robinhood Chain(Uniswap)",뒷북,,"16회차. 직전반전1회성으로끝남,재악화(h24-30.55%)",지속(16회차),2026-08-22T05:00:00Z,DexScreener
-CATE,"Solana(PumpSwap)",뒷북,,"75회차. 11회차째휩소,이번회차는일관된감속(h24+78.19%)",지속(75회차),2026-08-22T05:00:00Z,DexScreener
-GOOD,"Robinhood Chain(Uniswap V3)",뒷북,,"17회차. 재상향근거전무,h6대폭악화(-21.32%)",지속(17회차),2026-08-22T05:00:00Z,DexScreener
-PRINTER,"Robinhood Chain(Uniswap V4)",뒷북,,"153회차. 재가속이감속전환(h24+30.54%)",지속(153회차),2026-08-22T05:00:00Z,DexScreener
-BULLSHIT,"Solana(Meteora 등 11개풀)",뒷북,미확인(WebSearch로토큰명특정보도없음),"33회차. 유동성대폭증가(+15.2%),h24대폭감속(-49.27%p)",지속(33회차),2026-08-22T05:00:00Z,DexScreener
-TOAD,"Solana(PumpSwap)",뒷북,,"152회차. 전반적냉각지속(h6-17.95%p)",지속(152회차),2026-08-22T05:00:00Z,DexScreener
-DPG,"Solana(PumpSwap)",뒷북,,"103회차. h24낙폭대폭축소(-38.79%→-10.53%)",지속(103회차),2026-08-22T05:00:00Z,DexScreener
-FWA,"Ethereum(Uniswap V4)",뒷북,"Cointelegraph·CryptoBriefing·KuCoin·PANews(carryover)+CG트렌딩12위(carryover)","156회차. 직전대폭반전이1회성,전지표재양전전환(h24+18%p)",지속(156회차),2026-08-22T05:00:00Z,DexScreener
-CALLOOOR,"Solana(PumpSwap)",뒷북,,"102회차. 전지표양전유지하나모두감속(h24-23.58%p)",지속(102회차),2026-08-22T05:00:00Z,DexScreener
-JUGGERNAUT,"Robinhood Chain(Uniswap V3)",뒷북,"Drallio(약한코로보,carryover)","139회차. 전반적안정화(유동성+3.37%)",지속(139회차),2026-08-22T05:00:00Z,DexScreener
-BRODIE,"Robinhood Chain(Uniswap V3)",뒷북,,"115회차. h1재양전전환(+4.2%p),전반적안정",지속(115회차),2026-08-22T05:00:00Z,DexScreener
-Dealer,"Solana(PumpSwap)",뒷북,,"144회차. 전지표개선지속,h24재양전전환(+6.95%p)",지속(144회차),2026-08-22T05:00:00Z,DexScreener
-lickingcat,"Solana(PumpSwap)",뒷북,,"143회차. h1재음전,h24재양전으로혼조지속",지속(143회차),2026-08-22T05:00:00Z,DexScreener
-PITCOIN,"Solana(PumpSwap)",뒷북,,"104회차. h1 2연속음전스트릭종료(+3.44%p)",지속(104회차),2026-08-22T05:00:00Z,DexScreener
-PANTS,"Solana(PumpSwap)",뒷북,,"4회차(dogwifpants). 직전정점통과판단무색,h24재가속(+907%→+1131%)",지속(4회차),2026-08-22T05:00:00Z,DexScreener+GeckoTerminal
-MOONCOIN,"Robinhood Chain(Uniswap)",뒷북,,"2회차. 냉각가속,유동성-38.0%유출,h6-67.95%대폭악화,회전율97.2배",지속(2회차),2026-08-22T05:00:00Z,DexScreener
-KIRK,"Solana(PumpSwap, Official Charlie Kirk Coin)",확산,,"신규편입(GT트렌딩스캔). 풀연령1.7일,유동성$86,668.95,h24+62.31%,회전율47.9배",신규,2026-08-22T05:00:00Z,DexScreener+GeckoTerminal
+OBS,"Robinhood Chain(Uniswap)",조기,,"5회차. h1대폭재가속(유동성+3.65%,h1+34.24%,h24+763%)",지속(5회차),2026-08-22T07:00:00Z,DexScreener
+TIPANSEM,"Solana(PumpSwap)",조기,,"11회차. 전지표동시재음전전환(유동성-13.83%,h1-5%,h24-20.11%)",지속(11회차),2026-08-22T07:00:00Z,DexScreener
+1B,"Robinhood Chain(Uniswap)",조기,,"3회차. 냉각가속2회차연속,유동성누적46.7%유출,h6대폭반전악화(-55.86%)",지속(3회차),2026-08-22T07:00:00Z,DexScreener
+CLOCKIN,"Robinhood Chain",조기,없음(자체서사만확인),"23회차. h1재양전전환(+10.39%p),유동성+1.18%",지속(23회차),2026-08-22T07:00:00Z,DexScreener
+PEE,"Solana(PumpSwap)",조기,,"40회차. 거래거의실종,유동성-3.28%,h24-31.71%",지속(40회차),2026-08-22T07:00:00Z,DexScreener
+CLUG,"Solana(PumpSwap)",조기,,"35회차. 회복흐름지속(유동성+1.91%,h24-28.66%로개선)",지속(35회차),2026-08-22T07:00:00Z,DexScreener
+PEPECOIN,"Robinhood Chain(Uniswap V3)",조기,,"13회차. 직전개선이1회성으로끝나고재악화(유동성-7.77%,h24-27.78%)",지속(13회차),2026-08-22T07:00:00Z,DexScreener
+FLUSH,"Robinhood Chain(Uniswap)",조기,,"신규편입(GT트렌딩스캔). 풀연령6.8시간,유동성$62,185.33,h24+745%,회전율48.42배",신규,2026-08-22T07:00:00Z,DexScreener+GeckoTerminal
+swappy,"Robinhood Chain(Uniswap V4)",확산,,"16회차. 재악화흐름지속4회차째(유동성-4.07%,h24-28.45%)",지속(16회차),2026-08-22T07:00:00Z,DexScreener
+CYBERLEEK,"Solana(Raydium CPMM)",확산,,"15회차. h1재양전전환(+12.17%p),h6·h24개선",지속(15회차),2026-08-22T07:00:00Z,DexScreener
+CC,"Solana(PumpSwap)",확산,,"12회차. 11회차째방향번복지속,h24대폭악화(-69.86%)",지속(12회차),2026-08-22T07:00:00Z,DexScreener
+Z500,"Solana(PumpSwap)",확산,,"5회차. 재가속이재감속으로전환(h1·h6재음전,h24+170%로감속)",지속(5회차),2026-08-22T07:00:00Z,DexScreener
+KIRK,"Solana(PumpSwap, Official Charlie Kirk Coin)",확산,,"2회차. 안정적확산지속(유동성-0.36%,h24+60.69%로거의보합)",지속(2회차),2026-08-22T07:00:00Z,DexScreener
+HOOKR,"Robinhood Chain(Uniswap)",뒷북,,"17회차. 전지표소폭혼조(유동성-2.42%,h24-33.26%)",지속(17회차),2026-08-22T07:00:00Z,DexScreener
+CATE,"Solana(PumpSwap)",뒷북,,"76회차. 12회차째휩소,h6재음전전환(-4.35%)",지속(76회차),2026-08-22T07:00:00Z,DexScreener
+GOOD,"Robinhood Chain(Uniswap V3)",뒷북,,"18회차. h1재양전전환하나h24는악화(-7.78%)",지속(18회차),2026-08-22T07:00:00Z,DexScreener
+PRINTER,"Robinhood Chain(Uniswap V4)",뒷북,,"154회차. h24대폭반전악화(+30.54%→-7.69%)",지속(154회차),2026-08-22T07:00:00Z,DexScreener
+BULLSHIT,"Solana(Meteora 등 11개풀)",뒷북,미확인(WebSearch로토큰명특정보도없음),"34회차. h1재음전전환,h24는재가속(+18.75%p)",지속(34회차),2026-08-22T07:00:00Z,DexScreener
+TOAD,"Solana(PumpSwap)",뒷북,,"153회차. 전반적냉각지속,h6재음전전환(-9%)",지속(153회차),2026-08-22T07:00:00Z,DexScreener
+DPG,"Solana(PumpSwap)",뒷북,,"104회차. 개선흐름주춤,h1재음전전환(-0.11%)",지속(104회차),2026-08-22T07:00:00Z,DexScreener
+FWA,"Ethereum(Uniswap V4)",뒷북,"Cointelegraph·CryptoBriefing·KuCoin·PANews(carryover)+CG트렌딩12위(carryover)","157회차. 전지표거의보합,소폭감속(h24+1.11%)",지속(157회차),2026-08-22T07:00:00Z,DexScreener
+CALLOOOR,"Solana(PumpSwap)",뒷북,,"103회차. h1재가속,h6재음전전환(-3.99%)",지속(103회차),2026-08-22T07:00:00Z,DexScreener
+JUGGERNAUT,"Robinhood Chain(Uniswap V3)",뒷북,"Drallio(약한코로보,carryover)","140회차. 안정화흐름깨지고전지표재악화(유동성-8.73%,h24-3.14%)",지속(140회차),2026-08-22T07:00:00Z,DexScreener
+BRODIE,"Robinhood Chain(Uniswap V3)",뒷북,,"116회차. h1재음전,h6대폭반전악화(-26.17%p)",지속(116회차),2026-08-22T07:00:00Z,DexScreener
+Dealer,"Solana(PumpSwap)",뒷북,,"145회차. 2회차연속개선흐름이꺾임(h1재음전-0.54%)",지속(145회차),2026-08-22T07:00:00Z,DexScreener
+lickingcat,"Solana(PumpSwap)",뒷북,,"144회차. h1재양전전환(+15.62%p),전지표소폭개선",지속(144회차),2026-08-22T07:00:00Z,DexScreener
+PITCOIN,"Solana(PumpSwap)",뒷북,,"105회차. h6·h24재음전전환(-19.79%p)",지속(105회차),2026-08-22T07:00:00Z,DexScreener
+PANTS,"Solana(PumpSwap)",뒷북,,"5회차(dogwifpants). 유동성대폭유출+h24감속으로정점통과정황유력(-18.5%,+863%)",지속(5회차),2026-08-22T07:00:00Z,DexScreener+GeckoTerminal
+MOONCOIN,"Robinhood Chain(Uniswap)",뒷북,,"3회차. h24최초음전전환,붕괴국면진입확인(유동성-40.17%,h24-62.67%)",지속(3회차),2026-08-22T07:00:00Z,DexScreener
