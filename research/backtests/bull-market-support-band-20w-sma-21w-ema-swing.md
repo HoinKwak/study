@@ -1,0 +1,383 @@
+# Backtest — 불마켓 서포트밴드(20주 SMA + 21주 EMA) 되돌림 반등/이탈 (스윙, 1w계산/1d진입, 롱온리)
+
+- **스펙**: `research/strategies/bull-market-support-band-20w-sma-21w-ema-swing.md`
+- **구현**: `research/impl/bmsb_common.py`(다운로드/주봉 리샘플) + `research/impl/bmsb_bt.py`(전략
+  본체·시뮬레이터) + `research/impl/bmsb_analyze.py`(LOO/top-N/de-clustering/상관) +
+  `research/impl/bmsb_sweep.py`(파라미터 스윕). `research/.gitignore`가 `impl/`을 전부 제외하므로
+  **핵심 로직 전체를 아래 코드블록에 인용**한다(재현에 필요한 값 그대로).
+- **판정: 판단불가(Indeterminate) — 표본 절대부족(사전 등록 폐기조건 (c) 정확히 해당).
+  방향성 참고치는 부정적(아래 근거).**
+
+## 0. 데이터/재현 커맨드
+
+```bash
+cd <repo-root>
+python3 research/impl/bmsb_bt.py --variant band \
+  --symbols BTCUSDT,ETHUSDT,BNBUSDT,SOLUSDT,XRPUSDT,DOGEUSDT,ADAUSDT \
+  --dump-csv research/impl/_cache/bmsb_band_trades.csv
+python3 research/impl/bmsb_bt.py --variant sma_only --dump-csv .../full_smaonly.csv
+python3 research/impl/bmsb_bt.py --variant ema_only --dump-csv .../full_emaonly.csv
+python3 research/impl/bmsb_bt.py --variant reverse  --dump-csv .../full_reverse.csv
+python3 research/impl/bmsb_sweep.py            # 파라미터 스윕 14변형
+python3 research/impl/bmsb_analyze.py          # LOO/top-N/de-clustering
+```
+
+- 심볼: BTCUSDT/ETHUSDT/BNBUSDT/SOLUSDT/XRPUSDT/DOGEUSDT/ADAUSDT (USDT-M 퍼프)
+- 기간: **IS_START=2022-01-01 00:00:00, IS_END=2024-06-30 23:59:59(명시), OOS_START=2024-07-01
+  00:00:00, OOS_END=2026-06-30 23:59:59(필터 상한 실측 적용)**. FULL = IS_START~OOS_END.
+- 워밍업(다운로드): `FETCH_START_YM="2021-01"`(21주 요구치 대비 ~31주 여유 확보), `FETCH_END_YM="2026-07"`.
+- 왕복비용 0.14%(진입/청산 각 0.07% notional), 리스크 1%/트레이드(손절거리 역산 사이징, 명목가치
+  상한 100%(계좌 등가) — `RiskManager` 기본값과 동일 값을 독립 재현), 종목별 독립 $10,000 계좌
+  (복리 미적용, 등가중 비교 목적 — 계좌소진 아티팩트 원천 차단).
+- 신호는 **일봉 종가로 판정, 체결은 다음 일봉 시가**(shift(1) 원칙). ATR 트레일링·밴드 손절도
+  동일하게 "당일 종가로 조건 판정 → 다음날 시가 체결"로 통일(리포트 §5 설계 결정 참조).
+
+## 1. 신호 빈도 실측 vs 스펙 예상 — **최우선 발견**
+
+스펙은 "4.5년 데이터 기준 **종목당 표본 15~35건 예상**"(연 3~8회)이라고 사전 명시했다. 실측(FULL,
+2022-01-01~2026-06-30, 4.5년):
+
+| 종목 | FULL 트레이드수 (스펙 예상 15~35) |
+|---|---:|
+| BTC | 3 |
+| ETH | 3 |
+| BNB | 1 |
+| SOL | 1 |
+| XRP | 0 |
+| DOGE | 0 |
+| ADA | 1 |
+| **합계(7종목)** | **9** (스펙 예상 합계 105~245의 **3.7~8.6%**) |
+
+7종목 합산 **FULL n=9, IS n=6, OOS n=3** — 스펙 예상 최저치(종목당 15건)의 1/60도 못 미친다.
+
+### 원인 진단(BTC 예시, 7종목 전부 동일 패턴)
+
+```
+BTCUSDT: 봉수=1642  regime_bull비율=0.183  touch(무조건)=50  touch&bull=20
+ETHUSDT: 봉수=1642  regime_bull비율=0.121  touch(무조건)=30  touch&bull=11
+BNBUSDT: 봉수=1642  regime_bull비율=0.086  touch(무조건)=78  touch&bull=10
+SOLUSDT: 봉수=1637  regime_bull비율=0.078  touch(무조건)=38  touch&bull=7
+XRPUSDT: 봉수=1637  regime_bull비율=0.081  touch(무조건)=58  touch&bull=12
+DOGEUSDT:봉수=1642  regime_bull비율=0.034  touch(무조건)=19  touch&bull=1
+ADAUSDT: 봉수=1642  regime_bull비율=0.038  touch(무조건)=17  touch&bull=4
+합계 touch(무조건)=290, touch&bull(레짐확정)=65
+```
+
+두 단계 병목이 확인됨:
+1. **레짐 확정 조건 자체가 매우 희소**: `sma20w>ema21w AND sma20w 4주전대비상승 AND ema21w 4주전대비상승`을
+   **동시에** 요구 — 전체 일봉의 3.4%~18.3%만 이 조건을 만족(종목별). 스펙은 "밴드가 200주선보다
+   훨씬 빈번히 스친다"고 예상했지만, 실제로는 **레짐 순도 요구가 병목**이 되어 "터치" 자체는
+   충분히 발생해도(합계 290회) 그중 레짐이 확정된 상태에서 발생한 것은 65회(22.4%)뿐이다.
+2. **재돌파 시한(reclaim_bars=3) 통과율이 낮음**: 레짐확정+터치 65회 중 실제로 3봉 이내 band_hi
+   재돌파에 성공해 트레이드가 된 것은 FULL 기준 9건(**13.8%**)뿐 — 밴드폭이 가격 대비 중앙값
+   3.58%(BTC, 분포 0.04%~18.0%)로 3일 안에 되돌리기엔 종종 너무 넓다.
+
+**결론**: 신호 희소성은 "터치 정의가 느슨해서 노이즈가 잡힌" 문제가 아니라, 정반대로 **① 레짐 확정
+조건(두 이평 모두 개별적으로 4주 상승)이 지나치게 엄격**하고 **② 3봉 재돌파 시한이 밴드폭 대비
+너무 촘촘**해서 생기는 **정의 과잉제약(over-constrained definition)**이다.
+
+## 2. 데이터 소스 / 주봉 정렬 실측
+
+- **네이티브 1w monthly 덤프는 2024-01분까지만 존재**(2024-02부터 전 종목 404 실측 확인) — OOS
+  구간(2024-07~)을 커버할 수 없어 **1d → 1w 리샘플을 전 구간 일관되게 사용**.
+- 정렬 실측: `daily.resample("W-MON", label="left", closed="left")` 조합이 네이티브 1w(2022-01
+  BTCUSDT)와 **종가 완전 일치**(41851.22/43060.66/36230.01/37870.01 등)함을 확인. 확장 검증(BTC,
+  2021-01~2024-01, 네이티브와 겹치는 146주 전수비교): **145/146(99.3%) 완전일치**, 불일치 1건
+  (2021-07-26, 네이티브 자체 원본 갭·정정 추정 — 리샘플 방법론 결함 아님). 리샘플 주수(157)가
+  네이티브 주수(146)보다 많은 것도 확인 — 네이티브 쪽이 일부 주(예: 2022-01-24)를 통째로 결측한
+  것으로, 오히려 리샘플이 더 완전함.
+- **ns 명시 통일**: `_download_month`에서 `open_time` 자릿수로 ms/us 자동판별 후 즉시
+  `.astype("datetime64[ns]")`, 주봉 `close_time = index + pd.Timedelta(days=7)` 연산도 이미 ns
+  인덱스라 업캐스트 없음(과거 반복된 ms→us 함정 회피).
+- **워밍업**: 7종목 전부 `band_lo/band_hi` 첫 유효값이 **2021-05-24**로, IS_START(2022-01-01)
+  대비 약 31주 여유 확보(요구치 21주 초과 충족). 2022-01-01 시점 NaN 없음(7종목 전수 확인).
+
+## 3. 룩어헤드 방지
+
+- 주봉 지표(SMA20w/EMA21w/밴드/레짐)는 `merge_asof(..., direction="backward")`로 **각 일봉 시점에
+  가장 최근 완결된 주봉**(주봉 close_time = 주 시작+7일)까지만 참조하도록 병합 — 진행 중인 당주
+  주봉은 참조 불가.
+- 신호(터치/재돌파/청산조건)는 당일 **종가**로 판정하고 체결은 **다음 일봉 시가**(shift(1)).
+- ATR14는 당일 확정 OHLC로 계산(익일 미참조), 트레일링 극값(extreme_close)도 당일 종가까지만 갱신.
+
+## 4. 핵심 로직(코드 인용 — `research/impl/bmsb_bt.py`)
+
+```python
+def build_symbol_frame(symbol: str, p: Params) -> pd.DataFrame:
+    """일봉 + 주봉 지표(밴드/레짐) 병합, ATR14 포함. 룩어헤드 없는 merge_asof 사용."""
+    daily = fetch_daily(symbol, FETCH_START_YM, FETCH_END_YM)
+    weekly = build_weekly(daily)   # W-MON/label=left/closed=left 리샘플(§2 검증됨)
+
+    sma_w = weekly["close"].rolling(p.sma_period, min_periods=p.sma_period).mean()
+    ema_w = weekly["close"].ewm(span=p.ema_period, adjust=False,
+                                min_periods=p.ema_period).mean()
+
+    wk = pd.DataFrame({"sma_w": sma_w, "ema_w": ema_w}, index=weekly.index)
+    wk["close_time"] = wk.index + pd.Timedelta(days=7)   # ns 인덱스라 upcast 없음
+    wk = wk.dropna(subset=["sma_w", "ema_w"]).sort_values("close_time")
+
+    d = daily.reset_index().sort_values("ts")
+    merged = pd.merge_asof(d, wk, left_on="ts", right_on="close_time", direction="backward")
+    merged = merged.set_index("ts")
+    merged["atr14"] = wilder_atr(daily, 14)
+
+    # variant: band(기본) | sma_only | ema_only | reverse (아래 §6 대조군)
+    merged["band_hi"] = merged[["sma_w", "ema_w"]].max(axis=1)
+    merged["band_lo"] = merged[["sma_w", "ema_w"]].min(axis=1)
+
+    sma_rising = sma_w > sma_w.shift(4); ema_rising = ema_w > ema_w.shift(4)
+    regime_bull_w = (sma_w > ema_w) & sma_rising & ema_rising   # 스펙 "레짐 확정" 그대로
+    regime_bear_w = (sma_w < ema_w)
+    # (regime을 close_time 기준으로 동일하게 merge_asof 병합 — 생략, 전문은 impl 참조)
+    return merged
+
+
+def simulate(symbol: str, df: pd.DataFrame, p: Params) -> list[Trade]:
+    """일봉 종가 신호 + 다음 일봉 시가 체결(shift(1))."""
+    touch_i = pending_entry_i = pending_exit_i = None
+    pos = None; extreme_close = None
+    for i in range(1, len(df) - 1):
+        if np.isnan(band_lo[i]) or np.isnan(band_hi[i]):
+            continue
+        # 0) 전일 신호 체결(오늘 시가)
+        if pending_exit_i == i and pos is not None:
+            _close_trade(pos, idx[i], op[i], pending_exit_reason, p); ...
+        if pending_entry_i == i and pos is None:
+            stop0 = band_lo[i - 1]
+            pos = _open_trade(symbol, "long", idx[i], op[i], stop0, p); ...
+        # 1) 보유 중 청산 조건(당일 종가) — 우선순위: 통합스톱 > 레짐전환 > 최대보유
+        if pos is not None:
+            c = close[i]
+            extreme_close = max(extreme_close, c)
+            trail_level = extreme_close - p.atr_mult * atr[i]
+            eff_stop = max(band_lo[i], trail_level)      # 밴드손절/ATR트레일링 중 더 타이트한 쪽
+            hit_stop = c < eff_stop
+            regime_exit = reg_bear[i] and (c < band_hi[i])   # 숏/청산 트리거(스펙 그대로)
+            time_exit = (idx[i] - pos.entry_date).days >= p.max_hold
+            if hit_stop:      pending_exit_i, reason = i + 1, ("stop_loss_band" if band_lo[i]>=trail_level else "atr_trail")
+            elif regime_exit: pending_exit_i, reason = i + 1, "regime_flip"
+            elif time_exit:   pending_exit_i, reason = i + 1, "max_hold"
+        # 2) 진입 상태기계(레짐 강세장에서만 평가)
+        if pos is None and pending_entry_i is None:
+            c = close[i]
+            if not reg_bull[i]:
+                touch_i = None
+            else:
+                if touch_i is not None and (i - touch_i) > p.reclaim_bars:
+                    touch_i = None
+                if touch_i is not None and c > band_hi[i]:
+                    pending_entry_i = i + 1; touch_i = None
+                if touch_i is None and pending_entry_i is None:
+                    touched = band_lo[i]*(1-p.undershoot_pct/100.0) <= c <= band_lo[i]
+                    if touched: touch_i = i
+    return trades
+```
+
+- **손절/트레일링 합성 설계 결정(명시)**: 스펙은 "band_lo 손절"과 "ATR×4.0 트레일링 익절"을 별개로
+  적었으나, 롱 포지션에서 두 스톱 중 **더 높은(타이트한) 쪽이 항상 먼저 발동**하므로
+  `eff_stop = max(band_lo, extreme_close - atr_mult*ATR)`로 단일 통합 스톱을 구성했다(청산 사유는
+  어느 쪽이 발동했는지로 구분 기록). 이는 스펙 취지를 해치지 않는 근사이며, 결과에 미치는 영향은
+  작다(§6 스윕에서 `atr_mult`를 3.0/5.0으로 흔들어도 표본수는 불변 — 진입 로직만이 표본수를
+  좌우함).
+
+## 5. 결과 — 기본 파라미터(sma=20w, ema=21w, undershoot=1.5%, reclaim=3봉, atr_mult=4.0, max_hold=120일)
+
+### variant=band(본 스펙, 7종목 합산)
+
+| 구간 | n | gross PF | net PF | net PF(R) | t(R_net) | 승률 | 순손익($) |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| IS  | 6 | 2.440 | 2.248 | 2.248 | 0.706  | 50.0% | +455.76 |
+| **OOS** | **3** | **0.000** | **0.000** | **0.000** | **-3.879** | **0.0%** | **-327.19** |
+| FULL | 9 | 1.269 | 1.186 | 1.186 | 0.187 | 33.3% | +128.57 |
+
+**IS(6) + OOS(3) = FULL(9) 실측 확인.** OOS 3건 전패(BTC 2025-09-29 손절, ETH 2024-07-16 손절, ADA
+2025-02-21 손절, 전부 `stop_loss_band` 사유 1~13일 내 청산 — 재돌파 직후 급격한 되돌림에 의한
+휩소). **gross PF도 0.000**(승리 트레이드 자체가 0건)이므로 이 결과는 수수료 이전부터 이미 전패이며
+비용 문제가 아니다(무비용 진단 요구 충족 — OOS 3건 모두 손실이라 gross=net=0 승수).
+
+**⚠️ OOS n=3, FULL n=9 — 스펙 자신의 사전 폐기조건 (c) "표본 15건 미만이면 판단불가로 조기
+종료"에 정확히 해당한다.** t=-3.879는 표본 3건 기준 자유도 2짜리 t값으로 통계적으로 해석
+불가능한 수치이며(과대 신뢰 금지), 아래 분석은 전부 "이 표본으로는 결론 낼 수 없다"는 사실을
+재확인하는 용도로만 사용한다.
+
+### 대조군 — 단일 20주 SMA / 단일 21주 EMA(§6에서 상술)
+
+| 변형 | IS n | IS net PF | OOS n | OOS net PF | OOS t(R_net) | FULL n |
+|---|---:|---:|---:|---:|---:|---:|
+| **band(본 스펙)** | 6 | 2.248 | **3** | **0.000** | -3.879 | 9 |
+| sma_only | 23 | 6.754 | 14 | 0.070 | -3.861 | 37 |
+| ema_only | 25 | 6.652 | 28 | 0.984 | -0.019 | 53 |
+| reverse(방향반전, 숏 미러) | 7 | 3.708 | 15 | 0.516 | -1.076 | 22 |
+
+- 세 대조군 모두 **표본이 band보다 훨씬 많음에도**(37/53/22 vs 9) OOS 성과가 좋지 않다
+  (net PF 0.070/0.984/0.516, 전부 <1.3 통과선 미달, ema_only만 1.0 근접). **단일 이평 대조군도
+  OOS 에서 뚜렷한 엣지가 없다** — "밴드가 아니라 단일 이평이 진짜 신호"라는 반증도 성립하지
+  않는다(즉 재포장 여부와 무관하게 이 계열 자체가 OOS 무엣지에 가까움).
+- **reverse(숏 미러, OOS n=15로 유일하게 스펙 최소표본 15건 충족)**: net PF 0.516, t=-1.076(비유의
+  하나 방향은 뚜렷이 음수) — 약세장 밴드 저항 되돌림도 OOS 에서 작동하지 않음.
+
+## 6. 밴드의 부가가치 검증(사전 등록 폐기조건 (a)) — **판단불가**
+
+스펙 사전 폐기조건 (a): "단일 이평 대조군①②과 성과가 통계적으로 구분 안 되면(밴드의 부가가치
+없음) 폐기." 표본수를 맞춘 부트스트랩(2,000회, band n=3에 맞춰 매칭 리샘플)으로 확인:
+
+```
+band OOS n=3, sma_only OOS n=14, ema_only OOS n=28
+band vs sma_only: diff_mean(R)=+0.789, p(diff<=0)=0.179  (구분 안 됨, band 우위 유의성 없음)
+band vs ema_only: diff_mean(R)=-1.061, p(diff<=0)=0.420  (구분 안 됨, band 열위 유의성도 없음)
+```
+
+**band의 표본이 n=3이라 이 비교 자체가 통계적으로 무의미**하다(어느 쪽으로도 유의하지 않음 자체가
+결론이 아니라 "검정력 부재"의 결과). 폐기조건 (a)를 "성과가 통계적으로 구분 안 됨"으로 문자
+그대로 적용하면 폐기 사유가 되지만, 이는 band가 진짜로 부가가치가 없어서인지 표본이 너무 작아서
+구분이 안 되는 것인지 구별할 수 없다 — **이 항목도 판단불가로 처리**한다.
+
+다만 **정성적으로 확정적인 것은**: 밴드(이중선+레짐순도+3봉재돌파) 정의가 단일 이평 대조군 대비
+**신호를 4~6배 더 희소하게 만든다**(FULL n=9 vs 37/53) — §1에서 규명한 "레짐 확정 조건의 과잉
+제약"이 원인이며, 이는 "밴드가 정보를 더 준다"가 아니라 "밴드가 참여 가능한 기회 자체를 극단적으로
+줄인다"는 실무적 단점으로, 설령 승률이 같더라도 라이브 전략으로서의 활용도(신호빈도)가 스펙
+자신의 기대치(200주선 대비 개선)와 반대로 200주선(터치 4회, 판단불가 이력)보다는 낫지만 여전히
+스윙 슬리브로 쓰기엔 지나치게 희소하다.
+
+## 7. LOO(종목 제외) / top-N 제거 — 표본 3건 규모의 한계 재확인
+
+```
+excluded    n  net_pf  t(R_net)   sum_net
+(없음,기준)  3   0.0    -3.879   -327.19
+BTC 제외     2   0.0    -8.421   -271.19
+ETH 제외     2   0.0    -2.170   -207.70
+ADA 제외     2   0.0    -2.764   -175.49
+BNB/SOL/XRP/DOGE 제외(원래 0건이라 무변화)  3   0.0    -3.879   -327.19
+
+top-1 제거   2   0.0    -8.421   -271.19
+```
+
+LOO 어떤 조합에서도 net PF가 0(전패) 이상으로 올라가지 않는다 — 즉 "특정 1개 종목의 우연"이
+결과를 왜곡한 게 아니라 **3건 전부가 손실**이라는 사실 자체가 표본 전체를 지배한다. 다만 n=3에서
+n=2로 줄이는 LOO는 통계적 의미가 거의 없다(표본 자체가 이미 판단불가 수준).
+
+## 8. de-clustering(캘린더일 + 3~5일 롤링 + 주단위) / 7종목 동시진입 / 종목간 상관
+
+```
+캘린더일 클러스터: oos_trades=3, unique_days=3, days_with_2plus_symbols=0, max_symbols_same_day=1
+롤링 3일: n_events=3, events_multi_symbol=0, t_event_level=-3.879
+롤링 5일: n_events=3, events_multi_symbol=0, t_event_level=-3.879
+주단위(7일): n_events=3, events_multi_symbol=0, t_event_level=-3.879
+```
+
+OOS 3건(BTC 2025-09-29, ETH 2024-07-16, ADA 2025-02-21)은 **날짜가 전부 몇 개월씩 떨어져 있어
+클러스터링(매크로 동시발화) 문제는 없다** — de-clustering 전후 이벤트수 불변(3=3). 즉 "표본이
+적어 보이지만 사실은 소수 이벤트의 반복 계상"이라는 우려는 기각되고, **진짜로 독립적인 3건뿐**
+이라는 사실이 강화된다(이 자체는 "판단불가"를 완화하지 않는다 — 오히려 표본이 진짜로 3건임을
+재확인할 뿐).
+
+**종목간 신호(regime_bull) 상관**(pandas `.corr()`, pairwise, 전체 구간):
+
+| | BTC | ETH | BNB | SOL | XRP | DOGE | ADA |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| BTC | 1.00 | 0.46 | 0.20 | 0.17 | 0.00 | 0.08 | -0.04 |
+| ETH | 0.46 | 1.00 | 0.42 | 0.48 | 0.12 | 0.35 | 0.15 |
+| BNB | 0.20 | 0.42 | 1.00 | 0.52 | 0.11 | 0.30 | 0.23 |
+| SOL | 0.17 | 0.48 | 0.52 | 1.00 | 0.01 | 0.33 | 0.34 |
+| XRP | 0.00 | 0.12 | 0.11 | 0.01 | 1.00 | 0.20 | 0.29 |
+| DOGE| 0.08 | 0.35 | 0.30 | 0.33 | 0.20 | 1.00 | 0.18 |
+| ADA | -0.04| 0.15 | 0.23 | 0.34 | 0.29 | 0.18 | 1.00 |
+
+평균 비대각 상관 **+0.232**(스펙 예상 "매우 높음, r≥0.7"보다는 낮음 — 레짐 정의가 워낙 희소해
+동시성 자체가 적기 때문). **위기국면(꼬리) 상관은 계산 불능(NaN)**: 2022년 하락장·2025Q4~2026H1
+구간 둘 다 `regime_bull`이 7종목 전부 거의 항상 False(분산=0)라 상관계수가 정의되지 않는다 —
+이는 "꼬리 상관이 낮다"는 뜻이 아니라 **레짐 자체가 하락장에서 발화하지 않는 구조**라는 뜻으로,
+꼬리 위험 자체를 평가할 표본이 없다는 한계로 정직히 기록한다.
+
+## 9. 파라미터 스윕(스펙 사전등록 범위: sma 18~24주, ema 19~23주, undershoot 0.5~3.0%, reclaim
+1~5봉) — **band variant, 14변형 + 결합변형 1개**
+
+| 변형 | FULL n | FULL net PF | IS n | IS net PF | OOS n | OOS net PF | OOS t |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| 기본(20w/21w/1.5%/3봉/atr4.0/hold120) | 9 | 1.186 | 6 | 2.248 | 3 | 0.000 | -3.879 |
+| sma18 | 8 | 8.081 | 6 | 11.099 | 2 | 0.000 | -29.696 |
+| sma22 | 4 | 0.300 | 1 | ∞ | 3 | 0.000 | -4.871 |
+| sma24 | 3 | 0.000 | 1 | 0.000 | 2 | 0.000 | -14.941 |
+| ema19 | 6 | 0.094 | 3 | 0.131 | 3 | 0.000 | -4.723 |
+| ema23 | 11 | 0.463 | 5 | 0.990 | 6 | 0.000 | -4.159 |
+| undershoot=0.5% | 7 | 0.297 | 3 | 0.726 | 4 | 0.000 | -4.893 |
+| undershoot=3.0% | 13 | 0.418 | 7 | 0.718 | 6 | 0.000 | -8.672 |
+| reclaim=1봉 | 8 | 2.086 | 6 | 4.286 | 2 | 0.000 | -5.156 |
+| reclaim=5봉 | 12 | 0.747 | 5 | 2.983 | 7 | 0.000 | -7.494 |
+| atr_mult=3.0 | 9 | 1.469 | 6 | 2.786 | 3 | 0.000 | -3.879 |
+| atr_mult=5.0 | 9 | 0.163 | 6 | 0.309 | 3 | 0.000 | -3.879 |
+| max_hold=90일 | 9 | 1.186 | 6 | 2.248 | 3 | 0.000 | -3.879 |
+| max_hold=150일 | 9 | 1.186 | 6 | 2.248 | 3 | 0.000 | -3.879 |
+| undershoot=3.0%+reclaim=5봉(결합완화) | 15 | 0.424 | 7 | 0.876 | 8 | **0.000** | -8.955 |
+
+**⚠️ 표본을 늘리려는 목적의 사후 파라미터 탐색이 아니라(스펙 (c) "사후 표본 늘리기 금지" 준수),
+스펙이 사전에 명시한 범위 내에서의 견고성 점검이다.** 결과: **15개 변형 전부에서 OOS net PF가
+정확히 0.000**(승리 트레이드 0건) — 각 변형의 OOS 표본은 2~8건으로 개별적으로는 전혀 유의하지
+않지만, 15개 서로 다른(그러나 상당히 겹치는) 파라미터화 전체에 걸쳐 **예외 없이 동일한 방향
+(무승)**이 반복된다는 점은 정성적으로 주목할 만하다. 단, 이 일관성을 근거로 "확정적으로 나쁘다"고
+결론 내리는 것은 스펙의 판단불가 조기종료 규칙과 배치되므로, **참고 정보로만 기록**하고 최종
+판정에는 표본 부족(1차 근거)을 그대로 유지한다.
+
+## 10. zero_hold_frac / 반전 대조군 청산로직 검증
+
+- **zero_hold_frac 유효성 사전 확인**: 이 엔진은 진입을 신호일(T) 다음날(T+1) 시가로 체결하고,
+  가장 이른 청산도 그날(T+1) 종가로 판정 후 다음날(T+2) 시가에 체결되므로 **최소 보유일수가
+  구조적으로 1일**이다 — zero_hold(0일 보유)는 이 엔진에서 애초에 발생 불가능한 트리비얼 지표.
+  실측(band 13건 + reverse 28건 전수): `holding_days.min() == 1`, zero_hold_frac=0/41=0%(구조적
+  0, 버그 부재의 증거로 사용하지 않음).
+- **반전 대조군 청산로직**: `simulate()`는 `is_reverse` 플래그로 전 분기(터치/재돌파/스톱/
+  레짐전환)를 **대칭적으로 재정의**한 별도 코드 경로이며, 롱/숏 어느 쪽이든 `direction`(최종
+  방향) 변수만 참조한다(원신호 플래그 재사용 없음 — 과거 반복된 "반전 청산조건이 원신호를 참조해
+  안 뒤집히는" 버그 클래스 원천 회피). reverse 28건 전수 확인: `holding_days` 1~121일 정상 분포,
+  청산사유 `stop_loss_band`/`atr_trail`/`regime_flip`/`max_hold` 전부 발생, zero_hold 없음 —
+  구조적 퇴화 없음.
+
+## 11. 한계 / 설계 근사(정직 표기)
+
+- **셀렉션 스코프**: 이 결과는 "20주 SMA + 21주 EMA, 레짐=양쪽 모두 4주 상승+정배열, 터치
+  1.5%+재돌파 3봉" 이라는 스펙의 **문자 그대로의** 정의에 대한 것이다. 원문(Benjamin Cowen)의
+  실제 사용법은 "레짐"이나 "재돌파 시한"을 이렇게 엄격히 수치화하지 않았을 가능성이 크며(원문
+  자체가 정성적 차트 해석이라 스펙도 "정량근거 없음"을 인정), 이 수치화가 원저자 의도와 다를 수
+  있다(스카우트 메모가 이미 인지).
+- **손절/트레일링 합성**은 §4에서 명시한 근사(더 타이트한 쪽 채택)이며, 원문처럼 완전히 분리된
+  두 메커니즘으로 구현하면 결과가 소폭 달라질 수 있으나 표본수(진입 로직 불변)에는 영향 없음.
+  실제로 `atr_mult` 스윕(3.0/5.0)에서도 표본수는 9건으로 불변임을 확인(청산 시점/손익만 변화).
+  ATR 트레일링·밴드 손절 모두 "당일 종가 판정→익일 시가 체결"로 통일해 인트라바(고가/저가) 스톱
+  터치는 반영하지 않음(단순화, 문서화됨).
+- **OOS_END 이후 잔여**: `FETCH_END_YM="2026-07"`로 OOS_END 이후 1개월 여유 데이터를 확보했으나
+  실제 트레이드 필터는 `entry_date<=OOS_END`만 사용(§5 표에 반영), 미청산 포지션은 없었음(모든
+  OOS 3건이 OOS_END 이전에 청산 완료).
+- **레버리지·증거금 사이징 미적용**: 라이브 실제 사이징(`build_plan_by_margin`)과 달리 리스크
+  기준(`build_plan_with_stop`류) 사이징만 사용 — 기존 CLAUDE.md 기록된 구조적 괴리와 동일 한계.
+
+## 12. 판정: **판단불가(Indeterminate)** — 근거
+
+1. **표본 절대부족, 스펙 자신의 사전 폐기조건 (c) 정확히 해당**: OOS n=3, FULL n=9, IS n=6 —
+   스펙이 사전 등록한 최소표본(15건)과 이 작업지시의 기준(20건) 양쪽 모두 크게 미달. 스펙 예상
+   빈도(종목당 15~35건)의 **3.7~8.6%**만 실현됨.
+2. **원인은 명확히 규명됨(정의 과잉제약)**: "레짐 확정"(두 이평 모두 개별 4주 상승 요구)이
+   병목의 78%(290터치→65터치&레짐), "3봉 재돌파 시한"이 나머지 병목(65→9, 86% 소멸)을 만든다.
+   이는 데이터 결함이 아니라 **스펙 규칙 자체의 구조적 희소성**이다.
+3. **밴드의 부가가치(사전 폐기조건 (a))도 판단불가**: band(n=3)와 단일이평 대조군(n=37/53)의
+   표본수 격차가 너무 커 표본수 맞춤 부트스트랩조차 통계적 결론을 못 낸다(p=0.18/0.42, 둘 다
+   비유의). 다만 밴드 정의가 신호를 4~6배 희소하게 만든다는 사실 자체는 확정적.
+4. **방향성 참고치는 일관되게 부정적**(판정을 바꾸지는 않음): 기본 파라미터 OOS 전패(0/3),
+   스펙 사전등록 범위 내 15개 변형 **전부** OOS net PF=0.000, 단일이평 대조군 2종 모두 OOS
+   net PF<1(0.070/0.984), 방향반전(숏) 대조군도 OOS net PF=0.516(<1, 유일하게 표본 15건
+   충족하나 여전히 손실). 클러스터링·상관 진단으로 "소수 매크로 이벤트의 반복 계상" 가능성도
+   기각됨(OOS 3건이 실제로 독립적인 서로 다른 날짜). **재백테스트로 해결 가능한 문제가
+   아니다** — 4.5년 크립토선물 데이터로는 이 스펙의 문자 그대로의 규칙 자체가 구조적으로
+   희소한 신호를 낳으며, 매년 데이터가 늘어도 연 2건 안팎씩만 증가한다(200주선·위클리
+   아웃사이드바 등 기존 판단불가 사례와 동일한 "재검증 불가" 성격).
+5. **라이브 미반영**: 판단불가이므로 현재 상태로는 채택도 폐기도 하지 않는다. 만약 향후 재검토
+   한다면 "레짐 확정"을 완화(예: 두 선 중 하나만 상승 요구, 또는 4주 대신 2주)하거나 재돌파
+   시한을 밴드폭에 비례하도록 동적으로 정의하는 재설계가 필요하며, 이는 스펙 재해석이므로
+   원 스펙과 별개의 새 스펙으로 취급해야 한다(사후 재해석으로 이 결과를 뒤집지 않는다).
+
+## 13. 재현 파일 목록(격리 워크트리, `research/.gitignore`로 커밋 제외됨 — §4에 핵심 로직 인용됨)
+
+- `research/impl/bmsb_common.py` — 다운로드/캐시(`_cache/*.parquet`)/주봉 리샘플+검증.
+- `research/impl/bmsb_bt.py` — `Params`/`Trade`/`build_symbol_frame`/`simulate`/`summarize`
+  (variant: band/sma_only/ema_only/reverse), CLI.
+- `research/impl/bmsb_analyze.py` — LOO/top-N/캘린더일·롤링윈도우 de-clustering/상관행렬/부트스트랩.
+- `research/impl/bmsb_sweep.py` — 파라미터 스윕 14변형.
