@@ -119,7 +119,7 @@
       "risk": "🟡(완화,🔴→🟡) 큰폭재반전,저베이스경계"
     },
     {
-      "token": "",
+      "token": "omo",
       "chain": "Solana(PumpSwap)",
       "stage": "확산",
       "ca": "94Sm8joZMSRzpQmcNVn5zZpgnRLN2DBesJYDXwuNpump",
@@ -128,7 +128,7 @@
       "risk": "🟡(유지,반복번복단정금지) 이번회차전지표재악화"
     },
     {
-      "token": "",
+      "token": "swappy",
       "chain": "Robinhood Chain(Uniswap V4)",
       "ca": "0x298348d5b2e45C774E3ee4f1a0924071DfbDC8C7",
       "stage": "확산",
