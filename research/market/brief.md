@@ -1,54 +1,66 @@
-# 시장 브리핑 — 2026-08-26 12:10 UTC
+# 시장 브리핑 — 2026-08-27 00:15 UTC
 
 > 정보 요약이며 투자조언이 아닙니다. 상반된 견해는 병기했고, 확인되지 않은 내용은 '미확인'으로 표기했습니다.
 
 ## 전체 시장 심리
 
-- **직전 회차(8/26 00:10Z)의 급락 흐름이 진정되며 3자산 모두 좁은 박스권에서 안정화**됐다. BTC는 약 $78.4K로 12시간 전과 사실상 동일, ETH는 약 $2,437→$2,461로 소폭 반등, SOL은 약 $96.6→$96.8로 거의 보합이었다 — 8/24~25에 걸친 급등락(재무부 바이백발 숏스퀴즈 → RSI 과매수 → 되돌림) 이후 뚜렷한 방향성 없이 숨 고르는 구간이다.
-- BTC는 8/25 $80,894까지 재상승했다(cryptonews.net) — 미 재무부의 8/19 장기채 바이백 확대 발표(회당 상한 $2B→최소 $4B)를 계기로 한 숏스퀴즈가 이어진 결과로, $4B 이상의 약세 포지션이 청산됐다(crypto-economy.com 8/25). 이후 RSI 82~84 과매수로 재차 되밀렸다.
-- **Rekt Capital**은 crypto.news(8/25)에 이어 cointelegraph(8/24, 이번 회차 신규 발견)에서 '약세장 바닥과 매크로 하락추세 이탈을 완전히 확인해야 한다'며 상승추세 미확정 시각을 재확인했다. **CryptoQuant**는 $68,000~73,000을 핵심 지지 구간으로 제시했다(8/24).
-- **BTC 도미넌스**: u.today·beincrypto(8/25~26)에 따르면 2026년 들어 처음으로 60%를 돌파(beincrypto는 60.66%로 '알트시즌 기대를 묻는다'고 평가) — 직전 회차 소스 간 괴리(58.8%~61%)가 이번 회차엔 60% 상회 쪽으로 다소 수렴하는 모습이나, 복수 소스 재확인이 더 필요해 절대치는 신중 표기한다.
-- **공포탐욕지수**: 여전히 소스 간 괴리가 크다 — Alternative.me 계열은 8/12 27(공포)→8/25 74→8/26 05:49Z 65로 소폭 진정된 흐름을, CoinStats는 8/26 81(극도의 탐욕)을, **CFGI.io는 페이지별로 69(탐욕)와 44(중립)가 자체 불일치**한다. 절대 수치는 미확인이나 '탐욕 정점을 지나 다소 진정' 방향성은 일부 소스에서 확인된다.
-- **ETF 자금흐름**: 부모가 SoSoValue 원본으로 8/25(화)분을 이미 append했다 — **BTC +314.37 · ETH +179.80 · SOL +32.25**(백만 USD). 직전(8/24) 대비 BTC는 337.56→314.37로 소폭 감소, ETH는 115.57→179.80으로 증가, SOL은 33.49→32.25로 유사 수준이다. 이는 8/17~21 주간 BTC $1.9~1.92B·ETH $697.18M 순유입 흐름과 방향이 일치한다.
+- **직전 12시간은 '하락 후 급반등'의 왕복 경로**였다. 순변화만 보면 BTC가 12시간 전과 거의 같아 보이지만, 실제로는 12:10Z~20:33Z 구간 광범위 하락(실측 중앙값 한때 -2%대, 알트가 메이저보다 크게 밀렸고 XRP가 3회차 연속 메이저 최대 낙폭) 이후 20:33Z~22:32Z 구간 광범위 랠리로 급반전(110건 중 107건 상승, 중앙값 +2.74%)해 저점을 찍고 올라온 상태다. SOL(+3.75%)·XRP(+2.80%, 직전까지의 최대 낙폭에서 정반대로 반전)가 반등을 주도했고 ETH(+1.60%)·BTC(+0.60%)는 상대적으로 완만했다 — 알트가 메이저를 크게 앞서는 구조로, 직전까지의 '알트 편중 하락'과 정확히 대칭이다.
+- **거래소 4곳 직접조회(Kraken·Coinbase·Bitstamp·OKX perp, 2026-08-27 00:11Z)**: BTC $78,877.60/$78,877.45/$78,873.30/$78,854(4곳 일치, 약 $78.9K), ETH $2,504.61(Kraken)/$2,504(OKX perp), SOL $101.13(Kraken)/$101.09(OKX perp). 24h 변동은 벤뉴마다 창 시작이 달라 값이 갈린다(BTC: Kraken -0.18%·Coinbase +0.32%·OKX perp +0.61%) — 벤뉴 기준을 명시해 인용해야 하며, 이 차이 자체를 시장 현상으로 오해해선 안 된다.
+- **BTC**: RSI 80.37로 과매수 지속(coinstats.app 2026-08-26 04:20 스냅샷), 집계 선물 OI가 주간 +16.26%($55.64B, 주간평균 $52.77B)로 확대돼 레버리지 동반 랠리임이 확인된다. finance.yahoo.com(8/26)은 '8월 마감을 앞둔 가격 분출'로 묘사, BTC는 8/25 장중 $81,235.03까지 올라 3개월 만에 $80,000을 재돌파했다.
+- **Rekt Capital**은 x.com(2026-08-24, 재확인)에서 '주간 종가가 고점 부근에서 마감됐으며, 이것이 베어마켓 완화 랠리라면 이번 주 또는 향후 몇 주 내 되돌림이 나올 수 있다'며 '지속적인 강세를 증명해야 한다'고 밝혔다 — 기존에 확인된 같은 날짜 cointelegraph 인용('약세장 바닥·매크로 하락추세 이탈을 완전히 확인해야 한다')과 논지가 일관된다.
+- **공포탐욕지수**: 소스 간 괴리 지속(65/74/81/69/44 — 직전 회차와 동일 수치, 신규 변화 없음). finance.yahoo·bloomingbit(8/25~26)는 8/12 27(공포)→8/25 74(2025년 10월 이후 최고)→8/26 65로 소폭 진정된 흐름을 전했다.
+- **ETF flows**: BTC/ETH 8/25(화)분(+$314.3M/+$179.8M)이 복수 매체로 재확인됐으나 이는 flows.json 기록치와 정확히 일치해 신규 데이터가 아니다. **BTC/ETH 8/26분은 아직 미공표**. XRP는 8/24(월) +$13.82M(SoSoValue, thecryptobasic.com)을 신규 확인했으나 단일 소스라 이번 회차 미반영.
 
 ## 자산별 뷰
 
-### BTC — 구조적 반등 프레임 유지 속 과매수 되돌림 지속, 박스권 안정화
-- **거래소 직접조회(OKX·Kraken·Coinbase, 2026-08-26 12:14Z)**: $78,399.9 / $78,388.2 / $78,387.01 — 세 곳 사실상 일치, 약 $78.4K 수준(직전 회차 00:10Z 약 $78.4K와 거의 동일 — 12시간 동안 뚜렷한 방향성 없음). chg24는 벤뉴별 -0.15%~-0.85%.
-- **컨센서스/근거**: 8/25 $80,894까지 재상승(cryptonews.net) — 재무부 바이백 확대(8/19 발표)발 숏스퀴즈로 $4B+ 청산(crypto-economy.com 8/25), CNBC는 '2023년 이후 최대 3일 랠리'로 평가. 일일 RSI 82.44(crypto.news 8/25 18:20Z)~84.01(cryptonews.net 8/25)까지 과매수 심화. **Ted Pillows**(8/25 X 게시물)는 4h 약세 다이버전스로 '$72,000~74,000 조정 가능'을 재확인. **Rekt Capital**은 기존 '50주 EMA 위 근소 종가' 경계(crypto.news 8/25)에 더해, 이번 회차 신규 발견된 cointelegraph(8/24) 인용에서 '약세장 바닥·매크로 하락추세 이탈을 완전히 확인해야 하며, 지금까지의 반등은 매번 강한 돌파 직후 급격히 되돌림됐다'고 경고했다. **CryptoQuant**(8/24, 同 기사)는 '$68,000~73,000이 핵심 지지, 이탈 시 최근 매수자 손실 전환' 경고. **OKX CEO Gracy Chen**(8/24)은 'ETF 순유입 재개했으나 수익실현 조정 가능'을 언급했다. 반대편 상단 목표(Doctor Profit $82,000 완전 불마켓 확인, $84,000~87,000 등)도 병존한다(기존 정보, 신규 코멘트 없음).
-- **신규**: **BTC 도미넌스가 2026년 첫 60% 돌파**로 보도됐다(u.today·beincrypto, 8/25~26) — 알트 상대적 약세를 시사하나 복수 소스 재확인 필요.
-- **레벨**: 지지 $78,000(crypto.news) / $77,500~77,000 / $75,513~72,500(8/22 급락 저점대, 벤뉴별 상이) / $72,000~74,000(Ted Pillows 조정 목표) / $68,000~73,000(CryptoQuant 핵심 지지). 저항 $80,000(재테스트 실패 시 가짜 돌파 우려) / $80,894(8/25 신고점) / $81,000~82,000 / $82,200~82,500 / $84,000~87,000(미확인).
-- **촉매**: ①8/25 Treasury 바이백발 숏스퀴즈·$4B+ 청산(이미 반영) ②RSI 82~84 과매수·4h 약세 다이버전스 — 조정 압력 지속 ③Rekt Capital·CryptoQuant 경계(8/24~25) ④OKX CEO 수익실현 조정 가능성(8/24) ⑤BTC 도미넌스 60% 돌파 보도(신규, 복수소스 필요) ⑥ETF 8/25분 +$314.37M(직전 대비 소폭 감소) ⑦CLARITY Act 9/15 표결 일정 유지(신규 확인 없음).
+### BTC — 구조적 반등 프레임 유지, RSI 과매수·OI 확대 동반 랠리 지속
+- **거래소 직접조회**: $78,877.60(Kraken)/$78,877.45(Coinbase)/$78,873.30(Bitstamp)/$78,854(OKX perp), 2026-08-27 00:11Z — 4곳 일치, 약 $78.9K. 직전 회차(00:10Z, 약 $78.4K) 대비 소폭 상승이나 그 사이 $77,628.80(Kraken 24h 저)까지 하락 후 반등한 경로.
+- **컨센서스/근거**: RSI 80.37 과매수 지속(coinstats.app), BTC 선물 OI 주간 +16.26%(+$7.78B, 약 $55.64B). **Rekt Capital**(8/24)은 '주간 종가 고점 부근, 베어마켓 완화 랠리라면 되돌림 가능, 지속 강세 증명 필요'를 재확인 — 기존 '약세장 바닥·매크로 하락추세 이탈 완전 확인 필요' 시각과 일관. Peter Brandt(8/25, 거래소 체결관행 비판, 방향성 콜 아님)·Benjamin Cowen(8/21, 4분기 $44,000 시나리오 배제 안 함) 신규 코멘트는 없음.
+- **레벨**: 지지 $78,000 / $77,628(직전 12h 저점, 신규) / $77,500~77,000 / $75,513~72,500(8/22 급락 저점대) / $72,000~74,000(Ted Pillows) / $68,000~73,000(CryptoQuant). 저항 $79,221(직전 12h 고점, 신규) / $80,000 / $80,894~81,235(8/25 신고점대) / $82,000(Doctor Profit 완전 불마켓 확인) / $84,000~87,000(미확인).
+- **촉매**: ①RSI 과매수·OI 주간 +16.26% 확대(신규) ②Rekt Capital 8/24 재확인 되돌림 경계 ③직전 12h 하락→반등 왕복(BTC +0.60%로 알트 대비 완만) ④CLARITY Act 9/15 표결(신규 확인 없음) ⑤ETF 8/26분 미공표.
 
-### ETH — 3자산 중 유일하게 반등, ETF 자금흐름 재확인·고래 동향은 엇갈림 지속
-- **거래소 직접조회**: $2,460.72 / $2,460.65 / $2,460.78 — 세 곳 사실상 일치, 약 $2,461 수준(직전 회차 약 $2,437 대비 소폭 상승). chg24 -0.69%~+0.74%.
-- **컨센서스/근거**: RSI 80(cryptonews.net 8/25)~86(cryptonomist.ch 8/21)으로 소스별 편차는 있으나 공통적으로 과매수, 지지 $2,400~2,460·저항 $2,500~2,550 구간이 제시된다. **ETF 자금흐름은 이번 회차 여러 독립 소스로 신뢰도 있게 재확인**됐다 — finance.yahoo.com·incrypted.com·thecoinrepublic.com이 공통적으로 8/17~21 주간 ETH ETF $697.18M 순유입(연중 최고, BlackRock ETHA $122.12M·약 65%, Fidelity FETH $36.54M, Grayscale mini $16.04M)을 동일한 세부내역으로 보도해, 직전 회차 '자체 모순'으로 낮게 평가했던 수치의 신뢰도가 올라갔다(단 '4거래일 연속 유출' 주장과의 모순 여부는 여전히 미확인). BlackRock은 8/25 하루 ETH ETF 유입의 78%를 점유했다는 보도도 있다. **고래 동향은 이번 회차도 엇갈린다** — finance.yahoo.com('Ethereum's 29% Price Rally Divides Whales')에 따르면 지갑 0x2d59가 3주간 총 12만 ETH(약 $237.7M)를 바이낸스에서 인출(자가보관·축적 추정)했지만, 같은 기사가 다른 대형 지갑들은 반등을 이용해 차익실현 중이라고 밝혀 고래 전체가 한 방향으로 움직이지 않는다는 진단이다(순매수/매도 방향 미확인). **Benjamin Cowen**의 기존 'ETH 신고가 어려움·불트랩 경계'(asof 8/21 유지) 뷰는 계속 병존한다.
-- **레벨**: 지지 $2,450~2,460(신규) / $2,400(신규) / $2,424(기존) / $2,346(기존). 저항 $2,500~2,550(신규) / $2,533(기존).
-- **촉매**: ①ETF 8/17~21 주간 $697.18M 유입 재확인(연중 최고) ②BlackRock 8/25 하루 점유율 78%(신규) ③고래 동향 매집·차익실현 혼재(신규) ④RSI 80~86 과매수 ⑤ETF 8/25분 +$179.80M(직전 대비 증가) ⑥Cowen 불트랩 경계 유지.
+### ETH — 직전 회차 대비 추가 상승, 예상 단기 범위 상단 근접
+- **거래소 직접조회**: $2,504.61(Kraken, 24h 저/고 $2,432.08~$2,514.64)·$2,504(OKX perp). 직전 회차(약 $2,461) 대비 상승.
+- **컨센서스/근거**: finance.yahoo.com(8/26 오전)은 ETH $2,471.05(전일 대비 +$11.48)를 전했고, moneymagpie 계열은 8/30까지 예상 범위 $2,356~$2,700을 제시 — 이번 회차 실측가는 이 범위 상단에 근접. ETF 자금흐름(8/17~21 주간 $697.18M, 연중 최고)·고래 매집/차익실현 혼재 등 기존 정보는 신규 코멘트 없이 유지. Cowen의 '불트랩 경계'(8/21) 뷰도 병존.
+- **레벨**: 지지 $2,450~2,460 / $2,432(직전 12h 저점, 신규) / $2,400 / $2,346. 저항 $2,514(직전 12h 고점, 신규) / $2,500~2,550 / $2,700(8/30 예상 상단).
+- **촉매**: ①직전 12h 반등에서 ETH +1.60% ②ETF 8/17~21 주간 $697.18M(기존) ③고래 매집·차익실현 혼재(기존) ④Cowen 불트랩 경계 유지(신규 없음) ⑤ETF 8/26분 미공표.
 
-### SOL — 과매수 되돌림 이틀 연속 재확인, 이번 스냅샷은 거의 보합
-- **거래소 직접조회**: $96.77 / $96.78 / $96.77 — 세 곳 일치, 약 $96.8 수준(직전 회차 약 $96.6과 거의 동일 — 3자산 중 가장 좁은 변동폭). chg24 -1.85%~+0.18%.
-- **컨센서스/근거**: blockchain.news가 8/25('Overbought at $101 — $95 Flush')·8/26('Overbought and Fading — $91 Retest')로 이틀 연속 유사 제목의 되돌림 시나리오를 냈고, RSI14 83~84.31 과매수가 cryptonomist.ch(8/24)·edgex(8/26 무렵)에서 공통 지적됐다. **edgex**는 'SOL 선물 OI $5.66B~5.8B, 파생상품 거래량이 현물의 10배 이상'이라며 레버리지 과다·롱 편향 구조가 캐스케이드 청산 위험(하방 $88~80 노출)을 높인다고 진단했다. 확률 시나리오(blockchain.news 8/25, 단일 소스)는 '$95~99 되돌림 65%·$99~105 횡보 25%·$105 상향돌파 10%'를 제시했다. 8/25 낮 시점까지 확인됐던 강세 펀더멘털(선물 OI 최고치·Hyperliquid 고래 롱 신규·BSOL 누적유입 $1B 상회, 직전 회차 기재)은 이번 회차도 철회되지 않았고, 가격만 되돌림 국면이 이어지는 모습이다.
-- **레벨**: 지지 $94.42(23.6% 피보나치, 신규) / $90(200일 이평선 부근, 기존) / $88~80(캐스케이드 청산 노출, 신규) / $81.93(볼린저 중간밴드, 기존) / $80.15(50EMA, 기존). 저항 $100(반복 터치·되밀림) / $105 / $109 / $112(기존).
-- **촉매**: ①과매수 되돌림 시나리오 8/25·8/26 이틀 연속 보도 ②선물 OI $5.66B~5.8B·레버리지 과다 구조(신규) ③확률 시나리오(단일소스): 되돌림 65%·횡보 25%·상향돌파 10% ④8/25 낮 시점 강세 펀더멘털 철회 안 됨(기존) ⑤ETF 8/25분 +$32.25M(직전과 유사) ⑥200일 이평선 상향 돌파 유지(기존).
+### SOL — 직전 12h 반등 메이저 중 최대폭, ETF 주간 순유입 2026년 최고치
+- **거래소 직접조회**: $101.13(Kraken, 24h 저/고 $95.01~$102.42)·$101.09(OKX perp). 직전 회차(약 $96.8) 대비 뚜렷한 상승, 3자산 중 가장 큰 변동폭.
+- **컨센서스/근거**: cryptonews.net(8/26)에 따르면 SOL은 $96 지지 위에서 강세 패턴을 형성 중이며 7일간 약 14% 상승 — 스팟 SOL ETF 주간 순유입 **$65.74M(2026년 최고치)**, $4B+ 청산발 매수압력, SEC 크립토 프레임워크·CLARITY Act 의회 재관심이 배경으로 지목됐다. RSI는 79(cryptonews)~84.31(직전 회차, blockchain.news) 과매수 지속. '$101 위 유지 시 추가 매수세 유입 가능'이라는 조건부 전망도 제시됐다.
+- **레벨**: 지지 $95.01(직전 12h 저점, 신규) / $94.42(23.6% 피보나치) / $90(200일 이평선) / $88~80(캐스케이드 청산 노출). 저항 $100(심리선) / $102.42(직전 12h 고점, 신규) / $102.59(8/25 주간고점) / $105 / $109 / $112.
+- **촉매**: ①직전 12h 반등에서 SOL +3.75%로 메이저 최대(신규) ②SOL ETF 주간 순유입 $65.74M 최고치(신규) ③RSI 79~84 과매수 지속 ④청산발 매수압력·규제 재관심(신규) ⑤ETF 8/26분 미공표.
 
 ## 상위 차티스트 갱신 여부
 
-6인(Peter Brandt·KillaXBT·Benjamin Cowen·Rekt Capital·TechDev·Doctor Profit) 전원 이번 회차 재탐색에서 8/25 이후 신뢰성 있는 신규 1차 코멘트를 확보하지 못해 **asof는 전원 직전 회차와 동일하게 유지**했다(억지 최신화 금지 원칙). 다만 **Rekt Capital**은 asof(8/25)보다 하루 이른 cointelegraph(2026-08-24) 기사에서 '약세장 바닥·매크로 하락추세 이탈을 완전히 확인해야 한다'는 보충 인용을 신규 발견해 본문에 반영했다(asof는 더 늦은 8/25 그대로 유지). 그 외 5인은 본문 중 현재가·시장상황 언급 부분만 이번 회차 실측가로 갱신했다. 상세는 `research/kol/chartist_views.json` 참조.
+6인(Peter Brandt·KillaXBT·Benjamin Cowen·Rekt Capital·TechDev·Doctor Profit) 재탐색 결과, **Rekt Capital만 8/24자 추가 코멘트(x.com, '주간 종가 고점 부근·베어마켓 완화 랠리 되돌림 경계')를 신규 확인**했으며 기존 asof(8/25)·기존 논지와 일관돼 asof는 그대로 유지하고 본문에 보강했다. 나머지 5인(Peter Brandt·KillaXBT·Cowen·TechDev·Doctor Profit)은 이번 회차도 신뢰성 있는 신규 1차 코멘트를 확보하지 못해 **asof를 유지하고 가격·시장상황 언급 부분만 갱신**했다(TechDev Issue #100은 여전히 미발행). 상세는 `research/kol/chartist_views.json` 참조.
+
+## ETF 자금흐름 — 이번 회차 갱신 실패(구조적 도구 제약)
+
+**결론: 이번 회차는 append할 신규 거래일이 없다(갱신 실패가 아님).**
+에이전트는 `research/etf/flows.json`을 읽지 못해 미변경 처리했다 — `source` 필드 하나가 약 26,356 토큰으로 Read 도구 상한(25,000 토큰)을 단독으로 초과하기 때문이다. 검증 못 한 대용량 필드를 재작성하는 대신 파일을 건드리지 않은 판단은 옳았다(과거 무단 절삭 사고 재발 방지 원칙).
+
+**부모 세션이 SoSoValue 공식 엔드포인트를 POST로 직접 조회해 확정했다**(에이전트·부모의 GET 시도는 403/405로 막혔으나 POST는 열린다):
+- **BTC·ETH·SOL 최신 공표분이 모두 2026-08-25**이고(BTC +$314.37M · ETH +$179.80M · SOL +$32.25M), **셋 다 flows.json 기록치와 일치**한다 → **8/26분 미공표이므로 append 대상 없음**.
+- **XRP는 같은 엔드포인트가 빈 배열을 반환**해 이번 회차도 확보 실패(8/21에 정체 지속, 8/24·8/25 공백 유지).
+- 에이전트가 후보로 제시한 **XRP 8/24 +$13.82M은 SoSoValue로 교차검증되지 않아 append하지 않았다**(단일 소스 추정치로 append-only 시계열을 오염시키지 않는다).
+- 부모가 `note` 필드에 위 확인 경위를 기록했다. `source` 32,845자·`note` 기존 8,271자는 **한 글자도 줄이지 않았고**, 네 자산 시계열 건수(671/533/207/190)도 그대로다.
+
+아래는 에이전트가 웹 재탐색으로 확인한 후보치 기록이다:
+- BTC 8/25(화) +$314.3M, ETH 8/25(화) +$179.8M — 복수 매체(KuCoin·cointelegraph) 재확인이나, **이미 flows.json에 기록된 값과 정확히 일치**해 신규 데이터 아님(재확인 목적으로만 기록).
+- **XRP 8/24(월) +$13.82M** — thecryptobasic.com(2026-08-25 발행, SoSoValue 인용) 단일 소스로 신규 확인, 교차검증 미완료라 미반영.
+- XRP 8/25(화)분은 cryptonews.net·crypto.news 모두에서 일별 수치를 확인하지 못해 미확보.
+- BTC/ETH 8/26(수)분은 조사 시점(00:15Z = 전일 20:15 EDT) 기준 미국 시장 마감 직후라 아직 공표되지 않았다(다음 회차 확인 필요).
 
 ## 기타 확인 사항
 
-- **CLARITY Act**: 신규 확인 없음. 9/15 상원 표결 일정·Galaxy Research 통과확률 하향(8/8·8/10 보도 기준) 정보가 최신으로 남아있다.
-- **BTC 도미넌스**: 2026년 첫 60% 돌파 보도(u.today·beincrypto, 8/25~26), 직전 회차(58.8%~61% 소스 간 편차) 대비 60% 상회 쪽으로 다소 수렴하는 모습이나 확정 판단은 유보(미확인).
-- **공포탐욕지수**: 소스 간 괴리 지속(65/74/81/69/44), 방향은 '탐욕 정점 통과 후 소폭 진정' 정황이나 확정 아님.
-
-## ETF 자금 — 8/25분 신규 append 완료(부모 처리)
-
-부모 세션이 SoSoValue 원본을 직접 조회해 **2026-08-25(화)분을 이미 append**했다: **BTC +314.37 · ETH +179.80 · SOL +32.25**(백만 USD). 직전(8/24) 대비 BTC 337.56→314.37로 소폭 감소, ETH 115.57→179.80으로 증가, SOL 33.49→32.25로 유사 수준이며, 과거 이력·source·note 보존은 백업 대조로 검증 완료됐다. XRP는 SoSoValue가 해당 시리즈를 제공하지 않아 8/24·8/25분 모두 계속 미확보 상태다(다음 회차 재시도). 이 회차의 에이전트는 `flows.json`을 읽지도 쓰지도 않았다.
+- **CLARITY Act**: 신규 확인 없음. 9/15 상원 표결 일정 정보가 최신으로 남아있다.
+- **BTC 도미넌스**: 이번 회차 재탐색 안 함(직전 회차 60% 상회 보도가 최신 유지, 복수 소스 재확인 필요 상태 그대로).
+- **공포탐욕지수**: 소스 간 괴리 지속(65/74/81/69/44), 직전 회차와 수치 동일 — 신규 변화 없음.
 
 ## LIT(Lighter) — 사장님 수동 트레이딩 종목
 
 이번 회차 별도 조사 요청 없음. 수치·해석·전망은 기재하지 않는다.
 
 ---
-*Sources: [cryptonews.net — $80,894 숏스퀴즈](https://cryptonews.net/news/bitcoin/33344488/), [crypto-economy.com — Treasury 바이백 숏스퀴즈](https://crypto-economy.com/bitcoin-surge-treasury-buyback-analysis/), [crypto.news — RSI 82.44 경고](https://crypto.news/bitcoin-price-slips-below-80k-as-rsi-flashes-warning/), [crypto.news — $80K 돌파·Rekt Capital](https://crypto.news/bitcoin-price-hits-80000-after-28-percent-rally/), [cointelegraph — 약세장 바닥·매크로 하락추세](https://cointelegraph.com/markets/first-bear-market-trend-line-reclaim-since-2025-five-things-to-know-in-bitcoin-this-week), [u.today — BTC 도미넌스 60% 돌파](https://u.today/bitcoin-dominance-surpasses-60-first-time-in-2026-as-btc-nears-80k), [beincrypto — 도미넌스 60.66%](https://beincrypto.com/bitcoin-dominance-explodes-to-60-66-and-buries-altseason-hopes-for-2026/), [finance.yahoo — ETH 29% 랠리·고래 엇갈림](https://finance.yahoo.com/markets/crypto/articles/ethereum-29-price-rally-divides-094119362.html), [finance.yahoo — ETH ETF $189M](https://finance.yahoo.com/markets/crypto/articles/ethereum-etfs-draw-189-million-104834566.html), [incrypted.com — BTC+ETH ETF $2.62B 주간](https://incrypted.com/en/bitcoin-and-ethereum-etfs-posted-their-best-weekly-performance-of-2026-with-2-62b-in-inflows/), [blockchain.news — SOL $91 되돌림 8/26](https://blockchain.news/news/20260826-price-prediction-sol-overbought-and-fading-91-retest-before), [blockchain.news — SOL $95 되돌림 8/25](https://blockchain.news/news/20260825-price-prediction-sol-overbought-at-101-expect-a-95), [edgex — SOL OI 레버리지](https://pro.edgex.exchange/en-US/news/article/solana-clears-key-technical-barriers), [en.cryptonomist.ch — SOL 과매수](https://en.cryptonomist.ch/2026/08/24/solana-crypto-analysis-overbought-cooling/), [en.bloomingbit.io — 공포탐욕 74](https://en.bloomingbit.io/feed/news/119137), [cfgi.io](https://cfgi.io/), [u.today — Brandt·Binance](https://u.today/veteran-trader-peter-brandt-questions-binance-over-bitcoin-price-anomaly)*
+*Sources: [finance.yahoo.com — BTC/ETH 8/26 가격 스냅샷("price gusher")](https://finance.yahoo.com/personal-finance/investing/article/bitcoin-and-ethereum-prices-today-wednesday-august-26-2026-bitcoin-is-having-a-price-gusher-to-close-out-august-124254461.html), [coinstats.app — BTC RSI 80.37·OI +16.26%](https://coinstats.app/ai/a/latest-news-for-bitcoin), [cryptonews.net — SOL $96 지지·ETF 주간 $65.74M](https://cryptonews.net/news/analytics/33353185/), [en.cryptonomist.ch — SOL 기술적 신호](https://en.cryptonomist.ch/2026/08/26/solana-price-analysis-market-signals/), [x.com/rektcapital — 주간종가 고점·되돌림 경계(8/24)](https://x.com/rektcapital), [finance.yahoo.com — 공포탐욕지수 74](https://finance.yahoo.com/markets/crypto/articles/crypto-fear-greed-index-hits-073526092.html), [en.bloomingbit.io — 공포탐욕지수](https://en.bloomingbit.io/feed/news/119137), [cfgi.io](https://cfgi.io/), [KuCoin — BTC/ETH ETF 8/25 $314.3M/$179.8M](https://www.kucoin.com/news/flash/us-bitcoin-and-ethereum-spot-etfs-see-net-inflows-of-314-3m-and-179-8m-on-august-25), [thecryptobasic.com — XRP ETF 8/24 $13.82M](https://thecryptobasic.com/2026/08/25/xrp-etf-trading-surges-to-new-ath-as-august-flows-cross-56m/), [crypto.news — XRP ETF 8월 누적 $56.86M](https://crypto.news/xrp-etf-volume-all-time-high-1-57-billion-flows/)*
