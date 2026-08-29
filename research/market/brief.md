@@ -1,63 +1,62 @@
-# 시장 브리핑 — 2026-08-28 12:15 UTC
+# 시장 브리핑 — 2026-08-29 00:05 UTC
 
 > 정보 요약이며 투자조언이 아닙니다. 상반된 견해는 병기했고, 확인되지 않은 내용은 '미확인'으로 표기했습니다.
 
 ## 전체 시장 심리
 
-- **당일 변동과 24h 롤링 변동의 부호가 세 자산 모두 갈렸다.** 부모가 OKX·Coinbase·Kraken 3거래소를 2026-08-28 12:17Z에 교차조회한 결과 BTC $79,667.9/$79,617.51/$79,655.7, ETH $2,506.2/$2,507.52/$2,506.43, SOL $105.68/$105.67/$105.72로 3곳 모두 근접 일치했다. **UTC 0시 기준 당일 변동**은 BTC -0.73%(OKX)/-0.76%(Kraken)·ETH -0.20%/-0.22%·SOL -3.18%/-3.15%로 셋 다 약세인데, **OKX open24h 기준 24h 롤링 변동**은 BTC +0.27%·ETH +0.09%·SOL +1.35%로 완만한 강세다. **이는 거래소 간 괴리가 아니라 창(window) 정의 차이다** — 절대 섞어 쓰지 말 것.
-- **24h 고/저(OKX)를 보면 세 자산 모두 장중 고점을 찍은 뒤 되밀린 하루였다.** BTC $81,499.9 → $78,907.4(레인지 약 3.3%) · ETH $2,535.57 → $2,476.27(약 2.4%) · SOL $110.64 → $104.05(약 6.3%, 직전 회차 10.1%보다 축소).
-- **선물 실측(부모 리서치, 10:30Z 최신 회차, 2시간 단위)**: 110건 중 양전 21·음전 89로 하락 우위가 뚜렷했고, 3회차 이어지던 메이저(BTC·ETH·SOL·XRP·DOGE·BNB) 보합이 끝나며 일제히 하락 전환했다. 위 24h 고점 이탈·당일 음전과 방향이 일관된다.
-- **Fear & Greed Index**(alternative.me): 오늘 **73(Greed)**, 어제 71에서 소폭 상승 — Greed 구간을 계속 유지 중.
-- **ETF 자금흐름**: 부모가 SoSoValue에서 **2026-08-27분을 신규 확보해 append**했다 — **BTC +$242.24M · ETH +$234.51M · SOL +$60.91M**로 셋 다 순유입 지속. **SOL은 직전일 +$9.14M에서 6배 이상 급증**해 이번 회차 가격 약세(당일 -3.18%)와 자금 유입이 괴리되는 패턴을 보인다. XRP ETF는 2026-08-21에서 6거래일째 정지 중인데, 이번 회차 조사로 XRP 고유 장애가 아니라 **SoSoValue 공개 API가 현재 BTC·ETH·SOL 세 계열만 서비스**하는 것으로 보인다는 정황이 확인됐다(us-ltc-spot·us-doge-spot도 동일하게 빈 배열 반환).
-- **매크로 최대 촉매**: Fed 의장 Kevin Warsh의 잭슨홀 첫 키노트가 **2026-08-28 14:00 UTC 예정**(이 브리핑 시점 기준 약 1시간 45분 뒤, 주제 'Financial Innovation: Implications for Payments and Policy')이다. Decrypt·TradingView 등은 '올해 가장 변동성 큰 매크로 이벤트'로 주시하고 있다고 보도했다(WebSearch, 2026-08-28). **아직 발화 전이라 결과는 미확인.**
-- Rekt Capital은 8/24 코멘트('Bitcoin has Weekly Closed at the highs. Now starts the real test' — 50주 EMA $77,251 위 첫 주봉 종가, 2025년 11월 이후 최초)에서 베어마켓 랠리라면 이번 주~수주 내 되돌림 가능성을 경고했는데, 이번 회차 24h 고점($81,499.9) 이탈·당일 음전이 그 경고와 방향상 부합한다.
-- **Solana 거버넌스 투표(SGP-0003 등)**는 Epoch 1023 종료 시점(8/27 약 15:30 UTC 예상)에 마감됐을 것으로 보이나 **최종 결과는 이번 회차 WebSearch로 확인하지 못했다(미확인)**.
-- **상위 차티스트**: 이번 회차 재탐색에서 **Peter Brandt가 신규 코멘트**(2026-08-28 07:45 UTC)를 냈다 — 여전히 롱 유지하되 $82,000 재돌파 실패를 확인하며 '포지션이 하루 이내 바뀔 수 있다'고 경계, 진입가·목표가는 비공개. 나머지 5인(KillaXBT·Benjamin Cowen·Rekt Capital·TechDev·Doctor Profit)은 신규 1차 코멘트를 확보하지 못해 기존 asof·뷰를 그대로 유지했다.
+- **BTC ETF·크립토 랠리가 Fed 의장 Warsh의 매파적 잭슨홀 첫 연설을 계기로 되돌림 국면에 들어갔다.** 부모가 OKX·Coinbase·Kraken 3거래소를 2026-08-29 00:07Z에 교차조회한 결과 BTC $77,849.9/$77,781.01/$77,838.3, ETH $2,444.76/$2,443.70/$2,444.21, SOL $104.28/$104.22/$104.29로 3곳 모두 근접 일치했다.
+- **⚠️'당일(UTC 0시 기준)' 변동은 이번 회차 무의미하다.** 지금이 00:07Z라 UTC 하루가 7분밖에 지나지 않아 BTC +0.01%·ETH +0.07%·SOL +0.12%로 전부 0 근처다 — 이를 '보합'으로 서술하면 오독이다. **의미 있는 창은 24h 롤링**이다: BTC **-2.91%** · ETH **-2.51%** · SOL **-4.30%**(OKX open24h 기준). **직전 브리핑(12:15Z) 대비 12시간 변화**로도 BTC $79,667.9→$77,849.9(**-2.28%**) · ETH $2,506.2→$2,444.76(**-2.45%**) · SOL $105.68→$104.28(**-1.32%**)로 셋 다 뚜렷한 하락이다.
+- **24h 고/저(OKX)**: BTC $81,499.9 / **$76,888** · ETH $2,535.57 / $2,405.83 · SOL $110.09 / $102.28. **BTC는 24h 저점 $76,888까지 밀렸다가 $77,850으로 소폭 반등한 상태**다.
+- **⚠️주목: BTC 24h 저점 $76,888은 Rekt Capital이 지목한 50주 EMA $77,251을 장중 하회한 수치**다. 8/24 그는 "근소한 주간종가 확인 이후 진짜 시험대(Now starts the real test)"라며 재테스트 실패 시 가짜 돌파(fake breakout) 전환 리스크를 경고했는데, 이번 회차 그 시나리오가 부분적으로 현실화됐다(현재가는 EMA 위로 재복귀해 완전 확정은 아님). 최종 판가름은 다음 주간 종가에서 확인될 전망이다.
+- **급락의 직접 계기**: Fed 의장 Kevin Warsh의 첫 잭슨홀 키노트(2026-08-28)가 '물가안정 최우선'을 강조하며 매파적 톤을 보였고 "금융여건을 제약적이라 정의하기 어렵다"고 발언해, BTC가 연설 직후 약 $79,000에서 $78,000대로 하락했다(KuCoin·CoinDesk·DailyCoin, 2026-08-28). 크립토 전체 시가총액은 8/28 하루 약 1.6%·$100B 이상 감소했고(Yahoo Finance, 2026-08-28), $80,000~82,000 저항대 근처 차익실현·레버리지 청산(왕복 $600M+)이 겹쳤다(TradingKey, 2026-08-28).
+- **Fear & Greed Index**(alternative.me): 오늘 **68(Greed)**, 어제 73에서 **5포인트 하락** — Greed 구간은 유지하나 열기는 식는 중.
+- **선물 실측(부모 리서치, 22:30Z 최신 회차, 2시간 단위)**: 양전 54·음전 56으로 균형이었고 메이저가 3회차 연속 보합이었다고 기록됐다. **⚠️단, 이는 22:30Z 기준이라 그 이후 진행된 이번 하락(BTC 24h 저점 재테스트 등)은 반영돼 있지 않다** — 다음 선물 회차에서 방향 전환 여부 확인 필요.
+- **Solana 거버넌스 3건 투표 결과가 이번 회차 확인됐다**(WebSearch, Decrypt·CryptoNews 등, 2026-08-28): SGP-0001(헌법 개정)은 86~95.35% 찬성으로 통과, SGP-0002(디스인플레이션 15%→30% 배증)는 67.0% 대 요구 임계치 66.67%로 근소하게 통과(Kraken이 개표 도중 반대에서 막판 찬성으로 선회), **SGP-0003(리소스·인클루전 수수료 신설)은 53.90% 찬성으로 3분의2 임계 미달해 부결**됐다.
+- **상위 차티스트**: 이번 회차 재탐색에서 6인 전원 신규 1차 코멘트를 추가로 확보하지 못했다. Peter Brandt는 직전 회차(8/28 07:45 UTC)에 확보한 코멘트가 이번 회차에도 최신 상태로 확인돼(재확인) asof를 그대로 유지하고, 나머지 5인(KillaXBT·Benjamin Cowen·Rekt Capital·TechDev·Doctor Profit)도 기존 asof·뷰를 유지했다.
 
 ## 자산별 뷰
 
-### BTC — $82,000 재돌파 실패, 애널리스트 뷰는 여전히 강세·경계 병존
-- **거래소 교차확인(12:17Z)**: OKX $79,667.9·Coinbase $79,617.51·Kraken $79,655.7. 당일 -0.73%(OKX)/-0.76%(Kraken), 24h 롤링 +0.27%(OKX). 24h 고 $81,499.9·저 $78,907.4로 고점 대비 약 -3.2% 되밀림.
-- **컨센서스/근거**: 상반된 뷰가 계속 병존한다. **강세 쪽** — Peter Brandt(신규, 2026-08-28 07:45 UTC, crypto.news)는 $82,000 저항선 재돌파 실패(장중 고 $81,280 근처에서 되밀림)를 확인하면서도 8/20 인버스 헤드앤숄더 완성 이후의 롱 포지션을 유지 중이라 밝혔다. 다만 "포지션이 하루 이내 바뀔 수 있다"고 명시적으로 경계했고 진입가·규모·목표가는 공개하지 않았다. Doctor Profit(asof 8/23 유지)은 $82,000 완전 확인 시 Soft Bull Market 강세를 유지하고 있다. **경계 쪽** — Rekt Capital(asof 8/25 유지, 다만 8/24 신규 발견 코멘트로 맥락 보강)은 '50주 EMA($77,251) 위 첫 주봉 종가'를 두고 "이제부터 진짜 시험대"라며 베어마켓 랠리라면 이번 주~수주 내 되돌림 가능성을 경고했다 — 실제로 이번 회차 24h 고점 이탈이 그 경고와 방향상 부합한다. Benjamin Cowen(asof 8/21 유지)은 여전히 4분기 $44,000 시나리오를 배제하지 않는다.
-- **레벨**: 지지 $78,907(24h 저, 신규 실측) / $77,251(Rekt Capital 50주 EMA, 8/24) / $77,000~75,513(8/22 급락 저점대, 기존) / $72,000~74,000(Ted Pillows, 기존). 저항 $81,499.9(24h 고, 신규 실측) / $82,000(Doctor Profit 완전 불마켓 확인 레벨 겸 Galaxy Research 컨센서스 확인선 — 8/25~28 연속 돌파 실패) / $84,000~87,000(미확인).
-- **촉매**: ①Fed 의장 Warsh 잭슨홀 첫 연설(14:00 UTC 예정, 약 1시간45분 뒤 — 결과 미확인) ②$82,000 저항 반복 실패 — Doctor Profit·Galaxy Research가 공히 지목한 불마켓 확인선 ③BTC ETF 8/27 +$242.24M 순유입 지속 ④선물 실측 10:30Z 기준 하락 우위(110건 중 89건 음전), 3회차 보합 끝나고 메이저 일제 하락전환 ⑤Rekt Capital의 '베어마켓 랠리 되돌림' 경고와 방향상 부합하는 되돌림 진행 중.
+### BTC — 24h 저점에서 50주 EMA 장중 이탈, Rekt Capital 경고 부분 현실화
+- **거래소 교차확인(00:07Z)**: OKX $77,849.9·Coinbase $77,781.01·Kraken $77,838.3. 24h -2.91%(OKX), 직전회차 대비 12h -2.28%. 24h 고 $81,499.9·저 $76,888.
+- **컨센서스/근거**: 상반된 뷰가 계속 병존한다. **강세 쪽** — Peter Brandt(8/28 유지)는 $82,000 재돌파 실패를 확인하면서도 8/20 인버스 헤드앤숄더 완성 이후의 롱을 유지 중이며, "포지션이 하루 이내 바뀔 수 있다"고 경계를 재확인했다. Doctor Profit(8/23 유지)은 $82,000 완전 확인 시 Soft Bull Market 강세를 유지한다는 입장이나, 이번 회차 되돌림으로 그가 제시한 저항선 $78,500마저 하회해 그의 '숏스퀴즈' 해석이 시험대에 올랐다. **경계 쪽** — Rekt Capital(8/25 유지)의 '50주 EMA 재테스트·가짜 돌파' 경고가 이번 회차 BTC의 24h 저점 EMA 장중 이탈로 부분 현실화됐다. Benjamin Cowen(8/21 유지)은 여전히 4분기 $44,000 시나리오를 배제하지 않으며, 이번 급락이 그 시나리오와 방향상 부합할 여지가 있다.
+- **레벨**: 지지 $76,888(24h 저, 신규 실측) / $77,251(Rekt Capital 50주 EMA, 8/24 — 장중 이탈 후 재복귀) / $75,513~77,000(8/22 급락 저점대, 기존) / $72,000~74,000(기존). 저항 $77,850~78,000(현재가 부근 단기) / $80,000(심리선) / $81,499.9(24h 고, 신규 실측) / $82,000(Doctor Profit 완전 불마켓 확인 레벨 — 8/25~28 연속 돌파 실패 지속).
+- **촉매**: ①Fed 의장 Warsh 첫 잭슨홀 키노트(8/28)의 매파 발언("금융여건을 제약적이라 정의하기 어렵다")이 급락 직접 계기 ②$80,000~82,000 저항대 차익실현+레버리지 청산(왕복 $600M+) ③크립토 전체 시총 8/28 하루 -1.6%/-$100B+ ④BTC ETF는 8/27분(+$242.24M) 기준으로는 순유입 지속했으나 8/28분은 아직 미공표 ⑤F&G 68로 5p 하락, Greed 열기 식는 중 ⑥Rekt Capital의 50주 EMA 재테스트·가짜돌파 경고가 장중 부분 현실화.
 
-### ETH — 24h 롤링 사실상 보합, 당일 기준은 소폭 약세
-- **거래소 교차확인(12:17Z)**: OKX $2,506.2·Coinbase $2,507.52·Kraken $2,506.43. 당일 -0.20%(OKX)/-0.22%(Kraken), 24h 롤링 +0.09%. 24h 고 $2,535.57·저 $2,476.27(레인지 약 2.4%).
-- **컨센서스/근거**: Benjamin Cowen(asof 8/21 유지)은 ETH가 2026년 신고가 갱신이 어렵고 반등해도 '불트랩'으로 되밀릴 수 있다는 경계 뷰를 유지한다. TechDev(asof 8/1 유지, Issue #100 여전히 미발행)는 ETH가 3일봉 슈퍼트렌드 그린 플립 레벨($2,020)을 크게 상회했다고 진단한 기존 뷰를 유지한다. 나머지 4인은 ETH에 대한 구체적 최근 공개 뷰가 부족하다(공개 뷰 부족). 이번 회차 신규 1차 코멘트는 6인 전원 없음.
-- **레벨**: 지지 $2,476(24h 저, 신규 실측) / $2,450~2,460(기존) / $2,400. 저항 $2,535.57(24h 고, 신규 실측) / $2,700(기존 예상 상단, 시점 경과로 재확인 필요).
-- **촉매**: ①24h 롤링 사실상 보합(+0.09%)이나 당일 기준 소폭 약세(-0.20%)로 BTC와 유사한 되돌림 패턴 ②ETH ETF 8/27 +$234.51M로 순유입 지속·규모 확대(8/26 +$192.35M 대비 증가) ③Warsh 잭슨홀 연설 등 매크로 이벤트 대기로 방향성 억제 가능성 ④Cowen 불트랩 경계 vs TechDev 그린 플립 상회, 신규 코멘트 없이 상반된 뷰 유지.
+### ETH — BTC와 동조 하락, ETF 자금은 여전히 순유입
+- **거래소 교차확인(00:07Z)**: OKX $2,444.76·Coinbase $2,443.70·Kraken $2,444.21. 24h -2.51%, 12h -2.45%. 24h 고 $2,535.57·저 $2,405.83.
+- **컨센서스/근거**: Benjamin Cowen(8/21 유지)은 ETH가 2026년 신고가 갱신이 어렵고 반등해도 '불트랩'으로 되밀릴 수 있다는 경계 뷰를 유지한다. TechDev(8/1 유지, Issue #100 여전히 미발행)는 ETH가 3일봉 슈퍼트렌드 그린 플립 레벨($2,020)을 여전히 상회했다고 보는 기존 뷰를 유지한다. WebSearch(thecoinrepublic, 8/28)에서 발견한 별도 애널리스트는 "주봉 종가 $2,550 상회 시 $3,000 랠리" 조건을 제시했으나, 현재가는 이번 하락으로 그 조건에서 더 멀어졌다. 나머지 4인은 ETH에 대한 구체적 최근 공개 뷰가 부족하다(공개 뷰 부족).
+- **레벨**: 지지 $2,405(24h 저, 신규 실측) / $2,400(심리선) / $2,300(기존). 저항 $2,444~2,460(현재가 부근) / $2,535.57(24h 고, 신규 실측) / $2,550(별도 애널리스트 주봉 종가 기준선, thecoinrepublic 8/28) / $2,700(기존, 재확인 필요).
+- **촉매**: ①BTC 동조 하락(Warsh 매파 발언 여파) ②ETH ETF는 8/27분(+$234.51M) 기준 순유입 지속(8/28분 미공표) ③thecoinrepublic(8/28) 보도 별도 애널리스트는 주봉 종가 $2,550 상회 시 $3,000 목표 제시 — 현재가는 이 조건에서 멀어짐 ④Cowen 불트랩 경계 vs TechDev 그린 플립 상회, 신규 코멘트 없이 상반된 뷰 유지.
 
-### SOL — 당일 기준 메이저 중 유일한 약세, ETF는 오히려 급증 — 괴리
-- **거래소 교차확인(12:17Z)**: OKX $105.68·Coinbase $105.67·Kraken $105.72. 당일 -3.18%(OKX)/-3.15%(Kraken)로 메이저 중 최대 약세, 그러나 24h 롤링은 +1.35%로 정반대. 24h 고 $110.64·저 $104.05(레인지 약 6.3%, 직전 회차 10.1%보다 축소).
-- **컨센서스/근거**: 애널리스트 6인 중 SOL을 직접 다룬 인물은 없어(공개 뷰 부족) 온체인 이벤트로 보완한다. Solana 거버넌스 패키지(SGP-0003 — 헌법 개정·토큰 발행량·리소스 수수료 신설 포함, SGP-0001·SGP-0002 포함 3건 동시 투표) 결과는 Epoch 1023 종료(8/27 약 15:30 UTC 예상)로 마감됐을 것으로 보이나 **투표 결과는 이번 회차도 WebSearch로 확인하지 못했다(미확인)**.
-- **레벨**: 지지 $104.05(24h 저, 신규 실측) / $100(심리선, 기존) / $94.42(23.6% 피보나치, 기존). 저항 $110.64(24h 고, 신규 실측) / $112(기존).
-- **촉매**: ①당일 -3.18%로 메이저 중 최대 약세인데 24h 롤링은 +1.35%로 정반대 — 창 정의 차이 주의 ②SOL ETF 8/27 +$60.91M로 직전일 +$9.14M 대비 6배 이상 급증 — 가격 약세와 자금유입이 괴리되는 조합 ③SGP-0003 거버넌스 투표 결과 미확인 — 다음 회차 확인 필요 ④애널리스트 공개 뷰 부족.
+### SOL — 메이저 중 24h 최대 낙폭, SGP-0003 부결로 거버넌스 불확실성 해소
+- **거래소 교차확인(00:07Z)**: OKX $104.28·Coinbase $104.22·Kraken $104.29. 24h -4.30%로 메이저 중 최대 약세, 12h -1.32%. 24h 고 $110.09·저 $102.28.
+- **컨센서스/근거**: 애널리스트 6인 중 SOL을 직접 다룬 인물은 없어(공개 뷰 부족) 온체인 이벤트로 보완한다. Solana 거버넌스 3건 투표 결과가 이번 회차 확인됐다 — SGP-0001(헌법) 86~95.35% 찬성 통과, SGP-0002(디스인플레이션 배증) 67.0% 근소 통과, **SGP-0003(리소스·인클루전 수수료 신설)은 53.90% 찬성으로 2/3 임계 미달 부결**. 거버넌스 관련 논쟁적 변경(수수료 신설)은 회피됐으나 가격 반응은 뚜렷하지 않고, 시장 전반 하락에 더 크게 연동되는 모습이다.
+- **레벨**: 지지 $102.28(24h 저, 신규 실측) / $100(심리선, 기존) / $94.42(23.6% 피보나치, 기존). 저항 $104~105(현재가 부근) / $110.09(24h 고, 신규 실측) / $112(기존).
+- **촉매**: ①메이저 중 24h 최대 낙폭(-4.30%) — 시장 전반 매도 압력에 SOL이 가장 민감하게 반응 ②SGP-0003(리소스·인클루전 수수료) 부결(53.90%, 2/3 미달) — 논쟁적 변경 회피 ③SGP-0002(디스인플레이션 15%→30% 배증) 67.0%로 근소 통과, 향후 발행량 감소는 구조적 장기 요인이나 즉시 가격 반응은 불명확 ④SOL ETF는 8/27분(+$60.91M) 기준 순유입 지속했으나 8/28분 미공표 ⑤애널리스트 공개 뷰 부족.
 
 ## 상위 차티스트 갱신 여부
 
-6인(Peter Brandt·KillaXBT·Benjamin Cowen·Rekt Capital·TechDev·Doctor Profit) 전원 재탐색했다. **Peter Brandt만 신규 1차 코멘트를 확보했고, 나머지 5인은 기존 asof·뷰를 그대로 유지**했다.
-- **Peter Brandt(asof 8/25 → 8/28 갱신)**: crypto.news(2026-08-28 07:45 UTC, 'Bitcoin price tests $82K resistance as Brandt stays long')에서 신규 코멘트 확인. BTC가 $82,000 저항 재돌파에 실패(장중 고 $81,280 부근에서 되밀림)한 가운데 "롱 포지션에 있다"고 재확인했으나, 매입가·포지션 규모·목표가는 여전히 비공개이고 "포지션이 하루 이내 바뀔 수 있다"는 조건을 명시적으로 재차 강조했다.
-- **KillaXBT(asof 8/14 유지)**: 재탐색에서 발견한 '$70,000 유통대역·자본항복·$50,000 목표' 관련 finance.yahoo.com 기사는 발행일이 **2026-02-09**로 확인돼 구 콘텐츠(신규 아님). 8/14 이후 신규 1차 코멘트 여전히 미확인.
-- **Benjamin Cowen(asof 8/21 유지)**: 재탐색에서 발견한 KuCoin '데드캣 바운스·$44K 이하 하락' 기사는 발행일이 **2026-05-28**로 확인돼 구 콘텐츠(신규 아님). 8/21 이후 신규 1차 코멘트 미확인.
-- **Rekt Capital(asof 8/25 유지)**: 재탐색에서 '50주 EMA $77,251 위 첫 주봉 종가·"이제부터 진짜 시험대"' 코멘트(LCX 등, 발행일 확인 결과 **2026-08-24**)를 발견했으나, 이는 기존 asof(8/25)보다 앞선 시점이라 asof는 갱신하지 않고 브리핑 본문 맥락 보강에만 활용했다.
+6인(Peter Brandt·KillaXBT·Benjamin Cowen·Rekt Capital·TechDev·Doctor Profit) 전원 재탐색했다. **이번 회차엔 6인 전원 신규 1차 코멘트를 추가로 확보하지 못해 asof·뷰를 모두 유지**했다(Peter Brandt는 직전 회차 확보분이 재확인돼 asof 8/28 그대로).
+- **Peter Brandt(asof 8/28 유지)**: 직전 회차(2026-08-28 07:45 UTC, crypto.news)에 확보한 "$82,000 재돌파 실패에도 롱 유지, 포지션이 하루 이내 바뀔 수 있다"는 코멘트가 이번 회차 재탐색에서도 최신 상태로 재확인됐다. 후속 코멘트는 확보하지 못함.
+- **KillaXBT(asof 8/14 유지)**: 이번 회차도 8/14 이후 신뢰성 있게 발행 시점을 확정할 신규 1차 코멘트를 확증하지 못함.
+- **Benjamin Cowen(asof 8/21 유지)**: 이번 회차도 8/21 이후 신규 1차 코멘트 미확인. 다만 그가 열어둔 '4분기 $44,000 시나리오'가 이번 급락과 방향상 부합할 여지가 있어 본문에 맥락으로 반영.
+- **Rekt Capital(asof 8/25 유지)**: 이번 회차도 8/24~25 이후 신규 1차 코멘트는 확보하지 못했으나, 그가 8/24 지목한 50주 EMA($77,251)를 BTC 24h 저점($76,888)이 장중 하회한 사실이 그의 경고와 정확히 부합해 본문·bias에 비중 있게 반영.
 - **TechDev(asof 8/1 유지)**: Issue #100 여전히 미발행(techdev52.com 최신호는 #99).
-- **Doctor Profit(asof 8/23 유지)**: 재탐색 결과 전부 기존 8/20~24 선언 시점의 재유통 콘텐츠. 신규 1차 코멘트 미확인.
+- **Doctor Profit(asof 8/23 유지)**: 재탐색 결과 전부 기존 8/20~24 선언 시점의 재유통 콘텐츠. 신규 1차 코멘트 미확인. 다만 그가 제시한 저항선 $78,500을 이번 하락으로 BTC가 다시 하회해 본문에 반영.
 
-가격·시장상황 언급 부분은 신규 코멘트를 확보한 Peter Brandt만 갱신했고, 나머지 5인은 지시에 따라 기존 값을 그대로 유지했다. 상세는 `research/kol/chartist_views.json` 참조.
+가격·시장상황 언급 부분은 이번 회차 신규 실측(BTC 24h 저점·50주 EMA 이탈 등)을 각 인물의 기존 뷰와 대조해 갱신했으나, bias/btc/eth/market/asof/source 등 뷰 자체 내용은 지시에 따라 6인 전원 그대로 유지했다. 상세는 `research/kol/chartist_views.json` 참조.
 
 ## ETF 자금흐름
 
 **`research/etf/flows.json`은 이번 회차 부모가 직접 처리했습니다(에이전트는 이 파일을 다루지 않았습니다).**
-- **2026-08-27분을 신규 확보해 append**: BTC +$242.24M · ETH +$234.51M · SOL +$60.91M — 셋 다 순유입.
-- **SOL은 직전일(8/26) +$9.14M에서 +$60.91M로 6배 이상 급증**했다. 같은 날 SOL 가격은 당일 기준 -3.18%로 메이저 중 유일하게 약세였다는 점과 괴리를 보인다.
-- BTC는 8/26 +$232.12M → 8/27 +$242.24M로 완만히 증가, ETH는 8/26 +$192.35M → 8/27 +$234.51M로 증가.
-- ⚠️**XRP는 여전히 갱신 실패**: 2026-08-21에서 데이터가 정지된 채 6거래일째 미확보. 이번 회차 부모 조사 결과 **SoSoValue 공개 API가 현재 BTC·ETH·SOL 세 계열만 서비스**하고 있는 것으로 보이며(us-ltc-spot·us-doge-spot도 동일하게 빈 배열 반환), XRP 고유의 데이터 장애가 아닐 가능성이 높다.
+- **이번 회차엔 신규 거래일이 없어 append하지 않았습니다.** SoSoValue 최신 데이터가 여전히 **2026-08-27**이고(BTC +$242.24M · ETH +$234.51M · SOL +$60.91M) 8/28(금)분은 아직 공표되지 않았습니다.
+- 현재 이력: BTC 673건 · ETH 535건 · SOL 209건(셋 다 2026-08-27까지) · **XRP 190건(2026-08-21에서 정지, 7거래일째 미확보)**.
+- XRP 실패 원인은 XRP 고유 문제가 아니라 **SoSoValue 공개 API가 현재 BTC·ETH·SOL 세 계열만 서비스**하는 것으로 보입니다(us-ltc-spot·us-doge-spot도 동일하게 빈 배열 반환).
 
 ## 기타 확인 사항
 
-- **Fed 잭슨홀 연설(Kevin Warsh)**: 2026-08-28 14:00 UTC 예정(이 브리핑 시점 기준 약 1시간 45분 뒤), 취임 이후 첫 키노트. 주제는 'Financial Innovation: Implications for Payments and Policy'로 디지털 결제·핀테크 인프라가 중심이다. Decrypt·crypto.news 등은 규제 방향에 대한 언급이 있을 경우 순수 금리 기대치 메커니즘을 넘어 정책 내용 자체로 크립토 시장을 움직일 수 있는 이례적 이벤트로 평가했다(WebSearch, 2026-08-28). **아직 발화 전이라 결과는 미확인.**
-- **SOL 거버넌스 투표(SGP-0001/0002/0003)**: 헌법 개정·이중 디스인플레이션·리소스 및 인클루전 수수료 신설을 묶은 3건 투표가 8/23 개시, Epoch 1023 종료(8/27 약 15:30 UTC 예상)로 마감됐을 것으로 보인다. **결과는 이번 회차 WebSearch로 확인되지 않아 미확인** — 다음 회차 확인 권고.
+- **Fed 잭슨홀 연설(Kevin Warsh)**: 2026-08-28 예정대로 진행됐다. 물가안정을 최우선으로 강조하며 매파적 톤을 보였고 "금융여건을 제약적이라 정의하기 어렵다"고 발언했다(KuCoin, 2026-08-28). BTC는 연설 직후 약 $79,000에서 $78,000대로 하락했고, 이후 24h 저점 $76,888까지 추가 하락했다가 반등했다.
+- **SOL 거버넌스 투표(SGP-0001/0002/0003)**: 이번 회차 결과가 확인됐다 — SGP-0001(헌법) 86~95.35% 찬성 통과, SGP-0002(디스인플레이션 15%→30% 배증) 67.0%로 요구 임계치 66.67% 대비 근소 통과(Kraken이 개표 도중 반대에서 막판 찬성 선회, Decrypt·CryptoNews 2026-08-28), SGP-0003(리소스·인클루전 수수료 신설) 53.90% 찬성으로 3분의2 임계 미달 부결.
 - **BTC 도미넌스**: 이번 회차 별도 재탐색하지 않았다(직전 회차에서도 출처 간 수치 엇갈림으로 미확인 처리됨). 미확인 유지.
 
 ## LIT(Lighter) — 사장님 수동 트레이딩 종목
@@ -65,4 +64,4 @@
 이번 회차 별도 조사 요청 없음. 수치·해석·전망은 기재하지 않는다.
 
 ---
-*Sources: [OKX](https://www.okx.com/), [Coinbase](https://www.coinbase.com/), [Kraken](https://www.kraken.com/), [alternative.me — Fear & Greed Index](https://alternative.me/crypto/fear-and-greed-index/), [SoSoValue — ETF Flows](https://sosovalue.com/), [crypto.news — Bitcoin price tests $82K resistance as Brandt stays long(2026-08-28)](https://crypto.news/bitcoin-tests-82k-resistance-as-brandt-stays-long/), [LCX — Bitcoin price hits $80K as 24-hour crypto short liquidations pass $220M(2026-08-24, Rekt Capital 인용)](https://lcx.com/en/cryptonews/bitcoin-price-hits-80k-as-24-hour-crypto-short-liquidations-pass-220m), [TradingView News — Bitcoin Traders Watch Jackson Hole As Kevin Warsh Prepares First Fed Keynote](https://www.tradingview.com/news/newsbtc:ce37983d6094b:0-bitcoin-traders-watch-jackson-hole-as-kevin-warsh-prepares-first-fed-keynote/), [Decrypt — Bitcoin Eyes Major Resistance as Jackson Hole Kicks Off With Unusual Fed Agenda](https://decrypt.co/376737/bitcoin-resistance-jackson-hole-fed-agenda), [crypto.news — Warsh Jackson Hole keynote puts financial innovation first](https://crypto.news/warsh-jackson-hole-keynote-financial-innovation-crypto/), [x.com/solana_devs — SGP-0001/0002/0003 투표 안내](https://x.com/solana_devs/status/2091525961925698024), [crypto.news — Solana validators vote on 3 major network reforms](https://crypto.news/solana-validators-vote-on-3-major-network-reforms/), [KuCoin — Cowen Predicts Bitcoin Bottom in Late 2026(2026-05-28, 구 콘텐츠로 미채택)](https://www.kucoin.com/news/flash/cowen-predicts-bitcoin-bottom-in-late-2026-calls-recent-rally-a-dead-cat-bounce), [finance.yahoo.com — KillaXBT 관련(2026-02-09, 구 콘텐츠로 미채택)](https://finance.yahoo.com/news/analyst-nailed-bitcoin-price-top-180733566.html)*
+*Sources: [OKX](https://www.okx.com/), [Coinbase](https://www.coinbase.com/), [Kraken](https://www.kraken.com/), [alternative.me — Fear & Greed Index](https://alternative.me/crypto/fear-and-greed-index/), [SoSoValue — ETF Flows](https://sosovalue.com/), [KuCoin — Bitcoin Reacts to Warsh's Jackson Hole Speech: Will 2022 Repeat?](https://www.kucoin.com/news/flash/bitcoin-reacts-to-warsh-s-jackson-hole-speech-will-2022-repeat), [CoinDesk — Warsh's Jackson Hole speech could make or break the bitcoin and gold rally](https://www.coindesk.com/markets/2026/08/28/here-s-why-warsh-s-jackson-hole-speech-is-a-major-event-for-bitcoin-and-gold), [DailyCoin — Bitcoin's Next Move Could Hinge on Kevin Warsh's Jackson Hole Speech](https://dailycoin.com/bitcoin-kevin-warsh-jackson-hole-speech/), [crypto.news — Warsh Jackson Hole keynote puts financial innovation first](https://crypto.news/warsh-jackson-hole-keynote-financial-innovation-crypto/), [Yahoo Finance — Why Is The Crypto Market Down Today?](https://finance.yahoo.com/news/why-crypto-market-down-today-035710630.html), [TradingKey — Cryptos Plunge as Bitcoin Pulls Back From Highs, Loses $80,000 Mark](https://www.tradingkey.com/analysis/cryptocurrencies/btc/262131715-crypto-bitcoin-btc-eth-xrp-bnb-long-short-tradingkey), [crypto.news — Bitcoin price tests $82K resistance as Brandt stays long(2026-08-28)](https://crypto.news/bitcoin-tests-82k-resistance-as-brandt-stays-long/), [crypto.news — Bitcoin price hits $80,000 after 28% rally(2026-08-25, Rekt Capital 인용)](https://crypto.news/bitcoin-price-hits-80000-after-28-percent-rally/), [TradingView News — First bear-market trend line reclaim since 2025](https://www.tradingview.com/news/cointelegraph:a680e9743094b:0-first-bear-market-trend-line-reclaim-since-2025-five-things-to-know-in-bitcoin-this-week/), [Decrypt — Solana Will Now Print Less SOL as Disinflation Vote Passes in Dramatic Fashion](https://decrypt.co/376825/solana-sol-disinflation-vote-passes), [CryptoNews.net — Solana vote to double disinflation passes by a hair in dramatic finish](https://cryptonews.net/news/altcoins/33365565/), [x.com/solana_devs — SGP-0001/0002/0003 투표 안내](https://x.com/solana_devs/status/2091525961925698024), [The Coin Republic — Ethereum Price Prediction: Analyst Eyes ETH Rally to $3,000 If Weekly Close Clears $2,550](https://www.thecoinrepublic.com/2026/08/28/ethereum-price-prediction-analyst-eyes-eth-rally-to-3000-if-weekly-close-clears-2550/)*
