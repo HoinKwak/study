@@ -1,449 +1,785 @@
 {
-  "ts": "2026-08-30T17:00:00Z",
-  "tokens": [
-{"token":"PROLOGUE","chain":"Robinhood Chain(Uniswap, WETH페어)","ca":"0xb9972ca7188e511174947e3936a5315ac7073277","stage":"확산","kols":"","thesis":"58회차(2시간간격회차). h1 -26.28%→3.49%로진정됐다(급반전이후안정화). 유동성$579,035→$575,631(-0.6%,보합), h6-10.95%(음전), h24+65%→+72.37%로소폭재가속. 거래량$8,370,154로4회차연속1위(부모확정), 회전율14.54배, 풀나이13.0일·26개풀(불변).","risk":"변동성 극심 이력, 급반전 재발 경계, 유동성 보합"},
-{"token":"CATE","chain":"Solana(PumpSwap)","ca":"Ai66LHZG9MCzg1WKdawwqduVAXpNDUuV8M3uyq5ppump","stage":"뒷북","kols":"","thesis":"152회차째재확인(2시간간격회차). h1-4.88%→0.83%로양전전환·h6 0.81%→5.5%로가속·h24 2.64%→4.36%로소폭가속. 유동성$2,120,005→$2,133,348(+0.6%,유입전환), 회전율2.82배, 풀나이35.0일·30개풀(불변), 거래량2위($6,007,564).","risk":"대형화된 뒷북 토큰, 신규성 낮음"},
-{"token":"HOOKR","chain":"Robinhood Chain(Uniswap, ETH페어)","ca":"0x18E674231A58c239Dc7DaeDcffE15Ec3A24cff5c","stage":"뒷북","kols":"","thesis":"93회차(2시간간격회차). h1-10.55%→-8.23%로음전지속(낙폭소폭축소)·h6-4.38%→2.72%로양전전환·h24 77.34%→68.83%로둔화. 유동성$713,096→$740,249(+3.8%,유입,직전-2.1%유출에서전환), 회전율6.83배, 풀나이24.5일·21개풀, 거래량3위($5,059,479).","risk":"뒷북 단계, 이미 큰 폭 상승 반영 — 추격매수 위험"},
-{"token":"JUGGERNAUT","chain":"Robinhood Chain(Uniswap V3 1%)","ca":"0xD7321801CAae694090694Ff55A9323139F043B88","stage":"뒷북","kols":"Drallio(약한코로보,carryover)","thesis":"215회차(2시간간격회차). h1-5.71%→-12.18%로음전심화·h6-7.63%→-13.05%로재악화·h24-35.89%→-28.26%로소폭개선. 유동성$534,083→$537,405(+0.6%,유입전환,직전-8.8%유출). 풀수가17→16개로감소했다. h1체결236매수/167매도로매수우위인데가격은-12.18%다 — 관측사실로만기록한다.","risk":"뒷북, 풀 수 감소, 체결·가격 방향 불일치(매수 우위인데 하락)"},
-{"token":"CYBERLEEK","chain":"Solana(Raydium)","ca":"ApZuxdpzMrbEYTGEzeY9afh5pj9d6qPRJCTgQYiipbKg","stage":"확산","kols":"","thesis":"90회차(2시간간격회차). h1-2.06%→2.17%로양전전환·h6-6.24%→-11.1%로악화·h24-2.35%→-0.32%로개선(손익분기근접). 유동성$510,857→$517,420(+1.3%,유입전환), 회전율2.96배, 풀나이14.8일·18개풀. meteora풀-99.9%대이상치반복이력있어신뢰도경계지속.","risk":"meteora 풀 이상치 반복 이력, 신뢰도 경계 필요"},
-{"token":"CHUMP","chain":"Robinhood Chain(Uniswap V3 1%, WETH페어)","ca":"0x0E0d2C89a5a019FE1cF762e5e33187631DACC21B","stage":"확산","kols":"","thesis":"66회차(2시간간격회차). h1 3.45%→1.14%로양전지속(둔화)·h6-1.67%→-2.18%로음전지속·h24-5.09%→-13.8%로재악화. 유동성$539,183→$530,713(-1.6%,유출전환,직전+2.7%유입), 회전율2.82배, 풀나이30.6일·6개→5개풀로감소.","risk":"h24 재악화, 풀 수 감소, 방향 혼조 지속"},
-{"token":"FWA","chain":"Ethereum(Uniswap V4, WETH페어)","ca":"0xa0Df17B5aC76ABaBA36E1450E2cbCd18A620C845","stage":"뒷북","kols":"Cointelegraph·CryptoBriefing·KuCoin·PANews(carryover, 과거보도)","thesis":"232회차(2시간간격회차). h1 0.61%→4.39%로양전가속·h6 3.97%→1.92%로둔화(양전유지)·h24-19.96%→-11.59%로개선. 유동성$924,235→$925,737(+0.2%,보합), 회전율1.46배, 풀나이45.0일·5개풀. 장기KOL코로보(Cointelegraph등)는과거보도이며온체인상황과는무관(carryover).","risk":"h24 음전 지속, KOL 코로보는 과거 보도로 현재 상황과 무관"},
-{"token":"CC","chain":"Solana(PumpSwap)","ca":"E3i7sTY5QYEBh3itepnomZQt7Eh5kzmHFk1vkm2pump","stage":"확산","kols":"","thesis":"88회차(2시간간격회차). h1-6.43%→2.97%로양전전환. 다만h1체결은37매수/129매도로매도가3.5배우위인데가격은상승했다 — 관측사실로만기록한다. h6-26.35%→-19.91%로개선되나여전히음전·h24-11.55%→-36.1%로대폭악화. 유동성$140,679→$146,178(+3.9%,유입전환), 회전율7.89배, 풀나이18.6일·3개풀.","risk":"체결·가격 방향 불일치(매도 우위인데 상승), h24 대폭 악화"},
-{"token":"TOAD","chain":"Solana(PumpSwap)","ca":"A13oRB9FFaiUjfi6LdCg6p9ka1u8SfGkUFs4SKvPpump","stage":"뒷북","kols":"","thesis":"228회차(2시간간격회차). h1-7.09%→2.96%로양전전환·h6-7.3%→-8.22%로유사(음전지속)·h24-27.6%→-24.54%로소폭개선. 유동성$355,859→$359,342(+1.0%,유입전환), 회전율2.33배, 풀나이22.1일·22개→23개풀로증가. 반복반전(whipsaw)이력지속.","risk":"반복 반전(whipsaw) 이력 지속, h24 여전히 음전"},
-{"token":"BULLSHIT","chain":"Solana(PumpSwap)","ca":"zj1jpp7QMveWHLs61vL9KMZf254KvW7j4AAmBF8ry2k","stage":"뒷북","kols":"재확인 실패(WebSearch시도,carryover)","thesis":"109회차(2시간간격회차). h1-0.45%→-0.36%로음전지속(유사)·h6-1.6%→-3.1%로악화·h24-2.29%→-18.91%로대폭악화. 유동성$326,560→$321,870(-1.4%,유출전환,직전+1.1%유입), 회전율2.27배, 풀나이12.9일·12개풀. KOL재확인은이번회차도실패(WebSearch재시도,carryover).","risk":"h24 대폭 악화, 뒷북, KOL 재확인 실패 지속"},
-{"token":"GOOD","chain":"Robinhood Chain(Uniswap V3, WETH페어)","ca":"0x5f62c57e5c537887117eef828b7e3ad41c009feb","stage":"뒷북","kols":"","thesis":"94회차(2시간간격회차). h1 12.15%→0.13%로대폭둔화(양전유지)·h6 22.01%→18.94%로소폭둔화·h24 29.84%→23.92%로둔화. 유동성$730,088→$722,729(-1.0%,유출전환,직전+5.7%유입), 회전율0.93배, 풀나이24.6일·6개풀.","risk":"가속 이후 전반적 둔화, 유동성 유출 전환"},
-{"token":"PRINTER","chain":"Robinhood Chain(Uniswap V4 0.3%, USDG페어)","ca":"0x85a574f2fF0795685F58d1D7B0D4b51F148Ac489","stage":"뒷북","kols":"","thesis":"229회차(2시간간격회차). h1-7.71%→-3.33%로음전지속(낙폭축소)·h6-17.96%→-15.11%로유사(여전히음전)·h24-12.2%→-6.42%로개선. 유동성$516,741→$505,673(-2.1%,유출지속,직전-4.1%), 회전율0.56배, 풀나이15.6일·9개풀.","risk":"h6·h24 여전히 음전, 유동성 유출 지속"},
-{"token":"swappy","chain":"Robinhood Chain(Uniswap V4)","ca":"0x298348d5b2e45C774E3ee4f1a0924071DfbDC8C7","stage":"확산","kols":"","thesis":"91회차(2시간간격회차). h1 1.55%→3.31%로양전가속·h6-1.65%→1.29%로양전전환·h24 57.69%→67.06%로가속. 유동성$162,154→$169,921(+4.8%,유입전환,직전+0.4%보합), 회전율1.66배, 풀나이26.0일·3개풀.","risk":"h24 가속 지속, 소수풀 저분산 위험"},
-{"token":"CLOCKIN","chain":"Robinhood Chain(Uniswap)","ca":"0xA5be0eEb82a013Dc7867B9e020c36A69DA666666","stage":"조기","kols":"코로보 없음(정상,carryover)","thesis":"100회차재확인(2시간간격회차). h1-1.67%→3.5%로양전전환·h6-10.37%→-20.99%로대폭악화·h24 42.53%→50.39%로가속. 유동성$206,314→$207,361(+0.5%,유입전환), 회전율1.25배, 풀나이는100회차넘게미확인상태가지속되고있다·7개풀.","risk":"풀나이 100회차 넘게 미확인 지속, h6 대폭 악화"},
-{"token":"TIPANSEM","chain":"Solana(PumpSwap)","ca":"B5YTUMqSnwzztWHWmzAzHApeRy6cuGEx49Bidt4kuH8w","stage":"조기","kols":"","thesis":"86회차(2시간간격회차). h1-9.64%→10.6%로양전전환. 다만h1체결은73매수/201매도로매도가2.75배우위인데가격은상승했다 — 관측사실로만기록한다. h6-13.39%→1.18%로양전전환·h24 14.62%→43.53%로대폭가속. 유동성$59,332→$63,579(+7.2%,유입전환,직전-5.4%유출), 회전율3.2배, 풀나이10.1일·5개풀.","risk":"저유동, 체결·가격 방향 불일치(매도 우위인데 급등)"},
-{"token":"PANTS","chain":"Solana(PumpSwap, dogwifpants)","ca":"FtateF34Xzawa91bpbVNdX72hZYo9cymRDYqBreHHbJi","stage":"뒷북","kols":"","thesis":"80회차(2시간간격회차). ⭐이번회차최대낙폭 — h1 16.32%→-18.74%로급반전했다. 유동성도+10.7%→-13.0%(이번회차최대유출)로유입에서유출로전환됐다. h1체결은210매수/122매도로매수가1.7배우위인데가격은-18.74%였다 — 인과단정없이관측사실로만기록한다. h6 12.5%→-14.66%로재음전·h24-9.15%→-30.2%로대폭악화. 회전율1.95배, 풀나이11.3일·7개→8개풀.","risk":"이번 회차 최대 낙폭, 최대 유동성 유출, 체결·가격 방향 불일치(매수 우위인데 급락)"},
-{"token":"OBS","chain":"Robinhood Chain(Uniswap, WETH페어)","ca":"0xfe242d1Da8FD04f6A1F80B6D3d807B02e062Ad4E","stage":"조기","kols":"","thesis":"80회차(2시간간격회차). h1-15.52%→8.12%로반등(직전음전심화에서양전전환). 유동성$86,318→$91,682(+6.2%,유입전환,직전-4.8%유출), h6 5.73%→8.78%로소폭개선. h24 7.79%→28.29%로재가속. 회전율1.93배, 풀나이8.9일·7개→5개풀로감소.","risk":"저유동, 반등 지속성 관찰 필요"},
-{"token":"KIRK","chain":"Solana(PumpSwap, Official Charlie Kirk Coin)","ca":"8du34ohgGj2ikZVTGZNwHbNbqX8b8AHGFANf6qmopump","stage":"확산","kols":"","thesis":"78회차째재확인(2시간간격회차). h1 0.08%→1.19%로양전지속(소폭가속)·h6 27.24%→33.24%로가속·h24 64.25%→84.61%로대폭가속. 유동성$138,515→$146,870(+6.0%,유입지속,직전+9.5%), 회전율1.01배, 풀나이10.2일·3개→2개풀로감소.","risk":"저유동, h6·h24 급가속 — 과열 경계, 풀 수 감소"},
-{"token":"CONK","chain":"Solana(Raydium)","ca":"DShht9B8wCRe5t3oqdPB77PnjJbKxbYaZyuWpZQjbonk","stage":"확산","kols":"","thesis":"75회차(2시간간격회차). ⭐이번회차최대상승 — h1-1.21%→24.76%로급등했다. 유동성도-2.6%→+10.6%(이번회차최대유입)로유출에서유입으로전환됐다. h1체결은100매수/83매도로매수우위이며h24는-22.4%→-9.91%로개선됐으나아직마이너스다. h6 6.21%→-0.17%로둔화. 회전율1.23배, 풀나이9.0일·6개풀.","risk":"이번 회차 최대 상승, 최대 유동성 유입, h24 여전히 마이너스"},
-{"token":"PITCOIN","chain":"Solana(PumpSwap)","ca":"G1iBvjhZ9wpGUZdQcvhRSqjow3x6xetsnmEBBMm1pump","stage":"뒷북","kols":"","thesis":"182회차(2시간간격회차). h1 1.1%→3.16%로양전지속(가속)·h6-2.09%→-1.27%로음전지속(개선)·h24-8.64%→5.76%로재양전. 유동성$51,138→$52,828(+3.3%,유입지속,직전+0.9%), 회전율1.76배, 풀나이18.0일·3개풀.","risk":"저유동, 신규성 낮음"},
-{"token":"omo","chain":"Solana(PumpSwap)","ca":"94Sm8joZMSRzpQmcNVn5zZpgnRLN2DBesJYDXwuNpump","stage":"확산","kols":"","thesis":"62회차(2시간간격회차). h1 6.93%→2.16%로둔화(양전유지)·h6 11.14%→19.37%로가속·h24-16.95%→-10.47%로개선. 유동성$70,666→$70,972(+0.4%,보합,직전+4.3%유입), 회전율1.25배, 풀나이20.6일·9개→7개풀로감소.","risk":"h24 여전히 큰 폭 음전, 풀 수 감소"},
-{"token":"MAPLE","chain":"Solana(PumpSwap)","ca":"DLhzqAWwE2YkPLdYvvWNMZ71vxZJQD2FByMfWFHppump","stage":"조기","kols":"","thesis":"74회차(2시간간격회차). h1-3.02%→-1.17%로음전지속(낙폭축소)·h6-13.02%→-29.47%로대폭악화·h24-46.92%→-43.24%로유사(극단음전고착). 유동성$28,091→$27,040(-3.7%,유출지속,직전-2.6%), 회전율2.67배, 풀나이9.3일·단일풀.","risk":"단일풀, h6 대폭 악화, 극단 음전 고착"},
-{"token":"CALLOOOR","chain":"Solana(PumpSwap)","ca":"A48KeWUuiDSdRQBqAFssgyYATDuBv7cer54V2JSDpump","stage":"뒷북","kols":"","thesis":"178회차(2시간간격회차). h1 4.48%→-3.5%로음전전환·h6 6.75%→4.08%로둔화(양전유지)·h24-7.99%→-18.49%로재악화. 유동성$68,064→$67,181(-1.3%,유출전환,직전+2.1%유입), 회전율0.9배, 풀나이17.9일·6개풀.","risk":"h24 재악화, 방향 전환"},
-{"token":"Z500","chain":"Solana(PumpSwap)","ca":"7fDdLy2rmQKsPCkqUXEd1mN7yDfEzArc4VrctWmfkJBK","stage":"확산","kols":"","thesis":"80회차(2시간간격회차). h1 0.7%→-2.65%로음전전환·h6 0.53%→0.3%로유사(양전유지)·h24 13.5%→11.08%로소폭둔화. 유동성$60,317→$59,167(-1.9%,유출전환,직전+1.9%유입), 회전율0.97배, 풀나이13.0일·8개풀.","risk":"저유동, 변동성 큼"},
-{"token":"Doge2","chain":"Solana(PumpSwap)","ca":"EjAuFtMEP6LQDgLb11JU9bkcskhFYbgd9Q5NRXJppump","stage":"뒷북","kols":"","thesis":"73회차(2시간간격회차). h1-4.09%→-7.29%로음전심화·h6-5.23%→0.11%로양전전환·h24-9.05%→-18.93%로대폭악화. 유동성$47,726→$49,087(+2.9%,유입지속,직전+1.7%), 회전율1.14배, 풀나이8.5일·2개풀.","risk":"h24 대폭 악화, 저유동"},
-{"token":"lickingcat","chain":"Solana(PumpSwap)","ca":"EjD5Y9NVhXmtEqU7wYvAyZvDWZFQeEuHXFatJmTbpump","stage":"뒷북","kols":"","thesis":"220회차(2시간간격회차). h1 7.13%→5.61%로양전지속(둔화)·h6 5.45%→1.92%로둔화(양전유지)·h24 7.11%→6.98%로유사. 유동성$35,417→$34,818(-1.7%,유출전환,직전+7.8%유입), 회전율0.94배, 풀나이22.2일·3개풀.","risk":"뒷북, 소규모, 유동성 유출 전환"},
-{"token":"Dealer","chain":"Solana(PumpSwap)","ca":"6f8ZQhxqfigdv7UszZ1rirbV7Sgv83s3rxv1N2Zopump","stage":"뒷북","kols":"","thesis":"220회차(2시간간격회차). h1-0.67%→-0.81%로음전지속(유사)·h6-13.57%→-12.6%로유사(여전히악화상태)·h24 14.81%→9.91%로둔화. 유동성$81,538→$80,583(-1.2%,유출지속,직전-1.6%). vol24 $30,098·회전율0.37배로거래희박, 풀나이24.8일·2개풀.","risk":"거래 희박, 뒷북 단계"},
-{"token":"BARRON","chain":"Solana(Raydium)","ca":"ECY31gWwxy4s2VnMkYhmqDkrV75KrwR2yTtsnrnSpump","stage":"뒷북","kols":"","thesis":"66회차째재확인(2시간간격회차). h1-0.08%→-1.64%로음전심화·h6 0.47%→0.05%로둔화(양전유지)·h24-5.28%→1.11%로재양전. 유동성$238,975→$236,991(-0.8%,유출전환,직전+1.6%유입), 회전율0.08배, 풀나이587.7일(목록최고령)·14개→13개풀로소폭감소.","risk":"신규성 없음, 최고령 풀"},
-{"token":"BRODIE","chain":"Robinhood Chain(Uniswap V3, Robinhood Dog)","ca":"0x45F82AC5d507e988f7406935da8eEfe495a360e0","stage":"뒷북","kols":"","thesis":"191회차(2시간간격회차). 붕괴가재개됐다 — h1-3.42%→-13.6%로재악화. 유동성$30,309→$26,651(-12.1%,재유출심화,직전-5.5%)이고h6도-7.02%→-40.43%로재악화됐다. h24-87.97%로여전히극단음전, 회전율17.11배. h1체결은33매수/24매도로또매수우위인데하락했다 — 관측사실로만기록하며회복으로단정하지않는다.","risk":"🔴최고위험 유지 — 붕괴 재개, 재유출 심화, h24 -88%대 여전히 극단 음전"},
-{"token":"1B","chain":"Robinhood Chain(Uniswap, WETH페어)","ca":"0x0977FA2139B773732Da455926660b3D22C8CaB7F","stage":"조기","kols":"","thesis":"78회차(2시간간격회차). h1 17.22%→2.52%로대폭둔화(양전유지, 직전회차최대상승이었음). 유동성$18,498→$18,460(-0.2%,보합,직전+12.2%최대유입에서전환). h6 17.28%→22.64%로가속·h24-3.48%→-6.82%로재악화. 회전율0.54배, 풀나이8.8일·8개풀, 저유동종목이다.","risk":"극저유동, 소수 체결 기반 변동 이력"},
-{"token":"CLUG","chain":"Solana(PumpSwap)","ca":"7g2xyrq9Fk1TvFiqqcmLJAQ9jAtfHobmrdzzM9Dp2SpV","stage":"조기","kols":"","thesis":"110회차재확인(2시간간격회차). h1-1.75%→-1.79%로음전지속(사실상불변)·h6 14.81%→-2.24%로음전전환(대폭악화)·h24-6.87%→-11.03%로재악화. 유동성$17,778→$17,283(-2.8%,유출전환,직전+1.1%유입), 회전율0.57배, 풀나이11.6일·단일풀.","risk":"단일풀, 극저유동, h6 대폭 악화"},
-{"token":"Dinger","chain":"Solana(PumpSwap, Schrödinger)","ca":"3kvZYBrBPEySFwQfXZGEvJSeMWRa6BkTS34suBEYpump","stage":"뒷북","kols":"","thesis":"63회차(2시간간격회차). h1 0.63%→0.69%로유사(양전유지)·h6 5.77%→4.15%로둔화(양전유지)·h24-8.23%→-8.15%로유사. 유동성$21,274→$21,095(-0.8%,유출전환,직전+1.1%유입), 회전율0.28배, 풀나이7.6일·2개풀.","risk":"저유동, 거래 희박"},
-{"token":"YOMOGI","chain":"Solana(PumpSwap)","ca":"4978aTN9W3CDuUREGxAQaBYqhPXt8142N4o4Sfgzpump","stage":"뒷북","kols":"","thesis":"65회차재확인(2시간간격회차). h1-2.91%→-5.27%로음전심화·h6 8.5%→-8.36%로음전전환(대폭악화)·h24-0.45%→-17.87%로재악화(대폭). 유동성$19,243→$18,502(-3.9%,유출전환,직전+0.8%유입), 회전율0.32배, 풀나이7.7일·단일풀.","risk":"단일풀, 저유동, h6·h24 동반 대폭 악화"},
-{"token":"DPG","chain":"Solana(PumpSwap)","ca":"LFEJTxJ9yi6ojGDFpjbGfABLbH55Fc3oEK8syJJpump","stage":"뒷북","kols":"","thesis":"80회차(2시간간격회차). ⭐⭐이번회차최대사건 — 거래가사실상멈췄다. vol24가$97,187→$3,316(약-96.6%)로급감했고회전율도6.22배→0.21배로붕괴했다. h24는-61.14%→14.26%로양전전환됐으나이는24시간창에서과거급락분이빠져나간결과로보이며회복으로해석하지않는다. h1체결은3건(매수2/매도1)뿐이다. 유동성$15,613→$15,701(+0.6%,보합), 단일풀·유동성$15,701. h1 -3.88%→0.13%·h6 16.75%→16.74%로거의불변.","risk":"🔴최고위험 — 거래사실상정지(체결3건뿐), h24양전은회복아님, 단일풀 극저유동"},
-{"token":"PEPECOIN","chain":"Robinhood Chain(Uniswap V3, WETH페어)","ca":"0x0b9606fb048a14d8381e9b97d00a78b4f4c66241","stage":"조기","kols":"","thesis":"88회차(2시간간격회차). h1 8.72%→4.87%로둔화(양전유지). 유동성은$14,131→$15,082(+6.7%,직전-13.9%최대유출에서유입으로전환)이나여전히극저유동이다. h6-24.57%→-36.33%로재악화·h24-35.64%→5.95%로재양전(대폭개선). 회전율1.8배, 풀나이21.0일·3개풀.","risk":"극저유동, h6 재악화, 2위 풀 이상치 이력(인용 제외)"},
-{"token":"FLUSH","chain":"Robinhood Chain(Uniswap, WETH페어)","ca":"0xDb99d819e93B06Ed83A17c01Fed2B7dcA5774Bbb","stage":"조기","kols":"","thesis":"76회차재확인(2시간간격회차). h1은이번회차체결이정확히0건이라거래부재로변동률이산출되지않았다(PEE와동일사유,둘다0건). h6-1.29%→-0.9%로개선·h24-3.87%→-7.83%로악화. 유동성$14,011→$13,752(-1.8%,유출전환,직전+0.2%보합), vol24 $3,082로거래극희박, 풀나이8.7일·3개풀.","risk":"극저유동·거래 부재(0건), 소수풀"},
-{"token":"Truth Coin","chain":"Solana(PumpSwap)","ca":"BaBeW6hdxDSenERN6JcxLY9v27YnZqaAQYWuscUjpump","stage":"뒷북","kols":"","thesis":"67회차(2시간간격회차). h1 0.6%→0.51%로유사(양전유지)·h6 3.24%→-3.01%로음전전환·h24-28.66%→-22.84%로소폭개선. 유동성$8,372→$8,331(-0.5%,유출전환,직전+0.3%보합), vol24 $1,680로거래희박, 풀나이8.1일·단일풀. 로빈후드체인의동명이인'Truth Coin'(notable,완전소멸)과는별개.","risk":"극저유동·거래희박, 단일풀"},
-{"token":"LIZARD","chain":"Solana(PumpSwap)","ca":"2hXHY3DnN7HUGySZEmBsLFKSqLB8nj3aE8wwq44wpump","stage":"조기","kols":"","thesis":"69회차(2시간간격회차). 직전회차엔체결이2건(매수1/매도1)뿐이라h1변동률이미산출이었으나이번회차는-1.2%로정상산출됐다. h6-1.69%→-2.36%로유사(음전지속)·h24-13.7%→-16.15%로소폭악화. 유동성$12,067→$11,914(-1.3%,유출전환,직전+0.6%유입), 회전율0.14배, 풀나이8.7일·2개풀.","risk":"저유동, 2위 풀 극단변동률 이력 — 인용 제외, 이상징후로만 기록"},
-{"token":"CYBERCAT","chain":"Solana(PumpSwap)","ca":"9HHTQ7YMx82E987cNqF9KczyZrfKgqvKNyA2yHSVpump","stage":"조기","kols":"","thesis":"59회차재확인(2시간간격회차). h1 1.12%→-0.07%로음전전환(사실상보합)·h6-2.01%→-1.44%로유사(음전지속)·h24-22.68%→-19.85%로소폭개선. 유동성$8,952→$8,965(+0.1%,보합,직전+1.7%유입), 회전율0.16배, 풀나이7.1일·2개풀.","risk":"극저유동, 거래 희박 지속"},
-{"token":"MANEKI","chain":"Robinhood Chain(SushiSwap V3 1%, WETH페어)","ca":"0x00eB2583F442d35473Bed8801Efb01C82D84C149","stage":"조기","kols":"","thesis":"62회차재확인(2시간간격회차). h1 0.46%→-0.52%로음전전환(사실상보합)·h6-1.79%→-5.09%로악화·h24 9.39%→7.34%로소폭둔화. 유동성$12,146→$11,906(-2.0%,유출전환,직전+0.5%유입), vol24 $1,107로거래희박, 풀나이10.0일·2개풀.","risk":"저유동·저거래, 소수풀"},
-{"token":"40M","chain":"Solana(PumpSwap)","ca":"ELbFy4v8vzJHjvmqCDw7CEzsYuN9TGkBt7Kz9Kawpump","stage":"조기","kols":"","thesis":"73회차재확인(2시간간격회차). h1 1.96%→0.52%로둔화(양전유지)·h6-2.77%→1.09%로양전전환·h24-9.81%→-9.2%로소폭개선. 유동성$8,821→$8,711(-1.2%,유출전환,직전+1.9%유입), vol24 $864로거래희박, 풀나이8.9일·3개풀.","risk":"극저유동·거래희박"},
-{"token":"PEE","chain":"Solana(PumpSwap)","ca":"2mG7vDMrZYFyFS2bz3AsrJizFoiAYurY5kc4MPqfpump","stage":"조기","kols":"","thesis":"115회차재확인(2시간간격회차). h1은이번회차도체결이정확히0건이라거래부재로변동률미산출이다(FLUSH와동일사유,둘다0건). h6-3.9%→1.16%로양전전환·h24 1.01%→2.02%로소폭확대(양전유지). 유동성$6,706→$6,781(+1.1%,유입전환,직전+0.0%보합), vol24 $383로거래극희박, 풀나이11.8일·단일풀.","risk":"극저유동·극저거래, 단일풀"}
-  ],
-  "notable": [
-    {
-      "token": "TRUTH",
-      "status": "⭐⭐⭐편출(러그확정, 2026-08-26 21:05Z부로 활성목록에서 notable로 이관) — 직전회차(19:05Z) '유동성+40.9%대규모유입,h24+96.76%'로 기록한 바로 그 풀이 2시간 만에 완전 붕괴",
-      "summary": "Robinhood Chain(Uniswap V2, WETH페어). CA 0x2ec5cc87c9a3231bffbbf788ca9182ebd1d64fc4(추적풀 0x256c0e2c8B, 풀교체없음·동일풀). 2026-08-26 21:05Z 부모계측: 유동성$104,890→$0(완전소멸), 가격h1·h6·h24전부-100%(h24기준 약$0.000082→약$0.0000000000637, 약-99.99%), vol24 $589,720(빠져나가는거래만잔존). 이번회차 '유동성$5K이상페어0건'으로계측실패처리됨(러그로판정). 2차소스교차확인: GeckoTerminal도가격$0.0000000000582로붕괴확인했으나 total_reserve_in_usd는$42,234로DexScreener의$0과상이 — 두소스불일치를그대로정직기록(DS기준추적풀유동성$0을채택). ⭐⭐⭐관찰기록(패턴,통계적확증아님·n=4): 직전회차'유동성+40.9%대규모유입+가격h24+96.76%폭등+회전율11.55배→0.66배급락'조합을'워시트레이딩의심→신생풀극단변동성리스크'로재평가했으나, 결과적으로그유동성유입·가격폭등·회전율붕괴조합이러그약2시간전마지막국면이었다. MAPLE도유사패턴('유동성유출+가격상승'경계표기후전면붕괴)으로재확인됐으나MAPLE은이후여러회차째h1이반복반전하며V자반등을거듭하는형태로TRUTH(러그확정)와는다른경로로전개돼왔다. 동일경계신호가러그로도, 반복평균회귀로도이어질수있어예측력이제한적임을계속기록한다. ⚠️8/30 07:00Z회차추가기록: JUGGERNAUT이h1+19.93%로이번회차최대상승(유동성+15.9%,이번회차최대유입)을기록했다. ⚠️8/30 09:00Z회차추가기록: JUGGERNAUT은한회차만에h1+19.93%→-23.7%로정반대반전됐고유동성도+15.9%유입→-15.2%유출로반전됐다(체결은h1매수우위인데가격은급락해방향이어긋났다). BRODIE는h1낙폭이-26.95%로재개되고유동성유출도이번회차최대(-25.1%)를기록했다(체결도매수우위인데급락). 이번회차'유동성유입/유출과가격방향이체결우위와어긋나는사례'가JUGGERNAUT·BRODIE두건동시관측됐다는사실만기록하며인과단정은하지않는다. ⚠️8/30 11:00Z회차추가기록: JUGGERNAUT은h1-23.7%→-0.81%·유동성-15.2%→+0.6%로진정됐다. BRODIE는h1+49.51%로반등했으나이번이세번째소강국면(8/29 21:00Z·23:00Z에도유사반등뒤재붕괴전례)이라회복단정은하지않는다. PROLOGUE는거래량1위($6,413,056)를기록하며h24가+224%→+234%로계속가속중이고, PROLOGUE·CONK모두이번회차'가격상승인데h1체결은매도우위'조합을보였다(인과단정안함). ⭐⭐8/30 13:00Z회차추가기록: BRODIE의세번째소강국면이한회차만에끝나고붕괴가재개됐다(h1+49.51%→-18.37%이번회차최대낙폭, 유동성$35,368→$32,074재유출, 풀수9→7개). JUGGERNAUT은표면h1+4.87%반등과달리h6가-10.95%→-41.19%로급격악화됐다. PROLOGUE는2회차연속거래량1위를기록했으나h24가+234%→+169%로축소됐다(24h창이동에따른아티팩트로추정). CC(h1체결매수2.7배우위인데-15.54%급락)·CATE(h1체결매도우위인데+7.54%상승)에서체결·가격방향불일치가동시관측됐다. ⭐⭐8/30 15:00Z회차추가기록: PROLOGUE는h1+12.11%→-26.28%로이번회차최대낙폭을기록하고유동성도유입에서유출로전환됐으나거래량은3회차연속1위를유지했다(체결은매수1.6배우위인데가격은급락). BRODIE는낙폭이-18.37%→-3.42%로줄었으나유동성재유출이이어져회복단정은하지않는다. JUGGERNAUT은h24가-20.66%→-35.89%로2회차연속악화됐다. ⭐⭐8/30 17:00Z회차추가기록: DPG의거래가사실상멈췄다(vol24 $97,187→$3,316,약-96.6%,회전율6.22배→0.21배). h24는-61.14%→14.26%로양전전환됐으나24시간창에서과거급락분이빠져나간아티팩트로추정되며회복으로해석하지않는다. PANTS는h1+16.32%→-18.74%로이번회차최대낙폭(체결매수우위인데급락), CONK는h1-1.21%→24.76%로이번회차최대상승(체결매수우위,유동성최대유입)을기록했다. BRODIE는붕괴가재개돼h1-3.42%→-13.6%·유동성재유출심화(-12.1%)·h6-40.43%로재악화됐다(또매수우위인데하락)."
-    },
-    {
-      "token": "CATALORIAN",
-      "status": "편출(제외, 2026-08-26 13:05Z부로 활성목록에서 notable로 이관) — 유동성$20K미만+h24 -93.04%로 31회차째'거의완전소멸'상태가지속·악화돼편출",
-      "summary": "Solana(PumpSwap). CA 4cvZwC17oMiUA7peKX5GhbaUWv4U5Lwrd8118xnFpump. 2026-08-26 13:05Z 부모계측치: 유동성$7,020.34→$6,295(-10.3%,유출지속,20K미만), h1+4.95%→-12.99%(재음전,대폭반전), h6+2.88%→-6.11%(재음전,대폭반전), h24-91.27%→-93.04%(악화,고착). 회전율14.55배,풀나이3.1일(2026-08-23생성). 31회차간'여전히거의완전소멸'로기록된끝에실질적붕괴가지속·악화확인돼편출한다. 재편입은유동성이유의미하게($20K이상)회복될때재검토. 이번회차는개별재조회보류(carryover)"
-    },
-    {
-      "token": "Truth Coin",
-      "status": "notable유지(2026-08-23 09:00Z부로 편출된 사실상완전소멸 토큰, 이번회차개별재조회는보류) — Robinhood Chain CA 0xa48a58514a4bf47849c8bdc227f109af54cb1bb4",
-      "summary": "Robinhood Chain(Uniswap V2, WETH페어). 직전확정값(reserve$78,h24-94.41%) 유지(carryover). 초저유동+초고거래량조합은워시트레이딩/조작아티팩트로해석. 신규진입절대금지, TRUTH(0x2ec5cc87…,러그확정)·Truth Coin(Solana, BaBeW6hd…, tokens에서추적중)와는완전히별개의죽은토큰"
-    },
-    {
-      "token": "WINNING",
-      "status": "편출(제외, 2026-08-23 19:00Z부로 활성목록에서 notable로 이관) — 소멸단계지속",
-      "summary": "Solana(PumpSwap, Trump's Winning Coin — 공식TRUMP과별개파생토큰). CA FW6R4QQeP4fzqRwDHbBkpjHx3ecvYwhd5g7chKg8pump. 직전확정값(reserve$5,223, h24-99.54%) 유지. 사실상소멸단계지속확인"
-    },
-    {
-      "token": "Remus",
-      "status": "편출(제외, 2026-08-20 11:00Z부로 활성목록에서 notable로 이관) — 127회차 장기추적 동안 뚜렷한 촉매·서사 없이 소규모 등락만 반복돼 활성추적 실익이 낮다고 판단해 편출",
-      "summary": "Solana(PumpSwap). CA 23e4CNuJxvBQ7RjNLc8Bh3yN3pQq6jeiTbyzJGXYPgme. 최종확정값(2026-08-20 11:00Z) 유지(carryover). 127회차 동안 유동성$40K~$60K대 박스권을 벗어나지 못해 편출"
-    },
-    {
-      "token": "NIUNAI",
-      "status": "편출(제외, 2026-08-19 11:00Z부로 활성목록에서 notable로 이관, 러그/유동성거의완전소멸 확인)",
-      "summary": "Solana(PumpSwap). CA H9fikySbqRei3wxMdjtW9GHTdp8r8h4SZma2dsUwpump. 최종확정값(carryover). BABYSHIB과유사한'급팽창후급붕괴'패턴재현사례. 재편입금지지시유지"
-    },
-    {
-      "token": "HEREBRO",
-      "status": "편출(제외, 2026-08-19 05:00Z부로 활성목록에서 notable로 이관, 러그/유동성소멸 확인)",
-      "summary": "Solana(PumpSwap). CA 6H5TvgSQ3wKP7mSP8BCM15x1MnRq4FKNg4bLR1TFpump. 풀생성1~2분만에편입한사상최조기관측이었으나정확히2시간뒤완전소멸(carryover)"
-    },
-    {
-      "token": "P400",
-      "status": "편출(제외, 2026-08-18 05:00Z부로 활성목록에서 notable로 이관, 러그/유동성소멸 확인) — 조기편입 2시간 만에 유동성이 사실상 0으로 소멸",
-      "summary": "Solana(PumpSwap). CA aWxiLPtAaF42sub8WTwS3DVDUjVU7yUaR4bjinWzr3u. 2026-08-18 03:00Z 편입 후 정확히 2시간 뒤(05:00Z) 유동성 완전소멸(carryover)"
-    },
-    {
-      "token": "MOONCOIN",
-      "status": "편출(제외, 2026-08-22 21:00Z부로 활성목록에서 notable로 이관, 완전소멸/러그확정)",
-      "summary": "Robinhood Chain(Uniswap V2, WETH페어). CA 0x82DA7C5D756210ec89d139Defd430549018dC68d. 유동성이 세 소스 모두에서 사실상 0으로 수렴해 편출(carryover)"
-    },
-    {
-      "token": "BLINK",
-      "status": "편출(제외, 2026-08-17 15:00Z부로 활성목록에서 notable로 이관)",
-      "summary": "Robinhood Chain(Uniswap V3, pools.trade). CA 0x6e31e066aa531bcb11133b4e7fe95a1a1ed50daa. 5회연속유동성유출+전방위급반전악화가겹쳐편출(carryover)"
-    },
-    {
-      "token": "ROBBIE",
-      "status": "편출(제외, 2026-08-17 13:30Z부로 활성목록에서 notable로 이관)",
-      "summary": "Robinhood Chain(Uniswap, WETH페어). CA 0xe0eba1b76b73be7bfa7716b6ca96f724930e2263. 4회연속유동성유출확인돼편출(carryover)"
-    },
-    {
-      "token": "BABYSHIB",
-      "status": "편출(제외, 2026-08-15 21:00Z부로 활성목록 종료) — 유동성 임계선 붕괴로 종료, 기록보존용 항목",
-      "summary": "CA 5nZMRLSFnA3oWXXswKyyaW5or2FFy34tkTUhtkWPpump(Solana/PumpSwap). 유동성이 임계선($20,000) 아래로 붕괴해 편출됐다(carryover, 기록보존용)"
-    },
-    {
-      "token": "MANCER",
-      "status": "편출(제외, 2026-08-16 19:00Z부로 활성목록에서 notable로 이관)",
-      "summary": "Robinhood Chain(Uniswap V3 1%). CA 0xc72F232a6869e6CF34dC06129AfFD07F8a2a246A. 65회차연속추적동안유의미한반등신호없이지속악화만확인돼편출(carryover)"
-    },
-    {
-      "token": "CASHCAT",
-      "status": "58회차 — carryover유지(이번회차개별재조회는보류)",
-      "summary": "Robinhood Chain 밈코인 메인풀(Uniswap V3 0.3%/1%, 베이스토큰CA 0x020bfC650A365f8BB26819deAAbF3E21291018b4). 직전(2026-08-26 11:00Z) GT트렌딩확정치(carryover) 유지: '1%'풀 reserve$5,254,549.69·h24+10.319%, '0.3%'풀 reserve$2,259,822.38·h24+8.375%. WebSearch로'pump.fun이 로빈후드체인 토큰거래 지원 추가, CASHCAT 밈코인 열풍이 계기'라는 The Defiant 보도 기존 확인(carryover)"
-    },
-    {
-      "token": "Momota",
-      "status": "편출(제외, 2026-08-17 09:00Z부로 활성목록에서 notable로 이관)",
-      "summary": "Solana(PumpSwap/Meteora/Raydium). CA CrJPSvj625TnPdWS42aG5ybMcHeFvnNqq5AExVespump. PumpSwap기준유동성2회연속유출+h24추가악화가확인돼편출(carryover)"
-    },
-    {
-      "token": "STONKBANKERS",
-      "status": "최종판정: 폐기(편입승격보류확정, carryover 유지)",
-      "summary": "0x266cadaa626fed5ad50dade0a95084f3b86f1a68940a3283b2262c8e2d6cf14a(robinhood). 이전확정값유지(정직표기, 이후회차재조회보류). 활성목록(tokens)에는편입하지않는다"
-    },
-    {
-      "token": "TUT",
-      "status": "carryover 유지 — 개별 재확인은 우선순위상 보류. 여전히 거래소상장이벤트중심 서사라 활성편입은 하지않는다",
-      "summary": "WebSearch로 확인: TUT(Tutorial)가 8/6 Aster DEX 무기한선물 상장을 계기로 급등해 8/10 사상최고가$0.2423를 찍고 이후 42% 되돌린 것으로 보도됨(DailyCoin, carryover). 활성목록(tokens) 편입은 하지 않는다"
-    },
-    {
-      "token": "STONKBROKER",
-      "status": "16회차재확인 — carryover유지(이번회차개별재조회는보류)",
-      "summary": "Robinhood Chain. pool 0xd33c8fd38b06e989cdbd4dffdefab71c4bdd415b24964c8d69e38ff35b068f92, CA 0xe934e36a439c94017b64a3fece66af12099abf50. 직전(2026-08-26 11:00Z) GT트렌딩확정치(carryover) 유지: reserve$5,217,495.01, h24-3.445%"
-    },
-    {
-      "token": "PONS",
-      "status": "⭐CA확정상태 유지 — carryover(이번회차개별재조회는보류)",
-      "summary": "Robinhood Chain(Uniswap 1%, WETH페어). CA: 0x39dBED3a2bd333467115De45665cC57F813C4571(pool 0x10CC6BD38112cAc182db90B6a71d8Bb5939526bA). 직전(2026-08-26 11:00Z) GT트렌딩확정치(carryover) 유지: reserve$2,288,794.23, h24+41.90%. USDG페어0.3%풀도carryover. tokens편입검토는다음회차이후"
-    },
-    {
-      "token": "TENDIES",
-      "status": "carryover, 재조회 계속 보류(동명토큰다수, 매칭불확실 이력)",
-      "summary": "2026-08-10T12:06Z 시점 확정값(작은풀,개별재조회보류,carryover) 유지. 큰풀(별개): pool 0x237609918f330add285b8bc5f8f2922283d1c4c5, CA 0x45242320dbb855eea8fd36804c6487e10e97fcf9. 직전(2026-08-25 19:00Z)GT확정치(reserve$711,059.25) 유지. 매칭혼선경계유지"
-    },
-    {
-      "token": "STONK",
-      "status": "안정유지(carryover, 재조회 계속 보류)",
-      "summary": "직전 확정값 Raydium CLMM풀기준 유동성$416,556.27(+39.4%), h1-5.04%·h6+12.57%·h24+24.92%, 시가총액$8,682,113(+2.7%). 우선추적과제 처리로 재조회 계속 생략"
-    },
-    {
-      "token": "TYGR",
-      "status": "소폭개선(carryover, 재조회 계속 보류)",
-      "summary": "직전 확정값 h1·h6 재양전(+0.58%·+1.44%), h24 개선(-19.08%). 우선추적과제 처리로 재조회 계속 생략"
-    },
-    {
-      "token": "KIO",
-      "status": "안정화지속(carryover, 재조회 계속 보류)",
-      "summary": "직전 확정값 h24 낙폭 대폭축소(-7.26%)로 안정화 흐름 확인. 우선추적과제 처리로 재조회 계속 생략"
-    },
-    {
-      "token": "NASDANQ",
-      "status": "⭐저유동탈피확정 — carryover(이번회차개별재조회는보류)",
-      "summary": "Robinhood Chain(Uniswap V4 1%). pool/CA 0xdb1b57704d5122058ff925c1e765c17b21d065ec. 직전(2026-08-26 11:00Z) GT트렌딩확정치(carryover) 유지: reserve$172,036.93(+83.4%,$100K대최초돌파), h24+337.162%(대폭가속). 저유동탈피조짐확정, tokens편입후보로격상검토 대상"
-    },
-    {
-      "token": "PIPEDOG",
-      "status": "carryover, 재조회 계속 보류",
-      "summary": "2026-08-11 20:06Z 확정값(유동성$10,179,680.41, $10M대유지) 유지. 우선추적과제 처리로 개별 재조회는 계속 생략"
-    },
-    {
-      "token": "HOODRAT",
-      "status": "carryover유지(이번회차개별재조회는보류)",
-      "summary": "CA: 0x8e62f281f282686fca6dcb39288069a93fc23f1c(pool 0x451c0da3b774045a822a129eedcc5c667dcbfdd8). 직전(2026-08-26 11:00Z) GT확정치(carryover) 유지: reserve$406,269.35, h24-23.562%. CA확정상태유지, tokens편입검토는다음회차이후"
-    },
-    {
-      "token": "ANSEM",
-      "status": "carryover유지(이번회차개별재조회는보류) — 직전값유지",
-      "summary": "Solana(PumpSwap). CA 9cRCn9rGT8V2imeM2BaKs13yhMEais3ruM3rPvTGpump. 직전(2026-08-26 11:00Z) GT솔라나트렌딩확정치(carryover) 유지: reserve$1,955,307.26, h1+0.48%·h6+13.74%·h24+11.16%. 유사명계열파생종목(ANSEMBULL·ANSEMSZN)은워시트레이딩·러그의심으로배제유지"
-    },
-    {
-      "token": "CATSZN",
-      "status": "신규발견,편입보류(동명다수풀 문제 지속) — 이번회차도GT솔라나트렌딩상위20위밖으로재노출안됨",
-      "summary": "Solana. 5개baseToken주소(carryover, 08-23 05:00Z 확정치) 유지. HOODRAT·BTW·LIZARD와유사한티커충돌위험사례로기록만하고편입은계속보류한다"
-    },
-    {
-      "token": "Dinger(구형·별개CA)",
-      "status": "carryover유지(이번회차개별재조회는보류)",
-      "summary": "GT솔라나트렌딩(2026-08-26 11:00Z, 14위) 확정치(carryover) 유지: pool FvsZohWNdVpSDQk4gCyU9YrkLRsfeEpSmzVUSQsjDaxG, reserve$33,988.03, h24-42.80%(여전히극단음전). 우리가 추적중인 'Dinger'(CA 3kvZYBrBPEySFwQfXZGEvJSeMWRa6BkTS34suBEYpump)와는 동명이인인 별개의 오래된 'Dinger' 풀(baseToken CA 7fmHqRpJLgpVsJFTvrv24CEjkz9c4o5uVX4Zdur1hz35)"
-    },
-    {
-      "token": "TRUMPCATE",
-      "status": "신규발견,편입보류(유동성 과소, 이번회차GT트렌딩미노출)",
-      "summary": "2026-08-23 17:00Z GT솔라나 트렌딩 확정치(carryover) 유지. 유동성이 너무 낮아 편입 보류"
-    },
-    {
-      "token": "BABYCATE",
-      "status": "carryover유지(이번회차개별재조회는보류) — 직전대폭반전값유지",
-      "summary": "Solana(PumpSwap). CA `DDVUsN8sDFxbaX6gNBoD44kjZhFETWJnwAn4EX1dpump`(Baby Catecoin). 직전(2026-08-25 05:00Z)확정값(liquidity$32,241.06,h24+117%) 유지(carryover). CATSZN·TRUMPCATE·CATALORIAN·CYBERCAT·CATLIST와같은'Cate패밀리/고양이밈'계열파생밈코인"
-    },
-    {
-      "token": "PEPE(로빈후드체인, 별개토큰)",
-      "status": "carryover유지(이번회차개별재조회는보류)",
-      "summary": "CA: 0xcdcabf520be369123c36796f9e53680c657f08f0(pool 0x0d389c0c2e7e1bedb57fb7eb1331cd86067d85b0). 직전(2026-08-26 11:00Z) GT트렌딩확정치(carryover) 유지: reserve$56,751.76, h24+89.95%. 우리가 추적중인 PEPECOIN(CA 0x0b9606fb…)과는 다른 별개 'PEPE' 표기 토큰. 편입은 계속 보류"
-    },
-    {
-      "token": "CATLIST",
-      "status": "carryover유지(이번회차개별재조회는보류) — 직전대폭붕괴값유지",
-      "summary": "Solana(PumpSwap, CAT SEASON CLUB). CA BKaXDgZxUSC9njpX89xpQ5USh2pnK1yzZvgk8Mg7pump. 직전(2026-08-25 05:00Z)확정값(liquidity$4,636.27,h24-35.26%) 유지(carryover). CVXV666·Polycat·100CATS와유사한'극단상승후정점통과·급붕괴'패턴재현사례"
-    },
-    {
-      "token": "AI/NVDA(BANKR, 토큰화합성자산)",
-      "status": "⭐DS-GT h24 방향·크기일치 3회차연속 — carryover유지(이번회차개별재조회는보류)",
-      "summary": "Robinhood Chain(Uniswap V4, PoolId방식). CA 0x2e8c31162b855a2ffa90f6f8634643ad6f111e18, poolId 0xcbdfea90430a30ee4469c9902e120a77e7c7e4711d5643671c1d1957f2f1ce27. 직전(2026-08-26 11:00Z) 확정치(carryover) 유지: GT reserve$5,472,077.63·h24+25.543%, DS liquidity$2,095,542.84·h24+25.51%(거의동일). 토큰화주식/합성자산은이워치의대상범위밖이므로tokens로승격하지않는다"
-    },
-    {
-      "token": "LOOKSMAX",
-      "status": "carryover유지(이번회차개별재조회는보류)",
-      "summary": "Solana(PumpSwap). CA확정(carryover): GPzpoXpD74E2C4CJNayuoyBqPQJEsPtdse3nhntrpump(pool AWiirvWXxrjxMdrmdZK3DbXj73ZFmSQgK5PCP5zf8UW8). 직전(2026-08-25 07:00Z)확정치(reserve$190,146.317) 유지(carryover). tokens편입은계속보류하고notable에서추적유지한다"
-    },
-    {
-      "token": "QUOTRON",
-      "status": "신규발견,편입보류(풀나이약12.5일,LOOKSMAX와유사패턴) — carryover유지",
-      "summary": "Robinhood Chain(Uniswap). 직전(2026-08-24 01:00Z) 확정값 유지: reserve$220,272, h1+9.65%·h6+5.25%·h24+235.67%. 풀생성2026-08-13(약13.5일전). CA는이번회차도미확인이라빈문자열로둔다"
-    },
-    {
-      "token": "Morty(Gucci Morty)",
-      "status": "carryover유지(이번회차개별재조회는보류) — 직전값유지",
-      "summary": "Solana(PumpSwap). CA GUmbtfjSZkybSFgPibBcvwewJHR5PkTjzpump. 직전(2026-08-26 09:00Z) GT트렌딩확정치(carryover) 유지: reserve$131,110.99, h24-36.155%. tokens편입은계속보류하고notable유지한다"
-    },
-    {
-      "token": "Polycat",
-      "status": "⭐9회차재확인 — carryover유지(이번회차개별재조회는보류)",
-      "summary": "Solana(PumpSwap). CA B4iCqVsAZv9dBiBVv58GJiBxWGmwkwbtPTn4sUQTpump(pool 71QuUK1c8Hg9vPi6rGn4D7Q94Kya8tVnxNzBidsyURDi). 직전(2026-08-26 11:00Z) 확정치(carryover) 유지: reserve$106,421.81, h24+88.432%(대폭가속). tokens편입은보류하고notable에서관찰지속한다"
-    },
-    {
-      "token": "DOPAMEME",
-      "status": "carryover유지(이번회차개별재조회는보류)",
-      "summary": "Solana(PumpSwap). CA Ab1sTFNv2tV5DX1XpriwNehXgiJhdq2RQ5LtD5BXpump(pool FmGbfThLpryD6irj9xwtoS4j7rRGnayuUmgHUNCBvxTr). 직전(2026-08-25 11:00Z)확정값 유지(carryover): reserve$219,393.70, h24-37.147%. tokens편입은계속보류한다"
-    },
-    {
-      "token": "LUIGI",
-      "status": "신규발견,편입보류 — carryover유지",
-      "summary": "Solana(PumpSwap). 직전(2026-08-24 11:00Z) 확정값 유지: pool J7EbaBA5ZqngQ3BXvV4T6KuRyEVpriET7SPCgrXPzPnR, reserve$11,404.74. 풀생성2026-08-23. CA는미확인. tokens편입은보류하고notable에계속기록한다"
-    },
-    {
-      "token": "Dinger(로빈후드체인, 신규세번째)",
-      "status": "신규발견,편입보류 — 유동성$2.27로사실상완전소멸/러그확정상태지속",
-      "summary": "직전(2026-08-24 15:00Z) GT로빈후드체인트렌딩17위확정치유지(carryover): pool 0x734ce5818ed9b032f2bb8fa67cb0f1bbb3f393b8, reserve$2.27(사실상변동없음,완전소멸상태지속). 우리가 추적중인 'Dinger'(Solana, 3kvZYBrBPEySFwQfXZGEvJSeMWRa6BkTS34suBEYpump)와는 동명이인인 별개의 로빈후드체인 신규 풀"
-    },
-    {
-      "token": "CVXV666",
-      "status": "carryover유지(이번회차개별재조회는보류)",
-      "summary": "Solana(PumpSwap). CA C3bajJW843KN9Uu441JkXN7zVMs4VM2HvdAGyGiBpump. 직전(2026-08-25 19:00Z) GT확정치(carryover) 유지: reserve$143,640.07, h24-6.458%. tokens편입은다음회차까지관찰뒤재검토한다"
-    },
-    {
-      "token": "CATCUS",
-      "status": "신규발견(carryover,13회차),편입보류(풀나이<2일)",
-      "summary": "Solana(PumpSwap, CATCUS). CA 66ZEoQSgY3g5KEijP8ZUucth9ZmrxwYg8ngzwgP6pump. 직전(2026-08-25 19:00Z) GT확정치(carryover) 유지: reserve$2,966.83, h24-99.226%. 실질회복으로판단하지않는다"
-    },
-    {
-      "token": "100CATS",
-      "status": "carryover유지(이번회차GT솔라나트렌딩상위20위밖으로재노출안됨)",
-      "summary": "Solana. CA GUt3ebbJm6SJCvpa8SfFzZe132a78qZDyc2yXAP1pump(pool 3KpmZWqrQskuEHX5veB4nW1MgYBKH5ex7KNAbGMN2HRk). 직전(2026-08-26 01:00Z)확정치(carryover) 유지: reserve$2,997.71, h24+2.616%. ⚠️유동성사실상불변인데h24만개선되는것은24시간전대붕괴시점이비교기준에서벗어나며생기는산술적아티팩트로판단 — 실질가격회복아님"
-    },
-    {
-      "token": "DELTA",
-      "status": "carryover유지(이번회차개별재조회는보류)",
-      "summary": "Robinhood Chain. CA: 0xe8ffd7e24187f72afb08d75b1bb13088a989a791(pool 0xd64fbda67e1015df43fa5e49f02ca844729e5f94). 직전(2026-08-26 11:00Z) GT트렌딩확정치(carryover) 유지: reserve$722,347.56, h24+44.272%(양전유지). tokens편입은보류하고notable에서관찰유지한다"
-    },
-    {
-      "token": "GrokBot",
-      "status": "신규발견(carryover,7회차),편입보류(풀나이<4일)",
-      "summary": "Solana. CA GeSfrQiscfsEv4Hx2TKaB9Nfid12qND1YYRYS1vSpump(pool DSX8gY83K3bB7bsgCoBrPVnPWyw7KkVrDmktX6tmNRqs). 직전(2026-08-25 19:00Z) GT확정치(carryover) 유지: reserve$293,885.50, h24+75.04%. 여전히tokens편입은보류한다"
-    },
-    {
-      "token": "6(로빈후드체인, 신규)",
-      "status": "carryover유지(이번회차GT로빈후드체인트렌딩상위20위밖으로재노출안됨)",
-      "summary": "Robinhood Chain. CA 0xb245a0e4bcf6f7961b68785d54ccdf51eac906c1(pool 0x4fc195344d28959fdb33dd04446d630b5ec16550624ac1b1d04c90a34edc8502). 직전(2026-08-25 07:00Z)확정치(carryover) 유지: reserve$29,325, h24-64.18%. 티커가단일문자'6'으로매칭혼선위험지속. tokens편입은보류하고notable에서관찰한다"
-    },
-    {
-      "token": "GIPP",
-      "status": "신규발견(carryover,4회차),편입보류(풀나이<4일)",
-      "summary": "Solana. CA 8mBC1RTCajBMiA35TfYUxizUn5rXtuiNgiJKWNMtpump(pool 7xeye9zZcBhbeA4dyZkac8VQQDhiW3j8LPGmkzTHBmE7). 직전(2026-08-25 07:00Z)확정치(reserve$17,106.4836,h24-81.311%) 유지(carryover). tokens편입은보류하고notable에서관찰한다"
-    },
-    {
-      "token": "Index(로빈후드체인, 신규)",
-      "status": "16회차재확인 — carryover유지(이번회차개별재조회는보류)",
-      "summary": "Robinhood Chain(Uniswap 1%). CA 0x56910d4409f3a0c78c64dd8d0545ff0705389870(pool 0xd29893ffac8b29ec4db2cfe0cdb3fe1377c028ff). 직전(2026-08-26 11:00Z) GT트렌딩확정치(carryover) 유지: reserve$564,467.06, h24-6.158%. tokens편입은보류하고notable관찰유지한다"
-    },
-    {
-      "token": "USELESS(솔라나, 신규)",
-      "status": "신규발견(carryover,7회차),편입보류(CA확정,풀나이미확인,대형유동성)",
-      "summary": "Solana. CA Dz9mQ9NzkBcCsuGPFJ3r1bS4wgqKMHBPiVuniW8Mbonk(pool Q2sPHPdUWFMg7M7wwrQKLrn619cAucfRsmhVJffodSp). 직전(2026-08-25 17:00Z)확정치(reserve$2,273,155.15) 유지(carryover). 대형유동성이라'막붙기시작한조기'요건에부합하지않아notable관찰만유지한다"
-    },
-    {
-      "token": "Allocate(솔라나, 신규)",
-      "status": "carryover유지(이번회차개별재조회는보류) — 직전재악화값유지",
-      "summary": "Solana. CA 6XPcEY6XbhjKmfnrvA3y6QQvNp4rYLV6v3Hm5b4Mpump(pool 9sn724EaSRb8yvLzN9VUrHHVCVAjQQ68CeyFqmcRdNtu). 직전(2026-08-25 17:00Z)확정값(reserve$5,678.21,h24-95.94%) 유지(carryover). tokens편입은계속보류한다"
-    },
-    {
-      "token": "TRENCHERS(솔라나, 신규)",
-      "status": "⚠️⚠️⚠️15회차재확인 — 총붕괴상태고착지속,여전히극저유동",
-      "summary": "Solana. CA D9qNfYpFtP9E3YpjBJDCD5PuWoD3445cC9K6PMX5pump(pool 7WNu9u2ETuvg27ij4AZ129GwDJz5Zm9sDn12Ug9NA6v6). 직전(2026-08-26 11:00Z) GT솔라나트렌딩확정치(carryover) 유지: reserve$2,623.53, h24-98.885%(여전히총붕괴). tokens편입은보류하고notable에서관찰지속(사실상소멸판정)"
-    },
-    {
-      "token": "PCAT(로빈후드체인, 신규)",
-      "status": "carryover유지(이번회차GT로빈후드체인트렌딩상위20위밖으로재노출안됨)",
-      "summary": "Robinhood Chain. CA 0x14623dd0784cb5c484f8935c7c218d110332b538(pool 0x03cc14c8bc55a487da89847a432e4220f46dfc63). 직전(2026-08-25 21:00Z)확정치(reserve$36,021,h24+5.79%) 유지(carryover). tokens편입은계속보류한다"
-    },
-    {
-      "token": "Jimothy(솔라나, 신규)",
-      "status": "carryover유지(이번회차개별재조회는보류) — 직전값유지",
-      "summary": "Solana. CA Ge87EtsjwRQbHaqQmKRno69RFTwh9bfSsm99XNxTpump(pool 5PGhKctym6odbHGo2tKMST2AjmJsb2uZBQrKkn4ZuFT5). 직전(2026-08-26 09:00Z)확정치(reserve$894,947.53,h24-9.494%) 유지(carryover). tokens편입은계속보류하고notable에서관찰한다"
-    },
-    {
-      "token": "BATON(솔라나, 신규)",
-      "status": "carryover유지(이번회차개별재조회는보류) — 직전값유지",
-      "summary": "Solana. CA 6Hebn672FvMSq61mo4HYq86QgLHgBUm6y8A9bXGppump(pool 6VKQKCnQLJqnLkaBoYKKa6L5gpvSjY2BBWRMevSPPJoJ). 직전(2026-08-26 09:00Z)확정치(reserve$69,140.61,h24-72.708%) 유지(carryover). tokens편입은계속보류한다"
-    },
-    {
-      "token": "Meeko(솔라나, 신규)",
-      "status": "carryover유지(이번회차GT트렌딩상위20위밖으로재노출안됨) — 직전값유지",
-      "summary": "Solana(Meekocoin). CA 8KbB6b8uHV3bYd3AJA5nm5vNSqXf29veBVAm91Lpump(pool A3pbFdP1QzypAwH7MBfcxvEDwCnuT2PJLsP4Va7vSVQ5). 직전(2026-08-25 17:00Z)확정치(reserve$18,641.48,h24+104.47%) 유지(carryover). tokens편입은보류하고notable에서관찰한다"
-    },
-    {
-      "token": "TILLY(솔라나, 신규)",
-      "status": "carryover유지(이번회차개별재조회는보류) — 직전값유지",
-      "summary": "Solana. CA CGmBrG4GRiMvFSGaEiB7cwEd9uDYiqrXzkoyR2Qa3KrC(pool BZopKpddoJcuCF13zkzThs68oT9uHMD88qo6BteDsNqp). 직전(2026-08-25 13:00Z)확정치(reserve$49,896.97,h24-10.019%,완전반전확정) 유지(carryover). tokens편입은계속보류한다"
-    },
-    {
-      "token": "솔라나신규풀군(FROGE·ARCHITECTURE·beluga·AHTS·trickshot)",
-      "status": "carryover유지(이번회차재조회는보류) — 직전값유지",
-      "summary": "직전(2026-08-25 19:00Z) 확정값(carryover) 유지. FROGE reserve$11,607.68·h24-50.62%, beluga 직전(17:00Z)총붕괴확정값(reserve$3,260.09,h24-97.08%) 유지·GT트렌딩상위40위밖완전탈락지속, AHTS reserve$20,663.63·h24+37.946%, ARCHITECTURE·trickshot도직전값유지. tokens편입은보류하고notable에서관찰유지한다"
-    },
-    {
-      "token": "TINY(솔라나, 신규)",
-      "status": "carryover유지(이번회차개별재조회는보류)",
-      "summary": "Solana. pool GEF9WdZj9UzsMnNViGiRFqMYtxzHNQF5kwts9eMYHh6d, baseToken CA 2AF7CqwieUjUPALL7icuZtL3X7wENdjUjGBMmfV2pump. 직전(2026-08-26 11:00Z) GT트렌딩확정치(carryover) 유지: reserve$198,861.40, h24-31.83%(재음전). tokens편입은보류하고notable에서관찰지속한다"
-    },
-    {
-      "token": "SEYONGPARK(솔라나, 신규)",
-      "status": "carryover유지(이번회차GT솔라나트렌딩상위20위밖으로재노출안됨)",
-      "summary": "Solana. pool 7omGD2o8rjoQRRzpvv5fqXUCwGiivPrLJGjXLDpJq5wX, baseToken CA 39fNg98hhpyiRTGD8Gf8y5MwFVgJJZEnDyTMKdDZpump. 직전(2026-08-26 05:00Z)확정치(carryover) 유지: reserve$31,902.68, h24+469.318%. BATON·PCAT류극단초기치패턴의whipsaw지속. tokens편입은보류하고notable에서관찰한다"
-    },
-    {
-      "token": "CNPY(로빈후드체인, 신규)",
-      "status": "12회차재확인 — carryover유지(이번회차개별재조회는보류)",
-      "summary": "Robinhood Chain. pool 0xd05d2c3d696fcb893aee6607e3652accd2aedf97, baseToken CA 0x532c5583671870723ceef573600208af49c87c54. 직전(2026-08-26 11:00Z) GT트렌딩확정치(carryover) 유지: reserve$112,483.47, h24-38.625%(재음전). tokens편입은보류하고notable에서관찰한다"
-    },
-    {
-      "token": "DTF(로빈후드체인, 신규)",
-      "status": "⭐⭐⭐⭐⭐12회차재확인 — carryover유지(이번회차개별재조회는보류)",
-      "summary": "Robinhood Chain. 메인추적풀 0xbc58bfe115b23f22d2e97ded5c791ebf6db3d3f510f412908c511da6dc8cb4ee(pons-v2), baseToken CA 0xee5576fa1bcaa380e591d01245f406f3f384eb01. 직전(2026-08-26 11:00Z) GT확정치(carryover) 유지: reserve$200,409.93, h24+25.627%(대폭감속,여전히양전). 풀나이약33.4시간(2026-08-25T01:35:27Z생성). '제2의DTF'토큰(CA 0x2ec89afba136119c5252fc47d14e2bd2144b10d2)도직전값유지(reserve$399,716.40,h24-38.09%). 신규진입최고위험유지, tokens편입은보류한다"
-    },
-    {
-      "token": "SMOLCAT(솔라나, 신규)",
-      "status": "⚠️11회차재확인 — carryover유지(이번회차개별재조회는보류)",
-      "summary": "Solana. pool Mwqyi3GoSwu3EjTsx2D9gDBNP1J7FTvsiKfXpPEUJP3, baseToken CA 9Y3fY1kwYUTgLwBU7DZKkEwCsZYj3BrXQNP74ZNEpump. 직전(2026-08-26 11:00Z) GT트렌딩확정치(carryover) 유지: reserve$20,416.57, h24-81.50%(대폭악화). tokens편입은보류하고notable에서관찰지속한다"
-    },
-    {
-      "token": "CMNS(솔라나, 신규)",
-      "status": "carryover유지(이번회차GT솔라나트렌딩상위20위밖으로재노출안됨)",
-      "summary": "Solana. pool DEGN92EGHuV3gKwzuF7j2G6Dg9UXhKpECw2eN6uuyD9R, baseToken CA AMUgSjmdFsS8Y3JeL32u7A45Fpt8YF9xKaiwW5uGHdXk. 직전(2026-08-25 15:00Z)확정값 유지(carryover): reserve$225,481.55, h24+696.5%. 풀생성2026-08-24(약2일전). tokens편입은보류하고notable에서관찰지속한다"
-    },
-    {
-      "token": "BULL(로빈후드체인, 신규)",
-      "status": "carryover유지(이번회차개별재조회는보류)",
-      "summary": "Robinhood Chain. pool 0xb4667b919d19a20712d04c1c44b917bd99f59ed8, baseToken CA 0x224e5054493b9496082d8c4a26954a83fd586135. 직전(2026-08-26 11:00Z) GT트렌딩확정치(carryover) 유지: reserve$15,466.17, h24-86.219%(추가악화). tokens편입은보류하고notable에서관찰지속한다"
-    },
-    {
-      "token": "Martians(솔라나, 신규발견)",
-      "status": "9회차재확인 — carryover유지(이번회차개별재조회는보류)",
-      "summary": "Solana. CA 7nLukVng5teXze14rum9v57juXLjUp7JJnCveko1pump(pool 42SrahWLALtSf9uHs8JsjvwjJXj5gLbEnQCjXkyK4Eho). 직전(2026-08-26 11:00Z) GT트렌딩확정치(carryover) 유지: reserve$171,337.04, h24+5,044.821%(여전히극단). 풀나이약25일(2026-08-02 생성)로'신생'요건에는맞지않으나 여전히극단수치유지 — 신규진입최고위험유지"
-    },
-    {
-      "token": "Zoe(솔라나, 신규발견)",
-      "status": "carryover유지(이번회차개별재조회는보류) — 직전값유지",
-      "summary": "Solana. CA 7n8kRipxAQBfpGQtcGA2AbkM2HASSVCzqZ5F3QEopump(pool CfxiJypYd5YkiizhL5JCKUai6xKpGNagstCDREphdnWV). 직전(2026-08-26 09:00Z)확정치(reserve$109,752.61,h24+442.267%) 유지(carryover). 풀나이약9.5일. tokens편입은보류하고notable에서관찰지속한다"
-    },
-    {
-      "token": "Sue(솔라나, 신규발견)",
-      "status": "⚠️9회차재확인 — carryover유지(이번회차개별재조회는보류)",
-      "summary": "Solana. CA 2NffKvfZTcFj2tyoY1Ev84PkqxA7DZnstyv6EwELpump(pool GjYdVt5LSsp7J7uVDCb2svtQHGkmXcQR2tGGB8RqHtbb). 직전(2026-08-26 11:00Z) GT트렌딩확정치(carryover) 유지: reserve$84,109.88, h24+329.195%(대폭감속,여전히극단양전). Martians와유사한'오래된풀(2026-08-01생성,약4주차)'에서극단whipsaw지속 — 워시트레이딩의심유지"
-    },
-    {
-      "token": "BARK(솔라나, 신규발견)",
-      "status": "⭐⭐8회차재확인 — carryover유지(이번회차개별재조회는보류)",
-      "summary": "Solana. CA BTKfTUMRYsS5W5RXfbtMcgJf9fqoz1rhRcJtESyPpump(pool 5yq5jYbc3GXs2MmKW5sCvwRDDnZJi5rQUZVN9iz1iXp2). 직전(2026-08-26 11:00Z) GT확정치(carryover) 유지: reserve$16,314.02, h24+2.6%(양전유지,여전히손익분기위). 풀생성2026-08-25T13:33:34Z. 전지표양전상태 2회차째유지 — 조기신호중가장안정적인개선흐름. tokens편입은계속보류하고notable에서관찰지속한다"
-    },
-    {
-      "token": "Pistacio(솔라나, 신규발견)",
-      "status": "⭐7회차재확인 — carryover유지(이번회차개별재조회는보류)",
-      "summary": "Solana(PumpSwap). baseToken CA FZqdw6oSDCbHtKYxmhnfbi97SnyVy8jaYpdCoMrrjKa2(pool 22CfmLna8Bsh7xrbyvGSs6NdD31iFj1UFVnwB7EberWU). 직전(2026-08-26 11:00Z) GT확정치(carryover) 유지: reserve$331,734.32, h24+20,402.87%(여전히초극단). tokens편입은보류하고notable에서관찰지속한다"
-    },
-    {
-      "token": "Swan(로빈후드체인, 신규발견)",
-      "status": "⭐6회차재확인 — carryover유지(이번회차개별재조회는보류)",
-      "summary": "Robinhood Chain(WETH페어). baseToken CA 0xe7Df71858B078134510B5E6844e502c0839cD524(pool 0x3bc5b119af9e89ca5c4a7f138adb0dfb39685663). 직전(2026-08-26 11:00Z) GT/DS확정치(carryover) 유지: GT reserve$97,878.44·h24+18,116.405%, DS liquidity$95,571.62·h24+115,020%(GT대비약6.35배괴리). DTF·Pistacio와동일패턴으로계속관찰"
-    },
-    {
-      "token": "C4T(솔라나, 신규발견)",
-      "status": "4회차재확인 — carryover유지(이번회차개별재조회는보류)",
-      "summary": "Solana. pool 4Wwu97nL4vJ1dHt9xFv4sPeNgxrbevgzUtX9kGhFtxCD, CA 2sLKA6PzFVjeTUaiKBCkDbDiS8MuoZAeXxZMgs9Apump. 직전(2026-08-26 11:00Z) GT확정치(carryover) 유지: reserve$26,749.46, h24-4.625%(재음전,손익분기붕괴). tokens편입은계속보류하고notable에서관찰지속한다"
-    },
-    {
-      "token": "DTF(둘째, 신규발견 — 위DTF와완전히별개토큰)",
-      "status": "3회차재확인 — carryover유지(이번회차개별재조회는보류)",
-      "summary": "Robinhood Chain. pool 0xbbc5d7f008582ab30e64633743bb2757baad550e('DTF/WETH'), baseToken CA 0x2ec89afba136119c5252fc47d14e2bd2144b10d2(우리가추적중인DTF 0xee5576fa1bcaa380e591d01245f406f3f384eb01와완전히다른주소). 직전(2026-08-26 11:00Z) GT트렌딩확정치(carryover) 유지: reserve$399,716.40, h24-38.09%(추가악화). 붕괴→급반등→h24재악화가1회차만에연속확인. 신규진입최고위험유지"
-    },
-    {
-      "token": "MEEMERS(솔라나, 신규발견)",
-      "status": "2회차재확인 — carryover유지(이번회차개별재조회는보류)",
-      "summary": "Solana. pool 5YGWyQLZawyjAfaZUznn95aSh5Audx1Tc7tWop3so2cv, baseToken CA 3N5imznFARN7MYo5cpv8mMCfPwsC769S9sYMbrcUpump. 직전(2026-08-26 11:00Z) GT확정치(carryover) 유지: reserve$38,353.42, h24+346.938%(양전유지). tokens편입은보류하고notable에서관찰지속한다"
-    },
-    {
-      "token": "Catacio(솔라나, 신규발견)",
-      "status": "⭐2회차재확인 — carryover유지(이번회차개별재조회는보류)",
-      "summary": "Solana. pool 7xn1nnW1yH2Hy3wRkdmmqqLzHrVoGucKxnZdKyifaAPr, baseToken CA BbF6bnegMqFfEA9yuwBeDWgoWPnL82rtQRiBLUKApump. 직전(2026-08-26 11:00Z) GT확정치(carryover) 유지: reserve$51,932.33, h24+383.873%(가속,양전유지). ⚠️우리가추적중인'Pistacio'(FZqdw6oS…)와이름이유사해혼동위험 — 완전히별개의컨트랙트임을재확인. tokens편입은보류하고notable에서관찰지속한다"
-    },
-    {
-      "token": "fih(솔라나, 신규발견)",
-      "status": "2회차재확인 — carryover유지(이번회차개별재조회는보류)",
-      "summary": "Solana. pool TTnBaFvGwPq4erUdPKwMHSEVSYRqLRxWCDKFKHSBWUf, baseToken CA 547tWxWhym8U7Y7DvhGJktpkcs5eHeywvSYnhwvdpump. 직전(2026-08-26 11:00Z) GT확정치(carryover) 유지: reserve$90,504.44, h24+1623.964%(여전히극단). tokens편입은보류하고notable에서관찰지속한다"
-    },
-    {
-      "token": "Frug(솔라나, 신규발견)",
-      "status": "2회차재확인 — carryover유지(이번회차개별재조회는보류)",
-      "summary": "Solana. pool 6rmzTtPEJAeuBBkGvNg5zdzfPpZpfjeuThPeen2YL4Le. 직전(2026-08-26 11:00Z) GT트렌딩확정치(carryover) 유지: reserve$72,130.46, h24+1459.85%. 풀생성2026-08-26(당일생성). baseToken CA는여전히미확인(빈문자열). tokens편입은보류하고notable에서관찰지속한다"
-    },
-    {
-      "token": "POK(솔라나, 신규발견)",
-      "status": "2회차재확인 — carryover유지(이번회차개별재조회는보류)",
-      "summary": "Solana. pool 4Xcvd5rjn6V2UrfLs6UvMeLvgU8fLgFM42HzoXy6ABbf. 직전(2026-08-26 11:00Z) GT트렌딩확정치(carryover) 유지: reserve$59,131.97, h24+1159.68%(h1h6되돌림중,정점통과가능성경계). 풀생성2026-08-25. baseToken CA는미확인(빈문자열). tokens편입은보류하고notable에서관찰지속한다"
-    },
-    {
-      "token": "George(솔라나, 신규발견)",
-      "status": "2회차재확인 — carryover유지(이번회차개별재조회는보류)",
-      "summary": "Solana. pool EMSHxmNKDLVLDv6VK5NwboA8yeX5t2X6q8DJgoz5czLB. 직전(2026-08-26 11:00Z) GT트렌딩확정치(carryover) 유지: reserve$32,899.17, h24+219.90%(h1급락중,되돌림가능성). 풀생성2026-08-25. baseToken CA는미확인(빈문자열). tokens편입은보류하고notable에서관찰지속한다"
-    },
-    {
-      "token": "MARTIANS(로빈후드체인, 신규 — 솔라나Martians와별개토큰)",
-      "status": "2회차재확인 — carryover유지(이번회차개별재조회는보류)",
-      "summary": "Robinhood Chain(USDG페어 3.03%). pool 0x35da5f28822ab26ccbefd87ff9d41966648522b59d395d0bf36e7a3b4b86411a. 직전(2026-08-26 11:00Z) GT트렌딩확정치(carryover) 유지: reserve$158,830.97, h24+87.819%(h1h6급락중,고점대비큰폭되돌림). 풀생성2026-08-24. baseToken CA는미확인(빈문자열). ⚠️우리가추적중인'Martians'(Solana, CA 7nLukVng5teXze14rum9v57juXLjUp7JJnCveko1pump)와는완전히별개의로빈후드체인토큰 — 명칭혼동주의. tokens편입은보류하고notable에서관찰지속한다"
-    }
-  ]
+ "ts": "2026-08-30T19:00:00Z",
+ "tokens": [
+  {
+   "token": "CLOCKIN",
+   "chain": "Robinhood Chain(Uniswap)",
+   "ca": "0xA5be0eEb82a013Dc7867B9e020c36A69DA666666",
+   "stage": "조기",
+   "kols": "코로보 없음(정상,carryover)",
+   "thesis": "100회차재확인(2시간간격회차). h1 3.5%→10.13%로양전가속(체결28매수/16매도매수우위). 유동성$207,361→$211,318(+1.9%,유입지속). h6-20.99%→1.74%로양전전환(대폭개선)·h24 50.39%→44.66%로소폭둔화. 회전율1.28배, 풀나이는100회차넘게미확인상태가지속되고있다·7개풀(불변).",
+   "risk": "풀 생성시각 100회차 넘게 미확인 지속"
+  },
+  {
+   "token": "TIPANSEM",
+   "chain": "Solana(PumpSwap)",
+   "ca": "B5YTUMqSnwzztWHWmzAzHApeRy6cuGEx49Bidt4kuH8w",
+   "stage": "조기",
+   "kols": "",
+   "thesis": "86회차(2시간간격회차). h1 10.6%→-3.48%로음전전환. 유동성$63,579→$56,833(-10.6%,유출전환,직전+7.2%유입). 체결은57매수/119매도로매도가우위다. h6 1.18%→-15.73%로재음전(대폭악화)·h24 43.53%→20.52%로둔화. 회전율3.56배, 풀나이10.2일·5개풀(불변), 저유동.",
+   "risk": "저유동, 유동성 유출 전환, 체결 매도우위"
+  },
+  {
+   "token": "OBS",
+   "chain": "Robinhood Chain(Uniswap, WETH페어)",
+   "ca": "0xfe242d1Da8FD04f6A1F80B6D3d807B02e062Ad4E",
+   "stage": "조기",
+   "kols": "",
+   "thesis": "80회차(2시간간격회차). h1 8.12%→-0.63%로음전전환(반등후조정). 유동성$91,682→$93,648(+2.1%,유입지속). h6 8.78%→4.81%로둔화(양전유지)·h24 28.29%→19.36%로둔화. 거래량$165,807, 회전율1.77배, 풀나이8.9일·5개풀(불변).",
+   "risk": "저유동, 반등 이후 조정 국면"
+  },
+  {
+   "token": "MAPLE",
+   "chain": "Solana(PumpSwap)",
+   "ca": "DLhzqAWwE2YkPLdYvvWNMZ71vxZJQD2FByMfWFHppump",
+   "stage": "조기",
+   "kols": "",
+   "thesis": "74회차(2시간간격회차). h1-1.17%→-1.71%로음전유사지속. 유동성$27,040→$26,561(-1.8%,유출지속,직전-3.7%). h6-29.47%→-15.26%로개선(여전히음전)·h24-43.24%→-33.97%로개선. 거래량$60,979, 회전율2.3배, 풀나이9.4일·단일풀(불변).",
+   "risk": "단일풀, 극단 음전 고착 지속"
+  },
+  {
+   "token": "PEPECOIN",
+   "chain": "Robinhood Chain(Uniswap V3, WETH페어)",
+   "ca": "0x0b9606fb048a14d8381e9b97d00a78b4f4c66241",
+   "stage": "조기",
+   "kols": "",
+   "thesis": "88회차(2시간간격회차). 이번회차최대낙폭 — h1 4.87%→-16.56%로급반전했다. 유동성$15,082→$13,469(-10.7%,유출전환,직전+6.7%유입)이며여전히극저유동이다. 체결은10매수/20매도로매도우위. h6-36.33%→-33.77%로유사(여전히극단음전)·h24 5.95%→-27.68%로재음전(대폭악화). 회전율1.88배, 풀나이21.1일·3개풀(불변), 2위풀이상치이력있어인용제외.",
+   "risk": "극저유동, 이번 회차 최대 낙폭, 2위 풀 이상치(인용 제외)"
+  },
+  {
+   "token": "1B",
+   "chain": "Robinhood Chain(Uniswap, WETH페어)",
+   "ca": "0x0977FA2139B773732Da455926660b3D22C8CaB7F",
+   "stage": "조기",
+   "kols": "",
+   "thesis": "78회차(2시간간격회차). 직전회차최대상승(h1+17.22%→2.52%로대폭둔화)이었으나이번은h1 2.52%→-12.25%로반전했다. 유동성도$18,460→$17,229(-6.7%,유출전환)이다. h1체결은3매수/1매도로절대건수가4건뿐이라소수거래에의한변동으로해석한다. h6 22.64%→7.24%로둔화(여전히양전)·h24-6.82%→-23.18%로재악화. 회전율0.54배, 풀나이8.9일·8개풀(불변), 극저유동.",
+   "risk": "극저유동, 체결 4건뿐 소수거래 변동, h24 재악화"
+  },
+  {
+   "token": "CLUG",
+   "chain": "Solana(PumpSwap)",
+   "ca": "7g2xyrq9Fk1TvFiqqcmLJAQ9jAtfHobmrdzzM9Dp2SpV",
+   "stage": "조기",
+   "kols": "",
+   "thesis": "110회차재확인(2시간간격회차). h1-1.79%→-2.91%로음전심화. 유동성$17,283→$17,016(-1.5%,유출지속,직전-2.8%). h6-2.24%→-6.73%로재악화·h24-11.03%→-14.13%로재악화. 거래량$10,079, 회전율0.59배, 풀나이11.7일·단일풀(불변), 극저유동.",
+   "risk": "단일풀, 극저유동, h6·h24 재악화"
+  },
+  {
+   "token": "FLUSH",
+   "chain": "Robinhood Chain(Uniswap, WETH페어)",
+   "ca": "0xDb99d819e93B06Ed83A17c01Fed2B7dcA5774Bbb",
+   "stage": "조기",
+   "kols": "",
+   "thesis": "직전0건미산출이었으나이번1.34%로산출, 풀수3→7개증가 유동성$13,945(+1.4%)·거래량$3,087·회전율0.22배",
+   "risk": "극저유동, 풀 수 급증(3→7) 관측"
+  },
+  {
+   "token": "LIZARD",
+   "chain": "Solana(PumpSwap)",
+   "ca": "2hXHY3DnN7HUGySZEmBsLFKSqLB8nj3aE8wwq44wpump",
+   "stage": "조기",
+   "kols": "",
+   "thesis": "69회차(2시간간격회차). h1-1.2%→-0.77%로음전유사지속. 유동성$11,914→$12,010(+0.8%,유입전환,직전-1.3%유출). h6-2.36%→-0.65%로개선(여전히음전)·h24-16.15%→-15.44%로유사. 거래량$1,702, 회전율0.14배, 풀나이8.8일·2개풀(불변), 저유동. 2위풀극단변동률이력 — 인용제외, 이상징후로만기록.",
+   "risk": "저유동, 2위 풀 이상치 이력 — 인용 제외"
+  },
+  {
+   "token": "40M",
+   "chain": "Solana(PumpSwap)",
+   "ca": "ELbFy4v8vzJHjvmqCDw7CEzsYuN9TGkBt7Kz9Kawpump",
+   "stage": "조기",
+   "kols": "",
+   "thesis": "73회차재확인(2시간간격회차). h1 0.52%→6.43%로양전가속. 유동성$8,711→$9,029(+3.7%,유입전환,직전-1.2%유출). h6 1.09%→6.06%로가속(양전유지)·h24-9.2%→-3.27%로개선. 거래량$1,623, 회전율0.18배, 풀나이9.0일·3개풀(불변), 극저유동.",
+   "risk": "극저유동·거래희박"
+  },
+  {
+   "token": "CYBERCAT",
+   "chain": "Solana(PumpSwap)",
+   "ca": "9HHTQ7YMx82E987cNqF9KczyZrfKgqvKNyA2yHSVpump",
+   "stage": "조기",
+   "kols": "",
+   "thesis": "59회차재확인(2시간간격회차). h1-0.07%→0.81%로양전전환. 유동성$8,965→$8,978(+0.1%,보합). h6-1.44%→2.56%로양전전환·h24-19.85%→-21.19%로소폭악화. 거래량$1,520, 회전율0.17배, 풀나이7.2일·2개풀(불변), 극저유동.",
+   "risk": "극저유동, 거래 희박 지속"
+  },
+  {
+   "token": "MANEKI",
+   "chain": "Robinhood Chain(SushiSwap V3 1%, WETH페어)",
+   "ca": "0x00eB2583F442d35473Bed8801Efb01C82D84C149",
+   "stage": "조기",
+   "kols": "",
+   "thesis": "62회차재확인(2시간간격회차). h1-0.52%→-1.8%로음전심화. 유동성$11,906→$11,737(-1.4%,유출지속). h6-5.09%→-4.61%로유사(여전히음전)·h24 7.34%→1.43%로둔화(양전유지). 거래량$884로거래희박, 회전율0.08배, 풀나이10.1일·2개풀(불변), 저유동.",
+   "risk": "저유동·저거래, 소수풀"
+  },
+  {
+   "token": "PEE",
+   "chain": "Solana(PumpSwap)",
+   "ca": "2mG7vDMrZYFyFS2bz3AsrJizFoiAYurY5kc4MPqfpump",
+   "stage": "조기",
+   "kols": "",
+   "thesis": "115회차재확인(2시간간격회차). h1은이번회차도체결이정확히0건이라거래부재로변동률미산출이다(결측은이번회차PEE1종뿐). 유동성$6,781→$6,781(+0.0%,불변). h6 1.16%→1%로유사(양전유지)·h24 2.02%→2.02%로불변. 거래량$383로거래극희박, 회전율0.06배, 풀나이11.9일·단일풀(불변), 극저유동.",
+   "risk": "극저유동·극저거래, 단일풀, h1 결측(체결0건)"
+  },
+  {
+   "token": "PROLOGUE",
+   "chain": "Robinhood Chain(Uniswap, WETH페어)",
+   "ca": "0xb9972ca7188e511174947e3936a5315ac7073277",
+   "stage": "확산",
+   "kols": "",
+   "thesis": "58회차(2시간간격회차). h1 3.49%→-10.58%로음전전환됐다. 유동성$575,631→$541,202(-6.0%,유출전환). h6-10.95%→-22.21%로악화. h24+72.37%→+23.03%로대폭둔화(증가폭축소). 거래량$8,428,114로5회차연속1위(부모확정), 회전율15.57배, 풀나이13.1일·26개풀(불변).",
+   "risk": "변동성 극심 이력, 급반전 재발 경계, 거래량은 여전히 1위"
+  },
+  {
+   "token": "CHUMP",
+   "chain": "Robinhood Chain(Uniswap V3 1%, WETH페어)",
+   "ca": "0x0E0d2C89a5a019FE1cF762e5e33187631DACC21B",
+   "stage": "확산",
+   "kols": "",
+   "thesis": "66회차(2시간간격회차). h1 1.14%→2.22%로양전가속. 유동성$530,713→$534,603(+0.7%,유입전환,직전-1.6%유출). h6-2.18%→1.57%로양전전환·h24-13.8%→-18.77%로재악화. 풀수5→4개로추가감소, 거래량$1,390,687, 회전율2.6배, 풀나이30.7일.",
+   "risk": "h24 재악화, 풀 수 추가 감소"
+  },
+  {
+   "token": "CYBERLEEK",
+   "chain": "Solana(Raydium)",
+   "ca": "ApZuxdpzMrbEYTGEzeY9afh5pj9d6qPRJCTgQYiipbKg",
+   "stage": "확산",
+   "kols": "",
+   "thesis": "90회차(2시간간격회차). h1 2.17%→4.41%로양전가속. 유동성$517,420→$522,885(+1.1%,유입지속). h6-11.1%→-2.23%로개선(여전히음전)·h24-0.32%→-25.95%로대폭악화(손익분기근접에서재악화). 거래량$1,342,831, 회전율2.57배, 풀나이14.9일·18개풀(불변). meteora풀-99.9%대이상치반복이력있어신뢰도경계지속.",
+   "risk": "meteora 풀 이상치 반복 이력, 신뢰도 경계 필요"
+  },
+  {
+   "token": "CC",
+   "chain": "Solana(PumpSwap)",
+   "ca": "E3i7sTY5QYEBh3itepnomZQt7Eh5kzmHFk1vkm2pump",
+   "stage": "확산",
+   "kols": "",
+   "thesis": "88회차(2시간간격회차). 이번회차최대상승 — h1 2.97%→56.86%로급등했다. 유동성도$146,178→$181,803(+24.4%,이번회차최대유입)로급증했다. 다만h1체결은409매수/601매도로매도가우위인데가격은+56.9%올랐다 — 인과단정없이관측사실로만기록한다. h6-19.91%→48.09%로대폭개선(양전전환)·h24-36.1%→14.13%로양전전환. 거래량$1,254,608, 회전율6.9배, 풀나이18.7일·3개풀(불변).",
+   "risk": "체결·가격 방향 불일치(매도 우위인데 급등), 변동성 극심"
+  },
+  {
+   "token": "swappy",
+   "chain": "Robinhood Chain(Uniswap V4)",
+   "ca": "0x298348d5b2e45C774E3ee4f1a0924071DfbDC8C7",
+   "stage": "확산",
+   "kols": "",
+   "thesis": "91회차(2시간간격회차). h1 3.31%→0.65%로둔화(양전유지). 유동성$169,921→$161,052(-5.2%,유출전환,직전+4.8%유입). h6 1.29%→0.57%로유사(양전유지)·h24 67.06%→14.27%로대폭둔화. 거래량$263,578, 회전율1.64배, 풀나이26.0일·3개풀(불변).",
+   "risk": "h24 대폭 둔화, 소수풀 저분산 위험"
+  },
+  {
+   "token": "KIRK",
+   "chain": "Solana(PumpSwap, Official Charlie Kirk Coin)",
+   "ca": "8du34ohgGj2ikZVTGZNwHbNbqX8b8AHGFANf6qmopump",
+   "stage": "확산",
+   "kols": "",
+   "thesis": "78회차째재확인(2시간간격회차). h1 1.19%→2.96%로양전가속. 유동성$146,870→$163,131(+11.1%,유입가속). h6 33.24%→64.41%로대폭가속·h24 84.61%→123%로대폭가속(3자리대진입). 풀수2→3개로증가, 거래량$204,206, 회전율1.25배, 풀나이10.3일. 급가속에과열경계유지한다.",
+   "risk": "저유동, h6·h24 급가속 — 과열 경계"
+  },
+  {
+   "token": "CONK",
+   "chain": "Solana(Raydium)",
+   "ca": "DShht9B8wCRe5t3oqdPB77PnjJbKxbYaZyuWpZQjbonk",
+   "stage": "확산",
+   "kols": "",
+   "thesis": "75회차(2시간간격회차). 직전회차최대상승(h1+24.76%)이었으나이번은h1-1.78%로진정됐다. 유동성$96,671→$95,324(-1.4%,직전+10.6%최대유입에서보합권전환). h6-0.17%→10.63%로양전전환·h24-9.91%→-2.3%로개선(손익분기근접). h1체결6매수/13매도로절대건수가적다. 회전율1.31배, 풀나이9.1일·6개풀(불변).",
+   "risk": "직전 최대 상승 이후 진정, 체결 절대건수 적음(19건)"
+  },
+  {
+   "token": "omo",
+   "chain": "Solana(PumpSwap)",
+   "ca": "94Sm8joZMSRzpQmcNVn5zZpgnRLN2DBesJYDXwuNpump",
+   "stage": "확산",
+   "kols": "",
+   "thesis": "62회차(2시간간격회차). h1 2.16%→3.18%로양전가속. 유동성$70,972→$72,631(+2.3%,유입지속). h6 19.37%→14.32%로둔화(양전유지)·h24-10.47%→-8.9%로소폭개선. 거래량$66,998, 회전율0.92배, 풀나이20.6일·7개풀(불변).",
+   "risk": "h24 여전히 음전, 저유동"
+  },
+  {
+   "token": "Z500",
+   "chain": "Solana(PumpSwap)",
+   "ca": "7fDdLy2rmQKsPCkqUXEd1mN7yDfEzArc4VrctWmfkJBK",
+   "stage": "확산",
+   "kols": "",
+   "thesis": "80회차(2시간간격회차). h1-2.65%→5.44%로양전전환. 유동성$59,167→$62,494(+5.6%,유입전환,직전-1.9%유출). h6 0.3%→9.92%로가속(양전유지)·h24 11.08%→17.47%로가속. 거래량$56,277, 회전율0.9배, 풀나이13.1일·8개풀(불변).",
+   "risk": "저유동, 변동성 큼"
+  },
+  {
+   "token": "CATE",
+   "chain": "Solana(PumpSwap)",
+   "ca": "Ai66LHZG9MCzg1WKdawwqduVAXpNDUuV8M3uyq5ppump",
+   "stage": "뒷북",
+   "kols": "",
+   "thesis": "152회차째재확인(2시간간격회차). h1 0.83%→2.45%로양전지속(소폭가속). 유동성$2,133,348→$2,208,681(+3.5%,유입지속). h6 5.5%→2.34%로둔화(양전유지)·h24 4.36%→25.27%로대폭가속. 거래량$6,282,309(2위), 회전율2.84배, 풀나이35.1일·30개풀(불변).",
+   "risk": "대형화된 뒷북 토큰, 신규성 낮음"
+  },
+  {
+   "token": "JUGGERNAUT",
+   "chain": "Robinhood Chain(Uniswap V3 1%)",
+   "ca": "0xD7321801CAae694090694Ff55A9323139F043B88",
+   "stage": "뒷북",
+   "kols": "Drallio(약한코로보,carryover)",
+   "thesis": "215회차(2시간간격회차). 표면h1은-12.18%→3.18%로반등했으나이를개선으로해석하지않는다 — h24는-28.26%→-40.55%로계속악화됐다(직전보다더나빠짐). 유동성$537,405→$504,707(-6.1%,유출). h6도-13.05%→-11.47%로유사(여전히음전). 풀수16→17개로증가. h1체결은172매수/172매도로정확히균형이었다 — 관측사실로만기록한다.",
+   "risk": "풀 수 증가에도 h24 계속 악화, 체결·가격 방향 불일치(균형인데 하락)"
+  },
+  {
+   "token": "HOOKR",
+   "chain": "Robinhood Chain(Uniswap, ETH페어)",
+   "ca": "0x18E674231A58c239Dc7DaeDcffE15Ec3A24cff5c",
+   "stage": "뒷북",
+   "kols": "",
+   "thesis": "93회차(2시간간격회차). h1-8.23%→-7.97%로음전유사지속. 유동성$740,249→$678,439(-8.3%,유출전환,직전+3.8%유입에서반전). h6 2.72%→-13.61%로재음전(악화)·h24 68.83%→49.04%로둔화. 풀수21→20개로감소, 거래량$4,940,863(3위), 회전율7.28배, 풀나이24.6일.",
+   "risk": "뒷북 단계, 풀 수 감소, 유동성 유출 전환"
+  },
+  {
+   "token": "FWA",
+   "chain": "Ethereum(Uniswap V4, WETH페어)",
+   "ca": "0xa0Df17B5aC76ABaBA36E1450E2cbCd18A620C845",
+   "stage": "뒷북",
+   "kols": "Cointelegraph·CryptoBriefing·KuCoin·PANews(carryover, 과거보도)",
+   "thesis": "232회차(2시간간격회차). h1 4.39%→3.54%로유사(양전유지,소폭둔화). 유동성$925,737→$975,767(+5.4%,유입가속). h6 1.92%→19.78%로대폭가속(양전)·h24-11.59%→1.34%로재양전(개선). 거래량$1,384,193, 회전율1.42배, 풀나이45.1일·5개풀(불변).",
+   "risk": "KOL 코로보는 과거 보도로 현재 상황과 무관"
+  },
+  {
+   "token": "TOAD",
+   "chain": "Solana(PumpSwap)",
+   "ca": "A13oRB9FFaiUjfi6LdCg6p9ka1u8SfGkUFs4SKvPpump",
+   "stage": "뒷북",
+   "kols": "",
+   "thesis": "228회차(2시간간격회차). h1 2.96%→0.46%로둔화(양전유지). 유동성$359,342→$367,913(+2.4%,유입지속). h6-8.22%→-3.96%로개선(여전히음전)·h24-24.54%→-14.68%로개선. 풀수23→22개로소폭감소, 거래량$740,066, 회전율2.01배, 풀나이22.2일. 반복반전(whipsaw)이력지속.",
+   "risk": "반복 반전(whipsaw) 이력 지속, 여전히 음전"
+  },
+  {
+   "token": "GOOD",
+   "chain": "Robinhood Chain(Uniswap V3, WETH페어)",
+   "ca": "0x5f62c57e5c537887117eef828b7e3ad41c009feb",
+   "stage": "뒷북",
+   "kols": "",
+   "thesis": "94회차(2시간간격회차). h1 0.13%→-2.33%로음전전환. 유동성$722,729→$695,897(-3.7%,유출가속,직전-1.0%). h6 18.94%→-3.26%로재음전(대폭반전)·h24 23.92%→18.99%로둔화. 거래량$670,397, 회전율0.96배, 풀나이24.7일·6개풀(불변).",
+   "risk": "h6 재음전 대폭 반전, 유동성 유출 가속"
+  },
+  {
+   "token": "BULLSHIT",
+   "chain": "Solana(PumpSwap)",
+   "ca": "zj1jpp7QMveWHLs61vL9KMZf254KvW7j4AAmBF8ry2k",
+   "stage": "뒷북",
+   "kols": "재확인 실패(WebSearch시도,carryover)",
+   "thesis": "109회차(2시간간격회차). h1-0.36%→-0.49%로음전유사지속. 유동성$321,870→$317,345(-1.4%,유출지속). h6-3.1%→-4.05%로소폭악화·h24-18.91%→-11.9%로개선. 거래량$618,365, 회전율1.95배, 풀나이13.0일·12개풀(불변). KOL재확인은이번회차도실패(WebSearch재시도,carryover).",
+   "risk": "뒷북, KOL 재확인 실패 지속"
+  },
+  {
+   "token": "BRODIE",
+   "chain": "Robinhood Chain(Uniswap V3, Robinhood Dog)",
+   "ca": "0x45F82AC5d507e988f7406935da8eEfe495a360e0",
+   "stage": "뒷북",
+   "kols": "",
+   "thesis": "191회차(2시간간격회차). h1-13.6%→4.71%로표면양전전환됐으나회복으로단정하지않는다 — 유동성은$26,651→$25,510(-4.3%,재유출지속)이고h6도-40.43%→-31.33%로유사(극단음전지속), h24-79.7%로여전히극단음전이다. 풀수7→8개로하나늘었다. h1체결21매수/13매도, 회전율14.4배, 풀나이47.7일. 🔴최고위험유지 — 세차례소강뒤붕괴가재개된이력이있어이번양전도일시적일가능성을경계한다.",
+   "risk": "🔴최고위험 유지 — 세 차례 소강 뒤 붕괴 재개 이력, 재유출 지속"
+  },
+  {
+   "token": "PRINTER",
+   "chain": "Robinhood Chain(Uniswap V4 0.3%, USDG페어)",
+   "ca": "0x85a574f2fF0795685F58d1D7B0D4b51F148Ac489",
+   "stage": "뒷북",
+   "kols": "",
+   "thesis": "229회차(2시간간격회차). h1-3.33%→2.34%로양전전환. 유동성$505,673→$495,804(-2.0%,유출지속). h6-15.11%→-24.89%로재악화(대폭)·h24-6.42%→-25.6%로대폭악화. 풀수9→10개로증가, 거래량$294,758, 회전율0.59배, 풀나이15.7일.",
+   "risk": "h6·h24 여전히 음전, 유동성 유출 지속, 풀 수 증가"
+  },
+  {
+   "token": "PANTS",
+   "chain": "Solana(PumpSwap, dogwifpants)",
+   "ca": "FtateF34Xzawa91bpbVNdX72hZYo9cymRDYqBreHHbJi",
+   "stage": "뒷북",
+   "kols": "",
+   "thesis": "80회차(2시간간격회차). h1-18.74%→9.21%로반등했다. 유동성$96,536→$103,124(+6.8%,유입전환,직전-13.0%최대유출에서반전). 다만체결은50매수/109매도로매도가우위인데가격은상승했다 — 관측사실로만기록한다. h6-14.66%→4.43%로양전전환·h24-30.2%→-19.97%로개선. 풀수8→9개로증가, 회전율1.75배, 풀나이11.4일.",
+   "risk": "체결·가격 방향 불일치(매도 우위인데 반등), 풀 수 증가"
+  },
+  {
+   "token": "PITCOIN",
+   "chain": "Solana(PumpSwap)",
+   "ca": "G1iBvjhZ9wpGUZdQcvhRSqjow3x6xetsnmEBBMm1pump",
+   "stage": "뒷북",
+   "kols": "",
+   "thesis": "182회차(2시간간격회차). h1 3.16%→-5.51%로음전전환. 유동성$52,828→$49,326(-6.6%,유출전환,직전+3.3%유입). h6-1.27%→-5.93%로재악화·h24 5.76%→-17.51%로재음전(대폭악화). 거래량$83,355, 회전율1.69배, 풀나이18.1일·3개풀(불변).",
+   "risk": "저유동, 신규성 낮음, 재음전"
+  },
+  {
+   "token": "CALLOOOR",
+   "chain": "Solana(PumpSwap)",
+   "ca": "A48KeWUuiDSdRQBqAFssgyYATDuBv7cer54V2JSDpump",
+   "stage": "뒷북",
+   "kols": "",
+   "thesis": "178회차(2시간간격회차). h1-3.5%→1.67%로양전전환. 유동성$67,181→$71,594(+6.6%,유입전환,직전-1.3%유출). h6 4.08%→15.75%로가속(양전유지)·h24-18.49%→4.84%로재양전(개선). 거래량$66,607, 회전율0.93배, 풀나이18.0일·6개풀(불변).",
+   "risk": "저유동, 변동성 반복"
+  },
+  {
+   "token": "Doge2",
+   "chain": "Solana(PumpSwap)",
+   "ca": "EjAuFtMEP6LQDgLb11JU9bkcskhFYbgd9Q5NRXJppump",
+   "stage": "뒷북",
+   "kols": "",
+   "thesis": "73회차(2시간간격회차). h1-7.29%→-2%로음전지속(낙폭축소). 유동성$49,087→$49,414(+0.7%,유입지속,직전+2.9%). h6 0.11%→10.32%로가속(양전유지)·h24-18.93%→-13.68%로개선. 거래량$49,441, 회전율1.0배, 풀나이8.6일·2개풀(불변).",
+   "risk": "h24 여전히 음전, 저유동"
+  },
+  {
+   "token": "lickingcat",
+   "chain": "Solana(PumpSwap)",
+   "ca": "EjD5Y9NVhXmtEqU7wYvAyZvDWZFQeEuHXFatJmTbpump",
+   "stage": "뒷북",
+   "kols": "",
+   "thesis": "220회차(2시간간격회차). h1 5.61%→4.05%로둔화(양전유지). 유동성$34,818→$34,801(-0.0%,사실상보합). h6 1.92%→12.33%로가속(양전유지)·h24 6.98%→1.44%로둔화(여전히양전). 거래량$32,163, 회전율0.92배, 풀나이22.3일·3개풀(불변).",
+   "risk": "뒷북, 소규모"
+  },
+  {
+   "token": "Dealer",
+   "chain": "Solana(PumpSwap)",
+   "ca": "6f8ZQhxqfigdv7UszZ1rirbV7Sgv83s3rxv1N2Zopump",
+   "stage": "뒷북",
+   "kols": "",
+   "thesis": "220회차(2시간간격회차). h1-0.81%→-0.58%로음전유사지속. 유동성$80,583→$79,558(-1.3%,유출지속). h6-12.6%→-8.65%로개선(여전히음전)·h24 9.91%→6.33%로둔화. 거래량$29,783로거래희박지속, 회전율0.37배, 풀나이24.9일·2개풀(불변).",
+   "risk": "거래 희박, 뒷북 단계"
+  },
+  {
+   "token": "BARRON",
+   "chain": "Solana(Raydium)",
+   "ca": "ECY31gWwxy4s2VnMkYhmqDkrV75KrwR2yTtsnrnSpump",
+   "stage": "뒷북",
+   "kols": "",
+   "thesis": "66회차째재확인(2시간간격회차). h1-1.64%→0.32%로양전전환. 유동성$236,991→$236,002(-0.4%,보합권,유출지속). h6 0.05%→-0.5%로음전전환·h24 1.11%→-1.75%로재음전. 풀수13→12개로소폭감소, 거래량$15,589, 회전율0.07배, 풀나이587.7일(목록최고령).",
+   "risk": "신규성 없음, 최고령 풀(587.7일)"
+  },
+  {
+   "token": "Dinger",
+   "chain": "Solana(PumpSwap, Schrödinger)",
+   "ca": "3kvZYBrBPEySFwQfXZGEvJSeMWRa6BkTS34suBEYpump",
+   "stage": "뒷북",
+   "kols": "",
+   "thesis": "63회차(2시간간격회차). h1 0.69%→3.16%로양전가속. 유동성$21,095→$22,280(+5.6%,유입전환,직전-0.8%유출). h6 4.15%→10.01%로가속(양전유지)·h24-8.15%→6.81%로재양전. 거래량$6,141, 회전율0.28배, 풀나이7.7일·2개풀(불변).",
+   "risk": "저유동, 거래 희박"
+  },
+  {
+   "token": "YOMOGI",
+   "chain": "Solana(PumpSwap)",
+   "ca": "4978aTN9W3CDuUREGxAQaBYqhPXt8142N4o4Sfgzpump",
+   "stage": "뒷북",
+   "kols": "",
+   "thesis": "65회차재확인(2시간간격회차). h1-5.27%→-2.29%로음전지속(낙폭축소). 유동성$18,502→$18,177(-1.8%,유출지속,직전-3.9%). h6-8.36%→-9.34%로유사(여전히음전)·h24-17.87%→-22.33%로재악화. 거래량$5,602, 회전율0.31배, 풀나이7.8일·단일풀(불변), 극저유동.",
+   "risk": "단일풀, 저유동, h6·h24 동반 악화"
+  },
+  {
+   "token": "DPG",
+   "chain": "Solana(PumpSwap)",
+   "ca": "LFEJTxJ9yi6ojGDFpjbGfABLbH55Fc3oEK8syJJpump",
+   "stage": "뒷북",
+   "kols": "",
+   "thesis": "80회차(2시간간격회차). 거래정지상태가지속·심화됐다 — vol24 $3,316→$2,492로더줄었고회전율도0.21배→0.16배로더붕괴했다. 유동성$15,701→$15,605(-0.6%,보합권). h1 0.13%→-0.51%로음전전환·h6 16.74%→-4.61%로음전전환. h24는14.26%→22.18%로확대됐으나24시간창에서과거급락분이빠지는효과로추정되며회복으로해석하지않는다. 단일풀·극저유동. 🔴최고위험유지.",
+   "risk": "🔴최고위험 — 거래정지 심화, h24 확대는 아티팩트 추정"
+  },
+  {
+   "token": "Truth Coin",
+   "chain": "Solana(PumpSwap)",
+   "ca": "BaBeW6hdxDSenERN6JcxLY9v27YnZqaAQYWuscUjpump",
+   "stage": "뒷북",
+   "kols": "",
+   "thesis": "h1양전가속, h6개선(손익분기근접), h24개선 유동성$8,330(-0.0%)·거래량$1,217·회전율0.15배",
+   "risk": "극저유동·거래희박, 단일풀. 동명이인(notable)과 별개"
+  }
+ ],
+ "notable": [
+  {
+   "token": "TRUTH",
+   "status": "⭐⭐⭐편출(러그확정, 2026-08-26 21:05Z부로 활성목록에서 notable로 이관) — 직전회차(19:05Z) '유동성+40.9%대규모유입,h24+96.76%'로 기록한 바로 그 풀이 2시간 만에 완전 붕괴",
+   "summary": "Robinhood Chain(Uniswap V2, WETH페어). CA 0x2ec5cc87c9a3231bffbbf788ca9182ebd1d64fc4(추적풀 0x256c0e2c8B, 풀교체없음·동일풀). 2026-08-26 21:05Z 부모계측: 유동성$104,890→$0(완전소멸), 가격h1·h6·h24전부-100%(h24기준 약$0.000082→약$0.0000000000637, 약-99.99%), vol24 $589,720(빠져나가는거래만잔존). 이번회차 '유동성$5K이상페어0건'으로계측실패처리됨(러그로판정). 2차소스교차확인: GeckoTerminal도가격$0.0000000000582로붕괴확인했으나 total_reserve_in_usd는$42,234로DexScreener의$0과상이 — 두소스불일치를그대로정직기록(DS기준추적풀유동성$0을채택). ⭐⭐⭐관찰기록(패턴,통계적확증아님·n=4): 직전회차'유동성+40.9%대규모유입+가격h24+96.76%폭등+회전율11.55배→0.66배급락'조합을'워시트레이딩의심→신생풀극단변동성리스크'로재평가했으나, 결과적으로그유동성유입·가격폭등·회전율붕괴조합이러그약2시간전마지막국면이었다. MAPLE도유사패턴('유동성유출+가격상승'경계표기후전면붕괴)으로재확인됐으나MAPLE은이후여러회차째h1이반복반전하며V자반등을거듭하는형태로TRUTH(러그확정)와는다른경로로전개돼왔다. 동일경계신호가러그로도, 반복평균회귀로도이어질수있어예측력이제한적임을계속기록한다. ⚠️8/30 07:00Z회차추가기록: JUGGERNAUT이h1+19.93%로이번회차최대상승(유동성+15.9%,이번회차최대유입)을기록했다. ⚠️8/30 09:00Z회차추가기록: JUGGERNAUT은한회차만에h1+19.93%→-23.7%로정반대반전됐고유동성도+15.9%유입→-15.2%유출로반전됐다(체결은h1매수우위인데가격은급락해방향이어긋났다). BRODIE는h1낙폭이-26.95%로재개되고유동성유출도이번회차최대(-25.1%)를기록했다(체결도매수우위인데급락). 이번회차'유동성유입/유출과가격방향이체결우위와어긋나는사례'가JUGGERNAUT·BRODIE두건동시관측됐다는사실만기록하며인과단정은하지않는다. ⚠️8/30 11:00Z회차추가기록: JUGGERNAUT은h1-23.7%→-0.81%·유동성-15.2%→+0.6%로진정됐다. BRODIE는h1+49.51%로반등했으나이번이세번째소강국면(8/29 21:00Z·23:00Z에도유사반등뒤재붕괴전례)이라회복단정은하지않는다. PROLOGUE는거래량1위($6,413,056)를기록하며h24가+224%→+234%로계속가속중이고, PROLOGUE·CONK모두이번회차'가격상승인데h1체결은매도우위'조합을보였다(인과단정안함). ⭐⭐8/30 13:00Z회차추가기록: BRODIE의세번째소강국면이한회차만에끝나고붕괴가재개됐다(h1+49.51%→-18.37%이번회차최대낙폭, 유동성$35,368→$32,074재유출, 풀수9→7개). JUGGERNAUT은표면h1+4.87%반등과달리h6가-10.95%→-41.19%로급격악화됐다. PROLOGUE는2회차연속거래량1위를기록했으나h24가+234%→+169%로축소됐다(24h창이동에따른아티팩트로추정). CC(h1체결매수2.7배우위인데-15.54%급락)·CATE(h1체결매도우위인데+7.54%상승)에서체결·가격방향불일치가동시관측됐다. ⭐⭐8/30 15:00Z회차추가기록: PROLOGUE는h1+12.11%→-26.28%로이번회차최대낙폭을기록하고유동성도유입에서유출로전환됐으나거래량은3회차연속1위를유지했다(체결은매수1.6배우위인데가격은급락). BRODIE는낙폭이-18.37%→-3.42%로줄었으나유동성재유출이이어져회복단정은하지않는다. JUGGERNAUT은h24가-20.66%→-35.89%로2회차연속악화됐다. ⭐⭐8/30 17:00Z회차추가기록: DPG의거래가사실상멈췄다(vol24 $97,187→$3,316,약-96.6%,회전율6.22배→0.21배). h24는-61.14%→14.26%로양전전환됐으나24시간창에서과거급락분이빠지는아티팩트로추정되며회복으로해석하지않는다. PANTS는h1+16.32%→-18.74%로이번회차최대낙폭(체결매수우위인데급락), CONK는h1-1.21%→24.76%로이번회차최대상승(체결매수우위,유동성최대유입)을기록했다. BRODIE는붕괴가재개돼h1-3.42%→-13.6%·유동성재유출심화(-12.1%)·h6-40.43%로재악화됐다(또매수우위인데하락). ⭐⭐8/30 19:00Z회차추가기록: CC가이번회차최대상승으로h1+56.86%(유동성+24.4%최대유입)을기록했다(체결은매도우위인데상승,인과단정않음). PEPECOIN은이번회차최대낙폭(h1-16.56%,유동성-10.7%)을기록했다. BRODIE는h1+4.71%로표면양전이나유동성재유출(-4.3%)이이어져회복단정하지않는다(세차례소강뒤붕괴재개이력). JUGGERNAUT은표면h1+3.18%반등에도h24가-40.55%로계속악화됐다(체결172매수/172매도정확히균형인데하락). DPG는vol24가$3,316→$2,492로더줄어거래정지가심화됐다."
+  },
+  {
+   "token": "CATALORIAN",
+   "status": "편출(제외, 2026-08-26 13:05Z부로 활성목록에서 notable로 이관) — 유동성$20K미만+h24 -93.04%로 31회차째'거의완전소멸'상태가지속·악화돼편출",
+   "summary": "Solana(PumpSwap). CA 4cvZwC17oMiUA7peKX5GhbaUWv4U5Lwrd8118xnFpump. 2026-08-26 13:05Z 부모계측치: 유동성$7,020.34→$6,295(-10.3%,유출지속,20K미만), h1+4.95%→-12.99%(재음전,대폭반전), h6+2.88%→-6.11%(재음전,대폭반전), h24-91.27%→-93.04%(악화,고착). 회전율14.55배,풀나이3.1일(2026-08-23생성). 31회차간'여전히거의완전소멸'로기록된끝에실질적붕괴가지속·악화확인돼편출한다. 재편입은유동성이유의미하게($20K이상)회복될때재검토. 이번회차는개별재조회보류(carryover)"
+  },
+  {
+   "token": "Truth Coin",
+   "status": "notable유지(2026-08-23 09:00Z부로 편출된 사실상완전소멸 토큰, 이번회차개별재조회는보류) — Robinhood Chain CA 0xa48a58514a4bf47849c8bdc227f109af54cb1bb4",
+   "summary": "Robinhood Chain(Uniswap V2, WETH페어). 직전확정값(reserve$78,h24-94.41%) 유지(carryover). 초저유동+초고거래량조합은워시트레이딩/조작아티팩트로해석. 신규진입절대금지, TRUTH(0x2ec5cc87…,러그확정)·Truth Coin(Solana, BaBeW6hd…, tokens에서추적중)와는완전히별개의죽은토큰"
+  },
+  {
+   "token": "WINNING",
+   "status": "편출(제외, 2026-08-23 19:00Z부로 활성목록에서 notable로 이관) — 소멸단계지속",
+   "summary": "Solana(PumpSwap, Trump's Winning Coin — 공식TRUMP과별개파생토큰). CA FW6R4QQeP4fzqRwDHbBkpjHx3ecvYwhd5g7chKg8pump. 직전확정값(reserve$5,223, h24-99.54%) 유지. 사실상소멸단계지속확인"
+  },
+  {
+   "token": "Remus",
+   "status": "편출(제외, 2026-08-20 11:00Z부로 활성목록에서 notable로 이관) — 127회차 장기추적 동안 뚜렷한 촉매·서사 없이 소규모 등락만 반복돼 활성추적 실익이 낮다고 판단해 편출",
+   "summary": "Solana(PumpSwap). CA 23e4CNuJxvBQ7RjNLc8Bh3yN3pQq6jeiTbyzJGXYPgme. 최종확정값(2026-08-20 11:00Z) 유지(carryover). 127회차 동안 유동성$40K~$60K대 박스권을 벗어나지 못해 편출"
+  },
+  {
+   "token": "NIUNAI",
+   "status": "편출(제외, 2026-08-19 11:00Z부로 활성목록에서 notable로 이관, 러그/유동성거의완전소멸 확인)",
+   "summary": "Solana(PumpSwap). CA H9fikySbqRei3wxMdjtW9GHTdp8r8h4SZma2dsUwpump. 최종확정값(carryover). BABYSHIB과유사한'급팽창후급붕괴'패턴재현사례. 재편입금지지시유지"
+  },
+  {
+   "token": "HEREBRO",
+   "status": "편출(제외, 2026-08-19 05:00Z부로 활성목록에서 notable로 이관, 러그/유동성소멸 확인)",
+   "summary": "Solana(PumpSwap). CA 6H5TvgSQ3wKP7mSP8BCM15x1MnRq4FKNg4bLR1TFpump. 풀생성1~2분만에편입한사상최조기관측이었으나정확히2시간뒤완전소멸(carryover)"
+  },
+  {
+   "token": "P400",
+   "status": "편출(제외, 2026-08-18 05:00Z부로 활성목록에서 notable로 이관, 러그/유동성소멸 확인) — 조기편입 2시간 만에 유동성이 사실상 0으로 소멸",
+   "summary": "Solana(PumpSwap). CA aWxiLPtAaF42sub8WTwS3DVDUjVU7yUaR4bjinWzr3u. 2026-08-18 03:00Z 편입 후 정확히 2시간 뒤(05:00Z) 유동성 완전소멸(carryover)"
+  },
+  {
+   "token": "MOONCOIN",
+   "status": "편출(제외, 2026-08-22 21:00Z부로 활성목록에서 notable로 이관, 완전소멸/러그확정)",
+   "summary": "Robinhood Chain(Uniswap V2, WETH페어). CA 0x82DA7C5D756210ec89d139Defd430549018dC68d. 유동성이 세 소스 모두에서 사실상 0으로 수렴해 편출(carryover)"
+  },
+  {
+   "token": "BLINK",
+   "status": "편출(제외, 2026-08-17 15:00Z부로 활성목록에서 notable로 이관)",
+   "summary": "Robinhood Chain(Uniswap V3, pools.trade). CA 0x6e31e066aa531bcb11133b4e7fe95a1a1ed50daa. 5회연속유동성유출+전방위급반전악화가겹쳐편출(carryover)"
+  },
+  {
+   "token": "ROBBIE",
+   "status": "편출(제외, 2026-08-17 13:30Z부로 활성목록에서 notable로 이관)",
+   "summary": "Robinhood Chain(Uniswap, WETH페어). CA 0xe0eba1b76b73be7bfa7716b6ca96f724930e2263. 4회연속유동성유출확인돼편출(carryover)"
+  },
+  {
+   "token": "BABYSHIB",
+   "status": "편출(제외, 2026-08-15 21:00Z부로 활성목록 종료) — 유동성 임계선 붕괴로 종료, 기록보존용 항목",
+   "summary": "CA 5nZMRLSFnA3oWXXswKyyaW5or2FFy34tkTUhtkWPpump(Solana/PumpSwap). 유동성이 임계선($20,000) 아래로 붕괴해 편출됐다(carryover, 기록보존용)"
+  },
+  {
+   "token": "MANCER",
+   "status": "편출(제외, 2026-08-16 19:00Z부로 활성목록에서 notable로 이관)",
+   "summary": "Robinhood Chain(Uniswap V3 1%). CA 0xc72F232a6869e6CF34dC06129AfFD07F8a2a246A. 65회차연속추적동안유의미한반등신호없이지속악화만확인돼편출(carryover)"
+  },
+  {
+   "token": "CASHCAT",
+   "status": "58회차 — carryover유지(이번회차개별재조회는보류)",
+   "summary": "Robinhood Chain 밈코인 메인풀(Uniswap V3 0.3%/1%, 베이스토큰CA 0x020bfC650A365f8BB26819deAAbF3E21291018b4). 직전(2026-08-26 11:00Z) GT트렌딩확정치(carryover) 유지: '1%'풀 reserve$5,254,549.69·h24+10.319%, '0.3%'풀 reserve$2,259,822.38·h24+8.375%. WebSearch로'pump.fun이 로빈후드체인 토큰거래 지원 추가, CASHCAT 밈코인 열풍이 계기'라는 The Defiant 보도 기존 확인(carryover)"
+  },
+  {
+   "token": "Momota",
+   "status": "편출(제외, 2026-08-17 09:00Z부로 활성목록에서 notable로 이관)",
+   "summary": "Solana(PumpSwap/Meteora/Raydium). CA CrJPSvj625TnPdWS42aG5ybMcHeFvnNqq5AExVespump. PumpSwap기준유동성2회연속유출+h24추가악화가확인돼편출(carryover)"
+  },
+  {
+   "token": "STONKBANKERS",
+   "status": "최종판정: 폐기(편입승격보류확정, carryover 유지)",
+   "summary": "0x266cadaa626fed5ad50dade0a95084f3b86f1a68940a3283b2262c8e2d6cf14a(robinhood). 이전확정값유지(정직표기, 이후회차재조회보류). 활성목록(tokens)에는편입하지않는다"
+  },
+  {
+   "token": "TUT",
+   "status": "carryover 유지 — 개별 재확인은 우선순위상 보류. 여전히 거래소상장이벤트중심 서사라 활성편입은 하지않는다",
+   "summary": "WebSearch로 확인: TUT(Tutorial)가 8/6 Aster DEX 무기한선물 상장을 계기로 급등해 8/10 사상최고가$0.2423를 찍고 이후 42% 되돌린 것으로 보도됨(DailyCoin, carryover). 활성목록(tokens) 편입은 하지 않는다"
+  },
+  {
+   "token": "STONKBROKER",
+   "status": "16회차재확인 — carryover유지(이번회차개별재조회는보류)",
+   "summary": "Robinhood Chain. pool 0xd33c8fd38b06e989cdbd4dffdefab71c4bdd415b24964c8d69e38ff35b068f92, CA 0xe934e36a439c94017b64a3fece66af12099abf50. 직전(2026-08-26 11:00Z) GT트렌딩확정치(carryover) 유지: reserve$5,217,495.01, h24-3.445%"
+  },
+  {
+   "token": "PONS",
+   "status": "⭐CA확정상태 유지 — carryover(이번회차개별재조회는보류)",
+   "summary": "Robinhood Chain(Uniswap 1%, WETH페어). CA: 0x39dBED3a2bd333467115De45665cC57F813C4571(pool 0x10CC6BD38112cAc182db90B6a71d8Bb5939526bA). 직전(2026-08-26 11:00Z) GT트렌딩확정치(carryover) 유지: reserve$2,288,794.23, h24+41.90%. USDG페어0.3%풀도carryover. tokens편입검토는다음회차이후"
+  },
+  {
+   "token": "TENDIES",
+   "status": "carryover, 재조회 계속 보류(동명토큰다수, 매칭불확실 이력)",
+   "summary": "2026-08-10T12:06Z 시점 확정값(작은풀,개별재조회보류,carryover) 유지. 큰풀(별개): pool 0x237609918f330add285b8bc5f8f2922283d1c4c5, CA 0x45242320dbb855eea8fd36804c6487e10e97fcf9. 직전(2026-08-25 19:00Z)GT확정치(reserve$711,059.25) 유지. 매칭혼선경계유지"
+  },
+  {
+   "token": "STONK",
+   "status": "안정유지(carryover, 재조회 계속 보류)",
+   "summary": "직전 확정값 Raydium CLMM풀기준 유동성$416,556.27(+39.4%), h1-5.04%·h6+12.57%·h24+24.92%, 시가총액$8,682,113(+2.7%). 우선추적과제 처리로 재조회 계속 생략"
+  },
+  {
+   "token": "TYGR",
+   "status": "소폭개선(carryover, 재조회 계속 보류)",
+   "summary": "직전 확정값 h1·h6 재양전(+0.58%·+1.44%), h24 개선(-19.08%). 우선추적과제 처리로 재조회 계속 생략"
+  },
+  {
+   "token": "KIO",
+   "status": "안정화지속(carryover, 재조회 계속 보류)",
+   "summary": "직전 확정값 h24 낙폭 대폭축소(-7.26%)로 안정화 흐름 확인. 우선추적과제 처리로 재조회 계속 생략"
+  },
+  {
+   "token": "NASDANQ",
+   "status": "⭐저유동탈피확정 — carryover(이번회차개별재조회는보류)",
+   "summary": "Robinhood Chain(Uniswap V4 1%). pool/CA 0xdb1b57704d5122058ff925c1e765c17b21d065ec. 직전(2026-08-26 11:00Z) GT트렌딩확정치(carryover) 유지: reserve$172,036.93(+83.4%,$100K대최초돌파), h24+337.162%(대폭가속). 저유동탈피조짐확정, tokens편입후보로격상검토 대상"
+  },
+  {
+   "token": "PIPEDOG",
+   "status": "carryover, 재조회 계속 보류",
+   "summary": "2026-08-11 20:06Z 확정값(유동성$10,179,680.41, $10M대유지) 유지. 우선추적과제 처리로 개별 재조회는 계속 생략"
+  },
+  {
+   "token": "HOODRAT",
+   "status": "carryover유지(이번회차개별재조회는보류)",
+   "summary": "CA: 0x8e62f281f282686fca6dcb39288069a93fc23f1c(pool 0x451c0da3b774045a822a129eedcc5c667dcbfdd8). 직전(2026-08-26 11:00Z) GT확정치(carryover) 유지: reserve$406,269.35, h24-23.562%. CA확정상태유지, tokens편입검토는다음회차이후"
+  },
+  {
+   "token": "ANSEM",
+   "status": "carryover유지(이번회차개별재조회는보류) — 직전값유지",
+   "summary": "Solana(PumpSwap). CA 9cRCn9rGT8V2imeM2BaKs13yhMEais3ruM3rPvTGpump. 직전(2026-08-26 11:00Z) GT솔라나트렌딩확정치(carryover) 유지: reserve$1,955,307.26, h1+0.48%·h6+13.74%·h24+11.16%. 유사명계열파생종목(ANSEMBULL·ANSEMSZN)은워시트레이딩·러그의심으로배제유지"
+  },
+  {
+   "token": "CATSZN",
+   "status": "신규발견,편입보류(동명다수풀 문제 지속) — 이번회차도GT솔라나트렌딩상위20위밖으로재노출안됨",
+   "summary": "Solana. 5개baseToken주소(carryover, 08-23 05:00Z 확정치) 유지. HOODRAT·BTW·LIZARD와유사한티커충돌위험사례로기록만하고편입은계속보류한다"
+  },
+  {
+   "token": "Dinger(구형·별개CA)",
+   "status": "carryover유지(이번회차개별재조회는보류)",
+   "summary": "GT솔라나트렌딩(2026-08-26 11:00Z, 14위) 확정치(carryover) 유지: pool FvsZohWNdVpSDQk4gCyU9YrkLRsfeEpSmzVUSQsjDaxG, reserve$33,988.03, h24-42.80%(여전히극단음전). 우리가 추적중인 'Dinger'(CA 3kvZYBrBPEySFwQfXZGEvJSeMWRa6BkTS34suBEYpump)와는 동명이인인 별개의 오래된 'Dinger' 풀(baseToken CA 7fmHqRpJLgpVsJFTvrv24CEjkz9c4o5uVX4Zdur1hz35)"
+  },
+  {
+   "token": "TRUMPCATE",
+   "status": "신규발견,편입보류(유동성 과소, 이번회차GT트렌딩미노출)",
+   "summary": "2026-08-23 17:00Z GT솔라나 트렌딩 확정치(carryover) 유지. 유동성이 너무 낮아 편입 보류"
+  },
+  {
+   "token": "BABYCATE",
+   "status": "carryover유지(이번회차개별재조회는보류) — 직전대폭반전값유지",
+   "summary": "Solana(PumpSwap). CA `DDVUsN8sDFxbaX6gNBoD44kjZhFETWJnwAn4EX1dpump`(Baby Catecoin). 직전(2026-08-25 05:00Z)확정값(liquidity$32,241.06,h24+117%) 유지(carryover). CATSZN·TRUMPCATE·CATALORIAN·CYBERCAT·CATLIST와같은'Cate패밀리/고양이밈'계열파생밈코인"
+  },
+  {
+   "token": "PEPE(로빈후드체인, 별개토큰)",
+   "status": "carryover유지(이번회차개별재조회는보류)",
+   "summary": "CA: 0xcdcabf520be369123c36796f9e53680c657f08f0(pool 0x0d389c0c2e7e1bedb57fb7eb1331cd86067d85b0). 직전(2026-08-26 11:00Z) GT트렌딩확정치(carryover) 유지: reserve$56,751.76, h24+89.95%. 우리가 추적중인 PEPECOIN(CA 0x0b9606fb…)과는 다른 별개 'PEPE' 표기 토큰. 편입은 계속 보류"
+  },
+  {
+   "token": "CATLIST",
+   "status": "carryover유지(이번회차개별재조회는보류) — 직전대폭붕괴값유지",
+   "summary": "Solana(PumpSwap, CAT SEASON CLUB). CA BKaXDgZxUSC9njpX89xpQ5USh2pnK1yzZvgk8Mg7pump. 직전(2026-08-25 05:00Z)확정값(liquidity$4,636.27,h24-35.26%) 유지(carryover). CVXV666·Polycat·100CATS와유사한'극단상승후정점통과·급붕괴'패턴재현사례"
+  },
+  {
+   "token": "AI/NVDA(BANKR, 토큰화합성자산)",
+   "status": "⭐DS-GT h24 방향·크기일치 3회차연속 — carryover유지(이번회차개별재조회는보류)",
+   "summary": "Robinhood Chain(Uniswap V4, PoolId방식). CA 0x2e8c31162b855a2ffa90f6f8634643ad6f111e18, poolId 0xcbdfea90430a30ee4469c9902e120a77e7c7e4711d5643671c1d1957f2f1ce27. 직전(2026-08-26 11:00Z) 확정치(carryover) 유지: GT reserve$5,472,077.63·h24+25.543%, DS liquidity$2,095,542.84·h24+25.51%(거의동일). 토큰화주식/합성자산은이워치의대상범위밖이므로tokens로승격하지않는다"
+  },
+  {
+   "token": "LOOKSMAX",
+   "status": "carryover유지(이번회차개별재조회는보류)",
+   "summary": "Solana(PumpSwap). CA확정(carryover): GPzpoXpD74E2C4CJNayuoyBqPQJEsPtdse3nhntrpump(pool AWiirvWXxrjxMdrmdZK3DbXj73ZFmSQgK5PCP5zf8UW8). 직전(2026-08-25 07:00Z)확정치(reserve$190,146.317) 유지(carryover). tokens편입은계속보류하고notable에서추적유지한다"
+  },
+  {
+   "token": "QUOTRON",
+   "status": "신규발견,편입보류(풀나이약12.5일,LOOKSMAX와유사패턴) — carryover유지",
+   "summary": "Robinhood Chain(Uniswap). 직전(2026-08-24 01:00Z) 확정값 유지: reserve$220,272, h1+9.65%·h6+5.25%·h24+235.67%. 풀생성2026-08-13(약13.5일전). CA는이번회차도미확인이라빈문자열로둔다"
+  },
+  {
+   "token": "Morty(Gucci Morty)",
+   "status": "carryover유지(이번회차개별재조회는보류) — 직전값유지",
+   "summary": "Solana(PumpSwap). CA GUmbtfjSZkybSFgPibBcvwewJHR5PkTjzpump. 직전(2026-08-26 09:00Z) GT트렌딩확정치(carryover) 유지: reserve$131,110.99, h24-36.155%. tokens편입은계속보류하고notable유지한다"
+  },
+  {
+   "token": "Polycat",
+   "status": "⭐9회차재확인 — carryover유지(이번회차개별재조회는보류)",
+   "summary": "Solana(PumpSwap). CA B4iCqVsAZv9dBiBVv58GJiBxWGmwkwbtPTn4sUQTpump(pool 71QuUK1c8Hg9vPi6rGn4D7Q94Kya8tVnxNzBidsyURDi). 직전(2026-08-26 11:00Z) 확정치(carryover) 유지: reserve$106,421.81, h24+88.432%(대폭가속). tokens편입은보류하고notable에서관찰지속한다"
+  },
+  {
+   "token": "DOPAMEME",
+   "status": "carryover유지(이번회차개별재조회는보류)",
+   "summary": "Solana(PumpSwap). CA Ab1sTFNv2tV5DX1XpriwNehXgiJhdq2RQ5LtD5BXpump(pool FmGbfThLpryD6irj9xwtoS4j7rRGnayuUmgHUNCBvxTr). 직전(2026-08-25 11:00Z)확정값 유지(carryover): reserve$219,393.70, h24-37.147%. tokens편입은계속보류한다"
+  },
+  {
+   "token": "LUIGI",
+   "status": "신규발견,편입보류 — carryover유지",
+   "summary": "Solana(PumpSwap). 직전(2026-08-24 11:00Z) 확정값 유지: pool J7EbaBA5ZqngQ3BXvV4T6KuRyEVpriET7SPCgrXPzPnR, reserve$11,404.74. 풀생성2026-08-23. CA는미확인. tokens편입은보류하고notable에계속기록한다"
+  },
+  {
+   "token": "Dinger(로빈후드체인, 신규세번째)",
+   "status": "신규발견,편입보류 — 유동성$2.27로사실상완전소멸/러그확정상태지속",
+   "summary": "직전(2026-08-24 15:00Z) GT로빈후드체인트렌딩17위확정치유지(carryover): pool 0x734ce5818ed9b032f2bb8fa67cb0f1bbb3f393b8, reserve$2.27(사실상변동없음,완전소멸상태지속). 우리가 추적중인 'Dinger'(Solana, 3kvZYBrBPEySFwQfXZGEvJSeMWRa6BkTS34suBEYpump)와는 동명이인인 별개의 로빈후드체인 신규 풀"
+  },
+  {
+   "token": "CVXV666",
+   "status": "carryover유지(이번회차개별재조회는보류)",
+   "summary": "Solana(PumpSwap). CA C3bajJW843KN9Uu441JkXN7zVMs4VM2HvdAGyGiBpump. 직전(2026-08-25 19:00Z) GT확정치(carryover) 유지: reserve$143,640.07, h24-6.458%. tokens편입은다음회차까지관찰뒤재검토한다"
+  },
+  {
+   "token": "CATCUS",
+   "status": "신규발견(carryover,13회차),편입보류(풀나이<2일)",
+   "summary": "Solana(PumpSwap, CATCUS). CA 66ZEoQSgY3g5KEijP8ZUucth9ZmrxwYg8ngzwgP6pump. 직전(2026-08-25 19:00Z) GT확정치(carryover) 유지: reserve$2,966.83, h24-99.226%. 실질회복으로판단하지않는다"
+  },
+  {
+   "token": "100CATS",
+   "status": "carryover유지(이번회차GT솔라나트렌딩상위20위밖으로재노출안됨)",
+   "summary": "Solana. CA GUt3ebbJm6SJCvpa8SfFzZe132a78qZDyc2yXAP1pump(pool 3KpmZWqrQskuEHX5veB4nW1MgYBKH5ex7KNAbGMN2HRk). 직전(2026-08-26 01:00Z)확정치(carryover) 유지: reserve$2,997.71, h24+2.616%. ⚠️유동성사실상불변인데h24만개선되는것은24시간전대붕괴시점이비교기준에서벗어나며생기는산술적아티팩트로판단 — 실질가격회복아님"
+  },
+  {
+   "token": "DELTA",
+   "status": "carryover유지(이번회차개별재조회는보류)",
+   "summary": "Robinhood Chain. CA: 0xe8ffd7e24187f72afb08d75b1bb13088a989a791(pool 0xd64fbda67e1015df43fa5e49f02ca844729e5f94). 직전(2026-08-26 11:00Z) GT트렌딩확정치(carryover) 유지: reserve$722,347.56, h24+44.272%(양전유지). tokens편입은보류하고notable에서관찰유지한다"
+  },
+  {
+   "token": "GrokBot",
+   "status": "신규발견(carryover,7회차),편입보류(풀나이<4일)",
+   "summary": "Solana. CA GeSfrQiscfsEv4Hx2TKaB9Nfid12qND1YYRYS1vSpump(pool DSX8gY83K3bB7bsgCoBrPVnPWyw7KkVrDmktX6tmNRqs). 직전(2026-08-25 19:00Z) GT확정치(carryover) 유지: reserve$293,885.50, h24+75.04%. 여전히tokens편입은보류한다"
+  },
+  {
+   "token": "6(로빈후드체인, 신규)",
+   "status": "carryover유지(이번회차GT로빈후드체인트렌딩상위20위밖으로재노출안됨)",
+   "summary": "Robinhood Chain. CA 0xb245a0e4bcf6f7961b68785d54ccdf51eac906c1(pool 0x4fc195344d28959fdb33dd04446d630b5ec16550624ac1b1d04c90a34edc8502). 직전(2026-08-25 07:00Z)확정치(carryover) 유지: reserve$29,325, h24-64.18%. 티커가단일문자'6'으로매칭혼선위험지속. tokens편입은보류하고notable에서관찰한다"
+  },
+  {
+   "token": "GIPP",
+   "status": "신규발견(carryover,4회차),편입보류(풀나이<4일)",
+   "summary": "Solana. CA 8mBC1RTCajBMiA35TfYUxizUn5rXtuiNgiJKWNMtpump(pool 7xeye9zZcBhbeA4dyZkac8VQQDhiW3j8LPGmkzTHBmE7). 직전(2026-08-25 07:00Z)확정치(reserve$17,106.4836,h24-81.311%) 유지(carryover). tokens편입은보류하고notable에서관찰한다"
+  },
+  {
+   "token": "Index(로빈후드체인, 신규)",
+   "status": "16회차재확인 — carryover유지(이번회차개별재조회는보류)",
+   "summary": "Robinhood Chain(Uniswap 1%). CA 0x56910d4409f3a0c78c64dd8d0545ff0705389870(pool 0xd29893ffac8b29ec4db2cfe0cdb3fe1377c028ff). 직전(2026-08-26 11:00Z) GT트렌딩확정치(carryover) 유지: reserve$564,467.06, h24-6.158%. tokens편입은보류하고notable관찰유지한다"
+  },
+  {
+   "token": "USELESS(솔라나, 신규)",
+   "status": "신규발견(carryover,7회차),편입보류(CA확정,풀나이미확인,대형유동성)",
+   "summary": "Solana. CA Dz9mQ9NzkBcCsuGPFJ3r1bS4wgqKMHBPiVuniW8Mbonk(pool Q2sPHPdUWFMg7M7wwrQKLrn619cAucfRsmhVJffodSp). 직전(2026-08-25 17:00Z)확정치(reserve$2,273,155.15) 유지(carryover). 대형유동성이라'막붙기시작한조기'요건에부합하지않아notable관찰만유지한다"
+  },
+  {
+   "token": "Allocate(솔라나, 신규)",
+   "status": "carryover유지(이번회차개별재조회는보류) — 직전재악화값유지",
+   "summary": "Solana. CA 6XPcEY6XbhjKmfnrvA3y6QQvNp4rYLV6v3Hm5b4Mpump(pool 9sn724EaSRb8yvLzN9VUrHHVCVAjQQ68CeyFqmcRdNtu). 직전(2026-08-25 17:00Z)확정값(reserve$5,678.21,h24-95.94%) 유지(carryover). tokens편입은계속보류한다"
+  },
+  {
+   "token": "TRENCHERS(솔라나, 신규)",
+   "status": "⚠️⚠️⚠️15회차재확인 — 총붕괴상태고착지속,여전히극저유동",
+   "summary": "Solana. CA D9qNfYpFtP9E3YpjBJDCD5PuWoD3445cC9K6PMX5pump(pool 7WNu9u2ETuvg27ij4AZ129GwDJz5Zm9sDn12Ug9NA6v6). 직전(2026-08-26 11:00Z) GT솔라나트렌딩확정치(carryover) 유지: reserve$2,623.53, h24-98.885%(여전히총붕괴). tokens편입은보류하고notable에서관찰지속(사실상소멸판정)"
+  },
+  {
+   "token": "PCAT(로빈후드체인, 신규)",
+   "status": "carryover유지(이번회차GT로빈후드체인트렌딩상위20위밖으로재노출안됨)",
+   "summary": "Robinhood Chain. CA 0x14623dd0784cb5c484f8935c7c218d110332b538(pool 0x03cc14c8bc55a487da89847a432e4220f46dfc63). 직전(2026-08-25 21:00Z)확정치(reserve$36,021,h24+5.79%) 유지(carryover). tokens편입은계속보류한다"
+  },
+  {
+   "token": "Jimothy(솔라나, 신규)",
+   "status": "carryover유지(이번회차개별재조회는보류) — 직전값유지",
+   "summary": "Solana. CA Ge87EtsjwRQbHaqQmKRno69RFTwh9bfSsm99XNxTpump(pool 5PGhKctym6odbHGo2tKMST2AjmJsb2uZBQrKkn4ZuFT5). 직전(2026-08-26 09:00Z)확정치(reserve$894,947.53,h24-9.494%) 유지(carryover). tokens편입은계속보류하고notable에서관찰한다"
+  },
+  {
+   "token": "BATON(솔라나, 신규)",
+   "status": "carryover유지(이번회차개별재조회는보류) — 직전값유지",
+   "summary": "Solana. CA 6Hebn672FvMSq61mo4HYq86QgLHgBUm6y8A9bXGppump(pool 6VKQKCnQLJqnLkaBoYKKa6L5gpvSjY2BBWRMevSPPJoJ). 직전(2026-08-26 09:00Z)확정치(reserve$69,140.61,h24-72.708%) 유지(carryover). tokens편입은계속보류한다"
+  },
+  {
+   "token": "Meeko(솔라나, 신규)",
+   "status": "carryover유지(이번회차GT트렌딩상위20위밖으로재노출안됨) — 직전값유지",
+   "summary": "Solana(Meekocoin). CA 8KbB6b8uHV3bYd3AJA5nm5vNSqXf29veBVAm91Lpump(pool A3pbFdP1QzypAwH7MBfcxvEDwCnuT2PJLsP4Va7vSVQ5). 직전(2026-08-25 17:00Z)확정치(reserve$18,641.48,h24+104.47%) 유지(carryover). tokens편입은보류하고notable에서관찰한다"
+  },
+  {
+   "token": "TILLY(솔라나, 신규)",
+   "status": "carryover유지(이번회차개별재조회는보류) — 직전값유지",
+   "summary": "Solana. CA CGmBrG4GRiMvFSGaEiB7cwEd9uDYiqrXzkoyR2Qa3KrC(pool BZopKpddoJcuCF13zkzThs68oT9uHMD88qo6BteDsNqp). 직전(2026-08-25 13:00Z)확정치(reserve$49,896.97,h24-10.019%,완전반전확정) 유지(carryover). tokens편입은계속보류한다"
+  },
+  {
+   "token": "솔라나신규풀군(FROGE·ARCHITECTURE·beluga·AHTS·trickshot)",
+   "status": "carryover유지(이번회차재조회는보류) — 직전값유지",
+   "summary": "직전(2026-08-25 19:00Z) 확정값(carryover) 유지. FROGE reserve$11,607.68·h24-50.62%, beluga 직전(17:00Z)총붕괴확정값(reserve$3,260.09,h24-97.08%) 유지·GT트렌딩상위40위밖완전탈락지속, AHTS reserve$20,663.63·h24+37.946%, ARCHITECTURE·trickshot도직전값유지. tokens편입은보류하고notable에서관찰유지한다"
+  },
+  {
+   "token": "TINY(솔라나, 신규)",
+   "status": "carryover유지(이번회차개별재조회는보류)",
+   "summary": "Solana. pool GEF9WdZj9UzsMnNViGiRFqMYtxzHNQF5kwts9eMYHh6d, baseToken CA 2AF7CqwieUjUPALL7icuZtL3X7wENdjUjGBMmfV2pump. 직전(2026-08-26 11:00Z) GT트렌딩확정치(carryover) 유지: reserve$198,861.40, h24-31.83%(재음전). tokens편입은보류하고notable에서관찰지속한다"
+  },
+  {
+   "token": "SEYONGPARK(솔라나, 신규)",
+   "status": "carryover유지(이번회차GT솔라나트렌딩상위20위밖으로재노출안됨)",
+   "summary": "Solana. pool 7omGD2o8rjoQRRzpvv5fqXUCwGiivPrLJGjXLDpJq5wX, baseToken CA 39fNg98hhpyiRTGD8Gf8y5MwFVgJJZEnDyTMKdDZpump. 직전(2026-08-26 05:00Z)확정치(carryover) 유지: reserve$31,902.68, h24+469.318%. BATON·PCAT류극단초기치패턴의whipsaw지속. tokens편입은보류하고notable에서관찰한다"
+  },
+  {
+   "token": "CNPY(로빈후드체인, 신규)",
+   "status": "12회차재확인 — carryover유지(이번회차개별재조회는보류)",
+   "summary": "Robinhood Chain. pool 0xd05d2c3d696fcb893aee6607e3652accd2aedf97, baseToken CA 0x532c5583671870723ceef573600208af49c87c54. 직전(2026-08-26 11:00Z) GT트렌딩확정치(carryover) 유지: reserve$112,483.47, h24-38.625%(재음전). tokens편입은보류하고notable에서관찰한다"
+  },
+  {
+   "token": "DTF(로빈후드체인, 신규)",
+   "status": "⭐⭐⭐⭐⭐12회차재확인 — carryover유지(이번회차개별재조회는보류)",
+   "summary": "Robinhood Chain. 메인추적풀 0xbc58bfe115b23f22d2e97ded5c791ebf6db3d3f510f412908c511da6dc8cb4ee(pons-v2), baseToken CA 0xee5576fa1bcaa380e591d01245f406f3f384eb01. 직전(2026-08-26 11:00Z) GT확정치(carryover) 유지: reserve$200,409.93, h24+25.627%(대폭감속,여전히양전). 풀나이약33.4시간(2026-08-25T01:35:27Z생성). '제2의DTF'토큰(CA 0x2ec89afba136119c5252fc47d14e2bd2144b10d2)도직전값유지(reserve$399,716.40,h24-38.09%). 신규진입최고위험유지, tokens편입은보류한다"
+  },
+  {
+   "token": "SMOLCAT(솔라나, 신규)",
+   "status": "⚠️11회차재확인 — carryover유지(이번회차개별재조회는보류)",
+   "summary": "Solana. pool Mwqyi3GoSwu3EjTsx2D9gDBNP1J7FTvsiKfXpPEUJP3, baseToken CA 9Y3fY1kwYUTgLwBU7DZKkEwCsZYj3BrXQNP74ZNEpump. 직전(2026-08-26 11:00Z) GT트렌딩확정치(carryover) 유지: reserve$20,416.57, h24-81.50%(대폭악화). tokens편입은보류하고notable에서관찰지속한다"
+  },
+  {
+   "token": "CMNS(솔라나, 신규)",
+   "status": "carryover유지(이번회차GT솔라나트렌딩상위20위밖으로재노출안됨)",
+   "summary": "Solana. pool DEGN92EGHuV3gKwzuF7j2G6Dg9UXhKpECw2eN6uuyD9R, baseToken CA AMUgSjmdFsS8Y3JeL32u7A45Fpt8YF9xKaiwW5uGHdXk. 직전(2026-08-25 15:00Z)확정값 유지(carryover): reserve$225,481.55, h24+696.5%. 풀생성2026-08-24(약2일전). tokens편입은보류하고notable에서관찰지속한다"
+  },
+  {
+   "token": "BULL(로빈후드체인, 신규)",
+   "status": "carryover유지(이번회차개별재조회는보류)",
+   "summary": "Robinhood Chain. pool 0xb4667b919d19a20712d04c1c44b917bd99f59ed8, baseToken CA 0x224e5054493b9496082d8c4a26954a83fd586135. 직전(2026-08-26 11:00Z) GT트렌딩확정치(carryover) 유지: reserve$15,466.17, h24-86.219%(추가악화). tokens편입은보류하고notable에서관찰지속한다"
+  },
+  {
+   "token": "Martians(솔라나, 신규발견)",
+   "status": "9회차재확인 — carryover유지(이번회차개별재조회는보류)",
+   "summary": "Solana. CA 7nLukVng5teXze14rum9v57juXLjUp7JJnCveko1pump(pool 42SrahWLALtSf9uHs8JsjvwjJXj5gLbEnQCjXkyK4Eho). 직전(2026-08-26 11:00Z) GT트렌딩확정치(carryover) 유지: reserve$171,337.04, h24+5,044.821%(여전히극단). 풀나이약25일(2026-08-02 생성)로'신생'요건에는맞지않으나 여전히극단수치유지 — 신규진입최고위험유지"
+  },
+  {
+   "token": "Zoe(솔라나, 신규발견)",
+   "status": "carryover유지(이번회차개별재조회는보류) — 직전값유지",
+   "summary": "Solana. CA 7n8kRipxAQBfpGQtcGA2AbkM2HASSVCzqZ5F3QEopump(pool CfxiJypYd5YkiizhL5JCKUai6xKpGNagstCDREphdnWV). 직전(2026-08-26 09:00Z)확정치(reserve$109,752.61,h24+442.267%) 유지(carryover). 풀나이약9.5일. tokens편입은보류하고notable에서관찰지속한다"
+  },
+  {
+   "token": "Sue(솔라나, 신규발견)",
+   "status": "⚠️9회차재확인 — carryover유지(이번회차개별재조회는보류)",
+   "summary": "Solana. CA 2NffKvfZTcFj2tyoY1Ev84PkqxA7DZnstyv6EwELpump(pool GjYdVt5LSsp7J7uVDCb2svtQHGkmXcQR2tGGB8RqHtbb). 직전(2026-08-26 11:00Z) GT트렌딩확정치(carryover) 유지: reserve$84,109.88, h24+329.195%(대폭감속,여전히극단양전). Martians와유사한'오래된풀(2026-08-01생성,약4주차)'에서극단whipsaw지속 — 워시트레이딩의심유지"
+  },
+  {
+   "token": "BARK(솔라나, 신규발견)",
+   "status": "⭐⭐8회차재확인 — carryover유지(이번회차개별재조회는보류)",
+   "summary": "Solana. CA BTKfTUMRYsS5W5RXfbtMcgJf9fqoz1rhRcJtESyPpump(pool 5yq5jYbc3GXs2MmKW5sCvwRDDnZJi5rQUZVN9iz1iXp2). 직전(2026-08-26 11:00Z) GT확정치(carryover) 유지: reserve$16,314.02, h24+2.6%(양전유지,여전히손익분기위). 풀생성2026-08-25T13:33:34Z. 전지표양전상태 2회차째유지 — 조기신호중가장안정적인개선흐름. tokens편입은계속보류하고notable에서관찰지속한다"
+  },
+  {
+   "token": "Pistacio(솔라나, 신규발견)",
+   "status": "⭐7회차재확인 — carryover유지(이번회차개별재조회는보류)",
+   "summary": "Solana(PumpSwap). baseToken CA FZqdw6oSDCbHtKYxmhnfbi97SnyVy8jaYpdCoMrrjKa2(pool 22CfmLna8Bsh7xrbyvGSs6NdD31iFj1UFVnwB7EberWU). 직전(2026-08-26 11:00Z) GT확정치(carryover) 유지: reserve$331,734.32, h24+20,402.87%(여전히초극단). tokens편입은보류하고notable에서관찰지속한다"
+  },
+  {
+   "token": "Swan(로빈후드체인, 신규발견)",
+   "status": "⭐6회차재확인 — carryover유지(이번회차개별재조회는보류)",
+   "summary": "Robinhood Chain(WETH페어). baseToken CA 0xe7Df71858B078134510B5E6844e502c0839cD524(pool 0x3bc5b119af9e89ca5c4a7f138adb0dfb39685663). 직전(2026-08-26 11:00Z) GT/DS확정치(carryover) 유지: GT reserve$97,878.44·h24+18,116.405%, DS liquidity$95,571.62·h24+115,020%(GT대비약6.35배괴리). DTF·Pistacio와동일패턴으로계속관찰"
+  },
+  {
+   "token": "C4T(솔라나, 신규발견)",
+   "status": "4회차재확인 — carryover유지(이번회차개별재조회는보류)",
+   "summary": "Solana. pool 4Wwu97nL4vJ1dHt9xFv4sPeNgxrbevgzUtX9kGhFtxCD, CA 2sLKA6PzFVjeTUaiKBCkDbDiS8MuoZAeXxZMgs9Apump. 직전(2026-08-26 11:00Z) GT확정치(carryover) 유지: reserve$26,749.46, h24-4.625%(재음전,손익분기붕괴). tokens편입은계속보류하고notable에서관찰지속한다"
+  },
+  {
+   "token": "DTF(둘째, 신규발견 — 위DTF와완전히별개토큰)",
+   "status": "3회차재확인 — carryover유지(이번회차개별재조회는보류)",
+   "summary": "Robinhood Chain. pool 0xbbc5d7f008582ab30e64633743bb2757baad550e('DTF/WETH'), baseToken CA 0x2ec89afba136119c5252fc47d14e2bd2144b10d2(우리가추적중인DTF 0xee5576fa1bcaa380e591d01245f406f3f384eb01와완전히다른주소). 직전(2026-08-26 11:00Z) GT트렌딩확정치(carryover) 유지: reserve$399,716.40, h24-38.09%(추가악화). 붕괴→급반등→h24재악화가1회차만에연속확인. 신규진입최고위험유지"
+  },
+  {
+   "token": "MEEMERS(솔라나, 신규발견)",
+   "status": "2회차재확인 — carryover유지(이번회차개별재조회는보류)",
+   "summary": "Solana. pool 5YGWyQLZawyjAfaZUznn95aSh5Audx1Tc7tWop3so2cv, baseToken CA 3N5imznFARN7MYo5cpv8mMCfPwsC769S9sYMbrcUpump. 직전(2026-08-26 11:00Z) GT확정치(carryover) 유지: reserve$38,353.42, h24+346.938%(양전유지). tokens편입은보류하고notable에서관찰지속한다"
+  },
+  {
+   "token": "Catacio(솔라나, 신규발견)",
+   "status": "⭐2회차재확인 — carryover유지(이번회차개별재조회는보류)",
+   "summary": "Solana. pool 7xn1nnW1yH2Hy3wRkdmmqqLzHrVoGucKxnZdKyifaAPr, baseToken CA BbF6bnegMqFfEA9yuwBeDWgoWPnL82rtQRiBLUKApump. 직전(2026-08-26 11:00Z) GT확정치(carryover) 유지: reserve$51,932.33, h24+383.873%(가속,양전유지). ⚠️우리가추적중인'Pistacio'(FZqdw6oS…)와이름이유사해혼동위험 — 완전히별개의컨트랙트임을재확인. tokens편입은보류하고notable에서관찰지속한다"
+  },
+  {
+   "token": "fih(솔라나, 신규발견)",
+   "status": "2회차재확인 — carryover유지(이번회차개별재조회는보류)",
+   "summary": "Solana. pool TTnBaFvGwPq4erUdPKwMHSEVSYRqLRxWCDKFKHSBWUf, baseToken CA 547tWxWhym8U7Y7DvhGJktpkcs5eHeywvSYnhwvdpump. 직전(2026-08-26 11:00Z) GT확정치(carryover) 유지: reserve$90,504.44, h24+1623.964%(여전히극단). tokens편입은보류하고notable에서관찰지속한다"
+  },
+  {
+   "token": "Frug(솔라나, 신규발견)",
+   "status": "2회차재확인 — carryover유지(이번회차개별재조회는보류)",
+   "summary": "Solana. pool 6rmzTtPEJAeuBBkGvNg5zdzfPpZpfjeuThPeen2YL4Le. 직전(2026-08-26 11:00Z) GT트렌딩확정치(carryover) 유지: reserve$72,130.46, h24+1459.85%. 풀생성2026-08-26(당일생성). baseToken CA는여전히미확인(빈문자열). tokens편입은보류하고notable에서관찰지속한다"
+  },
+  {
+   "token": "POK(솔라나, 신규발견)",
+   "status": "2회차재확인 — carryover유지(이번회차개별재조회는보류)",
+   "summary": "Solana. pool 4Xcvd5rjn6V2UrfLs6UvMeLvgU8fLgFM42HzoXy6ABbf. 직전(2026-08-26 11:00Z) GT트렌딩확정치(carryover) 유지: reserve$59,131.97, h24+1159.68%(h1h6되돌림중,정점통과가능성경계). 풀생성2026-08-25. baseToken CA는미확인(빈문자열). tokens편입은보류하고notable에서관찰지속한다"
+  },
+  {
+   "token": "George(솔라나, 신규발견)",
+   "status": "2회차재확인 — carryover유지(이번회차개별재조회는보류)",
+   "summary": "Solana. pool EMSHxmNKDLVLDv6VK5NwboA8yeX5t2X6q8DJgoz5czLB. 직전(2026-08-26 11:00Z) GT트렌딩확정치(carryover) 유지: reserve$32,899.17, h24+219.90%(h1급락중,되돌림가능성). 풀생성2026-08-25. baseToken CA는미확인(빈문자열). tokens편입은보류하고notable에서관찰지속한다"
+  },
+  {
+   "token": "MARTIANS(로빈후드체인, 신규 — 솔라나Martians와별개토큰)",
+   "status": "2회차재확인 — carryover유지(이번회차개별재조회는보류)",
+   "summary": "Robinhood Chain(USDG페어 3.03%). pool 0x35da5f28822ab26ccbefd87ff9d41966648522b59d395d0bf36e7a3b4b86411a. 직전(2026-08-26 11:00Z) GT트렌딩확정치(carryover) 유지: reserve$158,830.97, h24+87.819%(h1h6급락중,고점대비큰폭되돌림). 풀생성2026-08-24. baseToken CA는미확인(빈문자열). ⚠️우리가추적중인'Martians'(Solana, CA 7nLukVng5teXze14rum9v57juXLjUp7JJnCveko1pump)와는완전히별개의로빈후드체인토큰 — 명칭혼동주의. tokens편입은보류하고notable에서관찰지속한다"
+  }
+ ]
 }
