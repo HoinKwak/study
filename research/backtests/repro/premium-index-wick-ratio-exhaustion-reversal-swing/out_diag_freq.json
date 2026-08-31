@@ -1,0 +1,219 @@
+{
+  "naive_rates": [
+    {
+      "symbol": "BTCUSDT",
+      "n": 9834,
+      "p_wick_upper>=0.4": 0.06965629448850925,
+      "p_wick_lower<=-0.4": 0.06670734187512711
+    },
+    {
+      "symbol": "ETHUSDT",
+      "n": 9834,
+      "p_wick_upper>=0.4": 0.0654870856213138,
+      "p_wick_lower<=-0.4": 0.07230018303843808
+    },
+    {
+      "symbol": "BNBUSDT",
+      "n": 9834,
+      "p_wick_upper>=0.4": 0.05013219442749644,
+      "p_wick_lower<=-0.4": 0.0908074028879398
+    },
+    {
+      "symbol": "SOLUSDT",
+      "n": 9840,
+      "p_wick_upper>=0.4": 0.051321138211382115,
+      "p_wick_lower<=-0.4": 0.09451219512195122
+    },
+    {
+      "symbol": "XRPUSDT",
+      "n": 9840,
+      "p_wick_upper>=0.4": 0.05721544715447154,
+      "p_wick_lower<=-0.4": 0.11880081300813009
+    },
+    {
+      "symbol": "DOGEUSDT",
+      "n": 9834,
+      "p_wick_upper>=0.4": 0.04199715273540777,
+      "p_wick_lower<=-0.4": 0.11195851128737035
+    },
+    {
+      "symbol": "ADAUSDT",
+      "n": 9834,
+      "p_wick_upper>=0.4": 0.0350823672971324,
+      "p_wick_lower<=-0.4": 0.15680292861500916
+    }
+  ],
+  "offset_rows": [
+    {
+      "symbol": "BTCUSDT",
+      "offset": "at_settlement(00/08/16h)",
+      "n": 4917,
+      "p_upper": 0.06650396583282489,
+      "p_lower": 0.06467358145210494,
+      "mean_wick_asym": 0.012451956255754466
+    },
+    {
+      "symbol": "BTCUSDT",
+      "offset": "pre_settlement(04/12/20h)",
+      "n": 4917,
+      "p_upper": 0.07280862314419362,
+      "p_lower": 0.06874110229814928,
+      "mean_wick_asym": -0.002518294880516122
+    },
+    {
+      "symbol": "ETHUSDT",
+      "offset": "at_settlement(00/08/16h)",
+      "n": 4917,
+      "p_upper": 0.06813097417124263,
+      "p_lower": 0.06813097417124263,
+      "mean_wick_asym": -0.00027977982982343785
+    },
+    {
+      "symbol": "ETHUSDT",
+      "offset": "pre_settlement(04/12/20h)",
+      "n": 4917,
+      "p_upper": 0.06284319707138498,
+      "p_lower": 0.07646939190563351,
+      "mean_wick_asym": -0.013332689324844464
+    },
+    {
+      "symbol": "BNBUSDT",
+      "offset": "at_settlement(00/08/16h)",
+      "n": 4917,
+      "p_upper": 0.048810250152532035,
+      "p_lower": 0.09538336383973968,
+      "mean_wick_asym": -0.042072584730023926
+    },
+    {
+      "symbol": "BNBUSDT",
+      "offset": "pre_settlement(04/12/20h)",
+      "n": 4917,
+      "p_upper": 0.05145413870246085,
+      "p_lower": 0.08623144193613992,
+      "mean_wick_asym": -0.0382965320680014
+    },
+    {
+      "symbol": "SOLUSDT",
+      "offset": "at_settlement(00/08/16h)",
+      "n": 4920,
+      "p_upper": 0.049796747967479675,
+      "p_lower": 0.09613821138211383,
+      "mean_wick_asym": -0.043000052466154806
+    },
+    {
+      "symbol": "SOLUSDT",
+      "offset": "pre_settlement(04/12/20h)",
+      "n": 4920,
+      "p_upper": 0.052845528455284556,
+      "p_lower": 0.09288617886178861,
+      "mean_wick_asym": -0.04570524318338017
+    },
+    {
+      "symbol": "XRPUSDT",
+      "offset": "at_settlement(00/08/16h)",
+      "n": 4920,
+      "p_upper": 0.06483739837398374,
+      "p_lower": 0.1048780487804878,
+      "mean_wick_asym": -0.040863757475461476
+    },
+    {
+      "symbol": "XRPUSDT",
+      "offset": "pre_settlement(04/12/20h)",
+      "n": 4920,
+      "p_upper": 0.04959349593495935,
+      "p_lower": 0.13272357723577236,
+      "mean_wick_asym": -0.07977770091951038
+    },
+    {
+      "symbol": "DOGEUSDT",
+      "offset": "at_settlement(00/08/16h)",
+      "n": 4917,
+      "p_upper": 0.04128533658735001,
+      "p_lower": 0.10595891803945495,
+      "mean_wick_asym": -0.06523207716161601
+    },
+    {
+      "symbol": "DOGEUSDT",
+      "offset": "pre_settlement(04/12/20h)",
+      "n": 4917,
+      "p_upper": 0.04270896888346553,
+      "p_lower": 0.11795810453528574,
+      "mean_wick_asym": -0.06929955071577387
+    },
+    {
+      "symbol": "ADAUSDT",
+      "offset": "at_settlement(00/08/16h)",
+      "n": 4917,
+      "p_upper": 0.03721781574130567,
+      "p_lower": 0.15456579214968477,
+      "mean_wick_asym": -0.11195711895878062
+    },
+    {
+      "symbol": "ADAUSDT",
+      "offset": "pre_settlement(04/12/20h)",
+      "n": 4917,
+      "p_upper": 0.03294691885295912,
+      "p_lower": 0.15904006508033353,
+      "mean_wick_asym": -0.1173704122075527
+    }
+  ],
+  "freq_rows": [
+    {
+      "symbol": "BTCUSDT",
+      "n_bars_valid": 9828,
+      "years_approx": 4.48,
+      "n_signals_short": 3,
+      "n_signals_long": 0,
+      "signals_per_year": 0.67
+    },
+    {
+      "symbol": "ETHUSDT",
+      "n_bars_valid": 9828,
+      "years_approx": 4.48,
+      "n_signals_short": 0,
+      "n_signals_long": 1,
+      "signals_per_year": 0.22
+    },
+    {
+      "symbol": "BNBUSDT",
+      "n_bars_valid": 9828,
+      "years_approx": 4.48,
+      "n_signals_short": 0,
+      "n_signals_long": 11,
+      "signals_per_year": 2.45
+    },
+    {
+      "symbol": "SOLUSDT",
+      "n_bars_valid": 9804,
+      "years_approx": 4.47,
+      "n_signals_short": 2,
+      "n_signals_long": 20,
+      "signals_per_year": 4.92
+    },
+    {
+      "symbol": "XRPUSDT",
+      "n_bars_valid": 9804,
+      "years_approx": 4.47,
+      "n_signals_short": 0,
+      "n_signals_long": 24,
+      "signals_per_year": 5.36
+    },
+    {
+      "symbol": "DOGEUSDT",
+      "n_bars_valid": 9828,
+      "years_approx": 4.48,
+      "n_signals_short": 0,
+      "n_signals_long": 21,
+      "signals_per_year": 4.68
+    },
+    {
+      "symbol": "ADAUSDT",
+      "n_bars_valid": 9828,
+      "years_approx": 4.48,
+      "n_signals_short": 5,
+      "n_signals_long": 104,
+      "signals_per_year": 24.31
+    }
+  ],
+  "frac_upper_at_settlement_hours": 0.5076754385964912
+}

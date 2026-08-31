@@ -1,0 +1,114 @@
+{
+  "per_symbol_full": [
+    {
+      "symbol": "BTCUSDT",
+      "n": 9775,
+      "r_wick_price": 0.17764806580795536,
+      "r_zscore": -0.13193381371941063,
+      "r_realized_vol": -0.0023795452444075383
+    },
+    {
+      "symbol": "ETHUSDT",
+      "n": 9775,
+      "r_wick_price": 0.23484399793189173,
+      "r_zscore": -0.10543051560364927,
+      "r_realized_vol": -0.010260754453937324
+    },
+    {
+      "symbol": "BNBUSDT",
+      "n": 9775,
+      "r_wick_price": 0.17493179669722042,
+      "r_zscore": -0.06524831635098488,
+      "r_realized_vol": -0.09315615329461276
+    },
+    {
+      "symbol": "SOLUSDT",
+      "n": 9751,
+      "r_wick_price": 0.10331884785228142,
+      "r_zscore": -0.14091874565525872,
+      "r_realized_vol": -0.04216192731120452
+    },
+    {
+      "symbol": "XRPUSDT",
+      "n": 9751,
+      "r_wick_price": 0.0890537347267789,
+      "r_zscore": -0.14302788333194544,
+      "r_realized_vol": -0.023525090586816972
+    },
+    {
+      "symbol": "DOGEUSDT",
+      "n": 9775,
+      "r_wick_price": 0.10828463414970796,
+      "r_zscore": -0.26638741265814125,
+      "r_realized_vol": 0.026206385837995005
+    },
+    {
+      "symbol": "ADAUSDT",
+      "n": 9775,
+      "r_wick_price": 0.08345986087199192,
+      "r_zscore": -0.21188414631084682,
+      "r_realized_vol": 0.06336935271103837
+    }
+  ],
+  "per_symbol_trigger": [
+    {
+      "symbol": "BTCUSDT",
+      "n_trigger": 3,
+      "r_wick_price_trigger": NaN,
+      "r_zscore_trigger": NaN,
+      "r_realized_vol_trigger": NaN
+    },
+    {
+      "symbol": "ETHUSDT",
+      "n_trigger": 1,
+      "r_wick_price_trigger": NaN,
+      "r_zscore_trigger": NaN,
+      "r_realized_vol_trigger": NaN
+    },
+    {
+      "symbol": "BNBUSDT",
+      "n_trigger": 11,
+      "r_wick_price_trigger": -0.20184537661667745,
+      "r_zscore_trigger": -0.527323693136313,
+      "r_realized_vol_trigger": -0.08838652215552138
+    },
+    {
+      "symbol": "SOLUSDT",
+      "n_trigger": 22,
+      "r_wick_price_trigger": 0.40842045601931554,
+      "r_zscore_trigger": 0.16278345623260884,
+      "r_realized_vol_trigger": -0.21676741229070798
+    },
+    {
+      "symbol": "XRPUSDT",
+      "n_trigger": 24,
+      "r_wick_price_trigger": 0.06805604755449764,
+      "r_zscore_trigger": -0.5061045929640062,
+      "r_realized_vol_trigger": 0.17526461248783323
+    },
+    {
+      "symbol": "DOGEUSDT",
+      "n_trigger": 21,
+      "r_wick_price_trigger": 0.019822876169680856,
+      "r_zscore_trigger": -0.2682942584903405,
+      "r_realized_vol_trigger": 0.20833109069852213
+    },
+    {
+      "symbol": "ADAUSDT",
+      "n_trigger": 109,
+      "r_wick_price_trigger": 0.23616711024613124,
+      "r_zscore_trigger": -0.16414709237374892,
+      "r_realized_vol_trigger": -0.17665042418515098
+    }
+  ],
+  "pooled": {
+    "pooled_full_n": 68377,
+    "pooled_full_r_wick_price": 0.13773412934530768,
+    "pooled_full_r_zscore": -0.15051889335205723,
+    "pooled_full_r_realized_vol": -0.027610515536552426,
+    "pooled_trigger_n": 191,
+    "pooled_trigger_r_wick_price": 0.2426221731713368,
+    "pooled_trigger_r_zscore": -0.09288563756943352,
+    "pooled_trigger_r_realized_vol": -0.07277282676983572
+  }
+}
