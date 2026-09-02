@@ -1,0 +1,72 @@
+[
+  {
+    "symbol": "BTCUSDT",
+    "n_windows_total": 4913,
+    "n_valid_cz": 4853,
+    "n_trigger": 277,
+    "trigger_rate_pct": 5.707809602307851,
+    "years": 4.438056125941136,
+    "trigger_per_year": 62.414713140037016,
+    "long_frac_of_trigger": 0.5342960288808665
+  },
+  {
+    "symbol": "ETHUSDT",
+    "n_windows_total": 4913,
+    "n_valid_cz": 4853,
+    "n_trigger": 278,
+    "trigger_rate_pct": 5.728415413146507,
+    "years": 4.438056125941136,
+    "trigger_per_year": 62.64003701418877,
+    "long_frac_of_trigger": 0.5
+  },
+  {
+    "symbol": "BNBUSDT",
+    "n_windows_total": 4914,
+    "n_valid_cz": 4854,
+    "n_trigger": 273,
+    "trigger_rate_pct": 5.624227441285537,
+    "years": 4.438056125941136,
+    "trigger_per_year": 61.51341764342998,
+    "long_frac_of_trigger": 0.47619047619047616
+  },
+  {
+    "symbol": "SOLUSDT",
+    "n_windows_total": 4916,
+    "n_valid_cz": 4856,
+    "n_trigger": 280,
+    "trigger_rate_pct": 5.766062602965404,
+    "years": 4.438056125941136,
+    "trigger_per_year": 63.09068476249229,
+    "long_frac_of_trigger": 0.5142857142857142
+  },
+  {
+    "symbol": "XRPUSDT",
+    "n_windows_total": 4917,
+    "n_valid_cz": 4857,
+    "n_trigger": 256,
+    "trigger_rate_pct": 5.2707432571546216,
+    "years": 4.438056125941136,
+    "trigger_per_year": 57.68291178285009,
+    "long_frac_of_trigger": 0.47265625
+  },
+  {
+    "symbol": "DOGEUSDT",
+    "n_windows_total": 4913,
+    "n_valid_cz": 4853,
+    "n_trigger": 273,
+    "trigger_rate_pct": 5.625386358953225,
+    "years": 4.438056125941136,
+    "trigger_per_year": 61.51341764342998,
+    "long_frac_of_trigger": 0.46153846153846156
+  },
+  {
+    "symbol": "ADAUSDT",
+    "n_windows_total": 4914,
+    "n_valid_cz": 4854,
+    "n_trigger": 274,
+    "trigger_rate_pct": 5.644829007004533,
+    "years": 4.438056125941136,
+    "trigger_per_year": 61.73874151758174,
+    "long_frac_of_trigger": 0.4635036496350365
+  }
+]
