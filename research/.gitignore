@@ -1,3 +1,8 @@
 *.pyc
 __pycache__/
 impl/
+
+# 백테스트 재현 스크립트가 내려받는 원본 시장데이터 캐시.
+# data.binance.vision에서 언제든 다시 받을 수 있고 회차마다 수십 MB씩 쌓여
+# 저장소에 넣을 대상이 아니다(재현 스크립트와 리포트만 추적한다).
+backtests/repro/*/data/
