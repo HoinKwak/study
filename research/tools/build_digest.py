@@ -141,15 +141,49 @@ for r in rows:
 # ---------- 유니버스 축약 + 주식화 토큰 제외 ----------
 # ⚠️루틴 규약: 토큰화 주식·ETF·상품 perp(지수·금·은·원유 등)은 전부 제외하고
 #   크립토 네이티브만 담는다. 벤뉴별 거래대금 상위 60종목으로 줄인다.
-EQUITY = set('''NVDA SPY SOXL MU SNDK SKHYNIX TSLA AAPL AMZN META MSFT GOOG GOOGL COIN MSTR
+# ⚠️2026-09-03 22:30Z: 아래 목록이 부족해 SPCX·CRCL·SKHY·TEAM·MRVL·AVGO·GPRO·SAMSUNG·DELL·BZ가
+#   발행 대상에 그대로 섞여 있었다(에이전트가 서술에서만 걸러 보고했다).
+#   ⚠️반대 방향 주의: `CP`는 $0.0362짜리 크립토라 주식(Canadian Pacific)으로 오인해 빼면 안 된다
+#   — 심볼만 보고 판단하지 말고 가격대까지 확인할 것.
+EQUITY = set('''NVDA SPY SOXL MU SNDK SKHYNIX SKHY TSLA AAPL AMZN META MSFT GOOG GOOGL COIN MSTR
 HOOD PLTR AMD INTC NFLX QQQ IWM DIA GLD SLV USO UNG XAU XAG XAUUSD XAGUSD GOLD SILVER OIL WTI
-BRENT NDX SPX DJI VIX EUR GBP JPY'''.split())
+BRENT NDX SPX DJI VIX EUR GBP JPY
+SPCX CRCL TEAM MRVL AVGO GPRO SAMSUNG DELL BZ ORCL CRM ADBE UBER ABNB SHOP SQ PYPL BABA NKE
+DIS BA JPM GS V MA WMT COST KO PEP XOM CVX LLY UNH JNJ PFE'''.split())
 def _is_equity(sym):
     # ⚠️2026-09-03: HyENA 심볼은 'hyna:GOLD'처럼 네임스페이스 접두가 붙어 있어
     #   접두를 떼지 않으면 상품 perp(금·은)가 필터를 그대로 통과한다.
     s = sym.upper().split(':')[-1].lstrip('K')
     return s in EQUITY or s.endswith('-USD-STOCK')
+_dropped = sorted({r['sym'] for r in rows if _is_equity(r['sym'])})
 rows = [r for r in rows if not _is_equity(r['sym'])]
+if _dropped:
+    print('주식화/상품 토큰 제외: ' + ', '.join(_dropped))
+# ⚠️CoinGecko가 coin_id를 못 붙인 심볼은 새로 상장된 주식화 토큰일 수 있다(BZ·CRCL·SKHY가 그랬다).
+#   자동 제외는 하지 않고(신규 크립토도 미매핑일 수 있다) 경고만 띄운다.
+# 심볼별로 **모든 CG 벤뉴를 합쳐** coin_id가 하나라도 있으면 크립토로 본다.
+# ⚠️벤뉴 하나만 보면 TWT·METIS처럼 진짜 크립토도 미매핑으로 잡힌다(한 벤뉴에서만 None).
+_seen, _mapped = set(), set()
+for _f in ('cg_binance_futures.json', 'cg_bybit.json', 'cg_aster.json'):
+    try:
+        for t in J(_f).get('tickers', []):
+            if t.get('contract_type') != 'perpetual': continue
+            _seen.add(t.get('base'))
+            if t.get('coin_id'): _mapped.add(t.get('base'))
+    except Exception: pass
+# ⚠️Hyperliquid 메인 유니버스는 크립토 네이티브라 CG가 못 붙인 것도 여기 있으면 남긴다(PURR).
+try: _hl = {a['name'] for a in J('hl_raw.json')[0]['universe']}
+except Exception: _hl = set()
+_nocoin = (_seen - _mapped) - _hl
+_nocoin -= EQUITY
+# ⚠️이름 목록만으로는 못 따라간다 — 벤뉴들이 토큰화 주식을 계속 추가한다(9/3에 14종이
+#   목록을 통과해 발행 직전까지 갔다: CL[원유]·KORU[ETF]·UNITREE·AAOI·LITE·AXTI·NATGAS 등).
+#   CoinGecko가 perpetual로 잡으면서도 coin_id를 못 붙인 심볼은 크립토 네이티브가 아니다.
+#   신규 크립토가 미매핑일 가능성이 있으므로 제외 목록을 반드시 로그로 남긴다.
+_live = {r['sym'] for r in rows} & _nocoin
+if _live:
+    print('coin_id 미매핑 제외(주식화 추정): ' + ', '.join(sorted(_live)))
+    rows = [r for r in rows if r['sym'] not in _nocoin]
 
 # ⚠️2026-09-03 발견: 같은 벤뉴의 BTCUSDT·BTCUSDC·BTCUSD_PERP(COIN-M)가 전부 심볼 'BTC'로
 #   정규화돼 (심볼,벤뉴) 중복 행이 51건 생겼다. 16:30Z 발행본이 그 상태로 나갔다.
