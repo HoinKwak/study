@@ -127,6 +127,15 @@ for r in rows:
             contra = ((rp > 0.5 and DOWN.search(w) and not UP.search(w)) or
                       (rp < -0.5 and UP.search(w) and not DOWN.search(w)))
         if contra: w, tg, purged = PURGE, 'no-narrative', purged + 1
+    # ⚠️2026-09-03: 실측 부호만 보던 폐기 규칙은 **이월 서사가 든 chg24 숫자**를 못 걸렀다.
+    #   ZEC(이월 -2.44% vs 이번 +18.21%)·XPL(-4.04% vs +16.13%)·BEAT(-8.89% vs -6.57%)가
+    #   그대로 발행본에 인용됐다. 이월 서사가 chg24를 명시하면 이번 값과 대조한다.
+    if w and w != PURGE and r.get('chg') is not None:
+        mc = re.search(r'chg24[^\n]{0,40}?([+-]?\d+\.\d+)%(?!\s*→)', w)
+        if mc:
+            sc = float(mc.group(1))
+            if (sc > 0) != (r['chg'] > 0) or abs(sc - r['chg']) > max(abs(r['chg']) * 0.25, 1.0):
+                w, tg, purged = PURGE, 'no-narrative', purged + 1
     r['why'], r['tag'] = (w or PURGE), (tg or 'no-narrative')
 
 # ---------- 유니버스 축약 + 주식화 토큰 제외 ----------

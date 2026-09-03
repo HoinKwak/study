@@ -100,14 +100,43 @@ def _strip_clauses(t: str) -> str:
     return t
 
 
-def check_direction(md: str, digest: dict, bad: list) -> None:
-    """산문에서 종목의 방향 서술이 실측 chg24 부호와 모순되는지 본다."""
+def real_moves(prev_path: str | None, cur_path: str | None) -> dict[str, list[float]]:
+    """직전·이번 가격 스냅샷으로 종목별 실측%(회차 대비 실제 변동)를 만든다.
+
+    ⚠️브리핑 서술의 주 근거는 chg24(24h 롤링)가 아니라 **실측%**다.
+      chg24로 방향을 판정하면 둘이 어긋나는 종목에서 전건 오탐이 난다
+      (9/3: ZEC chg24 +18.6% vs 실측 +2.12%, APR chg24 +17.4% vs 실측 -11.10%).
+    """
+    if not prev_path or not cur_path:
+        return {}
+    prev = json.loads(Path(prev_path).read_text())
+    cur = json.loads(Path(cur_path).read_text())
+    out: dict[str, list[float]] = {}
+    for k, c in cur.items():
+        p = prev.get(k)
+        if not p or not c:
+            continue
+        sym = k.split(":", 1)[1].upper()
+        out.setdefault(sym, []).append((float(c) / float(p) - 1) * 100)
+    return out
+
+
+def check_direction(md: str, digest: dict, real: dict, bad: list) -> None:
+    """산문의 방향 서술이 실측 부호와 모순되는지 본다.
+
+    문장이 chg24를 명시했을 때만 chg24를 기준으로 삼는다.
+    """
     for line in md.splitlines():
         if line.strip().startswith("|") or not line.strip():
             continue
         t = _strip_clauses(line)
+        use_chg = "chg24" in line or "24h" in line
         for sym, byv in digest.items():
-            all_c = [float(v["chg24"]) for v in byv.values() if v.get("chg24") is not None]
+            if use_chg or sym not in real:
+                all_c = [float(v["chg24"]) for v in byv.values()
+                         if v.get("chg24") is not None]
+            else:
+                all_c = list(real[sym])
             # ⚠️벤뉴마다 부호가 갈리는 종목(CHIP Gate +12 vs MEXC -10)은 판정하지 않는다.
             #   다만 변동이 미미한 벤뉴 하나 때문에 검사가 통째로 꺼지면 안 되므로
             #   |chg|>=1%인 벤뉴들만 모아 부호 합의를 본다.
@@ -159,8 +188,10 @@ def main() -> int:
     if ts not in md and alt not in md:
         bad.append(f"brief.md 에 {ts}({alt}) 없음")
 
+    real = real_moves(sys.argv[3] if len(sys.argv) > 3 else None,
+                      sys.argv[4] if len(sys.argv) > 4 else None)
     check(parse_tables(md), digest, bad, "md표")
-    check_direction(md, digest, bad)
+    check_direction(md, digest, real, bad)
 
     # 주식화 토큰 혼입
     EQ = set("NVDA SPY SOXL MU SNDK SKHYNIX TSLA AAPL GOLD SILVER OIL WTI".split())
