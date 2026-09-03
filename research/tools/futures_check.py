@@ -95,7 +95,9 @@ def _strip_clauses(t: str) -> str:
     """수치 인용이 아닌 절을 지운다 — 이력절·직전값·괄호주석."""
     t = re.sub(r"\([^)]*\)", " ", t)                       # 괄호 주석
     t = re.sub(r"[^→|]{0,80}?에서\s*[-+]?[\d.]+%?\s*로", " ", t)  # "A에서 B로"
-    t = re.sub(r"직전[^,·—.]{0,40}", " ", t)                # "직전 …"
+    # ⚠️소수점에서 끊기면 "직전 회차 -11.10% 급락"의 '급락'이 살아남아 오탐이 된다
+    #   (펀딩 절이 소수점에서 끊기던 것과 같은 부류). 숫자 앞의 점은 절 안으로 본다.
+    t = re.sub(r"직전(?:[^,·—.]|\.(?=\d)){0,40}", " ", t)     # "직전 …"
     t = re.sub(r"([-+]?[\d.]+%\s*→\s*)+", " ", t)          # 다단계 체인 A→B→C
     return t
 
@@ -130,7 +132,9 @@ def check_direction(md: str, digest: dict, real: dict, bad: list) -> None:
         if line.strip().startswith("|") or not line.strip():
             continue
         t = _strip_clauses(line)
-        use_chg = "chg24" in line or "24h" in line
+        # ⚠️서술의 주 근거는 실측%다. 한 문장에 둘 다 나오면(예: "실측 -5.40%로 하락.
+        #   chg24는 +11.09%로 여전히 플러스") 방향어는 실측에 붙으므로 실측을 기준으로 본다.
+        use_chg = ("chg24" in line or "24h" in line) and "실측" not in line
         for sym, byv in digest.items():
             if use_chg or sym not in real:
                 all_c = [float(v["chg24"]) for v in byv.values()
