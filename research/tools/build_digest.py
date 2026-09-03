@@ -138,6 +138,20 @@ def _is_equity(sym):
     s = sym.upper().split(':')[-1].lstrip('K')
     return s in EQUITY or s.endswith('-USD-STOCK')
 rows = [r for r in rows if not _is_equity(r['sym'])]
+
+# ⚠️2026-09-03 발견: 같은 벤뉴의 BTCUSDT·BTCUSDC·BTCUSD_PERP(COIN-M)가 전부 심볼 'BTC'로
+#   정규화돼 (심볼,벤뉴) 중복 행이 51건 생겼다. 16:30Z 발행본이 그 상태로 나갔다.
+#   거래대금이 가장 큰 계약(사실상 USDT 무기한)만 남긴다.
+_seen = {}
+for r in rows:
+    k = (r['venue'], r['sym'])
+    if k not in _seen or (r['vol'] or 0) > (_seen[k]['vol'] or 0):
+        _seen[k] = r
+_dedup = len(rows) - len(_seen)
+rows = list(_seen.values())
+if _dedup:
+    print('중복 계약 제거: %d행 (같은 심볼의 USDC/COIN-M 등)' % _dedup)
+
 _by_venue = {}
 for r in rows: _by_venue.setdefault(r['venue'], []).append(r)
 rows = []

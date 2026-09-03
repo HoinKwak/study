@@ -1,43 +1,43 @@
-토큰,체인,단계,KOL코로보,서사,신규여부,시점,출처
-PEPECOIN,"Robinhood Chain(Uniswap V3, WETH페어)",조기,,"유동성 $11,013→$11,136(+1.1%,유입지속). ⚠️h1 재결측(직전회복에서다시결측). h6+5.79%(유사)·h24+6.07%(확대). vol24 $4,464",지속,2026-09-03T15:00:00Z,DexScreener
-1B,"Robinhood Chain(Uniswap, WETH페어)",조기,,"⭐⭐42종중이번회차유동성유입최대·h24최고. 유동성 $12,485→$17,921(+43.5%). h1+97.29%·h6+104%·h24+170%(전구간극단급등). ⚠️부모DexScreener교차조회무응답으로실체미확인",지속,2026-09-03T15:00:00Z,DexScreener
-CLOCKIN,Robinhood Chain(Uniswap),조기,,"유동성 $174,077→$178,637(+2.6%,유출→유입반전). h1+4.3%·h6+1.32%·h24-4.64%(전구간재차반전,whipsaw). vol24 $188,265",지속,2026-09-03T15:00:00Z,DexScreener
-CLUG,Solana(PumpSwap),조기,,"유동성 $16,788→$17,501(+4.2%,가속). h1+1.38%(유사)·h6+6.56%(확대)·h24+13.34%(확대)",지속,2026-09-03T15:00:00Z,DexScreener
-OBS,"Robinhood Chain(Uniswap, WETH페어)",조기,,"유동성 $61,431→$62,246(+1.3%,둔화). h1+7.68%(강한플러스전환)·h6-9.49%(확대)·h24-3.47%(유사) — h1만강하게개선",지속,2026-09-03T15:00:00Z,DexScreener
-CYBERCAT,Solana(PumpSwap),조기,,"h24 132%→123%→138%→136%(소폭되돌림,다이제스트확인). h1체결3/6·h6체결19/23매도우위완화(부모직접확인,h1거래액$39). 유동성+1.2%(유입전환). h1+1.14%·h6-3.44%",지속,2026-09-03T15:00:00Z,DexScreener
-LIZARD,Solana(PumpSwap),조기,,"유동성 $9,936→$10,045(+1.1%,유사). h1+0.43%(플러스전환)·h6+2.26%(확대)·h24+6.35%(확대). vol24 $774",지속,2026-09-03T15:00:00Z,DexScreener
-MANEKI,"Robinhood Chain(SushiSwap V3 1%, WETH페어)",조기,,"h1다이제스트+1.34%로회복됐으나부모교차조회는이번회차도무응답(재확인실패). 유동성$10,924(+1.3%,유입전환). h6-3.01%(완화)·h24-5.79%(유사)",지속,2026-09-03T15:00:00Z,DexScreener
-TIPANSEM,Solana(PumpSwap),조기,,"⚠️42종중이번회차유동성유출최대. 유동성 $35,985→$34,932(-2.9%,직전+6.3%에서급반전). h1-5.35%·h6-4.31%·h24-7.17%(전구간동반개선→동반악화로완전반전)",지속,2026-09-03T15:00:00Z,DexScreener
-40M,Solana(PumpSwap),조기,,"⚠️h1 재결측(직전회복에서다시결측). 유동성$5,538보합. h6-0.55%(완화)·h24-11.08%(악화)",지속,2026-09-03T15:00:00Z,DexScreener
-FLUSH,"Robinhood Chain(Uniswap, WETH페어)",조기,,"⚠️h1에이어h6도신규결측(둘다DexScreener무응답). 유동성$12,952보합. h24-0.53%(음전전환). vol24 $591",지속,2026-09-03T15:00:00Z,DexScreener
-MAPLE,Solana(PumpSwap),조기,,"유동성 $16,390→$16,847(+2.8%,유입반전,$20K하회지속). h1-0.41%·h6-13.73%·h24-28.04%(전구간완화되나여전히큰폭마이너스)",지속,2026-09-03T15:00:00Z,DexScreener
-PEE,Solana(PumpSwap),조기,,"⚠️h1·h6결측체결0건확정지속(부모직접확인). 유동성$5,980보합. h24+0.7%(동일). vol24 $4(42종중5회차연속최저추정)",지속,2026-09-03T15:00:00Z,DexScreener
-CHUMP,"Robinhood Chain(Uniswap V3 1%, WETH페어)",확산,,"유동성 $1,089,804→$1,124,208(+3.2%,가속). h1+2.27%·h6+7.65%·h24+32.52%(전구간가속지속). vol24 $6,156,439(42종중최대유지)",지속,2026-09-03T15:00:00Z,DexScreener
-CYBERLEEK,Solana(Raydium),확산,"GTA6 러그풀 배경보도(carryover)","⚠️유동성유입인데체결은전구간매도우위(부모직접확인) — h1 99/116·h6 304/391·h24 1,786/1,909(h1거래액$16,116). 유동성$427,635(+5.9%,유입반전). h1+5.02%·h6+6.14%·h24-7.21%",지속,2026-09-03T15:00:00Z,DexScreener
-CC,Solana(PumpSwap),확산,,"유동성 $113,807(-2.7%,확대). h1-1.41%(완화)·h6-14.8%(확대)·h24-10.9%(악화)",지속,2026-09-03T15:00:00Z,DexScreener
-KIRK,"Solana(PumpSwap, Official Charlie Kirk Coin)",확산,"Charlie Kirk 1주기 정황(carryover,인과미확인)","유동성 $107,537(+1.0%,유사). h1+1.74%(플러스전환)·h6+5.53%(플러스전환)·h24-32.8%(악화,42종중하위권)",지속,2026-09-03T15:00:00Z,DexScreener
-swappy,Robinhood Chain(Uniswap V4),확산,,"유동성 $161,717(-1.4%,완화). h1-1.92%·h6-0.84%(음전전환)·h24-1.61%(음전전환) — 급등흐름완전소멸,소폭마이너스권진입",지속,2026-09-03T15:00:00Z,DexScreener
-omo,Solana(PumpSwap),확산,,"유동성 $16,863→$17,312(+2.7%,직전-12.4%[42종중당시최대유출]에서유입반전). 체결(부모직접확인): h1매수11/매도10균형(h1거래액$333)·h6 74/57매수우위·h24 1,124/977매수우위 — 매수우위완화. h24가격-84.8%(42종중계속최악)",지속,2026-09-03T15:00:00Z,DexScreener
-CONK,Solana(Raydium),확산,,"3회차째유입이유출로전환(유동성-0.7%). h1+7.05%(확대)·h6+1.34%(플러스전환)·h24+1.04%(유사)",지속,2026-09-03T15:00:00Z,DexScreener
-Z500,Solana(PumpSwap),확산,,"유동성 $45,235(+4.1%,가속). h1+4.41%(플러스전환)·h6+5.3%(플러스전환)·h24+6.17%(확대) — 전구간개선",지속,2026-09-03T15:00:00Z,DexScreener
-PROLOGUE,"Robinhood Chain(Uniswap, WETH페어)",뒷북,"Fables TGE 배경서사(carryover)","⚠️단계가확산→뒷북으로전환(다이제스트확인). h24 4회차연속요동(111%→49.5%→76.12%→42.34%→83.79%). 유동성$600,316→$618,848(+3.1%,유입반전). h1-10.09%(확대)·h6-0.79%(완화). vol24$5,013,564(42종중2위). ⚠️DexScreener재확인실패",지속,2026-09-03T15:00:00Z,DexScreener
-CATE,Solana(PumpSwap),뒷북,,"⭐h1체결이직전대비4배이상급증(부모직접확인) — h1매수1,316/매도1,372(직전406/265,h1거래액$629,252). h6은매수3,098/매도2,460으로매수우위전환(직전매도우위). h24는9회차연속정상범위. 유동성+7.6%(유입반전). h1+11.44%·h6-1.39%·h24+10.48%(가격도전구간플러스전환)",지속,2026-09-03T15:00:00Z,DexScreener
-HOOKR,"Robinhood Chain(Uniswap, ETH페어)",뒷북,,"유동성 $894,703→$874,515(-2.3%,직전+11.1%[42종중당시유입2위]에서유출반전). h1+5.67%(축소)·h6+14.07%(축소)·h24+71.58%(유사) — 유동성은꺾였으나가격은확대세유지. ⚠️DexScreener재확인실패",지속,2026-09-03T15:00:00Z,DexScreener
-JUGGERNAUT,Robinhood Chain(Uniswap V3 1%),뒷북,"Drallio(약한코로보·carryover)","h24재악화흐름이이번회차다시개선(-24.89%→-14.94%). 유동성+6.4%(가속). h1+1.1%(플러스전환)·h6+6.56%(플러스전환) — 전구간동시개선. ⚠️DexScreener재확인실패",지속,2026-09-03T15:00:00Z,DexScreener
-TOAD,Solana(PumpSwap),뒷북,,"⚠️유동성유입상위권인데체결은전구간매도우위(부모직접확인) — h1매수88/매도177·h6매수593/매도694·h24매수2,057/매도2,137(h1거래액$40,632). 유동성$332,541→$362,465(+9.0%,큰폭가속). h1+5.78%·h6+12.77%·h24+23.12%(큰폭플러스전환)",지속,2026-09-03T15:00:00Z,DexScreener
-FWA,"Ethereum(Uniswap V4, WETH페어)",뒷북,"Cointelegraph·CryptoBriefing·KuCoin·PANews(carryover)","유동성 $782,551→$804,075(+2.8%,유입반전). h1-2.49%(완화)·h6-0.41%(완화)·h24-4.55%(완화)",지속,2026-09-03T15:00:00Z,DexScreener
-BULLSHIT,Solana(PumpSwap),뒷북,"재확인 실패(carryover)","유동성 $202,169→$212,002(+4.9%,가속). h1+8.9%(플러스전환)·h6+5.52%(플러스전환)·h24-3.47%(유사) — h1·h6강하게개선",지속,2026-09-03T15:00:00Z,DexScreener
-GOOD,"Robinhood Chain(Uniswap V3, WETH페어)",뒷북,,"유출이유입으로전환(유동성+5.4%). h1+1.66%(플러스전환)·h6-0.25%(거의소멸)·h24+1.7%(플러스전환) — 전구간동반악화가동반개선으로완전반전",지속,2026-09-03T15:00:00Z,DexScreener
-PRINTER,"Robinhood Chain(Uniswap V4 0.3%, USDG페어)",뒷북,,"유동성 $439,240→$441,074(+0.4%,둔화). h1-0.23%(음전전환)·h6+2.86%(플러스전환)·h24-6.58%(악화). 회전율0.37배로계속1배아래",지속,2026-09-03T15:00:00Z,DexScreener
-PANTS,"Solana(PumpSwap, dogwifpants)",뒷북,,"유동성 $62,503(+2.1%,유입전환). h1-3.59%(유사)·h6-11.44%(확대)·h24-10.22%(완화)",지속,2026-09-03T15:00:00Z,DexScreener
-CALLOOOR,Solana(PumpSwap),뒷북,,"유동성 $60,075(+4.2%,가속). h1+5.61%(확대)·h6+6.41%(플러스전환)·h24+5.87%(플러스전환) — 전구간개선",지속,2026-09-03T15:00:00Z,DexScreener
-lickingcat,Solana(PumpSwap),뒷북,,"유동성 $27,798(+0.6%,유입전환). h1-3.54%(유사)·h6-19.29%(확대)·h24+4.01%(확대)",지속,2026-09-03T15:00:00Z,DexScreener
-Dealer,Solana(PumpSwap),뒷북,,"⚠️유동성$63,809→$70,128(+9.9%,직전+14.2%[42종중당시최대]에서둔화). 체결은h1매수3/매도7매도우위·h6매수109/매도58매수우위로시간대별로갈림(부모직접확인,h1거래액$500). h24가격+59.23%(가팔라짐)",지속,2026-09-03T15:00:00Z,DexScreener
-PITCOIN,Solana(PumpSwap),뒷북,,"유동성 $48,492(+4.9%,가속). h1+0.43%(플러스전환)·h6+6.79%(플러스전환)·h24+13.54%(확대)",지속,2026-09-03T15:00:00Z,DexScreener
-BARRON,Solana(Raydium),뒷북,,"h1체결재개3회차연속(+1.51%→+4.33%). 유동성$227,720(+3.3%,가속). h6+7.4%(확대)·h24+6.09%(플러스전환). 풀나이591.6일(최고령)",지속,2026-09-03T15:00:00Z,DexScreener
-Doge2,Solana(PumpSwap),뒷북,,"유동성 $34,030(-0.2%,유출반전). h1+0.16%(축소)·h6-8.33%(음전전환)·h24+43.28%(유사)",지속,2026-09-03T15:00:00Z,DexScreener
-BRODIE,"Robinhood Chain(Uniswap V3, Robinhood Dog)",뒷북,,"유동성 $25,742(+1.5%,둔화). h1+0.11%(둔화)·h6+2.15%(플러스전환)·h24-22%(악화)",지속,2026-09-03T15:00:00Z,DexScreener
-YOMOGI,Solana(PumpSwap),뒷북,,"$20K임계선하회지속. 유동성$16,862(+1.9%,유입전환). h1+1.09%(유사)·h6-2.84%(완화)·h24-2.71%(완화)",지속,2026-09-03T15:00:00Z,DexScreener
-Dinger,"Solana(PumpSwap, Schrödinger)",뒷북,,"유동성 $21,004→$21,386(+1.8%,유입반전,$20K선안착유지). h1+1.61%(플러스전환)·h6+4.04%(확대)·h24+11.39%(축소)",지속,2026-09-03T15:00:00Z,DexScreener
-Truth Coin,Solana(PumpSwap),뒷북,,"⚠️h1결측지속(재확인실패). 유동성$6,345→$6,425(+1.3%,유사). h6+1.35%(플러스전환)·h24-3.18%(완화). vol24$335(4위최하위권)",지속,2026-09-03T15:00:00Z,DexScreener
-DPG,Solana(PumpSwap),뒷북,,"유동성 $14,231(+0.5%,둔화). h1+0.15%(둔화)·h6+2.33%(확대)·h24+6.69%(확대). vol24$118(42종중2위최하위권)",지속,2026-09-03T15:00:00Z,DexScreener
+token,chain,ca,stage,liquidity_usd,vol24_usd,h24_pct,risk
+PEPECOIN,"Robinhood Chain(Uniswap V3, WETH페어)",0x0b9606fb048a14d8381e9b97d00a78b4f4c66241,조기,11745,4537,13.70,"극저유동, h1 결측 반복 이력(회복↔결측 반복해왔음)"
+1B,"Robinhood Chain(Uniswap, WETH페어)",0x0977FA2139B773732Da455926660b3D22C8CaB7F,조기,16653,14531,113.00,"극저유동, 대형%변동성(아티팩트가능성배제불가), whipsaw(h1만부호반전)"
+CLOCKIN,Robinhood Chain(Uniswap),0xA5be0eEb82a013Dc7867B9e020c36A69DA666666,조기,177622,178840,-9.25,"풀 생성시각 장기 미확인 지속, whipsaw 반복(h1·h6 동시부호반전)"
+CLUG,Solana(PumpSwap),7g2xyrq9Fk1TvFiqqcmLJAQ9jAtfHobmrdzzM9Dp2SpV,조기,17851,5869,27.03,"저유동, 단일풀"
+OBS,"Robinhood Chain(Uniswap, WETH페어)",0xfe242d1Da8FD04f6A1F80B6D3d807B02e062Ad4E,조기,60725,63157,-14.26,"저유동, whipsaw(h1·h6 동시부호반전)"
+CYBERCAT,Solana(PumpSwap),9HHTQ7YMx82E987cNqF9KczyZrfKgqvKNyA2yHSVpump,조기,12978,8594,148.00,"급등률(h24)을 그대로 신뢰하지 않는다, 극저유동"
+LIZARD,Solana(PumpSwap),2hXHY3DnN7HUGySZEmBsLFKSqLB8nj3aE8wwq44wpump,조기,9904,974,1.29,"저유동, 거래 희박, 2위 풀(먼지풀) 인용 제외, whipsaw(h1·h6 동시부호반전)"
+MANEKI,"Robinhood Chain(SushiSwap V3 1%, WETH페어)",0x00eB2583F442d35473Bed8801Efb01C82D84C149,조기,10924,345,-3.42,"저유동($10,924,$20K 미만), 극저거래(회전율0.03배), h1결측(체결0건)"
+TIPANSEM,Solana(PumpSwap),B5YTUMqSnwzztWHWmzAzHApeRy6cuGEx49Bidt4kuH8w,조기,35325,54711,-11.18,"저유동, whipsaw(h6만부호반전), 직전회차유출최대이력"
+40M,Solana(PumpSwap),ELbFy4v8vzJHjvmqCDw7CEzsYuN9TGkBt7Kz9Kawpump,조기,5731,259,-8.01,"극저유동 심각, 거래 희박, h1 결측 재발(체결0건)"
+FLUSH,"Robinhood Chain(Uniswap, WETH페어)",0xDb99d819e93B06Ed83A17c01Fed2B7dcA5774Bbb,조기,13429,592,3.12,"저유동($12,952,$20K 미만), 거래 희박(회전율0.04배), h1·h6 재확인(직전동시결측에서회복,지속성미확인)"
+MAPLE,Solana(PumpSwap),DLhzqAWwE2YkPLdYvvWNMZ71vxZJQD2FByMfWFHppump,조기,17743,6300,-17.67,"저유동(단일풀,$20K 하회지속), h24 여전히 큰폭마이너스, 과거 가격상승+체결매도우위 이력(carryover, 이번회차는완화조짐)"
+PEE,Solana(PumpSwap),2mG7vDMrZYFyFS2bz3AsrJizFoiAYurY5kc4MPqfpump,조기,6298,5,6.53,"극저유동·극저거래(42종중vol24최저,$5), 단일풀, 표본극소로수치신뢰도낮음"
+CHUMP,"Robinhood Chain(Uniswap V3 1%, WETH페어)",0x0E0d2C89a5a019FE1cF762e5e33187631DACC21B,확산,1217726,6608366,62.83,"대형화된 확산 토큰, 가격상승-체결매도우위 괴리(경계신호), 신규 촉매 미확인"
+CYBERLEEK,Solana(Raydium),ApZuxdpzMrbEYTGEzeY9afh5pj9d6qPRJCTgQYiipbKg,확산,405741,341808,2.09,"유동성 유출 반전(직전유입에서반전), GTA6 유출 러그풀 보도 실재(carryover), meteora 풀 이상치 반복 이력(carryover)"
+CC,Solana(PumpSwap),E3i7sTY5QYEBh3itepnomZQt7Eh5kzmHFk1vkm2pump,확산,126843,143049,10.06,"소수풀(2풀) 저분산 위험, whipsaw(전구간동시부호반전)"
+KIRK,"Solana(PumpSwap, Official Charlie Kirk Coin)",8du34ohgGj2ikZVTGZNwHbNbqX8b8AHGFANf6qmopump,확산,109833,167562,-22.47,"저유동(2풀), h24 42종중하위권지속"
+swappy,Robinhood Chain(Uniswap V4),0x298348d5b2e45C774E3ee4f1a0924071DfbDC8C7,확산,159951,143261,-11.32,"소수풀(3풀) 저분산 위험, 급등흐름 완전히 소멸·악화 지속"
+omo,Solana(PumpSwap),94Sm8joZMSRzpQmcNVn5zZpgnRLN2DBesJYDXwuNpump,확산,17876,64490,-63.74,"h24 42종중최악권 지속(완화중), 러그 가능성 배제 불가"
+CONK,Solana(Raydium),DShht9B8wCRe5t3oqdPB77PnjJbKxbYaZyuWpZQjbonk,확산,69156,42576,5.57,"저유동, 지속성 미확인, 유동성 유출전환"
+Z500,Solana(PumpSwap),7fDdLy2rmQKsPCkqUXEd1mN7yDfEzArc4VrctWmfkJBK,확산,45689,14276,6.18,저유동
+PROLOGUE,"Robinhood Chain(Uniswap, WETH페어)",0xb9972ca7188e511174947e3936a5315ac7073277,뒷북,633761,5128764,101.00,"h24 5회차연속 요동(whipsaw 극심), 이미 크게 인지된 뒷북 국면, 신규 촉매 미확인 지속"
+CATE,Solana(PumpSwap),Ai66LHZG9MCzg1WKdawwqduVAXpNDUuV8M3uyq5ppump,뒷북,1921126,4218989,16.46,"대형화된 뒷북 토큰, 유동성 유입 지속, 신규 촉매 미확인"
+HOOKR,"Robinhood Chain(Uniswap, ETH페어)",0x18E674231A58c239Dc7DaeDcffE15Ec3A24cff5c,뒷북,951060,4334594,121.00,"유동성 재차유입(직전유출에서반전), 신규 촉매 미확인 지속"
+JUGGERNAUT,Robinhood Chain(Uniswap V3 1%),0xD7321801CAae694090694Ff55A9323139F043B88,뒷북,556281,1719996,20.36,"신규 촉매 미확인, KOL은 과거 약한 코로보뿐"
+TOAD,Solana(PumpSwap),A13oRB9FFaiUjfi6LdCg6p9ka1u8SfGkUFs4SKvPpump,뒷북,363682,701944,20.13,"유동성-체결방향 괴리(경계신호), whipsaw 이력 지속"
+FWA,"Ethereum(Uniswap V4, WETH페어)",0xa0Df17B5aC76ABaBA36E1450E2cbCd18A620C845,뒷북,862771,797010,12.11,"KOL은 과거 보도로 현재와 무관, 소수풀(3풀), whipsaw(전구간동시부호반전)"
+BULLSHIT,Solana(PumpSwap),zj1jpp7QMveWHLs61vL9KMZf254KvW7j4AAmBF8ry2k,뒷북,211445,373323,1.13,"KOL 재확인 미실시 지속(carryover), 신규 촉매 미확인"
+GOOD,"Robinhood Chain(Uniswap V3, WETH페어)",0x5f62c57e5c537887117eef828b7e3ad41c009feb,뒷북,484280,358789,4.74,"whipsaw(전구간반전 반복 이력), 지속성 미확인, 신규 촉매 미확인"
+PRINTER,"Robinhood Chain(Uniswap V4 0.3%, USDG페어)",0x85a574f2fF0795685F58d1D7B0D4b51F148Ac489,뒷북,440960,170863,-14.55,"변동성 매우 큼(전 구간 급반전 반복 이력), 회전율 1배 미만 지속"
+PANTS,"Solana(PumpSwap, dogwifpants)",FtateF34Xzawa91bpbVNdX72hZYo9cymRDYqBreHHbJi,뒷북,63425,96776,-1.60,"급등 후 급속 냉각(whipsaw) 반복 이력, 과거 가격상승+체결매도우위 조합 관측 이력(carryover)"
+CALLOOOR,Solana(PumpSwap),A48KeWUuiDSdRQBqAFssgyYATDuBv7cer54V2JSDpump,뒷북,62939,59173,13.91,"저유동, 뒷북"
+lickingcat,Solana(PumpSwap),EjD5Y9NVhXmtEqU7wYvAyZvDWZFQeEuHXFatJmTbpump,뒷북,27925,27746,-1.14,"저유동, 뒷북"
+Dealer,Solana(PumpSwap),6f8ZQhxqfigdv7UszZ1rirbV7Sgv83s3rxv1N2Zopump,뒷북,72389,30689,61.22,"급반등 지속성 미확인, 러그 가능성 배제 불가, 소수풀(2풀)"
+PITCOIN,Solana(PumpSwap),G1iBvjhZ9wpGUZdQcvhRSqjow3x6xetsnmEBBMm1pump,뒷북,47525,24223,-0.32,"저유동, 신규성 낮음"
+BARRON,Solana(Raydium),ECY31gWwxy4s2VnMkYhmqDkrV75KrwR2yTtsnrnSpump,뒷북,232987,9659,10.52,"신규성 없음, 최고령 풀, 거래 여전히 희박(회전율0.04배)"
+Doge2,Solana(PumpSwap),EjAuFtMEP6LQDgLb11JU9bkcskhFYbgd9Q5NRXJppump,뒷북,36513,14759,67.48,"저유동, 소수풀"
+BRODIE,"Robinhood Chain(Uniswap V3, Robinhood Dog)",0x45F82AC5d507e988f7406935da8eEfe495a360e0,뒷북,27945,10972,-9.55,"반복 소강·재붕괴 이력 지속(carryover), 저유동"
+YOMOGI,Solana(PumpSwap),4978aTN9W3CDuUREGxAQaBYqhPXt8142N4o4Sfgzpump,뒷북,17971,2763,-0.77,"$20K 임계선 하회 지속, 단일풀"
+Dinger,"Solana(PumpSwap, Schrödinger)",3kvZYBrBPEySFwQfXZGEvJSeMWRa6BkTS34suBEYpump,뒷북,24027,3041,43.31,"단일풀, $20K대 안착 유지, 지속성 장기 미확인"
+Truth Coin,Solana(PumpSwap),BaBeW6hdxDSenERN6JcxLY9v27YnZqaAQYWuscUjpump,뒷북,6635,382,0.45,"극저유동, 단일풀, 회차수 장기 미확인, h1 결측 이력(이번회차회복,지속성미확인)"
+DPG,Solana(PumpSwap),LFEJTxJ9yi6ojGDFpjbGfABLbH55Fc3oEK8syJJpump,뒷북,14612,119,8.17,"최고위험 유지 — 거래 사실상 부재(회전율0.01배), 단일풀"
