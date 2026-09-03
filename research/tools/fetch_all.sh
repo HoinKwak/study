@@ -31,7 +31,10 @@ import json,sys,urllib.request,time
 out=sys.argv[1]
 t=json.load(open(out+'/okx_raw.json')).get('data',[])
 ids=[x['instId'] for x in t if x['instId'].endswith('-USDT-SWAP')]
-ids=sorted(ids,key=lambda i:-float(next((x['volCcy24h'] for x in t if x['instId']==i),0) or 0))[:60]
+# ⚠️volCcy24h는 코인 수량이라 이것만으로 정렬하면 SATS·PEPE·SHIB 같은 저가 코인이
+#   상위를 차지하고 BTC·ETH가 60위 밖으로 밀린다(9/3 실제 발생). last를 곱해 달러로 정렬한다.
+_v={x['instId']:float(x.get('volCcy24h') or 0)*float(x.get('last') or 0) for x in t}
+ids=sorted(ids,key=lambda i:-_v.get(i,0))[:60]
 res={}
 for i in ids:
     try:

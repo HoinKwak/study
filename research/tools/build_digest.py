@@ -22,7 +22,9 @@ rows = []           # dict(sec, sym, venue, vol, oi, fund, chg, px)
 cur_px = {}         # 'okx:BTC' / 'hl:BTC' -> price
 
 # ---------- OKX (CEX 기준 실측% 소스) ----------
-oi_map = {x['instId']: float(x.get('oi') or 0) for x in J('okx_oi.json').get('data', [])}
+# ⚠️OKX `oi`는 계약 수라 ctVal 환산이 필요하지만 `oiUsd`가 이미 달러라 그대로 쓴다.
+oi_map = {x['instId']: float(x.get('oiUsd') or 0) / 1e6
+          for x in J('okx_oi.json').get('data', [])}
 fund = J('okx_funding.json')
 for t in J('okx_raw.json').get('data', []):
     iid = t['instId']
@@ -33,7 +35,8 @@ for t in J('okx_raw.json').get('data', []):
     o24 = float(t.get('open24h') or 0)
     vol = float(t.get('volCcy24h') or 0) * last / 1e6      # ⚠️volCcy24h는 코인 수량이라 last를 곱해야 달러
     f = fund.get(iid, {})
-    rows.append(dict(sec='cex', sym=sym, venue='OKX(직접API,신선)', vol=vol, oi=None,
+    rows.append(dict(sec='cex', sym=sym, venue='OKX(직접API,신선)', vol=vol,
+                     oi=oi_map.get(iid),
                      fund=float(f['fundingRate']) * 100 if f.get('fundingRate') else None,
                      chg=(last / o24 - 1) * 100 if o24 else None, px=last))
     cur_px['okx:' + sym] = last
