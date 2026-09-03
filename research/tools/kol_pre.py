@@ -81,7 +81,8 @@ def promote(raw_path: str) -> int:
         w = pub.get(t["ca"].lower(), {})
         t.update(prev_liquidity=m["liq"], prev_h1=m["h1"], prev_h6=m["h6"],
                  prev_h24=m["h24"], prev_vol24=m["vol24"],
-                 prev_round=(t.get("prev_round") or 0) + 1 or None,
+                 # ⚠️회차수 미확인 종목을 1로 바꿔 "2회차"라는 없는 이력을 만들면 안 된다(9/3 발생)
+                 prev_round=(t["prev_round"] + 1) if t.get("prev_round") else None,
                  prev_stage=w.get("stage"), prev_risk=w.get("risk", ""),
                  prev_kols=w.get("kols", ""), prev_thesis=w.get("thesis", ""))
     CFG.write_text(json.dumps(cfg, ensure_ascii=False, indent=1))

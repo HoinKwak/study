@@ -125,14 +125,17 @@ def main() -> int:
                                 and "거래량" not in before) else "vol24")
             tgt = ext[(metric, kind)]
             subj = subject
+            # ⚠️오탐 수정(9/3): 목록 항목의 주어가 토큰명이 아니라 분류 라벨일 때가 있다
+            #   ("- **뒷북 대형 토큰**: CATE(유동성 42종중 최대)…"). 알려진 토큰명이
+            #   아니면 주어 미상으로 되돌려, 정답 토큰이 같은 블록에 있으면 통과시킨다.
+            if subj is not None and subj not in {r["token"] for r in ok}:
+                subj = None
             if subj is None:
-                names = [r["token"] for r in ok if r["token"] in text]
-                if len(names) == 1:
-                    subj = names[0]
-                elif tgt["token"] in text:
-                    continue          # 정답 토큰이 같은 행에 있으면 그 서술로 본다
-                else:
-                    subj = "?"
+                # 최상급 표현 **직전에 나온** 토큰명을 주어로 본다. 블록 아무 데나
+                # 정답 토큰이 있으면 통과시키던 예전 방식은 오귀속을 놓쳤다.
+                pos = [(text.rfind(r["token"], 0, mo.start()), r["token"]) for r in ok]
+                pos = [x for x in pos if x[0] >= 0]
+                subj = max(pos)[1] if pos else "?"
             if subj != tgt["token"]:
                 bad.append(f"최상급 의심 [{where}] '{mo.group(0)}'({metric}) 주어={subj}"
                            f" — 실제 {metric} {kind}는 {tgt['token']}")
