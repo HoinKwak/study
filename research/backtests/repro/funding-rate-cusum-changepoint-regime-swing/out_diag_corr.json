@@ -1,0 +1,7 @@
+{
+  "avg_pairwise_corr_full": 0.09797023975178241,
+  "avg_pairwise_corr_crisis_top5pct_btc_absret": 0.10539955633595412,
+  "n_crisis_days": 83,
+  "pct_entry_days_with_2plus_symbols": 33.56643356643357,
+  "n_days_all7_symbols_same_day": 0
+}

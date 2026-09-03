@@ -1,0 +1,51 @@
+{
+  "BTCUSDT": {
+    "full_corr_e_vs_streak": 0.01655841628306224,
+    "full_corr_e_vs_curvature_z": 0.2896499394748816,
+    "trigger_corr_e_vs_streak": 0.1290017926296548,
+    "trigger_corr_e_vs_curvature_z": 0.538948247772646,
+    "n_events": 300
+  },
+  "ETHUSDT": {
+    "full_corr_e_vs_streak": -0.009073048456316391,
+    "full_corr_e_vs_curvature_z": 0.10093192646103279,
+    "trigger_corr_e_vs_streak": -0.023222423471161442,
+    "trigger_corr_e_vs_curvature_z": 0.23951710696899245,
+    "n_events": 261
+  },
+  "BNBUSDT": {
+    "full_corr_e_vs_streak": 0.006247995113519901,
+    "full_corr_e_vs_curvature_z": 0.11777654193983973,
+    "trigger_corr_e_vs_streak": 0.03234477672207879,
+    "trigger_corr_e_vs_curvature_z": 0.23902220752785688,
+    "n_events": 278
+  },
+  "SOLUSDT": {
+    "full_corr_e_vs_streak": 0.039298590154572315,
+    "full_corr_e_vs_curvature_z": 0.2746322068464962,
+    "trigger_corr_e_vs_streak": 0.2346757454752493,
+    "trigger_corr_e_vs_curvature_z": 0.5423231291421998,
+    "n_events": 264
+  },
+  "XRPUSDT": {
+    "full_corr_e_vs_streak": 0.0608301139942332,
+    "full_corr_e_vs_curvature_z": 0.29481899628369473,
+    "trigger_corr_e_vs_streak": 0.329091751849082,
+    "trigger_corr_e_vs_curvature_z": 0.5800177007228624,
+    "n_events": 210
+  },
+  "DOGEUSDT": {
+    "full_corr_e_vs_streak": 0.05758905040867004,
+    "full_corr_e_vs_curvature_z": 0.2748630955903586,
+    "trigger_corr_e_vs_streak": 0.36084813098000174,
+    "trigger_corr_e_vs_curvature_z": 0.509118211012097,
+    "n_events": 218
+  },
+  "ADAUSDT": {
+    "full_corr_e_vs_streak": 0.06940071420324288,
+    "full_corr_e_vs_curvature_z": 0.2770751023818332,
+    "trigger_corr_e_vs_streak": 0.3370624299233052,
+    "trigger_corr_e_vs_curvature_z": 0.5738496151758518,
+    "n_events": 251
+  }
+}

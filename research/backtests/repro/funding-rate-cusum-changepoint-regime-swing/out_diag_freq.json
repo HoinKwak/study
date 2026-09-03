@@ -1,0 +1,44 @@
+{
+  "BTCUSDT": {
+    "funding_rows_total": 4926,
+    "excluded_non_8h_frac": 0.0,
+    "cusum_events_raw": 300,
+    "ema_gated_signals": 214
+  },
+  "ETHUSDT": {
+    "funding_rows_total": 4926,
+    "excluded_non_8h_frac": 0.0,
+    "cusum_events_raw": 261,
+    "ema_gated_signals": 203
+  },
+  "BNBUSDT": {
+    "funding_rows_total": 4926,
+    "excluded_non_8h_frac": 0.0,
+    "cusum_events_raw": 278,
+    "ema_gated_signals": 151
+  },
+  "SOLUSDT": {
+    "funding_rows_total": 5001,
+    "excluded_non_8h_frac": 0.020195960807838476,
+    "cusum_events_raw": 264,
+    "ema_gated_signals": 211
+  },
+  "XRPUSDT": {
+    "funding_rows_total": 4926,
+    "excluded_non_8h_frac": 0.0,
+    "cusum_events_raw": 210,
+    "ema_gated_signals": 179
+  },
+  "DOGEUSDT": {
+    "funding_rows_total": 4926,
+    "excluded_non_8h_frac": 0.0,
+    "cusum_events_raw": 218,
+    "ema_gated_signals": 181
+  },
+  "ADAUSDT": {
+    "funding_rows_total": 4926,
+    "excluded_non_8h_frac": 0.0,
+    "cusum_events_raw": 251,
+    "ema_gated_signals": 215
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "base_vs_reverse": {
+    "n_a": 363,
+    "n_b": 404,
+    "n_matched": 363,
+    "observed_diff": -0.08842112686648732,
+    "boot_diff_mean": -0.08260614817533295,
+    "boot_diff_std": 0.13104902061510856,
+    "p_a_le_b": 0.7285,
+    "p_a_ge_b": 0.2715
+  },
+  "base_vs_nogate": {
+    "n_a": 363,
+    "n_b": 493,
+    "n_matched": 363,
+    "observed_diff": 0.008212120616698633,
+    "boot_diff_mean": 0.010650702489715842,
+    "boot_diff_std": 0.12119692303294756,
+    "p_a_le_b": 0.457,
+    "p_a_ge_b": 0.543
+  }
+}

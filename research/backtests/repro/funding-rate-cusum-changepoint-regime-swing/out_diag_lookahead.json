@@ -1,0 +1,20 @@
+{
+  "BTCUSDT": {
+    "cut_time": "2024-09-12 00:00:00+00:00",
+    "n_full_before": 136,
+    "n_cut_before": 136,
+    "bitwise_match": true
+  },
+  "ETHUSDT": {
+    "cut_time": "2024-09-12 00:00:00+00:00",
+    "n_full_before": 129,
+    "n_cut_before": 129,
+    "bitwise_match": true
+  },
+  "SOLUSDT": {
+    "cut_time": "2024-09-02 00:00:00+00:00",
+    "n_full_before": 142,
+    "n_cut_before": 142,
+    "bitwise_match": true
+  }
+}
