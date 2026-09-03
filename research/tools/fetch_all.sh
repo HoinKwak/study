@@ -6,25 +6,35 @@
 #   파일을 읽어 chg24가 통째로 동결된 사고가 있었다).
 set -u
 OUT="${1:-$(pwd)}"; mkdir -p "$OUT"; ok=0; fail=0
-_get () { # url outfile [post-data]
-  local u="$1" f="$2" d="${3:-}"
-  for i in 1 2 3; do
-    if [ -n "$d" ]; then curl -sS -m 40 -X POST "$u" -H 'Content-Type: application/json' -d "$d" -o "$OUT/$f" && break
-    else curl -sS -m 40 "$u" -H 'User-Agent: curl/8' -o "$OUT/$f" && break; fi
-    sleep $((i*2))
+# ⚠️2026-09-03: JSON 파싱만으로는 부족하다. CoinGecko가 429(rate limit)를 반환하면
+#   그것도 유효한 JSON이라 "OK"로 통과했고, Aster 60종목이 통째로 빠진 채 다이제스트가
+#   만들어졌다. 그래서 기대 필드(`want`)가 실제로 있는지까지 확인하고, 없으면 재시도한다.
+_get () { # url outfile [post-data] [기대 필드]
+  local u="$1" f="$2" d="${3:-}" want="${4:-}"
+  for i in 1 2 3 4; do
+    if [ -n "$d" ]; then curl -sS -m 40 -X POST "$u" -H 'Content-Type: application/json' -d "$d" -o "$OUT/$f"
+    else curl -sS -m 40 "$u" -H 'User-Agent: curl/8' -o "$OUT/$f"; fi
+    if python3 - "$OUT/$f" "$want" <<'PYV' 2>/dev/null
+import json,sys
+d=json.load(open(sys.argv[1])); want=sys.argv[2]
+if want:
+    v=d.get(want) if isinstance(d,dict) else None
+    sys.exit(0 if v else 1)
+sys.exit(0)
+PYV
+    then echo "  $f OK"; ok=$((ok+1)); return; fi
+    sleep $((i*5))
   done
-  if python3 -c "import json,sys;json.load(open('$OUT/$f'))" 2>/dev/null; then
-    echo "  $f OK"; ok=$((ok+1))
-  else echo "  $f 실패"; fail=$((fail+1)); fi
+  echo "  $f 실패(기대 필드 '$want' 없음 — rate limit 가능)"; fail=$((fail+1))
 }
-echo "[1/9] OKX 티커";      _get "https://www.okx.com/api/v5/market/tickers?instType=SWAP" okx_raw.json
-echo "[2/9] OKX OI";        _get "https://www.okx.com/api/v5/public/open-interest?instType=SWAP" okx_oi.json
-echo "[3/9] Binance(CG)";   _get "https://api.coingecko.com/api/v3/derivatives/exchanges/binance_futures?include_tickers=all" cg_binance_futures.json
-echo "[4/9] Bybit(CG)";     _get "https://api.coingecko.com/api/v3/derivatives/exchanges/bybit?include_tickers=all" cg_bybit.json
-echo "[5/9] Aster(CG)";     _get "https://api.coingecko.com/api/v3/derivatives/exchanges/aster?include_tickers=all" cg_aster.json
+echo "[1/9] OKX 티커";      _get "https://www.okx.com/api/v5/market/tickers?instType=SWAP" okx_raw.json '' data
+echo "[2/9] OKX OI";        _get "https://www.okx.com/api/v5/public/open-interest?instType=SWAP" okx_oi.json '' data
+echo "[3/9] Binance(CG)";   _get "https://api.coingecko.com/api/v3/derivatives/exchanges/binance_futures?include_tickers=all" cg_binance_futures.json '' tickers
+echo "[4/9] Bybit(CG)";     _get "https://api.coingecko.com/api/v3/derivatives/exchanges/bybit?include_tickers=all" cg_bybit.json '' tickers
+echo "[5/9] Aster(CG)";     _get "https://api.coingecko.com/api/v3/derivatives/exchanges/aster?include_tickers=all" cg_aster.json '' tickers
 echo "[6/9] Hyperliquid";   _get "https://api.hyperliquid.xyz/info" hl_raw.json '{"type":"metaAndAssetCtxs"}'
 echo "[7/9] HyENA";         _get "https://api.hyperliquid.xyz/info" hyna_raw.json '{"type":"metaAndAssetCtxs","dex":"hyna"}'
-echo "[8/9] dYdX";          _get "https://indexer.dydx.trade/v4/perpetualMarkets" dydx_raw.json
+echo "[8/9] dYdX";          _get "https://indexer.dydx.trade/v4/perpetualMarkets" dydx_raw.json '' markets
 echo "[9/9] OKX 펀딩(개별 조회)"
 python3 - "$OUT" <<'PY'
 import json,sys,urllib.request,time
