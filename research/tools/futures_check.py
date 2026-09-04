@@ -174,6 +174,10 @@ def _logical_lines(md: str):
         yield " ".join(buf)
 
 
+# ⚠️오탐 수정(9/4 18:30Z): Binance에 심볼이 **`4`인 토큰이 실재**해서
+#   "XRP -4.53%"의 숫자 4를 그 토큰으로 잡아 방향 검사가 오탐을 냈다.
+#   심볼 경계에 '수치 문맥'(앞이 부호·소수점·숫자 / 뒤가 소수점·%·숫자)
+#   배제를 추가한다 — 한 글자 숫자 심볼이 산문의 모든 숫자와 충돌한다.
 SYMS: re.Pattern | None = None
 
 
@@ -185,7 +189,7 @@ def check_direction(md: str, digest: dict, real: dict, bad: list) -> None:
     global SYMS
     # 3글자 이상 심볼만 경계로 쓴다(ID·CA 같은 2글자 티커는 흔한 문자열과 겹친다)
     SYMS = re.compile("|".join(sorted(
-        (rf"(?<![A-Za-z0-9]){re.escape(k)}(?![A-Za-z0-9])"
+        (rf"(?<![-+.\d])(?<![A-Za-z0-9]){re.escape(k)}(?![A-Za-z0-9])(?![.%\d])"
          for k in digest if len(k) >= 3), key=len, reverse=True)))
     for line in _logical_lines(md):
         t = _strip_clauses(line)
@@ -212,7 +216,7 @@ def check_direction(md: str, digest: dict, real: dict, bad: list) -> None:
                 continue
             # ⚠️`\b`는 한글 조사에서 경계가 되지 않는다 — "BTC는"의 C와 는 사이는
             #   둘 다 \w라 \b가 성립하지 않아 방향 검사가 통째로 무력화됐다.
-            for mo in re.finditer(rf"(?<![A-Za-z0-9]){re.escape(sym)}(?![A-Za-z0-9])", t):
+            for mo in re.finditer(rf"(?<![-+.\d])(?<![A-Za-z0-9]){re.escape(sym)}(?![A-Za-z0-9])(?![.%\d])", t):
                 # ⚠️고정 60자 창은 줄 병합 뒤 문장이 길어지면 방향어에 닿지 못한다
                 #   ("…chg24 …플러스지만 실측은 … 하락 전환입니다"에서 '하락'이 창 밖).
                 #   문장 끝까지 보되, **다음 종목 서술이 시작되면 거기서 끊어** 남의
