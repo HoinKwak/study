@@ -120,6 +120,21 @@ def main() -> int:
     def scan(text: str, subject: str | None, where: str) -> None:
         for mo in SUP.finditer(text):
             kind = "최대" if mo.group(1) in ("최대", "최고") else "최저"
+            # ⚠️"42종중 최대 **변동**"은 수준이 아니라 **델타**가 최대라는 뜻이다
+            #   (9/4 TOAD 유동성 +26.3%가 '유동성 최대'로 오탐됐다). 델타 최대와 대조한다.
+            after = text[mo.end():mo.end() + 8]
+            if re.match(r"\s*(?:변동|증가|증분|유입|유출|감소|급증|급감)", after):
+                d = max(ok, key=lambda r: abs(r.get("dliq_pct") or 0))
+                subj2 = subject
+                if subj2 is None:   # 표현 직전에 나온 토큰명을 주어로(수준 최상급과 동일)
+                    pos = [(text.rfind(r["token"], 0, mo.start()), r["token"]) for r in ok]
+                    pos = [x for x in pos if x[0] >= 0]
+                    subj2 = max(pos)[1] if pos else None
+                if subj2 and subj2 != d["token"]:
+                    bad.append(f"최상급 의심 [{where}] '{mo.group(0)} 변동' 주어={subj2}"
+                               f" — 실제 유동성 변동 최대는 {d['token']}"
+                               f"({d['dliq_pct']:+.1f}%)")
+                continue
             before = text[max(0, mo.start() - 40):mo.start()]
             metric = ("liq" if ("유동성" in before and "vol24" not in before
                                 and "거래량" not in before) else "vol24")
@@ -180,7 +195,9 @@ def main() -> int:
     # ⚠️"매도우위 … 경계신호"는 개별 토큰 서술에도 나오므로 **첫 매치를 쓰면 안 된다**.
     #   종목을 가장 많이 나열한 구간(요약 줄)을 골라 대조한다.
     cands = [m.group(0) for m in
-             re.finditer(r"매도우위[^\n]{0,40}?(?:경계\s*신호|경계신호)[^\n]{0,200}", _text)]
+             re.finditer(r"매도우위[^\n]{0,40}?(?:경계\s*신호|경계신호)[^\n]{0,400}", _text)]
+    # ⚠️200자에서 잘려 "…미충족이다" 같은 **부정 표현이 구간 밖에 남는** 일이 있었다
+    #   (9/4 BULLSHIT·DPG 오탐). 줄바꿈에서 멈추므로 넓혀도 다른 항목을 삼키지 않는다.
     seg = max(cands, key=lambda c: sum(r["token"] in c for r in ok), default=None)
     if seg and flagged and sum(r["token"] in seg for r in ok) >= 2:
         # ⚠️요약 줄은 **빠진 종목을 함께 짚는** 경우가 많다("FLUSH는 이번 회차 명시
@@ -192,20 +209,22 @@ def main() -> int:
         #     나열을 함께 담으면("LIZARD·PROLOGUE 2종이다(…4종에서 HOOKR·TOAD가
         #     빠졌다)") 네 종목이 통째로 제외로 분류돼 오탐이 난다(9/4 09:00Z).
         #     부정어의 **주어는 바로 앞의 토큰 나열**이므로 거기까지 좁힌다.
-        _NEG = re.compile(r"(사라졌|해제|제외|빠졌|없어졌|아니다|아니라|없다)")
-        _tp = "|".join(sorted((re.escape(r["token"]) for r in ok), key=len, reverse=True))
-        _grp = re.compile(rf"(?:{_tp})(?:·(?:{_tp}))*")
-        denied: set[str] = set()
-        for m in _NEG.finditer(seg):
-            head = seg[:m.start()]
-            # 절 경계(괄호·마침표·줄바꿈) 뒤부터가 이 부정어가 걸리는 절이다
-            cut = max(head.rfind("("), head.rfind(")"), head.rfind("\n"),
-                      max((mm.start() for mm in
-                           re.finditer(r"(?<!\d)\.(?!\d)", head)), default=-1))
-            groups = _grp.findall(head[cut + 1:])
-            if groups:
-                denied |= set(groups[-1].split("·"))
-        named = {r["token"] for r in ok if r["token"] in seg} - denied
+        # ⚠️seg 전체에서 토큰을 모으고 부정분만 빼면, **긍정 나열과 부정 나열에 같이
+        #   등장한 종목**이 조용히 제외돼 오류를 놓친다(9/4 주입에서 확인 — 미플래그
+        #   종목을 목록에 넣어도 뒤쪽 "미충족" 절 때문에 안 걸렸다).
+        #   → 절(괄호·마침표 경계) 단위로 쪼개 **긍정 절에 나온 토큰만** 주장으로 본다.
+        _NEG = re.compile(r"(사라졌|해제|제외|빠졌|없어졌|아니다|아니라|없다"
+                          r"|미충족|불충족|않는다|않았다)")
+        #   ⚠️괄호를 절 **구분자**로 쓰면 "…조건(설명) 미충족이다"에서 부정어가 다음
+        #     조각으로 넘어가 긍정으로 오분류된다. 괄호는 **지우고** 마침표로만 나눈다.
+        _clauses = [c for c in re.split(r"(?<!\d)\.(?!\d)",
+                                        re.sub(r"\([^)]*\)", " ", seg)) if c.strip()]
+        _clauses += re.findall(r"\(([^)]*)\)", seg)      # 괄호 안도 하나의 절
+        named, denied = set(), set()
+        for c in _clauses:
+            hit = {r["token"] for r in ok if r["token"] in c}
+            (denied if _NEG.search(c) else named).update(hit)
+
         if denied & flagged:
             bad.append(f"플래그인데 해제됐다고 서술: {sorted(denied & flagged)}")
         missing = flagged - named

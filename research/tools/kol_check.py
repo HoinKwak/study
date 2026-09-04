@@ -60,8 +60,11 @@ def main() -> int:
                    f"csv전용={sorted(set(cn) - set(jn))}")
 
     md = (KOL / "watch.md").read_text()
-    if ts not in md:
-        bad.append(f"md 헤더에 {ts} 없음")
+    # ⚠️md 헤더는 사람이 읽는 표시 형식(`2026-09-04 11:00 UTC`)을 쓰므로 ISO만 찾으면
+    #   정상 발행본이 오탐된다(`mb_check`에서 이미 같은 이유로 고쳤던 부류다).
+    alt = ts.replace("T", " ").rstrip("Z")[:16]
+    if ts not in md and alt not in md:
+        bad.append(f"md 헤더에 {ts}({alt}) 없음")
     if prev_md and len(md) < prev_md * 0.6:
         bad.append(f"md 분량 붕괴: {len(md):,}자 (직전 {prev_md:,}자의 "
                    f"{len(md) / prev_md * 100:.0f}%)")
