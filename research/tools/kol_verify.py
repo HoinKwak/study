@@ -188,16 +188,24 @@ def main() -> int:
         #   정확한 서술이 오탐된다(9/4 FLUSH). 토큰명 뒤 짧은 범위에 제외 표현이
         #   붙으면 '플래그 아님' 주장으로 본다 — 반대로 진짜 플래그 종목을 이렇게
         #   적으면 named에서 빠져 `누락`으로 잡히므로 HOOKR 유형은 그대로 걸린다.
-        #   판정 단위는 **문장**이다 — 고정 글자수로 뒤를 훑으면 다음 문장의 부정어까지
-        #   끌어와 정상 나열(…·TOAD 4종이다)이 제외로 오판된다(9/4 TOAD).
+        #   ⚠️판정 단위를 **문장**으로 잡아도 부족하다 — 한 문장이 정상 나열과 제외
+        #     나열을 함께 담으면("LIZARD·PROLOGUE 2종이다(…4종에서 HOOKR·TOAD가
+        #     빠졌다)") 네 종목이 통째로 제외로 분류돼 오탐이 난다(9/4 09:00Z).
+        #     부정어의 **주어는 바로 앞의 토큰 나열**이므로 거기까지 좁힌다.
         _NEG = re.compile(r"(사라졌|해제|제외|빠졌|없어졌|아니다|아니라|없다)")
-        _sents = re.split(r"(?<!\d)\.(?!\d)\s*", seg)
-        named = {r["token"] for r in ok
-                 for sent in _sents if r["token"] in sent and not _NEG.search(sent)}
-        # 제외 주장("X는 플래그가 해제됐다")은 그 자체로 대조한다 — 같은 종목이 구간
-        # 다른 문장에 또 나오면 named에도 들어가 `누락` 검사만으로는 안 걸린다.
-        denied = {r["token"] for r in ok
-                  for sent in _sents if r["token"] in sent and _NEG.search(sent)}
+        _tp = "|".join(sorted((re.escape(r["token"]) for r in ok), key=len, reverse=True))
+        _grp = re.compile(rf"(?:{_tp})(?:·(?:{_tp}))*")
+        denied: set[str] = set()
+        for m in _NEG.finditer(seg):
+            head = seg[:m.start()]
+            # 절 경계(괄호·마침표·줄바꿈) 뒤부터가 이 부정어가 걸리는 절이다
+            cut = max(head.rfind("("), head.rfind(")"), head.rfind("\n"),
+                      max((mm.start() for mm in
+                           re.finditer(r"(?<!\d)\.(?!\d)", head)), default=-1))
+            groups = _grp.findall(head[cut + 1:])
+            if groups:
+                denied |= set(groups[-1].split("·"))
+        named = {r["token"] for r in ok if r["token"] in seg} - denied
         if denied & flagged:
             bad.append(f"플래그인데 해제됐다고 서술: {sorted(denied & flagged)}")
         missing = flagged - named
