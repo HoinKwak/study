@@ -90,7 +90,12 @@ def main() -> int:
         if len(md) < len(old_md) * 0.6:
             bad.append(f"brief.md 분량 붕괴 {len(old_md):,}→{len(md):,}자")
         old_heads = re.findall(r"^#{2,3}\s*(.+)$", old_md, re.M)
-        lost = [h for h in old_heads if h not in heads]
+        # ⚠️자산 소제목은 "BTC — 중립"처럼 **편향 라벨을 제목에 담아** 매 회차 바뀐다.
+        #   전체 문자열로 비교하면 정상 갱신을 '섹션 소실'로 오탐한다(9/4 발생).
+        #   구분자 앞의 이름만으로 대조한다.
+        def _key(h): return re.split(r"\s*[—–-]\s*", h)[0].strip()
+        cur_keys = {_key(h) for h in heads}
+        lost = [h for h in old_heads if _key(h) not in cur_keys]
         if lost:
             bad.append(f"brief.md 섹션 소실: {lost}")
     if not any("LIT" in h for h in heads):
