@@ -188,12 +188,31 @@ def main() -> int:
             # ⚠️오탐 수정(9/4 13:00Z): 델타 표지가 **뒤에만** 온다고 봤으나
             #   "유동성 변동 상위 5종: 1B +10.1%(42종중최대)"처럼 앞에 오기도 한다.
             #   직전에 부호 붙은 %가 오거나 앞 창에 '변동'이 있으면 델타 기준이다.
+            # ⚠️추가(9/4 15:00Z): "42종중 이번회차 최대폭(-25.3%)으로 유출" 처럼
+            #   표지가 8자 창 **밖**에 있고 부호 %만 뒤따르는 형태도 델타다.
             pre_d = text[max(0, mo.start() - 14):mo.start()]
+            post = text[mo.end():mo.end() + 20]
             is_delta = (bool(re.match(r"\s*(?:변동|증가|증분|유입|유출|감소|급증|급감)", after))
+                        or bool(re.search(r"[+\-−]\s?[\d.,]+%", post))
                         or bool(re.search(r"[+\-−]\s?[\d.,]+%\s*\(?$", pre_d))
                         or "변동" in text[max(0, mo.start() - 40):mo.start()])
             if is_delta:
-                d = max(ok, key=lambda r: abs(r.get("dliq_pct") or 0))
+                # ⚠️추가(9/4 15:00Z): 델타 최상급도 **증가/감소/변동**이 서로 다른
+                #   주장이다. CATE는 최대 '증가'(+7.3%)이고 최대 '변동'은 TOAD(-25.3%)라,
+                #   전부 절대값 최대와 대조하면 정확한 서술을 오탐한다.
+                # ⚠️방향어는 **최상급 바로 뒤**의 것을 먼저 쓴다. 20자 창에서
+                #   아무거나 잡으면 "…최대변동,직전대규모**유입**되돌림"의 유입을
+                #   끌어와 TOAD의 정확한 '변동 최대' 서술을 오탐한다(9/4 15:00Z).
+                _DIR = r"(변동|증가|증분|유입|유출|감소|급증|급감)"
+                mw = re.match(r"\s*" + _DIR, after) or re.search(_DIR, post) \
+                    or re.search(_DIR + r"[^가-힣]{0,6}$", pre_d)
+                w = mw.group(1) if mw else "변동"
+                if w in ("증가", "증분", "유입", "급증"):
+                    d, kindw = max(ok, key=lambda r: (r.get("dliq_pct") or 0)), "증가"
+                elif w in ("유출", "감소", "급감"):
+                    d, kindw = min(ok, key=lambda r: (r.get("dliq_pct") or 0)), "감소"
+                else:
+                    d, kindw = max(ok, key=lambda r: abs(r.get("dliq_pct") or 0)), "변동"
                 subj2 = subject
                 # ⚠️수준 분기엔 있던 '주어가 목록 라벨이면 되돌린다' 가드가
                 #   델타 분기엔 없어 라벨("유동성 변동 상위 5종")을 주어로 잡았다.
@@ -204,8 +223,8 @@ def main() -> int:
                     pos = [x for x in pos if x[0] >= 0]
                     subj2 = max(pos)[1] if pos else None
                 if subj2 and subj2 != d["token"]:
-                    bad.append(f"최상급 의심 [{where}] '{mo.group(0)} 변동' 주어={subj2}"
-                               f" — 실제 유동성 변동 최대는 {d['token']}"
+                    bad.append(f"최상급 의심 [{where}] '{mo.group(0)} {kindw}' 주어={subj2}"
+                               f" — 실제 유동성 {kindw} 최대는 {d['token']}"
                                f"({d['dliq_pct']:+.1f}%)")
                 continue
             subj = subject
