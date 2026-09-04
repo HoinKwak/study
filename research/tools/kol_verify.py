@@ -183,7 +183,23 @@ def main() -> int:
              re.finditer(r"매도우위[^\n]{0,40}?(?:경계\s*신호|경계신호)[^\n]{0,200}", _text)]
     seg = max(cands, key=lambda c: sum(r["token"] in c for r in ok), default=None)
     if seg and flagged and sum(r["token"] in seg for r in ok) >= 2:
-        named = {r["token"] for r in ok if r["token"] in seg}
+        # ⚠️요약 줄은 **빠진 종목을 함께 짚는** 경우가 많다("FLUSH는 이번 회차 명시
+        #   플래그가 사라졌다"). 이름이 구간에 있다는 이유만으로 주장 목록에 넣으면
+        #   정확한 서술이 오탐된다(9/4 FLUSH). 토큰명 뒤 짧은 범위에 제외 표현이
+        #   붙으면 '플래그 아님' 주장으로 본다 — 반대로 진짜 플래그 종목을 이렇게
+        #   적으면 named에서 빠져 `누락`으로 잡히므로 HOOKR 유형은 그대로 걸린다.
+        #   판정 단위는 **문장**이다 — 고정 글자수로 뒤를 훑으면 다음 문장의 부정어까지
+        #   끌어와 정상 나열(…·TOAD 4종이다)이 제외로 오판된다(9/4 TOAD).
+        _NEG = re.compile(r"(사라졌|해제|제외|빠졌|없어졌|아니다|아니라|없다)")
+        _sents = re.split(r"(?<!\d)\.(?!\d)\s*", seg)
+        named = {r["token"] for r in ok
+                 for sent in _sents if r["token"] in sent and not _NEG.search(sent)}
+        # 제외 주장("X는 플래그가 해제됐다")은 그 자체로 대조한다 — 같은 종목이 구간
+        # 다른 문장에 또 나오면 named에도 들어가 `누락` 검사만으로는 안 걸린다.
+        denied = {r["token"] for r in ok
+                  for sent in _sents if r["token"] in sent and _NEG.search(sent)}
+        if denied & flagged:
+            bad.append(f"플래그인데 해제됐다고 서술: {sorted(denied & flagged)}")
         missing = flagged - named
         extra = named - flagged
         if missing:
