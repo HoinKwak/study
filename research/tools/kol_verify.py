@@ -168,6 +168,33 @@ def main() -> int:
             subj = first[4:].split("**")[0].strip() or None
         scan(b, subj, "md")
 
+    # 다이제스트 경계 플래그 주장 검증
+    # ⚠️2026-09-04: 에이전트가 HOOKR를 '매도우위 플래그 해제'라고 3곳에 적었으나
+    #   다이제스트는 그 회차에도 플래그를 달고 있었다(h24 +40.41%에 매수3,707/매도3,748).
+    #   원인은 **직전 회차 risk 문구("가격-체결방향균형회복")를 이번 상태로 오독**한 것.
+    #   플래그 대상은 계측에서 기계적으로 정해지므로 산문 주장과 대조할 수 있다.
+    flagged = {r["token"] for r in ok
+               if (r["h24"] or 0) > 20 and (r["sells24"] or 0) > (r["buys24"] or 0)}
+    _text = ((KOL / "watch.md").read_text() + " "
+             + " ".join(t.get("thesis", "") for t in j["tokens"]))
+    # ⚠️"매도우위 … 경계신호"는 개별 토큰 서술에도 나오므로 **첫 매치를 쓰면 안 된다**.
+    #   종목을 가장 많이 나열한 구간(요약 줄)을 골라 대조한다.
+    cands = [m.group(0) for m in
+             re.finditer(r"매도우위[^\n]{0,40}?(?:경계\s*신호|경계신호)[^\n]{0,200}", _text)]
+    seg = max(cands, key=lambda c: sum(r["token"] in c for r in ok), default=None)
+    if seg and flagged and sum(r["token"] in seg for r in ok) >= 2:
+        named = {r["token"] for r in ok if r["token"] in seg}
+        missing = flagged - named
+        extra = named - flagged
+        if missing:
+            bad.append(f"매도우위 플래그 주장에서 누락: {sorted(missing)} "
+                       f"(다이제스트 플래그 {sorted(flagged)})")
+        if extra:
+            bad.append(f"매도우위 플래그 아닌데 포함: {sorted(extra)}")
+        cnt = re.search(r"\*\*(\d+)종\*\*", seg)
+        if cnt and int(cnt.group(1)) != len(flagged):
+            bad.append(f"매도우위 플래그 종목수 {cnt.group(1)} != 실제 {len(flagged)}")
+
     if bad:
         print(f"❌ {len(bad)}건 (CA 미매칭 {unmatched})")
         for b in bad:
