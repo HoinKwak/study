@@ -92,6 +92,9 @@ def promote(raw_path: str) -> int:
 
 def main() -> int:
     if sys.argv[1:2] == ["--promote"]:
+        if len(sys.argv) < 3:
+            print("인자 오류: --promote 는 kol_raw.json 경로가 필요하다.", file=sys.stderr)
+            return 2
         return promote(sys.argv[2])
     cfg = json.loads(CFG.read_text())
     out, fails = [], []
@@ -132,6 +135,15 @@ def main() -> int:
         })
         if i % 8 == 7:
             time.sleep(1)
+    # ⚠️첫 인자가 곧 출력 경로다. `--out <경로>` 꼴로 부르면 "--out" 이름의 파일이
+    #   저장소 루트에 생기고, 부모는 **직전 회차의 낡은 kol_raw.json**을 그대로 읽어
+    #   "42/42 종목 전 필드 동결"이라는 가짜 데이터 정체를 보게 된다(9/4 발생).
+    #   fetch_all.sh 인자 자리 실수와 같은 부류라 여기서 원천 차단한다.
+    if len(sys.argv) > 1 and sys.argv[1].startswith("-"):
+        print(f"인자 오류: 첫 인자는 출력 경로다(받은 값 {sys.argv[1]!r}). "
+              "사용법: kol_pre.py <출력경로> | kol_pre.py --promote <kol_raw.json>",
+              file=sys.stderr)
+        return 2
     dst = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "kol_raw.json"
     dst.write_text(json.dumps(out, ensure_ascii=False, indent=1))
     print(f"수집 {sum(1 for x in out if x['ok'])}/{len(out)}종목 → {dst}")
