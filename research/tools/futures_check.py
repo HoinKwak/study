@@ -99,6 +99,9 @@ def _strip_clauses(t: str) -> str:
     #   (펀딩 절이 소수점에서 끊기던 것과 같은 부류). 숫자 앞의 점은 절 안으로 본다.
     t = re.sub(r"직전(?:[^,·—.]|\.(?=\d)){0,40}", " ", t)     # "직전 …"
     t = re.sub(r"([-+]?[\d.]+%\s*→\s*)+", " ", t)          # 다단계 체인 A→B→C
+    # ⚠️"2회 연속 상승 흐름이 …", "2회 연속 큰 낙폭 이후 …"는 **과거 추세** 서술이라
+    #   그 안의 방향어를 이번 회차 주장으로 보면 안 된다(9/4 오탐 7건의 원인).
+    t = re.sub(r"\d+\s*회\s*연속(?:[^,·—.]|\.(?=\d)){0,30}", " ", t)
     return t
 
 
@@ -152,7 +155,13 @@ def check_direction(md: str, digest: dict, real: dict, bad: list) -> None:
             # ⚠️`\b`는 한글 조사에서 경계가 되지 않는다 — "BTC는"의 C와 는 사이는
             #   둘 다 \w라 \b가 성립하지 않아 방향 검사가 통째로 무력화됐다.
             for mo in re.finditer(rf"(?<![A-Za-z0-9]){re.escape(sym)}(?![A-Za-z0-9])", t):
-                seg = t[mo.end():mo.end() + 40]
+                seg = t[mo.end():mo.end() + 60]
+                # ⚠️"2회 연속 상승 흐름이 이번 회차 -1.15%로 꺾였다"처럼 앞 절이 **과거 추세**를
+                #   서술하는 문장이 흔하다. '이번 회차/이번엔' 뒤부터가 이번 관측이므로
+                #   그 표지가 있으면 뒤쪽만 방향 판정에 쓴다(9/4 오탐 7건의 원인).
+                cut = re.search(r"이번\s*(?:회차|엔|은|라운드)", seg)
+                if cut:
+                    seg = seg[cut.end():]
                 if MITIG.search(seg):
                     continue
                 up = any(w in seg for w in UP)
