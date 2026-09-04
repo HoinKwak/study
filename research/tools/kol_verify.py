@@ -79,7 +79,12 @@ def check_token(name, th, m, bad):
         bad.append(f"{name} 회전율 {tm.group(1)}배 != 실측 {m['turnover']}배")
 
     # 풀 수 / 풀나이
-    pm = re.search(r"(\d+)풀", th)
+    # ⚠️오탐 수정(9/4 13:00Z): "2풀→1풀"·"22풀에서 21풀로"처럼 **전이를 서술**하면
+    #   앞 값은 직전 회차 값이다. 첫 매치를 잡아 CYBERCAT·CYBERLEEK·HOOKR 3건이
+    #   오탐났다(kol_digest 기준선 A→B에서 B를 쓰도록 고친 것과 같은 부류).
+    pm = (re.search(r"\d+풀\s*(?:→|->)\s*(\d+)풀", th)
+          or re.search(r"\d+풀에서\s*(\d+)풀", th)
+          or re.search(r"(\d+)풀", th))
     if pm and int(pm.group(1)) != m["npools"]:
         bad.append(f"{name} 풀수 {pm.group(1)} != 실측 {m['npools']}")
     am = re.search(r"풀나이\s*([\d.]+)일", th)
@@ -103,12 +108,33 @@ def main() -> int:
         name = t.get("token") or m["token"]
         check_token(name, t.get("thesis", ""), m, bad)
 
+    # md 상세줄의 구조 필드(풀수·풀나이) 대조
+    # ⚠️공백 메움(9/4 13:00Z): 풀수 검사가 watch.json의 thesis만 봐서
+    #   md 상세줄("- **TOAD** (Solana/PumpSwap, CA `…`, 16풀, 풀나이 27.0일)")의
+    #   오기는 통째로 지나쳤다. 구조 필드 이월(BARRON 7풀 건)이 바로 이 부류다.
+    by_ca = {r["ca"].lower(): r for r in raw.values()}
+    for mo in re.finditer(
+            r"^- \*\*(?P<tok>[^*]+)\*\*\s*\([^)]*?`(?P<ca>0x[0-9a-fA-F]+|[1-9A-HJ-NP-Za-km-z]+)`"
+            r"[^)]*?,\s*(?P<np>\d+|단일)풀(?:,\s*풀나이\s*(?P<age>[\d.]+)일)?",
+            (KOL / "watch.md").read_text(), re.M):
+        m = by_ca.get(mo.group("ca").lower())
+        if not m or not m["ok"]:
+            continue
+        np_txt = mo.group("np")            # "단일풀"은 1풀이다(8종목이 이 표기다)
+        if (1 if np_txt == "단일" else int(np_txt)) != m["npools"]:
+            bad.append(f"{mo.group('tok')} md 풀수 {np_txt} != 실측 {m['npools']}")
+        if mo.group("age") and m["age_days"] is not None \
+                and abs(float(mo.group("age")) - m["age_days"]) > 0.15:
+            bad.append(f"{mo.group('tok')} md 풀나이 {mo.group('age')}일"
+                       f" != 실측 {m['age_days']}일")
+
     # 최상급 표현 검증
     # ⚠️오탐 수정(9/3) 3건: ①최상급은 vol24만이 아니라 유동성에도 붙는다(지표 판별 필요)
     #   ②"최하위권/최상위권"은 '권'(범위)이라 최상급 주장이 아니다 — 검사 대상 아님
     #   ③주어가 표 행의 첫 칸이거나 문장 앞쪽 멀리 있다 — 전역 창이 아니라
     #     "행 단위"로 주어를 정해야 한다(전역 90자 창은 표 행에서 주어를 놓쳤다).
     ok = [r for r in raw.values() if r["ok"]]
+    raw_by_token = {r["token"]: r for r in ok}
     ext = {
         ("vol24", "최대"): max(ok, key=lambda r: r["vol24"]),
         ("vol24", "최저"): min(ok, key=lambda r: r["vol24"]),
@@ -117,15 +143,62 @@ def main() -> int:
     }
     SUP = re.compile(r"42종중\s*(?:이번회차)?\s*(최대|최고|최저|최소|최하)(?!위권|위)")
 
+    def _is_past(text: str, start: int) -> bool:
+        """'직전회차 42종중 최대변동이었던' 같은 **과거 회차 서술**은 이번 회차 주장이
+        아니다(9/4 13:00Z TOAD 2건 오탐). futures_check의 '직전 …' 절 처리와 같은 부류다.
+        다만 '직전 …였으나 **이번** 회차 최대'처럼 중간에 이번 회차 표지가 오면 끊는다."""
+        pre = text[max(0, start - 30):start]
+        i = max(pre.rfind("직전"), pre.rfind("전회"), pre.rfind("과거"))
+        return i >= 0 and "이번" not in pre[i:]
+
+    def _metric_at(text: str, start: int, subj: str | None) -> str:
+        """최상급의 기준 지표를 **바로 앞에 나온 지표어**로 정한다(9/4 13:00Z PEE 오탐:
+        40자 창 저편의 '유동성'을 끌어와 vol24 주장을 유동성으로 판정했다).
+        지표어가 없으면 직전 $금액을 실측 liq·vol24와 대조해 가까운 쪽으로 판별한다."""
+        near = text[max(0, start - 24):start]
+        # 괄호·쉼표·가운뎃점·"vs"를 넘어간 지표어는 **남의 절** 것이다
+        #   ("…유동성도 최대) vs PEE $83(42종중 최소" → PEE는 vol24 기준).
+        near = re.split(r"[(),·]|vs", near)[-1]
+        i_liq = near.rfind("유동성")
+        i_vol = max(near.rfind("vol24"), near.rfind("거래량"))
+        if max(i_liq, i_vol) >= 0:
+            return "liq" if i_liq > i_vol else "vol24"
+        r = raw_by_token.get(subj)
+        if r:
+            mv = re.findall(r"\$([\d,.]+)", text[max(0, start - 40):start])
+            if mv:
+                try:
+                    v = float(mv[-1].replace(",", ""))
+                except ValueError:
+                    v = None
+                if v is not None and r["liq"] and r["vol24"]:
+                    dl = abs(v - r["liq"]) / max(r["liq"], 1)
+                    dv = abs(v - r["vol24"]) / max(r["vol24"], 1)
+                    return "liq" if dl < dv else "vol24"
+        return "vol24"
+
     def scan(text: str, subject: str | None, where: str) -> None:
         for mo in SUP.finditer(text):
+            if _is_past(text, mo.start()):
+                continue
             kind = "최대" if mo.group(1) in ("최대", "최고") else "최저"
             # ⚠️"42종중 최대 **변동**"은 수준이 아니라 **델타**가 최대라는 뜻이다
             #   (9/4 TOAD 유동성 +26.3%가 '유동성 최대'로 오탐됐다). 델타 최대와 대조한다.
             after = text[mo.end():mo.end() + 8]
-            if re.match(r"\s*(?:변동|증가|증분|유입|유출|감소|급증|급감)", after):
+            # ⚠️오탐 수정(9/4 13:00Z): 델타 표지가 **뒤에만** 온다고 봤으나
+            #   "유동성 변동 상위 5종: 1B +10.1%(42종중최대)"처럼 앞에 오기도 한다.
+            #   직전에 부호 붙은 %가 오거나 앞 창에 '변동'이 있으면 델타 기준이다.
+            pre_d = text[max(0, mo.start() - 14):mo.start()]
+            is_delta = (bool(re.match(r"\s*(?:변동|증가|증분|유입|유출|감소|급증|급감)", after))
+                        or bool(re.search(r"[+\-−]\s?[\d.,]+%\s*\(?$", pre_d))
+                        or "변동" in text[max(0, mo.start() - 40):mo.start()])
+            if is_delta:
                 d = max(ok, key=lambda r: abs(r.get("dliq_pct") or 0))
                 subj2 = subject
+                # ⚠️수준 분기엔 있던 '주어가 목록 라벨이면 되돌린다' 가드가
+                #   델타 분기엔 없어 라벨("유동성 변동 상위 5종")을 주어로 잡았다.
+                if subj2 is not None and subj2 not in {r["token"] for r in ok}:
+                    subj2 = None
                 if subj2 is None:   # 표현 직전에 나온 토큰명을 주어로(수준 최상급과 동일)
                     pos = [(text.rfind(r["token"], 0, mo.start()), r["token"]) for r in ok]
                     pos = [x for x in pos if x[0] >= 0]
@@ -135,10 +208,6 @@ def main() -> int:
                                f" — 실제 유동성 변동 최대는 {d['token']}"
                                f"({d['dliq_pct']:+.1f}%)")
                 continue
-            before = text[max(0, mo.start() - 40):mo.start()]
-            metric = ("liq" if ("유동성" in before and "vol24" not in before
-                                and "거래량" not in before) else "vol24")
-            tgt = ext[(metric, kind)]
             subj = subject
             # ⚠️오탐 수정(9/3): 목록 항목의 주어가 토큰명이 아니라 분류 라벨일 때가 있다
             #   ("- **뒷북 대형 토큰**: CATE(유동성 42종중 최대)…"). 알려진 토큰명이
@@ -151,6 +220,8 @@ def main() -> int:
                 pos = [(text.rfind(r["token"], 0, mo.start()), r["token"]) for r in ok]
                 pos = [x for x in pos if x[0] >= 0]
                 subj = max(pos)[1] if pos else "?"
+            metric = _metric_at(text, mo.start(), subj)
+            tgt = ext[(metric, kind)]
             if subj != tgt["token"]:
                 bad.append(f"최상급 의심 [{where}] '{mo.group(0)}'({metric}) 주어={subj}"
                            f" — 실제 {metric} {kind}는 {tgt['token']}")
