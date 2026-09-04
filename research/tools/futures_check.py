@@ -281,6 +281,15 @@ def main() -> int:
     if ts not in md and alt not in md:
         bad.append(f"brief.md 에 {ts}({alt}) 없음")
 
+    # ⚠️섹션이 통째로 빠져도 표·방향 검사는 통과한다(빠진 섹션엔 검사할 표가 없으니까).
+    #   제목에 회차가 들어가므로(`핵심 변화 (08:30Z → 10:30Z)`) **괄호 앞 이름**으로 본다
+    #   — 제목 전체로 대조하면 매 회차 '누락'으로 오판한다(9/4 내가 실제로 오판했다).
+    names = {re.sub(r"\s*\(.*", "", ln[3:]).strip()
+             for ln in md.splitlines() if ln.startswith("## ")}
+    missing = {"핵심 변화", "시장 전반", "CEX 주목", "DEX 주목", "데이터 신뢰도"} - names
+    if missing:
+        bad.append(f"brief.md 섹션 누락: {sorted(missing)}")
+
     real = real_moves(sys.argv[3] if len(sys.argv) > 3 else None,
                       sys.argv[4] if len(sys.argv) > 4 else None)
     check(parse_tables(md), digest, bad, "md표")
