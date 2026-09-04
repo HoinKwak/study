@@ -145,8 +145,12 @@ for r in rows:
 #   발행 대상에 그대로 섞여 있었다(에이전트가 서술에서만 걸러 보고했다).
 #   ⚠️반대 방향 주의: `CP`는 $0.0362짜리 크립토라 주식(Canadian Pacific)으로 오인해 빼면 안 된다
 #   — 심볼만 보고 판단하지 말고 가격대까지 확인할 것.
+# ⚠️보강(9/4 22:30Z): **금 연동 토큰 PAXG(Paxos Gold)·XAUT(Tether Gold)**가
+#   목록에 없어 brief.json에 6행 남아 있었다(에이전트가 md 서술에서만 걸러 보고했다).
+#   루틴 규약이 '금·은' 상품을 명시 제외하므로 심볼 목록에 추가한다 — `XAU`/`GOLD` 같은
+#   원자재 티커만 막으면 **금 연동 크립토 토큰은 그대로 통과**한다.
 EQUITY = set('''NVDA SPY SOXL MU SNDK SKHYNIX SKHY TSLA AAPL AMZN META MSFT GOOG GOOGL COIN MSTR
-HOOD PLTR AMD INTC NFLX QQQ IWM DIA GLD SLV USO UNG XAU XAG XAUUSD XAGUSD GOLD SILVER OIL WTI
+HOOD PLTR AMD INTC NFLX QQQ IWM DIA GLD SLV USO UNG XAU XAG XAUUSD XAGUSD GOLD SILVER OIL WTI PAXG XAUT
 BRENT NDX SPX DJI VIX EUR GBP JPY
 SPCX CRCL TEAM MRVL AVGO GPRO SAMSUNG DELL BZ ORCL CRM ADBE UBER ABNB SHOP SQ PYPL BABA NKE
 DIS BA JPM GS V MA WMT COST KO PEP XOM CVX LLY UNH JNJ PFE'''.split())
