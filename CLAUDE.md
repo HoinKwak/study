@@ -76,7 +76,7 @@ _(현재 공지 없음)_
   - `bash fetch_all.sh $SP` — 9개 피드 수집·검증·재시도·신선도 출력
   - `build_digest.py $SP <ts> <직전ts>` — ⚠️**SP가 먼저**(다른 도구 대부분과 반대)
   - `kol_pre.py <출력경로>` / `kol_pre.py --promote <kol_raw.json>` — ⚠️**첫 인자가 곧 출력 경로**(`--out` 붙이면 안 된다, 가드 있음)
-  - `kol_digest.py <ts> <kol_raw.json>` — ts 먼저
+  - `kol_digest.py <ts> <kol_raw.json> > <출력.md>` — ts 먼저이고 ⚠️**결과를 stdout으로 뱉는다**(파일을 안 쓴다). 리다이렉트를 빼먹으면 `kol_digest.md`가 직전 회차 파일 그대로 남고, 그걸 읽으면 헤더 ts까지 낡은 값이라 '동결'로 오독하기 쉽다(9/5 11:00Z에 실제로 겪음 — `ls -l`로 수정시각을 보고 잡았다)
   - `merge_patch.py <patch> <staging> <out>` — 순서 뒤바뀌면 내용으로 판별해 거부함
   - `verify_merge.py <merged> [ts]` · `publish_brief.py <merged> <ts>`
   - 검증기: `kol_check.py <ts> [종목수=42]` · `kol_verify.py <kol_raw.json>` · `futures_check.py <ts> <staging> [prices_prev] [prices_cur]` · `mb_check.py <ts>`
