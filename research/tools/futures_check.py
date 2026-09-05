@@ -152,8 +152,16 @@ def _basis_at(seg: str, pos: int) -> str | None:
     head = seg[:pos]
     i_real = max(head.rfind("실측"), head.rfind("실시간"))
     i_chg = max(head.rfind("chg24"), head.rfind("24h"))
-    if i_real < 0 and i_chg < 0:
+    # ⚠️비가격 지표도 같은 방식으로 겨룬다(9/5 12:30Z): "펀딩이 직전 +0.0050%에서
+    #   이번 -0.0127%로 다시 마이너스 전환"은 펀딩 서술인데 가격 방향으로 판정돼
+    #   오탐이 났다. 고정 창(14자)으로 앞을 훑는 방식은 문장이 길면 '펀딩'에 닿지
+    #   못하므로, **방향어 바로 앞에 나온 지표가 비가격이면 그 방향어는 버린다**.
+    i_non = max(head.rfind("펀딩"), head.rfind("OI"), head.rfind("미결제"),
+                head.rfind("거래대금"), head.rfind("vol24"), head.rfind("회전율"))
+    if i_real < 0 and i_chg < 0 and i_non < 0:
         return None
+    if i_non > i_real and i_non > i_chg:
+        return "nonprice"
     return "real" if i_real > i_chg else "chg"
 
 
@@ -254,9 +262,19 @@ def check_direction(md: str, digest: dict, real: dict, bad: list) -> None:
                 # ⚠️"2회 연속 상승 흐름이 이번 회차 -1.15%로 꺾였다"처럼 앞 절이 **과거 추세**를
                 #   서술하는 문장이 흔하다. '이번 회차/이번엔' 뒤부터가 이번 관측이므로
                 #   그 표지가 있으면 뒤쪽만 방향 판정에 쓴다(9/4 오탐 7건의 원인).
+                # ⚠️컷은 **판정 대상 방향어를 고르는 데만** 쓰고, 기준(지표) 해소는
+                #   자르기 전 원문으로 한다(9/5 12:30Z). 컷이 앞의 '펀딩' 언급을 통째로
+                #   버려 펀딩 서술이 가격 기준으로 판정되던 오탐이 났다.
+                seg_full, off = seg, 0
                 cut = re.search(r"이번\s*(?:회차|엔|은|라운드)", seg)
-                if cut:
-                    seg = seg[cut.end():]
+                # ⚠️컷 조건을 좁힌다(9/5 12:30Z): 표지 **앞에 이미 실측/chg24 라벨이
+                #   있으면 그 앞부분도 이번 회차 주장**이므로 자르면 안 된다. DASH 건에서
+                #   "실측(2h) +1.33%로 상승 … 이번 회차 펀딩 -0.0127%" 문장의 앞쪽
+                #   가격 주장이 통째로 잘려 방향 오류 주입이 미검출됐다. 과거 추세 서술
+                #   ("2회 연속 상승 흐름이 이번 회차 …로 꺾였다")엔 그 라벨이 없어 컷 유지.
+                if cut and not re.search(r"실측|실시간|chg24|24h", seg[:cut.start()]):
+                    off = cut.end()
+                    seg = seg[off:]
                 if MITIG.search(seg):
                     continue
                 # 방향어를 위치와 함께 모아, 각자의 앞 지표로 기준을 나눈다.
@@ -275,12 +293,12 @@ def check_direction(md: str, digest: dict, real: dict, bad: list) -> None:
                 hits = [(m.start(), w in UP)
                         for w in UP + DOWN
                         for m in re.finditer(re.escape(w), seg)
-                        if seg[m.end():m.end() + 1] not in ("폭", "률", "치")
+                        if seg[m.end():m.end() + 1] not in ("폭", "률", "치", "분")
                         and not _NONPRICE.search(seg[max(0, m.start() - 14):m.start()])]
                 hit = False
                 for b, cs in agree.items():
                     sel = [u for pos, u in hits
-                           if (_basis_at(seg, pos) or dflt) == b]
+                           if (_basis_at(seg_full, off + pos) or dflt) == b]
                     if not sel or len(set(sel)) != 1:
                         continue
                     if sel[0] != (cs[0] > 0):
