@@ -143,6 +143,7 @@ def main() -> int:
     #   오기는 통째로 지나쳤다. 구조 필드 이월(BARRON 7풀 건)이 바로 이 부류다.
     by_ca = {r["ca"].lower(): r for r in raw.values()}
     mdtxt = (KOL / "watch.md").read_text()
+    md_cov = 0
     for mo in re.finditer(
             r"^- \*\*(?P<tok>[^*]+)\*\*\s*\([^)]*?`(?P<ca>0x[0-9a-fA-F]+|[1-9A-HJ-NP-Za-km-z]+)`"
             r"[^)]*?,\s*(?P<np>\d+|단일)풀(?:,\s*풀나이\s*(?P<age>[\d.]+)일)?",
@@ -150,6 +151,7 @@ def main() -> int:
         m = by_ca.get(mo.group("ca").lower())
         if not m or not m["ok"]:
             continue
+        md_cov += 1
         rn2 = m.get("round_no")
         seg_r = mdtxt[mo.end():mo.end() + 120]
         rm2 = re.search(r"(\d+)\s*회차", seg_r)
@@ -172,6 +174,15 @@ def main() -> int:
             bad.append(f"{mo.group('tok')} md 풀나이 {mo.group('age')}일"
                        f" != 실측 {m['age_days']}일")
 
+    # ⚠️커버리지 가드 신설(9/5 17:00Z): 이 검사는 md 상세줄(`- **TOK** (…, CA `…`, N풀…)`)에만
+    #   걸리는데, 발행본이 종목별 상세줄을 요약 항목으로 바꾸자 **대조 대상이 42종→0종으로
+    #   조용히 사라졌다**(오류가 없어서가 아니라 볼 것이 없어서 통과했다). 검사가 꺼지는 것
+    #   자체를 결함으로 보고한다.
+    n_ok = sum(1 for r in raw.values() if r["ok"])
+    if md_cov < n_ok:
+        bad.append(f"md 상세줄 커버리지 {md_cov}/{n_ok}종 — 구조 필드(CA·풀수·회차) 대조가 "
+                   f"{n_ok - md_cov}종에서 아예 수행되지 않았습니다")
+
     # 최상급 표현 검증
     # ⚠️오탐 수정(9/3) 3건: ①최상급은 vol24만이 아니라 유동성에도 붙는다(지표 판별 필요)
     #   ②"최하위권/최상위권"은 '권'(범위)이라 최상급 주장이 아니다 — 검사 대상 아님
@@ -185,7 +196,20 @@ def main() -> int:
         ("liq", "최대"): max(ok, key=lambda r: r["liq"]),
         ("liq", "최저"): min(ok, key=lambda r: r["liq"]),
     }
-    SUP = re.compile(r"42종중\s*(?:이번회차)?\s*(최대|최고|최저|최소|최하)(?!위권|위)")
+    # ⚠️공백 메움(9/5 17:00Z): 기준 지표가 vol24·유동성 둘뿐이라 **가격 변동률(h1·h6·h24)에
+    #   붙은 최상급**이 전부 vol24 주장으로 떨어져 오탐이 났다("DPG h24 -66.06%(42종중 최소)"는
+    #   정확한 서술인데 vol24 최저(PEE)와 대조됐다). h 계열도 기준 지표로 넣는다.
+    for _h in ("h1", "h6", "h24"):
+        _v = [r for r in ok if r.get(_h) is not None]
+        if _v:
+            ext[(_h, "최대")] = max(_v, key=lambda r: r[_h])
+            ext[(_h, "최저")] = min(_v, key=lambda r: r[_h])
+    # ⚠️검출 공백(9/5 17:00Z): 방향어가 최상급 **앞에 붙은** 표기("42종중 증가최대",
+    #   "42종중 감소최대")가 패턴에 아예 안 걸려, 유동성 델타 최상급 주장이 통째로
+    #   무검사였다(TOAD·1B 줄이 매 회차 이 표기를 쓴다 — 주입 테스트로 발각).
+    SUP = re.compile(r"42종중\s*(?:이번회차)?\s*"
+                     r"(?P<dir>증가|감소|유입|유출|변동|급증|급감)?\s*"
+                     r"(?P<sup>최대|최고|최저|최소|최하)(?!위권|위)")
 
     def _is_past(text: str, start: int) -> bool:
         """'직전회차 42종중 최대변동이었던' 같은 **과거 회차 서술**은 이번 회차 주장이
@@ -200,13 +224,38 @@ def main() -> int:
         40자 창 저편의 '유동성'을 끌어와 vol24 주장을 유동성으로 판정했다).
         지표어가 없으면 직전 $금액을 실측 liq·vol24와 대조해 가까운 쪽으로 판별한다."""
         near = text[max(0, start - 24):start]
-        # 괄호·쉼표·가운뎃점·"vs"를 넘어간 지표어는 **남의 절** 것이다
+        # 쉼표·가운뎃점·닫는괄호·"vs"를 넘어간 지표어는 **남의 절** 것이다
         #   ("…유동성도 최대) vs PEE $83(42종중 최소" → PEE는 vol24 기준).
-        near = re.split(r"[(),·]|vs", near)[-1]
-        i_liq = near.rfind("유동성")
-        i_vol = max(near.rfind("vol24"), near.rfind("거래량"))
-        if max(i_liq, i_vol) >= 0:
-            return "liq" if i_liq > i_vol else "vol24"
+        # ⚠️여는 괄호는 경계에서 뺀다(9/5 17:00Z) — "h24 -66.06%(42종중 최소"처럼
+        #   최상급이 자기 지표의 괄호 주석으로 들어가는 형태가 흔한데, 여는 괄호를
+        #   경계로 삼으면 지표를 통째로 잃고 기본값(vol24)으로 떨어져 오탐이 났다.
+        #   원래 오탐(PEE)의 실제 경계는 ")"와 "vs"였으므로 검출력은 유지된다.
+        # ⚠️경계를 ")"와 "vs"로 좁힌다(9/5 17:00Z). 쉼표·가운뎃점까지 경계로 쓰면
+        #   "h24 극단음전지속·확대(-66.06%,42종중최소)"처럼 **같은 절 안**에서 지표와
+        #   최상급이 갈라져 지표를 잃고 기본값(vol24)으로 떨어진다. 지표는 어차피
+        #   **가장 가까운 것**(last-wins)을 쓰므로 경계를 좁혀도 남의 절을 끌어오지 않고,
+        #   원래 오탐(PEE)의 실제 경계는 ")"·"vs"였다. 숫자 안 쉼표($8,209)도 함께 해소된다.
+        near = re.split(r"[)]|vs", near)[-1]
+        def _pick(seg: str) -> str | None:
+            cand = {"liq": seg.rfind("유동성"),
+                    "vol24": max(seg.rfind("vol24"), seg.rfind("거래량"))}
+            # h 계열은 "h24 "·"h24가"만이 아니라 "h24극단음전지속"처럼 **바로 이어 붙는** 표기가
+            #   흔하다(표 행). 뒤에 숫자만 오지 않으면 지표어로 본다.
+            for _h in ("h1", "h6", "h24"):
+                hits = [mm.start() for mm in re.finditer(_h + r"(?!\d)", seg)]
+                cand[_h] = hits[-1] if hits else -1
+            b = max(cand, key=lambda k: cand[k])
+            return b if cand[b] >= 0 and (b, "최대") in ext else None
+        got = _pick(near)
+        if got:
+            return got
+        # ⚠️24자 창에서 못 찾으면 40자까지 넓혀 한 번 더 본다(9/5 17:00Z). 창을 24자로
+        #   좁힌 것은 과거 오탐(PEE) 대응이었는데, 그 오탐의 실제 경계는 ")"·"vs"라
+        #   위에서 이미 잘린다. 좁은 창만 쓰면 표 행처럼 지표어가 멀리 있는 형태를 놓친다.
+        wide = re.split(r"[)]|vs", text[max(0, start - 40):start])[-1]
+        got = _pick(wide)
+        if got:
+            return got
         r = raw_by_token.get(subj)
         if r:
             mv = re.findall(r"\$([\d,.]+)", text[max(0, start - 40):start])
@@ -225,7 +274,7 @@ def main() -> int:
         for mo in SUP.finditer(text):
             if _is_past(text, mo.start()):
                 continue
-            kind = "최대" if mo.group(1) in ("최대", "최고") else "최저"
+            kind = "최대" if mo.group("sup") in ("최대", "최고") else "최저"
             # ⚠️"42종중 최대 **변동**"은 수준이 아니라 **델타**가 최대라는 뜻이다
             #   (9/4 TOAD 유동성 +26.3%가 '유동성 최대'로 오탐됐다). 델타 최대와 대조한다.
             after = text[mo.end():mo.end() + 8]
@@ -241,15 +290,25 @@ def main() -> int:
             #   유동성 **수준** 최대 주장으로 읽어 오탐 3건을 냈다. 앞 창의 델타
             #   표지도 '유입/증가/유출/감소' 전부를 본다.
             pre_w = text[max(0, mo.start() - 24):mo.start()]
+            # ⚠️h1·h6·h24는 **그 자체가 변동률**이라 앞뒤에 부호 %가 오는 것이 정상이다.
+            #   숫자 인접만 보고 델타로 판정하면 "h24 -66.06%(42종중 최소)" 같은 정확한
+            #   **수준** 주장이 유동성 델타 최대와 대조돼 오탐이 난다(9/5 17:00Z DPG).
+            _m_early = _metric_at(text, mo.start(), None)
             # ⚠️오탐 수정(9/5 13:00Z): "유동성은 42종중 **최대폭으로 빠졌다**"처럼
             #   델타를 **서술어**로 표현하면(빠지다/줄다/늘다/불다) 명사형 표지만 보던
             #   판정이 이를 **수준** 최대 주장으로 읽어 오탐이 났다(PROLOGUE, 실제로는
             #   감소폭 최대 -9.88%로 정확한 서술).
-            is_delta = (bool(re.match(r"\s*폭?(?:으로|만큼)?\s*(?:변동|증가|증분|유입|유출|감소|급증|급감|빠|줄|늘|불)", after))
+            _inner = mo.group("dir")   # "42종중 **증가**최대" — 방향어가 매치 안쪽에 있다
+            is_delta = (bool(_inner) or bool(re.match(r"\s*폭?(?:으로|만큼)?\s*(?:변동|증가|증분|유입|유출|감소|급증|급감|빠|줄|늘|불)", after))
                         or bool(re.match(r"\s*(?:변동|증가|증분|유입|유출|감소|급증|급감)", after))
-                        or bool(re.search(r"[+\-−]\s?[\d.,]+%", post))
-                        or bool(re.search(r"[+\-−]\s?[\d.,]+%\s*\(?$", pre_d))
-                        or bool(re.search(r"(변동|증가|증분|유입|유출|감소|급증|급감)", pre_w)))
+                        or (_m_early not in ("h1", "h6", "h24")
+                            and bool(re.search(r"[+\-−]\s?[\d.,]+%", post)))
+                        or (_m_early not in ("h1", "h6", "h24")
+                            and bool(re.search(r"[+\-−]\s?[\d.,]+%\s*\(?$", pre_d)))
+                        # ⚠️오탐 수정(9/5 17:00Z): 앞 창의 "1풀(**변동없음**)"이 델타 표지로
+                        #   세어져, PEE의 정확한 vol24 **수준** 최저 서술이 유동성 변동
+                        #   최대 주장으로 판정됐다. '변동없음'은 델타 주장이 아니다.
+                        or bool(re.search(r"(변동(?!\s*없)|증가|증분|유입|유출|감소|급증|급감)", pre_w)))
             if is_delta:
                 # ⚠️추가(9/4 15:00Z): 델타 최상급도 **증가/감소/변동**이 서로 다른
                 #   주장이다. CATE는 최대 '증가'(+7.3%)이고 최대 '변동'은 TOAD(-25.3%)라,
@@ -264,7 +323,7 @@ def main() -> int:
                 pre_hits = list(re.finditer(_DIR, pre_w))
                 mw = re.match(r"\s*" + _DIR, after) or re.search(_DIR, post) \
                     or (pre_hits[-1] if pre_hits else None)
-                w = mw.group(1) if mw else "변동"
+                w = _inner or (mw.group(1) if mw else "변동")
                 if w in ("증가", "증분", "유입", "급증", "늘었", "늘어", "불었"):
                     d, kindw = max(ok, key=lambda r: (r.get("dliq_pct") or 0)), "증가"
                 elif w in ("유출", "감소", "급감", "빠졌", "빠지", "줄었", "줄어"):

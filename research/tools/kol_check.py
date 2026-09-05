@@ -28,7 +28,8 @@ def main() -> int:
     bad = []
 
     j = json.loads((KOL / "watch.json").read_text())
-    if j.get("ts") != ts:
+    # ts 는 초 표기 유무(17:00Z / 17:00:00Z)가 회차마다 달라 분 단위까지로 정규화해 비교한다.
+    if (j.get("ts") or "").replace("Z", "")[:16] != ts.replace("Z", "")[:16]:
         bad.append(f"json ts {j.get('ts')} != {ts}")
     toks = j.get("tokens") or []
     if len(toks) != expect:
