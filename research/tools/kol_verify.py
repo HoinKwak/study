@@ -270,9 +270,17 @@ def main() -> int:
                     return "liq" if dl < dv else "vol24"
         return "vol24"
 
+    # ⚠️'그 자리에서 벗어났다'류 제외(9/5 23:00Z): "h24가 대폭 완화되며 **42종중 최소 지위에서
+    #   벗어났다**"는 최소가 **아니게 됐다**는 정확한 서술인데 최소 주장으로 읽어 오탐이 났다
+    #   (DPG 3건). futures_check의 '끝나가는 레짐' 제외와 같은 부류다.
+    _EXIT = re.compile(r"^\s*(?:지위|자리|권)?\s*(?:에서|를|을)?\s*(?:벗어|이탈|내주|물러)"
+                       r"|^\s*(?:이|가)?\s*아니")
+
     def scan(text: str, subject: str | None, where: str) -> None:
         for mo in SUP.finditer(text):
             if _is_past(text, mo.start()):
+                continue
+            if _EXIT.search(text[mo.end():mo.end() + 16]):
                 continue
             kind = "최대" if mo.group("sup") in ("최대", "최고") else "최저"
             # ⚠️"42종중 최대 **변동**"은 수준이 아니라 **델타**가 최대라는 뜻이다
