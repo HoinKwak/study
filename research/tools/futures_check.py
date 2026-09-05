@@ -21,6 +21,9 @@ FUT = Path(__file__).resolve().parents[1] / "futures"
 # 하락을 뜻하는 말 / 상승을 뜻하는 말
 DOWN = ("하락", "급락", "낙폭", "약세", "내림", "하방", "마이너스", "음전", "빠졌", "밀렸")
 UP = ("상승", "급등", "강세", "오름", "상방", "플러스", "양전", "올랐", "뛰었")
+# 가격이 아닌 지표(펀딩·OI·거래대금)에 붙은 방향어는 가격 방향 주장이 아니다.
+_NONPRICE = re.compile(r"(펀딩|OI|미결제|거래대금|vol24|회전율)[^.]{0,12}$")
+
 # 방향 판정에서 제외할 완화 표현 — "낙폭이 축소"는 하락 주장이 아니다
 MITIG = re.compile(r"(낙폭|하락세|약세)(?:이|가|은|는|도)?\s*(축소|진정|완화|둔화|멈춤)")
 
@@ -154,6 +157,10 @@ def _basis_at(seg: str, pos: int) -> str | None:
     return "real" if i_real > i_chg else "chg"
 
 
+# 한 줄이 문장을 끝냈는지(마침표·닫는 괄호 뒤 마침표 등) 본다 — 이어짐 판정용.
+_ENDS = re.compile(r"[.:;!?)\]]\s*$")
+
+
 def _logical_lines(md: str):
     """목록 항목과 그 이어지는 들여쓰기 줄을 **한 문장으로 합쳐** 내보낸다.
 
@@ -168,7 +175,14 @@ def _logical_lines(md: str):
                 yield " ".join(buf)
                 buf = []
             continue
-        if line[:1] in (" ", "\t") and buf:
+        # ⚠️검출 공백(9/5 10:30Z): 9/4 수정은 **들여쓴** 이어짐 줄만 합쳤는데,
+        #   「시장 전반」처럼 들여쓰기 없이 감싼 산문에서는 "…NEAR는 실측 +1.13~1.23%로"
+        #   다음 줄에 "재하락했고…"가 와서 같은 결함이 그대로 남아 있었다(주입 미검출).
+        #   앞줄이 문장을 안 끝냈고 이 줄이 새 블록(목록·제목·인용·표)을 열지 않으면 잇는다.
+        cont = (line[:1] in (" ", "\t")
+                or (buf and not _ENDS.search(buf[-1])
+                    and not re.match(r"[-*#>|]|\d+\.", line.strip())))
+        if cont and buf:
             buf.append(line.strip())
         else:
             if buf:
@@ -211,9 +225,14 @@ def check_direction(md: str, digest: dict, real: dict, bad: list) -> None:
             # ⚠️벤뉴마다 부호가 갈리는 종목(CHIP Gate +12 vs MEXC -10)은 판정하지 않는다.
             #   다만 변동이 미미한 벤뉴 하나 때문에 검사가 통째로 꺼지면 안 되므로
             #   |chg|>=1%인 벤뉴들만 모아 부호 합의를 본다.
+            # ⚠️문턱을 기준별로 나눈다(9/5 10:30Z). 단일 1.0% 문턱은 24h chg24엔 맞지만
+            #   **2h 실측엔 너무 커서** |실측|<1%인 종목의 방향 검사가 통째로 꺼져 있었다
+            #   (ZEN 실측 -0.68~-0.82%를 '상승'이라 쓴 주입이 미검출). 2h 창에서 0.3%대
+            #   동일부호 움직임은 노이즈가 아니라 실제 방향이므로 실측 문턱을 낮춘다.
+            FLOOR = {"chg": 1.0, "real": 0.3}
             agree = {}
             for b, all_c in pools.items():
-                cs = [c for c in all_c if abs(c) >= 1.0]
+                cs = [c for c in all_c if abs(c) >= FLOOR[b]]
                 if cs and len({c > 0 for c in cs}) == 1:
                     agree[b] = cs
             if not agree:
@@ -248,10 +267,16 @@ def check_direction(md: str, digest: dict, real: dict, bad: list) -> None:
                 #   진짜 오류를 가려버렸다(DASH 실측 상승을 '하락 전환'이라 쓴 주입이
                 #   같은 문장의 '상승폭' 때문에 미검출). `상승폭/하락률` 꼴은 변동의
                 #   **크기**를 가리키는 명사이지 이번 회차 방향 주장이 아니므로 제외한다.
+                # ⚠️크기 명사 '치' 추가(9/5 10:30Z): "펀딩 급등치가 완화됐음에도 실측
+                #   …추가 급락"에서 '급등치'가 UP으로 세어져 같은 기준에 상반 방향어가
+                #   섞이고, 그 탓에 진짜 오류('급락')가 통째로 묻혔다(주입 미검출).
+                # ⚠️같은 이유로 **펀딩·OI·거래대금에 붙은 방향어는 가격 주장이 아니다** —
+                #   "펀딩이 마이너스로 전환" 같은 서술이 가격 방향 검사를 중화시킨다.
                 hits = [(m.start(), w in UP)
                         for w in UP + DOWN
                         for m in re.finditer(re.escape(w), seg)
-                        if seg[m.end():m.end() + 1] not in ("폭", "률")]
+                        if seg[m.end():m.end() + 1] not in ("폭", "률", "치")
+                        and not _NONPRICE.search(seg[max(0, m.start() - 14):m.start()])]
                 hit = False
                 for b, cs in agree.items():
                     sel = [u for pos, u in hits
