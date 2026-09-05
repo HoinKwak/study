@@ -312,7 +312,19 @@ def check_direction(md: str, digest: dict, real: dict, bad: list) -> None:
                 for b, cs in agree.items():
                     sel = [u for pos, u in hits
                            if (_basis_at(seg_full, off + pos) or dflt) == b]
-                    if not sel or len(set(sel)) != 1:
+                    if not sel:
+                        continue
+                    # ⚠️검출 공백(9/5 16:30Z): 같은 기준에 상반 방향어가 섞이면 **검사를 통째로
+                    #   건너뛰고 있었다**. 그래서 항목 제목의 정확한 서술("ZEN … 하락 지속")이
+                    #   본문의 뒤집힌 주장("실측도 상승이 이어진다")을 중화시켜 주입이 미검출됐다.
+                    #   크기 명사('폭·률·치·분')를 빼는 식으로 세 번 땜질했던 것의 근본 원인이다.
+                    #   한 항목은 한 종목을 서술하므로 **같은 기준의 상반 주장 자체가 결함**이다
+                    #   → 건너뛰지 말고 상충으로 보고한다(직전 6회차 발행본 전부 오탐 0건 확인).
+                    if len(set(sel)) != 1:
+                        label = "실측" if b == "real" else "chg24"
+                        bad.append(f"[상충] {sym} 서술 '{seg.strip()[:32]}' "
+                                   f"에 {label} 기준 상반 방향어가 함께 있습니다")
+                        hit = True
                         continue
                     if sel[0] != (cs[0] > 0):
                         label = "실측" if b == "real" else "chg24"
@@ -340,7 +352,11 @@ def main() -> int:
     bad = []
 
     bj = json.loads((FUT / "brief.json").read_text())
-    if bj.get("ts") != ts:
+    # ts 는 초 표기 유무(16:30Z / 16:30:00Z)가 회차마다 달라 분 단위까지로 정규화해 비교한다.
+    def _tsmin(v: str) -> str:
+        return (v or "").replace("Z", "")[:16]
+
+    if _tsmin(bj.get("ts")) != _tsmin(ts):
         bad.append(f"brief.json ts {bj.get('ts')} != {ts}")
     for k in ("ts", "market", "cex", "dex", "themes"):
         if k not in bj:
