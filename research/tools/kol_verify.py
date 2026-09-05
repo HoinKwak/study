@@ -49,9 +49,25 @@ def check_token(name, th, m, bad):
             bad.append(f"{name} 유동성 ${mm.group(1)} != 실측 ${m['liq']:,.0f}")
 
     # 유동성 Δ%
-    d = re.search(r"유동성.{0,60}?\(([+-]?[\d.]+)%", th)
-    if d and m["dliq_pct"] is not None and abs(f(d.group(1)) - m["dliq_pct"]) > 0.35:
-        bad.append(f"{name} 유동성Δ {d.group(1)}% != 실측 {m['dliq_pct']:+.1f}%")
+    # ⚠️오탐 수정(9/5 09:00Z): 여러 회차 이력을 화살표로 나열하면
+    #   "(+8.22%→-13.37%→+14.68%)"처럼 **첫 값이 과거 회차 값**이다. 이번 회차 값은
+    #   마지막이므로 화살표 사슬이면 끝 값을 쓴다(kol_digest 기준선 A→B와 같은 부류이나
+    #   이번엔 항이 셋이라 '마지막'을 취해야 한다).
+    #   실제 형태는 화살표만이 아니라 각 항에 회차 라벨이 붙는다:
+    #   "증가최대(+8.22%,2회차전)→감소최대(-13.37%,직전)→…(+14.68%, $…)".
+    #   → **뒤에 과거 회차 표지가 붙은 값은 건너뛰고** 남는 첫 값을 이번 회차 값으로 본다.
+    _PAST = r"\s*[,)]?\s*(?:\d+회차\s*전|직전|전회|과거)"
+    dpos = th.find("유동성")
+    if dpos >= 0 and m["dliq_pct"] is not None:
+        seg = th[dpos:dpos + 200]
+        cur = None
+        for mo in re.finditer(r"\(?([+-][\d.]+)%", seg):
+            if re.match(_PAST, seg[mo.end():]):
+                continue
+            cur = mo.group(1)
+            break
+        if cur is not None and abs(f(cur) - m["dliq_pct"]) > 0.35:
+            bad.append(f"{name} 유동성Δ {cur}% != 실측 {m['dliq_pct']:+.1f}%")
 
     # h1/h6/h24 — 첫 등장 숫자만 본다(뒤따르는 '직전 …%'는 대조 대상이 아니다).
     for k in ("h1", "h6", "h24"):
