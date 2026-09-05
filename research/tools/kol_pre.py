@@ -123,6 +123,10 @@ def main() -> int:
             "quote": (p.get("quoteToken") or {}).get("symbol"),
             "npools": len(pairs),
             "prev_npools": t.get("prev_npools"),
+            # ⚠️회차수도 실어 보낸다(9/5 15:00Z): 발행본의 "N회차"가 기준선과 어긋나도
+            #   검증기가 볼 방법이 없어 오기가 회차를 넘어 누적됐다(PROLOGUE 82 → 발행본
+            #   124로 +42 오기, MANEKI·CHUMP·CYBERLEEK은 증가 누락으로 1씩 뒤처짐).
+            "round_no": (t["prev_round"] + 1) if t.get("prev_round") else None,
             "price": p.get("priceUsd"),
             "liq": round(liq, 2),
             "prev_liq": t.get("prev_liquidity"),

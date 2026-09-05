@@ -110,6 +110,12 @@ def check_token(name, th, m, bad):
     pn0 = m.get("prev_npools")
     if pn0 is not None and pn0 != m["npools"] and re.search(r"풀\s*\(?변동\s*없음", th):
         bad.append(f"{name} thesis '변동없음' 주장 != 실제 {pn0}풀→{m['npools']}풀 변동")
+    # ⚠️회차 대조(9/5 15:00Z 신설): 발행본 "N회차"가 기준선+1과 맞는지 본다.
+    #   기준선이 없는(회차 미확인) 종목은 검사하지 않는다.
+    rn = m.get("round_no")
+    rm = re.match(r"\s*(\d+)\s*회차", th)
+    if rn is not None and rm and int(rm.group(1)) != rn:
+        bad.append(f"{name} thesis 회차 {rm.group(1)} != 기준선+1 {rn}")
     am = re.search(r"풀나이\s*([\d.]+)일", th)
     if am and m["age_days"] is not None and abs(float(am.group(1)) - m["age_days"]) > 0.15:
         bad.append(f"{name} 풀나이 {am.group(1)}일 != 실측 {m['age_days']}일")
@@ -144,6 +150,11 @@ def main() -> int:
         m = by_ca.get(mo.group("ca").lower())
         if not m or not m["ok"]:
             continue
+        rn2 = m.get("round_no")
+        seg_r = mdtxt[mo.end():mo.end() + 120]
+        rm2 = re.search(r"(\d+)\s*회차", seg_r)
+        if rn2 is not None and rm2 and int(rm2.group(1)) != rn2:
+            bad.append(f"{mo.group('tok')} md 회차 {rm2.group(1)} != 기준선+1 {rn2}")
         np_txt = mo.group("np")            # "단일풀"은 1풀이다(8종목이 이 표기다)
         if (1 if np_txt == "단일" else int(np_txt)) != m["npools"]:
             bad.append(f"{mo.group('tok')} md 풀수 {np_txt} != 실측 {m['npools']}")
