@@ -85,7 +85,11 @@ def check(rows: list[dict], digest: dict, bad: list, label: str) -> None:
             exps = [float(x[field]) for x in pool if x.get(field) is not None]
             if not exps:
                 continue
-            floor = 0.0005 if field == "funding" else 0.02
+            # ⚠️허용오차 수정(9/5 02:30Z): 다이제스트가 vol24·OI를 `%.1f`로 렌더하므로
+            #   발행본이 그 표시값을 그대로 옮기면 최대 ±0.05 차이가 난다. floor 0.02는
+            #   소수 첫째 자리 반올림 폭보다 작아 **$2M대 소액 항목에서 정상 인용을 오탐**했다
+            #   (ZEN HL 2.05314 → 표기 2.1). 큰 값은 상대오차 2%가 지배하므로 검출력 영향 없다.
+            floor = 0.0005 if field == "funding" else 0.05
             if not any(abs(got - e) <= max(abs(e) * 0.02, floor) for e in exps):
                 bad.append(f"[{label}] {sym} {field} {m.group(0)} != digest "
                            + "/".join(f"{e:g}" for e in exps))
@@ -239,9 +243,15 @@ def check_direction(md: str, digest: dict, real: dict, bad: list) -> None:
                 # 방향어를 위치와 함께 모아, 각자의 앞 지표로 기준을 나눈다.
                 #   대비 서술("chg24는 …플러스인데 실측은 …하락")에서 두 방향어가
                 #   서로 다른 지표를 가리키므로, 기준별로 따로 판정해야 한다.
+                # ⚠️검출 공백 수정(9/5 02:30Z): 같은 기준에 상반 방향어가 섞이면 아래에서
+                #   검사를 통째로 건너뛰는데, **"상승폭 자체는 줄어" 같은 크기 명사**가
+                #   진짜 오류를 가려버렸다(DASH 실측 상승을 '하락 전환'이라 쓴 주입이
+                #   같은 문장의 '상승폭' 때문에 미검출). `상승폭/하락률` 꼴은 변동의
+                #   **크기**를 가리키는 명사이지 이번 회차 방향 주장이 아니므로 제외한다.
                 hits = [(m.start(), w in UP)
                         for w in UP + DOWN
-                        for m in re.finditer(re.escape(w), seg)]
+                        for m in re.finditer(re.escape(w), seg)
+                        if seg[m.end():m.end() + 1] not in ("폭", "률")]
                 hit = False
                 for b, cs in agree.items():
                     sel = [u for pos, u in hits
