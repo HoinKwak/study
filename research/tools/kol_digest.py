@@ -29,7 +29,12 @@ def delta(cur, prev):
         return ""
     if prev is None:
         return "(직전 결측)"
-    if (cur > 0) != (prev > 0) and abs(cur) > 0.3 and abs(prev) > 0.3:
+    # ⚠️결함 수정(9/5 13:00Z): 두 값이 **둘 다** 0.3%를 넘어야 부호 반전으로 봤더니,
+    #   한쪽이 0에 가까운 진짜 전환이 '확대/완화'로 뭉개졌다(LIZARD -0.17→+1.40 '확대',
+    #   PRINTER +0.28→-4.01 '확대', Dealer -1.04→+0.03 '완화'). 크기 비교만 하는 라벨이라
+    #   방향이 뒤집힌 사실 자체가 사라져 에이전트 서사에 그대로 전파됐다.
+    #   → **한쪽만 잡음 문턱을 넘어도** 부호 반전으로 본다(둘 다 미미하면 아래 '유사'로).
+    if (cur > 0) != (prev > 0) and max(abs(cur), abs(prev)) > 0.3:
         return f"(직전 {prev:+.2f}%에서 부호 반전)"
     if abs(cur - prev) < 0.5:
         return f"(직전 {prev:+.2f}%와 유사)"
