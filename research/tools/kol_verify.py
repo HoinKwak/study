@@ -192,10 +192,15 @@ def main() -> int:
             #   표지가 8자 창 **밖**에 있고 부호 %만 뒤따르는 형태도 델타다.
             pre_d = text[max(0, mo.start() - 14):mo.start()]
             post = text[mo.end():mo.end() + 20]
+            # ⚠️오탐 수정(9/5 03:00Z): 앞쪽 델타 표지를 "변동" 하나만 봐서
+            #   **"유동성 유입이 이번 회차 42종중 최대"**(=증가 최대, 정확한 서술)를
+            #   유동성 **수준** 최대 주장으로 읽어 오탐 3건을 냈다. 앞 창의 델타
+            #   표지도 '유입/증가/유출/감소' 전부를 본다.
+            pre_w = text[max(0, mo.start() - 24):mo.start()]
             is_delta = (bool(re.match(r"\s*(?:변동|증가|증분|유입|유출|감소|급증|급감)", after))
                         or bool(re.search(r"[+\-−]\s?[\d.,]+%", post))
                         or bool(re.search(r"[+\-−]\s?[\d.,]+%\s*\(?$", pre_d))
-                        or "변동" in text[max(0, mo.start() - 40):mo.start()])
+                        or bool(re.search(r"(변동|증가|증분|유입|유출|감소|급증|급감)", pre_w)))
             if is_delta:
                 # ⚠️추가(9/4 15:00Z): 델타 최상급도 **증가/감소/변동**이 서로 다른
                 #   주장이다. CATE는 최대 '증가'(+7.3%)이고 최대 '변동'은 TOAD(-25.3%)라,
@@ -204,8 +209,12 @@ def main() -> int:
                 #   아무거나 잡으면 "…최대변동,직전대규모**유입**되돌림"의 유입을
                 #   끌어와 TOAD의 정확한 '변동 최대' 서술을 오탐한다(9/4 15:00Z).
                 _DIR = r"(변동|증가|증분|유입|유출|감소|급증|급감)"
+                # 앞쪽에서 찾을 땐 **최상급에 가장 가까운**(마지막) 방향어를 쓴다 —
+                #   "유동성 **유입**이 이번 회차 42종중 최대"에서 조사·어절이 끼면
+                #   끝자리 제약으로 못 찾아 '변동'으로 잘못 떨어졌다(9/5 03:00Z).
+                pre_hits = list(re.finditer(_DIR, pre_w))
                 mw = re.match(r"\s*" + _DIR, after) or re.search(_DIR, post) \
-                    or re.search(_DIR + r"[^가-힣]{0,6}$", pre_d)
+                    or (pre_hits[-1] if pre_hits else None)
                 w = mw.group(1) if mw else "변동"
                 if w in ("증가", "증분", "유입", "급증"):
                     d, kindw = max(ok, key=lambda r: (r.get("dliq_pct") or 0)), "증가"
