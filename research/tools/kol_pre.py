@@ -81,6 +81,10 @@ def promote(raw_path: str) -> int:
         w = pub.get(t["ca"].lower(), {})
         t.update(prev_liquidity=m["liq"], prev_h1=m["h1"], prev_h6=m["h6"],
                  prev_h24=m["h24"], prev_vol24=m["vol24"],
+                 # ⚠️풀수도 기준선에 남긴다(9/5 11:00Z): 검증기가 풀수 **값**만 대조해
+                 #   "2풀[변동없음]"처럼 값은 맞고 **변동 주장이 틀린** 서술을 놓쳤다
+                 #   (lickingcat 3→2풀). 직전 풀수가 있어야 그 주장을 검사할 수 있다.
+                 prev_npools=m.get("npools"),
                  # ⚠️회차수 미확인 종목을 1로 바꿔 "2회차"라는 없는 이력을 만들면 안 된다(9/3 발생)
                  prev_round=(t["prev_round"] + 1) if t.get("prev_round") else None,
                  prev_stage=w.get("stage"), prev_risk=w.get("risk", ""),
@@ -118,6 +122,7 @@ def main() -> int:
             "pair": p.get("pairAddress"),
             "quote": (p.get("quoteToken") or {}).get("symbol"),
             "npools": len(pairs),
+            "prev_npools": t.get("prev_npools"),
             "price": p.get("priceUsd"),
             "liq": round(liq, 2),
             "prev_liq": t.get("prev_liquidity"),

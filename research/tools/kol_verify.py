@@ -56,7 +56,10 @@ def check_token(name, th, m, bad):
     #   실제 형태는 화살표만이 아니라 각 항에 회차 라벨이 붙는다:
     #   "증가최대(+8.22%,2회차전)→감소최대(-13.37%,직전)→…(+14.68%, $…)".
     #   → **뒤에 과거 회차 표지가 붙은 값은 건너뛰고** 남는 첫 값을 이번 회차 값으로 본다.
-    _PAST = r"\s*[,)]?\s*(?:\d+회차\s*전|직전|전회|과거)"
+    # ⚠️회차 라벨은 구분자가 매 회차 바뀐다(9/5 11:00Z): 9/4엔 "(+8.22%,2회차전)"처럼
+    #   괄호 안 쉼표였는데 이번엔 "+8.22%(3회차전)"처럼 **% 뒤에 괄호가 열린다**.
+    #   여는 괄호를 안 받아 과거 값을 이번 값으로 읽고 오탐을 냈다.
+    _PAST = r"\s*[,()\[]?\s*(?:\d+회차\s*전|직전|전회|과거)"
     dpos = th.find("유동성")
     if dpos >= 0 and m["dliq_pct"] is not None:
         seg = th[dpos:dpos + 200]
@@ -103,6 +106,10 @@ def check_token(name, th, m, bad):
           or re.search(r"(\d+)풀", th))
     if pm and int(pm.group(1)) != m["npools"]:
         bad.append(f"{name} 풀수 {pm.group(1)} != 실측 {m['npools']}")
+    # ⚠️md와 같은 이유로 thesis의 '변동없음' 주장도 직전 풀수와 대조한다(9/5 11:00Z).
+    pn0 = m.get("prev_npools")
+    if pn0 is not None and pn0 != m["npools"] and re.search(r"풀\s*\(?변동\s*없음", th):
+        bad.append(f"{name} thesis '변동없음' 주장 != 실제 {pn0}풀→{m['npools']}풀 변동")
     am = re.search(r"풀나이\s*([\d.]+)일", th)
     if am and m["age_days"] is not None and abs(float(am.group(1)) - m["age_days"]) > 0.15:
         bad.append(f"{name} 풀나이 {am.group(1)}일 != 실측 {m['age_days']}일")
@@ -129,16 +136,26 @@ def main() -> int:
     #   md 상세줄("- **TOAD** (Solana/PumpSwap, CA `…`, 16풀, 풀나이 27.0일)")의
     #   오기는 통째로 지나쳤다. 구조 필드 이월(BARRON 7풀 건)이 바로 이 부류다.
     by_ca = {r["ca"].lower(): r for r in raw.values()}
+    mdtxt = (KOL / "watch.md").read_text()
     for mo in re.finditer(
             r"^- \*\*(?P<tok>[^*]+)\*\*\s*\([^)]*?`(?P<ca>0x[0-9a-fA-F]+|[1-9A-HJ-NP-Za-km-z]+)`"
             r"[^)]*?,\s*(?P<np>\d+|단일)풀(?:,\s*풀나이\s*(?P<age>[\d.]+)일)?",
-            (KOL / "watch.md").read_text(), re.M):
+            mdtxt, re.M):
         m = by_ca.get(mo.group("ca").lower())
         if not m or not m["ok"]:
             continue
         np_txt = mo.group("np")            # "단일풀"은 1풀이다(8종목이 이 표기다)
         if (1 if np_txt == "단일" else int(np_txt)) != m["npools"]:
             bad.append(f"{mo.group('tok')} md 풀수 {np_txt} != 실측 {m['npools']}")
+        # ⚠️공백 메움(9/5 11:00Z): 값만 대조하면 **변동 주장**의 오류를 못 잡는다 —
+        #   lickingcat이 3→2풀로 줄었는데 "2풀[변동없음]"이라 적혀 값 검사는 통과했다.
+        #   직전 풀수(prev_npools)가 있어야 검사할 수 있어, 승격된 다음 회차부터 작동한다.
+        pn = m.get("prev_npools")
+        if pn is not None and pn != m["npools"]:
+            seg = mdtxt[mo.start():mo.end() + 40]
+            if re.search(r"변동\s*없음", seg):
+                bad.append(f"{mo.group('tok')} md '변동없음' 주장 != 실제 "
+                           f"{pn}풀→{m['npools']}풀 변동")
         if mo.group("age") and m["age_days"] is not None \
                 and abs(float(mo.group("age")) - m["age_days"]) > 0.15:
             bad.append(f"{mo.group('tok')} md 풀나이 {mo.group('age')}일"

@@ -64,7 +64,12 @@ def main() -> int:
             L.append("- ⚠️계측 실패(DexScreener 무응답). 직전 값 이월 금지, '재확인 실패'로 표기.")
             L.append("")
             continue
-        L.append(f"- CA `{r['ca']}` · {r['npools']}풀 · "
+        # ⚠️직전 풀수를 병기한다(9/5 11:00Z) — 값만 갱신하고 "변동없음"이라 쓰는
+        #   오류가 반복됐다(BARRON 7풀 이월, lickingcat 3→2풀 변동없음 오기).
+        pn = c.get("prev_npools")
+        pnt = (f"{r['npools']}풀" if pn is None or pn == r["npools"]
+               else f"{r['npools']}풀(직전 {pn}풀 — ⚠️변동)")
+        L.append(f"- CA `{r['ca']}` · {pnt} · "
                  f"풀나이 {('%.1f일' % r['age_days']) if r['age_days'] is not None else '미확인'}")
         L.append(f"- 유동성 ${r['prev_liq']:,.0f} → ${r['liq']:,.0f} "
                  f"({r['dliq_pct']:+.1f}%) ← **Δ는 직전 회차 실측 대비다**")
