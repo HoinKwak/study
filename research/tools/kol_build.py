@@ -39,6 +39,8 @@ def chain_disp(hint: str) -> str:
 
 
 def pools_disp(m: dict) -> str:
+    if not m.get("ok"):
+        return "풀수 미확인(계측 실패)"
     n, p = m.get("npools"), m.get("prev_npools")
     if p is None or n is None:
         return f"{n}풀" if n is not None else "풀수 미확인"
@@ -52,8 +54,10 @@ def age_disp(m: dict) -> str:
     return f"풀나이 {a}일" if a is not None else "풀나이 미확인"
 
 
-def metrics_cell(m: dict, rank: int) -> str:
+def metrics_cell(m: dict, rank) -> str:
     """표의 '온체인(거래량/유동성/홀더)' 칼럼 — 전부 실측이라 부모가 만든다."""
+    if not m.get("ok"):
+        return "⚠️계측 실패(재확인 실패) — 직전 값 이월 안 함"
     liq = f"유동성${m['liq']:,.0f}"
     if m.get("dliq_pct") is not None:
         liq += f"({m['dliq_pct']:+.1f}%)"
@@ -75,13 +79,16 @@ def main() -> int:
     if len(ts) == 17 and ts.endswith("Z"):        # 2026-09-06T07:00Z → 초까지
         ts = ts[:-1] + ":00Z"
 
-    raw = {t["token"]: t for t in json.load(io.open(raw_p, encoding="utf-8")) if t.get("ok")}
+    # ⚠️(2026-09-06) 실패 종목을 빼버리면 42종 연속성이 끊기고 kol_check가 종목 수
+    #   불일치로 막힌다. 계측 실패도 **한 줄로 이어가되 수치를 만들지 않는다**
+    #   (직전 값 이월은 금지 — "재확인 실패"로 정직 표기).
+    raw = {t["token"]: t for t in json.load(io.open(raw_p, encoding="utf-8"))}
     patch = json.load(io.open(patch_p, encoding="utf-8"))
     prev = json.load(io.open(KOL / "watch.json", encoding="utf-8"))
 
     # vol24 순위는 실측에서 매긴다(에이전트가 세지 않는다)
     order = sorted(raw.values(), key=lambda x: -(x.get("vol24") or 0))
-    rank = {t["token"]: i + 1 for i, t in enumerate(order)}
+    rank = {t["token"]: i + 1 for i, t in enumerate(t2 for t2 in order if t2.get("ok"))}
 
     pt = {t["token"]: t for t in patch["tokens"]}
     missing = [k for k in raw if k not in pt]

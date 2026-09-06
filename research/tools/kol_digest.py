@@ -63,7 +63,13 @@ def main() -> int:
     for r in raw:
         c = cfg.get(r["token"], {})
         rd = c.get("prev_round")
-        L.append(f"## {r['token']}  [{r['chain']}/{r['dex']}]  "
+        # ⚠️(2026-09-06) `chain`·`dex`는 **수집 성공 레코드에만** 있는데 헤더를 ok 검사
+        #   **앞에서** 만들고 있어, 한 종목만 실패해도 KeyError로 회차 전체가 죽었다
+        #   (PEE 1종목 무응답으로 13:00Z 다이제스트가 통째로 실패). 실패 레코드는
+        #   수집 전부터 아는 `chain_hint`로 대신 표기하고 계속 진행한다.
+        loc = (f"{r['chain']}/{r['dex']}" if r.get("ok")
+               else (r.get("chain_hint") or "체인 미확인"))
+        L.append(f"## {r['token']}  [{loc}]  "
                  f"{('%d회차' % (rd + 1)) if rd else '회차수 미확인(carryover)'}")
         if not r["ok"]:
             L.append("- ⚠️계측 실패(DexScreener 무응답). 직전 값 이월 금지, '재확인 실패'로 표기.")
