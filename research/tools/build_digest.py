@@ -249,13 +249,16 @@ for sec, title in (('cex', 'CEX'), ('dex', 'DEX')):
     out.append('')
 
 io.open(os.path.join(SP, 'digest.md'), 'w', encoding='utf-8').write('\n'.join(out))
+# ⚠️(2026-09-06) 엔트리에 `px`(현재가)를 담는다 — publish_brief의 주식화 검사가 심볼만
+#   보고 동명 크립토(SPX6900)를 지수로 오인해 발행을 막았는데, 가격이 없으면 그 도구가
+#   가격 밴드로 갈라낼 방법이 없다. 발행본 스키마의 기존 키는 그대로 두고 키만 추가한다.
 stag = {'ts': TS, 'market': '', 'themes': [],
         'cex': [{'symbol': r['sym'], 'venue': r['venue'], 'vol24_usd': (r['vol'] or 0) * 1e6,
                  'oi_usd': (r['oi'] or 0) * 1e6, 'funding': (r['fund'] or 0) / 100,
-                 'chg24': r['chg'], 'why': r['why'], 'tag': r['tag']} for r in rows if r['sec'] == 'cex'],
+                 'chg24': r['chg'], 'px': r['px'], 'why': r['why'], 'tag': r['tag']} for r in rows if r['sec'] == 'cex'],
         'dex': [{'symbol': r['sym'], 'protocol': r['venue'], 'vol24_usd': (r['vol'] or 0) * 1e6,
                  'oi_usd': (r['oi'] or 0) * 1e6, 'funding': (r['fund'] or 0) / 100,
-                 'chg24': r['chg'], 'why': r['why'], 'tag': r['tag']} for r in rows if r['sec'] == 'dex']}
+                 'chg24': r['chg'], 'px': r['px'], 'why': r['why'], 'tag': r['tag']} for r in rows if r['sec'] == 'dex']}
 json.dump(stag, io.open(os.path.join(SP, 'brief_staging.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=2)
 print('digest 생성 · cex %d · dex %d · 실측%% %d건 · prices_cur %d건 · 방향모순 폐기 %d건'
       % (len(stag['cex']), len(stag['dex']), len(real), len(cur_px), purged))
