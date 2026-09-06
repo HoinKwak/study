@@ -154,13 +154,24 @@ HOOD PLTR AMD INTC NFLX QQQ IWM DIA GLD SLV USO UNG XAU XAG XAUUSD XAGUSD GOLD S
 BRENT NDX SPX DJI VIX EUR GBP JPY
 SPCX CRCL TEAM MRVL AVGO GPRO SAMSUNG DELL BZ ORCL CRM ADBE UBER ABNB SHOP SQ PYPL BABA NKE
 DIS BA JPM GS V MA WMT COST KO PEP XOM CVX LLY UNH JNJ PFE'''.split())
-def _is_equity(sym):
+# ⚠️(2026-09-06) **심볼이 겹치는 크립토를 지수로 오인해 버리고 있었다** — `SPX`는
+#   S&P500 지수이기도 하지만 **밈코인 SPX6900**의 티커이기도 하다. 실제로 걸린 것은
+#   $0.57짜리 SPX6900이었고(HL vol24 $2.6M), 이번 회차 **최대 변동 종목**(-6.05% HL /
+#   -5.82% OKX, 교차확인)인데 브리핑에서 통째로 빠졌다. build_digest 주석이 이미
+#   "`CP`는 $0.0362짜리 크립토라 주식으로 오인해 빼면 안 된다 — 심볼만 보고 판단하지
+#   말고 가격대까지 확인할 것"이라 경고해 둔 바로 그 함정을 다른 심볼에서 반복했다.
+#   → 지수·상품처럼 **가격대가 크게 다른 티커는 가격 밴드로 갈라낸다**. 밴드 아래면
+#   동명 크립토로 보고 남긴다(지수 SPX≈6,000·NDX≈20,000·DJI≈40,000 수준).
+AMBIG_MIN = {'SPX': 100.0, 'NDX': 100.0, 'DJI': 100.0, 'VIX': 5.0}
+def _is_equity(sym, px=None):
     # ⚠️2026-09-03: HyENA 심볼은 'hyna:GOLD'처럼 네임스페이스 접두가 붙어 있어
     #   접두를 떼지 않으면 상품 perp(금·은)가 필터를 그대로 통과한다.
     s = sym.upper().split(':')[-1].lstrip('K')
+    if s in AMBIG_MIN and px is not None and px < AMBIG_MIN[s]:
+        return False                      # 동명 크립토(가격대가 지수와 자릿수 차이)
     return s in EQUITY or s.endswith('-USD-STOCK')
-_dropped = sorted({r['sym'] for r in rows if _is_equity(r['sym'])})
-rows = [r for r in rows if not _is_equity(r['sym'])]
+_dropped = sorted({r['sym'] for r in rows if _is_equity(r['sym'], r.get('px'))})
+rows = [r for r in rows if not _is_equity(r['sym'], r.get('px'))]
 if _dropped:
     print('주식화/상품 토큰 제외: ' + ', '.join(_dropped))
 # ⚠️CoinGecko가 coin_id를 못 붙인 심볼은 새로 상장된 주식화 토큰일 수 있다(BZ·CRCL·SKHY가 그랬다).
