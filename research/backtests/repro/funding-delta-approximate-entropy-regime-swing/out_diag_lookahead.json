@@ -1,0 +1,14 @@
+{
+  "BTCUSDT": {
+    "n_full_pre": 286,
+    "n_trunc_pre": 286,
+    "n_mismatch": 0,
+    "max_atr_diff": 0.0
+  },
+  "ETHUSDT": {
+    "n_full_pre": 303,
+    "n_trunc_pre": 303,
+    "n_mismatch": 0,
+    "max_atr_diff": 0.0
+  }
+}

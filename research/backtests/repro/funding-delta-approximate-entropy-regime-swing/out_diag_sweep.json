@@ -1,0 +1,83 @@
+{
+  "baseline": {
+    "n": 458,
+    "pf_net_trade": 1.5720467955942552,
+    "t_net_trade": 2.8623004874413196,
+    "n_clusters5d": 69,
+    "pf_net_roll5d": 1.575411169815439,
+    "t_net_roll5d": 1.2600196051643497,
+    "top3_share_pct": 86.51420717757432
+  },
+  "apen_lo_pctile=20": {
+    "n": 310,
+    "pf_net_trade": 1.6436079844016482,
+    "t_net_trade": 2.493624159145142,
+    "n_clusters5d": 49,
+    "pf_net_roll5d": 1.6824563737967448,
+    "t_net_roll5d": 1.1687105828103561,
+    "top3_share_pct": 109.28708566084788
+  },
+  "apen_lo_pctile=40": {
+    "n": 598,
+    "pf_net_trade": 1.4958669833048166,
+    "t_net_trade": 3.0472837373949364,
+    "n_clusters5d": 79,
+    "pf_net_roll5d": 1.8058340525829775,
+    "t_net_roll5d": 1.6998166500691454,
+    "top3_share_pct": 74.84488182501795
+  },
+  "pullback_lookback=3": {
+    "n": 407,
+    "pf_net_trade": 1.5287852529624197,
+    "t_net_trade": 2.4840491626417616,
+    "n_clusters5d": 66,
+    "pf_net_roll5d": 1.7906187564326361,
+    "t_net_roll5d": 1.4055982597872023,
+    "top3_share_pct": 88.70973489465992
+  },
+  "pullback_lookback=8": {
+    "n": 508,
+    "pf_net_trade": 1.6760789605300384,
+    "t_net_trade": 3.438016057232677,
+    "n_clusters5d": 69,
+    "pf_net_roll5d": 1.8185339628903368,
+    "t_net_roll5d": 1.5936424582639253,
+    "top3_share_pct": 68.76362272379347
+  },
+  "atr_trail_mult=1.8": {
+    "n": 492,
+    "pf_net_trade": 1.3750276335923295,
+    "t_net_trade": 2.428945404012409,
+    "n_clusters5d": 70,
+    "pf_net_roll5d": 1.6125815099447427,
+    "t_net_roll5d": 1.2905567412966532,
+    "top3_share_pct": 94.47646770178969
+  },
+  "atr_trail_mult=3.2": {
+    "n": 434,
+    "pf_net_trade": 1.525808128211429,
+    "t_net_trade": 2.725047599347621,
+    "n_clusters5d": 69,
+    "pf_net_roll5d": 1.6516790450120467,
+    "t_net_roll5d": 1.3569168052516167,
+    "top3_share_pct": 93.32271296716387
+  },
+  "apen_window=20": {
+    "n": 378,
+    "pf_net_trade": 1.6520005545609562,
+    "t_net_trade": 3.096901210993223,
+    "n_clusters5d": 62,
+    "pf_net_roll5d": 1.9319677012248595,
+    "t_net_roll5d": 1.9024071167185035,
+    "top3_share_pct": 76.16139167869714
+  },
+  "apen_window=45": {
+    "n": 445,
+    "pf_net_trade": 1.1485261059038365,
+    "t_net_trade": 0.9046442671356227,
+    "n_clusters5d": 58,
+    "pf_net_roll5d": 1.1321065017743699,
+    "t_net_roll5d": 0.3309978363578688,
+    "top3_share_pct": 313.975784596258
+  }
+}

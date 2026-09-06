@@ -1,0 +1,58 @@
+{
+  "n_settlements": 5292,
+  "n_trigger": 1510,
+  "full_corr": {
+    "adx": {
+      "apen_vs": 0.04936662479659416,
+      "apen_pctile_vs": 0.0429029648289496
+    },
+    "ema_slope": {
+      "apen_vs": 0.01813188192357115,
+      "apen_pctile_vs": 0.026356029403123225
+    },
+    "rv20": {
+      "apen_vs": 0.07112638828528463,
+      "apen_pctile_vs": 0.017877984117603076
+    },
+    "funding_abs_level": {
+      "apen_vs": 0.006015479625472855,
+      "apen_pctile_vs": -0.031111381076018588
+    },
+    "funding_chg_std": {
+      "apen_vs": 0.09091493539135874,
+      "apen_pctile_vs": 0.06923945074636137
+    },
+    "cusum_e": {
+      "apen_vs": 0.036473261433785056,
+      "apen_pctile_vs": 0.030469639108012276
+    }
+  },
+  "trig_corr": {
+    "adx": {
+      "apen_vs": -0.03847055859398186,
+      "apen_pctile_vs": -0.08493034688613439
+    },
+    "ema_slope": {
+      "apen_vs": 0.0008617602168862076,
+      "apen_pctile_vs": 0.1491120576219336
+    },
+    "rv20": {
+      "apen_vs": -0.012774879033688916,
+      "apen_pctile_vs": -0.05063259747637166
+    },
+    "funding_abs_level": {
+      "apen_vs": -0.009464743665502012,
+      "apen_pctile_vs": 0.05823434984952407
+    },
+    "funding_chg_std": {
+      "apen_vs": 0.18036894175243653,
+      "apen_pctile_vs": 0.22380090921249698
+    },
+    "cusum_e": {
+      "apen_vs": 0.07776958557492207,
+      "apen_pctile_vs": 0.036744166294656044
+    }
+  },
+  "n_cusum_events": 322,
+  "n_cusum_events_during_gate": 99
+}

@@ -1,0 +1,13 @@
+{
+  "n": 458,
+  "observed_win_rate": 0.4017467248908297,
+  "naive_5050": {
+    "obs_mean": 0.30018828676789167,
+    "shuffle_pctile": 100.0
+  },
+  "winrate_fixed": {
+    "obs_mean": 0.30018828676789167,
+    "shuffle_pctile": 100.0,
+    "win_rate": 0.4017467248908297
+  }
+}

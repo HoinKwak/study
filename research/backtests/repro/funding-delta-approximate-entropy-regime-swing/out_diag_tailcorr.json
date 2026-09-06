@@ -1,0 +1,8 @@
+{
+  "n_days_total": 729,
+  "n_crisis_days": 37,
+  "btc_abs_ret_p95_thresh": 0.048422467441705724,
+  "normal_mean_pairwise_corr": 0.3996895297801565,
+  "crisis_mean_pairwise_corr": 0.28886638769236184,
+  "n_symbols": 7
+}

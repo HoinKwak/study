@@ -1,0 +1,92 @@
+{
+  "total_net_R": 137.4862353396944,
+  "total_gross_R": 164.14959948759744,
+  "n_clusters": 69,
+  "top_shares": {
+    "top1": {
+      "share_pct_of_total_net": 33.735832556410514,
+      "n_clusters_total": 69,
+      "rest_n_trades": 450,
+      "rest_pf_net": 1.379062046488265,
+      "rest_t_net": 2.0372765521078424,
+      "rest_pf_gross": 1.5208316907477137,
+      "rest_t_gross": 2.615927497952058
+    },
+    "top2": {
+      "share_pct_of_total_net": 62.7325529065141,
+      "n_clusters_total": 69,
+      "rest_n_trades": 440,
+      "rest_pf_net": 1.2171863396768885,
+      "rest_t_net": 1.3114964784461822,
+      "rest_pf_gross": 1.34550303786615,
+      "rest_t_gross": 1.9512692365632052
+    },
+    "top3": {
+      "share_pct_of_total_net": 86.51420717757432,
+      "n_clusters_total": 69,
+      "rest_n_trades": 430,
+      "rest_pf_net": 1.0799805961409967,
+      "rest_t_net": 0.5931226852154248,
+      "rest_pf_gross": 1.1980644712738986,
+      "rest_t_gross": 1.372380618778176
+    },
+    "top5": {
+      "share_pct_of_total_net": 115.13143638036898,
+      "n_clusters_total": 69,
+      "rest_n_trades": 412,
+      "rest_pf_net": 0.9084762615311498,
+      "rest_t_net": -0.75025111916137,
+      "rest_pf_gross": 1.0117866095164643,
+      "rest_t_gross": 0.09028623507232707
+    }
+  },
+  "top_detail": [
+    {
+      "cid": 0,
+      "start": "2024-07-02 00:00:00+00:00",
+      "end": "2024-07-04 08:00:00+00:00",
+      "n_trades": 8,
+      "symbols": [
+        "ADAUSDT",
+        "BNBUSDT",
+        "BTCUSDT",
+        "DOGEUSDT",
+        "ETHUSDT",
+        "SOLUSDT",
+        "XRPUSDT"
+      ],
+      "net_R_sum": 46.3821261423118
+    },
+    {
+      "cid": 50,
+      "start": "2025-12-28 08:00:00+00:00",
+      "end": "2026-01-01 20:00:00+00:00",
+      "n_trades": 10,
+      "symbols": [
+        "ADAUSDT",
+        "BNBUSDT",
+        "BTCUSDT",
+        "DOGEUSDT",
+        "ETHUSDT",
+        "SOLUSDT",
+        "XRPUSDT"
+      ],
+      "net_R_sum": 39.866499181336465
+    },
+    {
+      "cid": 10,
+      "start": "2024-11-04 20:00:00+00:00",
+      "end": "2024-11-06 04:00:00+00:00",
+      "n_trades": 10,
+      "symbols": [
+        "ADAUSDT",
+        "BNBUSDT",
+        "BTCUSDT",
+        "ETHUSDT",
+        "SOLUSDT",
+        "XRPUSDT"
+      ],
+      "net_R_sum": 32.69650115878233
+    }
+  ]
+}
