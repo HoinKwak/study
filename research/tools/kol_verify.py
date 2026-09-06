@@ -63,9 +63,21 @@ def check_token(name, th, m, bad):
     dpos = th.find("유동성")
     if dpos >= 0 and m["dliq_pct"] is not None:
         seg = th[dpos:dpos + 200]
+        # ⚠️오탐 수정(9/6 07:00Z): 뒤따르는 표지가 **다음 값의 것**일 때도 이 값을
+        #   건너뛰었다 — "유동성 $8,609→$8,582(-0.3%, 직전 +0.6% 유입에서…)"에서
+        #   정답 -0.3%을 버리고 과거값 +0.6%을 이번 값으로 골라 오탐이 났다(PEPECOIN).
+        #   표지 뒤에 **곧바로 숫자가 오면** 그 표지는 뒤 값을 수식하는 것이므로
+        #   이 값은 건너뛰지 않는다. 라벨형("+8.22%(3회차전)")은 뒤에 숫자가 없다.
+        # ⚠️표지가 값 **앞**에 붙는 형태도 과거값이다(h 계열에서 같은 부류를 이미 고쳤다).
+        #   절 경계(괄호·줄표·쉼표)가 끼면 다른 절이므로 앞 표지로 보지 않는다.
+        _PAST_PRE = re.compile(r"(?:직전(?:\s*회차)?|전회|과거|\d+\s*회차\s*전)"
+                               r"[^%\d)\]·,—\-]{0,10}$")
         cur = None
         for mo in re.finditer(r"\(?([+-][\d.]+)%", seg):
-            if re.match(_PAST, seg[mo.end():]):
+            mp = re.match(_PAST, seg[mo.end():])
+            if mp and not re.match(r"[^%\d]{0,6}[+-]?\d", seg[mo.end() + mp.end():]):
+                continue
+            if _PAST_PRE.search(seg[:mo.start()]):
                 continue
             cur = mo.group(1)
             break
