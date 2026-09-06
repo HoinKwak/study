@@ -62,7 +62,9 @@ def check_token(name, th, m, bad):
     _PAST = r"\s*[,()\[]?\s*(?:\d+회차\s*전|직전|전회|과거)"
     dpos = th.find("유동성")
     if dpos >= 0 and m["dliq_pct"] is not None:
-        seg = th[dpos:dpos + 200]
+        # ⚠️(9/6 09:00Z) 창을 문장으로 한정한다 — 200자 고정 창이 문장을 넘어가
+        #   **유동성 문장에 %가 없으면 뒤 문장의 h6 값을 유동성Δ로 읽었다**(40M).
+        seg = re.split(r"\.(?!\d)", th[dpos:dpos + 200])[0]
         # ⚠️오탐 수정(9/6 07:00Z): 뒤따르는 표지가 **다음 값의 것**일 때도 이 값을
         #   건너뛰었다 — "유동성 $8,609→$8,582(-0.3%, 직전 +0.6% 유입에서…)"에서
         #   정답 -0.3%을 버리고 과거값 +0.6%을 이번 값으로 골라 오탐이 났다(PEPECOIN).
@@ -70,14 +72,25 @@ def check_token(name, th, m, bad):
         #   이 값은 건너뛰지 않는다. 라벨형("+8.22%(3회차전)")은 뒤에 숫자가 없다.
         # ⚠️표지가 값 **앞**에 붙는 형태도 과거값이다(h 계열에서 같은 부류를 이미 고쳤다).
         #   절 경계(괄호·줄표·쉼표)가 끼면 다른 절이므로 앞 표지로 보지 않는다.
+        # ⚠️(9/6 09:00Z) 창이 10자·절 경계로 좁아 **긴 과거 수식절 안의 값**을 못 걸렀다
+        #   ("직전 회차 42종중 유동성 감소폭이 가장 컸던(-19.2%) 흐름이 …" — 1B).
+        #   표지와 값 사이에 다른 %나 '이번·대비·보다'가 없으면 그 값은 과거 것이다
+        #   (그 표지들이 끼면 기준이 이번 회차로 넘어가므로 계속 검사한다).
         _PAST_PRE = re.compile(r"(?:직전(?:\s*회차)?|전회|과거|\d+\s*회차\s*전)"
-                               r"[^%\d)\]·,—\-]{0,10}$")
+                               r"(?:(?!이번|대비|보다)[^%.!?]){0,40}$")
         cur = None
         for mo in re.finditer(r"\(?([+-][\d.]+)%", seg):
+            # ⚠️(9/6 09:00Z) "유동성은 -2.6%**에서** +4.6%로 유입 전환" 꼴 전이에서
+            #   **앞 값은 직전 회차 값**이다. 이번 값으로 읽어 오탐이 났다
+            #   (HOOKR·BRODIE·1B·omo). 뒤에 '에서/→'가 오고 또 %가 따라오면 건너뛴다.
+            if re.match(r"\s*(?:에서|→|->)\s*[^%]{0,12}%", seg[mo.end():]):
+                continue
             mp = re.match(_PAST, seg[mo.end():])
             if mp and not re.match(r"[^%\d]{0,6}[+-]?\d", seg[mo.end() + mp.end():]):
                 continue
-            if _PAST_PRE.search(seg[:mo.start()]):
+            # ⚠️표지가 seg **앞**(= "유동성" 이전)에 있을 수 있으므로 원문 기준으로 본다
+            #   ("**직전 회차** 42종중 유동성 감소폭이 가장 컸던(-19.2%)" — 1B).
+            if _PAST_PRE.search(th[:dpos + mo.start()]):
                 continue
             cur = mo.group(1)
             break
@@ -117,7 +130,9 @@ def check_token(name, th, m, bad):
             bad.append(f"{name} vol24 ${vm.group(1)} != 실측 ${m['vol24']:,.0f}{extra}")
 
     # 회전율 (조사 붙는 표기 허용: 회전율은/는/이/가)
-    tm = re.search(r"회전율(?:은|는|이|가)?\s*([\d.]+)배", th)
+    # ⚠️(9/6 09:00Z) "회전율은 5.09배→4.11배로 진정" 전이에서 앞 값은 직전 값이다.
+    tm = re.search(r"회전율(?:은|는|이|가)?\s*[\d.]+배\s*(?:→|->|에서)\s*([\d.]+)배", th) \
+        or re.search(r"회전율(?:은|는|이|가)?\s*([\d.]+)배", th)
     if tm and m["turnover"] is not None and abs(float(tm.group(1)) - m["turnover"]) > 0.06:
         bad.append(f"{name} 회전율 {tm.group(1)}배 != 실측 {m['turnover']}배")
 
@@ -136,10 +151,25 @@ def check_token(name, th, m, bad):
         bad.append(f"{name} thesis '변동없음' 주장 != 실제 {pn0}풀→{m['npools']}풀 변동")
     # ⚠️회차 대조(9/5 15:00Z 신설): 발행본 "N회차"가 기준선+1과 맞는지 본다.
     #   기준선이 없는(회차 미확인) 종목은 검사하지 않는다.
+    # ⚠️검출 공백 2건(9/6 09:00Z): ①에이전트가 "121→122회차"처럼 **전이 표기**를 쓰면
+    #   위 정규식이 아예 매치되지 않아 **회차 검사가 통째로 꺼져 있었다** ②그래서 앞
+    #   숫자가 한 회차씩 밀린 오기를 못 잡았다 — 이번 회차 42종 중 **33종**이 직전
+    #   발행본의 '앞' 숫자를 이월해 "126→128"(정답 127→128) 꼴이었다.
+    #   두 형태를 모두 보고, 전이형이면 앞 숫자가 기준선(=rn-1)과 맞는지도 대조한다.
     rn = m.get("round_no")
-    rm = re.match(r"\s*(\d+)\s*회차", th)
-    if rn is not None and rm and int(rm.group(1)) != rn:
-        bad.append(f"{name} thesis 회차 {rm.group(1)} != 기준선+1 {rn}")
+    if rn is not None:
+        tm = re.match(r"\s*(\d+)\s*→\s*(\d+)\s*회차", th)
+        if tm:
+            a, b = int(tm.group(1)), int(tm.group(2))
+            if b != rn:
+                bad.append(f"{name} thesis 회차 {b} != 기준선+1 {rn}")
+            elif a != rn - 1:
+                bad.append(f"{name} thesis 직전 회차 {a} != 기준선 {rn - 1}"
+                           f" ('{a}→{b}'는 '{rn - 1}→{rn}'이어야 합니다)")
+        else:
+            rm = re.match(r"\s*(\d+)\s*회차", th)
+            if rm and int(rm.group(1)) != rn:
+                bad.append(f"{name} thesis 회차 {rm.group(1)} != 기준선+1 {rn}")
     am = re.search(r"풀나이\s*([\d.]+)일", th)
     if am and m["age_days"] is not None and abs(float(am.group(1)) - m["age_days"]) > 0.15:
         bad.append(f"{name} 풀나이 {am.group(1)}일 != 실측 {m['age_days']}일")
@@ -167,6 +197,29 @@ def main() -> int:
     #   오기는 통째로 지나쳤다. 구조 필드 이월(BARRON 7풀 건)이 바로 이 부류다.
     by_ca = {r["ca"].lower(): r for r in raw.values()}
     mdtxt = (KOL / "watch.md").read_text()
+
+    # ⚠️검출 공백(9/6 09:00Z): 회차 전이 표기("121→122회차")는 **표 행에만** 있고
+    #   watch.json의 thesis는 단독 표기라, 앞 숫자 오기를 아무도 보지 않았다.
+    #   이번 회차 42종 중 **33종**이 직전 발행본의 '앞' 숫자를 이월해 한 회차씩
+    #   밀려 있었다("126→128", 정답 "127→128"). 표 행의 전이 표기를 직접 대조한다.
+    by_tok = {r["token"]: r for r in raw.values() if r.get("ok")}
+    for line in mdtxt.splitlines():
+        if not line.startswith("|"):
+            continue
+        cells = [c.strip() for c in line.strip("|").split("|")]
+        m2 = by_tok.get(cells[0]) if cells else None
+        rn3 = m2.get("round_no") if m2 else None
+        if rn3 is None:
+            continue
+        tm3 = re.search(r"(\d+)\s*→\s*(\d+)\s*회차", line)
+        if not tm3:
+            continue
+        a3, b3 = int(tm3.group(1)), int(tm3.group(2))
+        if b3 != rn3:
+            bad.append(f"{cells[0]} 표 회차 {b3} != 기준선+1 {rn3}")
+        elif a3 != rn3 - 1:
+            bad.append(f"{cells[0]} 표 직전 회차 {a3} != 기준선 {rn3 - 1}"
+                       f" ('{a3}→{b3}'는 '{rn3 - 1}→{rn3}'이어야 합니다)")
     md_cov = 0
     for mo in re.finditer(
             r"^- \*\*(?P<tok>[^*]+)\*\*\s*\([^)]*?`(?P<ca>0x[0-9a-fA-F]+|[1-9A-HJ-NP-Za-km-z]+)`"
@@ -280,6 +333,15 @@ def main() -> int:
         got = _pick(wide)
         if got:
             return got
+        # ⚠️(9/6 09:00Z) 고정 창으로 못 찾으면 **그 문장 전체**를 본다. 지표어가
+        #   문장 앞머리에 있고 사이에 괄호 주석이 길게 끼면("다만 h24는 -54.19%
+        #   (직전 …에서 완화)로 낙폭이 줄었지만 여전히 42종중 최소") 40자로도 못 닿아
+        #   아래 vol24 기본값으로 떨어지며 오탐이 났다(CYBERCAT·PEE). 괄호 주석은
+        #   지우고 문장 시작부터 훑는다.
+        sent = re.split(r"(?<=[.!?])\s+", text[:start])[-1]
+        got = _pick(re.sub(r"\([^)]*\)", " ", sent))
+        if got:
+            return got
         r = raw_by_token.get(subj)
         if r:
             mv = re.findall(r"\$([\d,.]+)", text[max(0, start - 40):start])
@@ -312,6 +374,15 @@ def main() -> int:
                 continue
             if _EXIT.search(text[mo.end():mo.end() + 16]):
                 continue
+            # ⚠️(9/6 09:00Z) "감소최대(-19.2%)**에서** 증가최대(+25.7%)로 급반전"처럼
+            #   전이를 쓰면 **앞쪽 최상급은 직전 상태**다. 이번 회차 주장으로 읽어
+            #   오탐이 났다(1B). 뒤에 '에서'가 오고 그 뒤에 또 최상급/증감어가
+            #   따라오면 이 최상급은 판정하지 않는다.
+            #   ⚠️소수점을 절 경계로 보면 "(-19.2%)에서"를 못 넘는다 — 숫자 사이 점은 허용.
+            if re.search(r"^(?:[^.]|\.(?=\d)){0,14}?에서(?:[^.]|\.(?=\d)){0,10}?"
+                         r"(?:최대|최소|최고|최저|증가|감소|유입|유출)",
+                         text[mo.end():mo.end() + 30]):
+                continue
             kind = "최대" if mo.group("sup") in ("최대", "최고") else "최저"
             # ⚠️"42종중 최대 **변동**"은 수준이 아니라 **델타**가 최대라는 뜻이다
             #   (9/4 TOAD 유동성 +26.3%가 '유동성 최대'로 오탐됐다). 델타 최대와 대조한다.
@@ -322,7 +393,10 @@ def main() -> int:
             # ⚠️추가(9/4 15:00Z): "42종중 이번회차 최대폭(-25.3%)으로 유출" 처럼
             #   표지가 8자 창 **밖**에 있고 부호 %만 뒤따르는 형태도 델타다.
             pre_d = text[max(0, mo.start() - 14):mo.start()]
-            post = text[mo.end():mo.end() + 20]
+            # ⚠️(9/6 09:00Z) post 창이 **표의 다음 칸**까지 넘어가 그 칸의 부호 %를
+            #   델타 표지로 읽었다("… vol24 42종중 최저. | 유동성$5,781(+0.0%)…" — PEE).
+            #   칸 구분자와 문장 끝에서 끊는다(숫자 사이 점은 문장 끝이 아니다).
+            post = re.split(r"\||\.(?!\d)", text[mo.end():mo.end() + 20])[0]
             # ⚠️오탐 수정(9/5 03:00Z): 앞쪽 델타 표지를 "변동" 하나만 봐서
             #   **"유동성 유입이 이번 회차 42종중 최대"**(=증가 최대, 정확한 서술)를
             #   유동성 **수준** 최대 주장으로 읽어 오탐 3건을 냈다. 앞 창의 델타
