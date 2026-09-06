@@ -12,6 +12,7 @@
 """
 from __future__ import annotations
 
+import datetime as dt
 import json
 import subprocess
 import sys
@@ -88,7 +89,14 @@ def promote(raw_path: str) -> int:
                  # ⚠️회차수 미확인 종목을 1로 바꿔 "2회차"라는 없는 이력을 만들면 안 된다(9/3 발생)
                  prev_round=(t["prev_round"] + 1) if t.get("prev_round") else None,
                  prev_stage=w.get("stage"), prev_risk=w.get("risk", ""),
-                 prev_kols=w.get("kols", ""), prev_thesis=w.get("thesis", ""))
+                 prev_kols=w.get("kols", ""), prev_thesis=w.get("thesis", ""),
+                 # ⚠️기준선 시각을 남긴다(9/6 23:00Z): 21:00Z 회차에서 부모가 이 승급을
+                 #   **통째로 빠뜨려** 다음 회차 Δ·풀수 변동·회차수가 전부 2회차 누적이
+                 #   됐는데, 값 자체는 정합해 검증기 3종이 모두 통과했다(9/3 '40종 Δ 누적'
+                 #   사고와 같은 부류가 승급 누락이라는 다른 경로로 재발). 시각을 남겨야
+                 #   아래 kol_pre 가드가 "기준선이 낡았다"를 기계적으로 알린다.
+                 prev_ts=(json.loads((ROOT / "research" / "kol" / "watch.json")
+                                     .read_text()).get("ts")))
     CFG.write_text(json.dumps(cfg, ensure_ascii=False, indent=1))
     print(f"기준선 승격 {len(cfg)}종목")
     return 0
@@ -101,6 +109,22 @@ def main() -> int:
             return 2
         return promote(sys.argv[2])
     cfg = json.loads(CFG.read_text())
+    # ⚠️기준선 신선도 가드(9/6 23:00Z): 직전 회차에서 `--promote`를 빠뜨리면 이번 회차의
+    #   Δ·풀수 변동·회차수가 조용히 **2회차 누적**이 된다. 값 자체는 정합하므로 검증기
+    #   3종이 전부 통과해 산출물만 봐서는 알 수 없다 — 여기서 시각으로 잡는다.
+    _bts = next((t.get("prev_ts") for t in cfg if t.get("prev_ts")), None)
+    if _bts:
+        try:
+            _age = (dt.datetime.now(dt.timezone.utc)
+                    - dt.datetime.fromisoformat(_bts.replace("Z", "+00:00"))).total_seconds() / 3600
+            if _age > 2.6:
+                print(f"⚠️기준선이 {_age:.1f}시간 전({_bts})입니다 — 직전 회차 `--promote`가 "
+                      f"누락됐을 수 있습니다. 그대로 진행하면 Δ·풀수 변동·회차수가 누적됩니다.",
+                      file=sys.stderr)
+        except ValueError:
+            pass
+    else:
+        print("⚠️기준선에 prev_ts가 없습니다 — 승급 이력을 확인하십시오.", file=sys.stderr)
     out, fails = [], []
     for i, t in enumerate(cfg):
         d = fetch(t["ca"])
