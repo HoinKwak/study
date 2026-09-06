@@ -491,6 +491,13 @@ def check_direction(md: str, digest: dict, real: dict, bad: list) -> None:
                     if _METRIC_MOVE.search(seg[max(0, pos - 24):pos]):
                         continue
                     mt = _TRANS.search(seg[max(0, pos - 24):pos])
+                    # ⚠️(9/6 14:30Z) 전이 뒤의 '플러스/마이너스'는 **끝값의 부호**를
+                    #   말하는 수준 표현이지 변화량이 아니다("+1.63%→+0.30%로 **플러스는
+                    #   유지**하나" — JUP). 델타와 대조하면 항상 어긋나므로, 이 낱말들은
+                    #   전이 경로에서 빼고 아래 일반 부호 대조로 넘긴다(검출력 유지).
+                    if seg[pos:pos + 4].startswith(("플러스", "마이너스")):
+                        kept.append((pos, up))
+                        continue
                     if not mt:
                         kept.append((pos, up))
                         continue
