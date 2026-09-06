@@ -22,7 +22,7 @@ python3 diag_tailcorr.py     # 종목간 진입일 상관 — 평시 vs BTC 절�
 python3 diag_lookahead.py    # BTC·ETH 2종목 절단(2025-01-01) 재실행, 절단이전 신호 완전일치 확인 → out_diag_lookahead.json
 ```
 LOO(종목별 제외) 결과는 일회성 인라인 스크립트로 생성해 `out_diag_loo.json`에 저장(코드는
-리포트 §5.6에 인용, 짧아서 별도 .py 파일로 분리하지 않음 — 재현 시 해당 스니펫을 그대로
+리포트 §6.2에 인용, 짧아서 별도 .py 파일로 분리하지 않음 — 재현 시 해당 스니펫을 그대로
 실행하면 동일 결과가 나온다).
 
 ## 파일 구성

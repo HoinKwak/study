@@ -39,7 +39,12 @@ def main() -> dict:
     # ApEn 저값(규칙적 변화)과 개념적으로 가장 가까운 대조는 "고ADX=추세뚜렷"이므로 ADX 상위
     # 백분위를 게이트로 사용(추세 강도 자체가 만드는 재포장 여부 점검).
     btc_reg = build_btc_price_regime()
-    adx_pctile = btc_reg["adx"].rank(pct=True) * 100
+    # ⚠️룩어헤드 수정(리뷰어 감사 2026-09-06): 전체 구간을 한 번에 rank하면 각 시점이
+    #   미래 데이터까지 포함한 백분위를 쓰게 된다(ApEn 쪽은 causal 트레일링 백분위인데
+    #   이 대조군만 전체구간 rank였다). causal 확장윈도우로 교체 — 리뷰어 재실행에서
+    #   게이트 발화 일치율 98.9%·PF/t 거의 동일(1.256/1.386 vs 원본 1.265/1.429)로
+    #   실질 영향은 없었으나 코드 위생상 수정한다.
+    adx_pctile = btc_reg["adx"].expanding().rank(pct=True) * 100
     adx_gate = (adx_pctile >= 70)  # 발생률 30%대 맞춤(저ApEn 게이트와 유사 발화율)
     gate_override = {sym: adx_gate for sym in uni["universe"]}
     adxgate = trades_to_df(run_variant(uni, gate_override=gate_override))
