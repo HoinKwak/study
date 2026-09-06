@@ -150,7 +150,7 @@ def main() -> int:
         k = m["token"]
         p = pt[k]
         tbl.append(f"| {k} | {chain_disp(m.get('chain_hint',''))} | {p.get('stage','')} | "
-                   f"{p.get('kols') or '-'} | {p.get('short','')} | {metrics_cell(m, rank[k])} | "
+                   f"{p.get('kols') or '-'} | {p.get('short','')} | {metrics_cell(m, rank.get(k))} | "
                    f"- | {p.get('risk','')} | 다이제스트 |")
 
     kol_md = patch.get("kol_md")
