@@ -399,8 +399,14 @@ def check_direction(md: str, digest: dict, real: dict, bad: list) -> None:
                         #   (랠리·흐름…)를 요구해 이 형태를 못 걸렀다 — 표 비고 검사를
                         #   신설하고 나서야 드러났다. 종결이 분명한 낱말만 좁게 넣는다
                         #   ('전환·조정'은 문맥에 따라 진짜 주장이라 여기 넣지 않는다).
-                        and not re.search(r"^\s{0,2}(?:일단락|마무리|멈춤|정지|중단|끝)",
-                                          seg[m.end():m.end() + 6])
+                        #   ⚠️확장(9/6 04:30Z): 종결이 **조사+부사를 건너 동사로** 오는
+                        #     형태를 못 걸렀다("상승**이 사실상 멈췄**습니다" — ARB).
+                        #     짧은 조사·정도부사만 다리로 허용한다.
+                        and not re.search(r"^\s{0,2}(?:[이가은는도]\s*)?"
+                                          r"(?:사실상|거의|완전히|점차|대체로)?\s*"
+                                          r"(?:일단락|마무리|멈[춤춰췄추춘]|정지|중단|끝|"
+                                          r"그쳤|그치|잦아)",
+                                          seg[m.end():m.end() + 14])
                         # ⚠️부정·대조 구문 제외(9/5 18:30Z): "이는 **하락 반전**이라기보다
                         #   상장 초기 급등분의 롤오프다"는 하락을 **부정**하는 문장인데
                         #   하락 주장으로 세어져 오탐이 났다.
@@ -440,6 +446,13 @@ def check_direction(md: str, digest: dict, real: dict, bad: list) -> None:
                     mt = _TRANS.search(seg[max(0, pos - 24):pos])
                     if not mt:
                         kept.append((pos, up))
+                        continue
+                    # ⚠️검출 공백(9/6 04:30Z): 전이 판정만 **기준 해소를 건너뛰고** 있었다.
+                    #   "펀딩은 Binance …→…, Bybit -0.381%→-0.309%로 여전히 극단적
+                    #   마이너스이나 소폭 완화"에서 펀딩 전이가 가격 방향 주장으로
+                    #   판정돼 오탐이 났다(HEMI). `_NONPRICE`는 14자 창이라 지표명이
+                    #   멀면 못 닿는데, `_basis_at`은 절 전체를 보므로 그쪽을 쓴다.
+                    if _basis_at(seg, pos) == "nonprice":
                         continue
                     d = float(mt.group(1))
                     if abs(d) >= 0.01 and (d > 0) != up:
