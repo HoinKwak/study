@@ -74,7 +74,9 @@ def main() -> int:
 
     # ③ brief.json
     bj = json.loads((R / "market" / "brief.json").read_text())
-    if bj.get("ts") != ts:
+    # ts 는 초 표기 유무(00:15Z / 00:15:00Z)가 회차마다 달라 분 단위까지로 정규화해 비교한다
+    # (futures_check·kol_check에서 같은 오탐을 이미 해소했다).
+    if (bj.get("ts") or "").replace("Z", "")[:16] != ts.replace("Z", "")[:16]:
         bad.append(f"brief.json ts {bj.get('ts')} != {ts}")
     for k in ("ts", "market", "assets"):
         if k not in bj:
