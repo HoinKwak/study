@@ -100,6 +100,20 @@ def check(rows: list[dict], digest: dict, bad: list, label: str) -> None:
 
 def _strip_clauses(t: str) -> str:
     """수치 인용이 아닌 절을 지운다 — 이력절·직전값·괄호주석."""
+    def _delta_mark(mo: re.Match) -> str:
+        try:
+            a, b = float(mo.group("a")), float(mo.group("b"))
+        except (TypeError, ValueError):
+            return " "
+        return f" \u27ead{b - a:+.2f}\u27eb "
+
+    # ⚠️(9/6 02:30Z) 전이의 **직전 값이 괄호 안**에 있으면 바로 아래 괄호 주석
+    #   제거가 먼저 삼켜버려 전이 자체가 인식되지 않았다 — "직전 회차 신규 부각
+    #   (chg24 +42.10%, Binance)에서 이번 +33.86%로 하락"에서 근거를 잃은 '하락'이
+    #   가격 방향 주장으로 오판됐다(牛来 오탐). 괄호를 지우기 전에 마커로 바꾼다.
+    t = re.sub(r"\([^()]*?(?P<a>[-+]?\d[\d.]*)\s*%[^()]*\)\s*에서\s*"
+               r"(?:이번\s*(?:회차\s*)?)?"
+               r"(?P<b>[-+]?\d[\d.]*)\s*%\s*로", _delta_mark, t)
     t = re.sub(r"\([^)]*\)", " ", t)                       # 괄호 주석
     # ⚠️범위 축소(9/5 14:30Z): 앞쪽 80자를 무차별로 삼켜 **다른 절의 방향어까지** 지웠다.
     #   "chg24 마이너스→플러스 급반전 + 실측 급가속**: chg24가 OKX 기준 직전 -9.84%에서
@@ -109,16 +123,15 @@ def _strip_clauses(t: str) -> str:
     #   서술한 방향어("chg24가 직전 +41.94%에서 이번 +17.86%로 급락")의 근거가 사라져,
     #   남은 '급락'이 가격 방향 주장으로 오판된다(chg24는 +17.86%로 플러스라 항상 어긋난다).
     #   수치 인용을 막는 원래 목적은 유지하되 **변화량만 마커로 남겨** 방향 대조에 쓴다.
-    def _delta_mark(mo: re.Match) -> str:
-        try:
-            a, b = float(mo.group("a")), float(mo.group("b"))
-        except (TypeError, ValueError):
-            return " "
-        return f" \u27ead{b - a:+.2f}\u27eb "
-
     t = re.sub(r"(?P<a>[-+]?\d[\d.]*)\s*%\s*에서\s*(?:이번\s*(?:회차\s*)?)?"
                r"(?P<b>[-+]?\d[\d.]*)\s*%\s*로", _delta_mark, t)
     t = re.sub(r"[^→|,·:*\n]{0,30}?에서\s*[-+]?[\d.]+%?\s*로", " ", t)  # "A에서 B로"
+    # ⚠️(9/6 02:30Z) 말로 쓴 전이 "상승에서 하락으로 돌아섰습니다"의 앞 방향어는
+    #   **직전 상태**이지 이번 회차 주장이 아니다. 같은 기준에 상반 방향어가 섞였다며
+    #   상충으로 잡히던 오탐(XMR·ASTER 3건). 뒤에 실제로 방향어가 따라올 때만 앞을
+    #   지운다 — 단독 "상승에서"는 그대로 둬 검출력을 깎지 않는다.
+    t = re.sub(r"(?:상승|하락|반등|반락|급등|급락|강세|약세)(?:세|폭|률)?\s*에서"
+               r"(?=\s*[^.]{0,8}?(?:상승|하락|반등|반락|급등|급락|강세|약세))", " ", t)
     # ⚠️소수점에서 끊기면 "직전 회차 -11.10% 급락"의 '급락'이 살아남아 오탐이 된다
     #   (펀딩 절이 소수점에서 끊기던 것과 같은 부류). 숫자 앞의 점은 절 안으로 본다.
     # ⚠️가운뎃점도 마찬가지다 — "직전 DashCon·shielded베타 촉매발 급등"에서 절이
@@ -195,6 +208,50 @@ def _basis_at(seg: str, pos: int) -> str | None:
 _ENDS = re.compile(r"[.:;!?)\]]\s*$")
 
 
+def _table_lines(md: str):
+    """표의 `비고` 열에 담긴 방향 주장을 산문과 같은 방식으로 검사할 수 있게
+    한 줄짜리 합성 문장("<심볼> 실측 <값> <비고>")으로 바꿔 내보낸다.
+
+    ⚠️검출 공백(9/6 02:30Z): `_logical_lines`가 `|`로 시작하는 줄을 통째로 건너뛰어
+      **표 비고 열의 방향 주장이 한 번도 검사된 적이 없었다**(이번 회차 22건, 최근
+      8회차 8~26건이고 증가 추세다). 표의 수치 칼럼은 check()가 다이제스트와 대조하지만
+      비고 열은 아무도 보지 않았다 — 주입("상승 가속"→"실측 기준 하락 지속")이 이 수정
+      전후 판 모두에서 미검출인 것으로 확인했다. 조용히 건너뛰는 구간은 오탐도 안 낸다.
+      기준은 산문과 같은 관행을 따른다 — 실측 값이 있으면 실측, 없으면 chg24.
+    """
+    num = re.compile(r"[-+]?\d[\d.]*\s*%")
+    hdr = None
+    for line in md.splitlines():
+        s = line.strip()
+        if not s.startswith("|"):
+            hdr = None
+            continue
+        cells = [c.strip() for c in s.strip("|").split("|")]
+        if any(("심볼" in c or "종목" in c) for c in cells):
+            hdr = cells
+            continue
+        if hdr is None or len(cells) != len(hdr):
+            continue
+
+        def cell(*names):
+            for i, h in enumerate(hdr):
+                if any(n in h for n in names):
+                    return cells[i]
+            return ""
+
+        sym, note = cell("심볼", "종목").strip("`* "), cell("비고", "메모")
+        if not sym or not note:
+            continue
+        mr, mc = num.search(cell("실측")), num.search(cell("chg24", "24h", "변동"))
+        if mr:
+            basis = "실측 " + mr.group(0)
+        elif mc:
+            basis = "chg24 " + mc.group(0)
+        else:
+            continue
+        yield f"{sym} {basis} {note}"
+
+
 def _logical_lines(md: str):
     """목록 항목과 그 이어지는 들여쓰기 줄을 **한 문장으로 합쳐** 내보낸다.
 
@@ -243,7 +300,7 @@ def check_direction(md: str, digest: dict, real: dict, bad: list) -> None:
     SYMS = re.compile("|".join(sorted(
         (rf"(?<![-+.\d])(?<![A-Za-z0-9]){re.escape(k)}(?![A-Za-z0-9])(?![.%\d])"
          for k in digest if len(k) >= 3), key=len, reverse=True)))
-    for line in _logical_lines(md):
+    for line in list(_logical_lines(md)) + list(_table_lines(md)):
         t = _strip_clauses(line)
         # ⚠️서술의 주 근거는 실측%다. 한 문장에 둘 다 나오면(예: "실측 -5.40%로 하락.
         #   chg24는 +11.09%로 여전히 플러스") 방향어는 실측에 붙으므로 실측을 기준으로 본다.
@@ -336,6 +393,14 @@ def check_direction(md: str, digest: dict, real: dict, bad: list) -> None:
                         #   방향어가 **뒤에 나오는 다른 종목**을 수식하는 과거 절에 들어가는 형태가 있다.
                         #   다음 종목명에서 끊는 기존 처리로는 방향어가 그 이름보다 **앞**이라 안 잡힌다.
                         and not re.search(r"^[^.]{0,8}?던", seg[m.end():m.end() + 12])
+                        # ⚠️(9/6 02:30Z) "5~6회차 **상승** 일단락"처럼 방향어 바로 뒤에
+                        #   **종결 명사**가 오면 그 방향이 끝났다는 뜻이지 이번 회차
+                        #   주장이 아니다. 위 레짐 종료 필터는 사이에 레짐 명사
+                        #   (랠리·흐름…)를 요구해 이 형태를 못 걸렀다 — 표 비고 검사를
+                        #   신설하고 나서야 드러났다. 종결이 분명한 낱말만 좁게 넣는다
+                        #   ('전환·조정'은 문맥에 따라 진짜 주장이라 여기 넣지 않는다).
+                        and not re.search(r"^\s{0,2}(?:일단락|마무리|멈춤|정지|중단|끝)",
+                                          seg[m.end():m.end() + 6])
                         # ⚠️부정·대조 구문 제외(9/5 18:30Z): "이는 **하락 반전**이라기보다
                         #   상장 초기 급등분의 롤오프다"는 하락을 **부정**하는 문장인데
                         #   하락 주장으로 세어져 오탐이 났다.
