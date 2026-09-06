@@ -1,0 +1,52 @@
+{
+  "crisis_bars": 493,
+  "total_bars": 9852,
+  "corr_full": {
+    "ETHUSDT": 0.3838383616286409,
+    "BNBUSDT": 0.18590996880305335,
+    "SOLUSDT": 0.2667347509296092,
+    "XRPUSDT": 0.1846766763433581,
+    "DOGEUSDT": 0.17922690996713694,
+    "ADAUSDT": 0.1463919091823814
+  },
+  "corr_normal": {
+    "ETHUSDT": 0.26988953348102984,
+    "BNBUSDT": 0.13043713951598698,
+    "SOLUSDT": 0.19201770847094773,
+    "XRPUSDT": 0.11816242387091681,
+    "DOGEUSDT": 0.11321230973854893,
+    "ADAUSDT": 0.10639283912416253
+  },
+  "corr_crisis": {
+    "ETHUSDT": 0.6449369780148752,
+    "BNBUSDT": 0.4003660710303567,
+    "SOLUSDT": 0.4773926335255018,
+    "XRPUSDT": 0.4075111205198837,
+    "DOGEUSDT": 0.4205884755558504,
+    "ADAUSDT": 0.29467526319466203
+  },
+  "cp_co_occurrence_full": {
+    "ETHUSDT": "15/45",
+    "BNBUSDT": "10/45",
+    "SOLUSDT": "12/45",
+    "XRPUSDT": "10/45",
+    "DOGEUSDT": "12/45",
+    "ADAUSDT": "9/45"
+  },
+  "cp_co_occurrence_normal": {
+    "ETHUSDT": "5/26",
+    "BNBUSDT": "3/26",
+    "SOLUSDT": "5/26",
+    "XRPUSDT": "3/26",
+    "DOGEUSDT": "6/26",
+    "ADAUSDT": "2/26"
+  },
+  "cp_co_occurrence_crisis": {
+    "ETHUSDT": "8/19",
+    "BNBUSDT": "4/19",
+    "SOLUSDT": "4/19",
+    "XRPUSDT": "3/19",
+    "DOGEUSDT": "2/19",
+    "ADAUSDT": "3/19"
+  }
+}

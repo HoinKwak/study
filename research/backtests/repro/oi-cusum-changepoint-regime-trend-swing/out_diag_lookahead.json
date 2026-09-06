@@ -1,0 +1,34 @@
+{
+  "BTCUSDT": {
+    "n_full_bars": 9852,
+    "cutoff_bar": 9452,
+    "safe_time": "2026-01-16 20:00:00+00:00",
+    "cp_full_safe_n": 37,
+    "cp_cut_safe_n": 37,
+    "match": true
+  },
+  "ETHUSDT": {
+    "n_full_bars": 9852,
+    "cutoff_bar": 9452,
+    "safe_time": "2026-01-16 20:00:00+00:00",
+    "cp_full_safe_n": 39,
+    "cp_cut_safe_n": 39,
+    "match": true
+  },
+  "XRPUSDT": {
+    "n_full_bars": 9822,
+    "cutoff_bar": 9422,
+    "safe_time": "2026-01-16 20:00:00+00:00",
+    "cp_full_safe_n": 57,
+    "cp_cut_safe_n": 57,
+    "match": true
+  },
+  "ADAUSDT": {
+    "n_full_bars": 9852,
+    "cutoff_bar": 9452,
+    "safe_time": "2026-01-16 20:00:00+00:00",
+    "cp_full_safe_n": 54,
+    "cp_cut_safe_n": 54,
+    "match": true
+  }
+}

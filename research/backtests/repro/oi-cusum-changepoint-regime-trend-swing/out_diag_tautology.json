@@ -1,0 +1,19 @@
+{
+  "overlap": {
+    "n_a": 45,
+    "strict_overlap": 0.24444444444444444,
+    "loose_overlap": 0.3111111111111111
+  },
+  "n_residual_after_price_cusum_dedup": 34,
+  "corr_full": {
+    "abs_z": 0.6885814902007442,
+    "roll_std20": 0.3297737367124825,
+    "roc12": 0.03827804930952813
+  },
+  "corr_trigger": {
+    "abs_z": 0.8795854081397375,
+    "roll_std20": 0.49878462078464747,
+    "roc12": -0.3867056170397284
+  },
+  "n_trigger": 45
+}
