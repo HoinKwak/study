@@ -1,0 +1,16 @@
+{
+  "breakout": {
+    "calm_days_n": 1558,
+    "crisis_days_n": 83,
+    "calm_avg_pairwise_corr": 0.19174386370595645,
+    "crisis_avg_pairwise_corr": 0.09964572192680018,
+    "crisis_threshold_abs_ret": 0.05450136607671685
+  },
+  "fade": {
+    "calm_days_n": 1558,
+    "crisis_days_n": 83,
+    "calm_avg_pairwise_corr": 0.21724314214593615,
+    "crisis_avg_pairwise_corr": 0.3550500825856203,
+    "crisis_threshold_abs_ret": 0.05450136607671685
+  }
+}

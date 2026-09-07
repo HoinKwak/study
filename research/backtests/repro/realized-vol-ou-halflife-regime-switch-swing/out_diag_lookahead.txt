@@ -1,0 +1,2 @@
+total_mismatches=0
+cutoff=4000
