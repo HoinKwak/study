@@ -35,18 +35,29 @@ def close(a: float, b: float, tol: float = 0.02) -> bool:
 def check_token(name, th, m, bad):
     """thesis 한 편을 실측 m과 대조."""
     # 유동성 A→B: B가 이번 실측, A가 직전 실측이어야 한다.
-    mm = re.search(rf"유동성.{{0,30}}?\${NUM}\s*→\s*\$({NUM})", th)
+    # ⚠️오탐 수정(9/7 03:00Z): 30자 창이 **다른 지표 언급을 건너뛰어** 남의 수치를 집었다 —
+    #   "거래·**유동성**이 함께 붙기 시작. **vol24**가 $160,671→$200,711로"에서 앞쪽의
+    #   무해한 '유동성' 언급을 기점으로 vol24 쌍을 유동성으로 판정했다(OBS 2건).
+    #   창 안에 **다른 지표 이름(vol24·거래량·회전율·h1/h6/h24)**이 끼면 그 매치는 버린다.
+    _OTHER = r"(?:vol24|거래량|회전율|h1|h6|h24|체결)"
+    mm = next((x for x in re.finditer(
+        rf"유동성(?P<gap>.{{0,30}}?)\${NUM}\s*→\s*\$(?P<val>{NUM})", th)
+        if not re.search(_OTHER, x.group("gap"))), None)
     if mm:
-        if not close(f(mm.group(1)), m["liq"]):
-            bad.append(f"{name} 유동성 종점 ${mm.group(1)} != 실측 ${m['liq']:,.0f}")
-        a = re.search(rf"유동성.{{0,30}}?\$({NUM})\s*→", th)
-        if a and m["prev_liq"] and not close(f(a.group(1)), m["prev_liq"]):
-            bad.append(f"{name} 유동성 시점 ${a.group(1)} != 직전 실측 "
+        if not close(f(mm.group("val")), m["liq"]):
+            bad.append(f"{name} 유동성 종점 ${mm.group('val')} != 실측 ${m['liq']:,.0f}")
+        a = next((x for x in re.finditer(
+            rf"유동성(?P<gap>.{{0,30}}?)\$(?P<val>{NUM})\s*→", th)
+            if not re.search(_OTHER, x.group("gap"))), None)
+        if a and m["prev_liq"] and not close(f(a.group("val")), m["prev_liq"]):
+            bad.append(f"{name} 유동성 시점 ${a.group('val')} != 직전 실측 "
                        f"${m['prev_liq']:,.0f} (2회차 전 값 인용 의심)")
     else:
-        mm = re.search(rf"유동성.{{0,30}}?\$({NUM})", th)
-        if mm and not close(f(mm.group(1)), m["liq"]):
-            bad.append(f"{name} 유동성 ${mm.group(1)} != 실측 ${m['liq']:,.0f}")
+        mm = next((x for x in re.finditer(
+            rf"유동성(?P<gap>.{{0,30}}?)\$(?P<val>{NUM})", th)
+            if not re.search(_OTHER, x.group("gap"))), None)
+        if mm and not close(f(mm.group("val")), m["liq"]):
+            bad.append(f"{name} 유동성 ${mm.group('val')} != 실측 ${m['liq']:,.0f}")
 
     # 유동성 Δ%
     # ⚠️오탐 수정(9/5 09:00Z): 여러 회차 이력을 화살표로 나열하면
@@ -65,6 +76,13 @@ def check_token(name, th, m, bad):
         # ⚠️(9/6 09:00Z) 창을 문장으로 한정한다 — 200자 고정 창이 문장을 넘어가
         #   **유동성 문장에 %가 없으면 뒤 문장의 h6 값을 유동성Δ로 읽었다**(40M).
         seg = re.split(r"\.(?!\d)", th[dpos:dpos + 200])[0]
+        # ⚠️오탐 수정(9/7 03:00Z): 유동성Δ 탐색이 **다른 지표의 %까지 넘어가** 그 값을
+        #   유동성 델타로 집었다 — "유동성은 $10,441→$8,350로 20.0% 급감했고 **h1 -25.02%**"
+        #   에서 부호 없는 20.0%는 건너뛰고 h1 값을 골랐다(MANEKI). 두 가지를 함께 고친다:
+        #   ①다른 지표 이름이 나오면 거기서 끊는다 ②부호가 없어도 **증감 동사**가 붙으면
+        #     그 값이 유동성 델타다(부호는 동사에서 정한다).
+        seg = re.split(r"(?:h1|h6|h24|vol24|거래량|회전율|체결)", seg)[0]
+        _unsigned = re.search(r"(?<![+-])([\d.]+)%\s*(?:급감|감소|유출|급증|증가|유입)", seg)
         # ⚠️오탐 수정(9/6 07:00Z): 뒤따르는 표지가 **다음 값의 것**일 때도 이 값을
         #   건너뛰었다 — "유동성 $8,609→$8,582(-0.3%, 직전 +0.6% 유입에서…)"에서
         #   정답 -0.3%을 버리고 과거값 +0.6%을 이번 값으로 골라 오탐이 났다(PEPECOIN).
@@ -99,6 +117,9 @@ def check_token(name, th, m, bad):
                 continue
             cur = mo.group(1)
             break
+        if cur is None and _unsigned:
+            v = float(_unsigned.group(1))
+            cur = f"{-v if re.search(r'급감|감소|유출', _unsigned.group(0)) else v:+.2f}"
         if cur is not None and abs(f(cur) - m["dliq_pct"]) > 0.35:
             bad.append(f"{name} 유동성Δ {cur}% != 실측 {m['dliq_pct']:+.1f}%")
 
@@ -131,15 +152,20 @@ def check_token(name, th, m, bad):
             break
 
     # vol24 / 거래량
-    vm = (re.search(rf"(?:vol24|거래량)[^$]{{0,6}}\$" + NUM + r"\s*(?:→|->)\s*\$(" + NUM + r")", th)
-          or re.search(rf"(?:vol24|거래량)\s*\$({NUM})", th))
+    # ⚠️오탐 수정(9/7 03:00Z): "$3.92**M**" 같은 축약 단위를 못 읽어 3.92로 대조했다(CHUMP).
+    #   금액 뒤 M/K를 배수로 반영한다.
+    vm = (re.search(rf"(?:vol24|거래량)[^$]{{0,6}}\$" + NUM + r"[MK]?\s*(?:→|->)\s*\$("
+                    + NUM + r")([MK]?)", th)
+          or re.search(rf"(?:vol24|거래량)\s*\$({NUM})([MK]?)", th))
     if vm:
         v = f(vm.group(1).rstrip(","))
+        _suf = vm.group(2) if vm.lastindex and vm.lastindex >= 2 else ""
+        v *= {"M": 1e6, "K": 1e3}.get(_suf, 1)
         if not close(v, m["vol24"], 0.02):
             extra = ""
             if m.get("prev_vol24") and close(v, m["prev_vol24"], 0.02):
                 extra = " ← 직전 회차 값 이월 인용"
-            bad.append(f"{name} vol24 ${vm.group(1)} != 실측 ${m['vol24']:,.0f}{extra}")
+            bad.append(f"{name} vol24 ${vm.group(1)}{_suf} != 실측 ${m['vol24']:,.0f}{extra}")
 
     # 회전율 (조사 붙는 표기 허용: 회전율은/는/이/가)
     # ⚠️(9/6 09:00Z) "회전율은 5.09배→4.11배로 진정" 전이에서 앞 값은 직전 값이다.
