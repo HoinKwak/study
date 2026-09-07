@@ -1,0 +1,171 @@
+{
+  "IS": {
+    "gross_R": {
+      "baseline": {
+        "n": 1,
+        "pf": Infinity
+      },
+      "top1_removed": {
+        "n_left": 0,
+        "pf": NaN,
+        "t": NaN
+      },
+      "top3_removed": {
+        "n_left": 0,
+        "pf": NaN,
+        "t": NaN
+      },
+      "worst1_removed": {
+        "n_left": 0,
+        "pf": NaN,
+        "t": NaN
+      },
+      "worst3_removed": {
+        "n_left": 0,
+        "pf": NaN,
+        "t": NaN
+      }
+    },
+    "net_R": {
+      "baseline": {
+        "n": 1,
+        "pf": Infinity
+      },
+      "top1_removed": {
+        "n_left": 0,
+        "pf": NaN,
+        "t": NaN
+      },
+      "top3_removed": {
+        "n_left": 0,
+        "pf": NaN,
+        "t": NaN
+      },
+      "worst1_removed": {
+        "n_left": 0,
+        "pf": NaN,
+        "t": NaN
+      },
+      "worst3_removed": {
+        "n_left": 0,
+        "pf": NaN,
+        "t": NaN
+      }
+    },
+    "cross_symbol_entry_corr": {
+      "note": "\uc885\ubaa9 1\uac1c\ubfd0\uc774\ub77c \uc0c1\uad00 \uacc4\uc0b0 \ubd88\uac00"
+    }
+  },
+  "OOS": {
+    "gross_R": {
+      "baseline": {
+        "n": 0,
+        "pf": NaN
+      },
+      "top1_removed": {
+        "n_left": 0,
+        "pf": NaN,
+        "t": NaN
+      },
+      "top3_removed": {
+        "n_left": 0,
+        "pf": NaN,
+        "t": NaN
+      },
+      "worst1_removed": {
+        "n_left": 0,
+        "pf": NaN,
+        "t": NaN
+      },
+      "worst3_removed": {
+        "n_left": 0,
+        "pf": NaN,
+        "t": NaN
+      }
+    },
+    "net_R": {
+      "baseline": {
+        "n": 0,
+        "pf": NaN
+      },
+      "top1_removed": {
+        "n_left": 0,
+        "pf": NaN,
+        "t": NaN
+      },
+      "top3_removed": {
+        "n_left": 0,
+        "pf": NaN,
+        "t": NaN
+      },
+      "worst1_removed": {
+        "n_left": 0,
+        "pf": NaN,
+        "t": NaN
+      },
+      "worst3_removed": {
+        "n_left": 0,
+        "pf": NaN,
+        "t": NaN
+      }
+    },
+    "cross_symbol_entry_corr": {}
+  },
+  "FULL": {
+    "gross_R": {
+      "baseline": {
+        "n": 1,
+        "pf": Infinity
+      },
+      "top1_removed": {
+        "n_left": 0,
+        "pf": NaN,
+        "t": NaN
+      },
+      "top3_removed": {
+        "n_left": 0,
+        "pf": NaN,
+        "t": NaN
+      },
+      "worst1_removed": {
+        "n_left": 0,
+        "pf": NaN,
+        "t": NaN
+      },
+      "worst3_removed": {
+        "n_left": 0,
+        "pf": NaN,
+        "t": NaN
+      }
+    },
+    "net_R": {
+      "baseline": {
+        "n": 1,
+        "pf": Infinity
+      },
+      "top1_removed": {
+        "n_left": 0,
+        "pf": NaN,
+        "t": NaN
+      },
+      "top3_removed": {
+        "n_left": 0,
+        "pf": NaN,
+        "t": NaN
+      },
+      "worst1_removed": {
+        "n_left": 0,
+        "pf": NaN,
+        "t": NaN
+      },
+      "worst3_removed": {
+        "n_left": 0,
+        "pf": NaN,
+        "t": NaN
+      }
+    },
+    "cross_symbol_entry_corr": {
+      "note": "\uc885\ubaa9 1\uac1c\ubfd0\uc774\ub77c \uc0c1\uad00 \uacc4\uc0b0 \ubd88\uac00"
+    }
+  }
+}

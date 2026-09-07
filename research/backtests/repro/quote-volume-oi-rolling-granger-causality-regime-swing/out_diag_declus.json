@@ -1,0 +1,128 @@
+{
+  "IS": {
+    "gross_R": {
+      "trade_unit": {
+        "n": 1,
+        "pf": Infinity,
+        "t": NaN
+      },
+      "calendar_day": {
+        "n_days": 1,
+        "pf": Infinity,
+        "t": NaN
+      },
+      "rolling_3d": {
+        "n_blocks": 1,
+        "pf": Infinity,
+        "t": NaN
+      },
+      "rolling_5d": {
+        "n_blocks": 1,
+        "pf": Infinity,
+        "t": NaN
+      }
+    },
+    "net_R": {
+      "trade_unit": {
+        "n": 1,
+        "pf": Infinity,
+        "t": NaN
+      },
+      "calendar_day": {
+        "n_days": 1,
+        "pf": Infinity,
+        "t": NaN
+      },
+      "rolling_3d": {
+        "n_blocks": 1,
+        "pf": Infinity,
+        "t": NaN
+      },
+      "rolling_5d": {
+        "n_blocks": 1,
+        "pf": Infinity,
+        "t": NaN
+      }
+    }
+  },
+  "OOS": {
+    "gross_R": {
+      "trade_unit": {
+        "n": 0,
+        "pf": NaN,
+        "t": NaN
+      },
+      "calendar_day": {
+        "n_days": 0
+      },
+      "rolling_3d": {
+        "n_blocks": 0
+      },
+      "rolling_5d": {
+        "n_blocks": 0
+      }
+    },
+    "net_R": {
+      "trade_unit": {
+        "n": 0,
+        "pf": NaN,
+        "t": NaN
+      },
+      "calendar_day": {
+        "n_days": 0
+      },
+      "rolling_3d": {
+        "n_blocks": 0
+      },
+      "rolling_5d": {
+        "n_blocks": 0
+      }
+    }
+  },
+  "FULL": {
+    "gross_R": {
+      "trade_unit": {
+        "n": 1,
+        "pf": Infinity,
+        "t": NaN
+      },
+      "calendar_day": {
+        "n_days": 1,
+        "pf": Infinity,
+        "t": NaN
+      },
+      "rolling_3d": {
+        "n_blocks": 1,
+        "pf": Infinity,
+        "t": NaN
+      },
+      "rolling_5d": {
+        "n_blocks": 1,
+        "pf": Infinity,
+        "t": NaN
+      }
+    },
+    "net_R": {
+      "trade_unit": {
+        "n": 1,
+        "pf": Infinity,
+        "t": NaN
+      },
+      "calendar_day": {
+        "n_days": 1,
+        "pf": Infinity,
+        "t": NaN
+      },
+      "rolling_3d": {
+        "n_blocks": 1,
+        "pf": Infinity,
+        "t": NaN
+      },
+      "rolling_5d": {
+        "n_blocks": 1,
+        "pf": Infinity,
+        "t": NaN
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "gate_none_gross_R": {
+    "n_base": 1,
+    "n_pool": 1271,
+    "base_mean": 0.0818760943071212,
+    "percentile_of_base_in_pool": 62.9
+  },
+  "gate_none_net_R": {
+    "n_base": 1,
+    "n_pool": 1271,
+    "base_mean": 0.0392694123515815,
+    "percentile_of_base_in_pool": 66.0
+  },
+  "zscore_gate_gross_R": {
+    "n_base": 1,
+    "n_pool": 2846,
+    "base_mean": 0.0818760943071212,
+    "percentile_of_base_in_pool": 58.699999999999996
+  },
+  "zscore_gate_net_R": {
+    "n_base": 1,
+    "n_pool": 2846,
+    "base_mean": 0.0392694123515815,
+    "percentile_of_base_in_pool": 60.0
+  }
+}

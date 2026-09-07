@@ -1,0 +1,16 @@
+{
+  "full_period": {
+    "n": 66352,
+    "corr_diff_vol_z": 0.001107311503401846,
+    "corr_diff_oi_roc": -0.006204069835540235
+  },
+  "trigger_strict": {
+    "n": 1,
+    "note": "\ud45c\ubcf8\ubd80\uc871(<3)\uc73c\ub85c \uc0c1\uad00 \uacc4\uc0b0 \uc0dd\ub7b5"
+  },
+  "trigger_loose": {
+    "n": 10,
+    "corr_diff_vol_z": 0.35431186302510276,
+    "corr_diff_oi_roc": 0.20181036963439197
+  }
+}

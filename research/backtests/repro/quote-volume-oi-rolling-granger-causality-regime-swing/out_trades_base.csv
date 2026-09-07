@@ -1,0 +1,2 @@
+symbol,signal_time,entry_time,entry_price,direction,trade_dir,atr_entry,risk_distance,exit_time,exit_price,exit_reason,hold_bars,gross_R,net_R
+XRPUSDT,2023-01-11 16:00:00+00:00,2023-01-11 20:00:00+00:00,0.3717,1,1,0.007633485760270821,0.012213577216433314,2023-01-12 00:00:00+00:00,0.3727,regime_invalidation,1,0.0818760943071212,0.03926941235158151

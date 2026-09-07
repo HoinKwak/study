@@ -1,0 +1,52 @@
+{
+  "label": "base",
+  "n_total": 1,
+  "IS": {
+    "gross": {
+      "n": 1,
+      "pf": Infinity,
+      "t": NaN,
+      "win_rate": 1.0,
+      "mean_R": 0.0818760943071212
+    },
+    "net": {
+      "n": 1,
+      "pf": Infinity,
+      "t": NaN,
+      "win_rate": 1.0,
+      "mean_R": 0.03926941235158151
+    }
+  },
+  "OOS": {
+    "gross": {
+      "n": 0,
+      "pf": NaN,
+      "t": NaN,
+      "win_rate": NaN,
+      "mean_R": NaN
+    },
+    "net": {
+      "n": 0,
+      "pf": NaN,
+      "t": NaN,
+      "win_rate": NaN,
+      "mean_R": NaN
+    }
+  },
+  "FULL": {
+    "gross": {
+      "n": 1,
+      "pf": Infinity,
+      "t": NaN,
+      "win_rate": 1.0,
+      "mean_R": 0.0818760943071212
+    },
+    "net": {
+      "n": 1,
+      "pf": Infinity,
+      "t": NaN,
+      "win_rate": 1.0,
+      "mean_R": 0.03926941235158151
+    }
+  }
+}

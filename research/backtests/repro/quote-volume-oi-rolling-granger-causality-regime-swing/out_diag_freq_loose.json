@@ -1,0 +1,38 @@
+{
+  "3": {
+    "total": 10,
+    "per_symbol": {
+      "BTCUSDT": 2,
+      "ETHUSDT": 3,
+      "BNBUSDT": 0,
+      "SOLUSDT": 1,
+      "XRPUSDT": 2,
+      "DOGEUSDT": 1,
+      "ADAUSDT": 1
+    }
+  },
+  "5": {
+    "total": 18,
+    "per_symbol": {
+      "BTCUSDT": 2,
+      "ETHUSDT": 5,
+      "BNBUSDT": 1,
+      "SOLUSDT": 3,
+      "XRPUSDT": 4,
+      "DOGEUSDT": 2,
+      "ADAUSDT": 1
+    }
+  },
+  "10": {
+    "total": 32,
+    "per_symbol": {
+      "BTCUSDT": 3,
+      "ETHUSDT": 8,
+      "BNBUSDT": 3,
+      "SOLUSDT": 5,
+      "XRPUSDT": 7,
+      "DOGEUSDT": 2,
+      "ADAUSDT": 4
+    }
+  }
+}
