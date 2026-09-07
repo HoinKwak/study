@@ -233,8 +233,15 @@ def _basis_at(seg: str, pos: int) -> str | None:
     #   못하므로, **방향어 바로 앞에 나온 지표가 비가격이면 그 방향어는 버린다**.
     i_non = max(head.rfind("펀딩"), head.rfind("OI"), head.rfind("미결제"),
                 head.rfind("거래대금"), head.rfind("vol24"), head.rfind("회전율"))
+    # ⚠️오탐 6건 수정(9/7 00:30Z): 브리핑 산문의 표준 형태가 "SYMBOL는 OKX A%→B%,
+    #   Hyperliquid C%→D%로 …"인데 여기엔 **지표 라벨이 없다**(문단 제목에만 있다).
+    #   그래서 기준이 줄 단위 기본값(chg24)으로 떨어져, 실측 전이를 서술한 방향어가
+    #   전부 chg24와 대조돼 오탐이 났다(BNB·ARB·NEAR·EDGE·PONS·LAYER).
+    #   프로세스상 산문의 "A%→B%" 전이는 **실측 값**이고, chg24 전이를 쓸 땐 반드시
+    #   'chg24' 라벨을 앞에 붙인다(그 경우 위 i_chg가 잡는다). 따라서 라벨이 하나도
+    #   없고 **전이 마커가 앞에 있으면 실측 기준**으로 본다.
     if i_real < 0 and i_chg < 0 and i_non < 0:
-        return None
+        return "real" if "\u27ea" in head else None
     if i_non > i_real and i_non > i_chg:
         return "nonprice"
     return "real" if i_real > i_chg else "chg"
@@ -341,8 +348,15 @@ def check_direction(md: str, digest: dict, real: dict, bad: list) -> None:
         # ⚠️서술의 주 근거는 실측%다. 한 문장에 둘 다 나오면(예: "실측 -5.40%로 하락.
         #   chg24는 +11.09%로 여전히 플러스") 방향어는 실측에 붙으므로 실측을 기준으로 본다.
         # 지표 이름이 방향어 앞에 없을 때 쓰는 줄 단위 기본값
+        # ⚠️(9/7 00:30Z) 줄에 chg24가 **괄호 주석으로만** 나오고 본문은 실측 전이를
+        #   서술하는 형태가 흔하다("…-0.96%→-1.62%로 소폭 심화했으나 낙폭이 얕습니다
+        #   (chg24 -16.81%). LAYER는 …"). 이때 기본값이 chg로 떨어져 항목 제목의 실측
+        #   주장이 전부 chg24와 대조됐다(LAYER·NEAR·EDGE 오탐). 브리핑 규약상 chg24를
+        #   인용할 땐 라벨을 붙이므로(그건 `_basis_at`이 낱말별로 잡는다), **전이 마커가
+        #   있는 줄은 실측 서술**로 본다.
         dflt = "chg" if (("chg24" in line or "24h" in line)
-                         and "실측" not in line) else "real"
+                         and "실측" not in line
+                         and "\u27ea" not in t) else "real"
         for sym, byv in digest.items():
             pools = {"chg": [float(v["chg24"]) for v in byv.values()
                              if v.get("chg24") is not None],
@@ -494,6 +508,14 @@ def check_direction(md: str, digest: dict, real: dict, bad: list) -> None:
                         #   (폭·률·치·분)만 막아두면 두 글자 이상 형태가 계속 빠져나간다.
                         if not re.match(r"\s{0,2}(?:[폭률치분]|속도|강도|세기|기울기)",
                                         seg[m.end():m.end() + 5])
+                        # ⚠️(9/7 00:30Z) "…반전했습니다. **하락 쪽은** USELESS가…"의 '하락'은
+                        #   다음 화제를 여는 **범주 표지**이지 이 종목 주장이 아니다(CASHCAT 오탐).
+                        #   다음 종목명 앞이라 세그먼트 컷으로는 안 잘린다.
+                        and not re.match(r"\s{0,2}쪽", seg[m.end():m.end() + 4])
+                        # ⚠️(9/7 00:30Z) "이번 회차는 **전반적으로 상방** 우위"는 **시장 전체**
+                        #   서술이지 직전에 언급된 종목의 주장이 아니다(LAYER 오탐).
+                        and not re.search(r"(?:전반적으로|전반적|시장\s*전반|전체적으로)\s*$",
+                                          seg[max(0, m.start() - 12):m.start()])
                         # ⚠️추가(9/5 14:30Z): "chg24 마이너스→플러스 급반전"처럼 **A→B 전이**를
                         #   쓰면 화살표 **앞**의 A는 과거 상태이지 이번 주장이 아니다. 절 제거가
                         #   뒤쪽 B를 지워버리면 A만 남아 정확한 서술이 오탐된다(CASHCAT).
